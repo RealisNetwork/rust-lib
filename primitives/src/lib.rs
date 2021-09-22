@@ -61,11 +61,11 @@ pub enum ResponderParams {
 #[derive(Error, Debug)]
 pub enum Error {
     #[error("Error while trying use realis connection: {0}")]
-    Api(ApiClientError),
+    Api(substrate_api_client::ApiClientError),
     #[error("Error while send throw channel!")]
     SendError,
     #[error("Cannot send Message: {0}")]
-    SendMessage(SendError<Message>),
+    SendMessage(tokio::sync::mpsc::error::SendError<Message>),
     #[error("Cannot send Request: {0}")]
     Send(SendError<Request>),
     #[error("Error while trying use tokio_postgres: {0}")]
