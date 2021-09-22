@@ -9,9 +9,9 @@ edition = "2018"
 # Custom dependencies
 realis-primitives = { git = "https://github.com/RealisNetwork/Realis.Network.git", branch = "main", package = "realis-primitives" }
 runtime = { git =  "https://github.com/RealisNetwork/Realis.Network.git", branch = "main", package = "node-runtime" }
-
 #
-substrate-api-client = { git = "https://github.com/Daelon02/substrate-api-client.git" }
+
+substrate-api-client = { git = "https://github.com/Daelon02/substrate-api-client.git", branch = "main" }
 sp-core = { git = "https://github.com/paritytech/substrate", rev = "03d4d0d7c129eec3d3ab2876bddbe5d6dfa1f178" }
 uuid = { version = "0.8.2", features = ["serde", "v4"] }
 serde = { version = "1.0.129", features = ["derive"] }

@@ -8,3 +8,4 @@ edition = "2018"
 [dependencies]
 block-modes = "0.8.1"
 aes = "0.7.5"
+hex-literal = "0.3.3"

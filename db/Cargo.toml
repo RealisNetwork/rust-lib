@@ -6,3 +6,32 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+# Custom dependencies
+runtime = { git = "https://github.com/RealisNetwork/Realis.Network.git", branch = "main", package = "node-runtime" }
+realis-primitives = { git = "https://github.com/RealisNetwork/Realis.Network.git", branch = "main", package = "realis-primitives" }
+primitives = { path = "../primitives" }
+
+#
+sp-core = { git = "https://github.com/paritytech/substrate", rev = "e7b93e1b1abcf0865824c68d10850bbb451e295f" }
+sp-keyring = {  git = "https://github.com/paritytech/substrate", rev = "e7b93e1b1abcf0865824c68d10850bbb451e295f" }
+#tiny-bip39 = { version = "0.8", optional = true }
+tokio = { version = "1", features = ["sync"] }
+tokio-postgres = { version = "0.7.2", features = ["with-serde_json-1"] }
+hex-literal = "0.3.3"
+block-modes = "0.8.1"
+postgres = "0.19.1"
+futures = "0.3.16"
+rawsql = "0.1.0"
+aes = "0.7.5"
+log = "0.4"
+
+# temp
+serde_json = "1.0.68"
+
+[features]
+default = ["std"]
+std = [
+#    "runtime/std",
+    "tokio/sync",
+#    "tiny-bip39",
+]
