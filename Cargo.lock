@@ -5426,6 +5426,13 @@ dependencies = [
 [[package]]
 name = "request"
 version = "0.1.0"
+dependencies = [
+ "db",
+ "node-runtime",
+ "primitives",
+ "serde 1.0.130",
+ "serde_json 1.0.68",
+]
 
 [[package]]
 name = "resolv-conf"
