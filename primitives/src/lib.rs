@@ -1,5 +1,4 @@
 mod block;
-mod config;
 mod db;
 mod request;
 pub mod events;
@@ -7,7 +6,6 @@ pub mod response;
 pub mod types;
 
 pub use block::*;
-pub use config::*;
 pub use db::*;
 pub use request::*;
 
@@ -16,7 +14,6 @@ use runtime::AccountId;
 use sp_core::H256;
 use substrate_api_client::ApiClientError;
 use thiserror::Error;
-use tokio::sync::mpsc::error::SendError;
 use std::sync::mpsc::SendError;
 
 pub type UserId = String;
@@ -83,4 +80,6 @@ pub enum Error {
     CannotDecode,
     #[error("User not found!")]
     NotInteresting,
+    #[error("Error in nats: {0}")]
+    NatsError(ratsio::error::RatsioError)
 }
