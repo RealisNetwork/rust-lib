@@ -1,0 +1,17 @@
+[workspace]
+
+members = [
+    "db",
+    "logger",
+    "healthchecker",
+    "request",
+    "nats",
+    "primitives",
+    "utils"
+]
+
+[profile.dev]
+split-debuginfo = "unpacked"
+
+[profile.release]
+panic = "unwind"

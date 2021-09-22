@@ -1,0 +1,19 @@
+[package]
+name = "logger"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+slog = { version = "2.7" }
+slog-term = "2.8.0"
+slog-async = "2.5"
+slog-envlogger = "2.2"
+slog-json = "2.3"
+slog-scope = "4.3"
+slog-stdlog = "4.0"
+chrono = "0.4.19"
+log = "0.4"
+env_logger = "0.9.0"
+colored = "2.0.0"
