@@ -5493,21 +5493,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "rust-lib"
-version = "0.0.1"
-dependencies = [
- "config",
- "db",
- "hashing",
- "healthchecker",
- "logger",
- "nats",
- "primitives",
- "request",
- "utils",
-]
-
-[[package]]
 name = "rustc-demangle"
 version = "0.1.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
