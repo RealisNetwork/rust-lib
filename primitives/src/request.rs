@@ -215,6 +215,7 @@ impl Request {
                 *rarity,
                 *token_type,
                 request_id.into_bytes(),
+                String::from("url").into_bytes(), // TODO get this value from request
             ))]),
             Params::RemoveNftItem { token_id } => Some(vec![Call::RealisGameApi(
                 RealisGameApiCall::burn_nft(account_id.clone(), *token_id),
