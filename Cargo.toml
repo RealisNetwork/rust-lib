@@ -1,12 +1,14 @@
 [workspace]
 
 members = [
+    "config",
     "db",
-    "logger",
+    "hashing",
     "healthchecker",
-    "request",
+    "logger",
     "nats",
     "primitives",
+    "request",
     "utils"
 ]
 
