@@ -7,3 +7,7 @@ pub use nats::*;
 pub use primitives::*;
 pub use request::*;
 pub use utils::*;
+
+fn main() {
+    println!("hello world!");
+}
