@@ -1,12 +1,3 @@
-[package]
-name = "rust-lib"
-version = "0.0.1"
-authors = ["The Rand Project Developers", "The Rust Project Developers"]
-license = "MIT OR Apache-2.0"
-readme = "README.md"
-repository = "https://github.com/RealisNetwork/rust-lib"
-edition = "2018"
-
 [workspace]
 members = [
     "config",
@@ -17,16 +8,6 @@ members = [
     "nats",
     "primitives",
     "request",
-    "utils"
+    "utils",
+    "rust-lib"
 ]
-
-[dependencies]
-config = { path = "./config" }
-db = { path = "./db" }
-hashing = { path = "./hashing" }
-healthchecker = { path = "./healthchecker" }
-logger = { path = "./logger" }
-nats = { path = "./nats" }
-primitives = { path = "./primitives" }
-request = { path = "./request" }
-utils = { path = "./utils" }
