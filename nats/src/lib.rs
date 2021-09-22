@@ -27,10 +27,10 @@ impl NatsStream {
         let opts = StanOptions::with_options(
             address,
             cluster_id,
-            client_id[..].parse().unwrap(),
+            &client_id[..],
         );
 
-        let stan_client = StanClient::from_options(opts).await.map_err(Error::Send)?;
+        let stan_client = StanClient::from_options(opts).await.map_err(Error::NatsError)?;
 
         Ok(Self {
             connection: stan_client

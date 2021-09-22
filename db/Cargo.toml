@@ -14,7 +14,8 @@ primitives = { path = "../primitives" }
 #
 sp-core = { git = "https://github.com/paritytech/substrate", rev = "e7b93e1b1abcf0865824c68d10850bbb451e295f" }
 sp-keyring = {  git = "https://github.com/paritytech/substrate", rev = "e7b93e1b1abcf0865824c68d10850bbb451e295f" }
-#tiny-bip39 = { version = "0.8", optional = true }
+tiny-bip39 = { version = "0.8", optional = true }
+config = { path = "../config" }
 tokio = { version = "1", features = ["sync"] }
 tokio-postgres = { version = "0.7.2", features = ["with-serde_json-1"] }
 hex-literal = "0.3.3"
@@ -33,5 +34,5 @@ default = ["std"]
 std = [
 #    "runtime/std",
     "tokio/sync",
-#    "tiny-bip39",
+    "tiny-bip39",
 ]

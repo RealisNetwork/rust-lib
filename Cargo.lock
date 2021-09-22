@@ -1077,6 +1077,7 @@ version = "0.1.0"
 dependencies = [
  "aes",
  "block-modes",
+ "config",
  "futures 0.3.17",
  "hex-literal",
  "log 0.4.14",
@@ -1088,6 +1089,7 @@ dependencies = [
  "serde_json 1.0.68",
  "sp-core 4.0.0-dev (git+https://github.com/paritytech/substrate?rev=e7b93e1b1abcf0865824c68d10850bbb451e295f)",
  "sp-keyring",
+ "tiny-bip39",
  "tokio 1.11.0",
  "tokio-postgres",
 ]
@@ -4737,12 +4739,14 @@ version = "0.1.0"
 dependencies = [
  "dotenv",
  "node-runtime",
+ "ratsio",
  "realis-primitives",
  "serde 1.0.130",
  "serde_json 1.0.68",
  "sp-core 4.0.0-dev (git+https://github.com/paritytech/substrate?rev=03d4d0d7c129eec3d3ab2876bddbe5d6dfa1f178)",
  "substrate-api-client",
  "thiserror",
+ "tokio 1.11.0",
  "tokio-postgres",
  "uuid",
 ]
