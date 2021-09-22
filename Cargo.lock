@@ -3491,6 +3491,7 @@ version = "0.1.0"
 dependencies = [
  "primitives",
  "ratsio",
+ "serde_json 1.0.68",
  "tokio 1.12.0",
 ]
 

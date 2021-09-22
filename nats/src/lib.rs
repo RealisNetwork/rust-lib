@@ -2,6 +2,7 @@ use primitives::Error;
 
 use tokio::sync::mpsc::{Sender, Receiver};
 use ratsio::{StanClient, StanOptions};
+use serde_json::Value;
 use std::sync::Arc;
 use ratsio;
 
