@@ -9,7 +9,8 @@ members = [
     "nats",
     "primitives",
     "request",
-    "utils"
+    "utils",
+    "rust-lib"
 ]
 
 [profile.dev]
