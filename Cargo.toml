@@ -9,5 +9,4 @@ members = [
     "primitives",
     "request",
     "utils",
-    "rust-lib"
 ]
