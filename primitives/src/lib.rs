@@ -67,7 +67,7 @@ pub enum Error {
     #[error("Cannot send Message: {0}")]
     SendMessage(tokio::sync::mpsc::error::SendError<Message>),
     #[error("Cannot send Request: {0}")]
-    Send(SendError<Request>),
+    Send(tokio::sync::mpsc::error::SendError<Request>),
     #[error("Error while trying use tokio_postgres: {0}")]
     Postgres(tokio_postgres::Error),
     #[error("Error while trying parse: {0}")]
