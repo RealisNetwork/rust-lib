@@ -21,8 +21,8 @@ pub fn new<W1, W2>(w_out: W1, w_err: W2) -> Logger
         W1: io::Write + Send + 'static,
         W2: io::Write + Send + 'static,
 {
-    let drain_out = Json::new(w_out).build();
-    let drain_err = Json::new(w_err).build();
+    // let drain_out = Json::new(w_out).build();
+    // let drain_err = Json::new(w_err).build();
 
     let drain_out = CompactFormat::new(PlainSyncDecorator::new(w_out)).build();
     let drain_err = CompactFormat::new(PlainSyncDecorator::new(w_err)).build();
