@@ -1,11 +1,80 @@
-[workspace]
-members = [
-    "config",
-    "db",
-    "hashing",
-    "healthchecker",
-    "logger",
-    "nats",
-    "request",
-    "utils",
+[package]
+name = "primitives"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+tokio-postgres = { version = "0.7.2", features = ["with-serde_json-1"] }
+uuid = { version = "0.8.2", features = ["serde", "v4"] }
+serde = { version = "1.0.129", features = ["derive"] }
+tokio = { version = "1.11.0", features = ["full"]}
+tiny-bip39 = { version = "0.8", optional = true }
+slog = { version = "2.7" }
+slog-envlogger = "2.2"
+serde_json = "1.0.66"
+hex-literal = "0.3.3"
+tokio-service = "0.1"
+block-modes = "0.8.1"
+tokio-core = "0.1.0"
+env_logger = "0.9.0"
+thiserror = "1.0.26"
+slog-stdlog = "4.0"
+postgres = "0.19.1"
+tokio-proto = "0.1"
+slog-term = "2.8.0"
+slog-scope = "4.3"
+futures = "0.1.11"
+slog-async = "2.5"
+httparse = "1.1.2"
+colored = "2.0.0"
+chrono = "0.4.19"
+slog-json = "2.3"
+dotenv = "0.15.0"
+tokio-io = "0.1"
+ratsio = "0.4.0"
+rawsql = "0.1.0"
+log = "0.4.14"
+aes = "0.7.5"
+bytes = "0.4"
+
+[dev-dependencies]
+rustc-serialize = "0.3"
+num_cpus = "1.0"
+env_logger = { version = "0.3.4", default-features = false }
+serde_json = "0.8"
+
+# Custom dependencies
+[dependencies.realis-primitives]
+git = "https://github.com/RealisNetwork/Realis.Network.git"
+branch = "main"
+package = "realis-primitives"
+
+[dependencies.runtime]
+git =  "https://github.com/RealisNetwork/Realis.Network.git"
+branch = "main"
+package = "node-runtime"
+
+[dependencies.sp-keyring]
+git = "https://github.com/paritytech/substrate"
+rev = "e7b93e1b1abcf0865824c68d10850bbb451e295f"
+
+[dependencies.sp-core]
+git = "https://github.com/paritytech/substrate"
+rev = "e7b93e1b1abcf0865824c68d10850bbb451e295f"
+
+[dependencies.substrate-api-client]
+git = "https://github.com/Daelon02/substrate-api-client.git"
+branch = "main"
+
+[dependencies.tokio-minihttp]
+git = "https://github.com/tokio-rs/tokio-minihttp.git"
+
+
+[features]
+default = ["std"]
+std = [
+    #    "runtime/std",
+    "tokio/full",
+    "tiny-bip39",
 ]
