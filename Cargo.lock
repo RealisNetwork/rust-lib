@@ -4620,54 +4620,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "primitives"
-version = "0.1.0"
-dependencies = [
- "aes",
- "block-modes",
- "bytes 0.4.12",
- "chrono",
- "colored",
- "dotenv",
- "env_logger 0.3.5",
- "env_logger 0.9.0",
- "futures 0.1.31",
- "hex-literal",
- "httparse",
- "log 0.4.14",
- "node-runtime",
- "num_cpus",
- "postgres",
- "ratsio",
- "rawsql",
- "realis-primitives",
- "rustc-serialize",
- "serde 1.0.130",
- "serde_json 0.8.6",
- "serde_json 1.0.68",
- "slog",
- "slog-async",
- "slog-envlogger",
- "slog-json",
- "slog-scope",
- "slog-stdlog",
- "slog-term",
- "sp-core 4.0.0-dev (git+https://github.com/paritytech/substrate?rev=e7b93e1b1abcf0865824c68d10850bbb451e295f)",
- "sp-keyring",
- "substrate-api-client",
- "thiserror",
- "tiny-bip39",
- "tokio 1.12.0",
- "tokio-core",
- "tokio-io",
- "tokio-minihttp",
- "tokio-postgres",
- "tokio-proto",
- "tokio-service",
- "uuid",
-]
-
-[[package]]
 name = "proc-macro-crate"
 version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5380,6 +5332,54 @@ dependencies = [
  "sp-io 4.0.0-dev (git+https://github.com/paritytech/substrate?rev=e7b93e1b1abcf0865824c68d10850bbb451e295f)",
  "sp-runtime 4.0.0-dev (git+https://github.com/paritytech/substrate?rev=e7b93e1b1abcf0865824c68d10850bbb451e295f)",
  "sp-std 4.0.0-dev (git+https://github.com/paritytech/substrate?rev=e7b93e1b1abcf0865824c68d10850bbb451e295f)",
+]
+
+[[package]]
+name = "rust-lib"
+version = "0.1.0"
+dependencies = [
+ "aes",
+ "block-modes",
+ "bytes 0.4.12",
+ "chrono",
+ "colored",
+ "dotenv",
+ "env_logger 0.3.5",
+ "env_logger 0.9.0",
+ "futures 0.1.31",
+ "hex-literal",
+ "httparse",
+ "log 0.4.14",
+ "node-runtime",
+ "num_cpus",
+ "postgres",
+ "ratsio",
+ "rawsql",
+ "realis-primitives",
+ "rustc-serialize",
+ "serde 1.0.130",
+ "serde_json 0.8.6",
+ "serde_json 1.0.68",
+ "slog",
+ "slog-async",
+ "slog-envlogger",
+ "slog-json",
+ "slog-scope",
+ "slog-stdlog",
+ "slog-term",
+ "sp-core 4.0.0-dev (git+https://github.com/paritytech/substrate?rev=e7b93e1b1abcf0865824c68d10850bbb451e295f)",
+ "sp-keyring",
+ "substrate-api-client",
+ "thiserror",
+ "tiny-bip39",
+ "tokio 1.12.0",
+ "tokio-core",
+ "tokio-io",
+ "tokio-minihttp",
+ "tokio-postgres",
+ "tokio-proto",
+ "tokio-service",
+ "uuid",
 ]
 
 [[package]]
