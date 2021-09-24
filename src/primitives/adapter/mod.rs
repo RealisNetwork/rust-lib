@@ -3,7 +3,7 @@ pub mod request;
 pub mod response;
 pub mod types;
 
-use crate::primitives::adapter::request::{Id, Request};
+pub use crate::primitives::adapter::request::{Id, Request};
 use realis_primitives::TokenId;
 use runtime::AccountId;
 use sp_core::H256;
