@@ -6,7 +6,6 @@ members = [
     "healthchecker",
     "logger",
     "nats",
-    "primitives",
     "request",
     "utils",
 ]
