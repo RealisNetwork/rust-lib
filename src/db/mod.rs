@@ -1,4 +1,4 @@
-use crate::{
+pub use crate::{
     config::Config,
     primitives::adapter::{
         db::Status,
