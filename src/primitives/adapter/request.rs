@@ -66,6 +66,7 @@ pub enum Params {
         token_id: TokenId,
         #[serde(serialize_with = "u8_to_string")]
         #[serde(deserialize_with = "u8_from_string")]
+        #[serde(rename = "tokenType")]
         token_type: Basic,
         rarity: Rarity,
     },
