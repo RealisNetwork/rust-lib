@@ -62,6 +62,7 @@ pub enum Params {
     AddNftItem {
         #[serde(serialize_with = "token_id_to_string")]
         #[serde(deserialize_with = "token_id_from_string")]
+        #[serde(rename = "tokenId")]
         token_id: TokenId,
         #[serde(serialize_with = "u8_to_string")]
         #[serde(deserialize_with = "u8_from_string")]
@@ -70,7 +71,10 @@ pub enum Params {
     },
 
     #[serde(rename = "remove_nft_item")]
-    RemoveNftItem { token_id: TokenId },
+    RemoveNftItem {
+        #[serde(rename = "tokenId")]
+        token_id: TokenId
+    },
 
     #[serde(rename = "withdraw_tokens")]
     WithdrawTokens {
@@ -86,6 +90,7 @@ pub enum Params {
         account_id: AccountId,
         #[serde(serialize_with = "token_id_to_string")]
         #[serde(deserialize_with = "token_id_from_string")]
+        #[serde(rename = "tokenId")]
         token_id: TokenId,
     },
 
