@@ -40,7 +40,7 @@ impl ToString for Status {
             Status::Complete => 5,
             Status::SendError => 6,
         }
-        .to_string()
+            .to_string()
     }
 }
 
