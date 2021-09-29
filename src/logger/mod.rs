@@ -4,7 +4,7 @@ use colored::Colorize;
 use std::io;
 
 use chrono::{self, Local};
-use log::Level as LogLevel;
+use log::{Level as LogLevel, LevelFilter};
 use slog::{o, Drain, Duplicate, FnValue, Fuse, Level, Logger, PushFnValue, Record};
 use slog_async::Async;
 #[allow(unused_imports)]
@@ -62,7 +62,7 @@ where
 }
 
 #[allow(dead_code)]
-pub fn logger_init() {
+pub fn logger_init(level: LevelFilter) {
     use env_logger::Builder;
     use log::LevelFilter;
     use std::io::Write;
@@ -100,7 +100,7 @@ pub fn logger_init() {
                 record.args()
             ),
         })
-        .filter(None, LevelFilter::Info)
+        .filter(None, level)
         .try_init();
 }
 
