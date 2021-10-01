@@ -141,7 +141,7 @@ fn u128_to_string<S>(number: &u128, serializer: S) -> Result<S::Ok, S::Error>
 }
 
 
-fn token_id_to_string<S>(token_id: &TokenId, serializer: S) -> Result<S::Ok, S::Error>
+pub fn token_id_to_string<S>(token_id: &TokenId, serializer: S) -> Result<S::Ok, S::Error>
     where
         S: Serializer,
 {
