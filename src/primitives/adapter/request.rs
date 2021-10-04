@@ -1,4 +1,4 @@
-use realis_primitives::{Basic, Rarity, TokenId};
+use realis_primitives::{Rarity, TokenId};
 use runtime::{realis_game_api::Call as RealisGameApiCall, AccountId, Call};
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 
@@ -64,8 +64,6 @@ pub enum Params {
         #[serde(deserialize_with = "token_id_from_string")]
         #[serde(rename = "tokenId")]
         token_id: TokenId,
-        #[serde(rename = "tokenType")]
-        token_type: Basic,
         rarity: Rarity,
     },
 
