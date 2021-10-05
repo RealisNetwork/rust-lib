@@ -5,3 +5,4 @@ pub mod logger;
 pub mod nats;
 pub mod primitives;
 pub mod request;
+pub mod vault;
