@@ -1,5 +1,7 @@
 //! Provides logging utilities, used by application.
 
+pub mod level;
+
 use colored::Colorize;
 use std::io;
 
