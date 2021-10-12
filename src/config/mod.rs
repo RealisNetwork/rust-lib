@@ -1,4 +1,4 @@
-use log::warn;
+use log::{warn, info};
 
 pub struct Config {
     pub query: String,
@@ -20,7 +20,10 @@ impl Config {
     pub fn key_from_value(key: &str) -> Result<String, String> {
         dotenv::dotenv().ok();
         match dotenv::var(key) {
-            Ok(value) => Ok(value),
+            Ok(value) => {
+                info!("Got env value: {}; by key: {}", value, key);
+                Ok(value)
+            },
             Err(_) => Err(format!("Missing env value by key: {:?}", key)),
         }
     }
