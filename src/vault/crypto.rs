@@ -24,7 +24,6 @@ pub fn decrypted_mnemonic(key: String, iv: String, mnemonic: Vec<u8>) -> String 
     let cipher = Aes256Cbc::new_from_slices(&key, &iv).unwrap();
     let mut buf = mnemonic.to_vec();
     let decrypted_ciphertext = cipher.decrypt(&mut buf).unwrap();
-    let mnemonic_string =
-    String::from_utf8(decrypted_ciphertext.to_vec()).unwrap();
+    let mnemonic_string = String::from_utf8(decrypted_ciphertext.to_vec()).unwrap();
     mnemonic_string
 }

@@ -70,7 +70,7 @@ pub enum Params {
     #[serde(rename = "remove_nft_item")]
     RemoveNftItem {
         #[serde(rename = "tokenId")]
-        token_id: TokenId
+        token_id: TokenId,
     },
 
     #[serde(rename = "withdraw_tokens")]
@@ -119,8 +119,8 @@ pub enum Params {
 
 /// # Errors
 pub fn u128_from_string<'de, D>(deserializer: D) -> Result<u128, D::Error>
-    where
-        D: Deserializer<'de>,
+where
+    D: Deserializer<'de>,
 {
     match String::deserialize(deserializer)?.parse::<u128>() {
         Ok(value) => Ok(value),
@@ -132,24 +132,23 @@ pub fn u128_from_string<'de, D>(deserializer: D) -> Result<u128, D::Error>
 }
 
 fn u128_to_string<S>(number: &u128, serializer: S) -> Result<S::Ok, S::Error>
-    where
-        S: Serializer,
+where
+    S: Serializer,
 {
     serializer.serialize_str(&number.to_string())
 }
 
-
 pub fn token_id_to_string<S>(token_id: &TokenId, serializer: S) -> Result<S::Ok, S::Error>
-    where
-        S: Serializer,
+where
+    S: Serializer,
 {
     serializer.serialize_str(&format!("{:?}", token_id))
 }
 
 /// # Errors
 pub fn token_id_from_string<'de, D>(deserializer: D) -> Result<TokenId, D::Error>
-    where
-        D: Deserializer<'de>,
+where
+    D: Deserializer<'de>,
 {
     match String::deserialize(deserializer) {
         Ok(value) => TokenId::from_dec_str(&value)

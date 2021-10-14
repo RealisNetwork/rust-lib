@@ -76,5 +76,5 @@ pub enum Error {
     #[error("Error in nats: {0}")]
     NatsError(ratsio::error::RatsioError),
     #[error("Error {0}")]
-    ErrorFromString(String)
+    ErrorFromString(String),
 }

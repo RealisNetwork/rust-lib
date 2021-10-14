@@ -11,7 +11,7 @@ impl Parser {
             "info" => Some(LevelFilter::Info),
             "debug" => Some(LevelFilter::Debug),
             "trace" => Some(LevelFilter::Trace),
-            _ => None
+            _ => None,
         }
     }
 }

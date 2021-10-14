@@ -35,7 +35,7 @@ impl Response {
                             }
                         }
                     })
-                        .to_string(),
+                    .to_string(),
                     subject,
                 )
             }
@@ -56,7 +56,7 @@ impl Response {
                           "userId": user_id,
                         }
                     })
-                        .to_string(),
+                    .to_string(),
                     String::from("balance_increaseBalanceByUserId"),
                 )
             }
@@ -81,7 +81,7 @@ impl Response {
                             }
                         }
                     })
-                        .to_string(),
+                    .to_string(),
                     subject,
                 )
             }

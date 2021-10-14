@@ -1,4 +1,4 @@
-use log::{warn, info};
+use log::{info, warn};
 
 pub struct Config {
     pub query: String,
@@ -23,7 +23,7 @@ impl Config {
             Ok(value) => {
                 info!("Got env value: {}; by key: {}", value, key);
                 Ok(value)
-            },
+            }
             Err(_) => Err(format!("Missing env value by key: {:?}", key)),
         }
     }

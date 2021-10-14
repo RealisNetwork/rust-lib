@@ -1,9 +1,3 @@
-// extern crate env_logger;
-extern crate futures;
-extern crate tokio_minihttp;
-extern crate tokio_proto;
-extern crate tokio_service;
-
 use std::io;
 
 use futures::future;
@@ -16,11 +10,11 @@ use std::sync::{
     Arc,
 };
 
-pub async fn listen(health: Arc<AtomicBool>, addr: &String) {
+pub async fn listen(health: Arc<AtomicBool>, host: &String) {
     tokio::spawn({
-        let addr = addr.clone();
+        let host = host.clone();
         async move {
-            TcpServer::new(Http, addr.parse().unwrap())
+            TcpServer::new(Http, host.parse().unwrap())
                 .serve(move || Ok(HealthChecker::new(Arc::clone(&health))));
         }
     });

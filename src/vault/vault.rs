@@ -1,11 +1,12 @@
-use hashicorp_vault::Client;
-use hashicorp_vault::client::VaultClient;
-use hashicorp_vault::client::TokenData;
+use hashicorp_vault::{
+    client::{TokenData, VaultClient},
+    Client,
+};
 
 pub use hashicorp_vault::Error;
 
 pub struct Vault {
-    client: VaultClient<TokenData>
+    client: VaultClient<TokenData>,
 }
 
 impl Vault {
@@ -13,7 +14,7 @@ impl Vault {
     pub fn new(host: String, token: String) -> Result<Self, Error> {
         let client = Client::new(host, token)?;
 
-        Ok(Self{client})
+        Ok(Self { client })
     }
 
     pub fn get_secret(&self, key: &str) -> Result<String, Error> {
