@@ -1,3 +1,5 @@
+pub mod response_builder;
+
 use crate::primitives::adapter::Error;
 use ratsio::{self, StanClient, StanOptions};
 use serde_json::Value;
