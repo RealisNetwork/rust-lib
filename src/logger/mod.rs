@@ -1,6 +1,7 @@
 //! Provides logging utilities, used by application.
 
 pub mod level;
+pub mod nats;
 
 use colored::Colorize;
 use std::io;
