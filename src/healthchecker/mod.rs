@@ -4,6 +4,7 @@ use futures::future;
 use tokio_minihttp::{Http, Request, Response};
 use tokio_proto::TcpServer;
 use tokio_service::Service;
+use tokio::time::{sleep, Duration};
 
 use std::sync::{
     atomic::{AtomicBool, Ordering},
@@ -30,6 +31,12 @@ pub struct HealthChecker {
 impl HealthChecker {
     pub fn new(health: Arc<AtomicBool>) -> Self {
         Self { health }
+    }
+
+    pub async fn is_alive(status: Arc<AtomicBool>) {
+        while status.load(Ordering::Acquire) {
+            sleep(Duration::from_millis(10000)).await;
+        }
     }
 }
 
