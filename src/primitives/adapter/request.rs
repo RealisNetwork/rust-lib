@@ -1,5 +1,5 @@
 use realis_primitives::{Rarity, TokenId};
-use runtime::{realis_game_api::Call as RealisGameApiCall, AccountId, Call};
+use runtime::AccountId;
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 
 pub type Agent = String;
