@@ -66,7 +66,6 @@ where
 #[allow(dead_code)]
 pub fn logger_init(level: LevelFilter) {
     use env_logger::Builder;
-    use log::LevelFilter;
     use std::io::Write;
 
     let _ = Builder::new()
