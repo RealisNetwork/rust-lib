@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 use runtime::AccountId;
+use serde_json::Value;
 use reqwest;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -13,6 +14,7 @@ pub struct Extrinsic {
     pub success: bool,
     #[serde(default)]
     pub signature: Option<Signature>,
+    pub events: Vec<Event>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -29,6 +31,12 @@ pub struct Signature {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Signer {
     pub id: AccountId,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Event {
+    pub method: Method,
+    pub data: Value,
 }
 
 impl Block {
