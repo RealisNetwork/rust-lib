@@ -5,3 +5,4 @@ pub mod nats;
 pub mod primitives;
 pub mod vault;
 pub mod json;
+pub mod block;
