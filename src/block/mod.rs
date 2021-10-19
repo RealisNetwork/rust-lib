@@ -39,6 +39,11 @@ pub struct Event {
     pub data: Value,
 }
 
+pub enum ContainsError {
+    ExtrinsicNotFound,
+    EventNotFound,
+}
+
 impl Block {
     pub async fn get_block(host: &str, port: &str, number: &str) -> Result<Block, ()>
     {
@@ -50,5 +55,23 @@ impl Block {
             .json()
             .await
             .map_err(|_| ())
+    }
+
+    pub fn contains_event(&self, method: Method, event_name: &str, account_id: AccountId) -> Result<(), ContainsError> {
+        self
+            .extrinsics
+            .iter()
+            .filter(|xt| xt.signature.is_some())
+            .find(|xt| {
+                xt.method.pallet == method.pallet
+                    && xt.method.method == method.method
+                    && xt.signature.as_ref().unwrap().signer.id == account_id
+            })
+            .ok_or(ContainsError::ExtrinsicNotFound)?
+            .events
+            .iter()
+            .find(|event| event.method.method == event_name)
+            .ok_or(ContainsError::EventNotFound)
+            .map(|_| ())
     }
 }
