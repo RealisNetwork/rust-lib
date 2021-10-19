@@ -39,6 +39,7 @@ pub struct Event {
     pub data: Value,
 }
 
+#[derive(Debug)]
 pub enum ContainsError {
     ExtrinsicNotFound,
     EventNotFound,
