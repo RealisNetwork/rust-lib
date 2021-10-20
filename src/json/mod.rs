@@ -1,3 +1,5 @@
+pub mod u128;
+
 use realis_primitives::TokenId;
 
 use serde::{Serializer, Deserializer, Deserialize};
