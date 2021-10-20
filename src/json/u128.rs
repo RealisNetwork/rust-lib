@@ -46,11 +46,16 @@ pub fn u128_from_string<'de, D>(deserializer: D) -> Result<u128, D::Error>
     }
 }
 
-fn u128_to_string<S>(number: &u128, serializer: S) -> Result<S::Ok, S::Error>
+pub fn blockchain_number_to_string(number: &u128) -> String {
+    let mut number = number.to_string();
+    number.insert(number.len() - usize::from(DECIMALS), '.');
+    number
+}
+
+pub fn u128_to_string<S>(number: &u128, serializer: S) -> Result<S::Ok, S::Error>
     where
         S: Serializer,
 {
-    let mut number = number.to_string();
-    number.insert(number.len() - usize::from(DECIMALS), '.');
+    let number = blockchain_number_to_string(number);
     serializer.serialize_str(&number)
 }
