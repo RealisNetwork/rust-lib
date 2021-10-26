@@ -47,6 +47,9 @@ pub fn u128_from_string<'de, D>(deserializer: D) -> Result<u128, D::Error>
 }
 
 pub fn blockchain_number_to_string(number: &u128) -> String {
+    if *number == 0 {
+        return String::from("0");
+    }
     let mut number = number.to_string();
     number.insert(number.len() - usize::from(DECIMALS), '.');
     number
