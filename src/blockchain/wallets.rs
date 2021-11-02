@@ -128,3 +128,33 @@ impl RealisWallet for AdapterMaster4 {
         ).unwrap()
     }
 }
+
+pub struct MarketplaceMaster1 {}
+
+impl RealisWallet for MarketplaceMaster1 {
+    fn get_public() -> AccountId {
+        Deserialize::deserialize(serde_json::to_value("5GgSgijLeCndfk1t8Mdjm8weUNEahBBtWwtfC1ZJxc9yNh1e").unwrap()).unwrap()
+    }
+
+    fn get_private() -> sr25519::Pair {
+        Pair::from_string(
+            "mushroom random body medal make pause input trap cloth reveal boat diagram",
+            None
+        ).unwrap()
+    }
+}
+
+pub struct MarketplaceMaster2 {}
+
+impl RealisWallet for MarketplaceMaster2 {
+    fn get_public() -> AccountId {
+        Deserialize::deserialize(serde_json::to_value("5CturcyEam8UP7cH85PrPvCFExkHSVdipkYUbSDuWxTP9pVx").unwrap()).unwrap()
+    }
+
+    fn get_private() -> sr25519::Pair {
+        Pair::from_string(
+            "bike boat original what elbow wink return crack unusual stable acquire loyal",
+            None
+        ).unwrap()
+    }
+}
