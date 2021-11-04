@@ -52,7 +52,7 @@ pub fn blockchain_number_to_string(number: &u128) -> String {
     }
     let mut number_string = number.to_string();
     if *number < 10_u128.pow(DECIMALS as u32) {
-        for i in 0..(DECIMALS - number_string.len() + 1) {
+        for i in 0..(DECIMALS as usize - number_string.len() + 1) {
             number_string.insert(0, '0');
         }
     }
