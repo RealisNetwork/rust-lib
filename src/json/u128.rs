@@ -50,9 +50,14 @@ pub fn blockchain_number_to_string(number: &u128) -> String {
     if *number == 0 {
         return String::from("0");
     }
-    let mut number = number.to_string();
-    number.insert(number.len() - usize::from(DECIMALS), '.');
-    number
+    let mut number_string = number.to_string();
+    if *number < 10_u128.pow(DECIMALS as u32) {
+        for i in 0..(DECIMALS - number_string.len() + 1) {
+            number_string.insert(0, '0');
+        }
+    }
+    number_string.insert(number_string.len() - usize::from(DECIMALS), '.');
+    number_string
 }
 
 pub fn u128_to_string<S>(number: &u128, serializer: S) -> Result<S::Ok, S::Error>
