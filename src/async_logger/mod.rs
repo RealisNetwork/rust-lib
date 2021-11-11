@@ -13,14 +13,14 @@ use chrono::Local;
 const BUFFER_SIZE: usize = 1024;
 
 /// Initialize driver logging.
-pub fn init(filter: impl AsRef<str>) -> (Logger, GlobalLoggerGuard) {
+pub fn init(level: LevelFilter) -> (Logger, GlobalLoggerGuard) {
     // Log errors to stderr and lower severities to stdout.
     let format = CustomFormatter::new(
         TermDecorator::new().stderr().build(),
         TermDecorator::new().stdout().build(),
     )
         .fuse();
-    let drain = Async::new(LogBuilder::new(format).parse(filter.as_ref()).build())
+    let drain = Async::new(LogBuilder::new(format).parse(&level.to_string()).build())
         .chan_size(BUFFER_SIZE)
         .build();
     let logger = Logger::root(drain.fuse(), o!());
