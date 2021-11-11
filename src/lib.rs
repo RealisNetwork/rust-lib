@@ -6,3 +6,4 @@ pub mod primitives;
 pub mod vault;
 pub mod json;
 pub mod blockchain;
+pub mod async_logger;

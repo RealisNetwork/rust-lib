@@ -12,7 +12,9 @@ reqwest = { version = "0.11.4", features = ["json"] }
 tokio = { version = "1.11.0", features = ["full"]}
 tiny-bip39 = { version = "0.8", optional = true }
 slog = { version = "2.7" }
+crossbeam-channel = "0.5.1"
 hashicorp_vault = "2.1.0"
+async_logger = "0.3.3"
 slog-envlogger = "2.2"
 serde_json = "1.0.66"
 hex-literal = "0.3.3"
@@ -36,6 +38,7 @@ dotenv = "0.15.0"
 tokio-io = "0.1"
 ratsio = "0.4.0"
 rawsql = "0.1.0"
+fastlog = "0.2"
 log = "0.4.14"
 aes = "0.7.5"
 bytes = "0.4"
@@ -43,8 +46,6 @@ bytes = "0.4"
 [dev-dependencies]
 rustc-serialize = "0.3"
 num_cpus = "1.0"
-env_logger = { version = "0.3.4", default-features = false }
-serde_json = "0.8"
 
 # Custom dependencies
 [dependencies.realis-primitives]
