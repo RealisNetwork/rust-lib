@@ -8,6 +8,7 @@ use slog_scope::GlobalLoggerGuard;
 use slog_term::{Decorator, TermDecorator};
 use colored::Colorize;
 use chrono::Local;
+use log::LevelFilter;
 
 /// The channel size for async logging.
 const BUFFER_SIZE: usize = 1024;
@@ -26,7 +27,7 @@ pub fn init(level: LevelFilter) -> (Logger, GlobalLoggerGuard) {
     let logger = Logger::root(drain.fuse(), o!());
 
     let guard = slog_scope::set_global_logger(logger.clone());
-    slog_stdlog::init().expect("failed to register logger");
+    // slog_stdlog::init().expect("failed to register logger");
 
     (logger.new(o!(
         "lvl" => FnValue(move |rinfo : &Record| {
