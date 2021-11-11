@@ -13,6 +13,8 @@ use log::LevelFilter;
 /// The channel size for async logging.
 const BUFFER_SIZE: usize = 1024;
 
+// let logger = logging::init(&options.log_filter);
+
 /// Initialize driver logging.
 pub fn new(level: impl AsRef<str>) -> Logger {
     // Log errors to stderr and lower severities to stdout.
