@@ -14,7 +14,7 @@ use log::LevelFilter;
 const BUFFER_SIZE: usize = 1024;
 
 /// Initialize driver logging.
-pub fn init(level: LevelFilter) -> (Logger, GlobalLoggerGuard) {
+pub fn init(level: LevelFilter) -> Logger {
     // Log errors to stderr and lower severities to stdout.
     let format = CustomFormatter::new(
         TermDecorator::new().stderr().build(),
@@ -29,7 +29,7 @@ pub fn init(level: LevelFilter) -> (Logger, GlobalLoggerGuard) {
     let guard = slog_scope::set_global_logger(logger.clone());
     // slog_stdlog::init().expect("failed to register logger");
 
-    (logger.new(o!(
+    logger.new(o!(
         "lvl" => FnValue(move |rinfo : &Record| {
             // TODO not all colored
             match rinfo.level() {
@@ -50,7 +50,7 @@ pub fn init(level: LevelFilter) -> (Logger, GlobalLoggerGuard) {
         "time" => PushFnValue(move |_ : &Record, ser| {
             ser.emit(Local::now().to_rfc3339())
         }),
-    )), guard)
+    ))
 }
 
 /// Uses one decorator for `Error` and `Critical` log messages and the other for
