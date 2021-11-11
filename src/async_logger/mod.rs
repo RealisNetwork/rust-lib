@@ -14,19 +14,18 @@ use log::LevelFilter;
 const BUFFER_SIZE: usize = 1024;
 
 /// Initialize driver logging.
-pub fn init(level: LevelFilter) -> Logger {
+pub fn new(level: impl AsRef<str>) -> Logger {
     // Log errors to stderr and lower severities to stdout.
     let format = CustomFormatter::new(
         TermDecorator::new().stderr().build(),
         TermDecorator::new().stdout().build(),
     )
         .fuse();
-    let drain = Async::new(LogBuilder::new(format).parse(&level.to_string()).build())
+    let drain = Async::new(LogBuilder::new(format).parse(level.as_ref()).build())
         .chan_size(BUFFER_SIZE)
         .build();
     let logger = Logger::root(drain.fuse(), o!());
 
-    let guard = slog_scope::set_global_logger(logger.clone());
     // slog_stdlog::init().expect("failed to register logger");
 
     logger.new(o!(
