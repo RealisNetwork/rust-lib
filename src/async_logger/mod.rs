@@ -91,10 +91,9 @@ fn log_to_decorator(
             ),
             Level::Info => writeln!(
                 decorator,
-                "[{}]  - {} - {} - {}",
+                "[{}]  - [{}] - {}",
                 format!("{}", record.level()).blue(),
-                record.location().function,
-                record.function(),
+                record.module().blue(),
                 record.msg(),
             ),
             Level::Debug => writeln!(
