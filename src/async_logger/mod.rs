@@ -1,3 +1,4 @@
+use colored::Colorize;
 use slog::Level;
 use slog::{o, Drain, Logger, OwnedKVList, Record};
 use slog_async::Async;
@@ -66,25 +67,64 @@ fn log_to_decorator(
     values: &OwnedKVList,
 ) -> std::result::Result<(), std::io::Error> {
     decorator.with_record(record, values, |mut decorator| {
-        decorator.start_timestamp()?;
-        slog_term::timestamp_utc(&mut decorator)?;
+        // decorator.start_timestamp()?;
+        // slog_term::timestamp_utc(&mut decorator)?;
+        //
+        // decorator.start_whitespace()?;
+        // write!(decorator, " ")?;
 
-        decorator.start_whitespace()?;
-        write!(decorator, " ")?;
-
-        decorator.start_level()?;
-        write!(decorator, "{}", record.level())?;
-
-        decorator.start_whitespace()?;
-        write!(decorator, " ")?;
-
-        write!(decorator, "[{}]", record.module())?;
-
-        decorator.start_whitespace()?;
-        write!(decorator, " ")?;
-
-        decorator.start_msg()?;
-        writeln!(decorator, "{}", record.msg())?;
+        match record.level() {
+            Level::Critical |
+            Level::Error => writeln!(
+                buf,
+                "[{}] - {} - {}",
+                format!("{}", record.level()).red(),
+                record.module().red(),
+                record.msg(),
+            ),
+            Level::Warning => writeln!(
+                buf,
+                "[{}]  - {} - {}",
+                format!("{}", record.level()).yellow(),
+                record.module().yellow(),
+                record.msg(),
+            ),
+            Level::Info => writeln!(
+                buf,
+                "[{}]  - {} - {}",
+                format!("{}", record.level()).blue(),
+                record.module().blue(),
+                record.msg(),
+            ),
+            Level::Debug => writeln!(
+                buf,
+                "[{}] - {} - {}",
+                format!("{}", record.level()).green(),
+                record.module().green(),
+                record.msg(),
+            ),
+            Level::Trace => writeln!(
+                buf,
+                "[{}] - {} - {}",
+                format!("{}", record.level()).magenta(),
+                record.module().magenta(),
+                record.msg(),
+            ),
+        }
+        //
+        // decorator.start_level()?;
+        // write!(decorator, "{}", record.level())?;
+        //
+        // decorator.start_whitespace()?;
+        // write!(decorator, " ")?;
+        //
+        // write!(decorator, "[{}]", record.module())?;
+        //
+        // decorator.start_whitespace()?;
+        // write!(decorator, " ")?;
+        //
+        // decorator.start_msg()?;
+        // writeln!(decorator, "{}", record.msg())?;
         decorator.flush()?;
 
         Ok(())
