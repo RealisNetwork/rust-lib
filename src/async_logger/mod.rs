@@ -75,35 +75,35 @@ fn log_to_decorator(
 
         match record.level() {
             Level::Critical |
-            Level::Error => write!(
+            Level::Error => writeln!(
                 decorator,
                 "[{}] - {} - {}",
                 format!("{}", record.level()).red(),
                 record.module().red(),
                 record.msg(),
             ),
-            Level::Warning => write!(
+            Level::Warning => writeln!(
                 decorator,
                 "[{}]  - {} - {}",
                 format!("{}", record.level()).yellow(),
                 record.module().yellow(),
                 record.msg(),
             ),
-            Level::Info => write!(
+            Level::Info => writeln!(
                 decorator,
                 "[{}]  - {} - {}",
                 format!("{}", record.level()).blue(),
                 record.module().blue(),
                 record.msg(),
             ),
-            Level::Debug => write!(
+            Level::Debug => writeln!(
                 decorator,
                 "[{}] - {} - {}",
                 format!("{}", record.level()).green(),
                 record.module().green(),
                 record.msg(),
             ),
-            Level::Trace => write!(
+            Level::Trace => writeln!(
                 decorator,
                 "[{}] - {} - {}",
                 format!("{}", record.level()).magenta(),
