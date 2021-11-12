@@ -16,21 +16,25 @@ const BUFFER_SIZE: usize = 1024;
 // let logger = logging::init(&options.log_filter);
 
 /// Initialize driver logging.
-pub fn init(level: impl AsRef<str>) -> Logger {
+pub fn new(level: LevelFilter) -> (Logger, GlobalLoggerGuard) {
     // Log errors to stderr and lower severities to stdout.
     let format = CustomFormatter::new(
         TermDecorator::new().stderr().build(),
         TermDecorator::new().stdout().build(),
     )
         .fuse();
-    let drain = Async::new(LogBuilder::new(format).parse(level.as_ref()).build())
+    let drain = Async::new(LogBuilder::new(format).parse(&level.to_string()).build())
         .chan_size(BUFFER_SIZE)
         .build();
     let logger = Logger::root(drain.fuse(), o!());
 
     // slog_stdlog::init().expect("failed to register logger");
 
-    logger.new(o!(
+
+    let guard = slog_scope::set_global_logger(logger.clone());
+    slog_stdlog::init().expect("failed to register logger");
+
+    let logger = logger.new(o!(
         "lvl" => FnValue(move |rinfo : &Record| {
             // TODO not all colored
             match rinfo.level() {
@@ -51,23 +55,9 @@ pub fn init(level: impl AsRef<str>) -> Logger {
         "time" => PushFnValue(move |_ : &Record, ser| {
             ser.emit(Local::now().to_rfc3339())
         }),
-    ))
-}
+    ));
 
-/// Uses one decorator for `Error` and `Critical` log messages and the other for
-/// the rest.
-pub struct CustomFormatter<ErrDecorator, RestDecorator> {
-    err_decorator: ErrDecorator,
-    rest_decorator: RestDecorator,
-}
-
-impl<ErrDecorator, RestDecorator> CustomFormatter<ErrDecorator, RestDecorator> {
-    fn new(err_decorator: ErrDecorator, rest_decorator: RestDecorator) -> Self {
-        Self {
-            err_decorator,
-            rest_decorator,
-        }
-    }
+    (logger, guard)
 }
 
 impl<ErrDecorator: Decorator, RestDecorator: Decorator> Drain
@@ -117,4 +107,20 @@ fn log_to_decorator(
 
         Ok(())
     })
+}
+
+/// Uses one decorator for `Error` and `Critical` log messages and the other for
+/// the rest.
+pub struct CustomFormatter<ErrDecorator, RestDecorator> {
+    err_decorator: ErrDecorator,
+    rest_decorator: RestDecorator,
+}
+
+impl<ErrDecorator, RestDecorator> CustomFormatter<ErrDecorator, RestDecorator> {
+    fn new(err_decorator: ErrDecorator, rest_decorator: RestDecorator) -> Self {
+        Self {
+            err_decorator,
+            rest_decorator,
+        }
+    }
 }
