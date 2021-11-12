@@ -110,7 +110,7 @@ fn log_to_decorator(
                 record.module().magenta(),
                 record.msg(),
             ),
-        }
+        };
         //
         // decorator.start_level()?;
         // write!(decorator, "{}", record.level())?;
