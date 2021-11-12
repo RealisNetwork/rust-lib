@@ -68,7 +68,7 @@ fn log_to_decorator(
 ) -> std::result::Result<(), std::io::Error> {
     decorator.with_record(record, values, |mut decorator| {
         decorator.start_timestamp()?;
-        format!("[{:?}]", slog_term::timestamp_utc(&mut decorator)?);
+        write!("[" + slog_term::timestamp_utc(&mut decorator)? + "]");
 
         decorator.start_whitespace()?;
         write!(decorator, " ")?;
