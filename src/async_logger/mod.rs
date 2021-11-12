@@ -77,7 +77,7 @@ fn log_to_decorator(
             Level::Critical |
             Level::Error => writeln!(
                 decorator,
-                "[{}] - {} - {} - {}",
+                "[{}] - [{}] - {} - {}",
                 format!("{}", record.level()).red(),
                 record.module().red(),
                 record.line(),
@@ -85,51 +85,34 @@ fn log_to_decorator(
             ),
             Level::Warning => writeln!(
                 decorator,
-                "[{}]  - {} - {} - {}",
+                "[{}]  - [{}] - {}",
                 format!("{}", record.level()).yellow(),
                 record.module().yellow(),
-                record.line(),
                 record.msg(),
             ),
             Level::Info => writeln!(
                 decorator,
-                "[{}]  - [{}] - {} - {}",
+                "[{}]  - [{}] - {}",
                 format!("{}", record.level()).blue(),
                 record.module().blue(),
-                record.line(),
                 record.msg(),
             ),
             Level::Debug => writeln!(
                 decorator,
-                "[{}] - {} - {} - {}",
+                "[{}] - [{}] - {}",
                 format!("{}", record.level()).green(),
                 record.module().green(),
-                record.line(),
                 record.msg(),
             ),
             Level::Trace => writeln!(
                 decorator,
-                "[{}] - {} - {} - {}",
+                "[{}] - [{}] - {} - {}",
                 format!("{}", record.level()).magenta(),
                 record.module().magenta(),
                 record.line(),
                 record.msg(),
             ),
         };
-        //
-        // decorator.start_level()?;
-        // write!(decorator, "{}", record.level())?;
-        //
-        // decorator.start_whitespace()?;
-        // write!(decorator, " ")?;
-        //
-        // write!(decorator, "[{}]", record.module())?;
-        //
-        // decorator.start_whitespace()?;
-        // write!(decorator, " ")?;
-        //
-        // decorator.start_msg()?;
-        // writeln!(decorator, "{}", record.msg())?;
         decorator.flush()?;
 
         Ok(())
