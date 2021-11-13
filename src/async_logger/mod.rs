@@ -7,7 +7,7 @@ use slog_scope::GlobalLoggerGuard;
 use slog_term::{Decorator, TermDecorator};
 
 /// The channel size for async logging.
-const BUFFER_SIZE: usize = 1024;
+const BUFFER_SIZE: usize = 2048;
 
 /// Initialize driver logging.
 pub fn init(filter: impl AsRef<str>) -> (Logger, GlobalLoggerGuard) {
