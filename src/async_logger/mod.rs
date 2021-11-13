@@ -1,13 +1,10 @@
-pub mod nats;
-pub mod level;
-
-use slog::{o, Drain, Logger, OwnedKVList, Record, PushFnValue, FnValue, Level};
+use colored::Colorize;
+use slog::Level;
+use slog::{o, Drain, Logger, OwnedKVList, Record};
 use slog_async::Async;
 use slog_envlogger::LogBuilder;
 use slog_scope::GlobalLoggerGuard;
 use slog_term::{Decorator, TermDecorator};
-use colored::Colorize;
-use chrono::Local;
 
 /// The channel size for async logging.
 const BUFFER_SIZE: usize = 1024;
@@ -28,28 +25,7 @@ pub fn init(filter: impl AsRef<str>) -> (Logger, GlobalLoggerGuard) {
     let guard = slog_scope::set_global_logger(logger.clone());
     slog_stdlog::init().expect("failed to register logger");
 
-    (logger.new(o!(
-        "lvl" => FnValue(move |rinfo : &Record| {
-            // TODO not all colored
-            match rinfo.level() {
-                Level::Critical
-                | Level::Error => rinfo.level().as_str().red().to_string(),
-                Level::Warning => rinfo.level().as_str().yellow().to_string(),
-                Level::Info => rinfo.level().as_str().blue().to_string(),
-                Level::Debug => rinfo.level().as_str().green().to_string(),
-                Level::Trace => rinfo.level().as_str().magenta().to_string(),
-            }
-        }),
-        "msg" => PushFnValue(move |record : &Record, ser| {
-            ser.emit(record.msg())
-        }),
-        "fqn" => PushFnValue(move |record : &Record, ser| {
-             ser.emit(format_args!("{}:{}", record.module(), record.line()))
-        }),
-        "time" => PushFnValue(move |_ : &Record, ser| {
-            ser.emit(Local::now().to_rfc3339())
-        }),
-    )), guard)
+    (logger, guard)
 }
 
 /// Uses one decorator for `Error` and `Critical` log messages and the other for
@@ -97,20 +73,46 @@ fn log_to_decorator(
         decorator.start_whitespace()?;
         write!(decorator, " ")?;
 
-        decorator.start_level()?;
-        write!(decorator, "{}", record.level())?;
-
-        decorator.start_whitespace()?;
-        write!(decorator, " ")?;
-
-        write!(decorator, "[{}]", record.module())?;
-
-        decorator.start_whitespace()?;
-        write!(decorator, " ")?;
-
-        decorator.start_msg()?;
-        writeln!(decorator, "{}", record.msg())?;
-
+        match record.level() {
+            Level::Critical |
+            Level::Error => writeln!(
+                decorator,
+                "[{}] - [{}] - {} - {}",
+                format!("{}", record.level()).red(),
+                record.module().red(),
+                record.line(),
+                record.msg(),
+            ),
+            Level::Warning => writeln!(
+                decorator,
+                "[{}]  - [{}] - {}",
+                format!("{}", record.level()).yellow(),
+                record.module().yellow(),
+                record.msg(),
+            ),
+            Level::Info => writeln!(
+                decorator,
+                "[{}]  - [{}] - {}",
+                format!("{}", record.level()).blue(),
+                record.module().blue(),
+                record.msg(),
+            ),
+            Level::Debug => writeln!(
+                decorator,
+                "[{}] - [{}] - {}",
+                format!("{}", record.level()).green(),
+                record.module().green(),
+                record.msg(),
+            ),
+            Level::Trace => writeln!(
+                decorator,
+                "[{}] - [{}] - {} - {}",
+                format!("{}", record.level()).magenta(),
+                record.module().magenta(),
+                record.line(),
+                record.msg(),
+            ),
+        };
         decorator.flush()?;
 
         Ok(())
