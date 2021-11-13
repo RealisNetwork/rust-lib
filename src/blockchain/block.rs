@@ -1,7 +1,7 @@
-use serde::{Deserialize, Serialize};
-use runtime::AccountId;
-use serde_json::Value;
 use reqwest;
+use runtime::AccountId;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Block {
@@ -46,8 +46,7 @@ pub enum ContainsError {
 }
 
 impl Block {
-    pub async fn get_block(host: &str, port: &str, number: &str) -> Result<Block, ()>
-    {
+    pub async fn get_block(host: &str, port: &str, number: &str) -> Result<Block, ()> {
         let request = format!("http://{}:{}/blocks/{}", host, port, number);
 
         reqwest::get(request)
@@ -58,9 +57,13 @@ impl Block {
             .map_err(|_| ())
     }
 
-    pub fn contains_event(&self, method: Method, event_name: &str, account_id: AccountId) -> Result<(), ContainsError> {
-        self
-            .extrinsics
+    pub fn contains_event(
+        &self,
+        method: Method,
+        event_name: &str,
+        account_id: AccountId,
+    ) -> Result<(), ContainsError> {
+        self.extrinsics
             .iter()
             .filter(|xt| xt.signature.is_some())
             .find(|xt| {

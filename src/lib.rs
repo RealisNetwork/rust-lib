@@ -1,9 +1,9 @@
+pub mod async_logger;
+pub mod blockchain;
 pub mod config;
 pub mod healthchecker;
+pub mod json;
 pub mod logger;
 pub mod nats;
 pub mod primitives;
 pub mod vault;
-pub mod json;
-pub mod blockchain;
-pub mod async_logger;

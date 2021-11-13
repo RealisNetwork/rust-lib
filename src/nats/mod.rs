@@ -32,9 +32,9 @@ impl NatsStream {
     }
 
     #[must_use]
-    pub async fn subscribe(&self, sender: Sender<Value>) {}
+    pub async fn subscribe(&self, _sender: Sender<Value>) {}
 
     // TODO rename
     #[must_use]
-    pub async fn responder(&self, receiver: Receiver<Value>) {}
+    pub async fn responder(&self, _receiver: Receiver<Value>) {}
 }
