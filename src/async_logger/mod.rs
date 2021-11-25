@@ -1,6 +1,5 @@
 use colored::Colorize;
-use slog::Level;
-use slog::{o, Drain, Logger, OwnedKVList, Record};
+use slog::{o, Drain, Level, Logger, OwnedKVList, Record};
 use slog_async::Async;
 use slog_envlogger::LogBuilder;
 use slog_scope::GlobalLoggerGuard;
@@ -16,7 +15,7 @@ pub fn init(filter: impl AsRef<str>) -> (Logger, GlobalLoggerGuard) {
         TermDecorator::new().stderr().build(),
         TermDecorator::new().stdout().build(),
     )
-        .fuse();
+    .fuse();
     let drain = Async::new(LogBuilder::new(format).parse(filter.as_ref()).build())
         .chan_size(BUFFER_SIZE)
         .build();
@@ -45,10 +44,11 @@ impl<ErrDecorator, RestDecorator> CustomFormatter<ErrDecorator, RestDecorator> {
 }
 
 impl<ErrDecorator: Decorator, RestDecorator: Decorator> Drain
-for CustomFormatter<ErrDecorator, RestDecorator>
+    for CustomFormatter<ErrDecorator, RestDecorator>
 {
-    type Ok = ();
     type Err = std::io::Error;
+    type Ok = ();
+
     fn log(
         &self,
         record: &Record,
@@ -74,8 +74,7 @@ fn log_to_decorator(
         write!(decorator, " ")?;
 
         match record.level() {
-            Level::Critical |
-            Level::Error => writeln!(
+            Level::Critical | Level::Error => writeln!(
                 decorator,
                 "[{}] - [{}] - {} - {}",
                 format!("{}", record.level()).red(),

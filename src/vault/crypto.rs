@@ -4,7 +4,7 @@ use hex_literal::hex;
 
 type Aes256Cbc = Cbc<Aes256, Pkcs7>;
 
-pub fn encrypted_mnemonic(mnemonic: &str, key: &str, iv: &str) -> Vec<u8> {
+pub fn encrypted_mnemonic(mnemonic: &str, _key: &str, _iv: &str) -> Vec<u8> {
     let target = mnemonic;
 
     let key = hex!("1cde61f165f5867d3de6ed6554770680df3b47d0d5ca5537c379569124ab4bec");
@@ -15,7 +15,7 @@ pub fn encrypted_mnemonic(mnemonic: &str, key: &str, iv: &str) -> Vec<u8> {
     ciphertext
 }
 
-pub fn decrypted_mnemonic(key: String, iv: String, mnemonic: Vec<u8>) -> String {
+pub fn decrypted_mnemonic(_key: String, _iv: String, mnemonic: Vec<u8>) -> String {
     // let key_format = format!("{:?}", key);
     let key = hex!("1cde61f165f5867d3de6ed6554770680df3b47d0d5ca5537c379569124ab4bec");
     let iv = hex!("f0f1f2f3f4f5f6f7f8f9fafbfcfdfeff");

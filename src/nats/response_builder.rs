@@ -1,5 +1,5 @@
-use serde_json::{Value, json};
 use serde::Serialize;
+use serde_json::{json, Value};
 
 pub struct ResponseBuilder {}
 
@@ -7,7 +7,7 @@ impl ResponseBuilder {
     pub fn right<T, P>(request: T, value: P) -> Value
     where
         T: Serialize,
-        P: Serialize
+        P: Serialize,
     {
         json!({
             "result": {
@@ -23,7 +23,7 @@ impl ResponseBuilder {
     pub fn left<T, P>(request: T, msg: P) -> Value
     where
         T: Serialize,
-        P: ToString
+        P: ToString,
     {
         json!({
             "result": {
