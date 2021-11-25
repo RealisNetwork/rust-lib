@@ -1,9 +1,11 @@
 pub mod config;
-pub mod healthchecker;
 pub mod logger;
 pub mod nats;
 pub mod primitives;
 pub mod vault;
 pub mod json;
 pub mod blockchain;
+#[cfg(feature = "logger")]
 pub mod async_logger;
+#[cfg(feature = "healthcheck")]
+pub mod healthchecker;

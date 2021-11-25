@@ -80,3 +80,7 @@ std = [
     "tokio/full",
     "tiny-bip39",
 ]
+
+healthcheck = []
+
+logger = []
