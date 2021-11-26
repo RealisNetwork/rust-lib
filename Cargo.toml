@@ -65,9 +65,18 @@ git = "https://github.com/tokio-rs/tokio-minihttp.git"
 
 
 [features]
-default = ["std"]
+default = ["std", "async_logg", "config", "healthchecker", "ser_des-types", "logger", "nats", "vault"]
 std = [
     #    "runtime/std",
     "tokio/full",
     "tiny-bip39",
 ]
+
+async_logg = []
+
+config = []
+healthchecker = []
+ser_des-types = []
+logger = []
+nats = []
+vault = []
