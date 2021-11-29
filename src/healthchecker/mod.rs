@@ -1,10 +1,10 @@
 use std::io;
 
 use futures::future;
+use tokio::time::{sleep, Duration};
 use tokio_minihttp::{Http, Request, Response};
 use tokio_proto::TcpServer;
 use tokio_service::Service;
-use tokio::time::{sleep, Duration};
 
 use std::sync::{
     atomic::{AtomicBool, Ordering},
