@@ -1,11 +1,24 @@
-pub mod config;
-pub mod logger;
-pub mod nats;
-pub mod primitives;
-pub mod vault;
-pub mod json;
-pub mod blockchain;
-#[cfg(feature = "logger")]
+#[cfg(any(feature = "async_logg"))]
 pub mod async_logger;
-#[cfg(feature = "healthcheck")]
+
+pub mod blockchain;
+
+#[cfg(any(feature = "config"))]
+pub mod config;
+
+#[cfg(any(feature = "healthchecker"))]
 pub mod healthchecker;
+
+#[cfg(any(feature = "ser_des-types"))]
+pub mod json;
+
+#[cfg(any(feature = "logger"))]
+pub mod logger;
+
+#[cfg(any(feature = "nats"))]
+pub mod nats;
+
+pub mod primitives;
+
+#[cfg(any(feature = "vault"))]
+pub mod vault;

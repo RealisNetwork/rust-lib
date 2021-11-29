@@ -72,6 +72,20 @@ std = [
     "tiny-bip39",
 ]
 
-healthcheck = []
+full = [
+    "async_logg",
+    "config",
+    "healthchecker",
+    "ser_des-types",
+    "logger",
+    "nats",
+    "vault"
+]
 
+async_logg = []
+config = []
+healthchecker = []
+ser_des-types = []
 logger = []
+nats = []
+vault = []
