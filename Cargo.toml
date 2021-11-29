@@ -72,15 +72,15 @@ std = [
     "tiny-bip39",
 ]
 
-full = [
-    "async_logg",
-    "config",
-    "healthchecker",
-    "ser_des-types",
-    "logger",
-    "nats",
-    "vault"
-]
+#full = [
+#    "async_logg",
+#    "config",
+#    "healthchecker",
+#    "ser_des-types",
+#    "logger",
+#    "nats",
+#    "vault"
+#]
 
 async_logg = []
 
