@@ -1,4 +1,4 @@
-#[cfg(any(feature = "async_logg"))]
+#[cfg(any(feature = "async_logger"))]
 pub mod async_logger;
 
 pub mod blockchain;
