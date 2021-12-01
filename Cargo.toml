@@ -73,7 +73,7 @@ std = [
 ]
 
 full = [
-    "async_logg",
+    "async_logger",
     "config",
     "healthchecker",
     "ser_des-types",
@@ -82,7 +82,7 @@ full = [
     "vault"
 ]
 
-async_logg = []
+async_logger = []
 config = []
 healthchecker = []
 ser_des-types = []
