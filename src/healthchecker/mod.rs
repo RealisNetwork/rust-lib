@@ -34,7 +34,7 @@ impl HealthChecker {
         health_checker
     }
 
-    pub async fn is_alive(&self) {
+    pub async fn is_alive(&mut self) {
         while self.health.load(Ordering::Acquire) {
             sleep(Duration::from_millis(10000)).await;
         }
@@ -42,6 +42,10 @@ impl HealthChecker {
 
     pub fn make_sick(&self) {
         self.health.store(false, Ordering::SeqCst);
+    }
+
+    pub fn is_ok(&self) -> bool {
+        self.health.load(Ordering::Acquire)
     }
 }
 
