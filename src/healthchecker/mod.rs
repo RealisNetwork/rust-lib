@@ -10,17 +10,9 @@ use std::sync::{
     atomic::{AtomicBool, Ordering},
     Arc,
 };
+use tokio::task::JoinHandle;
 
-pub async fn listen(health: Arc<AtomicBool>, host: &String) {
-    tokio::spawn({
-        let host = host.clone();
-        async move {
-            TcpServer::new(Http, host.parse().unwrap())
-                .serve(move || Ok(HealthChecker::new(Arc::clone(&health))));
-        }
-    });
-}
-
+#[derive(Clone)]
 pub struct HealthChecker {
     /// Determine status of program
     /// true - all okay
@@ -29,22 +21,35 @@ pub struct HealthChecker {
 }
 
 impl HealthChecker {
-    pub fn new(health: Arc<AtomicBool>) -> Self {
-        Self { health }
+    pub async fn new(host: &String) -> Self {
+        let health_checker = Self{health: Arc::new(AtomicBool::new(true))};
+        tokio::spawn({
+            let host = host.clone();
+            let health_checker = healthchecker.clone();
+            async move {
+                TcpServer::new(Http, host.parse().unwrap())
+                    .serve(move || Ok(health_checker))
+            }
+        });
+        health_checker
     }
 
-    pub async fn is_alive(status: Arc<AtomicBool>) {
-        while status.load(Ordering::Acquire) {
+    pub async fn is_alive(&self) {
+        while self.health.load(Ordering::Acquire) {
             sleep(Duration::from_millis(10000)).await;
         }
+    }
+
+    pub fn make_sick(&self) {
+        self.health.store(false, Ordering::SeqCst);
     }
 }
 
 impl Service for HealthChecker {
-    type Error = io::Error;
-    type Future = future::Ok<Response, io::Error>;
     type Request = Request;
     type Response = Response;
+    type Error = io::Error;
+    type Future = future::Ok<Response, io::Error>;
 
     fn call(&self, _request: Request) -> Self::Future {
         let mut resp = Response::new();
