@@ -34,7 +34,7 @@ impl HealthChecker {
         health_checker
     }
 
-    pub async fn is_alive(&mut self) {
+    pub async fn is_alive(&self) {
         while self.health.load(Ordering::Acquire) {
             sleep(Duration::from_millis(10000)).await;
         }
