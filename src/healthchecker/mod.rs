@@ -25,7 +25,7 @@ impl HealthChecker {
         let health_checker = Self{health: Arc::new(AtomicBool::new(true))};
         tokio::spawn({
             let host = host.clone();
-            let health_checker = healthchecker.clone();
+            let health_checker = health_checker.clone();
             async move {
                 TcpServer::new(Http, host.parse().unwrap())
                     .serve(move || Ok(health_checker))
