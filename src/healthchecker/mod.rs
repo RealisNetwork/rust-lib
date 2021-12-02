@@ -28,7 +28,7 @@ impl HealthChecker {
             let health_checker = health_checker.clone();
             async move {
                 TcpServer::new(Http, host.parse().unwrap())
-                    .serve(move || Ok(health_checker))
+                    .serve(move || Ok(&health_checker))
             }
         });
         health_checker
