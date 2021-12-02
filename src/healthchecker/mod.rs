@@ -12,7 +12,7 @@ use std::sync::{
 };
 use tokio::task::JoinHandle;
 
-#[derive(Clone)]
+#[derive(Clone, Copy)]
 pub struct HealthChecker {
     /// Determine status of program
     /// true - all okay
