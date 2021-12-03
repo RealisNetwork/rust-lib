@@ -12,7 +12,7 @@ run:
 	SKIP_WASM_BUILD=1 cargo run --release
 
 build:
-	SKIP_WASM_BUILD=1 cargo build --release
+	SKIP_WASM_BUILD=1 cargo build --release --all-features
 
 # Format Rust sources with rustfmt.
 #
