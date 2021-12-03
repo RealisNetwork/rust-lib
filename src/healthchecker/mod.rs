@@ -10,7 +10,6 @@ use std::sync::{
     atomic::{AtomicBool, Ordering},
     Arc,
 };
-use tokio::task::JoinHandle;
 
 #[derive(Clone)]
 pub struct HealthChecker {
@@ -18,25 +17,30 @@ pub struct HealthChecker {
     /// true - all okay
     /// false - something goes wrong, need restart
     health: Arc<AtomicBool>,
+    /// Timeout between checks, in millis
+    timeout: u64,
 }
 
 impl HealthChecker {
-    pub async fn new(host: &String) -> Self {
-        let health_checker = Self{health: Arc::new(AtomicBool::new(true))};
+    pub async fn new(host: &String, timeout: u64) -> Result<Self, String> {
+        let health_checker = Self{
+            health: Arc::new(AtomicBool::new(true)),
+            timeout,
+        };
+        let addr = host.parse().map_err(|error| format!("{:?}", error))?;
         tokio::spawn({
-            let host = host.clone();
             let health_checker = health_checker.clone();
             async move {
-                TcpServer::new(Http, host.parse().unwrap())
+                TcpServer::new(Http, addr)
                     .serve(move || Ok(health_checker.clone()))
             }
         });
-        health_checker
+        Ok(health_checker)
     }
 
     pub async fn is_alive(&self) {
         while self.health.load(Ordering::Acquire) {
-            sleep(Duration::from_millis(10000)).await;
+            sleep(Duration::from_millis(self.timeout)).await;
         }
     }
 
