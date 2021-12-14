@@ -82,7 +82,8 @@ full = [
     "ser_des-types",
     "logger",
     "nats",
-    "vault"
+    "vault",
+    "macros"
 ]
 
 async_logger = []
@@ -92,3 +93,4 @@ ser_des-types = []
 logger = []
 nats = []
 vault = []
+macros = []
