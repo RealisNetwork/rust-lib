@@ -23,17 +23,14 @@ pub struct HealthChecker {
 
 impl HealthChecker {
     pub async fn new(host: &String, timeout: u64) -> Result<Self, String> {
-        let health_checker = Self{
+        let health_checker = Self {
             health: Arc::new(AtomicBool::new(true)),
             timeout,
         };
         let addr = host.parse().map_err(|error| format!("{:?}", error))?;
         tokio::spawn({
             let health_checker = health_checker.clone();
-            async move {
-                TcpServer::new(Http, addr)
-                    .serve(move || Ok(health_checker.clone()))
-            }
+            async move { TcpServer::new(Http, addr).serve(move || Ok(health_checker.clone())) }
         });
         Ok(health_checker)
     }
@@ -54,10 +51,10 @@ impl HealthChecker {
 }
 
 impl Service for HealthChecker {
-    type Request = Request;
-    type Response = Response;
     type Error = io::Error;
     type Future = future::Ok<Response, io::Error>;
+    type Request = Request;
+    type Response = Response;
 
     fn call(&self, _request: Request) -> Self::Future {
         let mut resp = Response::new();

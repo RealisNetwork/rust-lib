@@ -19,6 +19,7 @@ pub enum Response {
 }
 
 impl Response {
+    #[must_use]
     pub fn to_payload(&self) -> (String, String) {
         match self {
             Response::NftMinted(request, tx_hash, _) => {
@@ -61,10 +62,8 @@ impl Response {
                 )
             }
             Response::TransferNftToGameAccount(_, _, _, _) => (String::from(""), String::from("")),
-            Response::TransferNftToConnectedAccount(_, _, _, _) => {
-                (String::from(""), String::from(""))
-            }
-            Response::TransferNftFromConnectedAccount(_, _, _, _) => {
+            Response::TransferNftToConnectedAccount(_, _, _, _)
+            | Response::TransferNftFromConnectedAccount(_, _, _, _) => {
                 (String::from(""), String::from(""))
             }
             Response::NftMintedError(request, _, _) => {

@@ -46,6 +46,7 @@ pub enum ContainsError {
 }
 
 impl Block {
+    /// # Errors
     pub async fn get_block(host: &str, port: &str, number: &str) -> Result<Block, ()> {
         let request = format!("http://{}:{}/blocks/{}", host, port, number);
 
@@ -57,11 +58,13 @@ impl Block {
             .map_err(|_| ())
     }
 
+    /// # Panics
+    /// # Errors
     pub fn contains_event(
         &self,
-        method: Method,
+        method: &Method,
         event_name: &str,
-        account_id: AccountId,
+        account_id: &AccountId,
     ) -> Result<(), ContainsError> {
         self.extrinsics
             .iter()
@@ -69,7 +72,7 @@ impl Block {
             .find(|xt| {
                 xt.method.pallet == method.pallet
                     && xt.method.method == method.method
-                    && xt.signature.as_ref().unwrap().signer.id == account_id
+                    && &xt.signature.as_ref().unwrap().signer.id == account_id
             })
             .ok_or(ContainsError::ExtrinsicNotFound)?
             .events

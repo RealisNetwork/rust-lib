@@ -3,6 +3,9 @@ name = "rust-lib"
 version = "0.1.0"
 edition = "2021"
 
+[workspace]
+members = ["macros"]
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
 tokio-postgres = { version = "0.7.2", features = ["with-serde_json-1"] }
@@ -12,9 +15,9 @@ reqwest = { version = "0.11.4", features = ["json"] }
 tokio = { version = "1.11.0", features = ["full"]}
 tiny-bip39 = { version = "0.8", optional = true }
 slog = { version = "2.7" }
-slog-stdlog = "4.1.0"
 hashicorp_vault = "2.1.0"
 slog-envlogger = "2.2"
+slog-stdlog = "4.1.0"
 serde_json = "1.0.66"
 hex-literal = "0.3.3"
 tokio-service = "0.1"
@@ -33,6 +36,7 @@ dotenv = "0.15.0"
 ratsio = "0.4.0"
 log = "0.4.14"
 aes = "0.7.5"
+
 
 [dev-dependencies]
 rustc-serialize = "0.3"
@@ -63,7 +67,6 @@ git = "https://github.com/RealisNetwork/substrate-api-client.git"
 [dependencies.tokio-minihttp]
 git = "https://github.com/tokio-rs/tokio-minihttp.git"
 
-
 [features]
 default = ["std"]
 std = [
@@ -79,7 +82,8 @@ full = [
     "ser_des-types",
     "logger",
     "nats",
-    "vault"
+    "vault",
+    "macros"
 ]
 
 async_logger = []
@@ -89,3 +93,4 @@ ser_des-types = []
 logger = []
 nats = []
 vault = []
+macros = []
