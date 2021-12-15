@@ -943,6 +943,33 @@ dependencies = [
 ]
 
 [[package]]
+name = "format"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "901e1b63ac63f86d9fb836b1ae8b43e5a9f2338975e9de24f36a1af4acf23ac8"
+dependencies = [
+ "format-core",
+ "format-macro",
+]
+
+[[package]]
+name = "format-core"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e66b70d6700c47044b73e43dd0649e0d6bfef18f87919c23785cdbd1aaa9d3f5"
+
+[[package]]
+name = "format-macro"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8f9faac4e57f217563dd1fd58628a0c526aa37a681ffac76ca80d64907370a4c"
+dependencies = [
+ "proc-macro2 1.0.33",
+ "quote 1.0.10",
+ "syn 1.0.82",
+]
+
+[[package]]
 name = "frame-benchmarking"
 version = "4.0.0-dev"
 source = "git+https://github.com/paritytech/substrate?rev=e7b93e1b1abcf0865824c68d10850bbb451e295f#e7b93e1b1abcf0865824c68d10850bbb451e295f"
@@ -1842,6 +1869,7 @@ name = "macros"
 version = "0.1.0"
 dependencies = [
  "quote 1.0.10",
+ "serde_json",
  "syn 1.0.82",
 ]
 
@@ -3816,6 +3844,7 @@ dependencies = [
  "colored",
  "dotenv",
  "env_logger 0.9.0",
+ "format",
  "futures 0.1.31",
  "hashicorp_vault",
  "hex-literal",

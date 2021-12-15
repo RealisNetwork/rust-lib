@@ -31,6 +31,7 @@ futures = "0.1.11"
 slog-async = "2.5"
 colored = "2.0.0"
 chrono = "0.4.19"
+format = "0.2.4"
 slog-json = "2.3"
 dotenv = "0.15.0"
 ratsio = "0.4.0"
@@ -83,7 +84,8 @@ full = [
     "logger",
     "nats",
     "vault",
-    "macros"
+    "macros",
+    "error_registry"
 ]
 
 async_logger = []
@@ -94,3 +96,4 @@ logger = []
 nats = []
 vault = []
 macros = []
+error_registry = []

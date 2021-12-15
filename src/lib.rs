@@ -22,3 +22,6 @@ pub mod primitives;
 
 #[cfg(any(feature = "vault"))]
 pub mod vault;
+
+#[cfg(any(feature = "error_registry"))]
+mod error_registry;
