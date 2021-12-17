@@ -10,21 +10,13 @@ impl NatsLoggerWrapper {
     where
         T: Debug,
     {
-        info!(
-            "By topic - [{:^30}] - got message  - {:?}",
-            topic.purple(),
-            request
-        )
+        info!("By topic - [{:^30}] - got message  - {:?}", topic.purple(), request)
     }
 
     pub fn sent_message<T>(topic: &str, request: T)
     where
         T: Debug,
     {
-        info!(
-            "By topic - [{:^30}] - sent message - {:?}",
-            topic.purple(),
-            request
-        )
+        info!("By topic - [{:^30}] - sent message - {:?}", topic.purple(), request)
     }
 }

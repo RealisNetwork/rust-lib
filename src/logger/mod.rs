@@ -71,36 +71,11 @@ pub fn logger_init(level: LevelFilter) {
 
     let _ = Builder::new()
         .format(|buf, record| match record.level() {
-            LogLevel::Error => writeln!(
-                buf,
-                "[{}] - {}",
-                format!("{}", record.level()).red(),
-                record.args()
-            ),
-            LogLevel::Warn => writeln!(
-                buf,
-                "[{}]  - {}",
-                format!("{}", record.level()).yellow(),
-                record.args()
-            ),
-            LogLevel::Info => writeln!(
-                buf,
-                "[{}]  - {}",
-                format!("{}", record.level()).blue(),
-                record.args()
-            ),
-            LogLevel::Debug => writeln!(
-                buf,
-                "[{}] - {}",
-                format!("{}", record.level()).green(),
-                record.args()
-            ),
-            LogLevel::Trace => writeln!(
-                buf,
-                "[{}] - {}",
-                format!("{}", record.level()).magenta(),
-                record.args()
-            ),
+            LogLevel::Error => writeln!(buf, "[{}] - {}", format!("{}", record.level()).red(), record.args()),
+            LogLevel::Warn => writeln!(buf, "[{}]  - {}", format!("{}", record.level()).yellow(), record.args()),
+            LogLevel::Info => writeln!(buf, "[{}]  - {}", format!("{}", record.level()).blue(), record.args()),
+            LogLevel::Debug => writeln!(buf, "[{}] - {}", format!("{}", record.level()).green(), record.args()),
+            LogLevel::Trace => writeln!(buf, "[{}] - {}", format!("{}", record.level()).magenta(), record.args()),
         })
         .filter(None, level)
         .try_init();

@@ -16,9 +16,7 @@ where
             .first()
             .ok_or(Error::custom(String::from("Missing integer part!")))?
             .parse::<u128>()
-            .map_err(|error| {
-                Error::custom(format!("Cannot convert integer part to u128: {:?}", error))
-            })?;
+            .map_err(|error| Error::custom(format!("Cannot convert integer part to u128: {:?}", error)))?;
         // Get fractional len
         let fractional_length = splitted
             .get(1)
@@ -29,12 +27,7 @@ where
             .get(1)
             .ok_or(Error::custom(String::from("Missing fractional part!")))?
             .parse::<u128>()
-            .map_err(|error| {
-                Error::custom(format!(
-                    "Cannot convert fractional part to u128: {:?}",
-                    error
-                ))
-            })?;
+            .map_err(|error| Error::custom(format!("Cannot convert fractional part to u128: {:?}", error)))?;
 
         let integer = integer * 10_u128.pow(DECIMALS.into());
         let fractional = fractional * 10_u128.pow(DECIMALS as u32 - fractional_length as u32);
@@ -42,9 +35,9 @@ where
         Ok(integer + fractional)
     } else {
         // If number is integer
-        let number = number.parse::<u128>().map_err(|error| {
-            Error::custom(format!("Cannot convert to u128 with error: {}", error))
-        })?;
+        let number = number
+            .parse::<u128>()
+            .map_err(|error| Error::custom(format!("Cannot convert to u128 with error: {}", error)))?;
         Ok(number * 10_u128.pow(DECIMALS.into()))
     }
 }
