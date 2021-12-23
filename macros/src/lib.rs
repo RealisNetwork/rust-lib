@@ -1,9 +1,10 @@
 use crate::syn::Error;
+use convert_case::{Case, Casing};
 use proc_macro::TokenStream;
 use proc_macro2::{Span, TokenStream as TokenStream2};
-use quote::{quote, quote_spanned};
+use quote::{format_ident, quote, quote_spanned};
+use serde_json::{json, Value};
 use syn::{self, parse_macro_input, spanned::Spanned, Data, DeriveInput, Fields, TypeTuple};
-use serde_json::{Value, json};
 
 /// # Panics
 #[proc_macro_derive(Gettable, attributes(gettable))]
@@ -53,9 +54,9 @@ macro_rules! derive_error {
 
 /// # Panics
 #[proc_macro_derive(RealisErrors)]
-pub fn gettable_macro_derive_errors(item: TokenStream) -> TokenStream {
+pub fn gettable_macro_derive_errors(input: TokenStream) -> TokenStream {
     // See https://doc.servo.org/syn/derive/struct.DeriveInput.html
-    let input: DeriveInput = parse_macro_input!(item as DeriveInput);
+    let input: DeriveInput = parse_macro_input!(input as DeriveInput);
 
     // get enum name
     let ref name = input.ident;
@@ -90,66 +91,62 @@ pub fn gettable_macro_derive_errors(item: TokenStream) -> TokenStream {
                     Fields::Unit => quote_spanned! { variant.span()=> },
                     Fields::Named(_) => quote_spanned! {variant.span()=> {..} },
                 };
-                let expanded = quote! {
-                    impl #name {
-                        pub fn enum_to_string(&self) -> String {
-                            match self {
-                               #name::#variant_name(_) => format!("{}.{}", stringify!(#name), stringify!(#variant_name(_))),
-                               //#name::#variant_name => format!("{}.{}", stringify!(#name), stringify!(#variant_name))
-                            }
-                        }
 
-                        pub fn error_to_value_with_message(&self, msg: &str) -> Value {
-                            match self {
-                                #name::#variant_name(_) => {
-                                    return json!({
-                                        "type": "Left",
-                                        "value": {
-                                            "msg": msg,
-                                            "type": format!("{}.{}", stringify!(#name), stringify!(#variant_name(_)))
-                                        }
-                                    })
-                                },
-                                // #name::#variant_name => {
-                                //     return json!({
-                                //         "type": "Left",
-                                //         "value": {
-                                //             "msg": msg,
-                                //             "type": format!("{}.{}", stringify!(#name), stringify!(#variant_name))
-                                //         }
-                                //     })
-                                // }
-                            }
-                        }
+                // construct an identifier named is_<variant_name> for function name
+                // We convert it to snake case using `to_case(Case::Snake)`
+                // For example, if variant is `HelloWorld`, it will generate `is_hello_world`
+                let mut error_to_value_with_message =
+                    format_ident!("is_{}", variant_name.to_string().to_case(Case::Snake));
+                error_to_value_with_message.set_span(variant_name.span());
 
-                        pub fn error_to_value(&self) -> Value {
-                            match self {
-                                #name::#variant_name(_) => {
-                                    return json!({
-                                        "type": "Left",
-                                        "value": {
-                                            "type": format!("{}.{}", stringify!(#name), stringify!(#variant_name(_)))
-                                        }
-                                    })
-                                },
-                                // #name::#variant_name => {
-                                //     return json!({
-                                //         "type": "Left",
-                                //         "value": {
-                                //             "type": format!("{}.{}", stringify!(#name), stringify!(#variant_name))
-                                //         }
-                                //     })
-                                // }
-                            }
+                // Here we construct the function for the current variant
+                variant_checker_functions.extend(quote_spanned! {variant.span()=>
+                    pub fn #error_to_value_with_message(&self, msg: String) -> serde_json::Value {
+                        match self {
+                            #name::#variant_name #fields_in_variant => return json!({
+                            "type": "Left",
+                            "value": {
+                                "msg": msg,
+                                "type": format!("{}.{}", stringify!(#variant_name),stringify!(#fields_in_variant))
+                                    }
+                        }),
+                            _ => return json!({
+                            "type": "Left",
+                            "value": {
+                                "msg": msg,
+                                "type": format!("{}.{}", stringify!(#name),stringify!(#variant_name))
+                                    }
+                        }),
                         }
-                        }
-                };
-                return TokenStream::from(expanded);
+                    }
+                });
+
+                // Above we are making a TokenStream using extend()
+                // This is because TokenStream is an Iterator,
+                // so we can keep extending it.
+                //
+                // proc_macro2::TokenStream:- https://docs.rs/proc-macro2/1.0.24/proc_macro2/struct.TokenStream.html
+
+                // Read about
+                // quote:- https://docs.rs/quote/1.0.7/quote/
+                // quote_spanned:- https://docs.rs/quote/1.0.7/quote/macro.quote_spanned.html
+                // spans:- https://docs.rs/syn/1.0.54/syn/spanned/index.html
             }
         }
         _ => return derive_error!("IsVariant is only implemented for enums"),
     };
-    return TokenStream::default()
+
+    let (impl_generics, ty_generics, where_clause) = input.generics.split_for_impl();
+
+    let expanded = quote! {
+        impl #name {
+            // variant_checker_functions gets replaced by all the functions
+            // that were constructed above
+            #variant_checker_functions
+        }
+    };
+
+    TokenStream::from(expanded)
 }
 
 // fn impl_gettable_macro_errors(ast: &DeriveInput) -> TokenStream {

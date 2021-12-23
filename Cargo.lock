@@ -3661,6 +3661,7 @@ dependencies = [
 name = "realis-macros"
 version = "0.1.0"
 dependencies = [
+ "convert_case",
  "proc-macro2 1.0.34",
  "quote 1.0.10",
  "serde_json",

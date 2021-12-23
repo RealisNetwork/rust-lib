@@ -1,8 +1,8 @@
 use realis_macros::RealisErrors;
 use serde::{Deserialize, Serialize};
+use serde_json::{json, Value};
 use std::fmt::{Display, Formatter};
 use thiserror::Error;
-use serde_json::{Value, json};
 
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum RealisErrors {
@@ -38,11 +38,7 @@ pub enum RealisErrors {
     CustomInt(i32),
     CustomString(String),
 }
-fn foo() {
-    let bar = RealisErrors::Status(Status::Add);
-    println!("{}", bar);
-    // bar.();
-}
+
 impl Display for RealisErrors {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}", self)
@@ -67,7 +63,7 @@ impl Display for Db {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Common {
     Unknown,
     InternalServerError,
@@ -79,7 +75,7 @@ impl Display for Common {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum AdminOptions {
     Update,
     Add,
@@ -91,7 +87,7 @@ impl Display for AdminOptions {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Fs {
     ReadFile,
 }
@@ -102,7 +98,7 @@ impl Display for Fs {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Bff {
     InvalidAgent,
     InvalidMethod,
@@ -114,7 +110,7 @@ impl Display for Bff {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Utils {
     Description,
 }
@@ -125,7 +121,7 @@ impl Display for Utils {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Nats {
     Send,
     Receive,
@@ -138,7 +134,7 @@ impl Display for Nats {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Validation {
     Invalid,
     DoesNotMatchPattern,
@@ -150,7 +146,7 @@ impl Display for Validation {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum TwoFactorAuth {
     HasEntry,
     InvalidToken,
@@ -164,7 +160,7 @@ impl Display for TwoFactorAuth {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Redis {
     NotFound,
     InternalServerError,
@@ -177,7 +173,7 @@ impl Display for Redis {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Billing {
     UpdateBalanceRecord,
     NotEnoughBalance,
@@ -189,7 +185,7 @@ impl Display for Billing {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum ProductRegistry {
     InternalError,
 }
@@ -200,7 +196,7 @@ impl Display for ProductRegistry {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Permissions {
     NotAllowed,
 }
@@ -211,7 +207,7 @@ impl Display for Permissions {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Cron {
     Create,
     Delete,
@@ -223,7 +219,7 @@ impl Display for Cron {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Profile {
     AlreadyBanned,
     AlreadySubscribed,
@@ -235,7 +231,7 @@ impl Display for Profile {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Roles {
     AlreadyHasRole,
 }
@@ -246,7 +242,7 @@ impl Display for Roles {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum GooglePlay {
     InvalidSubscription,
     InvalidPurchaseStatus,
@@ -258,7 +254,7 @@ impl Display for GooglePlay {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Orchestrator {
     ZeroAmount,
 }
@@ -269,7 +265,7 @@ impl Display for Orchestrator {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum RestorePassword {
     ExpiredToken,
 }
@@ -280,7 +276,7 @@ impl Display for RestorePassword {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Blockchain {
     NotEnoughBalance,
 }
@@ -291,7 +287,7 @@ impl Display for Blockchain {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum ProductFactory {
     InvalidChance,
     InvalidLimit,
@@ -304,7 +300,7 @@ impl Display for ProductFactory {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Soul {
     GetData,
     CallContractMethod,
@@ -317,7 +313,7 @@ impl Display for Soul {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Functions {
     EmptyParams,
     MoreThanOneParam,
@@ -329,7 +325,7 @@ impl Display for Functions {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Referrals {
     AlreadyHasReferrer,
     AlreadyHasCode,
@@ -342,7 +338,7 @@ impl Display for Referrals {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum BytesFormatter {
     HandshakeAuthToken,
     HandshakeSessionToken,
@@ -356,7 +352,7 @@ impl Display for BytesFormatter {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Status {
     Update,
     Get,
@@ -370,7 +366,7 @@ impl Display for Status {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Geo {
     InternalError,
     InvalidCountry,
@@ -384,7 +380,7 @@ impl Display for Geo {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Action {
     NotCancelable,
 }
@@ -395,7 +391,7 @@ impl Display for Action {
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
 pub enum Promo {
     CodeExpired,
     CodeNotExists,
