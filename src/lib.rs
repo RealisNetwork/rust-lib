@@ -24,4 +24,4 @@ pub mod primitives;
 pub mod vault;
 
 #[cfg(any(feature = "error_registry"))]
-mod error_registry;
+pub mod error_registry;
