@@ -43,17 +43,11 @@ impl<ErrDecorator, RestDecorator> CustomFormatter<ErrDecorator, RestDecorator> {
     }
 }
 
-impl<ErrDecorator: Decorator, RestDecorator: Decorator> Drain
-    for CustomFormatter<ErrDecorator, RestDecorator>
-{
+impl<ErrDecorator: Decorator, RestDecorator: Decorator> Drain for CustomFormatter<ErrDecorator, RestDecorator> {
     type Err = std::io::Error;
     type Ok = ();
 
-    fn log(
-        &self,
-        record: &Record,
-        values: &OwnedKVList,
-    ) -> std::result::Result<Self::Ok, Self::Err> {
+    fn log(&self, record: &Record, values: &OwnedKVList) -> std::result::Result<Self::Ok, Self::Err> {
         match record.level() {
             Level::Error | Level::Critical => log_to_decorator(&self.err_decorator, record, values),
             _ => log_to_decorator(&self.rest_decorator, record, values),

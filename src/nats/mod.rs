@@ -13,18 +13,11 @@ struct NatsStream {
 
 impl NatsStream {
     #[must_use]
-    pub async fn new(
-        subject: &str,
-        client_id: &str,
-        cluster_id: &str,
-        address: &str,
-    ) -> Result<Self, Error> {
+    pub async fn new(subject: &str, client_id: &str, cluster_id: &str, address: &str) -> Result<Self, Error> {
         let client_id = format!("{}-{}", client_id, subject);
         let opts = StanOptions::with_options(address, cluster_id, &client_id[..]);
 
-        let stan_client = StanClient::from_options(opts)
-            .await
-            .map_err(Error::NatsError)?;
+        let stan_client = StanClient::from_options(opts).await.map_err(Error::NatsError)?;
 
         Ok(Self {
             connection: stan_client,

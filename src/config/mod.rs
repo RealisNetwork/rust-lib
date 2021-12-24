@@ -72,10 +72,7 @@ impl Config {
     pub fn get_subjects(key: &str) -> Vec<String> {
         dotenv::dotenv().ok();
         if let Ok(value) = dotenv::var(key) {
-            value
-                .split(',')
-                .map(std::string::ToString::to_string)
-                .collect()
+            value.split(',').map(std::string::ToString::to_string).collect()
         } else {
             warn!("Missing enf field: {}", key);
             vec![String::from("adapter")]

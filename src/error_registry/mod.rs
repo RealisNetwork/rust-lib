@@ -1,7 +1,13 @@
-use serde::{Deserialize, Serialize};
-use thiserror::Error;
+pub mod traits;
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+use realis_macros::{RealisErrors, ToJson};
+use serde::{Deserialize, Serialize};
+use serde_json::{json, Value};
+use thiserror::Error;
+use derive_more::Display;
+use crate::error_registry::traits::ToJson;
+
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, RealisErrors)]
 pub enum RealisErrors {
     Db(Db),
     Common(Common),
@@ -36,7 +42,7 @@ pub enum RealisErrors {
     CustomString(String),
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Db {
     Select,
     Insert,
@@ -48,48 +54,48 @@ pub enum Db {
     Save,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Common {
     Unknown,
     InternalServerError,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum AdminOptions {
     Update,
     Add,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Fs {
     ReadFile,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Bff {
     InvalidAgent,
     InvalidMethod,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Utils {
     Description,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Nats {
     Send,
     Receive,
     InternalServiceCall,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Validation {
     Invalid,
     DoesNotMatchPattern,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum TwoFactorAuth {
     HasEntry,
     InvalidToken,
@@ -97,95 +103,95 @@ pub enum TwoFactorAuth {
     Generate,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Redis {
     NotFound,
     InternalServerError,
     Parse,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Billing {
     UpdateBalanceRecord,
     NotEnoughBalance,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum ProductRegistry {
     InternalError,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Permissions {
     NotAllowed,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Cron {
     Create,
     Delete,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Profile {
     AlreadyBanned,
     AlreadySubscribed,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Roles {
     AlreadyHasRole,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum GooglePlay {
     InvalidSubscription,
     InvalidPurchaseStatus,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Orchestrator {
     ZeroAmount,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum RestorePassword {
     ExpiredToken,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Blockchain {
     NotEnoughBalance,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum ProductFactory {
     InvalidChance,
     InvalidLimit,
     InvalidProductType,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Soul {
     GetData,
     CallContractMethod,
     TxAlreadySending,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Functions {
     EmptyParams,
     MoreThanOneParam,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Referrals {
     AlreadyHasReferrer,
     AlreadyHasCode,
     UnavailableTransaction,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum BytesFormatter {
     HandshakeAuthToken,
     HandshakeSessionToken,
@@ -193,7 +199,7 @@ pub enum BytesFormatter {
     InternalError,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Status {
     Update,
     Get,
@@ -201,7 +207,7 @@ pub enum Status {
     Add,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Geo {
     InternalError,
     InvalidCountry,
@@ -209,12 +215,12 @@ pub enum Geo {
     InvalidIp,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Action {
     NotCancelable,
 }
 
-#[derive(Debug, Eq, PartialEq, Clone, Deserialize, Serialize)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Promo {
     CodeExpired,
     CodeNotExists,

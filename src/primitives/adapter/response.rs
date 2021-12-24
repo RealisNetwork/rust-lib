@@ -63,9 +63,7 @@ impl Response {
             }
             Response::TransferNftToGameAccount(_, _, _, _) => (String::from(""), String::from("")),
             Response::TransferNftToConnectedAccount(_, _, _, _)
-            | Response::TransferNftFromConnectedAccount(_, _, _, _) => {
-                (String::from(""), String::from(""))
-            }
+            | Response::TransferNftFromConnectedAccount(_, _, _, _) => (String::from(""), String::from("")),
             Response::NftMintedError(request, _, _) => {
                 let subject = request.topic_res.clone();
                 (
