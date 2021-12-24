@@ -1,10 +1,13 @@
-use realis_macros::RealisErrors;
+pub mod traits;
+
+use realis_macros::{RealisErrors, ToJson};
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
-use std::fmt::{Display, Formatter};
 use thiserror::Error;
+use derive_more::Display;
+use crate::error_registry::traits::ToJson;
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, RealisErrors)]
 pub enum RealisErrors {
     Db(Db),
     Common(Common),
@@ -39,13 +42,7 @@ pub enum RealisErrors {
     CustomString(String),
 }
 
-impl Display for RealisErrors {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Db {
     Select,
     Insert,
@@ -57,96 +54,48 @@ pub enum Db {
     Save,
 }
 
-impl Display for Db {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Common {
     Unknown,
     InternalServerError,
 }
 
-impl Display for Common {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum AdminOptions {
     Update,
     Add,
 }
 
-impl Display for AdminOptions {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Fs {
     ReadFile,
 }
 
-impl Display for Fs {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Bff {
     InvalidAgent,
     InvalidMethod,
 }
 
-impl Display for Bff {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Utils {
     Description,
 }
 
-impl Display for Utils {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Nats {
     Send,
     Receive,
     InternalServiceCall,
 }
 
-impl Display for Nats {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Validation {
     Invalid,
     DoesNotMatchPattern,
 }
 
-impl Display for Validation {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum TwoFactorAuth {
     HasEntry,
     InvalidToken,
@@ -154,191 +103,95 @@ pub enum TwoFactorAuth {
     Generate,
 }
 
-impl Display for TwoFactorAuth {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Redis {
     NotFound,
     InternalServerError,
     Parse,
 }
 
-impl Display for Redis {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Billing {
     UpdateBalanceRecord,
     NotEnoughBalance,
 }
 
-impl Display for Billing {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum ProductRegistry {
     InternalError,
 }
 
-impl Display for ProductRegistry {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Permissions {
     NotAllowed,
 }
 
-impl Display for Permissions {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Cron {
     Create,
     Delete,
 }
 
-impl Display for Cron {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Profile {
     AlreadyBanned,
     AlreadySubscribed,
 }
 
-impl Display for Profile {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Roles {
     AlreadyHasRole,
 }
 
-impl Display for Roles {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum GooglePlay {
     InvalidSubscription,
     InvalidPurchaseStatus,
 }
 
-impl Display for GooglePlay {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Orchestrator {
     ZeroAmount,
 }
 
-impl Display for Orchestrator {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum RestorePassword {
     ExpiredToken,
 }
 
-impl Display for RestorePassword {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Blockchain {
     NotEnoughBalance,
 }
 
-impl Display for Blockchain {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum ProductFactory {
     InvalidChance,
     InvalidLimit,
     InvalidProductType,
 }
 
-impl Display for ProductFactory {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Soul {
     GetData,
     CallContractMethod,
     TxAlreadySending,
 }
 
-impl Display for Soul {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Functions {
     EmptyParams,
     MoreThanOneParam,
 }
 
-impl Display for Functions {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Referrals {
     AlreadyHasReferrer,
     AlreadyHasCode,
     UnavailableTransaction,
 }
 
-impl Display for Referrals {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum BytesFormatter {
     HandshakeAuthToken,
     HandshakeSessionToken,
@@ -346,13 +199,7 @@ pub enum BytesFormatter {
     InternalError,
 }
 
-impl Display for BytesFormatter {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Status {
     Update,
     Get,
@@ -360,13 +207,7 @@ pub enum Status {
     Add,
 }
 
-impl Display for Status {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Geo {
     InternalError,
     InvalidCountry,
@@ -374,33 +215,15 @@ pub enum Geo {
     InvalidIp,
 }
 
-impl Display for Geo {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Action {
     NotCancelable,
 }
 
-impl Display for Action {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Promo {
     CodeExpired,
     CodeNotExists,
     CodeIsAlreadyUsed,
     InternalError,
-}
-
-impl Display for Promo {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self)
-    }
 }

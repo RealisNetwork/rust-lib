@@ -46,6 +46,13 @@ fn impl_gettable_macro(ast: &DeriveInput, attr: &TypeTuple) -> TokenStream {
     gen.into()
 }
 
+#[proc_macro_derive(ToJson)]
+pub fn to_json_macro_derive(item: TokenStream) -> TokenStream {
+    let ast: DeriveInput = syn::parse(item).unwrap();
+    let name = &ast.ident;
+    quote! { impl ToJson for #name {} }.into()
+}
+
 macro_rules! derive_error {
     ($string: tt) => {
         Error::new(Span::call_site(), $string).to_compile_error().into();
@@ -55,7 +62,6 @@ macro_rules! derive_error {
 /// # Panics
 #[proc_macro_derive(RealisErrors)]
 pub fn gettable_macro_derive_errors(input: TokenStream) -> TokenStream {
-    // See https://doc.servo.org/syn/derive/struct.DeriveInput.html
     let input: DeriveInput = parse_macro_input!(input as DeriveInput);
 
     // get enum name
@@ -63,6 +69,32 @@ pub fn gettable_macro_derive_errors(input: TokenStream) -> TokenStream {
     let ref data = input.data;
 
     let mut variant_checker_functions;
+
+    match data {
+        Data::Enum(data_enum) => {
+            let cases = data_enum
+                .variants
+                .iter()
+                .map(|variant| variant.ident.clone())
+                .map(|variant| {
+                    let variant_name = variant.to_string().to_case(Case::Camel);
+                    quote! {#name::#variant(value) => format!("{}.{}", #variant_name, value)}
+                })
+                .collect::<Vec<_>>();
+
+            return quote! {
+                impl ToJson for #name {
+                    fn as_string(&self) -> String {
+                        match self {
+                            #(#cases),*
+                        }
+                    }
+                }
+            }.into()
+
+        },
+        _ => panic!("Macro impl only for enums")
+    }
 
     // data is of type syn::Data
     // See https://doc.servo.org/syn/enum.Data.html

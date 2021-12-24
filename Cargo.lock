@@ -805,6 +805,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "enum_dispatch"
+version = "0.3.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bd53b3fde38a39a06b2e66dc282f3e86191e53bd04cc499929c15742beae3df8"
+dependencies = [
+ "once_cell",
+ "proc-macro2 1.0.34",
+ "quote 1.0.10",
+ "syn 1.0.82",
+]
+
+[[package]]
 name = "enumflags2"
 version = "0.6.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3844,7 +3856,10 @@ dependencies = [
  "block-modes",
  "chrono",
  "colored",
+ "convert_case",
+ "derive_more",
  "dotenv",
+ "enum_dispatch",
  "env_logger 0.9.0",
  "format",
  "futures 0.1.31",
