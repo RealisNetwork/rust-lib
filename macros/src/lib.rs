@@ -78,7 +78,7 @@ pub fn gettable_macro_derive_errors(input: TokenStream) -> TokenStream {
                 .map(|variant| variant.ident.clone())
                 .map(|variant| {
                     let variant_name = variant.to_string().to_case(Case::Camel);
-                    quote! {#name::#variant(value) => format!("{}.{}", #variant_name, value)}
+                    quote! {#name::#variant(value) => format!("{}.{}", #variant_name, value.as_string() )}
                 })
                 .collect::<Vec<_>>();
 

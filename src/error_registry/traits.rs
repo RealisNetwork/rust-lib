@@ -25,3 +25,7 @@ pub trait ToJson: Display {
         })
     }
 }
+
+impl ToJson for &i32 {}
+
+impl ToJson for &String {}
