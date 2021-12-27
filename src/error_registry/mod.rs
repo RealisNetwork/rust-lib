@@ -52,6 +52,9 @@ pub enum Db {
     Remove,
     Create,
     Save,
+    Disconnected,
+    ConnectionError,
+    AlreadyExists,
 }
 
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
@@ -80,6 +83,8 @@ pub enum Bff {
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Utils {
     Description,
+    HexDecode,
+    Convert,
 }
 
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
