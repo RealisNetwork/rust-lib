@@ -50,6 +50,7 @@ pub enum Db {
     InvalidTransaction,
     NotFound,
     WalletNotFound(String),
+    UserIdNotFound(String),
     Remove,
     Create,
     Save,
