@@ -49,9 +49,14 @@ pub enum Db {
     Update,
     InvalidTransaction,
     NotFound,
+    WalletNotFound(String),
+    UserIdNotFound(String),
     Remove,
     Create,
     Save,
+    Disconnected,
+    ConnectionError,
+    AlreadyExists,
 }
 
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
@@ -80,6 +85,9 @@ pub enum Bff {
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Utils {
     Description,
+    HexDecode,
+    Convert,
+    Parse,
 }
 
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
