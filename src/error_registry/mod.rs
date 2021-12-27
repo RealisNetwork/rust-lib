@@ -48,7 +48,7 @@ pub enum Db {
     Insert,
     Update,
     InvalidTransaction,
-    NotFound,
+    NotFound(String),
     Remove,
     Create,
     Save,
