@@ -85,6 +85,7 @@ pub enum Utils {
     Description,
     HexDecode,
     Convert,
+    Parse,
 }
 
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
