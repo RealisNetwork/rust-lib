@@ -16,6 +16,7 @@ pub enum RealisErrors {
     Bff(Bff),
     Utils(Utils),
     Nats(Nats),
+    RpcError(RpcError),
     Validation(Validation),
     TwoFactorAuth(TwoFactorAuth),
     Redis(Redis),
@@ -97,6 +98,13 @@ pub enum Nats {
     InternalServiceCall,
     Disconnected,
     AddReconnectHandlerError,
+}
+
+#[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
+pub enum RpcError {
+    Api,
+    BlockNotFound,
+    EventsNotFound,
 }
 
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
