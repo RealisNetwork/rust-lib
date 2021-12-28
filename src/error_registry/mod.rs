@@ -95,6 +95,8 @@ pub enum Nats {
     Send,
     Receive,
     InternalServiceCall,
+    Disconnected,
+    AddReconnectHandlerError,
 }
 
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
