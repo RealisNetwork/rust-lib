@@ -90,6 +90,7 @@ pub enum Utils {
     Convert,
     Parse,
     IO,
+    Web3,
 }
 
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
