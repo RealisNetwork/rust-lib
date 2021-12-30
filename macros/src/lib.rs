@@ -68,8 +68,6 @@ pub fn gettable_macro_derive_errors(input: TokenStream) -> TokenStream {
     let ref name = input.ident;
     let ref data = input.data;
 
-    let mut variant_checker_functions;
-
     match data {
         Data::Enum(data_enum) => {
             let cases = data_enum
