@@ -182,6 +182,7 @@ pub enum RestorePassword {
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Blockchain {
     NotEnoughBalance,
+    Send,
 }
 
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
