@@ -8,7 +8,6 @@ members = ["macros"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
-tokio-postgres = { version = "0.7.2", features = ["with-serde_json-1"] }
 uuid = { version = "0.8.2", features = ["serde", "v4"] }
 serde = { version = "1.0.129", features = ["derive"] }
 reqwest = { version = "0.11.4", features = ["json"] }
@@ -41,6 +40,12 @@ dotenv = "0.15.0"
 ratsio = "0.4.0"
 log = "0.4.14"
 aes = "0.7.5"
+
+# iner_db
+tokio-postgres = { version = "0.7.2", features = ["with-serde_json-1"], optional = true }
+postgres-openssl = { version = "0.5.0", optional = true }
+postgres = { version = "0.19.1", optional = true }
+openssl = {version = "0.10.38", optional = true }
 
 [dev-dependencies]
 rustc-serialize = "0.3"
@@ -100,3 +105,10 @@ nats = []
 vault = []
 macros = []
 error_registry = []
+
+db = [
+    "postgres-openssl",
+    "tokio-postgres",
+    "postgres",
+    "openssl",
+]

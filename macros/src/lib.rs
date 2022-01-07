@@ -1,10 +1,7 @@
-use crate::syn::Error;
 use convert_case::{Case, Casing};
 use proc_macro::TokenStream;
-use proc_macro2::{Span, TokenStream as TokenStream2};
-use quote::{format_ident, quote, quote_spanned};
-use serde_json::{json, Value};
-use syn::{self, parse_macro_input, spanned::Spanned, Data, DeriveInput, Fields, TypeTuple};
+use quote::quote;
+use syn::{self, parse_macro_input, Data, DeriveInput, TypeTuple};
 
 /// # Panics
 #[proc_macro_derive(Gettable, attributes(gettable))]
@@ -51,12 +48,6 @@ pub fn to_json_macro_derive(item: TokenStream) -> TokenStream {
     let ast: DeriveInput = syn::parse(item).unwrap();
     let name = &ast.ident;
     quote! { impl ToJson for #name {} }.into()
-}
-
-macro_rules! derive_error {
-    ($string: tt) => {
-        Error::new(Span::call_site(), $string).to_compile_error().into();
-    };
 }
 
 /// # Panics

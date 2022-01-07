@@ -25,3 +25,6 @@ pub mod vault;
 
 #[cfg(any(feature = "error_registry"))]
 pub mod error_registry;
+
+#[cfg(feature = "db")]
+pub mod iner_db;
