@@ -8,11 +8,21 @@ check:
 test:
 	SKIP_WASM_BUILD=1 cargo test --all -- --nocapture --test-threads 1
 
-run:
-	SKIP_WASM_BUILD=1 cargo run --release
-
 build:
 	SKIP_WASM_BUILD=1 cargo build --release --all-features
+
+features:
+	cargo build --features macros
+	cargo build --features async_logger
+	cargo build --features config
+	cargo build --features error_registry
+	cargo build --features healthchecker
+	cargo build --features db
+	cargo build --features ser_des-types
+	cargo build --features logger
+	cargo build --features nats
+	cargo build --features vault
+
 
 # Format Rust sources with rustfmt.
 #

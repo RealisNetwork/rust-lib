@@ -1,7 +1,7 @@
 use openssl::ssl::{SslConnector, SslMethod, SslVerifyMode};
 use postgres_openssl::MakeTlsConnector;
 use tokio_postgres::NoTls;
-use crate::iner_db::client_inner::DatabaseClientInner;
+use crate::inner_db::client_inner::DatabaseClientInner;
 
 pub struct DatabaseClientInnerBuilder;
 
