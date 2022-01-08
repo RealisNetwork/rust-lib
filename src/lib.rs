@@ -13,9 +13,6 @@ pub mod healthchecker;
 #[cfg(feature = "ser_des-types")]
 pub mod json;
 
-#[cfg(feature = "logger")]
-pub mod logger;
-
 #[cfg(feature = "nats")]
 pub mod nats;
 

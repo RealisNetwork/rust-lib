@@ -84,13 +84,11 @@ git = "https://github.com/tokio-rs/tokio-minihttp.git"
 optional = true
 
 [features]
-default = ["full"]
 full = [
     "async_logger",
     "config",
     "healthchecker",
     "ser_des-types",
-    "logger",
     "nats",
     "vault",
     "macros",
@@ -136,6 +134,7 @@ error_registry = [
 ]
 
 healthchecker = [
+    "tokio/full",
     "futures",
     "tokio/time",
     "tokio-minihttp",
@@ -144,6 +143,7 @@ healthchecker = [
 ]
 
 db = [
+    "tokio/default",
     "postgres-openssl",
     "tokio-postgres",
     "postgres",
@@ -154,17 +154,6 @@ db = [
 ser_des-types = [
     "serde/derive",
     "realis-primitives",
-]
-
-logger = [
-    "colored",
-    "chrono",
-    "log",
-    "slog",
-    "slog-async",
-    "slog-json",
-    "slog-term",
-    "env_logger",
 ]
 
 nats = [

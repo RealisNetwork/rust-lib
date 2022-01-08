@@ -19,7 +19,6 @@ features:
 	cargo build --features healthchecker
 	cargo build --features db
 	cargo build --features ser_des-types
-	cargo build --features logger
 	cargo build --features nats
 	cargo build --features vault
 
