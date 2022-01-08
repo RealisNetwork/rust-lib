@@ -30,7 +30,7 @@ impl DatabaseClientInnerBuilder {
             ).await
         } else {
             DatabaseClientInner::new(
-                &format!("{} sslmode=require", general_config),
+                &general_config,
                 NoTls
             ).await
         }

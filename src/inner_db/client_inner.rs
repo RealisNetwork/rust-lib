@@ -1,8 +1,10 @@
 use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering};
+use log::{error, trace};
 use tokio_postgres::{Connection, Socket, Client};
 use tokio_postgres::tls::{MakeTlsConnect, TlsStream};
-use crate::error_registry::{Db, RealisErrors};
+use rawsql::Loader;
+use crate::error_registry::{Db, Fs, RealisErrors};
 
 pub struct DatabaseClientInner {
     pub client: Client,
@@ -10,10 +12,10 @@ pub struct DatabaseClientInner {
 }
 
 impl DatabaseClientInner {
-    pub(crate) async fn new<M: MakeTlsConnect<Socket>>(config: &str, tls: M) -> Result<Self, ()>
+    pub(crate) async fn new<M: MakeTlsConnect<Socket>>(config: &str, tls: M) -> Result<Self, tokio_postgres::Error>
         where <M as MakeTlsConnect<Socket>>::Stream: Send + 'static
     {
-        let (client, connection) = tokio_postgres::connect(config, tls).await.unwrap(); // TODO handle this unwrap
+        let (client, connection) = tokio_postgres::connect(config, tls).await?;
 
         let connection_is_alive = Arc::new(AtomicBool::new(true));
 
@@ -45,5 +47,28 @@ impl DatabaseClientInner {
         } else {
             Ok(())
         }
+    }
+
+    pub async fn import_tables_from_file(&self, path: &str) -> Result<(), RealisErrors> {
+        self.still_alive()?;
+
+        let futures = Loader::get_queries_from(path)
+            .map_err(|error| {
+                error!("{:?}", error);
+                RealisErrors::Fs(Fs::ReadFile)
+            })?
+            .queries
+            .into_iter()
+            .sorted()
+            .map(|(_, query)| self.client.execute(&query, &[]));
+
+        for future in futures {
+            match future.await {
+                Ok(_) => trace!("Successful send query!"),
+                Err(error) => error!("Cannot send query: {:?}", error),
+            }
+        }
+
+        Ok(())
     }
 }

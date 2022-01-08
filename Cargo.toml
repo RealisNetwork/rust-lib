@@ -41,6 +41,7 @@ dotenv = { version = "0.15.0", optional = true }
 ratsio = { version = "0.4.0", optional = true }
 log = { version = "0.4.14", optional = true }
 aes = { version = "0.7.5", optional = true }
+rawsql = { version = "0.1.0", optional = true }
 
 # iner_db
 tokio-postgres = { version = "0.7.2", optional = true }
@@ -149,6 +150,8 @@ db = [
     "postgres",
     "openssl",
     "error_registry",
+    "rawsql",
+    "log",
 ]
 
 ser_des-types = [
