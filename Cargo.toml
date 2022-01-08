@@ -164,6 +164,8 @@ ser_des-types = [
 nats = [
     "serde",
     "serde_json",
+    "log",
+    "colored",
 ]
 
 vault = [
