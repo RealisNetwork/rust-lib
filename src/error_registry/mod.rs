@@ -2,7 +2,6 @@ pub mod traits;
 
 use realis_macros::{RealisErrors, ToJson};
 use serde::{Deserialize, Serialize};
-use serde_json::{json, Value};
 use thiserror::Error;
 use derive_more::Display;
 use crate::error_registry::traits::ToJson;

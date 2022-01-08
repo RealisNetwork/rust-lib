@@ -8,95 +8,166 @@ members = ["macros"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
-tokio-postgres = { version = "0.7.2", features = ["with-serde_json-1"] }
-uuid = { version = "0.8.2", features = ["serde", "v4"] }
-serde = { version = "1.0.129", features = ["derive"] }
-reqwest = { version = "0.11.4", features = ["json"] }
-tokio = { version = "1.11.0", features = ["full"]}
-tiny-bip39 = { version = "0.8", optional = true }
-realis-macros = { path = "./macros" }
-slog = { version = "2.7" }
-hashicorp_vault = "2.1.0"
-derive_more = "0.99.17"
-enum_dispatch = "0.3.7"
-slog-envlogger = "2.2"
-convert_case = "0.4.0"
-slog-stdlog = "4.1.0"
-serde_json = "1.0.66"
-hex-literal = "0.3.3"
-tokio-service = "0.1"
-block-modes = "0.8.1"
-env_logger = "0.9.0"
-thiserror = "1.0.26"
-tokio-proto = "0.1"
-slog-term = "2.8.0"
-slog-scope = "4.3"
-futures = "0.1.11"
-slog-async = "2.5"
-colored = "2.0.0"
-chrono = "0.4.19"
-format = "0.2.4"
-slog-json = "2.3"
-dotenv = "0.15.0"
-ratsio = "0.4.0"
-log = "0.4.14"
-aes = "0.7.5"
+realis-macros = { path = "./macros", optional = true }
 
-[dev-dependencies]
-rustc-serialize = "0.3"
-num_cpus = "1.0"
+uuid = { version = "0.8.2", optional = true }
+serde = { version = "1.0.129", optional = true }
+reqwest = { version = "0.11.4", optional = true }
+tokio = { version = "1.11.0", optional = true }
+tiny-bip39 = { version = "0.8", optional = true }
+slog = { version = "2.7", optional = true }
+hashicorp_vault = { version = "2.1.0", optional = true }
+derive_more = { version = "0.99.17", optional = true }
+enum_dispatch = { version = "0.3.7", optional = true }
+slog-envlogger = { version = "2.2", optional = true }
+convert_case = { version = "0.4.0", optional = true }
+slog-stdlog = { version ="4.1.0", optional = true }
+serde_json = { version = "1.0.66", optional = true }
+hex-literal = { version = "0.3.3", optional = true }
+tokio-service = { version = "0.1", optional = true }
+block-modes = { version = "0.8.1", optional = true }
+env_logger = { version = "0.9.0", optional = true }
+thiserror = { version = "1.0.26", optional = true }
+tokio-proto = { version = "0.1", optional = true }
+slog-term = { version = "2.8.0", optional = true }
+slog-scope = { version = "4.3", optional = true }
+futures = { version = "0.1.11", optional = true }
+slog-async = { version = "2.5", optional = true }
+colored = { version = "2.0.0", optional = true }
+chrono = { version = "0.4.19", optional = true }
+format = { version = "0.2.4", optional = true }
+slog-json = { version = "2.3", optional = true }
+dotenv = { version = "0.15.0", optional = true }
+ratsio = { version = "0.4.0", optional = true }
+log = { version = "0.4.14", optional = true }
+aes = { version = "0.7.5", optional = true }
+rawsql = { version = "0.1.0", optional = true }
+itertools = { version = "0.10.3", optional = true }
+
+# iner_db
+tokio-postgres = { version = "0.7.2", optional = true }
+postgres-openssl = { version = "0.5.0", optional = true }
+postgres = { version = "0.19.1", optional = true }
+openssl = {version = "0.10.38", optional = true }
+
+#[dev-dependencies]
+#rustc-serialize = "0.3"
+#num_cpus = "1.0"
 
 # Custom dependencies
 [dependencies.realis-primitives]
 git = "https://github.com/RealisNetwork/Realis.Network.git"
 branch = "main"
 package = "realis-primitives"
+optional = true
 
 [dependencies.runtime]
 git =  "https://github.com/RealisNetwork/Realis.Network.git"
 branch = "main"
 package = "node-runtime"
+optional = true
 
 [dependencies.sp-keyring]
 git = "https://github.com/paritytech/substrate"
 rev = "e7b93e1b1abcf0865824c68d10850bbb451e295f"
+optional = true
 
 [dependencies.sp-core]
 git = "https://github.com/paritytech/substrate"
 rev = "e7b93e1b1abcf0865824c68d10850bbb451e295f"
+optional = true
 
 [dependencies.substrate-api-client]
 git = "https://github.com/RealisNetwork/substrate-api-client.git"
+optional = true
 
 [dependencies.tokio-minihttp]
 git = "https://github.com/tokio-rs/tokio-minihttp.git"
+optional = true
 
 [features]
-default = ["std"]
-std = [
-    #    "runtime/std",
-    "tokio/full",
-    "tiny-bip39",
-]
-
 full = [
     "async_logger",
     "config",
     "healthchecker",
     "ser_des-types",
-    "logger",
     "nats",
     "vault",
     "macros",
-    "error_registry"
+    "error_registry",
+    "db",
+    "blockchain",
+    "realis-macros",
 ]
 
-async_logger = []
-config = []
-healthchecker = []
-ser_des-types = []
-logger = []
-nats = []
-vault = []
-macros = []
-error_registry = []
+macros = [
+    "realis-macros",
+]
+
+async_logger = [
+    "colored",
+    "slog",
+    "slog-envlogger",
+    "slog-scope",
+    "slog-term",
+    "slog-async",
+    "slog-stdlog",
+]
+
+blockchain = [
+    "reqwest/json",
+    "runtime",
+    "serde",
+    "substrate-api-client",
+]
+
+config = [
+    "log",
+    "dotenv",
+]
+
+error_registry = [
+    "realis-macros",
+    "serde/derive",
+    "thiserror",
+    "derive_more",
+    "convert_case",
+    "serde_json"
+]
+
+healthchecker = [
+    "tokio/full",
+    "futures",
+    "tokio/time",
+    "tokio-minihttp",
+    "tokio-proto",
+    "tokio-service",
+]
+
+db = [
+    "tokio/default",
+    "postgres-openssl",
+    "tokio-postgres",
+    "postgres",
+    "openssl",
+    "rawsql",
+    "log",
+    "healthchecker",
+    "itertools",
+]
+
+ser_des-types = [
+    "serde/derive",
+    "realis-primitives",
+]
+
+nats = [
+    "serde",
+    "serde_json",
+]
+
+vault = [
+    "aes",
+    "block-modes",
+    "hashicorp_vault",
+]
