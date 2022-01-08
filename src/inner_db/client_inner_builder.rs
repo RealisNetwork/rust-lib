@@ -1,6 +1,7 @@
 use openssl::ssl::{SslConnector, SslMethod, SslVerifyMode};
 use postgres_openssl::MakeTlsConnector;
 use tokio_postgres::NoTls;
+use crate::healthchecker::HealthChecker;
 use crate::inner_db::client_inner::DatabaseClientInner;
 
 pub struct DatabaseClientInnerBuilder;
@@ -13,7 +14,8 @@ impl DatabaseClientInnerBuilder {
         password: &str,
         dbname: &str,
         ssl: bool,
-    ) -> Result<DatabaseClientInner, ()> {
+        health: HealthChecker,
+    ) -> Result<DatabaseClientInner, tokio_postgres::Error> {
         let general_config = format!(
             "host={} port={} user={} password={} dbname={}",
             host, port, user, password, dbname
@@ -26,12 +28,14 @@ impl DatabaseClientInnerBuilder {
 
             DatabaseClientInner::new(
                 &format!("{} sslmode=require", general_config),
-                connector
+                connector,
+                health
             ).await
         } else {
             DatabaseClientInner::new(
                 &general_config,
-                NoTls
+                NoTls,
+                health
             ).await
         }
     }
