@@ -1,4 +1,4 @@
-use openssl::ssl::{SslConnector, SslMethod, SslVerifyMode};
+use openssl::ssl::{SslConnector, SslMethod, SslMode, SslVerifyMode};
 use postgres_openssl::MakeTlsConnector;
 use tokio_postgres::NoTls;
 use crate::healthchecker::HealthChecker;
@@ -24,6 +24,7 @@ impl DatabaseClientInnerBuilder {
         if ssl {
             let mut builder = SslConnector::builder(SslMethod::tls()).unwrap();
             builder.set_verify(SslVerifyMode::NONE);
+            builder.set_mode(SslMode::AUTO_RETRY);
             let connector = MakeTlsConnector::new(builder.build());
 
             DatabaseClientInner::new(
