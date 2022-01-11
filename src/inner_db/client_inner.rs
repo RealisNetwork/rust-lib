@@ -1,7 +1,7 @@
 use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering};
 use log::{error, trace};
-use tokio_postgres::{Connection, Socket, Client};
+use tokio_postgres::{Connection, Socket, Client, Error};
 use tokio_postgres::tls::{MakeTlsConnect, TlsStream};
 use rawsql::Loader;
 use itertools::Itertools;

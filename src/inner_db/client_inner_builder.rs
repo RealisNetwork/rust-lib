@@ -22,9 +22,10 @@ impl DatabaseClientInnerBuilder {
         );
 
         if ssl {
-            let mut builder = SslConnector::builder(SslMethod::tls()).unwrap();
+            let mut builder = SslConnector::builder(SslMethod::tls_client()).unwrap();
             builder.set_verify(SslVerifyMode::NONE);
             builder.set_mode(SslMode::AUTO_RETRY);
+
             let connector = MakeTlsConnector::new(builder.build());
 
             DatabaseClientInner::new(
