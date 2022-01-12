@@ -1,25 +1,17 @@
-use std::sync::Arc;
-use std::sync::atomic::{AtomicBool, Ordering};
-use deadpool_postgres::{Pool, Status};
+use deadpool_postgres::Pool;
 use log::{error, trace};
-use tokio_postgres::{Connection, Socket, Client, Error};
-use tokio_postgres::tls::{MakeTlsConnect, TlsStream};
 use rawsql::Loader;
 use itertools::Itertools;
-use crate::healthchecker::HealthChecker;
 
 pub struct DatabaseClientInner {
     pub client_pool: Pool,
-    connection_is_alive: Arc<AtomicBool>,
 }
 
 impl DatabaseClientInner {
     pub(crate) fn new(client_pool: Pool) -> Self {
-        let connection_is_alive = Arc::new(AtomicBool::new(true));
 
         Self {
             client_pool,
-            connection_is_alive,
         }
     }
 

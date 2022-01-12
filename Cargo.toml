@@ -44,6 +44,8 @@ aes = { version = "0.7.5", optional = true }
 rawsql = { version = "0.1.0", optional = true }
 itertools = { version = "0.10.3", optional = true }
 deadpool-postgres = { version = "0.10.1", optional = true }
+tokio-postgres-rustls = { version = "0.9.0", optional = true }
+rustls = { version = "0.20", optional = true }
 
 # iner_db
 tokio-postgres = { version = "0.7.2", optional = true }
@@ -153,9 +155,10 @@ db = [
     "openssl",
     "rawsql",
     "log",
-    "healthchecker",
     "itertools",
     "deadpool-postgres",
+    "tokio-postgres-rustls",
+    "rustls",
 ]
 
 ser_des-types = [

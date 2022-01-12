@@ -1,8 +1,6 @@
-use deadpool_postgres::{Config, PoolConfig, Runtime, SslMode};
+use deadpool_postgres::{Config, Runtime, SslMode};
 use openssl::ssl::{SslConnector, SslMethod, SslVerifyMode};
-use postgres_openssl::MakeTlsConnector;
 use tokio_postgres::NoTls;
-use crate::healthchecker::HealthChecker;
 use crate::inner_db::client_inner::DatabaseClientInner;
 
 pub struct DatabaseClientInnerBuilder;
@@ -29,7 +27,14 @@ impl DatabaseClientInnerBuilder {
             let mut builder = SslConnector::builder(SslMethod::tls_client()).unwrap();
             builder.set_verify(SslVerifyMode::NONE);
             builder.set_mode(openssl::ssl::SslMode::AUTO_RETRY);
-            cfg.create_pool(Some(Runtime::Tokio1), MakeTlsConnector::new(builder.build())) // TODO handle this unwrap
+
+            let config = rustls::ClientConfig::builder()
+                .with_safe_defaults()
+                .with_root_certificates(rustls::RootCertStore::empty())
+                .with_no_client_auth();
+            let tls = tokio_postgres_rustls::MakeRustlsConnect::new(config);
+
+            cfg.create_pool(Some(Runtime::Tokio1), tls) // TODO handle this unwrap
         } else {
             cfg.create_pool(Some(Runtime::Tokio1), NoTls) // TODO handle this unwrap
         }.unwrap();
