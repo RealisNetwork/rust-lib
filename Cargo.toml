@@ -10,23 +10,18 @@ members = ["macros"]
 [dependencies]
 realis-macros = { path = "./macros", optional = true }
 
-uuid = { version = "0.8.2", optional = true }
 serde = { version = "1.0.129", optional = true }
 reqwest = { version = "0.11.4", optional = true }
 tokio = { version = "1.11.0", optional = true }
-tiny-bip39 = { version = "0.8", optional = true }
 slog = { version = "2.7", optional = true }
 hashicorp_vault = { version = "2.1.0", optional = true }
 derive_more = { version = "0.99.17", optional = true }
-enum_dispatch = { version = "0.3.7", optional = true }
 slog-envlogger = { version = "2.2", optional = true }
 convert_case = { version = "0.4.0", optional = true }
 slog-stdlog = { version ="4.1.0", optional = true }
 serde_json = { version = "1.0.66", optional = true }
-hex-literal = { version = "0.3.3", optional = true }
 tokio-service = { version = "0.1", optional = true }
 block-modes = { version = "0.8.1", optional = true }
-env_logger = { version = "0.9.0", optional = true }
 thiserror = { version = "1.0.26", optional = true }
 tokio-proto = { version = "0.1", optional = true }
 slog-term = { version = "2.8.0", optional = true }
@@ -35,10 +30,7 @@ futures = { version = "0.1.11", optional = true }
 slog-async = { version = "2.5", optional = true }
 colored = { version = "2.0.0", optional = true }
 chrono = { version = "0.4.19", optional = true }
-format = { version = "0.2.4", optional = true }
-slog-json = { version = "2.3", optional = true }
 dotenv = { version = "0.15.0", optional = true }
-ratsio = { version = "0.4.0", optional = true }
 log = { version = "0.4.14", optional = true }
 aes = { version = "0.7.5", optional = true }
 rawsql = { version = "0.1.0", optional = true }
@@ -47,12 +39,8 @@ itertools = { version = "0.10.3", optional = true }
 # iner_db
 tokio-postgres = { version = "0.7.2", optional = true }
 postgres-openssl = { version = "0.5.0", optional = true }
-postgres = { version = "0.19.1", optional = true }
 openssl = {version = "0.10.38", optional = true }
 deadpool-postgres = { version = "0.10.1", optional = true }
-tokio-postgres-rustls = { version = "0.9.0", optional = true }
-rustls = { version = "0.20", optional = true }
-webpki-roots = { version = "0.22.2", optional = true }
 
 #[dev-dependencies]
 #rustc-serialize = "0.3"
@@ -69,11 +57,6 @@ optional = true
 git =  "https://github.com/RealisNetwork/Realis.Network.git"
 branch = "main"
 package = "node-runtime"
-optional = true
-
-[dependencies.sp-keyring]
-git = "https://github.com/paritytech/substrate"
-rev = "e7b93e1b1abcf0865824c68d10850bbb451e295f"
 optional = true
 
 [dependencies.sp-core]
@@ -152,15 +135,11 @@ db = [
     "tokio/default",
     "postgres-openssl",
     "tokio-postgres",
-    "postgres",
     "openssl",
     "rawsql",
     "log",
     "itertools",
     "deadpool-postgres",
-    "tokio-postgres-rustls",
-    "rustls",
-    "webpki-roots",
 ]
 
 ser_des-types = [

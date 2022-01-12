@@ -8,16 +8,10 @@ pub struct DatabaseClientInner {
 }
 
 impl DatabaseClientInner {
-    pub(crate) fn new(client_pool: Pool) -> Self {
-
+    pub fn new(client_pool: Pool) -> Self {
         Self {
             client_pool,
         }
-    }
-
-    // TODO remove this
-    pub async fn still_alive(&self) -> Result<(), ()> {
-        Ok(())
     }
 
     pub async fn import_tables_from_file(&self, path: &str) -> Result<(), std::io::Error> {

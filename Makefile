@@ -22,6 +22,8 @@ features:
 	cargo build --features nats
 	cargo build --features vault
 
+udeps:
+	SKIP_WASM_BUILD=1 cargo +nightly udeps --all --all-features
 
 # Format Rust sources with rustfmt.
 #
