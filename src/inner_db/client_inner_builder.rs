@@ -46,6 +46,7 @@ impl DatabaseClientInnerBuilder {
     }
 }
 
+#[derive(Debug)]
 pub enum BuildError {
     Postgres(tokio_postgres::Error),
     Ssl(openssl::error::ErrorStack),
