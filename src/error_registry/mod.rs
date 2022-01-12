@@ -54,6 +54,12 @@ impl From<deadpool_postgres::PoolError> for RealisErrors {
     }
 }
 
+impl From<serde_json::Error> for RealisErrors {
+    fn from(_: serde_json::Error) -> Self {
+        RealisErrors::Utils(Utils::Parse)
+    }
+}
+
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Db {
     Select,
