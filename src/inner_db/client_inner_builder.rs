@@ -1,4 +1,4 @@
-use deadpool_postgres::{Config, Runtime, SslMode};
+use deadpool_postgres::{Config, ManagerConfig, RecyclingMethod, Runtime, SslMode};
 use openssl::ssl::{SslConnector, SslMethod, SslVerifyMode};
 use postgres_openssl::MakeTlsConnector;
 use tokio_postgres::NoTls;
@@ -21,6 +21,9 @@ impl DatabaseClientInnerBuilder {
         cfg.user = Some(user.to_string());
         cfg.password = Some(password.to_string());
         cfg.dbname = Some(dbname.to_string());
+        cfg.manager = Some(ManagerConfig {
+            recycling_method: RecyclingMethod::Verified,
+        });
 
         let pool = if ssl {
             cfg.ssl_mode = Some(SslMode::Require);
