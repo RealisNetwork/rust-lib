@@ -119,7 +119,8 @@ error_registry = [
     "thiserror",
     "derive_more",
     "convert_case",
-    "serde_json"
+    "serde_json",
+    "deadpool-postgres",
 ]
 
 healthchecker = [
@@ -140,6 +141,7 @@ db = [
     "log",
     "itertools",
     "deadpool-postgres",
+    "error_registry",
 ]
 
 ser_des-types = [

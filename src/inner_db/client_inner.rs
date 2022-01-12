@@ -2,6 +2,7 @@ use deadpool_postgres::Pool;
 use log::{error, trace};
 use rawsql::Loader;
 use itertools::Itertools;
+use crate::error_registry::{Db, RealisErrors};
 
 pub struct DatabaseClientInner {
     pub client_pool: Pool,
@@ -14,13 +15,15 @@ impl DatabaseClientInner {
         }
     }
 
-    pub async fn import_tables_from_file(&self, path: &str) -> Result<(), std::io::Error> {
+    pub async fn import_tables_from_file(&self, path: &str) -> Result<(), RealisErrors> {
         let futures = Loader::get_queries_from(path)?
             .queries
             .into_iter()
             .sorted()
             .map(|(_, query)| async move {
-                self.client_pool.get().await.unwrap().execute(&query, &[]).await // TODO handle this unwrap
+                self.client_pool.get().await?
+                    .execute(&query, &[]).await
+                    .map_err(|_| RealisErrors::Db(Db::Create))
             });
 
         for future in futures {

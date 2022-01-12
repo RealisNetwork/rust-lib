@@ -42,6 +42,18 @@ pub enum RealisErrors {
     CustomString(String),
 }
 
+impl From<std::io::Error> for RealisErrors {
+    fn from(_: std::io::Error) -> Self {
+        RealisErrors::Utils(Utils::IO)
+    }
+}
+
+impl From<deadpool_postgres::PoolError> for RealisErrors {
+    fn from(_: deadpool_postgres::PoolError) -> Self {
+        RealisErrors::Db(Db::Pool)
+    }
+}
+
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Db {
     Select,
@@ -57,6 +69,7 @@ pub enum Db {
     Disconnected,
     ConnectionError,
     AlreadyExists,
+    Pool,
 }
 
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
