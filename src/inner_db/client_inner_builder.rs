@@ -34,6 +34,6 @@ impl DatabaseClientInnerBuilder {
             cfg.create_pool(Some(Runtime::Tokio1), NoTls) // TODO handle this unwrap
         }.unwrap();
 
-        DatabaseClientInner::new(pool, health)
+        Ok(DatabaseClientInner::new(pool))
     }
 }
