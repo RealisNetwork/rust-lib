@@ -87,7 +87,7 @@ pub fn gettable_macro_derive_errors(input: TokenStream) -> TokenStream {
 }
 
 #[proc_macro_attribute]
-pub fn retry(_attr: TokenStream, item: TokenStream) -> TokenStream {
+pub fn macro_retry(_attr: TokenStream, item: TokenStream) -> TokenStream {
     let item_fn = syn::parse::<ItemFn>(item).unwrap();
     let original_fn_ident = item_fn.sig.ident.clone();
     let helper_fn_ident = Ident::new(&format!("{}_helper", item_fn.sig.ident.to_string()), Span::call_site());
