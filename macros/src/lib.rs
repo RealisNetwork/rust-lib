@@ -102,11 +102,11 @@ pub fn retry(_attr: TokenStream, item: TokenStream) -> TokenStream {
     let body = item_fn.block;
 
     let code = quote! {
-        fn #helper_fn_ident (#params) #output {
+        async fn #helper_fn_ident (#params) #output {
             #body
         }
 
-        pub fn #original_fn_ident (#params) #output {
+        pub async fn #original_fn_ident (#params) #output {
             retry(self.client.get_backoff(), || async { self.#helper_fn_ident(#(#pats)*)}).await
         }
     };
