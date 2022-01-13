@@ -6,12 +6,14 @@ use crate::error_registry::{Db, RealisErrors};
 
 pub struct DatabaseClientInner {
     pub client_pool: Pool,
+    pub max_interval: u64,
 }
 
 impl DatabaseClientInner {
     pub fn new(client_pool: Pool) -> Self {
         Self {
             client_pool,
+            max_interval,
         }
     }
 
