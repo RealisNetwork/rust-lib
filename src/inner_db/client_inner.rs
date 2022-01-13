@@ -42,9 +42,7 @@ impl DatabaseClientInner {
 
     pub fn get_backoff(&self) -> ExponentialBackoff {
         ExponentialBackoffBuilder::new()
-            .with_max_interval(Duration::from_secs(self.max_interval))
-            .with_randomization_factor(0.0)
-            .with_max_elapsed_time(Option::from(Duration::from_millis(5000)))
+            .with_max_elapsed_time(Option::from(Duration::from_millis(self.max_interval)))
             .build()
     }
 }
