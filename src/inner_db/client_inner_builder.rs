@@ -19,6 +19,7 @@ impl DatabaseClientInnerBuilder {
         keepalives_idle: Option<Duration>,
         ssl: bool,
         max_interval: u64,
+        max_elapsed_time: u64,
     ) -> Result<DatabaseClientInner, BuildError> {
         let mut cfg = Config::new();
         cfg.host = Some(host);
@@ -44,7 +45,7 @@ impl DatabaseClientInnerBuilder {
             cfg.create_pool(Some(Runtime::Tokio1), NoTls)?
         };
 
-        Ok(DatabaseClientInner::new(pool, max_interval))
+        Ok(DatabaseClientInner::new(pool, max_interval, max_elapsed_time))
     }
 }
 

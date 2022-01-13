@@ -9,13 +9,15 @@ use backoff::{ExponentialBackoff, ExponentialBackoffBuilder};
 pub struct DatabaseClientInner {
     pub client_pool: Pool,
     pub max_interval: u64,
+    pub max_elapsed_time: u64,
 }
 
 impl DatabaseClientInner {
-    pub fn new(client_pool: Pool, max_interval: u64) -> Self {
+    pub fn new(client_pool: Pool, max_interval: u64, max_elapsed_time: u64) -> Self {
         Self {
             client_pool,
             max_interval,
+            max_elapsed_time
         }
     }
 
@@ -42,7 +44,8 @@ impl DatabaseClientInner {
 
     pub fn get_backoff(&self) -> ExponentialBackoff {
         ExponentialBackoffBuilder::new()
-            .with_max_elapsed_time(Option::from(Duration::from_millis(self.max_interval)))
+            .with_max_interval(Duration::from_secs(self.max_interval))
+            .with_max_elapsed_time(Option::from(Duration::from_secs(self.max_elapsed_time)))
             .build()
     }
 }
