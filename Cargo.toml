@@ -122,6 +122,7 @@ error_registry = [
     "convert_case",
     "serde_json",
     "deadpool-postgres",
+    "backoff",
 ]
 
 healthchecker = [

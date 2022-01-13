@@ -1,6 +1,5 @@
 pub mod traits;
 
-use backoff::Error;
 use realis_macros::{RealisErrors, ToJson};
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
@@ -43,11 +42,19 @@ pub enum RealisErrors {
     CustomString(String),
 }
 
+// impl From<RealisErrors> for backoff::Error<RealisErrors> {
+//     fn from(error: RealisErrors) -> Self {
+//         // TODO decide which errors are critical
+//         // use for them `backoff::Error::permanent()`
+//         backoff::Error::transient(error)
+//     }
+// }
+
 impl From<backoff::Error<RealisErrors>> for RealisErrors {
     fn from(error: backoff::Error<RealisErrors>) -> Self {
         match error {
-            Error::Permanent(err) |
-            Error::Transient { err, .. } => err
+            backoff::Error::Permanent(err) |
+            backoff::Error::Transient { err, .. } => err
         }
     }
 }
