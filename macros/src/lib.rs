@@ -107,7 +107,7 @@ pub fn macro_retry(_attr: TokenStream, item: TokenStream) -> TokenStream {
         }
 
         pub async fn #original_fn_ident (#params) #output {
-            retry(self.client.get_backoff(), || async move { Ok(self.#helper_fn_ident(#(#pats),*).await?) }).await
+            retry(self.client.get_backoff(), async move { Ok(self.#helper_fn_ident(#(#pats),*).await?) }).await
         }
     };
 
