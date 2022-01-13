@@ -41,6 +41,7 @@ tokio-postgres = { version = "0.7.2", optional = true }
 postgres-openssl = { version = "0.5.0", optional = true }
 openssl = {version = "0.10.38", optional = true }
 deadpool-postgres = { version = "0.10.1", optional = true }
+backoff = { version = "0.4.0", optional = true }
 
 #[dev-dependencies]
 #rustc-serialize = "0.3"
@@ -121,6 +122,7 @@ error_registry = [
     "convert_case",
     "serde_json",
     "deadpool-postgres",
+    "backoff",
 ]
 
 healthchecker = [
@@ -142,6 +144,7 @@ db = [
     "itertools",
     "deadpool-postgres",
     "error_registry",
+    "backoff",
 ]
 
 ser_des-types = [

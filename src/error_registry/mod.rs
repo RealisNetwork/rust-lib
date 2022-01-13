@@ -42,6 +42,23 @@ pub enum RealisErrors {
     CustomString(String),
 }
 
+// impl From<RealisErrors> for backoff::Error<RealisErrors> {
+//     fn from(error: RealisErrors) -> Self {
+//         // TODO decide which errors are critical
+//         // use for them `backoff::Error::permanent()`
+//         backoff::Error::transient(error)
+//     }
+// }
+
+impl From<backoff::Error<RealisErrors>> for RealisErrors {
+    fn from(error: backoff::Error<RealisErrors>) -> Self {
+        match error {
+            backoff::Error::Permanent(err) |
+            backoff::Error::Transient { err, .. } => err
+        }
+    }
+}
+
 impl From<std::io::Error> for RealisErrors {
     fn from(_: std::io::Error) -> Self {
         RealisErrors::Utils(Utils::IO)

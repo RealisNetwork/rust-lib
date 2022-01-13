@@ -1,17 +1,21 @@
+use std::time::Duration;
 use deadpool_postgres::Pool;
 use log::{error, trace};
 use rawsql::Loader;
 use itertools::Itertools;
 use crate::error_registry::{Db, RealisErrors};
+use backoff::{ExponentialBackoff, ExponentialBackoffBuilder};
 
 pub struct DatabaseClientInner {
     pub client_pool: Pool,
+    pub max_interval: u64,
 }
 
 impl DatabaseClientInner {
-    pub fn new(client_pool: Pool) -> Self {
+    pub fn new(client_pool: Pool, max_interval: u64) -> Self {
         Self {
             client_pool,
+            max_interval,
         }
     }
 
@@ -34,5 +38,11 @@ impl DatabaseClientInner {
         }
 
         Ok(())
+    }
+
+    pub fn get_backoff(&self) -> ExponentialBackoff {
+        ExponentialBackoffBuilder::new()
+            .with_max_interval(Duration::from_secs(self.max_interval))
+            .build()
     }
 }
