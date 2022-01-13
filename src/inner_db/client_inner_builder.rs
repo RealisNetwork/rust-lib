@@ -30,7 +30,6 @@ impl DatabaseClientInnerBuilder {
         cfg.manager = Some(ManagerConfig {
             recycling_method: RecyclingMethod::Verified,
         });
-        cfg.options = Some(String::from("prepareThreshold=0"));
 
         let pool = if ssl {
             cfg.ssl_mode = Some(SslMode::Require);
