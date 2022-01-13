@@ -4,6 +4,7 @@ use openssl::error::ErrorStack;
 use openssl::ssl::{SslConnector, SslMethod, SslVerifyMode};
 use postgres_openssl::MakeTlsConnector;
 use tokio_postgres::{Error, NoTls};
+use tokio_postgres::config::TargetSessionAttrs;
 use crate::inner_db::client_inner::DatabaseClientInner;
 
 pub struct DatabaseClientInnerBuilder;
