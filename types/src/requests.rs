@@ -10,12 +10,12 @@ pub struct Response<T, Y> {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ResponseResult<T, Y> {
     pub request: T,
-    pub response: ResponseResult<Y>,
+    pub response: ResponseMessage<Y>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(tag = "type")]
-pub enum ResponseResult<T> {
+pub enum ResponseMessage<T> {
     Left { value: ResponseError },
     Right { value: T },
 }
