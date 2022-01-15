@@ -66,8 +66,9 @@ fn log_to_decorator(
 
         decorator.start_whitespace()?;
         write!(decorator, " ")?;
-
-        match record.level() {
+        
+        // TODO handle result
+        let _result = match record.level() {
             Level::Critical | Level::Error => writeln!(
                 decorator,
                 "[{}] - [{}] - {} - {}",
