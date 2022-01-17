@@ -4,6 +4,7 @@ use realis_macros::{RealisErrors, ToJson};
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 use derive_more::Display;
+use tokio::time::error::Elapsed;
 use crate::error_registry::traits::ToJson;
 
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, RealisErrors)]
@@ -77,6 +78,10 @@ impl From<serde_json::Error> for RealisErrors {
     }
 }
 
+impl From<Elapsed> for RealisErrors {
+    fn from(_: Elapsed) -> Self { RealisErrors::Nats(Nats::MessageReplyTimeout) }
+}
+
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
 pub enum Db {
     Select,
@@ -135,6 +140,7 @@ pub enum Nats {
     InternalServiceCall,
     Disconnected,
     AddReconnectHandlerError,
+    MessageReplyTimeout,
 }
 
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
