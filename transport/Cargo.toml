@@ -7,7 +7,10 @@ edition = "2021"
 
 [dependencies]
 async-trait = "0.1.52"
+future-utils = "0.12.1"
+futures = "0.3.19"
 tokio = { version = "1.15.0", features = ["sync", "time"] }
+rust-lib = { path = "../../rust-lib" }
 
 ratsio = { git = "https://github.com/RealisNetwork/ratsio.git", optional= true }
 

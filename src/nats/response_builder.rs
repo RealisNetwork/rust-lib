@@ -4,12 +4,11 @@ use serde_json::{json, Value};
 pub struct ResponseBuilder {}
 
 impl ResponseBuilder {
-
     #[must_use]
     pub fn build<T, P>(request: &T, response: &P) -> Value
-        where
-            T: Serialize,
-            P: Serialize,
+    where
+        T: Serialize,
+        P: Serialize,
     {
         json!({
             "result": {

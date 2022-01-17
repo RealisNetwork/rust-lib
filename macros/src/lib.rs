@@ -1,7 +1,7 @@
 use convert_case::{Case, Casing};
 use proc_macro::TokenStream;
 use quote::quote;
-use syn::{self, parse_macro_input, Data, DeriveInput, TypeTuple, ItemFn, Ident, __private::Span, FnArg};
+use syn::{self, parse_macro_input, Data, DeriveInput, FnArg, Ident, ItemFn, TypeTuple, __private::Span};
 
 /// # Panics
 #[proc_macro_derive(Gettable, attributes(gettable))]
@@ -79,10 +79,10 @@ pub fn gettable_macro_derive_errors(input: TokenStream) -> TokenStream {
                         }
                     }
                 }
-            }.into()
-
-        },
-        _ => panic!("Macro impl only for enums")
+            }
+            .into();
+        }
+        _ => panic!("Macro impl only for enums"),
     }
 }
 
@@ -92,12 +92,14 @@ pub fn macro_retry(_attr: TokenStream, item: TokenStream) -> TokenStream {
     let original_fn_ident = item_fn.sig.ident.clone();
     let helper_fn_ident = Ident::new(&format!("{}_helper", item_fn.sig.ident.to_string()), Span::call_site());
     let params = item_fn.sig.inputs;
-    let pats = params.clone().into_iter().flat_map(|arg| {
-        match arg {
+    let pats = params
+        .clone()
+        .into_iter()
+        .flat_map(|arg| match arg {
             FnArg::Receiver(_) => None,
-            FnArg::Typed(p) => Some(p.pat)
-        }
-    }).collect::<Vec<_>>();
+            FnArg::Typed(p) => Some(p.pat),
+        })
+        .collect::<Vec<_>>();
     let output = item_fn.sig.output;
     let body = item_fn.block;
 

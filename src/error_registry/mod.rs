@@ -1,10 +1,11 @@
 pub mod traits;
 
+use crate::error_registry::traits::ToJson;
+use derive_more::Display;
 use realis_macros::{RealisErrors, ToJson};
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
-use derive_more::Display;
-use crate::error_registry::traits::ToJson;
+use tokio::time::error::Elapsed;
 
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, RealisErrors)]
 pub enum RealisErrors {
@@ -53,8 +54,7 @@ pub enum RealisErrors {
 impl From<backoff::Error<RealisErrors>> for RealisErrors {
     fn from(error: backoff::Error<RealisErrors>) -> Self {
         match error {
-            backoff::Error::Permanent(err) |
-            backoff::Error::Transient { err, .. } => err
+            backoff::Error::Permanent(err) | backoff::Error::Transient { err, .. } => err,
         }
     }
 }
@@ -74,6 +74,12 @@ impl From<deadpool_postgres::PoolError> for RealisErrors {
 impl From<serde_json::Error> for RealisErrors {
     fn from(_: serde_json::Error) -> Self {
         RealisErrors::Utils(Utils::Parse)
+    }
+}
+
+impl From<Elapsed> for RealisErrors {
+    fn from(_: Elapsed) -> Self {
+        RealisErrors::Nats(Nats::MessageReplyTimeout)
     }
 }
 
@@ -135,6 +141,7 @@ pub enum Nats {
     InternalServiceCall,
     Disconnected,
     AddReconnectHandlerError,
+    MessageReplyTimeout,
 }
 
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]

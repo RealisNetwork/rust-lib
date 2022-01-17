@@ -1,10 +1,12 @@
-use std::time::Duration;
-use deadpool_postgres::{Config, CreatePoolError, ManagerConfig, RecyclingMethod, Runtime, SslMode};
-use openssl::error::ErrorStack;
-use openssl::ssl::{SslConnector, SslMethod, SslVerifyMode};
-use postgres_openssl::MakeTlsConnector;
-use tokio_postgres::{Error, NoTls};
 use crate::inner_db::client_inner::DatabaseClientInner;
+use deadpool_postgres::{Config, CreatePoolError, ManagerConfig, RecyclingMethod, Runtime, SslMode};
+use openssl::{
+    error::ErrorStack,
+    ssl::{SslConnector, SslMethod, SslVerifyMode},
+};
+use postgres_openssl::MakeTlsConnector;
+use std::time::Duration;
+use tokio_postgres::{Error, NoTls};
 
 pub struct DatabaseClientInnerBuilder;
 

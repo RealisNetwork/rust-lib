@@ -1,10 +1,10 @@
-use std::time::Duration;
-use deadpool_postgres::Pool;
-use log::{error, trace};
-use rawsql::Loader;
-use itertools::Itertools;
 use crate::error_registry::{Db, RealisErrors};
 use backoff::{ExponentialBackoff, ExponentialBackoffBuilder};
+use deadpool_postgres::Pool;
+use itertools::Itertools;
+use log::{error, trace};
+use rawsql::Loader;
+use std::time::Duration;
 
 pub struct DatabaseClientInner {
     pub client_pool: Pool,
@@ -17,7 +17,7 @@ impl DatabaseClientInner {
         Self {
             client_pool,
             max_interval,
-            max_elapsed_time
+            max_elapsed_time,
         }
     }
 
@@ -27,8 +27,11 @@ impl DatabaseClientInner {
             .into_iter()
             .sorted()
             .map(|(_, query)| async move {
-                self.client_pool.get().await?
-                    .execute(&query, &[]).await
+                self.client_pool
+                    .get()
+                    .await?
+                    .execute(&query, &[])
+                    .await
                     .map_err(|_| RealisErrors::Db(Db::Create))
             });
 

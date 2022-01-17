@@ -1,6 +1,6 @@
-use std::fmt::Display;
 use convert_case::{Case, Casing};
 use serde_json::{json, Value};
+use std::fmt::Display;
 
 pub trait ToJson: Display {
     fn as_string(&self) -> String {
