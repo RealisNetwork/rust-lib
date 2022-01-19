@@ -1,9 +1,9 @@
-use crate::traits::Transport;
+use crate::traits::{MessageReceiver, Transport};
 use async_trait::async_trait;
-use ratsio::{StanClient, StanOptions};
+use ratsio::{StanClient, StanOptions, StanSid};
 use rust_lib::error_registry::{Nats as NatsError, RealisErrors};
 use std::sync::Arc;
-use futures::{Stream, StreamExt};
+use futures::StreamExt;
 
 #[derive(Clone)]
 pub struct Nats {
@@ -20,19 +20,44 @@ impl Nats {
 
 #[async_trait]
 impl Transport for Nats {
-    type Error = RealisErrors;
     type Message = Vec<u8>;
+    type Error = RealisErrors;
+    type SubscribeId = StanSid;
 
     async fn publish(&self, topic: &str, message: Self::Message, _topic_res: Option<String>) -> Result<(), Self::Error> {
         self.stan_client.publish(topic, &message).await
             .map_err(|_| RealisErrors::Nats(NatsError::Send))
     }
 
-    // TODO add unsubscribe by some way (callback?)
-    async fn subscribe(&self, topic: String) -> Result<Box<dyn Stream<Item = Self::Message>>, Self::Error> {
-        let (_, stream) = self.stan_client.subscribe(topic, None, None).await
+    async fn subscribe<'a>(&self, topic: &str, callback: impl MessageReceiver<Self::Message, Self::Error> + 'a) -> Result<(), Self::Error> {
+        let (stan_id, stream) = self.stan_client.subscribe(topic, None, None).await
             .map_err(|_| RealisErrors::Nats(NatsError::Disconnected))?;
 
-        Ok(Box::new(stream.map(|message| message.payload)))
+        let mut stream = stream.map(|stan_message| stan_message.payload);
+
+        loop {
+            match stream.next().await {
+                None => {
+                    self.unsubscribe(stan_id).await?;
+                    break;
+                }
+                Some(message) => {
+                    if let Err(error) = callback.process(message.clone()).await {
+                        self.unsubscribe(stan_id).await?;
+                        self.publish(topic, message, None).await?;
+                        return Err(error)
+                    }
+                }
+            }
+        }
+
+        Ok(())
+    }
+
+    async fn unsubscribe(&self, subscribe_id: Self::SubscribeId) -> Result<(), Self::Error> {
+        self.stan_client
+            .un_subscribe(&subscribe_id)
+            .await
+            .map_err(|_| RealisErrors::Nats(NatsError::Unsubscribe))
     }
 }
