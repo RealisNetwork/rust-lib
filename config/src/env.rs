@@ -1,5 +1,6 @@
 use dotenv::Error;
 
+#[derive(Debug)]
 pub enum EnvLoadedError {
     Load(Error),
     Convert(String)
