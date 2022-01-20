@@ -5,6 +5,7 @@ edition = "2021"
 
 [workspace]
 members = [
+    "config",
     "macros",
     "types",
     "transport",
@@ -127,6 +128,7 @@ error_registry = [
     "serde_json",
     "deadpool-postgres",
     "backoff",
+    "tokio/time",
 ]
 
 healthchecker = [

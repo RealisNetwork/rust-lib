@@ -51,6 +51,21 @@ pub enum RealisErrors {
 //     }
 // }
 
+impl From<tokio::sync::oneshot::error::TryRecvError> for RealisErrors {
+    fn from(error: tokio::sync::oneshot::error::TryRecvError) -> Self {
+        match error {
+            tokio::sync::oneshot::error::TryRecvError::Empty => RealisErrors::Nats(Nats::Receive),
+            tokio::sync::oneshot::error::TryRecvError::Closed => RealisErrors::Common(Common::InternalServerError),
+        }
+    }
+}
+
+impl From<Vec<u8>> for RealisErrors {
+    fn from(_: Vec<u8>) -> Self {
+        RealisErrors::Nats(Nats::Send)
+    }
+}
+
 impl From<backoff::Error<RealisErrors>> for RealisErrors {
     fn from(error: backoff::Error<RealisErrors>) -> Self {
         match error {
@@ -142,6 +157,7 @@ pub enum Nats {
     Disconnected,
     AddReconnectHandlerError,
     MessageReplyTimeout,
+    Unsubscribe,
 }
 
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]
