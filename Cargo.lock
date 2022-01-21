@@ -303,6 +303,7 @@ name = "byte-formatter"
 version = "0.1.0"
 dependencies = [
  "bytebuffer-rs",
+ "realis-macros",
 ]
 
 [[package]]
