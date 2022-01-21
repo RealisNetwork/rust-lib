@@ -1,7 +1,7 @@
 use convert_case::{Case, Casing};
 use proc_macro::TokenStream;
 use quote::quote;
-use syn::{self, parse_macro_input, Data, DeriveInput, FnArg, Ident, ItemFn, TypeTuple, __private::Span};
+use syn::{self, parse_macro_input, Data, DeriveInput, FnArg, Ident, ItemFn, TypeTuple, ItemStruct, __private::Span};
 
 /// # Panics
 #[proc_macro_derive(Gettable, attributes(gettable))]
@@ -114,4 +114,63 @@ pub fn macro_retry(_attr: TokenStream, item: TokenStream) -> TokenStream {
     };
 
     code.into()
+}
+
+/// # Panics
+#[proc_macro_derive(ByteSerialize)]
+pub fn byte_encode_macro_derive(item: TokenStream) -> TokenStream {
+    let object = syn::parse::<ItemStruct>(item).unwrap();
+    let name = object.ident;
+
+    let fields = object
+        .fields
+        .into_iter()
+        .map(|field| {
+            let name = field.ident.unwrap();
+            quote! {
+                self.#name.encode(_byte_writer)?;
+            }
+        })
+        .collect::<Vec<_>>();
+
+    let gen = quote! {
+        impl ByteSerialize for #name {
+            fn encode(self, _byte_writer: &mut ByteWriter) -> Result<(), Error> {
+                #(#fields)*
+                Ok(())
+            }
+        }
+    };
+    gen.into()
+}
+
+/// # Panics
+#[proc_macro_derive(ByteDeserialize)]
+pub fn byte_decode_macro_derive(item: TokenStream) -> TokenStream {
+    let object = syn::parse::<ItemStruct>(item).unwrap();
+    let name = object.ident;
+
+    let fields = object
+        .fields
+        .into_iter()
+        .map(|field| {
+            let name = field.ident.unwrap();
+            let ty = field.ty;
+
+            quote! {
+                    #name: <#ty>::decode(byte_reader)?
+            }
+        })
+        .collect::<Vec<_>>();
+
+    let gen = quote! {
+        impl ByteDeserialize for #name {
+            fn decode(byte_reader: &mut ByteReader) -> Result<Self, Error> {
+                Ok(Self {
+                    #(#fields),*
+                })
+            }
+        }
+    };
+    gen.into()
 }
