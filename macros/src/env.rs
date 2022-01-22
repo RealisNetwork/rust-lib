@@ -3,7 +3,7 @@ use crate::symbol::parse_lit_into_expr_path;
 use std::default::Default;
 use convert_case::{Case, Casing};
 use proc_macro::TokenStream;
-use syn::{self, parse_macro_input, Data, DeriveInput, FnArg, Ident, ItemFn, TypeTuple, ItemStruct, __private::Span, Meta::{NameValue, Path}, NestedMeta::Meta, Lit::Str, Type, Lit};
+use syn::{self, ItemStruct, Meta::{NameValue, Path}, NestedMeta::Meta, Lit::Str, Type};
 use crate::structs::{Field, EnvRenameAttrs, EnvDefaultAttrs};
 use crate::symbol;
 
@@ -58,7 +58,7 @@ pub fn impl_env_macros(item: TokenStream) -> TokenStream {
                         #field_name: #field_type::load(#env_name)?,
                     }
                 },
-                (_, field_type) => panic!("Env don't support this type"),
+                _ => panic!("Env don't support this type"),
             }
         });
 

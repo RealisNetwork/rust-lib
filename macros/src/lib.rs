@@ -2,14 +2,11 @@ mod symbol;
 mod structs;
 mod env;
 
-use quote::{ToTokens, quote};
-use crate::symbol::parse_lit_into_expr_path;
-use std::default::Default;
+use quote::quote;
 use convert_case::{Case, Casing};
 use proc_macro::TokenStream;
-use syn::{self, parse_macro_input, Data, DeriveInput, FnArg, Ident, ItemFn, TypeTuple, ItemStruct, __private::Span, Meta::{NameValue, Path}, NestedMeta::Meta, Lit::Str, Type, Lit};
+use syn::{self, parse_macro_input, Data, DeriveInput, FnArg, Ident, ItemFn, TypeTuple, ItemStruct, __private::Span};
 use crate::env::impl_env_macros;
-use crate::structs::{Field, EnvRenameAttrs, EnvDefaultAttrs};
 
 /// # Panics
 #[proc_macro_derive(Gettable, attributes(gettable))]
