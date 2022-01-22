@@ -1,6 +1,5 @@
 use syn::Lit;
 
-#[derive(PartialEq)]
 pub enum EnvRenameAttrs {
     Flatten(String),
     RenameAbs(Lit),
