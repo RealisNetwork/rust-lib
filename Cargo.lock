@@ -465,6 +465,7 @@ version = "0.1.0"
 dependencies = [
  "dotenv",
  "log 0.4.14",
+ "realis-macros",
 ]
 
 [[package]]
