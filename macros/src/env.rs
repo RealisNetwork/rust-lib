@@ -58,7 +58,7 @@ pub fn impl_env_macros(item: TokenStream) -> TokenStream {
                         #field_name: #field_type::load(#env_name)?,
                     }
                 },
-                _ => panic!("Env don't support this type"),
+                (_, field_type) => panic!("Env don't support this type: {:?}", field_type),
             }
         });
 
