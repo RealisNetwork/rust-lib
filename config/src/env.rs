@@ -30,6 +30,14 @@ impl EnvLoaded for bool {
     }
 }
 
+impl EnvLoaded for usize {
+    fn load(key: &str) -> Result<Self, EnvLoadedError> {
+        Ok(dotenv::var(key)?
+            .parse::<usize>()
+            .map_err(|error| error.to_string())?)
+    }
+}
+
 impl EnvLoaded for u16 {
     fn load(key: &str) -> Result<Self, EnvLoadedError> {
         Ok(dotenv::var(key)?
@@ -42,4 +50,8 @@ impl EnvLoaded for String {
     fn load(key: &str) -> Result<Self, EnvLoadedError> {
         Ok(dotenv::var(key)?)
     }
+}
+
+pub fn default_logger_level() -> String {
+    log::LevelFilter::Trace.to_string()
 }
