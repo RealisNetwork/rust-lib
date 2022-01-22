@@ -1,26 +1,13 @@
 mod symbol;
+mod structs;
 
 use quote::{ToTokens, quote};
 use crate::symbol::parse_lit_into_expr_path;
 use std::default::Default;
 use convert_case::{Case, Casing};
 use proc_macro::TokenStream;
-use syn::{
-    self,
-    parse_macro_input,
-    Data, DeriveInput,
-    FnArg,
-    Ident,
-    ItemFn,
-    TypeTuple,
-    ItemStruct,
-    __private::Span,
-    Meta::{NameValue, Path},
-    NestedMeta::Meta,
-    Lit::Str,
-    Type,
-    Lit,
-};
+use syn::{self, parse_macro_input, Data, DeriveInput, FnArg, Ident, ItemFn, TypeTuple, ItemStruct, __private::Span, Meta::{NameValue, Path}, NestedMeta::Meta, Lit::Str, Type, Lit};
+use crate::structs::{Field, EnvRenameAttrs, EnvDefaultAttrs};
 
 /// # Panics
 #[proc_macro_derive(Gettable, attributes(gettable))]
@@ -261,32 +248,4 @@ pub fn config_macro_derive(item: TokenStream) -> TokenStream {
     };
 
     code.into()
-}
-
-#[derive(PartialEq)]
-enum EnvRenameAttrs {
-    Flatten(String),
-    RenameAbs(Lit),
-    Rename(Lit),
-    Empty,
-}
-
-enum EnvDefaultAttrs {
-    Default,
-    DefaultPath(Lit),
-    Empty,
-}
-
-struct Field {
-    field_type: EnvRenameAttrs,
-    default_type: EnvDefaultAttrs,
-}
-
-impl Default for Field {
-    fn default() -> Self {
-        Self {
-            field_type: EnvRenameAttrs::Empty,
-            default_type: EnvDefaultAttrs::Empty,
-        }
-    }
 }
