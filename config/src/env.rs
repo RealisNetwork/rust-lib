@@ -25,24 +25,28 @@ pub trait EnvLoaded: Sized {
 
 impl EnvLoaded for bool {
     fn load(key: &str) -> Result<Self, EnvLoadedError> {
+        log::info!("Read env by key: {}", key);
         Ok(dotenv::var(key)?.parse::<bool>().map_err(|error| error.to_string())?)
     }
 }
 
 impl EnvLoaded for usize {
     fn load(key: &str) -> Result<Self, EnvLoadedError> {
+        log::info!("Read env by key: {}", key);
         Ok(dotenv::var(key)?.parse::<usize>().map_err(|error| error.to_string())?)
     }
 }
 
 impl EnvLoaded for u16 {
     fn load(key: &str) -> Result<Self, EnvLoadedError> {
+        log::info!("Read env by key: {}", key);
         Ok(dotenv::var(key)?.parse::<u16>().map_err(|error| error.to_string())?)
     }
 }
 
 impl EnvLoaded for u64 {
     fn load(key: &str) -> Result<Self, EnvLoadedError> {
+        log::info!("Read env by key: {}", key);
         Ok(dotenv::var(key)?
             .parse::<u64>()
             .map_err(|error| error.to_string())?)
@@ -51,6 +55,7 @@ impl EnvLoaded for u64 {
 
 impl EnvLoaded for String {
     fn load(key: &str) -> Result<Self, EnvLoadedError> {
+        log::info!("Read env by key: {}", key);
         Ok(dotenv::var(key)?)
     }
 }
