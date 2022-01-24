@@ -12,7 +12,7 @@ fn main() {
         String::from("RealisNetwork"),
         String::from("libs"),
         String::from("./agents/src"),
-        String::from("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"),
+        String::from("TODO"),
         String::from("main"),
         String::from("topics.ts"),
     );
@@ -27,7 +27,7 @@ fn main() {
         String::from("RealisNetwork"),
         String::from("libs"),
         String::from("./topics/src"),
-        String::from("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"),
+        String::from("TODO"),
         String::from("main"),
         String::from("index.ts"),
     );

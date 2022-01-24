@@ -110,7 +110,7 @@ mod tests {
                 owner: String::from("RealisNetwork"),
                 repo: String::from("libs"),
                 root_path: String::from("./topics/src"),
-                token: String::from("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"),
+                token: String::from("TODO"),
                 branch: String::from("main"),
                 source_file: String::from("index.ts"),
             }
@@ -141,7 +141,7 @@ mod tests {
             String::from("RealisNetwork"),
             String::from("libs"),
             String::from("./agents/src"),
-            String::from("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"),
+            String::from("TODO"),
             String::from("main"),
             String::from("topics.ts"),
         );
