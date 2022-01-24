@@ -1,9 +1,9 @@
 use crate::traits::{MessageReceiver, Transport};
 use async_trait::async_trait;
+use futures::StreamExt;
 use ratsio::{StanClient, StanOptions, StanSid};
 use rust_lib::error_registry::{Nats as NatsError, RealisErrors};
 use std::sync::Arc;
-use futures::StreamExt;
 
 #[derive(Clone)]
 pub struct Nats {
@@ -20,17 +20,31 @@ impl Nats {
 
 #[async_trait]
 impl Transport for Nats {
-    type Message = Vec<u8>;
     type Error = RealisErrors;
+    type Message = Vec<u8>;
     type SubscribeId = StanSid;
 
-    async fn publish(&self, topic: &str, message: Self::Message, _topic_res: Option<String>) -> Result<(), Self::Error> {
-        self.stan_client.publish(topic, &message).await
+    async fn publish(
+        &self,
+        topic: &str,
+        message: Self::Message,
+        _topic_res: Option<String>,
+    ) -> Result<(), Self::Error> {
+        self.stan_client
+            .publish(topic, &message)
+            .await
             .map_err(|_| RealisErrors::Nats(NatsError::Send))
     }
 
-    async fn subscribe<'a>(&self, topic: &str, callback: impl MessageReceiver<Self::Message, Self::Error> + 'a) -> Result<(), Self::Error> {
-        let (stan_id, stream) = self.stan_client.subscribe(topic, None, None).await
+    async fn subscribe<'a>(
+        &self,
+        topic: &str,
+        callback: impl MessageReceiver<Self::Message, Self::Error> + 'a,
+    ) -> Result<(), Self::Error> {
+        let (stan_id, stream) = self
+            .stan_client
+            .subscribe(topic, None, None)
+            .await
             .map_err(|_| RealisErrors::Nats(NatsError::Disconnected))?;
 
         let mut stream = stream.map(|stan_message| stan_message.payload);
@@ -45,7 +59,7 @@ impl Transport for Nats {
                     if let Err(error) = callback.process(message.clone()).await {
                         self.unsubscribe(stan_id).await?;
                         self.publish(topic, message, None).await?;
-                        return Err(error)
+                        return Err(error);
                     }
                 }
             }

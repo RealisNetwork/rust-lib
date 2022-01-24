@@ -8,8 +8,10 @@ members = [
     "byte-formatter",
     "config",
     "macros",
-    "types",
+    "topics",
+    "topics/parser",
     "transport",
+    "types",
 ]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
