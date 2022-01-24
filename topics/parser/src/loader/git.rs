@@ -4,14 +4,20 @@ use crate::{
     utils::{parse_line, ParseResult},
 };
 use tokio::runtime::Runtime;
+use config::env::Env;
+use config::env::EnvLoaded;
+use config::env::EnvLoadedError;
 
+#[derive(Env)]
 pub struct GitLoader {
     owner: String,
     repo: String,
-    root_path: String,
+    root_agents_path: String,
+    root_topics_path: String,
     token: String,
     branch: String,
-    source_file: String,
+    source_agents_file: String,
+    source_topics_file: String,
 }
 
 impl GitLoader {
@@ -19,18 +25,22 @@ impl GitLoader {
     pub fn new(
         owner: String,
         repo: String,
-        root_path: String,
+        root_agents_path: String,
+        root_topics_path: String,
         token: String,
         branch: String,
-        source_file: String,
+        source_agents_file: String,
+        source_topics_file: String,
     ) -> Self {
         Self {
             owner,
             repo,
-            root_path,
+            root_agents_path,
+            root_topics_path,
             token,
             branch,
-            source_file,
+            source_agents_file,
+            source_topics_file,
         }
     }
 
@@ -39,14 +49,14 @@ impl GitLoader {
             .map_err(|error| format!("{:?}", error))?
             .block_on(
                 octocrab::OctocrabBuilder::new()
-                .personal_token(self.token.clone())
-                .build()
-                .map_err(|error| format!("{:?}", error))?
-                .repos(self.owner.clone(), self.repo.clone())
-                .get_content()
-                .path(path)
-                .r#ref(self.branch.clone())
-                .send()
+                    .personal_token(self.token.clone())
+                    .build()
+                    .map_err(|error| format!("{:?}", error))?
+                    .repos(self.owner.clone(), self.repo.clone())
+                    .get_content()
+                    .path(path)
+                    .r#ref(self.branch.clone())
+                    .send(),
             )
             .map_err(|error| format!("{:?}", error))?
             .items
@@ -95,24 +105,20 @@ impl GitLoader {
 
 impl Loader for GitLoader {
     fn load(self) -> Result<Vec<Topic>, String> {
-        self.process_file(&self.root_path, &self.source_file)
+        let agents = self.process_file(&self.root_agents_path, &self.source_agents_file)?;
+        let topics = self.process_file(&self.root_topics_path, &self.source_topics_file)?;
+        Ok(agents.into_iter().chain(topics.into_iter()).collect())
     }
 }
 
 #[cfg(test)]
 mod tests {
+    use config::env::EnvLoaded;
     use crate::loader::{git::GitLoader, loader::Loader};
 
     impl Default for GitLoader {
         fn default() -> Self {
-            Self {
-                owner: String::from("RealisNetwork"),
-                repo: String::from("libs"),
-                root_path: String::from("./topics/src"),
-                token: String::from("TODO"),
-                branch: String::from("main"),
-                source_file: String::from("index.ts"),
-            }
+            EnvLoaded::load("").unwrap()
         }
     }
 
@@ -136,14 +142,7 @@ mod tests {
 
     #[test]
     fn agents_package() {
-        let git_loader = GitLoader::new(
-            String::from("RealisNetwork"),
-            String::from("libs"),
-            String::from("./agents/src"),
-            String::from("TODO"),
-            String::from("main"),
-            String::from("topics.ts"),
-        );
+        let git_loader = EnvLoaded::load("").unwrap();
 
         let result = git_loader.load();
 

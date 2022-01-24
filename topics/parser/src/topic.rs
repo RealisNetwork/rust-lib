@@ -28,7 +28,8 @@ impl FromStr for Topic {
             .ok_or(String::from("Missing operator `=`!"))?;
 
         let topic = Topic {
-            name: splitted.nth(position - 1)
+            name: splitted
+                .nth(position - 1)
                 .ok_or(String::from("Missing operator `=` left value!"))?
                 .to_string(),
             value: splitted

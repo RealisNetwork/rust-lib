@@ -1,4 +1,5 @@
 use dotenv::Error;
+pub use realis_macros::Env;
 
 #[derive(Debug)]
 pub enum EnvLoadedError {

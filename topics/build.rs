@@ -1,6 +1,7 @@
 use parser::loader::{git::GitLoader, loader::Loader};
 use quote::{ToTokens, __private::TokenStream};
 use std::path::PathBuf;
+use config::env::EnvLoaded;
 
 fn main() {
     let filename = "topics.rs";
@@ -8,29 +9,7 @@ fn main() {
 
     let mut code = TokenStream::default();
 
-    let loader = GitLoader::new(
-        String::from("RealisNetwork"),
-        String::from("libs"),
-        String::from("./agents/src"),
-        String::from("TODO"),
-        String::from("main"),
-        String::from("topics.ts"),
-    );
-
-    loader
-        .load()
-        .unwrap()
-        .iter()
-        .for_each(|topic| code.extend(topic.to_token_stream()));
-
-    let loader = GitLoader::new(
-        String::from("RealisNetwork"),
-        String::from("libs"),
-        String::from("./topics/src"),
-        String::from("TODO"),
-        String::from("main"),
-        String::from("index.ts"),
-    );
+    let loader: GitLoader = EnvLoaded::load("").unwrap();
 
     loader
         .load()
