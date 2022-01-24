@@ -55,7 +55,7 @@ impl EnvLoaded for u64 {
 
 impl EnvLoaded for String {
     fn load(key: &str) -> Result<Self, EnvLoadedError> {
-        log::info!("Read env by key: {}", key);
+        println!("Read env by key: {}", key);
         Ok(dotenv::var(key)?)
     }
 }
