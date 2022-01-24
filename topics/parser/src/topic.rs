@@ -10,25 +10,30 @@ pub struct Topic {
 }
 
 impl FromStr for Topic {
-    type Err = ();
+    type Err = String;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let mut splitted = s.split_whitespace();
 
-        if splitted.next().ok_or(())?.ne("export") {
-            return Err(());
-        }
-        if splitted.next().ok_or(())?.ne("const") {
-            return Err(());
+        // if splitted.next().ok_or(())?.ne("export") {
+        //     return Err(());
+        // }
+        if splitted.next().ok_or(String::from("Parse error!"))?.ne("const") {
+            return Err(String::from("Missing key word `const`!"));
         }
 
-        let position = splitted.clone().position(|x| x == "=").ok_or(())?;
+        let position = splitted
+            .clone()
+            .position(|x| x == "=")
+            .ok_or(String::from("Missing operator `=`!"))?;
 
         let topic = Topic {
-            name: splitted.nth(position - 1).ok_or(())?.to_string(),
+            name: splitted.nth(position - 1)
+                .ok_or(String::from("Missing operator `=` left value!"))?
+                .to_string(),
             value: splitted
                 .nth(1)
-                .ok_or(())?
+                .ok_or(String::from("Missing operator `=` right value!"))?
                 .to_string()
                 .trim_end_matches(';')
                 .trim_matches('\'')

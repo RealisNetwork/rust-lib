@@ -16,22 +16,24 @@ impl Import {
 }
 
 impl FromStr for Import {
-    type Err = ();
+    type Err = String;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let mut splitted = s.split_whitespace();
 
-        let _position = splitted.position(|x| x == "from").ok_or(())?;
+        let _position = splitted
+            .position(|x| x == "from")
+            .ok_or(String::from("Missing key word `from`!"))?;
 
         let path = splitted
             .next()
-            .ok_or(())?
+            .ok_or(String::from("Missing `from` source value!"))?
             .trim_end_matches(';')
             .trim_matches('\'')
             .to_string();
 
         if path.starts_with("@") {
-            Err(())
+            Err(String::from("Extern package import!"))
         } else {
             Ok(Import { path })
         }

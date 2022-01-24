@@ -34,36 +34,35 @@ impl GitLoader {
         }
     }
 
-    fn get_file(&self, path: &str, file: &str) -> Result<String, ()> {
+    fn get_file(&self, path: &str, file: &str) -> Result<String, String> {
         let url = Runtime::new()
-            .map_err(|error| println!("{:?}", error))
-            .unwrap()
+            .map_err(|error| format!("{:?}", error))?
             .block_on(
                 octocrab::OctocrabBuilder::new()
                 .personal_token(self.token.clone())
                 .build()
-                .map_err(|error| println!("{:?}", error))? // TODO fix errors
+                .map_err(|error| format!("{:?}", error))?
                 .repos(self.owner.clone(), self.repo.clone())
                 .get_content()
                 .path(path)
                 .r#ref(self.branch.clone())
                 .send()
             )
-            .map_err(|error| println!("{:?}", error))? // TODO fix errors
+            .map_err(|error| format!("{:?}", error))?
             .items
             .into_iter()
             .find(|content| &content.name == file)
-            .ok_or(())? // TODO fix errors
+            .ok_or(format!("Missing file: {}, by path: {}!", file, path))?
             .download_url
-            .ok_or(())?; // TODO fix errors
+            .ok_or(String::from("Missing download url!"))?;
 
         reqwest::blocking::get(url)
-            .map_err(|_| ())? // TODO fix errors
+            .map_err(|error| format!("{:?}", error))?
             .text()
-            .map_err(|_| ()) // TODO fix errors
+            .map_err(|error| format!("{:?}", error))
     }
 
-    fn read_file(&self, path: &str, file: &str) -> Result<Vec<ParseResult>, ()> {
+    fn read_file(&self, path: &str, file: &str) -> Result<Vec<ParseResult>, String> {
         let file = self.get_file(path, file)?;
 
         let results = file.split('\n').into_iter().flat_map(|line| parse_line(line)).collect();
@@ -75,7 +74,7 @@ impl GitLoader {
         format!("{}{}", self.root_path, path.trim_start_matches('.'))
     }
 
-    fn process_file(&self, path: &str, file: &str) -> Result<Vec<Topic>, ()> {
+    fn process_file(&self, path: &str, file: &str) -> Result<Vec<Topic>, String> {
         let topics = self
             .read_file(path, file)?
             .into_iter()
@@ -95,7 +94,7 @@ impl GitLoader {
 }
 
 impl Loader for GitLoader {
-    fn load(self) -> Result<Vec<Topic>, ()> {
+    fn load(self) -> Result<Vec<Topic>, String> {
         self.process_file(&self.root_path, &self.source_file)
     }
 }
