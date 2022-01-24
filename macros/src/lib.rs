@@ -1,7 +1,7 @@
 use convert_case::{Case, Casing};
 use proc_macro::TokenStream;
 use quote::quote;
-use syn::{self, parse_macro_input, Data, DeriveInput, FnArg, Ident, ItemFn, TypeTuple, ItemStruct, __private::Span};
+use syn::{self, parse_macro_input, Data, DeriveInput, FnArg, Ident, ItemFn, ItemStruct, TypeTuple, __private::Span};
 
 /// # Panics
 #[proc_macro_derive(Gettable, attributes(gettable))]

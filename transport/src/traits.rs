@@ -1,8 +1,11 @@
 use async_trait::async_trait;
-use tokio::sync::Mutex;
-use tokio::time::{error::Elapsed, timeout, Duration};
-use tokio::sync::oneshot::error::TryRecvError;
-use tokio::sync::oneshot::{channel, Sender};
+use tokio::{
+    sync::{
+        oneshot::{channel, error::TryRecvError, Sender},
+        Mutex,
+    },
+    time::{error::Elapsed, timeout, Duration},
+};
 
 #[async_trait]
 pub trait MessageReceiver<M, E>: Send + Sync {
@@ -17,14 +20,20 @@ pub trait Transport {
 
     async fn publish(&self, topic: &str, message: Self::Message, topic_res: Option<String>) -> Result<(), Self::Error>;
 
-    async fn subscribe<'a>(&self, topic: &str, callback: impl MessageReceiver<Self::Message, Self::Error> + 'a) -> Result<(), Self::Error>;
+    async fn subscribe<'a>(
+        &self,
+        topic: &str,
+        callback: impl MessageReceiver<Self::Message, Self::Error> + 'a,
+    ) -> Result<(), Self::Error>;
 
     async fn unsubscribe(&self, subscribe_id: Self::SubscribeId) -> Result<(), Self::Error>;
 
     async fn observe_reply(&self, topic: &str) -> Result<Self::Message, Self::Error> {
         let (tx, mut rx) = channel();
 
-        let receiver = ObserveReplyReceiver { tx: Mutex::new(Some(tx)) };
+        let receiver = ObserveReplyReceiver {
+            tx: Mutex::new(Some(tx)),
+        };
         self.subscribe(topic, receiver).await?;
 
         Ok(rx.try_recv()?)
@@ -52,9 +61,7 @@ struct ObserveReplyReceiver<M> {
 #[async_trait]
 impl<M: Send, E: From<M> + Send> MessageReceiver<M, E> for ObserveReplyReceiver<M> {
     async fn process(&self, message: M) -> Result<(), E> {
-        match self.tx.lock()
-            .await
-            .take() {
+        match self.tx.lock().await.take() {
             None => Err(message)?,
             Some(tx) => tx.send(message)?,
         }

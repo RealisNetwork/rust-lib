@@ -21,9 +21,7 @@ impl FromStr for Import {
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let mut splitted = s.split_whitespace();
 
-        let _position = splitted
-            .position(|x| x == "from")
-            .ok_or(())?;
+        let _position = splitted.position(|x| x == "from").ok_or(())?;
 
         let path = splitted
             .next()
@@ -35,7 +33,7 @@ impl FromStr for Import {
         if path.starts_with("@") {
             Err(())
         } else {
-            Ok(Import{ path })
+            Ok(Import { path })
         }
     }
 }
@@ -50,7 +48,12 @@ mod tests {
         let line = "import { default as AdminAction } from './services/admin/action';";
 
         let topic = Import::from_str(line);
-        
-        assert_eq!(topic, Ok(Import { path: String::from("./services/admin/action") }))
+
+        assert_eq!(
+            topic,
+            Ok(Import {
+                path: String::from("./services/admin/action")
+            })
+        )
     }
 }

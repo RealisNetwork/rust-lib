@@ -3,7 +3,7 @@ use dotenv::Error;
 #[derive(Debug)]
 pub enum EnvLoadedError {
     Load(Error),
-    Convert(String)
+    Convert(String),
 }
 
 impl From<Error> for EnvLoadedError {
@@ -24,25 +24,19 @@ pub trait EnvLoaded: Sized {
 
 impl EnvLoaded for bool {
     fn load(key: &str) -> Result<Self, EnvLoadedError> {
-        Ok(dotenv::var(key)?
-            .parse::<bool>()
-            .map_err(|error| error.to_string())?)
+        Ok(dotenv::var(key)?.parse::<bool>().map_err(|error| error.to_string())?)
     }
 }
 
 impl EnvLoaded for usize {
     fn load(key: &str) -> Result<Self, EnvLoadedError> {
-        Ok(dotenv::var(key)?
-            .parse::<usize>()
-            .map_err(|error| error.to_string())?)
+        Ok(dotenv::var(key)?.parse::<usize>().map_err(|error| error.to_string())?)
     }
 }
 
 impl EnvLoaded for u16 {
     fn load(key: &str) -> Result<Self, EnvLoadedError> {
-        Ok(dotenv::var(key)?
-            .parse::<u16>()
-            .map_err(|error| error.to_string())?)
+        Ok(dotenv::var(key)?.parse::<u16>().map_err(|error| error.to_string())?)
     }
 }
 

@@ -1,2 +1,2 @@
-pub mod loader;
 pub mod git;
+pub mod loader;
