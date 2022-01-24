@@ -80,18 +80,18 @@ impl GitLoader {
         Ok(results)
     }
 
-    fn get_absolute_path(&self, path: &str) -> String {
-        format!("{}{}", self.root_path, path.trim_start_matches('.'))
+    fn get_absolute_path(root: &str, path: &str) -> String {
+        format!("{}{}", root, path.trim_start_matches('.'))
     }
 
-    fn process_file(&self, path: &str, file: &str) -> Result<Vec<Topic>, String> {
+    fn process_file(&self, root: &str, path: &str, file: &str) -> Result<Vec<Topic>, String> {
         let topics = self
             .read_file(path, file)?
             .into_iter()
             .map(|parse_result| {
                 match parse_result {
                     ParseResult::Import(import) => self
-                        .process_file(&self.get_absolute_path(&import.get_path()), &import.get_file())
+                        .process_file(root, &Self::get_absolute_path(root, &import.get_path()), &import.get_file())
                         .unwrap_or(vec![]), // TODO handle this unwrap()
                     ParseResult::Topic(topic) => vec![topic],
                 }
@@ -105,8 +105,8 @@ impl GitLoader {
 
 impl Loader for GitLoader {
     fn load(self) -> Result<Vec<Topic>, String> {
-        let agents = self.process_file(&self.root_agents_path, &self.source_agents_file)?;
-        let topics = self.process_file(&self.root_topics_path, &self.source_topics_file)?;
+        let agents = self.process_file(&self.root_agents_path, &self.root_agents_path, &self.source_agents_file)?;
+        let topics = self.process_file(&self.root_topics_path, &self.root_topics_path, &self.source_topics_file)?;
         Ok(agents.into_iter().chain(topics.into_iter()).collect())
     }
 }

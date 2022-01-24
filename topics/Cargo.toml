@@ -8,5 +8,6 @@ edition = "2021"
 [dependencies]
 
 [build-dependencies]
+config = { path = "../config" }
 parser = { path = "parser" }
 quote = "1.0.15"
