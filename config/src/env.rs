@@ -41,6 +41,14 @@ impl EnvLoaded for u16 {
     }
 }
 
+impl EnvLoaded for u64 {
+    fn load(key: &str) -> Result<Self, EnvLoadedError> {
+        Ok(dotenv::var(key)?
+            .parse::<u64>()
+            .map_err(|error| error.to_string())?)
+    }
+}
+
 impl EnvLoaded for String {
     fn load(key: &str) -> Result<Self, EnvLoadedError> {
         Ok(dotenv::var(key)?)

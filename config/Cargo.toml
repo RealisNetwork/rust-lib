@@ -7,6 +7,5 @@ edition = "2021"
 
 [dependencies]
 realis-macros = {path = "../macros"}
-
 dotenv = "0.15.0"
 log = "0.4.14"
