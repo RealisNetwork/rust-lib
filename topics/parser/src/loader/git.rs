@@ -80,8 +80,8 @@ impl GitLoader {
         Ok(results)
     }
 
-    fn get_absolute_path(&self, path: &str) -> String {
-        format!("{}{}", self.root_path, path.trim_start_matches('.'))
+    fn get_absolute_path(root: &str, path: &str) -> String {
+        format!("{}{}", root, path.trim_start_matches('.'))
     }
 
     fn process_file(&self, path: &str, file: &str) -> Result<Vec<Topic>, String> {
