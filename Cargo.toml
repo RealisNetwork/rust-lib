@@ -9,6 +9,7 @@ members = [
     "config",
     "macros",
     "topics",
+    "topics/parser",
     "transport",
     "types",
 ]

@@ -5,6 +5,16 @@ pub struct Import {
     pub path: String,
 }
 
+impl Import {
+    pub fn get_path(&self) -> String {
+        self.path.clone()
+    }
+
+    pub fn get_file(&self) -> String {
+        String::from("index.ts")
+    }
+}
+
 impl FromStr for Import {
     type Err = ();
 
@@ -15,14 +25,18 @@ impl FromStr for Import {
             .position(|x| x == "from")
             .ok_or(())?;
 
-         let path = splitted
+        let path = splitted
             .next()
             .ok_or(())?
             .trim_end_matches(';')
             .trim_matches('\'')
             .to_string();
 
-        Ok(Import{ path })
+        if path.starts_with("@") {
+            Err(())
+        } else {
+            Ok(Import{ path })
+        }
     }
 }
 
