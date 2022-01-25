@@ -18,7 +18,7 @@ impl FromStr for Topic {
         // if splitted.next().ok_or(())?.ne("export") {
         //     return Err(());
         // }
-        if splitted.next().ok_or(String::from("Parse error!"))?.ne("const") {
+        if splitted.nth(1).ok_or(String::from("Parse error!"))?.ne("const") {
             return Err(String::from("Missing key word `const`!"));
         }
 
