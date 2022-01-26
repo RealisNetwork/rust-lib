@@ -9,6 +9,10 @@ fn main() {
 }
 
 fn generate() {
+    let out_dir = PathBuf::from(std::env::var("OUT_DIR").unwrap());
+    let env_path = out_dir.ancestors().skip(5).next().unwrap().join(".env");
+    dotenv::from_filename(env_path).unwrap();
+
     let filename = "topics.rs";
     let path = "./src";
 
