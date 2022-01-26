@@ -11,3 +11,6 @@ edition = "2021"
 config = { path = "../config" }
 parser = { path = "parser" }
 quote = "1.0.15"
+
+[features]
+rebuild = []
