@@ -6070,6 +6070,7 @@ name = "topics"
 version = "0.1.0"
 dependencies = [
  "config",
+ "dotenv",
  "parser",
  "quote 1.0.15",
 ]
