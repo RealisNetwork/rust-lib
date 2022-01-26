@@ -8,6 +8,7 @@ fn main() {
     generate();
 }
 
+#[cfg(feature = "rebuild")]
 fn generate() {
     let out_dir = PathBuf::from(std::env::var("OUT_DIR").unwrap());
     let env_path = out_dir.ancestors().skip(5).next().unwrap().join(".env");
