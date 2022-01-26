@@ -25,7 +25,7 @@ slog = { version = "2.7", optional = true }
 hashicorp_vault = { version = "2.1.0", optional = true }
 derive_more = { version = "0.99.17", optional = true }
 slog-envlogger = { version = "2.2", optional = true }
-convert_case = { version = "0.4.0", optional = true }
+convert_case = { version = "0.5.0", optional = true }
 slog-stdlog = { version ="4.1.0", optional = true }
 serde_json = { version = "1.0.66", optional = true }
 tokio-service = { version = "0.1", optional = true }
@@ -70,8 +70,15 @@ optional = true
 
 [dependencies.sp-core]
 git = "https://github.com/paritytech/substrate"
-rev = "e7b93e1b1abcf0865824c68d10850bbb451e295f"
+rev = "7e87c08b71ce2247b504fb2ea7d1f979f98705a2"
 optional = true
+
+[dependencies.sp-runtime]
+version = "4.0.0-dev"
+git = "https://github.com/paritytech/substrate"
+rev = "7e87c08b71ce2247b504fb2ea7d1f979f98705a2"
+optional = true
+
 
 [dependencies.substrate-api-client]
 git = "https://github.com/RealisNetwork/substrate-api-client.git"
@@ -115,6 +122,7 @@ blockchain = [
     "runtime",
     "serde",
     "substrate-api-client",
+    "sp-runtime/std"
 ]
 
 config = [
