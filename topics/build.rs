@@ -21,9 +21,7 @@ fn generate() {
 
     match result.map(|loader| loader.load()) {
         Ok(Ok(topics)) => {
-            topics
-                .iter()
-                .for_each(|topic| code.extend(topic.to_token_stream()));
+            topics.iter().for_each(|topic| code.extend(topic.to_token_stream()));
 
             let out = &mut PathBuf::from(path);
             out.push(filename);
@@ -32,8 +30,6 @@ fn generate() {
         Ok(Err(error)) => println!("Fail to load git repo: `{}`", error),
         Err(error) => println!("Fail to load env options: `{:?}`", error),
     }
-
-    
 }
 
 #[cfg(feature = "rebuild_local")]
