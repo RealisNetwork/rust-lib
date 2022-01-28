@@ -17,6 +17,7 @@ jobs:
           profile: minimal
           toolchain: nightly-2021-11-18 # Pinned because of compilation error on later version, should unpin later.
           target: wasm32-unknown-unknown
+          components: rustfmt
       - name: Build
         run: cargo build -p topics
       - name: Fmt
