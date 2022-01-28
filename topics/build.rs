@@ -6,6 +6,7 @@ use std::path::PathBuf;
 fn main() {
     #[cfg(feature = "rebuild_local")]
     load_env();
+    
     #[cfg(feature = "rebuild")]
     generate();
 }
@@ -15,12 +16,12 @@ fn generate() {
     let filename = "topics.rs";
     let path = "./src";
 
-    let mut code = TokenStream::default();
-
     let result: Result<GitLoader, EnvLoadedError> = EnvLoaded::load("");
 
     match result.map(|loader| loader.load()) {
         Ok(Ok(topics)) => {
+            let mut code = TokenStream::default();
+
             topics.iter().for_each(|topic| code.extend(topic.to_token_stream()));
 
             let out = &mut PathBuf::from(path);
