@@ -69,14 +69,14 @@ package = "node-runtime"
 optional = true
 
 [dependencies.sp-core]
-git = "https://github.com/paritytech/substrate"
-rev = "7e87c08b71ce2247b504fb2ea7d1f979f98705a2"
+git = "https://github.com/RealisNetwork/substrate.git"
+branch = "master"
 optional = true
 
 [dependencies.sp-runtime]
 version = "4.0.0-dev"
-git = "https://github.com/paritytech/substrate"
-rev = "7e87c08b71ce2247b504fb2ea7d1f979f98705a2"
+git = "https://github.com/RealisNetwork/substrate.git"
+branch = "master"
 optional = true
 
 
