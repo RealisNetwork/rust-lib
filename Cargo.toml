@@ -122,7 +122,8 @@ blockchain = [
     "runtime",
     "serde",
     "substrate-api-client",
-    "sp-runtime/std"
+    "sp-runtime/std",
+    "sp-core/std",
 ]
 
 config = [
