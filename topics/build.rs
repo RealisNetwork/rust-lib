@@ -6,7 +6,7 @@ use std::path::PathBuf;
 fn main() {
     #[cfg(feature = "rebuild_local")]
     load_env();
-    
+
     #[cfg(feature = "rebuild")]
     generate();
 }
