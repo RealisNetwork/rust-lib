@@ -17,3 +17,7 @@ quote = "1.0.15"
 rebuild = [
     "dotenv",
 ]
+
+rebuild_local = [
+    "rebuild",
+]
