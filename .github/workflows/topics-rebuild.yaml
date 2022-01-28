@@ -1,9 +1,3 @@
-# - name: Repository Dispatch
-#   uses: peter-evans/repository-dispatch@v1
-#   with:
-#     token: ${{ secrets.REPO_ACCESS_TOKEN }}
-#     event-type: my-event
-
 name: Topics Rebuild
 
 on: [repository_dispatch, workflow_dispatch]
@@ -17,19 +11,15 @@ jobs:
         with:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
           fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
-      - name: Build
+      - name: Config Rust
         uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: nightly-2021-11-18 # Pinned because of compilation error on later version, should unpin later.
-          target: wasm32-unknown-unknown
+          with:
+            profile: minimal
+            toolchain: nightly-2021-11-18 # Pinned because of compilation error on later version, should unpin later.
+            target: wasm32-unknown-unknown
+      - name: Build
         run: cargo build -p topics
       - name: Fmt
-        uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: nightly-2021-11-18 # Pinned because of compilation error on later version, should unpin later.
-          target: wasm32-unknown-unknown
         run: cargo +nightly fmt -p topics
       - name: Commit
         run: |
