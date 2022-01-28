@@ -2,6 +2,16 @@ name: Topics Rebuild
 
 on: [repository_dispatch, workflow_dispatch]
 
+env:
+  GIT_LOADER_OWNER: RealisNetwork
+  GIT_LOADER_REPO: libs
+  GIT_LOADER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GIT_LOADER_BRANCH: main
+  GIT_LOADER_ROOT_AGENTS_PATH: ./agents/src
+  GIT_LOADER_ROOT_TOPICS_PATH: ./topics/src
+  GIT_LOADER_SOURCE_AGENTS_FILE: topics.ts
+  GIT_LOADER_SOURCE_TOPICS_FILE: index.ts
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,7 +29,7 @@ jobs:
           target: wasm32-unknown-unknown
           components: rustfmt
       - name: Build
-        run: cargo build -p topics
+        run: cargo build -p topics --features rebuild
       - name: Fmt
         run: cargo fmt -p topics
       - name: Commit
