@@ -1,7 +1,7 @@
+use config::env::EnvLoaded;
 use parser::loader::{git::GitLoader, loader::Loader};
 use quote::{ToTokens, __private::TokenStream};
 use std::path::PathBuf;
-use config::env::EnvLoaded;
 
 fn main() {
     #[cfg(feature = "rebuild")]
