@@ -1,3 +1,3 @@
 pub mod requests;
-#[cfg(features = "schemas")]
+#[cfg(feature = "schemas")]
 pub mod schemas;
