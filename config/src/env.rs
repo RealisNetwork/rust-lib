@@ -50,6 +50,15 @@ impl EnvLoaded for u16 {
     }
 }
 
+impl EnvLoaded for u32 {
+    fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
+        // log::info!("Read env by key: {:?}", key);
+        Ok(dotenv::var(key.unwrap())?
+            .parse::<u32>()
+            .map_err(|error| error.to_string())?)
+    }
+}
+
 impl EnvLoaded for u64 {
     fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
         // log::info!("Read env by key: {:?}", key);
