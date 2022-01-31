@@ -197,9 +197,9 @@ dependencies = [
 
 [[package]]
 name = "backtrace"
-version = "0.3.63"
+version = "0.3.64"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "321629d8ba6513061f26707241fa9bc89524ff1cd7a915a97ef0c62c666ce1b6"
+checksum = "5e121dee8023ce33ab248d9ce1493df03c3b38a659b240096fcbd7048ff9c31f"
 dependencies = [
  "addr2line",
  "cc",
@@ -1916,9 +1916,9 @@ checksum = "830d08ce1d1d941e6b30645f1a0eb5643013d835ce3779a5fc208261dbe10f55"
 
 [[package]]
 name = "libc"
-version = "0.2.115"
+version = "0.2.116"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0a8d982fa7a96a000f6ec4cfe966de9703eccde29750df2bb8949da91b0e818d"
+checksum = "565dbd88872dbe4cc8a46e527f26483c1d1f7afa6b884a3bd6cd893d4f98da74"
 
 [[package]]
 name = "libm"
@@ -2011,9 +2011,9 @@ dependencies = [
 
 [[package]]
 name = "lock_api"
-version = "0.4.5"
+version = "0.4.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "712a4d093c9976e24e7dbca41db895dabcbac38eb5f4045393d17a95bdfb1109"
+checksum = "88943dd7ef4a2e5a4bfa2753aaab3013e34ce2533d1996fb18ef591e315e2b3b"
 dependencies = [
  "scopeguard",
 ]
@@ -2039,7 +2039,7 @@ dependencies = [
 [[package]]
 name = "marketplace"
 version = "0.0.1"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#7b11000895f37609a2524b850880e7e2373b3b28"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
@@ -2324,7 +2324,7 @@ dependencies = [
 [[package]]
 name = "node-runtime"
 version = "3.0.0-dev"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#7b11000895f37609a2524b850880e7e2373b3b28"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
 dependencies = [
  "frame-benchmarking",
  "frame-election-provider-support",
@@ -2878,7 +2878,7 @@ dependencies = [
 [[package]]
 name = "pallet-nft"
 version = "0.0.2"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#7b11000895f37609a2524b850880e7e2373b3b28"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
@@ -2898,7 +2898,7 @@ dependencies = [
 [[package]]
 name = "pallet-nft-delegate"
 version = "0.0.1"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#7b11000895f37609a2524b850880e7e2373b3b28"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
@@ -2992,7 +2992,7 @@ dependencies = [
 [[package]]
 name = "pallet-staking"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#7b11000895f37609a2524b850880e7e2373b3b28"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
 dependencies = [
  "frame-election-provider-support",
  "frame-support",
@@ -3015,7 +3015,7 @@ dependencies = [
 [[package]]
 name = "pallet-staking-reward-curve"
 version = "3.0.0"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#7b11000895f37609a2524b850880e7e2373b3b28"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2 1.0.36",
@@ -3201,7 +3201,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7d17b78036a60663b797adeaee46f5c9dfebb86948d1255007a1d6be0271ff99"
 dependencies = [
  "instant",
- "lock_api 0.4.5",
+ "lock_api 0.4.6",
  "parking_lot_core 0.8.5",
 ]
 
@@ -3847,7 +3847,7 @@ dependencies = [
 [[package]]
 name = "realis-bridge"
 version = "0.0.1"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#7b11000895f37609a2524b850880e7e2373b3b28"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
@@ -3870,7 +3870,7 @@ dependencies = [
 [[package]]
 name = "realis-game-api"
 version = "0.0.1"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#7b11000895f37609a2524b850880e7e2373b3b28"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
 dependencies = [
  "frame-benchmarking",
  "frame-election-provider-support",
@@ -3907,7 +3907,7 @@ dependencies = [
 [[package]]
 name = "realis-primitives"
 version = "0.0.2"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#7b11000895f37609a2524b850880e7e2373b3b28"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
 dependencies = [
  "derive_more",
  "frame-support",
@@ -4274,9 +4274,9 @@ dependencies = [
 
 [[package]]
 name = "security-framework"
-version = "2.5.0"
+version = "2.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d09d3c15d814eda1d6a836f2f2b56a6abc1446c8a34351cb3180d3db92ffe4ce"
+checksum = "3fed7948b6c68acbb6e20c334f55ad635dc0f75506963de4464289fbd3b051ac"
 dependencies = [
  "bitflags",
  "core-foundation",
@@ -4287,9 +4287,9 @@ dependencies = [
 
 [[package]]
 name = "security-framework-sys"
-version = "2.5.0"
+version = "2.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e90dd10c41c6bfc633da6e0c659bd25d31e0791e5974ac42970267d59eba87f7"
+checksum = "a57321bf8bc2362081b2599912d2961fe899c0efadf1b4b2f8d48b3e253bb96c"
 dependencies = [
  "core-foundation-sys",
  "libc",
@@ -6093,6 +6093,7 @@ checksum = "dcf81ac59edc17cc8697ff311e8f5ef2d99fcbd9817b34cec66f90b6c3dfd987"
 name = "types"
 version = "0.1.0"
 dependencies = [
+ "rust-lib",
  "serde",
  "serde_json",
 ]

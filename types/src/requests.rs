@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
+use rust_lib::error_registry::RealisErrors;
 
 /// M
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -24,7 +25,7 @@ pub enum ResponseMessage<T> {
 pub struct ResponseError {
     pub msg: String,
     #[serde(rename = "type")]
-    pub error_type: String,
+    pub error_type: RealisErrors,
     pub trace: Option<String>,
     pub data: Option<Value>,
     pub status: Option<i32>,
