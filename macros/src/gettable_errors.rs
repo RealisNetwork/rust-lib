@@ -1,6 +1,6 @@
-use quote::quote;
 use convert_case::{Case, Casing};
 use proc_macro::TokenStream;
+use quote::quote;
 use syn::{self, parse_macro_input, Data, DeriveInput};
 
 pub fn impl_gettable_errors_macros(input: TokenStream) -> TokenStream {
@@ -31,7 +31,7 @@ pub fn impl_gettable_errors_macros(input: TokenStream) -> TokenStream {
                     }
                 }
             }
-                .into();
+            .into();
         }
         _ => panic!("Macro impl only for enums"),
     }

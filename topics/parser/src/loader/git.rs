@@ -3,10 +3,8 @@ use crate::{
     topic::Topic,
     utils::{parse_line, ParseResult},
 };
+use config::env::{Env, EnvLoaded, EnvLoadedError};
 use tokio::runtime::Runtime;
-use config::env::Env;
-use config::env::EnvLoaded;
-use config::env::EnvLoadedError;
 
 #[derive(Env)]
 pub struct GitLoader {
@@ -91,7 +89,11 @@ impl GitLoader {
             .map(|parse_result| {
                 match parse_result {
                     ParseResult::Import(import) => self
-                        .process_file(root, &Self::get_absolute_path(root, &import.get_path()), &import.get_file())
+                        .process_file(
+                            root,
+                            &Self::get_absolute_path(root, &import.get_path()),
+                            &import.get_file(),
+                        )
                         .unwrap_or(vec![]), // TODO handle this unwrap()
                     ParseResult::Topic(topic) => vec![topic],
                 }
@@ -113,12 +115,12 @@ impl Loader for GitLoader {
 
 #[cfg(test)]
 mod tests {
-    use config::env::EnvLoaded;
     use crate::loader::{git::GitLoader, loader::Loader};
+    use config::env::EnvLoaded;
 
     impl Default for GitLoader {
         fn default() -> Self {
-            EnvLoaded::load("").unwrap()
+            EnvLoaded::load(None).unwrap()
         }
     }
 
@@ -142,7 +144,7 @@ mod tests {
 
     #[test]
     fn agents_package() {
-        let git_loader = EnvLoaded::load("").unwrap();
+        let git_loader = EnvLoaded::load(None).unwrap();
 
         let result = git_loader.load();
 

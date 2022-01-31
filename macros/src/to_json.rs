@@ -1,5 +1,5 @@
-use quote::quote;
 use proc_macro::TokenStream;
+use quote::quote;
 use syn::{self, DeriveInput};
 
 pub fn impl_to_json_macros(item: TokenStream) -> TokenStream {

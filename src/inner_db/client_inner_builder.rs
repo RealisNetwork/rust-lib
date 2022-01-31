@@ -1,4 +1,7 @@
-use crate::inner_db::client_inner::DatabaseClientInner;
+use crate::inner_db::{
+    client_inner::DatabaseClientInner,
+    consts::{MAX_RETRY_ELAPSED_TIME_IN_SECS, MAX_RETRY_INTERVAL_IN_SECS},
+};
 use deadpool_postgres::{Config, CreatePoolError, ManagerConfig, Pool, RecyclingMethod, Runtime, SslMode};
 use openssl::{
     error::ErrorStack,
@@ -7,7 +10,6 @@ use openssl::{
 use postgres_openssl::MakeTlsConnector;
 use std::time::Duration;
 use tokio_postgres::{Error, NoTls};
-use crate::inner_db::consts::{MAX_RETRY_ELAPSED_TIME_IN_SECS, MAX_RETRY_INTERVAL_IN_SECS};
 
 pub struct DatabaseClientInnerBuilder;
 

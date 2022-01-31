@@ -1,5 +1,5 @@
-use quote::quote;
 use proc_macro::TokenStream;
+use quote::quote;
 use syn::{self, ItemStruct};
 
 pub fn impl_byte_encode_macros(item: TokenStream) -> TokenStream {
@@ -27,5 +27,3 @@ pub fn impl_byte_encode_macros(item: TokenStream) -> TokenStream {
     };
     gen.into()
 }
-
-

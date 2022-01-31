@@ -1,5 +1,5 @@
-use quote::quote;
 use proc_macro::TokenStream;
+use quote::quote;
 use syn::{self, DeriveInput, TypeTuple};
 
 pub fn impl_gettable_macros(item: TokenStream) -> TokenStream {

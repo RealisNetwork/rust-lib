@@ -16,7 +16,7 @@ fn generate() {
     let filename = "topics.rs";
     let path = "./src";
 
-    let result: Result<GitLoader, EnvLoadedError> = EnvLoaded::load("");
+    let result: Result<GitLoader, EnvLoadedError> = EnvLoaded::load(None);
 
     match result.map(|loader| loader.load()) {
         Ok(Ok(topics)) => {

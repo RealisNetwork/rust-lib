@@ -1,5 +1,5 @@
-use quote::quote;
 use proc_macro::TokenStream;
+use quote::quote;
 use syn::{self, ItemStruct};
 
 pub fn impl_byte_decode_macros(item: TokenStream) -> TokenStream {

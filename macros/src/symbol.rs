@@ -1,8 +1,10 @@
-use syn::Meta::List;
-use proc_macro2::{Group, TokenTree, TokenStream, Span};
-use syn::parse::{self, Parse};
+use proc_macro2::{Group, Span, TokenStream, TokenTree};
+use syn::{
+    parse::{self, Parse},
+    Meta::List,
+};
 
-#[derive(Copy, Clone)]
+#[derive(Clone)]
 pub struct Symbol(&'static str);
 
 impl PartialEq<Symbol> for syn::Path {
@@ -18,35 +20,32 @@ pub const RENAME_ABS: Symbol = Symbol("rename_abs");
 pub const DEFAULT: Symbol = Symbol("default");
 pub const DEFAULT_PATH: Symbol = Symbol("default_path");
 
-
-pub fn get_env_meta_items(attr: &syn::Attribute) -> Vec<syn::NestedMeta>{
+pub fn get_env_meta_items(attr: &syn::Attribute) -> Vec<syn::NestedMeta> {
     if attr.path != ENV {
         return Vec::new();
     }
 
     match attr.parse_meta() {
         Ok(List(meta)) => meta.nested.into_iter().collect(),
-        _ => panic!("Wrong meta")
+        _ => panic!("Wrong meta"),
     }
 }
 
-pub fn get_lit_str<'a>( lit: &'a syn::Lit) -> &'a syn::LitStr {
+pub fn get_lit_str<'a>(lit: &'a syn::Lit) -> &'a syn::LitStr {
     match lit {
         syn::Lit::Str(lit) => lit,
-        _ => panic!("expected env attribute to be a string")
+        _ => panic!("expected env attribute to be a string"),
     }
 }
 
-pub fn parse_lit_into_expr_path(
-    lit: &syn::Lit,
-) -> syn::ExprPath {
+pub fn parse_lit_into_expr_path(lit: &syn::Lit) -> syn::ExprPath {
     let string = get_lit_str(lit);
     parse_lit_str(string).expect("Some error")
 }
 
 fn parse_lit_str<T>(s: &syn::LitStr) -> parse::Result<T>
-    where
-        T: Parse,
+where
+    T: Parse,
 {
     let tokens = spanned_tokens(s)?;
     syn::parse2(tokens)
@@ -58,10 +57,7 @@ fn spanned_tokens(s: &syn::LitStr) -> parse::Result<TokenStream> {
 }
 
 fn respan(stream: TokenStream, span: Span) -> TokenStream {
-    stream
-        .into_iter()
-        .map(|token| respan_token(token, span))
-        .collect()
+    stream.into_iter().map(|token| respan_token(token, span)).collect()
 }
 
 fn respan_token(mut token: TokenTree, span: Span) -> TokenTree {

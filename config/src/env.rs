@@ -20,43 +20,49 @@ impl From<String> for EnvLoadedError {
 }
 
 pub trait EnvLoaded: Sized {
-    fn load(key: &str) -> Result<Self, EnvLoadedError>;
+    fn load(key: Option<String>) -> Result<Self, EnvLoadedError>;
 }
 
 impl EnvLoaded for bool {
-    fn load(key: &str) -> Result<Self, EnvLoadedError> {
-        log::info!("Read env by key: {}", key);
-        Ok(dotenv::var(key)?.parse::<bool>().map_err(|error| error.to_string())?)
+    fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
+        // log::info!("Read env by key: {}", key);
+        Ok(dotenv::var(key.unwrap())?
+            .parse::<bool>()
+            .map_err(|error| error.to_string())?)
     }
 }
 
 impl EnvLoaded for usize {
-    fn load(key: &str) -> Result<Self, EnvLoadedError> {
-        log::info!("Read env by key: {}", key);
-        Ok(dotenv::var(key)?.parse::<usize>().map_err(|error| error.to_string())?)
+    fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
+        // log::info!("Read env by key: {:?}", key);
+        Ok(dotenv::var(key.unwrap())?
+            .parse::<usize>()
+            .map_err(|error| error.to_string())?)
     }
 }
 
 impl EnvLoaded for u16 {
-    fn load(key: &str) -> Result<Self, EnvLoadedError> {
-        log::info!("Read env by key: {}", key);
-        Ok(dotenv::var(key)?.parse::<u16>().map_err(|error| error.to_string())?)
+    fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
+        // log::info!("Read env by key: {:?}", key);
+        Ok(dotenv::var(key.unwrap())?
+            .parse::<u16>()
+            .map_err(|error| error.to_string())?)
     }
 }
 
 impl EnvLoaded for u64 {
-    fn load(key: &str) -> Result<Self, EnvLoadedError> {
-        log::info!("Read env by key: {}", key);
-        Ok(dotenv::var(key)?
+    fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
+        // log::info!("Read env by key: {:?}", key);
+        Ok(dotenv::var(key.unwrap())?
             .parse::<u64>()
             .map_err(|error| error.to_string())?)
     }
 }
 
 impl EnvLoaded for String {
-    fn load(key: &str) -> Result<Self, EnvLoadedError> {
-        println!("Read env by key: {}", key);
-        Ok(dotenv::var(key)?)
+    fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
+        // println!("Read env by key: {:?}", key);
+        Ok(dotenv::var(key.unwrap())?)
     }
 }
 

@@ -1,22 +1,22 @@
-mod symbol;
-mod structs;
+#![feature(in_band_lifetimes)]
+
+mod byte_decode;
+mod byte_encode;
 mod env;
 mod gettable;
 mod gettable_errors;
 mod retry;
-mod byte_encode;
-mod byte_decode;
+mod structs;
+mod symbol;
 mod to_json;
 
 use proc_macro::TokenStream;
 
-use crate::byte_decode::impl_byte_decode_macros;
-use crate::byte_encode::impl_byte_encode_macros;
-use crate::env::impl_env_macros;
-use crate::gettable::impl_gettable_macros;
-use crate::gettable_errors::impl_gettable_errors_macros;
-use crate::retry::impl_retry_macros;
-use crate::to_json::impl_to_json_macros;
+use crate::{
+    byte_decode::impl_byte_decode_macros, byte_encode::impl_byte_encode_macros, env::impl_env_macros,
+    gettable::impl_gettable_macros, gettable_errors::impl_gettable_errors_macros, retry::impl_retry_macros,
+    to_json::impl_to_json_macros,
+};
 
 /// # Panics
 #[proc_macro_derive(Gettable, attributes(gettable))]
@@ -53,25 +53,28 @@ pub fn byte_decode_macro_derive(item: TokenStream) -> TokenStream {
 }
 
 /// # Using derive
-/// Provides a derive macro to generate implementations of the EnvLoaded trait for data structures
-/// defined in your crate to take data from .env file by fields in structure.
+/// Provides a derive macro to generate implementations of the EnvLoaded trait
+/// for data structures defined in your crate to take data from .env file by
+/// fields in structure.
 ///
 /// You only need to set this up if your code is using
 ///
 ///     #[derive(Env)]
 ///
-/// It will search in .env file according to structure's name + "_" + field name in upper case.
+/// It will search in .env file according to structure's name + "_" + field name
+/// in upper case.
 ///
 /// This functionality is based on Rust's #[derive] mechanism,
-/// just like what you would use to automatically derive implementations of the built-in Clone, Copy, Debug, or other traits.
-/// It is able to generate implementations for most structs and
-/// enums including ones with elaborate generic types or trait bounds.
+/// just like what you would use to automatically derive implementations of the
+/// built-in Clone, Copy, Debug, or other traits. It is able to generate
+/// implementations for most structs and enums including ones with elaborate
+/// generic types or trait bounds.
 ///
 /// Add ```realis-config = { git = "https://github.com/RealisNetwork/rust-lib.git", package = "config"}```
 /// as a dependency in Cargo.toml.
 ///
-/// On structs fields of that you want to take from env, import the derive macro as
-/// ```
+/// On structs fields of that you want to take from env, import the derive macro
+/// as ```
 /// use realis_config::env::EnvLoaded;
 /// use realis_config::env::Env;
 /// use realis_config::env::EnvLoadedError;
@@ -96,7 +99,8 @@ pub fn byte_decode_macro_derive(item: TokenStream) -> TokenStream {
 /// ```
 /// # Attributes
 ///
-/// Attributes are used to customize the EnvLoaded implementations produced by Env derive.
+/// Attributes are used to customize the EnvLoaded implementations produced by
+/// Env derive.
 ///
 /// ## Field attributes
 ///
@@ -104,23 +108,26 @@ pub fn byte_decode_macro_derive(item: TokenStream) -> TokenStream {
 /// Search the field in .env file according to the given name in upper case.
 ///
 ///     #[env(rename = "name")]
-/// Search the field in .env file according to the structure's name + "_" + given name in upper case.
+/// Search the field in .env file according to the structure's name + "_" +
+/// given name in upper case.
 ///
 ///     #[env(flatten)]
 /// Search the field in .env file according to the field name in upper case.
 ///
 ///     #[env(default)]
-/// If the value is not present when searching in .env file, use the Default::default().
+/// If the value is not present when searching in .env file, use the
+/// Default::default().
 ///
 ///     #[env(default_path = "path")]
-/// If the value is not present when searching in .env file, call a function to get a default value.
-/// The given function must be callable as fn() -> T.
+/// If the value is not present when searching in .env file, call a function to
+/// get a default value. The given function must be callable as fn() -> T.
 ///
 /// For example:
 ///
 ///  >   default = "empty_value" would invoke empty_value()
 ///
-///  >   default = "SomeTrait::some_default" would invoke SomeTrait::some_default().
+///  >   default = "SomeTrait::some_default" would invoke
+/// SomeTrait::some_default().
 #[proc_macro_derive(Env, attributes(env))]
 pub fn config_macro_derive(item: TokenStream) -> TokenStream {
     impl_env_macros(item)
