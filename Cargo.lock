@@ -493,6 +493,7 @@ name = "config"
 version = "0.1.0"
 dependencies = [
  "dotenv",
+ "hex",
  "log 0.4.14",
  "realis-macros",
 ]

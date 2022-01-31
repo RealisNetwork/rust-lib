@@ -1,4 +1,5 @@
 use dotenv::Error;
+use hex::FromHexError;
 pub use realis_macros::Env;
 
 #[derive(Debug)]
@@ -16,6 +17,12 @@ impl From<Error> for EnvLoadedError {
 impl From<String> for EnvLoadedError {
     fn from(error_msg: String) -> Self {
         Self::Convert(error_msg)
+    }
+}
+
+impl From<FromHexError> for EnvLoadedError {
+    fn from(error: FromHexError) -> Self {
+        Self::Convert(error.to_string())
     }
 }
 
@@ -65,6 +72,15 @@ impl EnvLoaded for u64 {
         Ok(dotenv::var(key.unwrap())?
             .parse::<u64>()
             .map_err(|error| error.to_string())?)
+    }
+}
+
+impl EnvLoaded for Vec<u8> {
+    fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
+        Ok(
+            hex::decode(dotenv::var(key.unwrap()).map_err(|error| error.to_string())?)
+                .map_err(|error| error.to_string())?,
+        )
     }
 }
 
