@@ -1,12 +1,15 @@
-use runtime::AccountId;
 use rust_lib::json::u128::{u128_to_string, u128_from_string};
 use serde::{Serialize, Deserialize};
+use crate::requests::AuthInfo;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CreditHardCurrencySchema {
     pub id: String,
-    pub account_id: AccountId,
-    pub params: CreditHardCurrencyParams
+    #[serde(rename = "topicResponse", alias = "topicRes")]
+    pub topic_res: String,
+    pub params: CreditHardCurrencyParams,
+    #[serde(rename = "authInfo")]
+    pub auth_info: AuthInfo,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
