@@ -10,8 +10,10 @@ rust-lib = { path = "../../rust-lib", features = ["error_registry"] }
 serde = { version = "1.0.132", features = ["derive"] }
 serde_json = "1.0.73"
 
+runtime = { git =  "https://github.com/RealisNetwork/Realis.Network.git", package = "node-runtime", optional = true }
 
 [features]
 schemas = [
     "rust-lib/ser_des-types",
+    "runtime",
 ]

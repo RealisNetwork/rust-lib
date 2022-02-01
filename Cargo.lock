@@ -2047,11 +2047,35 @@ dependencies = [
  "frame-system",
  "node-primitives",
  "pallet-balances",
- "pallet-nft",
- "pallet-staking",
+ "pallet-nft 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
+ "pallet-staking 4.0.0-dev (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
  "parity-scale-codec",
  "primitive-types",
- "realis-primitives",
+ "realis-primitives 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
+ "serde",
+ "serde_json",
+ "sp-arithmetic",
+ "sp-core",
+ "sp-io",
+ "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
+name = "marketplace"
+version = "0.0.1"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git#44b1571f64130e129e79071787865f4756226f15"
+dependencies = [
+ "frame-benchmarking",
+ "frame-support",
+ "frame-system",
+ "node-primitives",
+ "pallet-balances",
+ "pallet-nft 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git)",
+ "pallet-staking 4.0.0-dev (git+https://github.com/RealisNetwork/Realis.Network.git)",
+ "parity-scale-codec",
+ "primitive-types",
+ "realis-primitives 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git)",
  "serde",
  "serde_json",
  "sp-arithmetic",
@@ -2335,7 +2359,7 @@ dependencies = [
  "frame-system-rpc-runtime-api",
  "frame-try-runtime",
  "log 0.4.14",
- "marketplace",
+ "marketplace 0.0.1 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
  "node-primitives",
  "pallet-assets",
  "pallet-authority-discovery",
@@ -2354,15 +2378,15 @@ dependencies = [
  "pallet-lottery",
  "pallet-mmr",
  "pallet-multisig",
- "pallet-nft",
- "pallet-nft-delegate",
+ "pallet-nft 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
+ "pallet-nft-delegate 0.0.1 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
  "pallet-offences",
  "pallet-randomness-collective-flip",
  "pallet-recovery",
  "pallet-scheduler",
  "pallet-session",
- "pallet-staking",
- "pallet-staking-reward-curve",
+ "pallet-staking 4.0.0-dev (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
+ "pallet-staking-reward-curve 3.0.0 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
  "pallet-sudo",
  "pallet-timestamp",
  "pallet-transaction-payment",
@@ -2371,9 +2395,81 @@ dependencies = [
  "pallet-vesting",
  "parity-scale-codec",
  "primitive-types",
- "realis-bridge",
- "realis-game-api",
- "realis-primitives",
+ "realis-bridge 0.0.1 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
+ "realis-game-api 0.0.1 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
+ "realis-primitives 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
+ "sp-api",
+ "sp-authority-discovery",
+ "sp-block-builder",
+ "sp-consensus-babe",
+ "sp-core",
+ "sp-inherents",
+ "sp-io",
+ "sp-keyring",
+ "sp-npos-elections",
+ "sp-offchain",
+ "sp-runtime",
+ "sp-session",
+ "sp-staking",
+ "sp-std",
+ "sp-transaction-pool",
+ "sp-version",
+ "static_assertions",
+ "substrate-wasm-builder",
+]
+
+[[package]]
+name = "node-runtime"
+version = "3.0.0-dev"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git#44b1571f64130e129e79071787865f4756226f15"
+dependencies = [
+ "frame-benchmarking",
+ "frame-election-provider-support",
+ "frame-executive",
+ "frame-support",
+ "frame-system",
+ "frame-system-rpc-runtime-api",
+ "frame-try-runtime",
+ "log 0.4.14",
+ "marketplace 0.0.1 (git+https://github.com/RealisNetwork/Realis.Network.git)",
+ "node-primitives",
+ "pallet-assets",
+ "pallet-authority-discovery",
+ "pallet-authorship",
+ "pallet-babe",
+ "pallet-balances",
+ "pallet-contracts",
+ "pallet-contracts-primitives",
+ "pallet-contracts-rpc-runtime-api",
+ "pallet-election-provider-multi-phase",
+ "pallet-gilt",
+ "pallet-grandpa",
+ "pallet-identity",
+ "pallet-im-online",
+ "pallet-indices",
+ "pallet-lottery",
+ "pallet-mmr",
+ "pallet-multisig",
+ "pallet-nft 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git)",
+ "pallet-nft-delegate 0.0.1 (git+https://github.com/RealisNetwork/Realis.Network.git)",
+ "pallet-offences",
+ "pallet-randomness-collective-flip",
+ "pallet-recovery",
+ "pallet-scheduler",
+ "pallet-session",
+ "pallet-staking 4.0.0-dev (git+https://github.com/RealisNetwork/Realis.Network.git)",
+ "pallet-staking-reward-curve 3.0.0 (git+https://github.com/RealisNetwork/Realis.Network.git)",
+ "pallet-sudo",
+ "pallet-timestamp",
+ "pallet-transaction-payment",
+ "pallet-transaction-payment-rpc-runtime-api",
+ "pallet-utility",
+ "pallet-vesting",
+ "parity-scale-codec",
+ "primitive-types",
+ "realis-bridge 0.0.1 (git+https://github.com/RealisNetwork/Realis.Network.git)",
+ "realis-game-api 0.0.1 (git+https://github.com/RealisNetwork/Realis.Network.git)",
+ "realis-primitives 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git)",
  "sp-api",
  "sp-authority-discovery",
  "sp-block-builder",
@@ -2889,7 +2985,27 @@ dependencies = [
  "pallet-balances",
  "parity-scale-codec",
  "primitive-types",
- "realis-primitives",
+ "realis-primitives 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
+ "serde",
+ "sp-core",
+ "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
+name = "pallet-nft"
+version = "0.0.2"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git#44b1571f64130e129e79071787865f4756226f15"
+dependencies = [
+ "frame-benchmarking",
+ "frame-support",
+ "frame-system",
+ "hex-literal",
+ "node-primitives",
+ "pallet-balances",
+ "parity-scale-codec",
+ "primitive-types",
+ "realis-primitives 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git)",
  "serde",
  "sp-core",
  "sp-runtime",
@@ -2905,11 +3021,28 @@ dependencies = [
  "frame-support",
  "frame-system",
  "node-primitives",
- "pallet-nft",
- "pallet-staking",
+ "pallet-nft 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
+ "pallet-staking 4.0.0-dev (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
  "parity-scale-codec",
  "primitive-types",
- "realis-primitives",
+ "realis-primitives 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
+ "sp-std",
+]
+
+[[package]]
+name = "pallet-nft-delegate"
+version = "0.0.1"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git#44b1571f64130e129e79071787865f4756226f15"
+dependencies = [
+ "frame-benchmarking",
+ "frame-support",
+ "frame-system",
+ "node-primitives",
+ "pallet-nft 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git)",
+ "pallet-staking 4.0.0-dev (git+https://github.com/RealisNetwork/Realis.Network.git)",
+ "parity-scale-codec",
+ "primitive-types",
+ "realis-primitives 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git)",
  "sp-std",
 ]
 
@@ -3014,9 +3147,43 @@ dependencies = [
 ]
 
 [[package]]
+name = "pallet-staking"
+version = "4.0.0-dev"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git#44b1571f64130e129e79071787865f4756226f15"
+dependencies = [
+ "frame-election-provider-support",
+ "frame-support",
+ "frame-system",
+ "log 0.4.14",
+ "pallet-authorship",
+ "pallet-session",
+ "parity-scale-codec",
+ "paste",
+ "serde",
+ "serde_json",
+ "sp-application-crypto",
+ "sp-io",
+ "sp-runtime",
+ "sp-staking",
+ "sp-std",
+ "static_assertions",
+]
+
+[[package]]
 name = "pallet-staking-reward-curve"
 version = "3.0.0"
 source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
+dependencies = [
+ "proc-macro-crate",
+ "proc-macro2 1.0.36",
+ "quote 1.0.15",
+ "syn 1.0.86",
+]
+
+[[package]]
+name = "pallet-staking-reward-curve"
+version = "3.0.0"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git#44b1571f64130e129e79071787865f4756226f15"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2 1.0.36",
@@ -3854,11 +4021,34 @@ dependencies = [
  "frame-support",
  "frame-system",
  "pallet-balances",
- "pallet-nft",
+ "pallet-nft 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
  "parity-scale-codec",
  "primitive-types",
- "realis-game-api",
- "realis-primitives",
+ "realis-game-api 0.0.1 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
+ "realis-primitives 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
+ "serde",
+ "sp-arithmetic",
+ "sp-core",
+ "sp-io",
+ "sp-runtime",
+ "sp-std",
+ "substrate-wasm-builder-runner",
+]
+
+[[package]]
+name = "realis-bridge"
+version = "0.0.1"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git#44b1571f64130e129e79071787865f4756226f15"
+dependencies = [
+ "frame-benchmarking",
+ "frame-support",
+ "frame-system",
+ "pallet-balances",
+ "pallet-nft 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git)",
+ "parity-scale-codec",
+ "primitive-types",
+ "realis-game-api 0.0.1 (git+https://github.com/RealisNetwork/Realis.Network.git)",
+ "realis-primitives 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git)",
  "serde",
  "sp-arithmetic",
  "sp-core",
@@ -3877,18 +4067,45 @@ dependencies = [
  "frame-election-provider-support",
  "frame-support",
  "frame-system",
- "marketplace",
+ "marketplace 0.0.1 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
  "node-primitives",
  "pallet-authorship",
  "pallet-balances",
- "pallet-nft",
- "pallet-nft-delegate",
+ "pallet-nft 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
+ "pallet-nft-delegate 0.0.1 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
  "pallet-session",
- "pallet-staking",
- "pallet-staking-reward-curve",
+ "pallet-staking 4.0.0-dev (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
+ "pallet-staking-reward-curve 3.0.0 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
  "parity-scale-codec",
  "primitive-types",
- "realis-primitives",
+ "realis-primitives 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
+ "serde",
+ "sp-runtime",
+ "sp-staking",
+ "sp-std",
+]
+
+[[package]]
+name = "realis-game-api"
+version = "0.0.1"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git#44b1571f64130e129e79071787865f4756226f15"
+dependencies = [
+ "frame-benchmarking",
+ "frame-election-provider-support",
+ "frame-support",
+ "frame-system",
+ "marketplace 0.0.1 (git+https://github.com/RealisNetwork/Realis.Network.git)",
+ "node-primitives",
+ "pallet-authorship",
+ "pallet-balances",
+ "pallet-nft 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git)",
+ "pallet-nft-delegate 0.0.1 (git+https://github.com/RealisNetwork/Realis.Network.git)",
+ "pallet-session",
+ "pallet-staking 4.0.0-dev (git+https://github.com/RealisNetwork/Realis.Network.git)",
+ "pallet-staking-reward-curve 3.0.0 (git+https://github.com/RealisNetwork/Realis.Network.git)",
+ "parity-scale-codec",
+ "primitive-types",
+ "realis-primitives 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git)",
  "serde",
  "sp-runtime",
  "sp-staking",
@@ -3909,6 +4126,24 @@ dependencies = [
 name = "realis-primitives"
 version = "0.0.2"
 source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
+dependencies = [
+ "derive_more",
+ "frame-support",
+ "frame-system",
+ "impl-trait-for-tuples",
+ "parity-scale-codec",
+ "primitive-types",
+ "serde",
+ "serde_repr",
+ "sp-core",
+ "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
+name = "realis-primitives"
+version = "0.0.2"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git#44b1571f64130e129e79071787865f4756226f15"
 dependencies = [
  "derive_more",
  "frame-support",
@@ -4106,12 +4341,12 @@ dependencies = [
  "hashicorp_vault",
  "itertools 0.10.3",
  "log 0.4.14",
- "node-runtime",
+ "node-runtime 3.0.0-dev (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
  "openssl",
  "postgres-openssl",
  "rawsql",
  "realis-macros",
- "realis-primitives",
+ "realis-primitives 0.0.2 (git+https://github.com/RealisNetwork/Realis.Network.git?branch=main)",
  "reqwest 0.11.9",
  "serde",
  "serde_json",
@@ -6094,6 +6329,7 @@ checksum = "dcf81ac59edc17cc8697ff311e8f5ef2d99fcbd9817b34cec66f90b6c3dfd987"
 name = "types"
 version = "0.1.0"
 dependencies = [
+ "node-runtime 3.0.0-dev (git+https://github.com/RealisNetwork/Realis.Network.git)",
  "rust-lib",
  "serde",
  "serde_json",
