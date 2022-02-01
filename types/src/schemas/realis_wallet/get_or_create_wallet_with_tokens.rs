@@ -15,6 +15,7 @@ pub struct GetOrCreateWalletWithTokensSchema {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GetOrCreateWalletWithTokensParams {
+    #[serde(default)]
     #[serde(serialize_with = "option_u128_to_string")]
     #[serde(deserialize_with = "option_u128_from_string")]
     pub amount: Option<u128>
