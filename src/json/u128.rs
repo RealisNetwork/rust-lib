@@ -45,7 +45,7 @@ where
     D: Deserializer<'de>,
 {
     let number = String::deserialize(deserializer)?;
-    blockchain_number_from_string(number)
+    blockchain_number_from_string::<'de, D>(number)
 }
 
 pub fn blockchain_number_to_string(number: &u128) -> String {

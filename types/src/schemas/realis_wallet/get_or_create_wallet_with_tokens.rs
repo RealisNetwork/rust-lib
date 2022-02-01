@@ -1,6 +1,6 @@
-use crate::requests::{AuthInfo, Params};
+use crate::requests::AuthInfo;
 use serde::{Deserialize, Serialize, Deserializer, Serializer};
-use rust_lib::json::u128::{blockchain_number_to_string, u128_to_string, u128_from_string, blockchain_number_from_string};
+use rust_lib::json::u128::{blockchain_number_to_string, blockchain_number_from_string};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GetOrCreateWalletWithTokensSchema {
@@ -24,7 +24,7 @@ pub fn option_u128_from_string<'de, D>(deserializer: D) -> Result<Option<u128>, 
         D: Deserializer<'de>,
 {
     match Option::deserialize(deserializer)? {
-        Some(number) => Ok(Some(blockchain_number_from_string(number)?)),
+        Some(number) => Ok(Some(blockchain_number_from_string::<'de, D>(number)?)),
         None => Ok(None)
     }
 }
