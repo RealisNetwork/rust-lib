@@ -7,7 +7,8 @@ pub struct GetOrCreateWalletWithTokensSchema {
     pub id: String,
     #[serde(rename = "topicResponse", alias = "topicRes")]
     pub topic_res: String,
-    pub params: GetOrCreateWalletWithTokensParams,
+    // #[serde(default)]
+    pub params: Option<GetOrCreateWalletWithTokensParams>,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
 }
