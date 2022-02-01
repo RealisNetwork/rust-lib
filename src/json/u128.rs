@@ -2,12 +2,9 @@ use serde::{de::Error, Deserialize, Deserializer, Serializer};
 
 const DECIMALS: u8 = 12;
 
-/// # Errors
-pub fn u128_from_string<'de, D>(deserializer: D) -> Result<u128, D::Error>
-where
-    D: Deserializer<'de>,
-{
-    let number = String::deserialize(deserializer)?;
+pub fn blockchain_number_from_string<'de, D>(number: String) -> Result<u128, D::Error>
+    where
+        D: Deserializer<'de>, {
     if number.contains('.') {
         // If number is float
         let splitted = number.split('.').map(String::from).collect::<Vec<String>>();
@@ -40,6 +37,15 @@ where
             .map_err(|error| Error::custom(format!("Cannot convert to u128 with error: {}", error)))?;
         Ok(number * 10_u128.pow(DECIMALS.into()))
     }
+}
+
+/// # Errors
+pub fn u128_from_string<'de, D>(deserializer: D) -> Result<u128, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let number = String::deserialize(deserializer)?;
+    blockchain_number_from_string(number)
 }
 
 pub fn blockchain_number_to_string(number: &u128) -> String {
