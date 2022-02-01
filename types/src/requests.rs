@@ -38,3 +38,10 @@ pub struct AuthInfo {
     pub address: Option<String>,
     pub continent: Option<String>,
 }
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Params{
+    #[serde(serialize_with = "u128_to_string")]
+    #[serde(deserialize_with = "u128_from_string")]
+    pub amount: u128,
+}
