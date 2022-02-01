@@ -23,9 +23,9 @@ pub fn option_u128_from_string<'de, D>(deserializer: D) -> Result<Option<u128>, 
     where
         D: Deserializer<'de>,
 {
-    match Option::deserialize(deserializer)? {
-        Some(number) => Ok(Some(blockchain_number_from_string::<'de, D>(number)?)),
-        None => Ok(None)
+    match Option::deserialize(deserializer) {
+        Ok(Some(number)) => Ok(Some(blockchain_number_from_string::<'de, D>(number)?)),
+        Ok(None) | Err(_) => Ok(None)
     }
 }
 
