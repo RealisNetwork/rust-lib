@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CreditHardCurrencySchema {
     pub id: String,
-    #[serde(rename = "topicResponse", alias = "topicRes")]
+    #[serde(rename = "topicRes", alias = "topicResponse")]
     pub topic_res: String,
     pub params: CreditHardCurrencyParams,
     #[serde(rename = "authInfo")]
