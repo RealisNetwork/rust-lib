@@ -43,6 +43,12 @@ pub enum RealisErrors {
     CustomString(String),
 }
 
+impl Default for RealisErrors {
+    fn default() -> Self {
+        RealisErrors::Common(Common::Unknown)
+    }
+}
+
 // impl From<RealisErrors> for backoff::Error<RealisErrors> {
 //     fn from(error: RealisErrors) -> Self {
 //         // TODO decide which errors are critical
