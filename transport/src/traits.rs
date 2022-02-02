@@ -8,8 +8,8 @@ use tokio::{
 };
 
 #[async_trait]
-pub trait MessageReceiver<M, E>: Send + Sync {
-    async fn process(&self, message: M) -> Result<(), E>;
+pub trait MessageReceiver<M, O, E>: Send + Sync {
+    async fn process(&self, message: M, message_id: O) -> Result<(), E>;
 }
 
 #[async_trait]
@@ -17,13 +17,14 @@ pub trait Transport {
     type Message: Send;
     type Error: From<Elapsed> + From<TryRecvError> + From<Self::Message> + Send;
     type SubscribeId;
+    type MessageId: Send;
 
     async fn publish(&self, topic: &str, message: Self::Message, topic_res: Option<String>) -> Result<(), Self::Error>;
 
     async fn subscribe<'a>(
         &self,
         topic: &str,
-        callback: impl MessageReceiver<Self::Message, Self::Error> + 'a,
+        callback: impl MessageReceiver<Self::Message, Self::MessageId, Self::Error> + 'a,
     ) -> Result<(), Self::Error>;
 
     async fn unsubscribe(&self, subscribe_id: Self::SubscribeId) -> Result<(), Self::Error>;
@@ -36,7 +37,10 @@ pub trait Transport {
         };
         self.subscribe(topic, receiver).await?;
 
-        Ok(rx.try_recv()?)
+        let (message, message_id) = rx.try_recv()?;
+        self.ok(message_id).await?;
+
+        Ok(message)
     }
 
     async fn message_reply(
@@ -52,18 +56,20 @@ pub trait Transport {
             None => timeout(Duration::from_secs(25), self.observe_reply(topic_res)).await?,
         }
     }
+
+    async fn ok(&self, message_id: Self::MessageId) -> Result<(), Self::Error>;
 }
 
-struct ObserveReplyReceiver<M> {
-    tx: Mutex<Option<Sender<M>>>,
+struct ObserveReplyReceiver<M, O> {
+    tx: Mutex<Option<Sender<(M, O)>>>,
 }
 
 #[async_trait]
-impl<M: Send, E: From<M> + Send> MessageReceiver<M, E> for ObserveReplyReceiver<M> {
-    async fn process(&self, message: M) -> Result<(), E> {
+impl<M: Send, O: Send, E: From<M> + Send> MessageReceiver<M, O, E> for ObserveReplyReceiver<M, O> {
+    async fn process(&self, message: M, message_id: O) -> Result<(), E> {
         match self.tx.lock().await.take() {
             None => Err(message)?,
-            Some(tx) => tx.send(message)?,
+            Some(tx) => tx.send((message, message_id)).map_err(|(message, _)| message)?,
         }
         Ok(())
     }

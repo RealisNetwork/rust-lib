@@ -158,6 +158,7 @@ pub enum Nats {
     AddReconnectHandlerError,
     MessageReplyTimeout,
     Unsubscribe,
+    Ok,
 }
 
 #[derive(Error, Debug, Eq, PartialEq, Clone, Deserialize, Serialize, Display, ToJson)]

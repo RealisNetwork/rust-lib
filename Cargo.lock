@@ -2040,7 +2040,7 @@ dependencies = [
 [[package]]
 name = "marketplace"
 version = "0.0.1"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#f25cc6c0c179c2b86f9373da0356b5b48ecac7c8"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
@@ -2325,7 +2325,7 @@ dependencies = [
 [[package]]
 name = "node-runtime"
 version = "3.0.0-dev"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#f25cc6c0c179c2b86f9373da0356b5b48ecac7c8"
 dependencies = [
  "frame-benchmarking",
  "frame-election-provider-support",
@@ -2879,7 +2879,7 @@ dependencies = [
 [[package]]
 name = "pallet-nft"
 version = "0.0.2"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#f25cc6c0c179c2b86f9373da0356b5b48ecac7c8"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
@@ -2899,7 +2899,7 @@ dependencies = [
 [[package]]
 name = "pallet-nft-delegate"
 version = "0.0.1"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#f25cc6c0c179c2b86f9373da0356b5b48ecac7c8"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
@@ -2993,7 +2993,7 @@ dependencies = [
 [[package]]
 name = "pallet-staking"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#f25cc6c0c179c2b86f9373da0356b5b48ecac7c8"
 dependencies = [
  "frame-election-provider-support",
  "frame-support",
@@ -3016,7 +3016,7 @@ dependencies = [
 [[package]]
 name = "pallet-staking-reward-curve"
 version = "3.0.0"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#f25cc6c0c179c2b86f9373da0356b5b48ecac7c8"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2 1.0.36",
@@ -3848,7 +3848,7 @@ dependencies = [
 [[package]]
 name = "realis-bridge"
 version = "0.0.1"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#f25cc6c0c179c2b86f9373da0356b5b48ecac7c8"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
@@ -3871,7 +3871,7 @@ dependencies = [
 [[package]]
 name = "realis-game-api"
 version = "0.0.1"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#f25cc6c0c179c2b86f9373da0356b5b48ecac7c8"
 dependencies = [
  "frame-benchmarking",
  "frame-election-provider-support",
@@ -3908,7 +3908,7 @@ dependencies = [
 [[package]]
 name = "realis-primitives"
 version = "0.0.2"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#40cc35dd20e58ad6b16ed9e2fb1a7dabe13f31b3"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#f25cc6c0c179c2b86f9373da0356b5b48ecac7c8"
 dependencies = [
  "derive_more",
  "frame-support",
@@ -6443,9 +6443,9 @@ checksum = "85e60b0d1b5f99db2556934e21937020776a5d31520bf169e851ac44e6420214"
 
 [[package]]
 name = "zeroize"
-version = "1.5.1"
+version = "1.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4062c749be08d90be727e9c5895371c3a0e49b90ba2b9592dc7afda95cc2b719"
+checksum = "7c88870063c39ee00ec285a2f8d6a966e5b6fb2becc4e8dac77ed0d370ed6006"
 dependencies = [
  "zeroize_derive",
 ]
