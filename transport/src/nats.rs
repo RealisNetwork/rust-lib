@@ -1,7 +1,7 @@
 use crate::traits::{MessageReceiver, Transport};
 use async_trait::async_trait;
 use futures::StreamExt;
-use ratsio::{StanClient, StanOptions, StanSid};
+use ratsio::{StanClient, StanMessage, StanOptions, StanSid};
 use rust_lib::error_registry::{Nats as NatsError, RealisErrors};
 use std::sync::Arc;
 
@@ -23,6 +23,7 @@ impl Transport for Nats {
     type Error = RealisErrors;
     type Message = Vec<u8>;
     type SubscribeId = StanSid;
+    type MessageId = StanMessage;
 
     async fn publish(
         &self,
@@ -39,15 +40,15 @@ impl Transport for Nats {
     async fn subscribe<'a>(
         &self,
         topic: &str,
-        callback: impl MessageReceiver<Self::Message, Self::Error> + 'a,
+        callback: impl MessageReceiver<Self::Message, Self::MessageId, Self::Error> + 'a,
     ) -> Result<(), Self::Error> {
-        let (stan_id, stream) = self
+        let (stan_id, mut stream) = self
             .stan_client
             .subscribe(topic, None, None)
             .await
             .map_err(|_| RealisErrors::Nats(NatsError::Disconnected))?;
 
-        let mut stream = stream.map(|stan_message| stan_message.payload);
+        // let mut stream = stream.map(stan_message.payload);
 
         loop {
             match stream.next().await {
@@ -56,9 +57,8 @@ impl Transport for Nats {
                     break;
                 }
                 Some(message) => {
-                    if let Err(error) = callback.process(message.clone()).await {
+                    if let Err(error) = callback.process(message.payload.clone(), message).await {
                         self.unsubscribe(stan_id).await?;
-                        self.publish(topic, message, None).await?;
                         return Err(error);
                     }
                 }
@@ -73,5 +73,12 @@ impl Transport for Nats {
             .un_subscribe(&subscribe_id)
             .await
             .map_err(|_| RealisErrors::Nats(NatsError::Unsubscribe))
+    }
+
+    async fn ok(&self, message_id: Self::MessageId) -> Result<(), Self::Error> {
+        self.stan_client
+            .acknowledge(message_id)
+            .await
+            .map_err(|_| RealisErrors::Nats(NatsError::Ok))
     }
 }
