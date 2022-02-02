@@ -24,7 +24,7 @@ pub enum ResponseMessage<T> {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ResponseError {
     pub msg: String,
-    #[serde(rename = "type")]
+    #[serde(rename = "type", skip)]
     pub error_type: RealisErrors,
     pub trace: Option<String>,
     pub data: Option<Value>,
