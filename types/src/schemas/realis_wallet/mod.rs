@@ -1,2 +1,3 @@
 pub mod get_or_create_wallet;
 pub mod get_or_create_wallet_with_tokens;
+pub mod increase_wallet_balance_response_response;
