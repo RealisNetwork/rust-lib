@@ -27,7 +27,7 @@ pub fn impl_gettable_macros(item: TokenStream) -> TokenStream {
             type MessageReturn = #returns;
 
             fn topic() -> String {
-                #name_string
+                #name_string.to_string
             }
 
             fn parse(payload: &[u8]) -> Result<Box<
