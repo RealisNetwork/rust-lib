@@ -22,8 +22,8 @@ impl Nats {
 impl Transport for Nats {
     type Error = RealisErrors;
     type Message = Vec<u8>;
-    type SubscribeId = StanSid;
     type MessageId = StanMessage;
+    type SubscribeId = StanSid;
 
     async fn publish(
         &self,

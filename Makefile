@@ -10,6 +10,7 @@ test:
 
 build:
 	SKIP_WASM_BUILD=1 cargo build --all --release --all-features
+	make fmt
 
 udeps:
 	SKIP_WASM_BUILD=1 cargo +nightly udeps --all --all-features

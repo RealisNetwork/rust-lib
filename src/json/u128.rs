@@ -3,8 +3,9 @@ use serde::{de::Error, Deserialize, Deserializer, Serializer};
 const DECIMALS: u8 = 12;
 
 pub fn blockchain_number_from_string<'de, D>(number: String) -> Result<u128, D::Error>
-    where
-        D: Deserializer<'de>, {
+where
+    D: Deserializer<'de>,
+{
     if number.contains('.') {
         // If number is float
         let splitted = number.split('.').map(String::from).collect::<Vec<String>>();

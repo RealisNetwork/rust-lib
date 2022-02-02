@@ -6,14 +6,12 @@ mod env;
 mod gettable;
 mod gettable_errors;
 mod retry;
-mod structs;
-mod symbol;
 mod to_json;
 
 use proc_macro::TokenStream;
 
 use crate::{
-    byte_decode::impl_byte_decode_macros, byte_encode::impl_byte_encode_macros, env::impl_env_macros,
+    byte_decode::impl_byte_decode_macros, byte_encode::impl_byte_encode_macros, env::env::impl_env_macros,
     gettable::impl_gettable_macros, gettable_errors::impl_gettable_errors_macros, retry::impl_retry_macros,
     to_json::impl_to_json_macros,
 };

@@ -1,6 +1,6 @@
-use rust_lib::json::u128::{u128_to_string, u128_from_string};
-use serde::{Serialize, Deserialize};
 use crate::requests::AuthInfo;
+use rust_lib::json::u128::{u128_from_string, u128_to_string};
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CreditHardCurrencySchema {
@@ -16,5 +16,5 @@ pub struct CreditHardCurrencySchema {
 pub struct CreditHardCurrencyParams {
     #[serde(serialize_with = "u128_to_string")]
     #[serde(deserialize_with = "u128_from_string")]
-    pub amount: u128
+    pub amount: u128,
 }
