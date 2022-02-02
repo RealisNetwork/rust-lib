@@ -1,5 +1,7 @@
 use proc_macro::TokenStream;
-use quote::quote;
+use convert_case::{Case, Casing};
+use proc_macro2::Literal;
+use quote::{quote, ToTokens};
 use syn::{self, DeriveInput, TypeTuple};
 
 pub fn impl_gettable_macros(item: TokenStream) -> TokenStream {
@@ -7,11 +9,14 @@ pub fn impl_gettable_macros(item: TokenStream) -> TokenStream {
     let attr = syn::parse::<TypeTuple>(ast.attrs[0].tokens.clone().into()).unwrap();
 
     let name = &ast.ident;
-    let name_string = name.to_string();
+    let mut name_string = name.to_string().to_case(Case::Snake);
 
     let error = &attr.elems[0];
     let params = &attr.elems[1];
     let returns = &attr.elems[2];
+    if attr.elems.len() > 3 {
+        name_string = syn::parse2::<Literal>(attr.elems[3].to_token_stream()).unwrap().to_string();
+    }
 
     let gen = quote! {
         use convert_case::{Case, Casing};
@@ -22,7 +27,7 @@ pub fn impl_gettable_macros(item: TokenStream) -> TokenStream {
             type MessageReturn = #returns;
 
             fn topic() -> String {
-                #name_string.to_case(Case::Snake)
+                #name_string
             }
 
             fn parse(payload: &[u8]) -> Result<Box<
