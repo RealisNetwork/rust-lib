@@ -48,8 +48,6 @@ impl Transport for Nats {
             .await
             .map_err(|_| RealisErrors::Nats(NatsError::Disconnected))?;
 
-        // let mut stream = stream.map(stan_message.payload);
-
         loop {
             match stream.next().await {
                 None => {
