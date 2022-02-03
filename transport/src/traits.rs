@@ -35,7 +35,7 @@ pub trait Transport {
         let receiver = ObserveReplyReceiver {
             tx,
         };
-        self.subscribe(topic, receiver).await?;
+        self.subscribe(topic, receiver).await;
 
         match rx.recv().await {
             Some((message, message_id)) => {
