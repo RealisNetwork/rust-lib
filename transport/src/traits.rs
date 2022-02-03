@@ -1,7 +1,7 @@
 use async_trait::async_trait;
 use tokio::{
     sync::{
-        oneshot::{channel, error::RecvError, Sender},
+        mpsc::{channel, error::RecvError, Sender},
         Mutex,
     },
     time::{error::Elapsed, timeout, Duration},
@@ -15,7 +15,7 @@ pub trait MessageReceiver<M, O, E>: Send + Sync {
 #[async_trait]
 pub trait Transport {
     type Message: Send;
-    type Error: From<Elapsed> + From<RecvError> + From<Self::Message> + Send;
+    type Error: From<Elapsed> + From<()> + From<Self::Message> + Send;
     type SubscribeId;
     type MessageId: Send;
 
@@ -30,17 +30,20 @@ pub trait Transport {
     async fn unsubscribe(&self, subscribe_id: Self::SubscribeId) -> Result<(), Self::Error>;
 
     async fn observe_reply(&self, topic: &str) -> Result<Self::Message, Self::Error> {
-        let (tx, rx) = channel();
+        let (tx, mut rx) = channel(1);
 
         let receiver = ObserveReplyReceiver {
-            tx: Mutex::new(Some(tx)),
+            tx,
         };
         self.subscribe(topic, receiver).await?;
 
-        let (message, message_id) = rx.await?;
-        self.ok(message_id).await?;
-
-        Ok(message)
+        match rx.recv().await {
+            Some((message, message_id)) => {
+                self.ok(message_id).await?;
+                Ok(message)
+            }
+            None => Err(Self::Error::from(()))
+        }
     }
 
     async fn message_reply(
@@ -61,16 +64,13 @@ pub trait Transport {
 }
 
 struct ObserveReplyReceiver<M, O> {
-    tx: Mutex<Option<Sender<(M, O)>>>,
+    tx: Sender<(M, O)>,
 }
 
 #[async_trait]
 impl<M: Send, O: Send, E: From<M> + Send> MessageReceiver<M, O, E> for ObserveReplyReceiver<M, O> {
     async fn process(&self, message: M, message_id: O) -> Result<(), E> {
-        match self.tx.lock().await.take() {
-            None => Err(message)?,
-            Some(tx) => tx.send((message, message_id)).map_err(|(message, _)| message)?,
-        }
+        self.tx.send((message, message_id)).await.map_err(|error| error.0.0)?;
         Ok(())
     }
 }

@@ -57,9 +57,9 @@ impl Default for RealisErrors {
 //     }
 // }
 
-impl From<tokio::sync::oneshot::error::RecvError> for RealisErrors {
-    fn from(_error: tokio::sync::oneshot::error::RecvError) -> Self {
-        RealisErrors::Nats(Nats::Receive)
+impl From<()> for RealisErrors {
+    fn from(_error: ()) -> Self {
+        RealisErrors::Common(Common::Unknown)
     }
 }
 
