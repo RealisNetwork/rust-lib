@@ -1,5 +1,3 @@
-#![feature(in_band_lifetimes)]
-
 mod byte_decode;
 mod byte_encode;
 mod env;
