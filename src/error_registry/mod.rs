@@ -57,12 +57,9 @@ impl Default for RealisErrors {
 //     }
 // }
 
-impl From<tokio::sync::oneshot::error::TryRecvError> for RealisErrors {
-    fn from(error: tokio::sync::oneshot::error::TryRecvError) -> Self {
-        match error {
-            tokio::sync::oneshot::error::TryRecvError::Empty => RealisErrors::Nats(Nats::Receive),
-            tokio::sync::oneshot::error::TryRecvError::Closed => RealisErrors::Common(Common::InternalServerError),
-        }
+impl From<tokio::sync::oneshot::error::RecvError> for RealisErrors {
+    fn from(_error: tokio::sync::oneshot::error::RecvError) -> Self {
+        RealisErrors::Nats(Nats::Receive)
     }
 }
 

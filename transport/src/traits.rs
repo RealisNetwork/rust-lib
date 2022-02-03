@@ -1,7 +1,7 @@
 use async_trait::async_trait;
 use tokio::{
     sync::{
-        oneshot::{channel, error::TryRecvError, Sender},
+        oneshot::{channel, error::RecvError, Sender},
         Mutex,
     },
     time::{error::Elapsed, timeout, Duration},
@@ -15,7 +15,7 @@ pub trait MessageReceiver<M, O, E>: Send + Sync {
 #[async_trait]
 pub trait Transport {
     type Message: Send;
-    type Error: From<Elapsed> + From<TryRecvError> + From<Self::Message> + Send;
+    type Error: From<Elapsed> + From<RecvError> + From<Self::Message> + Send;
     type SubscribeId;
     type MessageId: Send;
 
@@ -30,14 +30,14 @@ pub trait Transport {
     async fn unsubscribe(&self, subscribe_id: Self::SubscribeId) -> Result<(), Self::Error>;
 
     async fn observe_reply(&self, topic: &str) -> Result<Self::Message, Self::Error> {
-        let (tx, mut rx) = channel();
+        let (tx, rx) = channel();
 
         let receiver = ObserveReplyReceiver {
             tx: Mutex::new(Some(tx)),
         };
         self.subscribe(topic, receiver).await?;
 
-        let (message, message_id) = rx.try_recv()?;
+        let (message, message_id) = rx.await?;
         self.ok(message_id).await?;
 
         Ok(message)
