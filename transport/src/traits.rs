@@ -68,9 +68,9 @@ struct ObserveReplyReceiver<M, O> {
 }
 
 #[async_trait]
-impl<M: Send, O: Send, E: From<M> + Send> MessageReceiver<M, O, E> for ObserveReplyReceiver<M, O> {
+impl<M: Send, O: Send, E: From<M> + From<()> + Send> MessageReceiver<M, O, E> for ObserveReplyReceiver<M, O> {
     async fn process(&self, message: M, message_id: O) -> Result<(), E> {
         self.tx.send((message, message_id)).await.map_err(|error| error.0.0)?;
-        Ok(())
+        Err(E::from(()))
     }
 }
