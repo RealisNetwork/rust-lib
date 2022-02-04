@@ -1,7 +1,7 @@
 use async_trait::async_trait;
 use tokio::{
     sync::{
-        mpsc::{channel, error::RecvError, Sender},
+        oneshot::{channel, error::RecvError, Sender},
         Mutex,
     },
     time::{error::Elapsed, timeout, Duration},
@@ -9,13 +9,18 @@ use tokio::{
 
 #[async_trait]
 pub trait MessageReceiver<M, O, E>: Send + Sync {
-    async fn process(&self, message: M, message_id: O) -> Result<(), E>;
+    /// # Returns
+    ///
+    /// * true - to continue process messages
+    /// * false - to stop receive new messages
+    ///
+    async fn process(&self, message: M, message_id: O) -> Result<bool, E>;
 }
 
 #[async_trait]
 pub trait Transport {
     type Message: Send;
-    type Error: From<Elapsed> + From<()> + From<Self::Message> + Send;
+    type Error: From<Elapsed> + From<RecvError> + From<Self::Message> + Send;
     type SubscribeId;
     type MessageId: Send;
 
@@ -30,20 +35,17 @@ pub trait Transport {
     async fn unsubscribe(&self, subscribe_id: Self::SubscribeId) -> Result<(), Self::Error>;
 
     async fn observe_reply(&self, topic: &str) -> Result<Self::Message, Self::Error> {
-        let (tx, mut rx) = channel(1);
+        let (tx, rx) = channel();
 
         let receiver = ObserveReplyReceiver {
-            tx,
+            tx: Mutex::new(Some(tx)),
         };
-        self.subscribe(topic, receiver).await;
+        self.subscribe(topic, receiver).await?;
 
-        match rx.recv().await {
-            Some((message, message_id)) => {
-                self.ok(message_id).await?;
-                Ok(message)
-            }
-            None => Err(Self::Error::from(()))
-        }
+        let (message, message_id) =  rx.await?;
+        self.ok(message_id).await?;
+
+        Ok(message)
     }
 
     async fn message_reply(
@@ -64,13 +66,16 @@ pub trait Transport {
 }
 
 struct ObserveReplyReceiver<M, O> {
-    tx: Sender<(M, O)>,
+    tx: Mutex<Option<Sender<(M, O)>>>,
 }
 
 #[async_trait]
-impl<M: Send, O: Send, E: From<M> + From<()> + Send> MessageReceiver<M, O, E> for ObserveReplyReceiver<M, O> {
-    async fn process(&self, message: M, message_id: O) -> Result<(), E> {
-        self.tx.send((message, message_id)).await.map_err(|error| error.0.0)?;
-        Err(E::from(()))
+impl<M: Send, O: Send, E: From<M> + Send> MessageReceiver<M, O, E> for ObserveReplyReceiver<M, O> {
+    async fn process(&self, message: M, message_id: O) -> Result<bool, E> {
+        match self.tx.lock().await.take() {
+            None => Err(message)?,
+            Some(tx) => tx.send((message, message_id)).map_err(|(message, _)| message)?,
+        }
+        Ok(false)
     }
 }

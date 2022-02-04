@@ -55,9 +55,16 @@ impl Transport for Nats {
                     break;
                 }
                 Some(message) => {
-                    if let Err(error) = callback.process(message.payload.clone(), message).await {
-                        self.unsubscribe(stan_id).await?;
-                        return Err(error);
+                    match callback.process(message.payload.clone(), message).await {
+                        Ok(true) => {}
+                        Ok(false) => {
+                            self.unsubscribe(stan_id).await?;
+                            break;
+                        }
+                        Err(error) => {
+                            self.unsubscribe(stan_id).await?;
+                            return Err(error);
+                        }
                     }
                 }
             }
