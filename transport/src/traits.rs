@@ -13,7 +13,6 @@ pub trait MessageReceiver<M, O, E>: Send + Sync {
     ///
     /// * true - to continue process messages
     /// * false - to stop receive new messages
-    ///
     async fn process(&self, message: M, message_id: O) -> Result<bool, E>;
 }
 
@@ -42,7 +41,7 @@ pub trait Transport {
         };
         self.subscribe(topic, receiver).await?;
 
-        let (message, message_id) =  rx.await?;
+        let (message, message_id) = rx.await?;
         self.ok(message_id).await?;
 
         Ok(message)
