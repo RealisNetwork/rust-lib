@@ -63,6 +63,12 @@ impl From<()> for RealisErrors {
     }
 }
 
+impl From<tokio::sync::oneshot::error::RecvError> for RealisErrors {
+    fn from(_error: tokio::sync::oneshot::error::RecvError) -> Self {
+        RealisErrors::Utils(Utils::Parse)
+    }
+}
+
 impl From<Vec<u8>> for RealisErrors {
     fn from(_: Vec<u8>) -> Self {
         RealisErrors::Nats(Nats::Send)
