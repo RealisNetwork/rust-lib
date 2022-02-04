@@ -1,8 +1,8 @@
 use crate::traits::{MessageReceiver, Transport};
 use async_trait::async_trait;
+use error_registry::{Nats as NatsError, RealisErrors};
 use futures::StreamExt;
 use ratsio::{StanClient, StanMessage, StanOptions, StanSid};
-use rust_lib::error_registry::{Nats as NatsError, RealisErrors};
 use std::sync::Arc;
 
 #[derive(Clone)]
@@ -54,19 +54,17 @@ impl Transport for Nats {
                     self.unsubscribe(stan_id).await?;
                     break;
                 }
-                Some(message) => {
-                    match callback.process(message.payload.clone(), message).await {
-                        Ok(true) => {}
-                        Ok(false) => {
-                            self.unsubscribe(stan_id).await?;
-                            break;
-                        }
-                        Err(error) => {
-                            self.unsubscribe(stan_id).await?;
-                            return Err(error);
-                        }
+                Some(message) => match callback.process(message.payload.clone(), message).await {
+                    Ok(true) => {}
+                    Ok(false) => {
+                        self.unsubscribe(stan_id).await?;
+                        break;
                     }
-                }
+                    Err(error) => {
+                        self.unsubscribe(stan_id).await?;
+                        return Err(error);
+                    }
+                },
             }
         }
 

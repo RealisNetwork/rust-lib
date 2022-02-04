@@ -19,8 +19,5 @@ pub mod nats;
 #[cfg(feature = "vault")]
 pub mod vault;
 
-#[cfg(feature = "error_registry")]
-pub mod error_registry;
-
 #[cfg(feature = "db")]
 pub mod inner_db;

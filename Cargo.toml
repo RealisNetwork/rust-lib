@@ -10,6 +10,7 @@ members = [
     "macros",
     "topics",
     "topics/parser",
+    "error_registry",
     "transport",
     "types",
 ]
@@ -17,6 +18,7 @@ members = [
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
 realis-macros = { path = "./macros", optional = true }
+error_registry = { path = "./error_registry", optional = true }
 
 serde = { version = "1.0.129", optional = true }
 reqwest = { version = "0.11.4", optional = true }
@@ -97,7 +99,6 @@ full = [
     "nats",
     "vault",
     "macros",
-    "error_registry",
     "db",
     "blockchain",
     "realis-macros",
@@ -131,18 +132,6 @@ config = [
     "dotenv",
 ]
 
-error_registry = [
-    "realis-macros",
-    "serde/derive",
-    "thiserror",
-    "derive_more",
-    "convert_case",
-    "serde_json",
-    "deadpool-postgres",
-    "backoff",
-    "tokio/time",
-]
-
 healthchecker = [
     "tokio/full",
     "futures",
@@ -161,7 +150,6 @@ db = [
     "log",
     "itertools",
     "deadpool-postgres",
-    "error_registry",
     "backoff",
 ]
 

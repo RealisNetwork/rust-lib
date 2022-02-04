@@ -1,6 +1,6 @@
-use crate::error_registry::{Db, RealisErrors};
 use backoff::{ExponentialBackoff, ExponentialBackoffBuilder};
 use deadpool_postgres::Pool;
+use error_registry::{Db, RealisErrors};
 use itertools::Itertools;
 use log::{error, trace};
 use rawsql::Loader;

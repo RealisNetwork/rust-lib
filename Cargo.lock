@@ -975,6 +975,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "error_registry"
+version = "0.1.0"
+dependencies = [
+ "backoff",
+ "convert_case 0.5.0",
+ "deadpool-postgres",
+ "derive_more",
+ "log 0.4.14",
+ "realis-macros",
+ "serde",
+ "serde_json",
+ "strum 0.23.0",
+ "strum_macros 0.23.1",
+ "thiserror",
+ "tokio 1.16.1",
+]
+
+[[package]]
 name = "fake-simd"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4102,6 +4120,7 @@ dependencies = [
  "deadpool-postgres",
  "derive_more",
  "dotenv",
+ "error_registry",
  "futures 0.1.31",
  "hashicorp_vault",
  "itertools 0.10.3",
@@ -4940,7 +4959,7 @@ dependencies = [
  "lazy_static",
  "sp-core",
  "sp-runtime",
- "strum",
+ "strum 0.20.0",
 ]
 
 [[package]]
@@ -5289,8 +5308,14 @@ version = "0.20.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7318c509b5ba57f18533982607f24070a55d353e90d4cae30c467cdb2ad5ac5c"
 dependencies = [
- "strum_macros",
+ "strum_macros 0.20.1",
 ]
+
+[[package]]
+name = "strum"
+version = "0.23.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cae14b91c7d11c9a851d3fbc80a963198998c2a64eec840477fa92d8ce9b70bb"
 
 [[package]]
 name = "strum_macros"
@@ -5301,6 +5326,19 @@ dependencies = [
  "heck",
  "proc-macro2 1.0.36",
  "quote 1.0.15",
+ "syn 1.0.86",
+]
+
+[[package]]
+name = "strum_macros"
+version = "0.23.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5bb0dc7ee9c15cea6199cde9a127fa16a4c5819af85395457ad72d68edc85a38"
+dependencies = [
+ "heck",
+ "proc-macro2 1.0.36",
+ "quote 1.0.15",
+ "rustversion",
  "syn 1.0.86",
 ]
 
@@ -6039,6 +6077,7 @@ name = "transport"
 version = "0.1.0"
 dependencies = [
  "async-trait",
+ "error_registry",
  "futures 0.3.19",
  "ratsio",
  "rust-lib",
@@ -6094,6 +6133,7 @@ checksum = "dcf81ac59edc17cc8697ff311e8f5ef2d99fcbd9817b34cec66f90b6c3dfd987"
 name = "types"
 version = "0.1.0"
 dependencies = [
+ "error_registry",
  "rust-lib",
  "serde",
  "serde_json",
