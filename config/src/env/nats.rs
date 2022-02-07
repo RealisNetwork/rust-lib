@@ -1,4 +1,4 @@
-use crate::env::{EnvLoadedError, Env, EnvLoaded};
+use crate::env::{Env, EnvLoaded, EnvLoadedError};
 
 #[derive(Debug, Clone, Env)]
 pub struct Nats {
@@ -14,11 +14,6 @@ pub struct Nats {
 impl Nats {
     pub async fn build(&self) -> transport::nats::Nats {
         let nats_options = format!("{}:{}", self.host, self.port);
-        transport::nats::Nats::new(
-            &nats_options,
-            self.client_id.as_str(),
-            self.cluster_id.as_str(),
-        )
-            .await
+        transport::nats::Nats::new(&nats_options, self.client_id.as_str(), self.cluster_id.as_str()).await
     }
 }

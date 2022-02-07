@@ -3,7 +3,7 @@ pub mod traits;
 use crate::traits::ToJson;
 use convert_case::{Case, Casing};
 use derive_more::Display;
-use realis_macros::{RealisErrors, ToJson, IntoRealisErrors};
+use realis_macros::{IntoRealisErrors, RealisErrors, ToJson};
 use serde::{de::Error, Deserialize, Deserializer, Serialize, Serializer};
 use std::str::FromStr;
 use strum::ParseError;

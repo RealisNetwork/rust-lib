@@ -1,5 +1,5 @@
+use crate::env::{Env, EnvLoaded, EnvLoadedError};
 use rust_lib::healthchecker::HealthChecker;
-use crate::env::{EnvLoadedError, Env, EnvLoaded};
 
 #[derive(Debug, Clone, Env)]
 pub struct Healthchecker {

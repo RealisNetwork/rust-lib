@@ -1,20 +1,19 @@
 mod byte_decode;
 mod byte_encode;
+mod deserialize_errors;
 mod env;
 mod gettable;
 mod gettable_errors;
 mod retry;
 mod to_json;
-mod deserialize_errors;
 
 use proc_macro::TokenStream;
 
 use crate::{
-    byte_decode::impl_byte_decode_macros, byte_encode::impl_byte_encode_macros, env::env::impl_env_macros,
-    gettable::impl_gettable_macros, gettable_errors::impl_gettable_errors_macros, retry::impl_retry_macros,
-    to_json::impl_to_json_macros,
+    byte_decode::impl_byte_decode_macros, byte_encode::impl_byte_encode_macros,
+    deserialize_errors::impl_deserialize_errors_macros, env::env::impl_env_macros, gettable::impl_gettable_macros,
+    gettable_errors::impl_gettable_errors_macros, retry::impl_retry_macros, to_json::impl_to_json_macros,
 };
-use crate::deserialize_errors::impl_deserialize_errors_macros;
 
 /// # Panics
 #[proc_macro_derive(Gettable, attributes(gettable))]
