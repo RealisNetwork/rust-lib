@@ -10,3 +10,17 @@ realis-macros = {path = "../macros"}
 dotenv = "0.15.0"
 log = "0.4.14"
 hex = "0.4.3"
+
+transport = { path = "../transport", optional = true }
+rust-lib = { path = "../../rust-lib", optional = true }
+
+[features]
+nats = [
+    "transport/nats",
+]
+database = [
+    "rust-lib/db",
+]
+healthchecker = [
+    "rust-lib/healthchecker",
+]

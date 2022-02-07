@@ -496,6 +496,8 @@ dependencies = [
  "hex",
  "log 0.4.14",
  "realis-macros",
+ "rust-lib",
+ "transport",
 ]
 
 [[package]]

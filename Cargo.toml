@@ -142,6 +142,7 @@ healthchecker = [
 ]
 
 db = [
+    "error_registry",
     "tokio/default",
     "postgres-openssl",
     "tokio-postgres",
