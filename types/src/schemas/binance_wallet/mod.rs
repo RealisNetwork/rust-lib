@@ -1,1 +1,1 @@
-mod get_or_create_wallet;
+pub mod get_or_create_wallet;
