@@ -3,7 +3,7 @@ pub mod traits;
 use crate::traits::ToJson;
 use convert_case::{Case, Casing};
 use derive_more::Display;
-use realis_macros::{RealisErrors, ToJson};
+use realis_macros::{IntoRealisErrors, RealisErrors, ToJson};
 use serde::{de::Error, Deserialize, Deserializer, Serialize, Serializer};
 use std::str::FromStr;
 use strum::ParseError;
@@ -11,7 +11,7 @@ use strum_macros::EnumString;
 use thiserror::Error;
 use tokio::time::error::Elapsed;
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Display, RealisErrors)]
+#[derive(Error, Debug, Eq, PartialEq, Clone, Display, RealisErrors, IntoRealisErrors)]
 pub enum RealisErrors {
     Db(Db),
     Common(Common),
@@ -54,74 +54,6 @@ impl Serialize for RealisErrors {
     {
         serializer.serialize_str(&self.as_string())
     }
-}
-
-impl<'de> Deserialize<'de> for RealisErrors {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-    where
-        D: Deserializer<'de>,
-    {
-        let error = String::deserialize(deserializer)?;
-
-        if error.contains('.') {
-            let splitted = error.split('.').map(String::from).collect::<Vec<String>>();
-            let enum_name = splitted
-                .first()
-                .ok_or(D::Error::custom("Missing error prefix error!"))?
-                .to_case(Case::UpperCamel);
-            let element = splitted
-                .get(1)
-                .ok_or(D::Error::custom("Missing error postfix error!"))?;
-
-            let realis_error = match match_error(enum_name, element) {
-                Ok(realis_err) => realis_err,
-                Err(_) => RealisErrors::Common(Common::Unknown),
-            };
-            Ok(realis_error)
-        } else {
-            Err(D::Error::custom("Unknown error!"))
-        }
-    }
-}
-
-pub fn match_error(enum_name: String, element: &String) -> Result<RealisErrors, ParseError> {
-    let enum_element = element.to_case(Case::UpperCamel);
-    let realis_error = match enum_name.as_str() {
-        "Db" => RealisErrors::Db(Db::from_str(&enum_element)?),
-        "Common" => RealisErrors::Common(Common::from_str(&enum_element)?),
-        "AdminOptions" => RealisErrors::AdminOptions(AdminOptions::from_str(&enum_element)?),
-        "Fs" => RealisErrors::Fs(Fs::from_str(&enum_element)?),
-        "Bff" => RealisErrors::Bff(Bff::from_str(&enum_element)?),
-        "Utils" => RealisErrors::Utils(Utils::from_str(&enum_element)?),
-        "Nats" => RealisErrors::Nats(Nats::from_str(&enum_element)?),
-        "Rpc" => RealisErrors::Rpc(Rpc::from_str(&enum_element)?),
-        "Validation" => RealisErrors::Validation(Validation::from_str(&enum_element)?),
-        "TwoFactorAuth" => RealisErrors::TwoFactorAuth(TwoFactorAuth::from_str(&enum_element)?),
-        "Redis" => RealisErrors::Redis(Redis::from_str(&enum_element)?),
-        "Billing" => RealisErrors::Billing(Billing::from_str(&enum_element)?),
-        "ProductRegistry" => RealisErrors::ProductRegistry(ProductRegistry::from_str(&enum_element)?),
-        "Permissions" => RealisErrors::Permissions(Permissions::from_str(&enum_element)?),
-        "Cron" => RealisErrors::Cron(Cron::from_str(&enum_element)?),
-        "Profile" => RealisErrors::Profile(Profile::from_str(&enum_element)?),
-        "Roles" => RealisErrors::Roles(Roles::from_str(&enum_element)?),
-        "GooglePlay" => RealisErrors::GooglePlay(GooglePlay::from_str(&enum_element)?),
-        "Orchestrator" => RealisErrors::Orchestrator(Orchestrator::from_str(&enum_element)?),
-        "RestorePassword" => RealisErrors::RestorePassword(RestorePassword::from_str(&enum_element)?),
-        "Blockchain" => RealisErrors::Blockchain(Blockchain::from_str(&enum_element)?),
-        "ProductFactory" => RealisErrors::ProductFactory(ProductFactory::from_str(&enum_element)?),
-        "Soul" => RealisErrors::Soul(Soul::from_str(&enum_element)?),
-        "Functions" => RealisErrors::Functions(Functions::from_str(&enum_element)?),
-        "Referrals" => RealisErrors::Referrals(Referrals::from_str(&enum_element)?),
-        "BytesFormatter" => RealisErrors::BytesFormatter(BytesFormatter::from_str(&enum_element)?),
-        "Status" => RealisErrors::Status(Status::from_str(&enum_element)?),
-        "Geo" => RealisErrors::Geo(Geo::from_str(&enum_element)?),
-        "Action" => RealisErrors::Action(Action::from_str(&enum_element)?),
-        "Promo" => RealisErrors::Promo(Promo::from_str(&enum_element)?),
-        "CustomInt" => RealisErrors::CustomInt(element.clone().parse::<i32>().expect("Not a number!")),
-        "CustomString" => RealisErrors::CustomString(element.clone()),
-        _ => RealisErrors::Common(Common::Unknown),
-    };
-    Ok(realis_error)
 }
 
 // impl From<RealisErrors> for backoff::Error<RealisErrors> {

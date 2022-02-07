@@ -1,5 +1,6 @@
 mod byte_decode;
 mod byte_encode;
+mod deserialize_errors;
 mod env;
 mod gettable;
 mod gettable_errors;
@@ -9,9 +10,9 @@ mod to_json;
 use proc_macro::TokenStream;
 
 use crate::{
-    byte_decode::impl_byte_decode_macros, byte_encode::impl_byte_encode_macros, env::env::impl_env_macros,
-    gettable::impl_gettable_macros, gettable_errors::impl_gettable_errors_macros, retry::impl_retry_macros,
-    to_json::impl_to_json_macros,
+    byte_decode::impl_byte_decode_macros, byte_encode::impl_byte_encode_macros,
+    deserialize_errors::impl_deserialize_errors_macros, env::env::impl_env_macros, gettable::impl_gettable_macros,
+    gettable_errors::impl_gettable_errors_macros, retry::impl_retry_macros, to_json::impl_to_json_macros,
 };
 
 /// # Panics
@@ -23,6 +24,12 @@ pub fn gettable_macro_derive(item: TokenStream) -> TokenStream {
 #[proc_macro_derive(ToJson)]
 pub fn to_json_macro_derive(item: TokenStream) -> TokenStream {
     impl_to_json_macros(item)
+}
+
+/// # Panics
+#[proc_macro_derive(IntoRealisErrors)]
+pub fn deserialize_macro_derive_errors(input: TokenStream) -> TokenStream {
+    impl_deserialize_errors_macros(input)
 }
 
 /// # Panics
@@ -70,7 +77,8 @@ pub fn byte_decode_macro_derive(item: TokenStream) -> TokenStream {
 /// as a dependency in Cargo.toml.
 ///
 /// On structs fields of that you want to take from env, import the derive macro
-/// as ```
+/// as
+/// ```
 /// use realis_config::env::EnvLoaded;
 /// use realis_config::env::Env;
 /// use realis_config::env::EnvLoadedError;

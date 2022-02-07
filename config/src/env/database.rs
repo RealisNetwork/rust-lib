@@ -1,8 +1,10 @@
+use crate::env::{Env, EnvLoaded, EnvLoadedError};
+use rust_lib::inner_db::{
+    client_inner::DatabaseClientInner,
+    client_inner_builder::{BuildError, DatabaseClientInnerBuilder},
+    consts::KEEPALIVES_IDLE_IN_SECS,
+};
 use std::time::Duration;
-use rust_lib::inner_db::client_inner::DatabaseClientInner;
-use rust_lib::inner_db::client_inner_builder::{BuildError, DatabaseClientInnerBuilder};
-use rust_lib::inner_db::consts::KEEPALIVES_IDLE_IN_SECS;
-use crate::env::{EnvLoadedError, Env, EnvLoaded};
 
 #[derive(Debug, Clone, Env)]
 pub struct Database {
@@ -25,6 +27,6 @@ impl Database {
             Some(Duration::from_secs(KEEPALIVES_IDLE_IN_SECS)),
             self.ssl,
         )
-            .await
+        .await
     }
 }
