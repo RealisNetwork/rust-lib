@@ -5,7 +5,7 @@ use serde::{Deserialize, Deserializer, Serialize, Serializer};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GetOrCreateWalletWithTokensSchema {
     pub id: String,
-    #[serde(rename = "topicResponse", alias = "topicRes")]
+    #[serde(rename = "topicResponse")]
     pub topic_res: String,
     #[serde(default)]
     pub params: Option<GetOrCreateWalletWithTokensParams>,
