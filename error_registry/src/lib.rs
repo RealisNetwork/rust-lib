@@ -47,6 +47,12 @@ pub enum RealisErrors {
     CustomString(String),
 }
 
+impl Default for RealisErrors {
+    fn default() -> Self {
+        RealisErrors::Common(Common::Unknown)
+    }
+}
+
 impl Serialize for RealisErrors {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where

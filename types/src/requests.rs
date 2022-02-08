@@ -1,4 +1,4 @@
-use error_registry::{Common, RealisErrors};
+use error_registry::RealisErrors;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
@@ -21,7 +21,7 @@ pub enum ResponseMessage<T> {
     Right { value: T },
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct ResponseError {
     pub msg: String,
     #[serde(rename = "type")]
@@ -31,17 +31,17 @@ pub struct ResponseError {
     pub status: Option<i32>,
 }
 
-impl Default for ResponseError {
-    fn default() -> Self {
-        ResponseError {
-            msg: "".to_string(),
-            error_type: RealisErrors::Common(Common::Unknown),
-            trace: None,
-            data: None,
-            status: None
-        }
-    }
-}
+// impl Default for ResponseError {
+//     fn default() -> Self {
+//         ResponseError {
+//             msg: "".to_string(),
+//             error_type: RealisErrors::Common(Common::Unknown),
+//             trace: None,
+//             data: None,
+//             status: None
+//         }
+//     }
+// }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthInfo {
