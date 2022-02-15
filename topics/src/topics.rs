@@ -12,9 +12,6 @@ pub const ADMIN_OPTION_UNSET_TOPIC: &'static str = "admin_option_unset";
 pub const ADMIN_OPTION_GET_TOPIC: &'static str = "admin_option_get";
 pub const ADMIN_OPTION_GET_LIST_TOPIC: &'static str = "admin_option_getList";
 pub const ADMIN_OPTION_GET_BY_SCOPE_TOPIC: &'static str = "admin_option_getByScope";
-pub const ADMIN_OPTION_GET_NICKNAME_PRICE_TOPIC: &'static str = "admin_option_getNicknamePrice";
-pub const ADMIN_OPTION_GET_REFERRAL_REWARD_TOPIC: &'static str = "admin_option_getReferralReward";
-pub const ADMIN_OPTION_GET_REFERRAL_FEE_TOPIC: &'static str = "admin_option_getReferralFee";
 pub const ADMIN_PERMISSION_ADD_TOPIC: &'static str = "admin_permission_add";
 pub const ADMIN_PERMISSION_DELETE_TOPIC: &'static str = "admin_permission_delete";
 pub const ADMIN_PERMISSION_UPDATE_PERMISSIONS_TOPIC: &'static str = "admin_permission_updatePermissions";
@@ -167,7 +164,6 @@ pub const CATS_AND_DRAGONS_WRAPPER_GET_NICKNAME_TOPIC: &'static str = "catsAndDr
 pub const CATS_AND_DRAGONS_WRAPPER_GET_USER_INFO_TOPIC: &'static str = "catsAndDragons_wrapper_getUserInfo";
 pub const CATS_AND_DRAGONS_WRAPPER_GET_MEMBERSHIPS_AND_PRICES_AMOUNT_TOPIC: &'static str =
     "catsAndDragons_wrapper_getMembershipsAndPricesAmount";
-pub const CATS_AND_DRAGONS_WRAPPER_SET_MEMBERSHIP_TOPIC: &'static str = "catsAndDragons_wrapper_setMembership";
 pub const CATS_AND_DRAGONS_WRAPPER_GET_USER_MEMBERSHIP_INFO_TOPIC: &'static str =
     "catsAndDragons_wrapper_getUserMembershipInfo";
 pub const CATS_AND_DRAGONS_WRAPPER_EMPTY_METHOD_TOPIC: &'static str = "catsAndDragons_wrapper_emptyMethod";
@@ -175,6 +171,65 @@ pub const CRON_CRON_CREATE_TOPIC: &'static str = "cron_cron_create";
 pub const CRON_CRON_UPDATE_TOPIC: &'static str = "cron_cron_update";
 pub const CRON_CRON_GET_TOPIC: &'static str = "cron_cron_get";
 pub const CRON_CRON_DELETE_TOPIC: &'static str = "cron_cron_delete";
+pub const DRAGONS_LOBBY_ACHIEVEMENT_COMPLETE_TOPIC: &'static str = "dragons_lobby_achievementComplete";
+pub const DRAGONS_LOBBY_GET_ALL_ACHIEVEMENTS_TOPIC: &'static str = "dragons_lobby_getAllAchievements";
+pub const DRAGONS_LOBBY_GET_USERS_ACHIEVEMENTS_TOPIC: &'static str = "dragons_lobby_getUsersAchievements";
+pub const DRAGONS_LOBBY_ADVENTURE_MAP_LEVEL_UP_TOPIC: &'static str = "dragons_lobby_adventureMapLevelUp";
+pub const DRAGONS_LOBBY_GET_ADVENTURE_MAP_STATS_TOPIC: &'static str = "dragons_lobby_getAdventureMapStats";
+pub const DRAGONS_LOBBY_GET_APPLICATION_SETTINGS_TOPIC: &'static str = "dragons_lobby_getApplicationSettings";
+pub const DRAGONS_LOBBY_CRAFT_BINGO_RECIPE_TOPIC: &'static str = "dragons_lobby_craftBingoRecipe";
+pub const DRAGONS_LOBBY_GET_BINGO_DATA_TOPIC: &'static str = "dragons_lobby_getBingoData";
+pub const DRAGONS_LOBBY_GET_USERS_CARDS_TOPIC: &'static str = "dragons_lobby_getUsersCards";
+pub const DRAGONS_LOBBY_UPGRADE_CARD_TOPIC: &'static str = "dragons_lobby_upgradeCard";
+pub const DRAGONS_LOBBY_GET_CLIENT_VERSION_TOPIC: &'static str = "dragons_lobby_getClientVersion";
+pub const DRAGONS_LOBBY_GET_CONFIG_BY_ID_TOPIC: &'static str = "dragons_lobby_getConfigById";
+pub const DRAGONS_LOBBY_UPDATE_CONFIG_TOPIC: &'static str = "dragons_lobby_updateConfig";
+pub const DRAGONS_LOBBY_BUY_CAT_TOPIC: &'static str = "dragons_lobby_buyCat";
+pub const DRAGONS_LOBBY_BUY_SCIENCE_TOPIC: &'static str = "dragons_lobby_buyScience";
+pub const DRAGONS_LOBBY_BUY_SKILL_TOPIC: &'static str = "dragons_lobby_buySkill";
+pub const DRAGONS_LOBBY_BUY_USUAL_LOOTBOX_TOPIC: &'static str = "dragons_lobby_buyUsualLootbox";
+pub const DRAGONS_LOBBY_GET_BINGO_JACKPOT_POOL_TOPIC: &'static str = "dragons_lobby_getBingoJackpotPool";
+pub const DRAGONS_LOBBY_GET_BINGO_JACKPOT_WINNERS_INFO_TOPIC: &'static str = "dragons_lobby_getBingoJackpotWinnersInfo";
+pub const DRAGONS_LOBBY_GET_LOOTBOX_JACKPOT_WINNERS_INFO_TOPIC: &'static str =
+    "dragons_lobby_getLootboxJackpotWinnersInfo";
+pub const DRAGONS_LOBBY_GET_LOOTBOX_JACKPOT_POOL_TOPIC: &'static str = "dragons_lobby_getLootboxJackpotPool";
+pub const DRAGONS_LOBBY_GET_PREVIOUS_TOURNAMENT_STATS_TOPIC: &'static str = "dragons_lobby_getPreviousTournamentStats";
+pub const DRAGONS_LOBBY_GET_SOFT_LEADERBOARD_STATS_TOPIC: &'static str = "dragons_lobby_getSoftLeaderboardStats";
+pub const DRAGONS_LOBBY_GET_TOURNAMENT_LEADERBOARD_STATS_TOPIC: &'static str =
+    "dragons_lobby_getTournamentLeaderboardStats";
+pub const DRAGONS_LOBBY_GET_LOOTBOXES_INFO_TOPIC: &'static str = "dragons_lobby_getLootboxesInfo";
+pub const DRAGONS_LOBBY_GET_USUAL_LOOTBOX_TIME_TOPIC: &'static str = "dragons_lobby_getUsualLootboxTime";
+pub const DRAGONS_LOBBY_OPEN_LOOTBOX_TOPIC: &'static str = "dragons_lobby_openLootbox";
+pub const DRAGONS_LOBBY_GET_AVAILABLE_MEMBERSHIP_AMOUNT_TOPIC: &'static str =
+    "dragons_lobby_getAvailableMembershipAmount";
+pub const DRAGONS_LOBBY_GET_OFFERS_AND_BONUSES_TOPIC: &'static str = "dragons_lobby_getOffersAndBonuses";
+pub const DRAGONS_LOBBY_REFUSE_OFFER_TOPIC: &'static str = "dragons_lobby_refuseOffer";
+pub const DRAGONS_LOBBY_SAVE_TUTORIAL_PROGRESS_TOPIC: &'static str = "dragons_lobby_saveTutorialProgress";
+pub const DRAGONS_LOBBY_SAVE_USERS_PROGRESS_TOPIC: &'static str = "dragons_lobby_saveUsersProgress";
+pub const DRAGONS_LOBBY_GET_USERS_REFERRALS_TOPIC: &'static str = "dragons_lobby_getUsersReferrals";
+pub const DRAGONS_LOBBY_SET_REFERRER_TOPIC: &'static str = "dragons_lobby_setReferrer";
+pub const DRAGONS_LOBBY_GET_SERVER_TIME_TOPIC: &'static str = "dragons_lobby_getServerTime";
+pub const DRAGONS_LOBBY_KEEP_ALIVE_TOPIC: &'static str = "dragons_lobby_keepAlive";
+pub const DRAGONS_LOBBY_GET_SPIN_REWARDS_TOPIC: &'static str = "dragons_lobby_getSpinRewards";
+pub const DRAGONS_LOBBY_USE_SPIN_TOPIC: &'static str = "dragons_lobby_useSpin";
+pub const DRAGONS_LOBBY_COMPLETE_TASK_TOPIC: &'static str = "dragons_lobby_completeTask";
+pub const DRAGONS_LOBBY_GET_CURRENT_TASKS_TOPIC: &'static str = "dragons_lobby_getCurrentTasks";
+pub const DRAGONS_LOBBY_GET_USERS_COMPLETED_TASKS_TOPIC: &'static str = "dragons_lobby_getUsersCompletedTasks";
+pub const DRAGONS_LOBBY_USER_VALIDATION_TOPIC: &'static str = "dragons_lobby_userValidation";
+pub const DRAGONS_LOBBY_GET_BAD_TRANSACTIONS_TOPIC: &'static str = "dragons_lobby_getBadTransactions";
+pub const DRAGONS_LOBBY_GET_USER_ID_BY_TRANSACTION_ID_TOPIC: &'static str = "dragons_lobby_getUserIdByTransactionId";
+pub const DRAGONS_LOBBY_GET_USERS_INAPP_PURCHASES_TOPIC: &'static str = "dragons_lobby_getUsersInappPurchases";
+pub const DRAGONS_LOBBY_RESET_DEVICE_ID_TOPIC: &'static str = "dragons_lobby_resetDeviceId";
+pub const DRAGONS_LOBBY_UNLINK_ACCOUNT_TOPIC: &'static str = "dragons_lobby_unlinkAccount";
+pub const DRAGONS_LOBBY_GET_PROFILE_TOPIC: &'static str = "dragons_lobby_getProfile";
+pub const DRAGONS_LOBBY_GET_SOUL_PRICE_TOPIC: &'static str = "dragons_lobby_getSoulPrice";
+pub const DRAGONS_LOBBY_PURCHASE_VALIDATION_TOPIC: &'static str = "dragons_lobby_purchaseValidation";
+pub const DRAGONS_LOBBY_RETRIEVE_USERS_PROGRESS_TOPIC: &'static str = "dragons_lobby_retrieveUsersProgress";
+pub const DRAGONS_LOBBY_SHARE_SCORE_TOPIC: &'static str = "dragons_lobby_shareScore";
+pub const DRAGONS_LOBBY_SET_USER_APP_METRICA_DEVICE_ID_TOPIC: &'static str = "dragons_lobby_setUserAppMetricaDeviceId";
+pub const DRAGONS_LOBBY_GET_JACKPOT_WINNERS_INFO_TOPIC: &'static str = "dragons_lobby_getJackpotWinnersInfo";
+pub const DRAGONS_LOBBY_GET_PROFILE_INFO_TOPIC: &'static str = "dragons_lobby_getProfileInfo";
+pub const DRAGONS_LOBBY_APPLICATION_INITIALIZATION_TOPIC: &'static str = "dragons_lobby_applicationInitialization";
 pub const EMAIL_EMAIL_FIND_ALL_TOPIC: &'static str = "email_email_findAll";
 pub const EMAIL_EMAIL_CREATE_CRON_JOB_TOPIC: &'static str = "email_email_createCronJob";
 pub const EMAIL_EMAIL_CREATE_AND_SEND_TOPIC: &'static str = "email_email_createAndSend";
@@ -193,6 +248,14 @@ pub const GOOGLE_PLAY_PURCHASE_PURCHASE_TOPIC: &'static str = "google-play_purch
 pub const GOOGLE_PLAY_PURCHASE_CHECK_UNCONFIRMED_PURCHASE_TOPIC: &'static str =
     "google-play_purchase_checkUnconfirmedPurchase";
 pub const GOOGLE_PLAY_PURCHASE_SET_MEMBERSHIP_TOPIC: &'static str = "google-play_purchase_setMembership";
+pub const GOOGLE_PLAY_PURCHASE_CHECK_SUBSCRIPTION_RENEW_TOPIC: &'static str =
+    "google-play_purchase_checkSubscriptionRenew";
+pub const LISTERIA_STORAGE_HEROES_GET_HEROES_LIST_BY_USER_ID_TOPIC: &'static str =
+    "listeriaStorage_heroes_getHeroesListByUserId";
+pub const LISTERIA_STORAGE_HEROES_GIVE_FREE_EXPERIENCE_TO_HERO_TOPIC: &'static str =
+    "listeriaStorage_heroes_giveFreeExperienceToHero";
+pub const LISTERIA_STORAGE_HEROES_HERO_ADDED_NOTIFICATION_TOPIC: &'static str =
+    "listeriaStorage_heroes_heroAddedNotification";
 pub const LOBBY_HEROES_GET_HEROES_LIST_BY_USER_ID_TOPIC: &'static str = "lobby_heroes_getHeroesListByUserId";
 pub const LOBBY_HEROES_GET_ACTIVE_HERO_BY_USER_ID_TOPIC: &'static str = "lobby_heroes_getActiveHeroByUserId";
 pub const LOBBY_HEROES_HERO_ADDED_NOTIFICATION_TOPIC: &'static str = "lobby_heroes_heroAddedNotification";
@@ -337,7 +400,6 @@ pub const TRANSACTIONS_BALANCE_INCREASE_BALANCE_BY_USER_ID_TOPIC: &'static str =
     "transactions_balance_increaseBalanceByUserId";
 pub const TRANSACTIONS_BALANCE_DECREASE_BALANCE_BY_USER_ID_TOPIC: &'static str =
     "transactions_balance_decreaseBalanceByUserId";
-pub const TRANSACTIONS_BALANCE_PURCHASE_PRODUCT_TOPIC: &'static str = "transactions_balance_purchaseProduct";
 pub const TRANSACTIONS_BALANCE_GET_ALL_TOPIC: &'static str = "transactions_balance_getAll";
 pub const TRANSACTIONS_BALANCE_GET_ALL_MY_TOPIC: &'static str = "transactions_balance_getAllMy";
 pub const TRANSACTIONS_BALANCE_GET_MY_NUM_OF_TRANSACTIONS_TOPIC: &'static str =
@@ -362,13 +424,9 @@ pub const TRANSACTIONS_REGISTRY_PRODUCT_GET_USER_ITEMS_TOPIC: &'static str =
     "transactions_registryProduct_getUserItems";
 pub const TRANSACTIONS_REGISTRY_PRODUCT_GET_PERSONAL_TYPES_BY_USER_TOPIC: &'static str =
     "transactions_registryProduct_getPersonalTypesByUser";
-pub const TRANSACTIONS_REGISTRY_PRODUCT_TRANSFER_PRODUCT_TOPIC: &'static str =
-    "transactions_registryProduct_transferProduct";
 pub const TRANSACTIONS_REGISTRY_PRODUCT_DELETE_PRODUCT_BY_USER_ID_TOPIC: &'static str =
     "transactions_registryProduct_deleteProductByUserId";
-pub const USER_PROFILE_ASSIGN_STATUS_TOPIC: &'static str = "user_profile_assignStatus";
 pub const USER_PROFILE_CHANGE_NICKNAME_TOPIC: &'static str = "user_profile_changeNickname";
-pub const USER_PROFILE_SET_NICKNAME_TOPIC: &'static str = "user_profile_setNickname";
 pub const USER_PROFILE_GET_PROFILE_TOPIC: &'static str = "user_profile_getProfile";
 pub const USER_PROFILE_GET_MY_PROFILE_TOPIC: &'static str = "user_profile_getMyProfile";
 pub const USER_PROFILE_GET_ALL_PROFILES_TOPIC: &'static str = "user_profile_getAllProfiles";
@@ -462,3 +520,4 @@ pub const START_GAME_TOPIC: &'static str = "start_game";
 pub const STATISTIC_BROADCAST_TOPIC: &'static str = "statistic_broadcast";
 pub const CHECK_IN_BROADCAST_TOPIC: &'static str = "check_in_broadcast";
 pub const GATEWAY_NOTIFICATION_TOPIC: &'static str = "gateway-notification";
+pub const STATS_BROADCAST_TOPIC: &'static str = "stats_broadcast";

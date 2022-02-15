@@ -60,25 +60,25 @@ backoff = { version = "0.4.0", optional = true }
 # Custom dependencies
 [dependencies.realis-primitives]
 git = "https://github.com/RealisNetwork/Realis.Network.git"
-branch = "main"
+branch = "substrate_polka_v0.9.9"
 package = "realis-primitives"
 optional = true
 
 [dependencies.runtime]
 git =  "https://github.com/RealisNetwork/Realis.Network.git"
-branch = "main"
+branch = "substrate_polka_v0.9.9"
 package = "node-runtime"
 optional = true
 
 [dependencies.sp-core]
 git = "https://github.com/RealisNetwork/substrate.git"
-branch = "master"
+branch = "polka_v0.9.9"
 optional = true
 
 [dependencies.sp-runtime]
 version = "4.0.0-dev"
 git = "https://github.com/RealisNetwork/substrate.git"
-branch = "master"
+branch = "polka_v0.9.9"
 optional = true
 
 
