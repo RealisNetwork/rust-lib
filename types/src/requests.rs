@@ -1,6 +1,8 @@
-use error_registry::RealisErrors;
+use deadpool::managed::PoolError;
+use error_registry::{Db, RealisErrors};
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
+use tokio_postgres::Error;
 
 /// M
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -29,6 +31,18 @@ pub struct ResponseError {
     pub trace: Option<String>,
     pub data: Option<Value>,
     pub status: Option<i32>,
+}
+
+impl From<PoolError<Error>> for ResponseError {
+    fn from(error: PoolError<Error>) -> Self {
+        Self {
+            msg: format!("Fail to get db connection from pool `{:?}`", error),
+            error_type: RealisErrors::Db(Db::ConnectionError),
+            trace: None,
+            data: None,
+            status: None,
+        }
+    }
 }
 
 // impl Default for ResponseError {
