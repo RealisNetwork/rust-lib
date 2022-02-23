@@ -248,8 +248,8 @@ pub const GOOGLE_PLAY_PURCHASE_PURCHASE_TOPIC: &'static str = "google-play_purch
 pub const GOOGLE_PLAY_PURCHASE_CHECK_UNCONFIRMED_PURCHASE_TOPIC: &'static str =
     "google-play_purchase_checkUnconfirmedPurchase";
 pub const GOOGLE_PLAY_PURCHASE_SET_MEMBERSHIP_TOPIC: &'static str = "google-play_purchase_setMembership";
-pub const GOOGLE_PLAY_PURCHASE_CHECK_SUBSCRIPTION_RENEW_TOPIC: &'static str =
-    "google-play_purchase_checkSubscriptionRenew";
+pub const GOOGLE_PLAY_PURCHASE_CHECK_SUBSCRIPTION_RENEWING_TOPIC: &'static str =
+    "google-play_purchase_checkSubscriptionRenewing";
 pub const LISTERIA_STORAGE_HEROES_GET_HEROES_LIST_BY_USER_ID_TOPIC: &'static str =
     "listeriaStorage_heroes_getHeroesListByUserId";
 pub const LISTERIA_STORAGE_HEROES_GIVE_FREE_EXPERIENCE_TO_HERO_TOPIC: &'static str =
@@ -511,10 +511,16 @@ pub const SUBSCRIBE_TO_GET_USER_ID_AND_PRODUCT_ID_PF: &'static str = "get_userId
 pub const SUBSCRIBE_TO_GET_PRODUCT_ID_AND_HASH_ID_PF: &'static str = "get_productId_and_hashId_pf";
 pub const SEND_PRODUCT_TO_BURN: &'static str = "send_product_to_burn";
 pub const SEND_USER_ID_AND_PRODUCT_ID_PF: &'static str = "send_userId_and_productId_pf";
+pub const DECREASE_BALANCE_BROADCAST_TOPIC: &'static str = "decrease_balance_broadcast_topic";
+pub const INCREASE_BALANCE_BROADCAST_TOPIC: &'static str = "increase_balance_broadcast_topic";
 pub const OPEN_LOOTBOX_TOPIC: &'static str = "open_lootbox_topic";
 pub const GET_ITEMS_FROM_LOOTBOX_TOPIC: &'static str = "get_items_from_lootbox_topic";
 pub const ADD_HERO_TOPIC: &'static str = "add_hero_topic";
 pub const ADD_ITEM_TOPIC: &'static str = "add_item_topic";
+pub const LOOTBOX_HERO_BROADCAST_TOPIC: &'static str = "lootbox_hero_broadcast_topic";
+pub const LOOTBOX_ITEM_BROADCAST_TOPIC: &'static str = "lootbox_item_broadcast_topic";
+pub const LOOTBOX_UNEQUIPABLE_ITEM_TOPIC: &'static str = "lootbox_unequipable_item_topic";
+pub const LOOTBOX_BALANCES_TOPIC: &'static str = "lootbox_balances_topic";
 pub const SEARCH_GAME_TOPIC: &'static str = "search_game";
 pub const START_GAME_TOPIC: &'static str = "start_game";
 pub const STATISTIC_BROADCAST_TOPIC: &'static str = "statistic_broadcast";
