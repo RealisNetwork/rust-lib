@@ -15,10 +15,10 @@ dependencies = [
 [[package]]
 name = "ac-node-api"
 version = "0.1.0"
-source = "git+https://github.com/RealisNetwork/substrate-api-client.git?branch=polka_v0.9.9#63c2197d75fc8f1123fe27a6ac2191aa740b42e2"
+source = "git+https://github.com/RealisNetwork/substrate-api-client.git#9e024ea39dfe95577a30e62d7fdf23b63bee7b2c"
 dependencies = [
  "ac-primitives",
- "frame-metadata 14.0.0",
+ "frame-metadata 14.2.0",
  "frame-support",
  "frame-system",
  "hex",
@@ -26,18 +26,18 @@ dependencies = [
  "parity-scale-codec",
  "serde",
  "serde_json",
- "sp-core",
- "sp-runtime",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "thiserror",
 ]
 
 [[package]]
 name = "ac-primitives"
 version = "0.1.0"
-source = "git+https://github.com/RealisNetwork/substrate-api-client.git?branch=polka_v0.9.9#63c2197d75fc8f1123fe27a6ac2191aa740b42e2"
+source = "git+https://github.com/RealisNetwork/substrate-api-client.git#9e024ea39dfe95577a30e62d7fdf23b63bee7b2c"
 dependencies = [
  "parity-scale-codec",
- "sp-core",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
 ]
 
 [[package]]
@@ -145,135 +145,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8da52d66c7071e2e3fa2a1e5c6d088fec47b593032b254f5e980de8ea54454d6"
 
 [[package]]
-name = "async-channel"
-version = "1.6.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2114d64672151c0c5eaa5e131ec84a74f06e1e559830dabba01ca30605d66319"
-dependencies = [
- "concurrent-queue",
- "event-listener",
- "futures-core",
-]
-
-[[package]]
-name = "async-executor"
-version = "1.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "871f9bb5e0a22eeb7e8cf16641feb87c9dc67032ccf8ff49e772eb9941d3a965"
-dependencies = [
- "async-task",
- "concurrent-queue",
- "fastrand",
- "futures-lite",
- "once_cell",
- "slab 0.4.5",
-]
-
-[[package]]
-name = "async-global-executor"
-version = "2.0.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9586ec52317f36de58453159d48351bc244bc24ced3effc1fce22f3d48664af6"
-dependencies = [
- "async-channel",
- "async-executor",
- "async-io",
- "async-mutex",
- "blocking",
- "futures-lite",
- "num_cpus",
- "once_cell",
-]
-
-[[package]]
-name = "async-io"
-version = "1.6.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a811e6a479f2439f0c04038796b5cfb3d2ad56c230e0f2d3f7b04d68cfee607b"
-dependencies = [
- "concurrent-queue",
- "futures-lite",
- "libc",
- "log 0.4.14",
- "once_cell",
- "parking",
- "polling",
- "slab 0.4.5",
- "socket2 0.4.4",
- "waker-fn",
- "winapi 0.3.9",
-]
-
-[[package]]
-name = "async-lock"
-version = "2.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e6a8ea61bf9947a1007c5cada31e647dbc77b103c679858150003ba697ea798b"
-dependencies = [
- "event-listener",
-]
-
-[[package]]
-name = "async-mutex"
-version = "1.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "479db852db25d9dbf6204e6cb6253698f175c15726470f78af0d918e99d6156e"
-dependencies = [
- "event-listener",
-]
-
-[[package]]
-name = "async-process"
-version = "1.3.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "83137067e3a2a6a06d67168e49e68a0957d215410473a740cea95a2425c0b7c6"
-dependencies = [
- "async-io",
- "blocking",
- "cfg-if 1.0.0",
- "event-listener",
- "futures-lite",
- "libc",
- "once_cell",
- "signal-hook",
- "winapi 0.3.9",
-]
-
-[[package]]
-name = "async-std"
-version = "1.10.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f8056f1455169ab86dd47b47391e4ab0cbd25410a70e9fe675544f49bafaf952"
-dependencies = [
- "async-channel",
- "async-global-executor",
- "async-io",
- "async-lock",
- "async-process",
- "crossbeam-utils 0.8.6",
- "futures-channel",
- "futures-core",
- "futures-io",
- "futures-lite",
- "gloo-timers",
- "kv-log-macro",
- "log 0.4.14",
- "memchr",
- "num_cpus",
- "once_cell",
- "pin-project-lite 0.2.8",
- "pin-utils",
- "slab 0.4.5",
- "wasm-bindgen-futures",
-]
-
-[[package]]
-name = "async-task"
-version = "4.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "677d306121baf53310a3fd342d88dc0824f6bbeace68347593658525565abee8"
-
-[[package]]
 name = "async-trait"
 version = "0.1.52"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -289,12 +160,6 @@ name = "atomic-counter"
 version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "62f447d68cfa5a9ab0c1c862a703da2a65b5ed1b7ce1153c9eb0169506d56019"
-
-[[package]]
-name = "atomic-waker"
-version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "065374052e7df7ee4047b1160cca5e1467a12351a40b3da123c870ba0b8eda2a"
 
 [[package]]
 name = "atty"
@@ -350,6 +215,12 @@ name = "base58"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5024ee8015f02155eee35c711107ddd9a9bf3cb689cf2a9089c97e79b6e1ae83"
+
+[[package]]
+name = "base58"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6107fe1be6682a68940da878d9e9f5e90ca5745b3dec9fd1bb393c8777d4f581"
 
 [[package]]
 name = "base64"
@@ -447,20 +318,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8d696c370c750c948ada61c69a0ee2cbbb9c50b1019ddb86d9317157a99c2cae"
 
 [[package]]
-name = "blocking"
-version = "1.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "046e47d4b2d391b1f6f8b407b1deb8dee56c1852ccd868becf2710f601b5f427"
-dependencies = [
- "async-channel",
- "async-task",
- "atomic-waker",
- "fastrand",
- "futures-lite",
- "once_cell",
-]
-
-[[package]]
 name = "build-helper"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -531,12 +388,6 @@ name = "bytes"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c4872d67bab6358e59559027aa3b9157c53d9358c51423c17554809a8858e0f8"
-
-[[package]]
-name = "cache-padded"
-version = "1.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c1db59621ec70f09c5e9b597b220c7a2b43611f4710dc03ceb8748637775692c"
 
 [[package]]
 name = "camino"
@@ -641,15 +492,6 @@ dependencies = [
  "atty",
  "lazy_static",
  "winapi 0.3.9",
-]
-
-[[package]]
-name = "concurrent-queue"
-version = "1.2.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "30ed07550be01594c6026cff2a1d7fe9c8f683caa798e12b68694ac9e88286a3"
-dependencies = [
- "cache-padded",
 ]
 
 [[package]]
@@ -818,16 +660,6 @@ checksum = "b1d1a86f49236c215f271d40892d5fc950490551400b02ef360692c29815c714"
 dependencies = [
  "generic-array 0.14.5",
  "subtle 2.4.1",
-]
-
-[[package]]
-name = "ctor"
-version = "0.1.21"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ccc0a48a9b826acdf4028595adc9db92caea352f7af011a3034acd172a52a0aa"
-dependencies = [
- "quote 1.0.15",
- "syn 1.0.86",
 ]
 
 [[package]]
@@ -1169,12 +1001,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "event-listener"
-version = "2.5.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "77f3309417938f28bf8228fcff79a4a37103981e3e186d2ccd19c74b38f4eb71"
-
-[[package]]
 name = "fake-simd"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1208,7 +1034,7 @@ dependencies = [
  "num-traits",
  "parity-scale-codec",
  "parking_lot 0.11.2",
- "scale-info 1.0.0",
+ "scale-info",
 ]
 
 [[package]]
@@ -1263,7 +1089,7 @@ dependencies = [
 [[package]]
 name = "frame-benchmarking"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -1272,67 +1098,67 @@ dependencies = [
  "parity-scale-codec",
  "paste",
  "sp-api",
- "sp-io",
- "sp-runtime",
- "sp-runtime-interface",
- "sp-std",
- "sp-storage",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-runtime-interface 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
+ "sp-storage 4.0.0-dev",
 ]
 
 [[package]]
 name = "frame-election-provider-support"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-support",
  "frame-system",
  "parity-scale-codec",
- "sp-arithmetic",
+ "sp-arithmetic 4.0.0-dev",
  "sp-npos-elections",
- "sp-std",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "frame-executive"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-support",
  "frame-system",
  "parity-scale-codec",
- "sp-core",
- "sp-io",
- "sp-runtime",
- "sp-std",
- "sp-tracing",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
+ "sp-tracing 4.0.0-dev",
 ]
 
 [[package]]
 name = "frame-metadata"
 version = "14.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "parity-scale-codec",
  "serde",
- "sp-core",
- "sp-std",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "frame-metadata"
-version = "14.0.0"
-source = "git+https://github.com/paritytech/frame-metadata.git?branch=aj-docs-feature#2d560b342dbff13ce78b2021827db04b5eca22d6"
+version = "14.2.0"
+source = "git+https://github.com/paritytech/frame-metadata.git?branch=main#f0c7151a950f9e1002bf40d260ec32032f76d7ed"
 dependencies = [
  "cfg-if 1.0.0",
  "parity-scale-codec",
- "scale-info 0.9.2",
+ "scale-info",
  "serde",
 ]
 
 [[package]]
 name = "frame-support"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "bitflags",
  "frame-metadata 14.0.0-dev",
@@ -1344,21 +1170,21 @@ dependencies = [
  "paste",
  "serde",
  "smallvec 1.8.0",
- "sp-arithmetic",
- "sp-core",
+ "sp-arithmetic 4.0.0-dev",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "sp-inherents",
- "sp-io",
- "sp-runtime",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "sp-staking",
- "sp-state-machine",
- "sp-std",
- "sp-tracing",
+ "sp-state-machine 0.10.0-dev",
+ "sp-std 4.0.0-dev",
+ "sp-tracing 4.0.0-dev",
 ]
 
 [[package]]
 name = "frame-support-procedural"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "Inflector",
  "frame-support-procedural-tools",
@@ -1370,7 +1196,7 @@ dependencies = [
 [[package]]
 name = "frame-support-procedural-tools"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-support-procedural-tools-derive",
  "proc-macro-crate",
@@ -1382,7 +1208,7 @@ dependencies = [
 [[package]]
 name = "frame-support-procedural-tools-derive"
 version = "3.0.0"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "proc-macro2 1.0.36",
  "quote 1.0.15",
@@ -1392,24 +1218,23 @@ dependencies = [
 [[package]]
 name = "frame-system"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-support",
- "impl-trait-for-tuples",
  "log 0.4.14",
  "parity-scale-codec",
  "serde",
- "sp-core",
- "sp-io",
- "sp-runtime",
- "sp-std",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
  "sp-version",
 ]
 
 [[package]]
 name = "frame-system-rpc-runtime-api"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "parity-scale-codec",
  "sp-api",
@@ -1418,13 +1243,12 @@ dependencies = [
 [[package]]
 name = "frame-try-runtime"
 version = "0.10.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-support",
- "parity-scale-codec",
  "sp-api",
- "sp-runtime",
- "sp-std",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
@@ -1509,21 +1333,6 @@ name = "futures-io"
 version = "0.3.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b1f9d34af5a1aac6fb380f735fe510746c38067c5bf16c7fd250280503c971b2"
-
-[[package]]
-name = "futures-lite"
-version = "1.12.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7694489acd39452c77daa48516b894c153f192c3578d5a839b62c58099fcbf48"
-dependencies = [
- "fastrand",
- "futures-core",
- "futures-io",
- "memchr",
- "parking",
- "pin-project-lite 0.2.8",
- "waker-fn",
-]
 
 [[package]]
 name = "futures-macro"
@@ -1628,18 +1437,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "78cc372d058dcf6d5ecd98510e7fbc9e5aec4d21de70f65fea8fecebcd881bd4"
 
 [[package]]
-name = "gloo-timers"
-version = "0.2.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4d12a7f4e95cfe710f1d624fb1210b7d961a5fb05c4fd942f4feab06e61f590e"
-dependencies = [
- "futures-channel",
- "futures-core",
- "js-sys",
- "wasm-bindgen",
-]
-
-[[package]]
 name = "h2"
 version = "0.2.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1698,6 +1495,15 @@ name = "hashbrown"
 version = "0.11.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ab5ef0d4909ef3724cc8cce6ccc8572c5c817592e9285f5464f8e86f8bd3726e"
+dependencies = [
+ "ahash",
+]
+
+[[package]]
+name = "hashbrown"
+version = "0.12.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8c21d40587b92fa6a6c6e3c1bdbf87d75511db5672f9c93175574b3a00df1758"
 dependencies = [
  "ahash",
 ]
@@ -1797,6 +1603,17 @@ dependencies = [
  "digest 0.8.1",
  "generic-array 0.12.4",
  "hmac 0.7.1",
+]
+
+[[package]]
+name = "hmac-drbg"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "17ea0a1394df5b6574da6e0c1ade9e78868c9fb0a4e5ef4428e32da4676b85b1"
+dependencies = [
+ "digest 0.9.0",
+ "generic-array 0.14.5",
+ "hmac 0.8.1",
 ]
 
 [[package]]
@@ -2001,7 +1818,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "282a6247722caba404c065016bbfa522806e51714c34f5dfc3e4a3a46fcb4223"
 dependencies = [
  "autocfg 1.0.1",
- "hashbrown",
+ "hashbrown 0.11.2",
 ]
 
 [[package]]
@@ -2116,15 +1933,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "kv-log-macro"
-version = "1.0.7"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0de8b303297635ad57c9f5059fd9cee7a47f8e8daa09df0fcd07dd39fb22977f"
-dependencies = [
- "log 0.4.14",
-]
-
-[[package]]
 name = "language-tags"
 version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2163,11 +1971,107 @@ dependencies = [
  "arrayref",
  "crunchy",
  "digest 0.8.1",
- "hmac-drbg",
+ "hmac-drbg 0.2.0",
  "rand 0.7.3",
  "sha2 0.8.2",
  "subtle 2.4.1",
  "typenum",
+]
+
+[[package]]
+name = "libsecp256k1"
+version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c9d220bc1feda2ac231cb78c3d26f27676b8cf82c96971f7aeef3d0cf2797c73"
+dependencies = [
+ "arrayref",
+ "base64 0.12.3",
+ "digest 0.9.0",
+ "hmac-drbg 0.3.0",
+ "libsecp256k1-core 0.2.2",
+ "libsecp256k1-gen-ecmult 0.2.1",
+ "libsecp256k1-gen-genmult 0.2.1",
+ "rand 0.7.3",
+ "serde",
+ "sha2 0.9.9",
+ "typenum",
+]
+
+[[package]]
+name = "libsecp256k1"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b0452aac8bab02242429380e9b2f94ea20cea2b37e2c1777a1358799bbe97f37"
+dependencies = [
+ "arrayref",
+ "base64 0.13.0",
+ "digest 0.9.0",
+ "hmac-drbg 0.3.0",
+ "libsecp256k1-core 0.3.0",
+ "libsecp256k1-gen-ecmult 0.3.0",
+ "libsecp256k1-gen-genmult 0.3.0",
+ "rand 0.8.4",
+ "serde",
+ "sha2 0.9.9",
+ "typenum",
+]
+
+[[package]]
+name = "libsecp256k1-core"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d0f6ab710cec28cef759c5f18671a27dae2a5f952cdaaee1d8e2908cb2478a80"
+dependencies = [
+ "crunchy",
+ "digest 0.9.0",
+ "subtle 2.4.1",
+]
+
+[[package]]
+name = "libsecp256k1-core"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5be9b9bb642d8522a44d533eab56c16c738301965504753b03ad1de3425d5451"
+dependencies = [
+ "crunchy",
+ "digest 0.9.0",
+ "subtle 2.4.1",
+]
+
+[[package]]
+name = "libsecp256k1-gen-ecmult"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ccab96b584d38fac86a83f07e659f0deafd0253dc096dab5a36d53efe653c5c3"
+dependencies = [
+ "libsecp256k1-core 0.2.2",
+]
+
+[[package]]
+name = "libsecp256k1-gen-ecmult"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3038c808c55c87e8a172643a7d87187fc6c4174468159cb3090659d55bcb4809"
+dependencies = [
+ "libsecp256k1-core 0.3.0",
+]
+
+[[package]]
+name = "libsecp256k1-gen-genmult"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "67abfe149395e3aa1c48a2beb32b068e2334402df8181f818d3aee2b304c4f5d"
+dependencies = [
+ "libsecp256k1-core 0.2.2",
+]
+
+[[package]]
+name = "libsecp256k1-gen-genmult"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3db8d6ba2cec9eacc40e6e8ccc98931840301f1006e95647ceb2dd5c3aa06f7c"
+dependencies = [
+ "libsecp256k1-core 0.3.0",
 ]
 
 [[package]]
@@ -2214,13 +2118,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "51b9bbe6c47d51fc3e1a9b945965946b4c44142ab8792c50835a980d362c2710"
 dependencies = [
  "cfg-if 1.0.0",
- "value-bag",
 ]
 
 [[package]]
 name = "marketplace"
 version = "0.0.1"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=substrate_polka_v0.9.9#bbf30b773010613d0f331a2c53f81d1785b460b0"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#f25cc6c0c179c2b86f9373da0356b5b48ecac7c8"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
@@ -2234,11 +2137,11 @@ dependencies = [
  "realis-primitives",
  "serde",
  "serde_json",
- "sp-arithmetic",
- "sp-core",
- "sp-io",
- "sp-runtime",
- "sp-std",
+ "sp-arithmetic 4.0.0-dev",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
@@ -2302,7 +2205,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "de006e09d04fc301a5f7e817b75aa49801c4479a8af753764416b085337ddcc5"
 dependencies = [
  "hash-db",
- "hashbrown",
+ "hashbrown 0.11.2",
+ "parity-util-mem",
+]
+
+[[package]]
+name = "memory-db"
+version = "0.28.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d505169b746dacf02f7d14d8c80b34edfd8212159c63d23c977739a0d960c626"
+dependencies = [
+ "hash-db",
+ "hashbrown 0.11.2",
  "parity-util-mem",
 ]
 
@@ -2493,19 +2407,19 @@ dependencies = [
 [[package]]
 name = "node-primitives"
 version = "2.0.0"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-system",
  "parity-scale-codec",
- "sp-application-crypto",
- "sp-core",
- "sp-runtime",
+ "sp-application-crypto 4.0.0-dev",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
 ]
 
 [[package]]
 name = "node-runtime"
 version = "3.0.0-dev"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=substrate_polka_v0.9.9#bbf30b773010613d0f331a2c53f81d1785b460b0"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#f25cc6c0c179c2b86f9373da0356b5b48ecac7c8"
 dependencies = [
  "frame-benchmarking",
  "frame-election-provider-support",
@@ -2558,16 +2472,16 @@ dependencies = [
  "sp-authority-discovery",
  "sp-block-builder",
  "sp-consensus-babe",
- "sp-core",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "sp-inherents",
- "sp-io",
+ "sp-io 4.0.0-dev",
  "sp-keyring",
  "sp-npos-elections",
  "sp-offchain",
- "sp-runtime",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "sp-session",
  "sp-staking",
- "sp-std",
+ "sp-std 4.0.0-dev",
  "sp-transaction-pool",
  "sp-version",
  "static_assertions",
@@ -2758,49 +2672,49 @@ dependencies = [
 [[package]]
 name = "pallet-assets"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
  "frame-system",
  "parity-scale-codec",
- "sp-runtime",
- "sp-std",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-authority-discovery"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-support",
  "frame-system",
  "pallet-session",
  "parity-scale-codec",
- "sp-application-crypto",
+ "sp-application-crypto 4.0.0-dev",
  "sp-authority-discovery",
- "sp-runtime",
- "sp-std",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-authorship"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-support",
  "frame-system",
  "impl-trait-for-tuples",
  "parity-scale-codec",
  "sp-authorship",
- "sp-runtime",
- "sp-std",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-babe"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
@@ -2810,70 +2724,73 @@ dependencies = [
  "pallet-session",
  "pallet-timestamp",
  "parity-scale-codec",
- "sp-application-crypto",
+ "sp-application-crypto 4.0.0-dev",
  "sp-consensus-babe",
  "sp-consensus-vrf",
- "sp-io",
- "sp-runtime",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "sp-session",
  "sp-staking",
- "sp-std",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-balances"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
  "frame-system",
  "log 0.4.14",
  "parity-scale-codec",
- "sp-runtime",
- "sp-std",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-contracts"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "bitflags",
+ "frame-benchmarking",
  "frame-support",
  "frame-system",
+ "libsecp256k1 0.3.5",
  "log 0.4.14",
  "pallet-contracts-primitives",
  "pallet-contracts-proc-macro",
  "parity-scale-codec",
  "pwasm-utils",
+ "rand 0.7.3",
  "serde",
  "smallvec 1.8.0",
- "sp-core",
- "sp-io",
- "sp-runtime",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "sp-sandbox",
- "sp-std",
+ "sp-std 4.0.0-dev",
  "wasmi-validation",
 ]
 
 [[package]]
 name = "pallet-contracts-primitives"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "bitflags",
  "parity-scale-codec",
  "serde",
- "sp-core",
- "sp-runtime",
- "sp-std",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-contracts-proc-macro"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "proc-macro2 1.0.36",
  "quote 1.0.15",
@@ -2883,52 +2800,52 @@ dependencies = [
 [[package]]
 name = "pallet-contracts-rpc-runtime-api"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "pallet-contracts-primitives",
  "parity-scale-codec",
  "sp-api",
- "sp-runtime",
- "sp-std",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-election-provider-multi-phase"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-election-provider-support",
  "frame-support",
  "frame-system",
  "log 0.4.14",
  "parity-scale-codec",
- "sp-arithmetic",
- "sp-core",
- "sp-io",
+ "sp-arithmetic 4.0.0-dev",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-io 4.0.0-dev",
  "sp-npos-elections",
- "sp-runtime",
- "sp-std",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
  "static_assertions",
 ]
 
 [[package]]
 name = "pallet-gilt"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
  "frame-system",
  "parity-scale-codec",
- "sp-arithmetic",
- "sp-runtime",
- "sp-std",
+ "sp-arithmetic 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-grandpa"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
@@ -2937,80 +2854,80 @@ dependencies = [
  "pallet-authorship",
  "pallet-session",
  "parity-scale-codec",
- "sp-application-crypto",
- "sp-core",
+ "sp-application-crypto 4.0.0-dev",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "sp-finality-grandpa",
- "sp-io",
- "sp-runtime",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "sp-session",
  "sp-staking",
- "sp-std",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-identity"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "enumflags2",
  "frame-benchmarking",
  "frame-support",
  "frame-system",
  "parity-scale-codec",
- "sp-io",
- "sp-runtime",
- "sp-std",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-im-online"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-support",
  "frame-system",
  "log 0.4.14",
  "pallet-authorship",
  "parity-scale-codec",
- "sp-application-crypto",
- "sp-core",
- "sp-io",
- "sp-runtime",
+ "sp-application-crypto 4.0.0-dev",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "sp-staking",
- "sp-std",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-indices"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-support",
  "frame-system",
  "parity-scale-codec",
- "sp-core",
- "sp-io",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-io 4.0.0-dev",
  "sp-keyring",
- "sp-runtime",
- "sp-std",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-lottery"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-support",
  "frame-system",
  "parity-scale-codec",
- "sp-runtime",
- "sp-std",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-mmr"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "ckb-merkle-mountain-range",
  "frame-benchmarking",
@@ -3018,16 +2935,16 @@ dependencies = [
  "frame-system",
  "pallet-mmr-primitives",
  "parity-scale-codec",
- "sp-core",
- "sp-io",
- "sp-runtime",
- "sp-std",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-mmr-primitives"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -3035,29 +2952,28 @@ dependencies = [
  "parity-scale-codec",
  "serde",
  "sp-api",
- "sp-core",
- "sp-runtime",
- "sp-std",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-multisig"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-support",
  "frame-system",
  "parity-scale-codec",
- "sp-core",
- "sp-io",
- "sp-runtime",
- "sp-std",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-nft"
 version = "0.0.2"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=substrate_polka_v0.9.9#bbf30b773010613d0f331a2c53f81d1785b460b0"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#f25cc6c0c179c2b86f9373da0356b5b48ecac7c8"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
@@ -3069,15 +2985,15 @@ dependencies = [
  "primitive-types",
  "realis-primitives",
  "serde",
- "sp-core",
- "sp-runtime",
- "sp-std",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-nft-delegate"
 version = "0.0.1"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=substrate_polka_v0.9.9#bbf30b773010613d0f331a2c53f81d1785b460b0"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#f25cc6c0c179c2b86f9373da0356b5b48ecac7c8"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
@@ -3088,13 +3004,13 @@ dependencies = [
  "parity-scale-codec",
  "primitive-types",
  "realis-primitives",
- "sp-std",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-offences"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -3102,57 +3018,56 @@ dependencies = [
  "pallet-balances",
  "parity-scale-codec",
  "serde",
- "sp-runtime",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "sp-staking",
- "sp-std",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-randomness-collective-flip"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-support",
  "frame-system",
  "parity-scale-codec",
  "safe-mix",
- "sp-runtime",
- "sp-std",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-recovery"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
- "enumflags2",
  "frame-support",
  "frame-system",
  "parity-scale-codec",
- "sp-io",
- "sp-runtime",
- "sp-std",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-scheduler"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
  "frame-system",
  "log 0.4.14",
  "parity-scale-codec",
- "sp-io",
- "sp-runtime",
- "sp-std",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-session"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -3160,19 +3075,19 @@ dependencies = [
  "log 0.4.14",
  "pallet-timestamp",
  "parity-scale-codec",
- "sp-core",
- "sp-io",
- "sp-runtime",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "sp-session",
  "sp-staking",
- "sp-std",
- "sp-trie",
+ "sp-std 4.0.0-dev",
+ "sp-trie 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-staking"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=substrate_polka_v0.9.9#bbf30b773010613d0f331a2c53f81d1785b460b0"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#f25cc6c0c179c2b86f9373da0356b5b48ecac7c8"
 dependencies = [
  "frame-election-provider-support",
  "frame-support",
@@ -3184,18 +3099,18 @@ dependencies = [
  "paste",
  "serde",
  "serde_json",
- "sp-application-crypto",
- "sp-io",
- "sp-runtime",
+ "sp-application-crypto 4.0.0-dev",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "sp-staking",
- "sp-std",
+ "sp-std 4.0.0-dev",
  "static_assertions",
 ]
 
 [[package]]
 name = "pallet-staking-reward-curve"
 version = "3.0.0"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=substrate_polka_v0.9.9#bbf30b773010613d0f331a2c53f81d1785b460b0"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#f25cc6c0c179c2b86f9373da0356b5b48ecac7c8"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2 1.0.36",
@@ -3206,85 +3121,84 @@ dependencies = [
 [[package]]
 name = "pallet-sudo"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-support",
  "frame-system",
  "parity-scale-codec",
- "sp-io",
- "sp-runtime",
- "sp-std",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-timestamp"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
  "frame-system",
- "impl-trait-for-tuples",
  "log 0.4.14",
  "parity-scale-codec",
  "sp-inherents",
- "sp-runtime",
- "sp-std",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
  "sp-timestamp",
 ]
 
 [[package]]
 name = "pallet-transaction-payment"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-support",
  "frame-system",
  "parity-scale-codec",
  "serde",
  "smallvec 1.8.0",
- "sp-core",
- "sp-io",
- "sp-runtime",
- "sp-std",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-transaction-payment-rpc-runtime-api"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "pallet-transaction-payment",
  "parity-scale-codec",
  "sp-api",
- "sp-runtime",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
 ]
 
 [[package]]
 name = "pallet-utility"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "frame-support",
  "frame-system",
  "parity-scale-codec",
- "sp-core",
- "sp-io",
- "sp-runtime",
- "sp-std",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "pallet-vesting"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
- "enumflags2",
  "frame-support",
  "frame-system",
+ "log 0.4.14",
  "parity-scale-codec",
- "sp-runtime",
- "sp-std",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
@@ -3320,7 +3234,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6f4cb4e169446179cbc6b8b6320cc9fca49bd2e94e8db25f25f200a8ea774770"
 dependencies = [
  "cfg-if 1.0.0",
- "hashbrown",
+ "hashbrown 0.11.2",
  "impl-trait-for-tuples",
  "parity-util-mem-derive",
  "parking_lot 0.11.2",
@@ -3353,12 +3267,6 @@ name = "parity-wasm"
 version = "0.42.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "be5e13c266502aadf83426d87d81a0f5d1ef45b8027f5a471c360abfe4bfae92"
-
-[[package]]
-name = "parking"
-version = "2.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "427c3892f9e783d91cc128285287e70a59e206ca452770ece88a76f7a3eddd72"
 
 [[package]]
 name = "parking_lot"
@@ -3571,19 +3479,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "58893f751c9b0412871a09abd62ecd2a00298c6c83befa223ef98c52aef40cbe"
 
 [[package]]
-name = "polling"
-version = "2.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "685404d509889fade3e86fe3a5803bca2ec09b0c0778d5ada6ec8bf7a8de5259"
-dependencies = [
- "cfg-if 1.0.0",
- "libc",
- "log 0.4.14",
- "wepoll-ffi",
- "winapi 0.3.9",
-]
-
-[[package]]
 name = "postgres-openssl"
 version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3640,6 +3535,7 @@ dependencies = [
  "fixed-hash",
  "impl-codec",
  "impl-serde",
+ "scale-info",
  "uint",
 ]
 
@@ -3669,20 +3565,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c7342d5883fbccae1cc37a2353b09c87c9b0f3afd73f5fb9bba687a1f733b029"
 dependencies = [
  "unicode-xid 0.2.2",
-]
-
-[[package]]
-name = "prometheus"
-version = "0.11.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c8425533e7122f0c3cc7a37e6244b16ad3a2cc32ae7ac6276e2a75da0d9c200d"
-dependencies = [
- "cfg-if 1.0.0",
- "fnv",
- "lazy_static",
- "parking_lot 0.11.2",
- "regex",
- "thiserror",
 ]
 
 [[package]]
@@ -4061,7 +3943,7 @@ dependencies = [
 [[package]]
 name = "realis-bridge"
 version = "0.0.1"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=substrate_polka_v0.9.9#bbf30b773010613d0f331a2c53f81d1785b460b0"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#f25cc6c0c179c2b86f9373da0356b5b48ecac7c8"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
@@ -4073,18 +3955,18 @@ dependencies = [
  "realis-game-api",
  "realis-primitives",
  "serde",
- "sp-arithmetic",
- "sp-core",
- "sp-io",
- "sp-runtime",
- "sp-std",
+ "sp-arithmetic 4.0.0-dev",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-io 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
  "substrate-wasm-builder-runner",
 ]
 
 [[package]]
 name = "realis-game-api"
 version = "0.0.1"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=substrate_polka_v0.9.9#bbf30b773010613d0f331a2c53f81d1785b460b0"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#f25cc6c0c179c2b86f9373da0356b5b48ecac7c8"
 dependencies = [
  "frame-benchmarking",
  "frame-election-provider-support",
@@ -4103,9 +3985,9 @@ dependencies = [
  "primitive-types",
  "realis-primitives",
  "serde",
- "sp-runtime",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "sp-staking",
- "sp-std",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
@@ -4121,7 +4003,7 @@ dependencies = [
 [[package]]
 name = "realis-primitives"
 version = "0.0.2"
-source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=substrate_polka_v0.9.9#bbf30b773010613d0f331a2c53f81d1785b460b0"
+source = "git+https://github.com/RealisNetwork/Realis.Network.git?branch=main#f25cc6c0c179c2b86f9373da0356b5b48ecac7c8"
 dependencies = [
  "derive_more",
  "frame-support",
@@ -4131,9 +4013,9 @@ dependencies = [
  "primitive-types",
  "serde",
  "serde_repr",
- "sp-core",
- "sp-runtime",
- "sp-std",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
@@ -4335,8 +4217,8 @@ dependencies = [
  "slog-scope",
  "slog-stdlog",
  "slog-term",
- "sp-core",
- "sp-runtime",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka)",
  "substrate-api-client",
  "thiserror",
  "tokio 1.16.1",
@@ -4389,16 +4271,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f2cc38e8fa666e2de3c4aba7edeb5ffc5246c1c2ed0e3d17e560aeeba736b23f"
 
 [[package]]
-name = "ruzstd"
-version = "0.2.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8cada0ef59efa6a5f4dc5e491f93d9f31e3fc7758df421ff1de8a706338e1100"
-dependencies = [
- "byteorder",
- "twox-hash",
-]
-
-[[package]]
 name = "ryu"
 version = "1.0.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4424,20 +4296,6 @@ dependencies = [
 
 [[package]]
 name = "scale-info"
-version = "0.9.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0af18b6ba34ebe0429199eb77e64f04c98508b8afb420aaac8fc187bb1c8ff02"
-dependencies = [
- "bitvec",
- "cfg-if 1.0.0",
- "derive_more",
- "parity-scale-codec",
- "scale-info-derive 0.6.1",
- "serde",
-]
-
-[[package]]
-name = "scale-info"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5c55b744399c25532d63a0d2789b109df8d46fc93752d46b0782991a931a782f"
@@ -4446,19 +4304,8 @@ dependencies = [
  "cfg-if 1.0.0",
  "derive_more",
  "parity-scale-codec",
- "scale-info-derive 1.0.0",
-]
-
-[[package]]
-name = "scale-info-derive"
-version = "0.6.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "113a247fe47d242d24f4795cbc069d0a168a70da9e1cff98b5645edcc21f1eed"
-dependencies = [
- "proc-macro-crate",
- "proc-macro2 1.0.36",
- "quote 1.0.15",
- "syn 1.0.86",
+ "scale-info-derive",
+ "serde",
 ]
 
 [[package]]
@@ -4518,6 +4365,15 @@ name = "secrecy"
 version = "0.7.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0673d6a6449f5e7d12a1caf424fd9363e2af3a4953023ed455e3c4beef4597c0"
+dependencies = [
+ "zeroize",
+]
+
+[[package]]
+name = "secrecy"
+version = "0.8.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9bd1c54ea06cfd2f6b63219704de0b9b4f72dcc2b8fdef820be6cd799780e91e"
 dependencies = [
  "zeroize",
 ]
@@ -4715,16 +4571,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "signal-hook"
-version = "0.3.13"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "647c97df271007dcea485bb74ffdb57f2e683f1306c854f468a0c244badabf2d"
-dependencies = [
- "libc",
- "signal-hook-registry",
-]
-
-[[package]]
 name = "signal-hook-registry"
 version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4919,16 +4765,16 @@ dependencies = [
 [[package]]
 name = "sp-api"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "hash-db",
  "log 0.4.14",
  "parity-scale-codec",
  "sp-api-proc-macro",
- "sp-core",
- "sp-runtime",
- "sp-state-machine",
- "sp-std",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-state-machine 0.10.0-dev",
+ "sp-std 4.0.0-dev",
  "sp-version",
  "thiserror",
 ]
@@ -4936,7 +4782,7 @@ dependencies = [
 [[package]]
 name = "sp-api-proc-macro"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "blake2-rfc",
  "proc-macro-crate",
@@ -4948,141 +4794,163 @@ dependencies = [
 [[package]]
 name = "sp-application-crypto"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "parity-scale-codec",
  "serde",
- "sp-core",
- "sp-io",
- "sp-std",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-io 4.0.0-dev",
+ "sp-std 4.0.0-dev",
+]
+
+[[package]]
+name = "sp-application-crypto"
+version = "4.0.0"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka#1c35dea160a97be11b6e5276fd96b7edb3468af2"
+dependencies = [
+ "parity-scale-codec",
+ "scale-info",
+ "serde",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka)",
+ "sp-io 4.0.0",
+ "sp-std 4.0.0",
 ]
 
 [[package]]
 name = "sp-arithmetic"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "integer-sqrt",
  "num-traits",
  "parity-scale-codec",
  "serde",
- "sp-debug-derive",
- "sp-std",
+ "sp-debug-derive 3.0.0",
+ "sp-std 4.0.0-dev",
+ "static_assertions",
+]
+
+[[package]]
+name = "sp-arithmetic"
+version = "4.0.0"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka#1c35dea160a97be11b6e5276fd96b7edb3468af2"
+dependencies = [
+ "integer-sqrt",
+ "num-traits",
+ "parity-scale-codec",
+ "scale-info",
+ "serde",
+ "sp-debug-derive 4.0.0",
+ "sp-std 4.0.0",
  "static_assertions",
 ]
 
 [[package]]
 name = "sp-authority-discovery"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "parity-scale-codec",
  "sp-api",
- "sp-application-crypto",
- "sp-runtime",
- "sp-std",
+ "sp-application-crypto 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "sp-authorship"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "async-trait",
  "parity-scale-codec",
  "sp-inherents",
- "sp-runtime",
- "sp-std",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "sp-block-builder"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "parity-scale-codec",
  "sp-api",
  "sp-inherents",
- "sp-runtime",
- "sp-std",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "sp-consensus"
 version = "0.10.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "async-trait",
  "futures 0.3.19",
  "futures-timer 3.0.2",
  "log 0.4.14",
  "parity-scale-codec",
- "parking_lot 0.11.2",
- "serde",
- "sp-api",
- "sp-core",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "sp-inherents",
- "sp-runtime",
- "sp-state-machine",
- "sp-std",
- "sp-trie",
- "sp-utils",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-state-machine 0.10.0-dev",
+ "sp-std 4.0.0-dev",
  "sp-version",
- "substrate-prometheus-endpoint",
  "thiserror",
- "wasm-timer",
 ]
 
 [[package]]
 name = "sp-consensus-babe"
 version = "0.10.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "async-trait",
  "merlin",
  "parity-scale-codec",
  "serde",
  "sp-api",
- "sp-application-crypto",
+ "sp-application-crypto 4.0.0-dev",
  "sp-consensus",
  "sp-consensus-slots",
  "sp-consensus-vrf",
- "sp-core",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "sp-inherents",
- "sp-keystore",
- "sp-runtime",
- "sp-std",
+ "sp-keystore 0.10.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
  "sp-timestamp",
 ]
 
 [[package]]
 name = "sp-consensus-slots"
 version = "0.10.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "parity-scale-codec",
- "sp-arithmetic",
- "sp-runtime",
+ "sp-arithmetic 4.0.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
 ]
 
 [[package]]
 name = "sp-consensus-vrf"
 version = "0.10.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "parity-scale-codec",
  "schnorrkel",
- "sp-core",
- "sp-runtime",
- "sp-std",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "sp-core"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka#1c35dea160a97be11b6e5276fd96b7edb3468af2"
 dependencies = [
- "base58",
+ "base58 0.2.0",
+ "bitflags",
  "blake2-rfc",
  "byteorder",
  "dyn-clonable",
@@ -5093,7 +4961,7 @@ dependencies = [
  "hex",
  "impl-serde",
  "lazy_static",
- "libsecp256k1",
+ "libsecp256k1 0.7.0",
  "log 0.4.14",
  "merlin",
  "num-traits",
@@ -5103,15 +4971,18 @@ dependencies = [
  "primitive-types",
  "rand 0.7.3",
  "regex",
+ "scale-info",
  "schnorrkel",
- "secrecy",
+ "secrecy 0.8.0",
  "serde",
- "sha2 0.9.9",
- "sp-debug-derive",
- "sp-externalities",
- "sp-runtime-interface",
- "sp-std",
- "sp-storage",
+ "sha2 0.10.1",
+ "sp-core-hashing",
+ "sp-debug-derive 4.0.0",
+ "sp-externalities 0.10.0",
+ "sp-runtime-interface 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka)",
+ "sp-std 4.0.0",
+ "sp-storage 4.0.0",
+ "ss58-registry",
  "substrate-bip39",
  "thiserror",
  "tiny-bip39",
@@ -5122,9 +4993,76 @@ dependencies = [
 ]
 
 [[package]]
+name = "sp-core"
+version = "4.0.0-dev"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
+dependencies = [
+ "base58 0.1.0",
+ "blake2-rfc",
+ "byteorder",
+ "dyn-clonable",
+ "ed25519-dalek",
+ "futures 0.3.19",
+ "hash-db",
+ "hash256-std-hasher",
+ "hex",
+ "impl-serde",
+ "lazy_static",
+ "libsecp256k1 0.6.0",
+ "log 0.4.14",
+ "merlin",
+ "num-traits",
+ "parity-scale-codec",
+ "parity-util-mem",
+ "parking_lot 0.11.2",
+ "primitive-types",
+ "rand 0.7.3",
+ "regex",
+ "schnorrkel",
+ "secrecy 0.7.0",
+ "serde",
+ "sha2 0.9.9",
+ "sp-debug-derive 3.0.0",
+ "sp-externalities 0.10.0-dev",
+ "sp-runtime-interface 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
+ "sp-storage 4.0.0-dev",
+ "substrate-bip39",
+ "thiserror",
+ "tiny-bip39",
+ "tiny-keccak",
+ "twox-hash",
+ "wasmi",
+ "zeroize",
+]
+
+[[package]]
+name = "sp-core-hashing"
+version = "4.0.0"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka#1c35dea160a97be11b6e5276fd96b7edb3468af2"
+dependencies = [
+ "blake2-rfc",
+ "byteorder",
+ "sha2 0.10.1",
+ "sp-std 4.0.0",
+ "tiny-keccak",
+ "twox-hash",
+]
+
+[[package]]
 name = "sp-debug-derive"
 version = "3.0.0"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
+dependencies = [
+ "proc-macro2 1.0.36",
+ "quote 1.0.15",
+ "syn 1.0.86",
+]
+
+[[package]]
+name = "sp-debug-derive"
+version = "4.0.0"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka#1c35dea160a97be11b6e5276fd96b7edb3468af2"
 dependencies = [
  "proc-macro2 1.0.36",
  "quote 1.0.15",
@@ -5134,66 +5072,101 @@ dependencies = [
 [[package]]
 name = "sp-externalities"
 version = "0.10.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "environmental",
  "parity-scale-codec",
- "sp-std",
- "sp-storage",
+ "sp-std 4.0.0-dev",
+ "sp-storage 4.0.0-dev",
+]
+
+[[package]]
+name = "sp-externalities"
+version = "0.10.0"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka#1c35dea160a97be11b6e5276fd96b7edb3468af2"
+dependencies = [
+ "environmental",
+ "parity-scale-codec",
+ "sp-std 4.0.0",
+ "sp-storage 4.0.0",
 ]
 
 [[package]]
 name = "sp-finality-grandpa"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "finality-grandpa",
  "log 0.4.14",
  "parity-scale-codec",
  "serde",
  "sp-api",
- "sp-application-crypto",
- "sp-core",
- "sp-keystore",
- "sp-runtime",
- "sp-std",
+ "sp-application-crypto 4.0.0-dev",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-keystore 0.10.0-dev",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "sp-inherents"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "async-trait",
  "impl-trait-for-tuples",
  "parity-scale-codec",
- "sp-core",
- "sp-runtime",
- "sp-std",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
  "thiserror",
 ]
 
 [[package]]
 name = "sp-io"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "futures 0.3.19",
  "hash-db",
- "libsecp256k1",
+ "libsecp256k1 0.6.0",
  "log 0.4.14",
  "parity-scale-codec",
  "parking_lot 0.11.2",
- "sp-core",
- "sp-externalities",
- "sp-keystore",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-externalities 0.10.0-dev",
+ "sp-keystore 0.10.0-dev",
  "sp-maybe-compressed-blob",
- "sp-runtime-interface",
- "sp-state-machine",
- "sp-std",
- "sp-tracing",
- "sp-trie",
- "sp-wasm-interface",
+ "sp-runtime-interface 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-state-machine 0.10.0-dev",
+ "sp-std 4.0.0-dev",
+ "sp-tracing 4.0.0-dev",
+ "sp-trie 4.0.0-dev",
+ "sp-wasm-interface 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "tracing",
+ "tracing-core",
+]
+
+[[package]]
+name = "sp-io"
+version = "4.0.0"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka#1c35dea160a97be11b6e5276fd96b7edb3468af2"
+dependencies = [
+ "futures 0.3.19",
+ "hash-db",
+ "libsecp256k1 0.7.0",
+ "log 0.4.14",
+ "parity-scale-codec",
+ "parking_lot 0.11.2",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka)",
+ "sp-externalities 0.10.0",
+ "sp-keystore 0.10.0",
+ "sp-runtime-interface 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka)",
+ "sp-state-machine 0.10.0",
+ "sp-std 4.0.0",
+ "sp-tracing 4.0.0",
+ "sp-trie 4.0.0",
+ "sp-wasm-interface 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka)",
  "tracing",
  "tracing-core",
 ]
@@ -5201,18 +5174,18 @@ dependencies = [
 [[package]]
 name = "sp-keyring"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "lazy_static",
- "sp-core",
- "sp-runtime",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "strum 0.20.0",
 ]
 
 [[package]]
 name = "sp-keystore"
 version = "0.10.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "async-trait",
  "derive_more",
@@ -5221,36 +5194,52 @@ dependencies = [
  "parity-scale-codec",
  "parking_lot 0.11.2",
  "schnorrkel",
- "sp-core",
- "sp-externalities",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-externalities 0.10.0-dev",
+]
+
+[[package]]
+name = "sp-keystore"
+version = "0.10.0"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka#1c35dea160a97be11b6e5276fd96b7edb3468af2"
+dependencies = [
+ "async-trait",
+ "futures 0.3.19",
+ "merlin",
+ "parity-scale-codec",
+ "parking_lot 0.11.2",
+ "schnorrkel",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka)",
+ "sp-externalities 0.10.0",
+ "thiserror",
 ]
 
 [[package]]
 name = "sp-maybe-compressed-blob"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
- "ruzstd",
  "zstd",
 ]
 
 [[package]]
 name = "sp-npos-elections"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "parity-scale-codec",
  "serde",
- "sp-arithmetic",
- "sp-core",
- "sp-npos-elections-compact",
- "sp-std",
+ "sp-arithmetic 4.0.0-dev",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-npos-elections-solution-type",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
-name = "sp-npos-elections-compact"
+name = "sp-npos-elections-solution-type"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2 1.0.36",
@@ -5261,36 +5250,67 @@ dependencies = [
 [[package]]
 name = "sp-offchain"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "sp-api",
- "sp-core",
- "sp-runtime",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
 ]
 
 [[package]]
 name = "sp-panic-handler"
 version = "3.0.0"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "backtrace",
 ]
 
 [[package]]
+name = "sp-panic-handler"
+version = "4.0.0"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka#1c35dea160a97be11b6e5276fd96b7edb3468af2"
+dependencies = [
+ "backtrace",
+ "lazy_static",
+ "regex",
+]
+
+[[package]]
 name = "sp-rpc"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "rustc-hash",
  "serde",
- "sp-core",
- "tracing-core",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
 ]
 
 [[package]]
 name = "sp-runtime"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka#1c35dea160a97be11b6e5276fd96b7edb3468af2"
+dependencies = [
+ "either",
+ "hash256-std-hasher",
+ "impl-trait-for-tuples",
+ "log 0.4.14",
+ "parity-scale-codec",
+ "parity-util-mem",
+ "paste",
+ "rand 0.7.3",
+ "scale-info",
+ "serde",
+ "sp-application-crypto 4.0.0",
+ "sp-arithmetic 4.0.0",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka)",
+ "sp-io 4.0.0",
+ "sp-std 4.0.0",
+]
+
+[[package]]
+name = "sp-runtime"
+version = "4.0.0-dev"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "either",
  "hash256-std-hasher",
@@ -5301,34 +5321,63 @@ dependencies = [
  "paste",
  "rand 0.7.3",
  "serde",
- "sp-application-crypto",
- "sp-arithmetic",
- "sp-core",
- "sp-io",
- "sp-std",
+ "sp-application-crypto 4.0.0-dev",
+ "sp-arithmetic 4.0.0-dev",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-io 4.0.0-dev",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "sp-runtime-interface"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka#1c35dea160a97be11b6e5276fd96b7edb3468af2"
 dependencies = [
  "impl-trait-for-tuples",
  "parity-scale-codec",
  "primitive-types",
- "sp-externalities",
- "sp-runtime-interface-proc-macro",
- "sp-std",
- "sp-storage",
- "sp-tracing",
- "sp-wasm-interface",
+ "sp-externalities 0.10.0",
+ "sp-runtime-interface-proc-macro 4.0.0",
+ "sp-std 4.0.0",
+ "sp-storage 4.0.0",
+ "sp-tracing 4.0.0",
+ "sp-wasm-interface 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka)",
+ "static_assertions",
+]
+
+[[package]]
+name = "sp-runtime-interface"
+version = "4.0.0-dev"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
+dependencies = [
+ "impl-trait-for-tuples",
+ "parity-scale-codec",
+ "primitive-types",
+ "sp-externalities 0.10.0-dev",
+ "sp-runtime-interface-proc-macro 4.0.0-dev",
+ "sp-std 4.0.0-dev",
+ "sp-storage 4.0.0-dev",
+ "sp-tracing 4.0.0-dev",
+ "sp-wasm-interface 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "static_assertions",
 ]
 
 [[package]]
 name = "sp-runtime-interface-proc-macro"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
+dependencies = [
+ "Inflector",
+ "proc-macro-crate",
+ "proc-macro2 1.0.36",
+ "quote 1.0.15",
+ "syn 1.0.86",
+]
+
+[[package]]
+name = "sp-runtime-interface-proc-macro"
+version = "4.0.0"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka#1c35dea160a97be11b6e5276fd96b7edb3468af2"
 dependencies = [
  "Inflector",
  "proc-macro-crate",
@@ -5340,43 +5389,44 @@ dependencies = [
 [[package]]
 name = "sp-sandbox"
 version = "0.10.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
+ "log 0.4.14",
  "parity-scale-codec",
- "sp-core",
- "sp-io",
- "sp-std",
- "sp-wasm-interface",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-io 4.0.0-dev",
+ "sp-std 4.0.0-dev",
+ "sp-wasm-interface 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "wasmi",
 ]
 
 [[package]]
 name = "sp-session"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "parity-scale-codec",
  "sp-api",
- "sp-core",
- "sp-runtime",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "sp-staking",
- "sp-std",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "sp-staking"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "parity-scale-codec",
- "sp-runtime",
- "sp-std",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
 ]
 
 [[package]]
 name = "sp-state-machine"
 version = "0.10.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "hash-db",
  "log 0.4.14",
@@ -5385,39 +5435,80 @@ dependencies = [
  "parking_lot 0.11.2",
  "rand 0.7.3",
  "smallvec 1.8.0",
- "sp-core",
- "sp-externalities",
- "sp-panic-handler",
- "sp-std",
- "sp-trie",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-externalities 0.10.0-dev",
+ "sp-panic-handler 3.0.0",
+ "sp-std 4.0.0-dev",
+ "sp-trie 4.0.0-dev",
  "thiserror",
  "tracing",
- "trie-db",
- "trie-root",
+ "trie-db 0.22.6",
+ "trie-root 0.16.0",
+]
+
+[[package]]
+name = "sp-state-machine"
+version = "0.10.0"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka#1c35dea160a97be11b6e5276fd96b7edb3468af2"
+dependencies = [
+ "hash-db",
+ "log 0.4.14",
+ "num-traits",
+ "parity-scale-codec",
+ "parking_lot 0.11.2",
+ "rand 0.7.3",
+ "smallvec 1.8.0",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka)",
+ "sp-externalities 0.10.0",
+ "sp-panic-handler 4.0.0",
+ "sp-std 4.0.0",
+ "sp-trie 4.0.0",
+ "thiserror",
+ "tracing",
+ "trie-db 0.23.1",
+ "trie-root 0.17.0",
 ]
 
 [[package]]
 name = "sp-std"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
+
+[[package]]
+name = "sp-std"
+version = "4.0.0"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka#1c35dea160a97be11b6e5276fd96b7edb3468af2"
 
 [[package]]
 name = "sp-storage"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "impl-serde",
  "parity-scale-codec",
  "ref-cast",
  "serde",
- "sp-debug-derive",
- "sp-std",
+ "sp-debug-derive 3.0.0",
+ "sp-std 4.0.0-dev",
+]
+
+[[package]]
+name = "sp-storage"
+version = "4.0.0"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka#1c35dea160a97be11b6e5276fd96b7edb3468af2"
+dependencies = [
+ "impl-serde",
+ "parity-scale-codec",
+ "ref-cast",
+ "serde",
+ "sp-debug-derive 4.0.0",
+ "sp-std 4.0.0",
 ]
 
 [[package]]
 name = "sp-timestamp"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "async-trait",
  "futures-timer 3.0.2",
@@ -5425,16 +5516,15 @@ dependencies = [
  "parity-scale-codec",
  "sp-api",
  "sp-inherents",
- "sp-runtime",
- "sp-std",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
  "thiserror",
- "wasm-timer",
 ]
 
 [[package]]
 name = "sp-tracing"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "erased-serde",
  "log 0.4.14",
@@ -5443,7 +5533,19 @@ dependencies = [
  "serde",
  "serde_json",
  "slog",
- "sp-std",
+ "sp-std 4.0.0-dev",
+ "tracing",
+ "tracing-core",
+ "tracing-subscriber",
+]
+
+[[package]]
+name = "sp-tracing"
+version = "4.0.0"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka#1c35dea160a97be11b6e5276fd96b7edb3468af2"
+dependencies = [
+ "parity-scale-codec",
+ "sp-std 4.0.0",
  "tracing",
  "tracing-core",
  "tracing-subscriber",
@@ -5452,49 +5554,52 @@ dependencies = [
 [[package]]
 name = "sp-transaction-pool"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "sp-api",
- "sp-runtime",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
 ]
 
 [[package]]
 name = "sp-trie"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "hash-db",
- "memory-db",
+ "memory-db 0.27.0",
  "parity-scale-codec",
- "sp-core",
- "sp-std",
- "trie-db",
- "trie-root",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
+ "trie-db 0.22.6",
+ "trie-root 0.16.0",
 ]
 
 [[package]]
-name = "sp-utils"
-version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+name = "sp-trie"
+version = "4.0.0"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka#1c35dea160a97be11b6e5276fd96b7edb3468af2"
 dependencies = [
- "futures 0.3.19",
- "futures-core",
- "futures-timer 3.0.2",
- "lazy_static",
- "prometheus",
+ "hash-db",
+ "memory-db 0.28.0",
+ "parity-scale-codec",
+ "scale-info",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka)",
+ "sp-std 4.0.0",
+ "trie-db 0.23.1",
+ "trie-root 0.17.0",
 ]
 
 [[package]]
 name = "sp-version"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "impl-serde",
  "parity-scale-codec",
  "parity-wasm 0.42.2",
  "serde",
- "sp-runtime",
- "sp-std",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
  "sp-version-proc-macro",
  "thiserror",
 ]
@@ -5502,10 +5607,9 @@ dependencies = [
 [[package]]
 name = "sp-version-proc-macro"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "parity-scale-codec",
- "proc-macro-crate",
  "proc-macro2 1.0.36",
  "quote 1.0.15",
  "syn 1.0.86",
@@ -5514,11 +5618,23 @@ dependencies = [
 [[package]]
 name = "sp-wasm-interface"
 version = "4.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=kazinarka#1c35dea160a97be11b6e5276fd96b7edb3468af2"
+dependencies = [
+ "impl-trait-for-tuples",
+ "log 0.4.14",
+ "parity-scale-codec",
+ "sp-std 4.0.0",
+ "wasmi",
+]
+
+[[package]]
+name = "sp-wasm-interface"
+version = "4.0.0-dev"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "impl-trait-for-tuples",
  "parity-scale-codec",
- "sp-std",
+ "sp-std 4.0.0-dev",
  "wasmi",
 ]
 
@@ -5527,6 +5643,20 @@ name = "spin"
 version = "0.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6e63cff320ae2c57904679ba7cb63280a3dc4613885beafb148ee7bf9aa9042d"
+
+[[package]]
+name = "ss58-registry"
+version = "1.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d8cb4b9ce18beb6cb16ecad62d936245cef5212ddc8e094d7417a75e8d0e85f5"
+dependencies = [
+ "Inflector",
+ "proc-macro2 1.0.36",
+ "quote 1.0.15",
+ "serde",
+ "serde_json",
+ "unicode-xid 0.2.2",
+]
 
 [[package]]
 name = "static_assertions"
@@ -5606,11 +5736,11 @@ dependencies = [
 [[package]]
 name = "substrate-api-client"
 version = "0.6.0"
-source = "git+https://github.com/RealisNetwork/substrate-api-client.git?branch=polka_v0.9.9#63c2197d75fc8f1123fe27a6ac2191aa740b42e2"
+source = "git+https://github.com/RealisNetwork/substrate-api-client.git#9e024ea39dfe95577a30e62d7fdf23b63bee7b2c"
 dependencies = [
  "ac-node-api",
  "ac-primitives",
- "frame-metadata 14.0.0",
+ "frame-metadata 14.2.0",
  "frame-support",
  "frame-system",
  "hex",
@@ -5621,11 +5751,11 @@ dependencies = [
  "primitive-types",
  "serde",
  "serde_json",
- "sp-application-crypto",
- "sp-core",
+ "sp-application-crypto 4.0.0-dev",
+ "sp-core 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
  "sp-rpc",
- "sp-runtime",
- "sp-std",
+ "sp-runtime 4.0.0-dev (git+https://github.com/RealisNetwork/substrate.git?branch=master)",
+ "sp-std 4.0.0-dev",
  "sp-version",
  "thiserror",
  "ws",
@@ -5645,26 +5775,11 @@ dependencies = [
 ]
 
 [[package]]
-name = "substrate-prometheus-endpoint"
-version = "0.9.0"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
-dependencies = [
- "async-std",
- "derive_more",
- "futures-util",
- "hyper 0.13.10",
- "log 0.4.14",
- "prometheus",
- "tokio 0.2.25",
-]
-
-[[package]]
 name = "substrate-wasm-builder"
 version = "5.0.0-dev"
-source = "git+https://github.com/RealisNetwork/substrate.git?branch=polka_v0.9.9#91061a7d925b5bc597804293da283477512ba4ff"
+source = "git+https://github.com/RealisNetwork/substrate.git?branch=master#02a4159415bb099ad309c962a2add25eb5d62ec6"
 dependencies = [
  "ansi_term",
- "atty",
  "build-helper",
  "cargo_metadata",
  "sp-maybe-compressed-blob",
@@ -6367,7 +6482,20 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9eac131e334e81b6b3be07399482042838adcd7957aa0010231d0813e39e02fa"
 dependencies = [
  "hash-db",
- "hashbrown",
+ "hashbrown 0.11.2",
+ "log 0.4.14",
+ "rustc-hex",
+ "smallvec 1.8.0",
+]
+
+[[package]]
+name = "trie-db"
+version = "0.23.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d32d034c0d3db64b43c31de38e945f15b40cd4ca6d2dcfc26d4798ce8de4ab83"
+dependencies = [
+ "hash-db",
+ "hashbrown 0.12.0",
  "log 0.4.14",
  "rustc-hex",
  "smallvec 1.8.0",
@@ -6378,6 +6506,15 @@ name = "trie-root"
 version = "0.16.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "652931506d2c1244d7217a70b99f56718a7b4161b37f04e7cd868072a99f68cd"
+dependencies = [
+ "hash-db",
+]
+
+[[package]]
+name = "trie-root"
+version = "0.17.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9a36c5ca3911ed3c9a5416ee6c679042064b93fc637ded67e25f92e68d783891"
 dependencies = [
  "hash-db",
 ]
@@ -6409,12 +6546,10 @@ checksum = "dcf81ac59edc17cc8697ff311e8f5ef2d99fcbd9817b34cec66f90b6c3dfd987"
 name = "types"
 version = "0.1.0"
 dependencies = [
- "deadpool",
  "error_registry",
  "rust-lib",
  "serde",
  "serde_json",
- "tokio-postgres",
 ]
 
 [[package]]
@@ -6497,16 +6632,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "value-bag"
-version = "1.0.0-alpha.8"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "79923f7731dc61ebfba3633098bf3ac533bbd35ccd8c57e7088d9a5eebe0263f"
-dependencies = [
- "ctor",
- "version_check 0.9.4",
-]
-
-[[package]]
 name = "vcpkg"
 version = "0.2.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -6523,12 +6648,6 @@ name = "version_check"
 version = "0.9.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "49874b5167b65d7193b8aba1567f5c7d93d001cafc34600cee003eda787e483f"
-
-[[package]]
-name = "waker-fn"
-version = "1.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9d5b2c62b4012a3e1eca5a7e077d13b3bf498c4073e33ccd58626607748ceeca"
 
 [[package]]
 name = "walkdir"
@@ -6643,21 +6762,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "wasm-timer"
-version = "0.2.5"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "be0ecb0db480561e9a7642b5d3e4187c128914e58aa84330b9493e3eb68c5e7f"
-dependencies = [
- "futures 0.3.19",
- "js-sys",
- "parking_lot 0.11.2",
- "pin-utils",
- "wasm-bindgen",
- "wasm-bindgen-futures",
- "web-sys",
-]
-
-[[package]]
 name = "wasmi"
 version = "0.9.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -6665,6 +6769,7 @@ checksum = "ca00c5147c319a8ec91ec1a0edbec31e566ce2c9cc93b3f9bb86a9efd0eb795d"
 dependencies = [
  "downcast-rs",
  "libc",
+ "libm",
  "memory_units",
  "num-rational 0.2.4",
  "num-traits",
@@ -6689,15 +6794,6 @@ checksum = "c060b319f29dd25724f09a2ba1418f142f539b2be99fbf4d2d5a8f7330afb8eb"
 dependencies = [
  "js-sys",
  "wasm-bindgen",
-]
-
-[[package]]
-name = "wepoll-ffi"
-version = "0.1.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d743fdedc5c64377b5fc2bc036b01c7fd642205a0d96356034ae3404d49eb7fb"
-dependencies = [
- "cc",
 ]
 
 [[package]]
