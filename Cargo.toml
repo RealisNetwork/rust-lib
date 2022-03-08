@@ -72,13 +72,13 @@ optional = true
 
 [dependencies.sp-core]
 git = "https://github.com/RealisNetwork/substrate.git"
-branch = "polka_v0.9.9"
+branch = "polkadot-v0.9.9"
 optional = true
 
 [dependencies.sp-runtime]
 version = "4.0.0-dev"
 git = "https://github.com/RealisNetwork/substrate.git"
-branch = "polka_v0.9.9"
+branch = "polkadot-v0.9.9"
 optional = true
 
 
