@@ -1,8 +1,7 @@
 use runtime::AccountId;
 
 use serde::Deserialize;
-use sp_core::Pair;
-use sp_runtime::app_crypto::sr25519;
+use substrate_api_client::{Pair, sp_runtime::app_crypto::sr25519};
 
 pub trait RealisWallet {
     fn get_public() -> AccountId;
