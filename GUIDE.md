@@ -1,5 +1,8 @@
 # GUIDE
 
+All questions note [here](https://docs.google.com/spreadsheets/d/1qRWu9mIqaxKNt8I5E0BFoicpNZHotJhyyrwrFugT_c0/edit?usp=sharing)
+(create your own page).
+
 ## Rust basics
 
 - Must have to know [rust-book](https://doc.rust-lang.org/book/).
