@@ -21,7 +21,8 @@ All questions note [here](https://docs.google.com/spreadsheets/d/1qRWu9mIqaxKNt8
 - [Tutorials](https://docs.substrate.io/tutorials/v3/)
   1. [Create your first substrate chain](https://docs.substrate.io/tutorials/v3/create-your-first-substrate-chain/)
   2. [Add the Niks pallet to your Runtime](https://docs.substrate.io/tutorials/v3/add-a-pallet/)
-  3. [Substrate Kitties workshop](https://docs.substrate.io/tutorials/v3/kitties/pt1/)
+  3. [Start a private nerwork](https://docs.substrate.io/tutorials/v3/private-network/)
+  4. [Substrate Kitties workshop](https://docs.substrate.io/tutorials/v3/kitties/pt1/)
 - [Key concepts](https://docs.substrate.io/v3/concepts/runtime/)
   - Runtime
   - Extrinsics
