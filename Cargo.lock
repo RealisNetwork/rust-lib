@@ -4357,7 +4357,6 @@ dependencies = [
  "slog-async",
  "slog-envlogger",
  "slog-scope",
- "slog-stdlog",
  "slog-term",
  "sp-core",
  "sp-runtime",
