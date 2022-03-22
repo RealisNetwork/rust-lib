@@ -67,7 +67,7 @@ optional = true
 [dependencies.runtime]
 git =  "https://github.com/RealisNetwork/Realis.Network.git"
 branch = "main"
-package = "node-runtime"
+package = "realis-node-runtime"
 optional = true
 
 [dependencies.sp-core]
