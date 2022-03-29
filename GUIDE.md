@@ -36,6 +36,10 @@ All questions note [here](https://docs.google.com/spreadsheets/d/1qRWu9mIqaxKNt8
   - [Theory](https://docs.substrate.io/v3/advanced/storage/)
   - [Api](https://docs.substrate.io/v3/runtime/storage/)
 
+## Git
+
+[Tutorial](https://www.w3schools.com/git/git_remote_getstarted.asp?remote=github)
+
 ## Other necessary software
 
 Recommend to use Ubuntu
