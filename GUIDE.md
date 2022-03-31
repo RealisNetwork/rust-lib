@@ -51,7 +51,12 @@ Recommend to use Ubuntu
     sudo apt install docker-compose
   ```
 - Clion. Can be installed with Ubuntu software.
-- [Postgres](https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart-ru) // TODO not sure about this guide
+- [Postgres](https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart-ru)
+  Also you should change postgres user password to postgres, for this use following comands:
+  ```shell
+    sudo -u postgres psql
+    ALTER USER postgres WITH PASSWORD 'postgres';
+  ```
 - DataGrip. Can be installed with Ubuntu software.
 
 # Practice
