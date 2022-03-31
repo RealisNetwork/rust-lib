@@ -55,6 +55,8 @@ Recommend to use Ubuntu
   Also you should change postgres user password to postgres, for this use following comands:
   ```shell
     sudo -u postgres psql
+  ```
+  ```sql
     ALTER USER postgres WITH PASSWORD 'postgres';
   ```
 - DataGrip. Can be installed with Ubuntu software.
