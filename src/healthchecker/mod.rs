@@ -16,9 +16,9 @@ pub struct HealthChecker {
     /// Determine status of program
     /// true - all okay
     /// false - something goes wrong, need restart
-    health: Arc<AtomicBool>,
+    pub health: Arc<AtomicBool>,
     /// Timeout between checks, in millis
-    timeout: u64,
+    pub timeout: u64,
 }
 
 impl HealthChecker {
