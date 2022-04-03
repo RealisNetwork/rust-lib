@@ -3967,7 +3967,7 @@ dependencies = [
 [[package]]
 name = "ratsio"
 version = "0.4.0"
-source = "git+https://github.com/RealisNetwork/ratsio.git#210aa9fde82671fe452289a9c73556e4c52e5523"
+source = "git+https://github.com/RealisNetwork/ratsio.git#e6061fb9c0e1f18281d8bc0a971a871ed795d0d1"
 dependencies = [
  "atomic-counter",
  "bytes 1.1.0",
