@@ -1,8 +1,8 @@
 use config::env::{EnvLoaded, EnvLoadedError};
-use quote::{ToTokens, __private::TokenStream};
-use std::path::PathBuf;
 #[cfg(feature = "rebuild")]
 use parser::loader::{git::GitLoader, loader::Loader};
+use quote::{ToTokens, __private::TokenStream};
+use std::path::PathBuf;
 
 fn main() {
     #[cfg(feature = "rebuild_local")]
