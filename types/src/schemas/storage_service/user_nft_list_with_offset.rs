@@ -2,7 +2,7 @@ use runtime::AccountId;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Deserialize, Serialize)]
-pub struct GetUserNftListWithOffset {
+pub struct GetUserNftListWithOffsetSchema {
     #[serde(rename = "accountId")]
     account_id: AccountId,
     id: String,
