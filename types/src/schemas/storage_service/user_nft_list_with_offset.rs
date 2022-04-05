@@ -6,11 +6,11 @@ pub struct GetUserNftListWithOffsetSchema {
     #[serde(rename = "accountId")]
     account_id: AccountId,
     id: String,
-    params: Params,
+    params: GetUserNftListWithOffsetSchemaParams,
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize)]
-pub struct Params {
+pub struct GetUserNftListWithOffsetSchemaParams {
     size: usize,
     offset: usize,
 }
