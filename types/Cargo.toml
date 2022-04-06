@@ -13,6 +13,12 @@ error_registry = { path = "../error_registry" }
 deadpool = "0.9.2"
 tokio-postgres = "0.7.5"
 
+[dependencies.runtime]
+git =  "https://github.com/RealisNetwork/Realis.Network.git"
+branch = "main"
+package = "realis-node-runtime"
+optional = true
+
 [features]
 schemas = [
     "rust-lib/ser_des-types",
