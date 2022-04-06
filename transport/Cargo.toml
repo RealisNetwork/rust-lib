@@ -12,6 +12,7 @@ tokio = { version = "1.15.0", features = ["sync", "time"] }
 rust-lib = { path = "../../rust-lib", optional = true }
 error_registry = { path = "../error_registry" }
 
+
 ratsio = { git = "https://github.com/RealisNetwork/ratsio.git", optional= true }
 
 [features]
