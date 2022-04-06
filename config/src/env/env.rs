@@ -32,8 +32,10 @@ pub trait EnvLoaded: Sized {
 
 impl EnvLoaded for bool {
     fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
-        println!("Read env by key: {:?}", key);
-        Ok(dotenv::var(key.unwrap())?
+        // println!("Read env by key: {:?}", key);
+        Ok(dotenv::var(key.clone().unwrap())
+            .map_err(|error| println!("Cannot get env by key: {:?} with error {:?}", key, error))
+            .unwrap()
             .parse::<bool>()
             .map_err(|error| error.to_string())?)
     }
@@ -41,8 +43,10 @@ impl EnvLoaded for bool {
 
 impl EnvLoaded for usize {
     fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
-        println!("Read env by key: {:?}", key);
-        Ok(dotenv::var(key.unwrap())?
+        // println!("Read env by key: {:?}", key);
+        Ok(dotenv::var(key.clone().unwrap())
+            .map_err(|error| println!("Cannot get env by key: {:?} with error {:?}", key, error))
+            .unwrap()
             .parse::<usize>()
             .map_err(|error| error.to_string())?)
     }
@@ -50,8 +54,10 @@ impl EnvLoaded for usize {
 
 impl EnvLoaded for u16 {
     fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
-        println!("Read env by key: {:?}", key);
-        Ok(dotenv::var(key.unwrap())?
+        // println!("Read env by key: {:?}", key);
+        Ok(dotenv::var(key.clone().unwrap())
+            .map_err(|error| println!("Cannot get env by key: {:?} with error {:?}", key, error))
+            .unwrap()
             .parse::<u16>()
             .map_err(|error| error.to_string())?)
     }
@@ -60,7 +66,9 @@ impl EnvLoaded for u16 {
 impl EnvLoaded for u32 {
     fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
         // println!("Read env by key: {:?}", key);
-        Ok(dotenv::var(key.unwrap())?
+        Ok(dotenv::var(key.clone().unwrap())
+            .map_err(|error| println!("Cannot get env by key: {:?} with error {:?}", key, error))
+            .unwrap()
             .parse::<u32>()
             .map_err(|error| error.to_string())?)
     }
@@ -68,9 +76,9 @@ impl EnvLoaded for u32 {
 
 impl EnvLoaded for u64 {
     fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
-        println!("Read env by key: {:?}", key);
-        Ok(dotenv::var(key.unwrap())
-            .map_err(|error| println!("{:?}", error))
+        // println!("Read env by key: {:?}", key);
+        Ok(dotenv::var(key.clone().unwrap())
+            .map_err(|error| println!("Cannot get env by key: {:?} with error {:?}", key, error))
             .unwrap()
             .parse::<u64>()
             .map_err(|error| error.to_string())?)
@@ -79,18 +87,22 @@ impl EnvLoaded for u64 {
 
 impl EnvLoaded for Vec<u8> {
     fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
-        println!("Read env by key: {:?}", key);
-        Ok(
-            hex::decode(dotenv::var(key.unwrap()).map_err(|error| error.to_string())?)
-                .map_err(|error| error.to_string())?,
+        // println!("Read env by key: {:?}", key);
+        Ok(hex::decode(
+            dotenv::var(key.clone().unwrap())
+                .map_err(|error| println!("Cannot get env by key: {:?} with error {:?}", key, error))
+                .unwrap(),
         )
+        .map_err(|error| error.to_string())?)
     }
 }
 
 impl EnvLoaded for String {
     fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
-        println!("Read env by key: {:?}", key);
-        Ok(dotenv::var(key.unwrap())?)
+        // println!("Read env by key: {:?}", key);
+        Ok(dotenv::var(key.clone().unwrap())
+            .map_err(|error| println!("Cannot get env by key: {:?} with error {:?}", key, error))
+            .unwrap())
     }
 }
 
