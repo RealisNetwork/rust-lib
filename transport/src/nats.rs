@@ -7,7 +7,7 @@ use std::sync::Arc;
 
 #[derive(Clone)]
 pub struct Nats {
-    stan_client: Arc<StanClient>,
+    pub stan_client: Arc<StanClient>,
 }
 
 impl Nats {

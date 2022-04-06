@@ -14,6 +14,18 @@ pub struct Nats {
 impl Nats {
     pub async fn build(&self) -> transport::nats::Nats {
         let nats_options = format!("{}:{}", self.host, self.port);
-        transport::nats::Nats::new(&nats_options, self.client_id.as_str(), self.cluster_id.as_str()).await
+        let nats = transport::nats::Nats::new(&nats_options, self.client_id.as_str(), self.cluster_id.as_str()).await;
+        // Add disconnect handler - make healthchecker sick if disconnect
+        nats.stan_client
+            .nats_client
+            .add_disconnect_handler(Box::new({
+                let health_checker = healthchecker;
+                move |_nats_client| {
+                    health_checker.make_sick();
+                }
+            }))
+            .await
+            .unwrap();
+        nats
     }
 }
