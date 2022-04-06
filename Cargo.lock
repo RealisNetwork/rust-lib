@@ -6472,6 +6472,7 @@ version = "0.1.0"
 dependencies = [
  "deadpool",
  "error_registry",
+ "realis-node-runtime",
  "rust-lib",
  "serde",
  "serde_json",

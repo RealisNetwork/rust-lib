@@ -7,14 +7,15 @@ use std::sync::Arc;
 
 #[derive(Clone)]
 pub struct Nats {
-    stan_client: Arc<StanClient>,
+    pub stan_client: Arc<StanClient>,
 }
 
 impl Nats {
     pub async fn new(nats_opts: &str, client_id: &str, cluster_id: &str) -> Self {
         let opts = StanOptions::with_options(nats_opts, cluster_id, &client_id[..]);
-        let stan_client = StanClient::from_options(opts).await.unwrap(); // TODO handle this unwrap
-        Self { stan_client }
+        Self {
+            stan_client: StanClient::from_options(opts).await.expect("Cannot connect to nats!"),
+        }
     }
 }
 
