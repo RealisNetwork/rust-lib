@@ -1,10 +1,9 @@
 use async_trait::async_trait;
 use tokio::{
     sync::{
-        oneshot::{channel, error::RecvError, Sender},
-        Mutex,
+        oneshot::error::RecvError,
     },
-    time::{error::Elapsed, timeout, Duration},
+    time::{error::Elapsed, Duration},
 };
 
 #[async_trait]
@@ -33,48 +32,13 @@ pub trait Transport {
 
     async fn unsubscribe(&self, subscribe_id: Self::SubscribeId) -> Result<(), Self::Error>;
 
-    async fn observe_reply(&self, topic: &str) -> Result<Self::Message, Self::Error> {
-        let (tx, rx) = channel();
-
-        let receiver = ObserveReplyReceiver {
-            tx: Mutex::new(Some(tx)),
-        };
-        self.subscribe(topic, receiver).await?;
-
-        let (message, message_id) = rx.await?;
-        self.ok(message_id).await?;
-
-        Ok(message)
-    }
-
     async fn message_reply(
         &self,
         topic: &str,
         topic_res: &str,
         message: Self::Message,
         duration: Option<Duration>,
-    ) -> Result<Self::Message, Self::Error> {
-        self.publish(&topic, message, Some(topic_res.to_string())).await?;
-        match duration {
-            Some(duration) => timeout(duration, self.observe_reply(topic_res)).await?,
-            None => timeout(Duration::from_secs(25), self.observe_reply(topic_res)).await?,
-        }
-    }
+    ) -> Result<Self::Message, Self::Error>;
 
     async fn ok(&self, message_id: Self::MessageId) -> Result<(), Self::Error>;
-}
-
-struct ObserveReplyReceiver<M, O> {
-    tx: Mutex<Option<Sender<(M, O)>>>,
-}
-
-#[async_trait]
-impl<M: Send, O: Send, E: From<M> + Send> MessageReceiver<M, O, E> for ObserveReplyReceiver<M, O> {
-    async fn process(&self, message: M, message_id: O) -> Result<bool, E> {
-        match self.tx.lock().await.take() {
-            None => Err(message)?,
-            Some(tx) => tx.send((message, message_id)).map_err(|(message, _)| message)?,
-        }
-        Ok(false)
-    }
 }
