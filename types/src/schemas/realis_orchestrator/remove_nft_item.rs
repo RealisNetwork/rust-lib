@@ -1,8 +1,9 @@
-use crate::requests::AuthInfo;
+use crate::{
+    requests::AuthInfo, schemas::realis_adapter::remove_nft_item::RemoveNftItemSchema as AdapterRemoveNftItemSchema,
+};
 use realis_primitives::TokenId;
 use rust_lib::json::token_id::{token_id_from_string, token_id_to_string};
 use serde::{Deserialize, Serialize};
-use crate::schemas::realis_adapter::remove_nft_item::RemoveNftItemSchema as AdapterRemoveNftItemSchema;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RemoveNftItemSchema {

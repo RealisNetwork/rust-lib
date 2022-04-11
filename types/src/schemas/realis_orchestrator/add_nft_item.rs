@@ -1,9 +1,7 @@
-use crate::requests::AuthInfo;
-use realis_primitives::TokenId;
+use crate::{requests::AuthInfo, schemas::realis_adapter::add_nft_item::AddNftItemSchema as AdapterAddNftItemSchema};
+use realis_primitives::{Rarity, TokenId};
 use rust_lib::json::token_id::{token_id_from_string, token_id_to_string};
 use serde::{Deserialize, Serialize};
-use crate::schemas::realis_adapter::add_nft_item::AddNftItemSchema as AdapterAddNftItemSchema;
-use realis_primitives::Rarity;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AddNftItemSchema {

@@ -1,5 +1,4 @@
-use crate::requests::AuthInfo;
-use crate::schemas::realis_adapter::debit_transfer::DebitTransferSchema;
+use crate::{requests::AuthInfo, schemas::realis_adapter::debit_transfer::DebitTransferSchema};
 use rust_lib::json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
 
