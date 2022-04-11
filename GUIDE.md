@@ -61,4 +61,77 @@ Recommend to use Ubuntu
   ```
 - DataGrip. Can be installed with Ubuntu software.
 
-# Practice
+# Architecture
+
+## Nats
+
+Basicly we use microservice architecture. Serviceses communicate with one an other throw the nats-streaming.
+Nats is the service which work like a post man - it takes the message and the address(in nats it calls `topic`) than it deliver the message by this address.
+Nats don't stop delivering message until while recipient, the recipient must say to nats that he got the message(in nats it calls `ok-ing` or `acknowledge`).
+
+## Request-response protocol
+
+All services communicate throw request-response. Request and response presented as JSON.
+Each request has its own unique id represented as string, in rust services we use uuid but it can be any string.
+
+Basic request structure:
+
+```javascript
+{
+  "id": "some_unique_id",
+  "topicRes": "topic_to_response", // can be missed if no need to response or response by hard coded topic
+  "params": {
+    // ... // here will be listed unique for this request params
+  },
+  "authInfo": {
+    "userId": "some_user_id", // if request elate to specific user
+    // some field omitted
+  }
+}
+```
+
+Basic response strucutre:
+
+- Error: 
+  ```javascript
+  {
+    "result": {
+      "request": "...", // request that provoked this response
+      "response": {
+        "type": "Left",
+        "value": {
+          "msg": "error 404",
+          "error_type": "", // specific error type
+          "trace?": "",
+          "data?": {"..."},
+          "status?": "..."
+        }
+      }
+    }
+  }
+  ```
+- Success:
+  ```javascript
+  {
+    "result": {
+      "request": "...", // request that provoked this response
+      "response": {
+        "type": "Left",
+        "value": {
+          "..." // response data
+        }
+      }
+    }
+  }
+  ```
+
+
+For now there are 4 main services:
+1. realis-wallet
+  Create for user account on blockcain save private(encoded) and public key in database.
+2. realis-adapter
+  Collect transactions in a batch and send to the blockchain.
+3. orchestrator
+  Redirect requests and responses, add blochain account data to request by `userId`.
+4. realis-listener
+  Track blockchain blocks and notify if something interesting appear.
