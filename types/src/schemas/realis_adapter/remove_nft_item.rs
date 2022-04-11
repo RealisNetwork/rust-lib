@@ -1,4 +1,7 @@
-use crate::requests::AuthInfo;
+use crate::{
+    requests::AuthInfo,
+    schemas::realis_orchestrator::remove_nft_item::RemoveNftItemSchema as OrchestratorRemoveNftItemSchema,
+};
 use realis_primitives::TokenId;
 use runtime::AccountId;
 use rust_lib::json::token_id::{token_id_from_string, token_id_to_string};
@@ -22,4 +25,18 @@ pub struct RemoveNftItemParams {
     pub token_id: TokenId,
     #[serde(rename = "accountId")]
     pub account_id: AccountId,
+}
+
+impl RemoveNftItemSchema {
+    pub fn new(other: OrchestratorRemoveNftItemSchema, account_id: AccountId) -> Self {
+        RemoveNftItemSchema {
+            id: other.id,
+            topic_res: other.topic_res,
+            params: RemoveNftItemParams {
+                token_id: other.params.token_id,
+                account_id,
+            },
+            auth_info: other.auth_info,
+        }
+    }
 }

@@ -1,4 +1,4 @@
-use crate::requests::AuthInfo;
+use crate::{requests::AuthInfo, schemas::realis_orchestrator::debit_hard_currency::DebitHardCurrencySchema};
 use runtime::AccountId;
 use rust_lib::json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
@@ -20,4 +20,18 @@ pub struct DebitTransferParams {
     pub amount: u128,
     #[serde(rename = "accountId")]
     pub account_id: AccountId,
+}
+
+impl DebitTransferSchema {
+    pub fn new(other: DebitHardCurrencySchema, account_id: AccountId) -> Self {
+        DebitTransferSchema {
+            id: other.id,
+            topic_res: other.topic_res,
+            params: DebitTransferParams {
+                amount: other.params.amount,
+                account_id,
+            },
+            auth_info: other.auth_info,
+        }
+    }
 }

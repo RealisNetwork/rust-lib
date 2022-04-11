@@ -1,4 +1,6 @@
-use crate::requests::AuthInfo;
+use crate::{
+    requests::AuthInfo, schemas::realis_orchestrator::add_nft_item::AddNftItemSchema as OrchestratorAddNftItemSchema,
+};
 use realis_primitives::{Rarity, TokenId};
 use runtime::AccountId;
 use rust_lib::json::token_id::{token_id_from_string, token_id_to_string};
@@ -27,4 +29,22 @@ pub struct AddNftItemParams {
     pub rarity: Rarity,
     #[serde(rename = "accountId")]
     pub account_id: AccountId,
+}
+
+impl AddNftItemSchema {
+    pub fn new(other: OrchestratorAddNftItemSchema, account_id: AccountId) -> Self {
+        AddNftItemSchema {
+            id: other.id,
+            topic_res: other.topic_res,
+            params: AddNftItemParams {
+                token_id: other.params.token_id,
+                mint_id: other.params.mint_id,
+                name: other.params.name,
+                link: other.params.link,
+                rarity: other.params.rarity,
+                account_id,
+            },
+            auth_info: other.auth_info,
+        }
+    }
 }
