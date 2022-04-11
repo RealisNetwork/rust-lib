@@ -6623,6 +6623,7 @@ dependencies = [
  "deadpool",
  "error_registry",
  "realis-node-runtime",
+ "realis-primitives",
  "rust-lib",
  "serde",
  "serde_json",
