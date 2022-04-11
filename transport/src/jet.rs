@@ -1,6 +1,6 @@
 use crate::traits::{MessageReceiver, Transport};
 use async_trait::async_trait;
-use error_registry::RealisErrors;
+use error_registry::{Nats as NatsError, RealisErrors};
 pub use jet_nats;
 use jet_nats::jetstream::JetStream;
 use jet_nats::jetstream::push_subscription::PushSubscription;
@@ -15,7 +15,7 @@ impl Jet {
 	pub async fn new(nats_url: &str) -> Self {
 		// TODO: try to use asynk
         // TODO: add options no reconnect
-		let nats = jet_nats::connect(nats_url).unwrap(); // TODO: handle this result
+		let nats = jet_nats::connect(nats_url).expect("Cannot connect to nats!");
 		let jet_stream = jet_nats::jetstream::new(nats);
 		Self {
 			jet_stream,
@@ -41,7 +41,7 @@ impl Transport for Jet {
         message: Self::Message,
         _topic_res: Option<String>,
     ) -> Result<(), Self::Error> {
-        self.jet_stream.publish(topic, &message).unwrap(); // TODO: map_err
+        self.jet_stream.publish(topic, &message).map_err(|_| RealisErrors::Nats(NatsError::Send))?;
         Ok(())
     }
 
@@ -50,8 +50,10 @@ impl Transport for Jet {
         topic: &str,
         callback: impl MessageReceiver<Self::Message, Self::MessageId, Self::Error> + 'a,
     ) -> Result<(), Self::Error> {
-        let _stream_info = self.jet_stream.add_stream(topic).unwrap(); // TODO: handle this result
-        let subscription = self.jet_stream.subscribe(topic).unwrap(); // TODO: handle this result
+        let _stream_info = self.jet_stream.add_stream(topic)
+            .map_err(|_| RealisErrors::Nats(NatsError::Disconnected))?;
+        let subscription = self.jet_stream.subscribe(topic)
+            .map_err(|_| RealisErrors::Nats(NatsError::Disconnected))?;
 
         loop {
             match subscription.next() {
@@ -77,12 +79,12 @@ impl Transport for Jet {
     }
 
     async fn unsubscribe(&self, subscribe_id: Self::SubscribeId) -> Result<(), Self::Error> {
-        subscribe_id.unsubscribe().unwrap(); // TODO: handle this result
-        Ok(())
+        subscribe_id.unsubscribe()
+            .map_err(|_| RealisErrors::Nats(NatsError::Unsubscribe))
     }
 
     async fn ok(&self, message_id: Self::MessageId) -> Result<(), Self::Error> {
-        message_id.ack().unwrap(); // TODO: handle this result
-        Ok(())
-    }
+        message_id.ack()
+            .map_err(|_| RealisErrors::Nats(NatsError::Ok))
+        }
 }
