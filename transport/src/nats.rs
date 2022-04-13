@@ -3,7 +3,8 @@ use async_trait::async_trait;
 use error_registry::{Nats as NatsError, RealisErrors};
 use futures::StreamExt;
 use ratsio::{StanClient, StanMessage, StanOptions, StanSid};
-use std::sync::Arc;
+use std::{sync::Arc, time::Duration};
+use tokio::time::timeout;
 
 #[derive(Clone)]
 pub struct Nats {
@@ -77,6 +78,35 @@ impl Transport for Nats {
             .un_subscribe(&subscribe_id)
             .await
             .map_err(|_| RealisErrors::Nats(NatsError::Unsubscribe))
+    }
+
+    async fn message_reply(
+        &self,
+        topic: &str,
+        topic_res: &str,
+        message: Self::Message,
+        duration: Option<Duration>,
+    ) -> Result<Self::Message, Self::Error> {
+        let (stan_id, mut stream) = self
+            .stan_client
+            .subscribe(topic_res, None, None)
+            .await
+            .map_err(|_| RealisErrors::Nats(NatsError::Disconnected))?;
+
+        self.publish(topic, message, None).await?;
+
+        let option_message = match duration {
+            Some(duration) => timeout(duration, stream.next()).await?,
+            None => timeout(Duration::from_secs(25), stream.next()).await?,
+        };
+
+        self.unsubscribe(stan_id).await?;
+
+        let message = option_message.ok_or(RealisErrors::Nats(NatsError::Receive))?;
+
+        self.ok(message.clone()).await?;
+
+        Ok(message.payload)
     }
 
     async fn ok(&self, message_id: Self::MessageId) -> Result<(), Self::Error> {

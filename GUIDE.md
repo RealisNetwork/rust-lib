@@ -15,7 +15,7 @@ All questions note [here](https://docs.google.com/spreadsheets/d/1qRWu9mIqaxKNt8
 
 - [What Is a Blockchain?](https://www.investopedia.com/terms/b/blockchain.asp)
 
-## Substrate 
+## Substrate
 
 - [Installation guide](https://docs.substrate.io/v3/getting-started/installation/)
 - [Tutorials](https://docs.substrate.io/tutorials/v3/)
@@ -90,9 +90,10 @@ Basic request structure:
 }
 ```
 
-Basic response strucutre:
 
-- Error: 
+Basic response structure:
+
+- Error:
   ```javascript
   {
     "result": {
