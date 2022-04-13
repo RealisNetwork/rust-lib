@@ -1,9 +1,9 @@
 use runtime::AccountId;
 use serde::{Deserialize, Serialize};
 
-// Schema for serialize/deserialize json
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct GetUserNftListSchema {
+#[allow(clippy::pedantic)]
+#[derive(Deserialize, Serialize, Clone, Debug)]
+pub struct GetBalanceSchema {
     #[serde(rename = "topicResponse")]
     pub topic_res: String,
     #[serde(rename = "accountId")]
