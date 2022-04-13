@@ -13,7 +13,7 @@ pub struct Jet {
 
 impl Jet {
 	pub async fn new(nats_url: &str) -> Self {
-		// TODO: try to use asynk
+		// TODO: try to use async
         // TODO: add options no reconnect
 		let nats = jet_nats::connect(nats_url).expect("Cannot connect to nats!");
 		let jet_stream = jet_nats::jetstream::new(nats);
