@@ -1,21 +1,18 @@
 use crate::schemas::storage_service::{option_u128_from_string, option_u128_to_string};
 
-use runtime::AccountId;
 use serde::{Deserialize, Serialize};
 
 #[allow(clippy::pedantic)]
 #[derive(Deserialize, Serialize, Clone, Debug)]
-pub struct GetNftListWithOffsetSchema {
+pub struct GetMarketplaceNftListSchema {
     #[serde(rename = "topicResponse")]
     pub topic_res: String,
     pub id: String,
-    #[serde(rename = "accountId")]
-    pub account_id: AccountId,
-    pub params: Option<GetNftListWithOffsetSchemaParams>,
+    pub params: Option<GetMarketplaceNftListSchemaParams>,
 }
 
-#[derive(Deserialize, Serialize, Clone, Debug)]
-pub struct GetNftListWithOffsetSchemaParams {
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct GetMarketplaceNftListSchemaParams {
     #[serde(default)]
     #[serde(serialize_with = "option_u128_to_string")]
     #[serde(deserialize_with = "option_u128_from_string")]
