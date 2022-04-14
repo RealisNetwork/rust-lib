@@ -7,10 +7,10 @@ edition = "2021"
 members = [
     "byte-formatter",
     "config",
+    "error_registry",
     "macros",
     "topics",
     "topics/parser",
-    "error_registry",
     "transport",
     "types",
 ]
@@ -126,6 +126,7 @@ blockchain = [
     "substrate-api-client",
     "sp-runtime/std",
     "sp-core/std",
+    "serde_json",
 ]
 
 config = [

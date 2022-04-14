@@ -1,4 +1,5 @@
 use crate::schemas::realis_adapter::change_batch::ChangeBatch as AdapterChangeBatch;
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ChangeBatch {

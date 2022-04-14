@@ -11,8 +11,8 @@ pub enum EnvNameAttrs {
 impl EnvNameAttrs {
     pub fn name(&self, struct_name: &str, field_name: &str) -> String {
         match self {
-            EnvNameAttrs::Flatten => format!("{}", field_name),
-            EnvNameAttrs::RenameAbs(Str(str)) => format!("{}", str.value()),
+            EnvNameAttrs::Flatten => field_name.to_string(),
+            EnvNameAttrs::RenameAbs(Str(str)) => str.value().to_string(),
             EnvNameAttrs::Rename(Str(str)) => format!("{}_{}", struct_name.to_string(), str.value()),
             _ => format!("{}_{}", struct_name.to_string(), field_name.to_string()),
         }

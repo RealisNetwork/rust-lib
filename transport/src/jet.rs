@@ -1,3 +1,4 @@
+use std::time::Duration;
 use crate::traits::{MessageReceiver, Transport};
 use async_trait::async_trait;
 use error_registry::{Nats as NatsError, RealisErrors};
@@ -84,5 +85,9 @@ impl Transport for Jet {
 
     async fn ok(&self, message_id: Self::MessageId) -> Result<(), Self::Error> {
         message_id.ack().map_err(|_| RealisErrors::Nats(NatsError::Ok))
+    }
+
+    async fn message_reply(&self, topic: &str, topic_res: &str, message: Self::Message, duration: Option<Duration>) -> Result<Self::Message, Self::Error> {
+        todo!()
     }
 }

@@ -10,6 +10,9 @@ pub mod config;
 #[cfg(feature = "healthchecker")]
 pub mod healthchecker;
 
+#[cfg(feature = "db")]
+pub mod inner_db;
+
 #[cfg(feature = "ser_des-types")]
 pub mod json;
 
@@ -19,5 +22,3 @@ pub mod nats;
 #[cfg(feature = "vault")]
 pub mod vault;
 
-#[cfg(feature = "db")]
-pub mod inner_db;

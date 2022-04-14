@@ -4,8 +4,7 @@ use crate::{
 use realis_primitives::TokenId;
 use runtime::AccountId;
 use rust_lib::{
-    blockchain::cold_wallets::RealisGameApi,
-    json::u128::{u128_from_string, u128_to_string},
+    json::token_id::{token_id_to_string, token_id_from_string},
 };
 use serde::{Deserialize, Serialize};
 

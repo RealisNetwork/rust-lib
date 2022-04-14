@@ -2,9 +2,8 @@ use crate::{
     requests::AuthInfo, schemas::realis_orchestrator::remove_nft_item::RemoveNftItemSchema as OrchestratorRemoveNftItemSchema,
 };
 use realis_primitives::TokenId;
-use runtime::AccountId;
+use runtime::{realis_game_api::Call as RealisGameApiCall, AccountId, Call};
 use rust_lib::{
-    blockchain::cold_wallets::RealisGameApi,
     json::token_id::{token_id_from_string, token_id_to_string},
 };
 use serde::{Deserialize, Serialize};
@@ -41,10 +40,11 @@ impl RemoveNftItemSchema {
             auth_info: other.auth_info,
         }
     }
-}
 
-impl From<RemoveNftItemSchema> for Call {
-    fn from(schema: RemoveNftItemSchema) -> Call {
-        Call::RealisGameApi(RealisGameApi::burn_nft(schema.params.token_id, schema.params.token_id))
+    pub fn into_call(&self) -> Call {
+        Call::RealisGameApi(RealisGameApiCall::burn_nft(
+            self.params.account_id.clone(),
+            self.params.token_id,
+        ))
     }
 }

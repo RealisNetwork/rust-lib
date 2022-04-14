@@ -1,7 +1,6 @@
 use crate::{requests::AuthInfo, schemas::realis_orchestrator::credit_hard_currency::CreditHardCurrencySchema};
-use runtime::AccountId;
+use runtime::{realis_game_api::Call as RealisGameApiCall, AccountId, Call};
 use rust_lib::{
-    blockchain::cold_wallets::RealisGameApi,
     json::u128::{u128_from_string, u128_to_string},
 };
 use serde::{Deserialize, Serialize};
@@ -37,13 +36,11 @@ impl CreditTransferSchema {
             auth_info: other.auth_info,
         }
     }
-}
 
-impl From<CreditTransferSchema> for Call {
-    fn from(schema: CreditTransferSchema) -> Call {
-        Call::RealisGameApi(RealisGameApiCall::transfer_from_palett(
-            schema.params.account_id,
-            schema.params.amount,
+    pub fn into_call(&self) -> Call {
+        Call::RealisGameApi(RealisGameApiCall::transfer_from_pallet(
+            self.params.account_id.clone(),
+            self.params.amount,
         ))
     }
 }

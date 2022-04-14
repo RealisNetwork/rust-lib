@@ -1,8 +1,7 @@
 use crate::{requests::AuthInfo, schemas::realis_orchestrator::add_nft_item::AddNftItemSchema as OrchestratorAddNftItemSchema};
 use realis_primitives::{Rarity, TokenId};
-use runtime::AccountId;
+use runtime::{realis_game_api::Call as RealisGameApiCall, AccountId, Call};
 use rust_lib::{
-    blockchain::cold_wallets::RealisGameApi,
     json::token_id::{token_id_from_string, token_id_to_string},
 };
 use serde::{Deserialize, Serialize};
@@ -48,17 +47,16 @@ impl AddNftItemSchema {
             auth_info: other.auth_info,
         }
     }
-}
 
-impl From<AddNftItemSchema> for Call {
-    fn from(schema: AddNftItemSchema) -> Call {
+    pub fn into_call(&self) -> Call {
         Call::RealisGameApi(RealisGameApiCall::mint_nft(
-            schema.params.account_id,
-            schema.params.token_id,
-            schema.params.mint_id,
-            schema.params.name,
-            schema.params.rarity,
-            schema.params.link,
+            self.params.account_id.clone(),
+            self.params.token_id,
+            self.params.mint_id,
+            self.params.name.clone().into_bytes(),
+            self.params.rarity,
+            self.params.link.clone().into_bytes(),
+            self.id.clone().into_bytes(),
         ))
     }
 }
