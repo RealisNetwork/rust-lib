@@ -42,3 +42,13 @@ impl TransferTokensToPlayerSchema {
         }
     }
 }
+
+impl From<TransferNftToPlayerSchema> for Call {
+    fn from(schema: TransferNftToPlayerSchema) -> Call {
+        Call::RealisGameApi(RealisGameApiCall::transfer_from_ptp(
+            schema.params.dest,
+            schema.params.token_id,
+            schema.params.account_id,
+        ))
+    }
+}

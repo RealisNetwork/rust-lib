@@ -5,6 +5,7 @@ use realis_primitives::{Rarity, TokenId};
 use runtime::AccountId;
 use rust_lib::json::token_id::{token_id_from_string, token_id_to_string};
 use serde::{Deserialize, Serialize};
+use rust_lib::blockchain::cold_wallets::RealisGameApi;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AddNftItemSchema {
@@ -46,5 +47,18 @@ impl AddNftItemSchema {
             },
             auth_info: other.auth_info,
         }
+    }
+}
+
+impl From<AddNftItemSchema> for Call {
+    fn from(schema: AddNftItemSchema) -> Call {
+        Call::RealisGameApi(RealisGameApiCall::mint_nft(
+            schema.params.account_id,
+            schema.params.token_id,
+            schema.params.mint_id,
+            schema.params.name,
+            schema.params.rarity,
+            schema.params.link,
+        ))
     }
 }

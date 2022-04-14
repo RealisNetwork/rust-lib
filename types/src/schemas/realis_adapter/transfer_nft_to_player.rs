@@ -53,3 +53,4 @@ impl From<TransferNftToPlayerSchema> for Call {
         ))
     }
 }
+
