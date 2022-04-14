@@ -2,6 +2,7 @@ use crate::{requests::AuthInfo, schemas::realis_orchestrator::credit_hard_curren
 use runtime::AccountId;
 use rust_lib::json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
+use rust_lib::blockchain::cold_wallets::RealisGameApi;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CreditTransferSchema {
@@ -33,5 +34,14 @@ impl CreditTransferSchema {
             },
             auth_info: other.auth_info,
         }
+    }
+}
+
+impl From<CreditTransferSchema> for Call {
+    fn from(schema: CreditTransferSchema) -> Call {
+        Call::RealisGameApi(RealisGameApiCall::transfer_from_palett(
+            schema.params.account_id,
+            schema.params.amount,
+        ))
     }
 }

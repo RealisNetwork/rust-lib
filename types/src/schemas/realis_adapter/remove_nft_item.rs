@@ -6,6 +6,7 @@ use realis_primitives::TokenId;
 use runtime::AccountId;
 use rust_lib::json::token_id::{token_id_from_string, token_id_to_string};
 use serde::{Deserialize, Serialize};
+use rust_lib::blockchain::cold_wallets::RealisGameApi;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RemoveNftItemSchema {
@@ -38,5 +39,14 @@ impl RemoveNftItemSchema {
             },
             auth_info: other.auth_info,
         }
+    }
+}
+
+impl From<RemoveNftItemSchema> for Call {
+    fn from(schema: RemoveNftItemSchema) -> Call {
+        Call::RealisGameApi(RealisGameApi::burn_nft(
+            schema.params.token_id,
+            schema.params.token_id,
+        ))
     }
 }

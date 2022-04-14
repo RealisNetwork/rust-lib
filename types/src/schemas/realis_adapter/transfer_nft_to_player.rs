@@ -2,10 +2,11 @@ use realis_primitives::TokenId;
 use runtime::AccountId;
 use crate::{
     requests::AuthInfo,
-    schemas::realis_orchestrator::transfer_nft_to_player::TransferNftToPlayerSchema as OrchestratorTransferNftToPlayerSchema
+    schemas::realis_orchestrator::transfer_nft_to_player::TransferNftToPlayerSchema as OrchestratorTransferNftToPlayerSchema,
 };
 use rust_lib::json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
+use rust_lib::blockchain::cold_wallets::RealisGameApi;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransferNftToPlayerSchema {
@@ -36,9 +37,19 @@ impl TransferNftToPlayerSchema {
             params: TransferNftToPlayerParams {
                 dest: other.params.dest,
                 token_id: other.params.token_id,
-                account_id
+                account_id,
             },
-            auth_info: other.auth_info
+            auth_info: other.auth_info,
         }
+    }
+}
+
+impl From<TransferNftToPlayerSchema> for Call {
+    fn from(schema: TransferNftToPlayerSchema) -> Call {
+        Call::RealisGameApi(RealisGameApiCall::transfer_nft(
+            schema.params.token_id,
+            schema.params.dest,
+            schema.params.account_id,
+        ))
     }
 }
