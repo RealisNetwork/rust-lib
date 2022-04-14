@@ -90,6 +90,7 @@ Basic request structure:
 }
 ```
 
+
 Basic response structure:
 
 - Error:
@@ -128,10 +129,10 @@ Basic response structure:
 
 For now there are 4 main services:
 1. realis-wallet
-   Create for user account on blockcain save private(encoded) and public key in database.
+  Create for user account on blockcain save private(encoded) and public key in database.
 2. realis-adapter
-   Collect transactions in a batch and send to the blockchain.
+  Collect transactions in a batch and send to the blockchain.
 3. orchestrator
-   Redirect requests and responses, add blockchain account data to request by `userId`.
+  Redirect requests and responses, add blochain account data to request by `userId`.
 4. realis-listener
-   Track blockchain blocks and notify if something interesting appear.
+  Track blockchain blocks and notify if something interesting appear.

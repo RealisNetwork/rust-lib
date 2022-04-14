@@ -9,13 +9,34 @@ edition = "2021"
 async-trait = "0.1.52"
 futures = "0.3.19"
 tokio = { version = "1.15.0", features = ["sync", "time"] }
-rust-lib = { path = "../../rust-lib", optional = true }
 error_registry = { path = "../error_registry" }
 
 
-ratsio = { git = "https://github.com/RealisNetwork/ratsio.git", optional= true }
+ratsio = { git = "https://github.com/RealisNetwork/ratsio.git", optional = true }
+jet-nats = { package = "nats", version = "0.18.1", optional = true }
+
+[dev-dependencies]
+# for jet-raw examples 
+jet-nats = { package = "nats", version = "0.18.1" }
+serde_json = "1.0.79"
+# for jet examples
+tokio = { version = "1.17.0", features = ["full"] }
 
 [features]
 nats = [
     "ratsio",
 ]
+
+jet = [
+    "jet-nats",
+]
+
+
+[[example]]
+name = "jet"
+path = "examples/jet/main.rs"
+required-features = ["jet"]
+
+[[example]]
+name = "jet-raw"
+path = "examples/jet-raw/main.rs"
