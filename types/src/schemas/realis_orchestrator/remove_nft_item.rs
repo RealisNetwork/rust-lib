@@ -24,7 +24,7 @@ pub struct RemoveNftItemParams {
 }
 
 impl From<AdapterRemoveNftItemSchema> for RemoveNftItemSchema {
-    fn from(other: AdapterRemoveNftItemSchema) -> RemoveNftItemSchema {
+    fn from(other: AdapterRemoveNftItemSchema) -> Self {
         RemoveNftItemSchema {
             id: other.id,
             topic_res: other.topic_res,

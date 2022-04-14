@@ -27,7 +27,7 @@ pub struct AddNftItemParams {
 }
 
 impl From<AdapterAddNftItemSchema> for AddNftItemSchema {
-    fn from(other: AdapterAddNftItemSchema) -> AddNftItemSchema {
+    fn from(other: AdapterAddNftItemSchema) -> Self {
         AddNftItemSchema {
             id: other.id,
             topic_res: other.topic_res,

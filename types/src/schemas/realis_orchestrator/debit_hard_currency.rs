@@ -20,7 +20,7 @@ pub struct DebitHardCurrencyParams {
 }
 
 impl From<DebitTransferSchema> for DebitHardCurrencySchema {
-    fn from(other: DebitTransferSchema) -> DebitHardCurrencySchema {
+    fn from(other: DebitTransferSchema) -> Self {
         DebitHardCurrencySchema {
             id: other.id,
             topic_res: other.topic_res,
