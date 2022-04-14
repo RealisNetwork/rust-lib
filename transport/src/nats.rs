@@ -2,7 +2,7 @@ use crate::traits::{MessageReceiver, Transport};
 use async_trait::async_trait;
 use error_registry::{Nats as NatsError, RealisErrors};
 use futures::StreamExt;
-use ratsio::{StanClient, StanMessage, StanOptions, StanSid};
+use ratsio::{StanClient, StanMessage, StanOptions, StanSid, StartPosition};
 use std::{sync::Arc, time::Duration};
 use tokio::time::timeout;
 
@@ -14,9 +14,8 @@ pub struct Nats {
 impl Nats {
     pub async fn new(nats_opts: &str, client_id: &str, cluster_id: &str) -> Self {
         let opts = StanOptions::with_options(nats_opts, cluster_id, &client_id[..]);
-        Self {
-            stan_client: StanClient::from_options(opts).await.expect("Cannot connect to nats!"),
-        }
+        let stan_client = StanClient::from_options(opts).await.expect("Cannot connect to nats!");
+        Self { stan_client }
     }
 }
 
@@ -46,7 +45,7 @@ impl Transport for Nats {
     ) -> Result<(), Self::Error> {
         let (stan_id, mut stream) = self
             .stan_client
-            .subscribe(topic, None, None)
+            .subscribe_with_all(topic, None, None, 1024, 30, StartPosition::First, 0, None, true)
             .await
             .map_err(|_| RealisErrors::Nats(NatsError::Disconnected))?;
 

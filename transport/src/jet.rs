@@ -2,27 +2,26 @@ use crate::traits::{MessageReceiver, Transport};
 use async_trait::async_trait;
 use error_registry::{Nats as NatsError, RealisErrors};
 pub use jet_nats;
-use jet_nats::jetstream::JetStream;
-use jet_nats::jetstream::push_subscription::PushSubscription;
-use jet_nats::Message;
+use jet_nats::{
+    jetstream::{push_subscription::PushSubscription, JetStream},
+    Message,
+};
 
 #[derive(Clone)]
 pub struct Jet {
-	pub jet_stream: JetStream,
+    pub jet_stream: JetStream,
 }
 
 impl Jet {
-	pub async fn new(nats_url: &str) -> Self {
-		// TODO: try to use async
+    pub async fn new(nats_url: &str) -> Self {
+        // TODO: try to use async
         // TODO: add options no reconnect
-		let nats = jet_nats::connect(nats_url).expect("Cannot connect to nats!");
-		let jet_stream = jet_nats::jetstream::new(nats);
-		Self {
-			jet_stream,
-		}
-	}
+        let nats = jet_nats::connect(nats_url).expect("Cannot connect to nats!");
+        let jet_stream = jet_nats::jetstream::new(nats);
+        Self { jet_stream }
+    }
 
-    // TODO: 
+    // TODO:
     pub fn add_disconnect_handler(&self, disconnect_handler: ()) -> Self {
         todo!()
     }
@@ -41,7 +40,9 @@ impl Transport for Jet {
         message: Self::Message,
         _topic_res: Option<String>,
     ) -> Result<(), Self::Error> {
-        self.jet_stream.publish(topic, &message).map_err(|_| RealisErrors::Nats(NatsError::Send))?;
+        self.jet_stream
+            .publish(topic, &message)
+            .map_err(|_| RealisErrors::Nats(NatsError::Send))?;
         Ok(())
     }
 
@@ -50,9 +51,13 @@ impl Transport for Jet {
         topic: &str,
         callback: impl MessageReceiver<Self::Message, Self::MessageId, Self::Error> + 'a,
     ) -> Result<(), Self::Error> {
-        let _stream_info = self.jet_stream.add_stream(topic)
+        let _stream_info = self
+            .jet_stream
+            .add_stream(topic)
             .map_err(|_| RealisErrors::Nats(NatsError::Disconnected))?;
-        let subscription = self.jet_stream.subscribe(topic)
+        let subscription = self
+            .jet_stream
+            .subscribe(topic)
             .map_err(|_| RealisErrors::Nats(NatsError::Disconnected))?;
 
         loop {
@@ -71,20 +76,20 @@ impl Transport for Jet {
                         self.unsubscribe(subscription).await?;
                         return Err(error);
                     }
-                }
+                },
             }
         }
-        
+
         Ok(())
     }
 
     async fn unsubscribe(&self, subscribe_id: Self::SubscribeId) -> Result<(), Self::Error> {
-        subscribe_id.unsubscribe()
+        subscribe_id
+            .unsubscribe()
             .map_err(|_| RealisErrors::Nats(NatsError::Unsubscribe))
     }
 
     async fn ok(&self, message_id: Self::MessageId) -> Result<(), Self::Error> {
-        message_id.ack()
-            .map_err(|_| RealisErrors::Nats(NatsError::Ok))
-        }
+        message_id.ack().map_err(|_| RealisErrors::Nats(NatsError::Ok))
+    }
 }
