@@ -9,7 +9,7 @@ pub enum EnvNameAttrs {
 }
 
 impl EnvNameAttrs {
-    pub fn name(&self, struct_name: String, field_name: String) -> String {
+    pub fn name(&self, struct_name: &str, field_name: &str) -> String {
         match self {
             EnvNameAttrs::Flatten => format!("{}", field_name),
             EnvNameAttrs::RenameAbs(Str(str)) => format!("{}", str.value()),

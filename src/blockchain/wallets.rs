@@ -12,8 +12,7 @@ pub struct BridgeMaster {}
 
 impl RealisWallet for BridgeMaster {
     fn get_public() -> AccountId {
-        Deserialize::deserialize(serde_json::to_value("5CSxbs1GPGgUZvsHNcFMyFRqu56jykBcBWBXhUBay2SXBsaA").unwrap())
-            .unwrap()
+        Deserialize::deserialize(serde_json::to_value("5CSxbs1GPGgUZvsHNcFMyFRqu56jykBcBWBXhUBay2SXBsaA").unwrap()).unwrap()
     }
 
     fn get_private() -> sr25519::Pair {
@@ -29,16 +28,11 @@ pub struct WithdrawRealisMaster {}
 
 impl RealisWallet for WithdrawRealisMaster {
     fn get_public() -> AccountId {
-        Deserialize::deserialize(serde_json::to_value("5GusupCwM4jaX4F7QdE9n8edtSA9b6svddqaSdm6MgnpgLUF").unwrap())
-            .unwrap()
+        Deserialize::deserialize(serde_json::to_value("5GusupCwM4jaX4F7QdE9n8edtSA9b6svddqaSdm6MgnpgLUF").unwrap()).unwrap()
     }
 
     fn get_private() -> sr25519::Pair {
-        Pair::from_string(
-            "dry corn nothing bomb jelly romance enemy employ turn can penalty depth",
-            None,
-        )
-        .unwrap()
+        Pair::from_string("dry corn nothing bomb jelly romance enemy employ turn can penalty depth", None).unwrap()
     }
 }
 
@@ -46,8 +40,7 @@ pub struct WithdrawBscMaster1 {}
 
 impl RealisWallet for WithdrawBscMaster1 {
     fn get_public() -> AccountId {
-        Deserialize::deserialize(serde_json::to_value("5H3rP9jqdhCftMAw6BngEGTH71gJQsnohHyuhBjdJW9zXPk2").unwrap())
-            .unwrap()
+        Deserialize::deserialize(serde_json::to_value("5H3rP9jqdhCftMAw6BngEGTH71gJQsnohHyuhBjdJW9zXPk2").unwrap()).unwrap()
     }
 
     fn get_private() -> sr25519::Pair {
@@ -63,8 +56,7 @@ pub struct WithdrawBscMaster2 {}
 
 impl RealisWallet for WithdrawBscMaster2 {
     fn get_public() -> AccountId {
-        Deserialize::deserialize(serde_json::to_value("5FprwZ4YNVZo1aNQugvhK6oJofVpjPqi9MfUj1fv2gqMCb3c").unwrap())
-            .unwrap()
+        Deserialize::deserialize(serde_json::to_value("5FprwZ4YNVZo1aNQugvhK6oJofVpjPqi9MfUj1fv2gqMCb3c").unwrap()).unwrap()
     }
 
     fn get_private() -> sr25519::Pair {
@@ -80,16 +72,11 @@ pub struct AdapterMaster1 {}
 
 impl RealisWallet for AdapterMaster1 {
     fn get_public() -> AccountId {
-        Deserialize::deserialize(serde_json::to_value("5D54XGhtRwffGsmrsaMyUdy3cZhtECnCGpxJgHto8e9csKEc").unwrap())
-            .unwrap()
+        Deserialize::deserialize(serde_json::to_value("5D54XGhtRwffGsmrsaMyUdy3cZhtECnCGpxJgHto8e9csKEc").unwrap()).unwrap()
     }
 
     fn get_private() -> sr25519::Pair {
-        Pair::from_string(
-            "bless cram child coast cannon bind solid write split brisk renew tent",
-            None,
-        )
-        .unwrap()
+        Pair::from_string("bless cram child coast cannon bind solid write split brisk renew tent", None).unwrap()
     }
 }
 
@@ -97,8 +84,7 @@ pub struct AdapterMaster2 {}
 
 impl RealisWallet for AdapterMaster2 {
     fn get_public() -> AccountId {
-        Deserialize::deserialize(serde_json::to_value("5C7odVdth9qyssQi81XHjkF8hWeLhMpnN27U24QgMB2YNJ6T").unwrap())
-            .unwrap()
+        Deserialize::deserialize(serde_json::to_value("5C7odVdth9qyssQi81XHjkF8hWeLhMpnN27U24QgMB2YNJ6T").unwrap()).unwrap()
     }
 
     fn get_private() -> sr25519::Pair {
@@ -114,8 +100,7 @@ pub struct AdapterMaster3 {}
 
 impl RealisWallet for AdapterMaster3 {
     fn get_public() -> AccountId {
-        Deserialize::deserialize(serde_json::to_value("5EU1u5MaJLfB1hneKf7oPuZUa1PoSDBqpH6wU2E2yaB3h7Vi").unwrap())
-            .unwrap()
+        Deserialize::deserialize(serde_json::to_value("5EU1u5MaJLfB1hneKf7oPuZUa1PoSDBqpH6wU2E2yaB3h7Vi").unwrap()).unwrap()
     }
 
     fn get_private() -> sr25519::Pair {
@@ -131,16 +116,11 @@ pub struct AdapterMaster4 {}
 
 impl RealisWallet for AdapterMaster4 {
     fn get_public() -> AccountId {
-        Deserialize::deserialize(serde_json::to_value("5EKqhiruvSw3etmTccRcVT3dahwhMNutAyQEkhT3NoYeVkBf").unwrap())
-            .unwrap()
+        Deserialize::deserialize(serde_json::to_value("5EKqhiruvSw3etmTccRcVT3dahwhMNutAyQEkhT3NoYeVkBf").unwrap()).unwrap()
     }
 
     fn get_private() -> sr25519::Pair {
-        Pair::from_string(
-            "prevent book moment rate ride fix survey subway ostrich suggest bag differ",
-            None,
-        )
-        .unwrap()
+        Pair::from_string("prevent book moment rate ride fix survey subway ostrich suggest bag differ", None).unwrap()
     }
 }
 
@@ -148,16 +128,11 @@ pub struct MarketplaceMaster1 {}
 
 impl RealisWallet for MarketplaceMaster1 {
     fn get_public() -> AccountId {
-        Deserialize::deserialize(serde_json::to_value("5GgSgijLeCndfk1t8Mdjm8weUNEahBBtWwtfC1ZJxc9yNh1e").unwrap())
-            .unwrap()
+        Deserialize::deserialize(serde_json::to_value("5GgSgijLeCndfk1t8Mdjm8weUNEahBBtWwtfC1ZJxc9yNh1e").unwrap()).unwrap()
     }
 
     fn get_private() -> sr25519::Pair {
-        Pair::from_string(
-            "mushroom random body medal make pause input trap cloth reveal boat diagram",
-            None,
-        )
-        .unwrap()
+        Pair::from_string("mushroom random body medal make pause input trap cloth reveal boat diagram", None).unwrap()
     }
 }
 
@@ -165,15 +140,10 @@ pub struct MarketplaceMaster2 {}
 
 impl RealisWallet for MarketplaceMaster2 {
     fn get_public() -> AccountId {
-        Deserialize::deserialize(serde_json::to_value("5CturcyEam8UP7cH85PrPvCFExkHSVdipkYUbSDuWxTP9pVx").unwrap())
-            .unwrap()
+        Deserialize::deserialize(serde_json::to_value("5CturcyEam8UP7cH85PrPvCFExkHSVdipkYUbSDuWxTP9pVx").unwrap()).unwrap()
     }
 
     fn get_private() -> sr25519::Pair {
-        Pair::from_string(
-            "bike boat original what elbow wink return crack unusual stable acquire loyal",
-            None,
-        )
-        .unwrap()
+        Pair::from_string("bike boat original what elbow wink return crack unusual stable acquire loyal", None).unwrap()
     }
 }

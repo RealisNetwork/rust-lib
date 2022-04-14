@@ -59,24 +59,19 @@ pub const AUTH_AUTH_CHANGE_MY_EMAIL_TOPIC: &'static str = "auth_auth_changeMyEma
 pub const AUTH_AUTH_LOGIN_WITH_FACEBOOK_TOPIC: &'static str = "auth_auth_loginWithFacebook";
 pub const AUTH_AUTH_LOGOUT_TOPIC: &'static str = "auth_auth_logout";
 pub const AUTH_AUTH_EMPTY_METHOD_TOPIC: &'static str = "auth_auth_emptyMethod";
-pub const AUTH_AUTH_ASSIGN_PROVIDER_ACCOUNT_TO_DEVICE_ID_TOPIC: &'static str =
-    "auth_auth_assignProviderAccountToDeviceId";
+pub const AUTH_AUTH_ASSIGN_PROVIDER_ACCOUNT_TO_DEVICE_ID_TOPIC: &'static str = "auth_auth_assignProviderAccountToDeviceId";
 pub const AUTH_BAN_BAN_TOPIC: &'static str = "auth_ban_ban";
 pub const AUTH_BAN_UN_BAN_TOPIC: &'static str = "auth_ban_unBan";
 pub const AUTH_BAN_GET_USER_BAN_TOPIC: &'static str = "auth_ban_getUserBan";
 pub const AUTH_CLIENTS_GET_OR_CREATE_INTERNAL_USER_ID_TOPIC: &'static str = "auth_clients_getOrCreateInternalUserId";
 pub const AUTH_CLIENTS_UPDATE_INTERNAL_ID_BY_DEVICE_ID_TOPIC: &'static str = "auth_clients_updateInternalIdByDeviceId";
 pub const AUTH_CLIENTS_GET_CLIENT_INFO_TOPIC: &'static str = "auth_clients_getClientInfo";
-pub const AUTH_CLIENTS_ASSIGN_INTERNAL_ID_TO_PROVIDER_ID_TOPIC: &'static str =
-    "auth_clients_assignInternalIdToProviderId";
-pub const AUTH_CLIENTS_UPDATE_PROVIDER_STATUS_BY_PROVIDER_ID_TOPIC: &'static str =
-    "auth_clients_updateProviderStatusByProviderId";
+pub const AUTH_CLIENTS_ASSIGN_INTERNAL_ID_TO_PROVIDER_ID_TOPIC: &'static str = "auth_clients_assignInternalIdToProviderId";
+pub const AUTH_CLIENTS_UPDATE_PROVIDER_STATUS_BY_PROVIDER_ID_TOPIC: &'static str = "auth_clients_updateProviderStatusByProviderId";
 pub const AUTH_CLIENTS_UPDATE_PROVIDER_STATUS_BY_INTERNAL_USER_ID_TOPIC: &'static str =
     "auth_clients_updateProviderStatusByInternalUserId";
-pub const AUTH_CLIENTS_GET_PROVIDER_BY_INTERNAL_USER_ID_TOPIC: &'static str =
-    "auth_clients_getProviderByInternalUserId";
-pub const AUTH_CLIENTS_GET_CLIENT_STATUS_BY_INTERNAL_USER_ID_TOPIC: &'static str =
-    "auth_clients_getClientStatusByInternalUserId";
+pub const AUTH_CLIENTS_GET_PROVIDER_BY_INTERNAL_USER_ID_TOPIC: &'static str = "auth_clients_getProviderByInternalUserId";
+pub const AUTH_CLIENTS_GET_CLIENT_STATUS_BY_INTERNAL_USER_ID_TOPIC: &'static str = "auth_clients_getClientStatusByInternalUserId";
 pub const AUTH_CLIENTS_LOGOUT_DEVICE_BY_KEYCLOAK_ID_TOPIC: &'static str = "auth_clients_logoutDeviceByKeycloakId";
 pub const AUTH_CLIENTS_GET_DEVICE_ID_BY_INTERNAL_ID_TOPIC: &'static str = "auth_clients_getDeviceIdByInternalId";
 pub const AUTH_CLIENTS_IS_NEW_CLIENT_TOPIC: &'static str = "auth_clients_isNewClient";
@@ -84,8 +79,7 @@ pub const AUTH_CLIENTS_IS_AUTHORIZED_TOPIC: &'static str = "auth_clients_isAutho
 pub const AUTH_CLIENTS_GET_LOGIN_DEVICE_BY_USER_ID_TOPIC: &'static str = "auth_clients_getLoginDeviceByUserId";
 pub const AUTH_CLIENTS_LOGOUT_ALL_DEVICES_TOPIC: &'static str = "auth_clients_logoutAllDevices";
 pub const AUTH_CLIENTS_DELETE_ACCOUNT_TOPIC: &'static str = "auth_clients_deleteAccount";
-pub const AUTH_CLIENTS_GET_KEYCLOAK_PROVIDER_ID_BY_USER_ID_TOPIC: &'static str =
-    "auth_clients_getKeycloakProviderIdByUserId";
+pub const AUTH_CLIENTS_GET_KEYCLOAK_PROVIDER_ID_BY_USER_ID_TOPIC: &'static str = "auth_clients_getKeycloakProviderIdByUserId";
 pub const AUTH_SESSIONS_ADD_NEW_DEVICE_SESSION_TOPIC: &'static str = "auth_sessions_addNewDeviceSession";
 pub const AUTH_SESSIONS_ADD_NEW_WEB_SESSION_TOPIC: &'static str = "auth_sessions_addNewWebSession";
 pub const AUTH_SESSIONS_DELETE_ALL_BY_INTERNAL_USER_ID_TOPIC: &'static str = "auth_sessions_deleteAllByInternalUserId";
@@ -153,19 +147,16 @@ pub const CATS_LOBBY_SET_USER_APP_METRICA_DEVICE_ID_TOPIC: &'static str = "cats_
 pub const CATS_LOBBY_GET_JACKPOT_WINNERS_INFO_TOPIC: &'static str = "cats_lobby_getJackpotWinnersInfo";
 pub const CATS_LOBBY_GET_PROFILE_INFO_TOPIC: &'static str = "cats_lobby_getProfileInfo";
 pub const CATS_LOBBY_APPLICATION_INITIALIZATION_TOPIC: &'static str = "cats_lobby_applicationInitialization";
-pub const CATS_AND_DRAGONS_WRAPPER_GET_NICKNAME_CHANGE_PRICE_TOPIC: &'static str =
-    "catsAndDragons_wrapper_getNicknameChangePrice";
+pub const CATS_AND_DRAGONS_WRAPPER_GET_NICKNAME_CHANGE_PRICE_TOPIC: &'static str = "catsAndDragons_wrapper_getNicknameChangePrice";
 pub const CATS_AND_DRAGONS_WRAPPER_NICKNAME_CHANGE_TOPIC: &'static str = "catsAndDragons_wrapper_nicknameChange";
 pub const CATS_AND_DRAGONS_WRAPPER_COLLECT_NICKNAMES_TOPIC: &'static str = "catsAndDragons_wrapper_collectNicknames";
-pub const CATS_AND_DRAGONS_WRAPPER_GET_USER_ID_BY_DEVICE_ID_TOPIC: &'static str =
-    "catsAndDragons_wrapper_getUserIdByDeviceId";
+pub const CATS_AND_DRAGONS_WRAPPER_GET_USER_ID_BY_DEVICE_ID_TOPIC: &'static str = "catsAndDragons_wrapper_getUserIdByDeviceId";
 pub const CATS_AND_DRAGONS_WRAPPER_GET_REFERRALS_TOPIC: &'static str = "catsAndDragons_wrapper_getReferrals";
 pub const CATS_AND_DRAGONS_WRAPPER_GET_NICKNAME_TOPIC: &'static str = "catsAndDragons_wrapper_getNickname";
 pub const CATS_AND_DRAGONS_WRAPPER_GET_USER_INFO_TOPIC: &'static str = "catsAndDragons_wrapper_getUserInfo";
 pub const CATS_AND_DRAGONS_WRAPPER_GET_MEMBERSHIPS_AND_PRICES_AMOUNT_TOPIC: &'static str =
     "catsAndDragons_wrapper_getMembershipsAndPricesAmount";
-pub const CATS_AND_DRAGONS_WRAPPER_GET_USER_MEMBERSHIP_INFO_TOPIC: &'static str =
-    "catsAndDragons_wrapper_getUserMembershipInfo";
+pub const CATS_AND_DRAGONS_WRAPPER_GET_USER_MEMBERSHIP_INFO_TOPIC: &'static str = "catsAndDragons_wrapper_getUserMembershipInfo";
 pub const CATS_AND_DRAGONS_WRAPPER_EMPTY_METHOD_TOPIC: &'static str = "catsAndDragons_wrapper_emptyMethod";
 pub const CRON_CRON_CREATE_TOPIC: &'static str = "cron_cron_create";
 pub const CRON_CRON_UPDATE_TOPIC: &'static str = "cron_cron_update";
@@ -190,18 +181,15 @@ pub const DRAGONS_LOBBY_BUY_SKILL_TOPIC: &'static str = "dragons_lobby_buySkill"
 pub const DRAGONS_LOBBY_BUY_USUAL_LOOTBOX_TOPIC: &'static str = "dragons_lobby_buyUsualLootbox";
 pub const DRAGONS_LOBBY_GET_BINGO_JACKPOT_POOL_TOPIC: &'static str = "dragons_lobby_getBingoJackpotPool";
 pub const DRAGONS_LOBBY_GET_BINGO_JACKPOT_WINNERS_INFO_TOPIC: &'static str = "dragons_lobby_getBingoJackpotWinnersInfo";
-pub const DRAGONS_LOBBY_GET_LOOTBOX_JACKPOT_WINNERS_INFO_TOPIC: &'static str =
-    "dragons_lobby_getLootboxJackpotWinnersInfo";
+pub const DRAGONS_LOBBY_GET_LOOTBOX_JACKPOT_WINNERS_INFO_TOPIC: &'static str = "dragons_lobby_getLootboxJackpotWinnersInfo";
 pub const DRAGONS_LOBBY_GET_LOOTBOX_JACKPOT_POOL_TOPIC: &'static str = "dragons_lobby_getLootboxJackpotPool";
 pub const DRAGONS_LOBBY_GET_PREVIOUS_TOURNAMENT_STATS_TOPIC: &'static str = "dragons_lobby_getPreviousTournamentStats";
 pub const DRAGONS_LOBBY_GET_SOFT_LEADERBOARD_STATS_TOPIC: &'static str = "dragons_lobby_getSoftLeaderboardStats";
-pub const DRAGONS_LOBBY_GET_TOURNAMENT_LEADERBOARD_STATS_TOPIC: &'static str =
-    "dragons_lobby_getTournamentLeaderboardStats";
+pub const DRAGONS_LOBBY_GET_TOURNAMENT_LEADERBOARD_STATS_TOPIC: &'static str = "dragons_lobby_getTournamentLeaderboardStats";
 pub const DRAGONS_LOBBY_GET_LOOTBOXES_INFO_TOPIC: &'static str = "dragons_lobby_getLootboxesInfo";
 pub const DRAGONS_LOBBY_GET_USUAL_LOOTBOX_TIME_TOPIC: &'static str = "dragons_lobby_getUsualLootboxTime";
 pub const DRAGONS_LOBBY_OPEN_LOOTBOX_TOPIC: &'static str = "dragons_lobby_openLootbox";
-pub const DRAGONS_LOBBY_GET_AVAILABLE_MEMBERSHIP_AMOUNT_TOPIC: &'static str =
-    "dragons_lobby_getAvailableMembershipAmount";
+pub const DRAGONS_LOBBY_GET_AVAILABLE_MEMBERSHIP_AMOUNT_TOPIC: &'static str = "dragons_lobby_getAvailableMembershipAmount";
 pub const DRAGONS_LOBBY_GET_OFFERS_AND_BONUSES_TOPIC: &'static str = "dragons_lobby_getOffersAndBonuses";
 pub const DRAGONS_LOBBY_REFUSE_OFFER_TOPIC: &'static str = "dragons_lobby_refuseOffer";
 pub const DRAGONS_LOBBY_SAVE_TUTORIAL_PROGRESS_TOPIC: &'static str = "dragons_lobby_saveTutorialProgress";
@@ -235,27 +223,20 @@ pub const EMAIL_EMAIL_CREATE_CRON_JOB_TOPIC: &'static str = "email_email_createC
 pub const EMAIL_EMAIL_CREATE_AND_SEND_TOPIC: &'static str = "email_email_createAndSend";
 pub const EMAIL_EMAIL_SEND_NOT_SENT_LETTERS_TOPIC: &'static str = "email_email_sendNotSentLetters";
 pub const EMAIL_EMAIL_SEND_IN_PROCESS_LETTERS_TOPIC: &'static str = "email_email_sendInProcessLetters";
-pub const GAME_BALANCER_GAME_BALANCER_ADD_PLAYER_IN_SEARCH_TOPIC: &'static str =
-    "gameBalancer_gameBalancer_addPlayerInSearch";
-pub const GAME_BALANCER_GAME_BALANCER_DISCONNECT_PLAYER_TOPIC: &'static str =
-    "gameBalancer_gameBalancer_disconnectPlayer";
+pub const GAME_BALANCER_GAME_BALANCER_ADD_PLAYER_IN_SEARCH_TOPIC: &'static str = "gameBalancer_gameBalancer_addPlayerInSearch";
+pub const GAME_BALANCER_GAME_BALANCER_DISCONNECT_PLAYER_TOPIC: &'static str = "gameBalancer_gameBalancer_disconnectPlayer";
 pub const GAME_BALANCER_GAME_BALANCER_DELETE_PLAYERS_TOPIC: &'static str = "gameBalancer_gameBalancer_deletePlayers";
 pub const GAME_BALANCER_GAME_BALANCER_STOP_SEARCHING_TOPIC: &'static str = "gameBalancer_gameBalancer_stopSearching";
 pub const GAME_BALANCER_GAME_BALANCER_GAME_STARTED_NOTIFICATION_TOPIC: &'static str =
     "gameBalancer_gameBalancer_gameStartedNotification";
 pub const GOOGLE_PLAY_PURCHASE_SUBSCRIBE_TOPIC: &'static str = "google-play_purchase_subscribe";
 pub const GOOGLE_PLAY_PURCHASE_PURCHASE_TOPIC: &'static str = "google-play_purchase_purchase";
-pub const GOOGLE_PLAY_PURCHASE_CHECK_UNCONFIRMED_PURCHASE_TOPIC: &'static str =
-    "google-play_purchase_checkUnconfirmedPurchase";
+pub const GOOGLE_PLAY_PURCHASE_CHECK_UNCONFIRMED_PURCHASE_TOPIC: &'static str = "google-play_purchase_checkUnconfirmedPurchase";
 pub const GOOGLE_PLAY_PURCHASE_SET_MEMBERSHIP_TOPIC: &'static str = "google-play_purchase_setMembership";
-pub const GOOGLE_PLAY_PURCHASE_CHECK_SUBSCRIPTION_RENEWING_TOPIC: &'static str =
-    "google-play_purchase_checkSubscriptionRenewing";
-pub const LISTERIA_STORAGE_HEROES_GET_HEROES_LIST_BY_USER_ID_TOPIC: &'static str =
-    "listeriaStorage_heroes_getHeroesListByUserId";
-pub const LISTERIA_STORAGE_HEROES_GIVE_FREE_EXPERIENCE_TO_HERO_TOPIC: &'static str =
-    "listeriaStorage_heroes_giveFreeExperienceToHero";
-pub const LISTERIA_STORAGE_HEROES_HERO_ADDED_NOTIFICATION_TOPIC: &'static str =
-    "listeriaStorage_heroes_heroAddedNotification";
+pub const GOOGLE_PLAY_PURCHASE_CHECK_SUBSCRIPTION_RENEWING_TOPIC: &'static str = "google-play_purchase_checkSubscriptionRenewing";
+pub const LISTERIA_STORAGE_HEROES_GET_HEROES_LIST_BY_USER_ID_TOPIC: &'static str = "listeriaStorage_heroes_getHeroesListByUserId";
+pub const LISTERIA_STORAGE_HEROES_GIVE_FREE_EXPERIENCE_TO_HERO_TOPIC: &'static str = "listeriaStorage_heroes_giveFreeExperienceToHero";
+pub const LISTERIA_STORAGE_HEROES_HERO_ADDED_NOTIFICATION_TOPIC: &'static str = "listeriaStorage_heroes_heroAddedNotification";
 pub const LOBBY_HEROES_GET_HEROES_LIST_BY_USER_ID_TOPIC: &'static str = "lobby_heroes_getHeroesListByUserId";
 pub const LOBBY_HEROES_GET_ACTIVE_HERO_BY_USER_ID_TOPIC: &'static str = "lobby_heroes_getActiveHeroByUserId";
 pub const LOBBY_HEROES_HERO_ADDED_NOTIFICATION_TOPIC: &'static str = "lobby_heroes_heroAddedNotification";
@@ -279,8 +260,7 @@ pub const MARKET_ITEMS_GET_PRICE_TOPIC: &'static str = "market_items_getPrice";
 pub const NOTIFICATIONS_NOTIFICATIONS_CREATE_NEW_TOPIC: &'static str = "notifications_notifications_createNew";
 pub const PRODUCT_FACTORY_ATTRIBUTE_ADD_ATTRIBUTES_TOPIC: &'static str = "productFactory_attribute_addAttributes";
 pub const PRODUCT_FACTORY_ATTRIBUTE_UPDATE_ATTRIBUTES_TOPIC: &'static str = "productFactory_attribute_updateAttributes";
-pub const PRODUCT_FACTORY_ATTRIBUTE_GET_ATTRIBUTE_LIST_TOPIC: &'static str =
-    "productFactory_attribute_getAttributeList";
+pub const PRODUCT_FACTORY_ATTRIBUTE_GET_ATTRIBUTE_LIST_TOPIC: &'static str = "productFactory_attribute_getAttributeList";
 pub const PRODUCT_FACTORY_CARD_ADD_CARD_TOPIC: &'static str = "productFactory_card_addCard";
 pub const PRODUCT_FACTORY_CARD_UPDATE_CARD_TOPIC: &'static str = "productFactory_card_updateCard";
 pub const PRODUCT_FACTORY_CARD_GET_CARD_LIST_TOPIC: &'static str = "productFactory_card_getCardList";
@@ -299,19 +279,14 @@ pub const PRODUCT_FACTORY_CUSTOM_ATTRIBUTE_GET_CUSTOM_ATTR_LIST_TOPIC: &'static 
 pub const PRODUCT_FACTORY_LOOTBOX_TYPE_ADD_LOOTBOX_TOPIC: &'static str = "productFactory_lootboxType_addLootbox";
 pub const PRODUCT_FACTORY_LOOTBOX_TYPE_UPDATE_LOOTBOX_BY_LOOTBOX_ID_TOPIC: &'static str =
     "productFactory_lootboxType_updateLootboxByLootboxId";
-pub const PRODUCT_FACTORY_LOOTBOX_TYPE_ADD_CARDS_TO_LOOTBOX_TOPIC: &'static str =
-    "productFactory_lootboxType_addCardsToLootbox";
-pub const PRODUCT_FACTORY_LOOTBOX_TYPE_ADD_SLOTS_TO_LOOTBOX_TOPIC: &'static str =
-    "productFactory_lootboxType_addSlotsToLootbox";
-pub const PRODUCT_FACTORY_LOOTBOX_TYPE_GET_LOOTBOX_LIST_TOPIC: &'static str =
-    "productFactory_lootboxType_getLootboxList";
+pub const PRODUCT_FACTORY_LOOTBOX_TYPE_ADD_CARDS_TO_LOOTBOX_TOPIC: &'static str = "productFactory_lootboxType_addCardsToLootbox";
+pub const PRODUCT_FACTORY_LOOTBOX_TYPE_ADD_SLOTS_TO_LOOTBOX_TOPIC: &'static str = "productFactory_lootboxType_addSlotsToLootbox";
+pub const PRODUCT_FACTORY_LOOTBOX_TYPE_GET_LOOTBOX_LIST_TOPIC: &'static str = "productFactory_lootboxType_getLootboxList";
 pub const PRODUCT_FACTORY_PRODUCT_MARK_HERO_AS_NFT_TOPIC: &'static str = "productFactory_product_markHeroAsNFT";
 pub const PRODUCT_FACTORY_PRODUCT_GET_ALL_TOPIC: &'static str = "productFactory_product_getAll";
 pub const PRODUCT_FACTORY_PRODUCT_TEST_CREATE_WALLET_TOPIC: &'static str = "productFactory_product_testCreateWallet";
-pub const PRODUCT_FACTORY_PRODUCT_TEST_TO_REALIS_ADAPTER_TOPIC: &'static str =
-    "productFactory_product_testToRealisAdapter";
-pub const PRODUCT_FACTORY_PRODUCT_GENERATE_CUSTOM_PRODUCT_TOPIC: &'static str =
-    "productFactory_product_generateCustomProduct";
+pub const PRODUCT_FACTORY_PRODUCT_TEST_TO_REALIS_ADAPTER_TOPIC: &'static str = "productFactory_product_testToRealisAdapter";
+pub const PRODUCT_FACTORY_PRODUCT_GENERATE_CUSTOM_PRODUCT_TOPIC: &'static str = "productFactory_product_generateCustomProduct";
 pub const PRODUCT_FACTORY_PRODUCT_GET_PRODUCT_LIST_BY_PRODUCT_ID_LIST_TOPIC: &'static str =
     "productFactory_product_getProductListByProductIdList";
 pub const PRODUCT_FACTORY_PRODUCT_ADD_HERO_TOPIC: &'static str = "productFactory_product_addHero";
@@ -323,14 +298,12 @@ pub const PRODUCT_FACTORY_PRODUCT_TYPE_DELETE_TOPIC: &'static str = "productFact
 pub const PRODUCT_FACTORY_PRODUCT_TYPE_GET_ALL_TOPIC: &'static str = "productFactory_productType_getAll";
 pub const PRODUCT_FACTORY_PRODUCT_TYPE_GET_TOPIC: &'static str = "productFactory_productType_get";
 pub const PRODUCT_FACTORY_PRODUCT_TYPE_GET_ALL_BY_TYPE_TOPIC: &'static str = "productFactory_productType_getAllByType";
-pub const PRODUCT_FACTORY_PRODUCT_TYPE_GET_ALL_BY_RARITY_TOPIC: &'static str =
-    "productFactory_productType_getAllByRarity";
+pub const PRODUCT_FACTORY_PRODUCT_TYPE_GET_ALL_BY_RARITY_TOPIC: &'static str = "productFactory_productType_getAllByRarity";
 pub const PRODUCT_FACTORY_PRODUCT_TYPE_GET_HASH_TOPIC: &'static str = "productFactory_productType_getHash";
 pub const PRODUCT_FACTORY_PRODUCT_TYPE_GET_ATTRIBUTE_LIST_BY_PERSONAL_TYPE_TOPIC: &'static str =
     "productFactory_productType_getAttributeListByPersonalType";
 pub const PRODUCT_FACTORY_RARITY_ADD_RARITY_CHANCES_TOPIC: &'static str = "productFactory_rarity_addRarityChances";
-pub const PRODUCT_FACTORY_RARITY_UPDATE_RARITY_CHANCES_TOPIC: &'static str =
-    "productFactory_rarity_updateRarityChances";
+pub const PRODUCT_FACTORY_RARITY_UPDATE_RARITY_CHANCES_TOPIC: &'static str = "productFactory_rarity_updateRarityChances";
 pub const PRODUCT_FACTORY_RARITY_GET_RARITY_LIST_TOPIC: &'static str = "productFactory_rarity_getRarityList";
 pub const PRODUCT_FACTORY_SLOT_TYPE_ADD_SLOT_TYPE_TOPIC: &'static str = "productFactory_slotType_addSlotType";
 pub const PRODUCT_FACTORY_SLOT_TYPE_GET_SLOT_TYPE_LIST_TOPIC: &'static str = "productFactory_slotType_getSlotTypeList";
@@ -341,8 +314,7 @@ pub const PROMO_CODES_GET_LIST_STRICT_TOPIC: &'static str = "promo_codes_getList
 pub const PROMO_CODES_DELETE_CODE_TOPIC: &'static str = "promo_codes_deleteCode";
 pub const PURCHASE_BALANCE_INCREASE_USER_BALANCE_TOPIC: &'static str = "purchase_balance_increaseUserBalance";
 pub const PURCHASE_BALANCE_DECREASE_USER_BALANCE_TOPIC: &'static str = "purchase_balance_decreaseUserBalance";
-pub const PURCHASE_BALANCE_USER_BALANCE_CHANGED_NOTIFICATION_TOPIC: &'static str =
-    "purchase_balance_userBalanceChangedNotification";
+pub const PURCHASE_BALANCE_USER_BALANCE_CHANGED_NOTIFICATION_TOPIC: &'static str = "purchase_balance_userBalanceChangedNotification";
 pub const PURCHASE_PRODUCT_PURCHASE_TOPIC: &'static str = "purchase_product_purchase";
 pub const PURCHASE_PRODUCT_GET_HERO_LIST_TOPIC: &'static str = "purchase_product_getHeroList";
 pub const PURCHASE_PRODUCT_GET_EQUIPMENT_LIST_TOPIC: &'static str = "purchase_product_getEquipmentList";
@@ -353,8 +325,7 @@ pub const REFERRAL_CODE_GET_REFERRAL_LINK_TOPIC: &'static str = "referral_code_g
 pub const REFERRAL_CODE_IS_CODE_EXIST_TOPIC: &'static str = "referral_code_isCodeExist";
 pub const REFERRAL_CODE_DELETE_REFERRER_TOPIC: &'static str = "referral_code_deleteReferrer";
 pub const REFERRAL_REFERRAL_FIND_ALL_TOPIC: &'static str = "referral_referral_findAll";
-pub const REFERRAL_REFERRAL_FIND_REFERRALS_BY_REFERRER_ID_TOPIC: &'static str =
-    "referral_referral_findReferralsByReferrerId";
+pub const REFERRAL_REFERRAL_FIND_REFERRALS_BY_REFERRER_ID_TOPIC: &'static str = "referral_referral_findReferralsByReferrerId";
 pub const REFERRAL_REFERRAL_GET_USER_DATA_TOPIC: &'static str = "referral_referral_getUserData";
 pub const REFERRAL_REFERRAL_FIND_REFERRER_BY_REFERRAL_ID_STRICT_TOPIC: &'static str =
     "referral_referral_findReferrerByReferralIdStrict";
@@ -362,8 +333,7 @@ pub const REFERRAL_REFERRAL_GET_ALL_MY_REFERRAL_TOPIC: &'static str = "referral_
 pub const REFERRAL_REFERRAL_GET_REFERRALS_TOPIC: &'static str = "referral_referral_getReferrals";
 pub const REFERRAL_REFERRAL_SET_POTENTIAL_REFERRAL_TOPIC: &'static str = "referral_referral_setPotentialReferral";
 pub const REFERRAL_REFERRAL_SET_REFERRAL_TOPIC: &'static str = "referral_referral_setReferral";
-pub const REFERRAL_REFERRAL_DELETE_ONE_REFERRAL_RECORD_TOPIC: &'static str =
-    "referral_referral_deleteOneReferralRecord";
+pub const REFERRAL_REFERRAL_DELETE_ONE_REFERRAL_RECORD_TOPIC: &'static str = "referral_referral_deleteOneReferralRecord";
 pub const REFERRAL_REFERRAL_DELETE_REFERRALS_BY_ID_TOPIC: &'static str = "referral_referral_deleteReferralsById";
 pub const REFERRAL_REWARD_ADD_REFERRAL_EXPENSE_TOPIC: &'static str = "referral_reward_addReferralExpense";
 pub const REFERRAL_REWARD_MAKE_REWARD_REQUEST_TOPIC: &'static str = "referral_reward_makeRewardRequest";
@@ -382,8 +352,7 @@ pub const REFUND_ITEMS_GET_ALL_UNAVAILABLE_TOPIC: &'static str = "refund_items_g
 pub const REFUND_ITEMS_ADD_TOPIC: &'static str = "refund_items_add";
 pub const SOUL_ADAPTER_WALLET_GET_USER_ID_BY_ADDRESS_TOPIC: &'static str = "soul-adapter_wallet_getUserIdByAddress";
 pub const SOUL_ADAPTER_WALLET_GET_MY_WALLET_TOPIC: &'static str = "soul-adapter_wallet_getMyWallet";
-pub const SOUL_ADAPTER_WALLET_PROCESS_TRANSACTION_BY_HASH_TOPIC: &'static str =
-    "soul-adapter_wallet_processTransactionByHash";
+pub const SOUL_ADAPTER_WALLET_PROCESS_TRANSACTION_BY_HASH_TOPIC: &'static str = "soul-adapter_wallet_processTransactionByHash";
 pub const SOUL_ADAPTER_WALLET_GET_BALANCE_BY_ADDRESS_TOPIC: &'static str = "soul-adapter_wallet_getBalanceByAddress";
 pub const STATUS_CONFIG_UPDATE_TOPIC: &'static str = "status_config_update";
 pub const STATUS_CONFIG_GET_LIST_TOPIC: &'static str = "status_config_getList";
@@ -396,32 +365,24 @@ pub const TRANSACTIONS_BALANCE_GET_BALANCES_BY_USER_ID_TOPIC: &'static str = "tr
 pub const TRANSACTIONS_BALANCE_GET_BALANCES_BY_USER_ID_AS_ARRAY_TOPIC: &'static str =
     "transactions_balance_getBalancesByUserIdAsArray";
 pub const TRANSACTIONS_BALANCE_GET_BALANCES_IN_USD_TOPIC: &'static str = "transactions_balance_getBalancesInUsd";
-pub const TRANSACTIONS_BALANCE_INCREASE_BALANCE_BY_USER_ID_TOPIC: &'static str =
-    "transactions_balance_increaseBalanceByUserId";
-pub const TRANSACTIONS_BALANCE_DECREASE_BALANCE_BY_USER_ID_TOPIC: &'static str =
-    "transactions_balance_decreaseBalanceByUserId";
+pub const TRANSACTIONS_BALANCE_INCREASE_BALANCE_BY_USER_ID_TOPIC: &'static str = "transactions_balance_increaseBalanceByUserId";
+pub const TRANSACTIONS_BALANCE_DECREASE_BALANCE_BY_USER_ID_TOPIC: &'static str = "transactions_balance_decreaseBalanceByUserId";
 pub const TRANSACTIONS_BALANCE_GET_ALL_TOPIC: &'static str = "transactions_balance_getAll";
 pub const TRANSACTIONS_BALANCE_GET_ALL_MY_TOPIC: &'static str = "transactions_balance_getAllMy";
-pub const TRANSACTIONS_BALANCE_GET_MY_NUM_OF_TRANSACTIONS_TOPIC: &'static str =
-    "transactions_balance_getMyNumOfTransactions";
+pub const TRANSACTIONS_BALANCE_GET_MY_NUM_OF_TRANSACTIONS_TOPIC: &'static str = "transactions_balance_getMyNumOfTransactions";
 pub const TRANSACTIONS_BALANCE_GET_ALL_CREDIT_TRANSACTION_LIST_TOPIC: &'static str =
     "transactions_balance_getAllCreditTransactionList";
 pub const TRANSACTIONS_BALANCE_GET_USER_BALANCES_TOPIC: &'static str = "transactions_balance_getUserBalances";
 pub const TRANSACTIONS_BALANCE_GET_WITH_FILTER_TOPIC: &'static str = "transactions_balance_getWithFilter";
-pub const TRANSACTIONS_BALANCE_GET_NUM_OF_TRANSACTIONS_TOPIC: &'static str =
-    "transactions_balance_getNumOfTransactions";
+pub const TRANSACTIONS_BALANCE_GET_NUM_OF_TRANSACTIONS_TOPIC: &'static str = "transactions_balance_getNumOfTransactions";
 pub const TRANSACTIONS_BALANCE_GET_NUM_WITH_FILTER_TOPIC: &'static str = "transactions_balance_getNumWithFilter";
 pub const TRANSACTIONS_BALANCE_UPDATE_TRANSACTION_HASH_AND_BLOCK_ID_TOPIC: &'static str =
     "transactions_balance_updateTransactionHashAndBlockId";
-pub const TRANSACTIONS_BALANCE_GET_LIST_WITH_PAGINATION_TOPIC: &'static str =
-    "transactions_balance_getListWithPagination";
-pub const TRANSACTIONS_BALANCE_DELETE_BALANCE_BY_USER_ID_TOPIC: &'static str =
-    "transactions_balance_deleteBalanceByUserId";
+pub const TRANSACTIONS_BALANCE_GET_LIST_WITH_PAGINATION_TOPIC: &'static str = "transactions_balance_getListWithPagination";
+pub const TRANSACTIONS_BALANCE_DELETE_BALANCE_BY_USER_ID_TOPIC: &'static str = "transactions_balance_deleteBalanceByUserId";
 pub const TRANSACTIONS_REGISTRY_PRODUCT_ADD_PRODUCT_TOPIC: &'static str = "transactions_registryProduct_addProduct";
-pub const TRANSACTIONS_REGISTRY_PRODUCT_ADD_PRODUCT_HASH_TOPIC: &'static str =
-    "transactions_registryProduct_addProductHash";
-pub const TRANSACTIONS_REGISTRY_PRODUCT_GET_USER_ITEMS_TOPIC: &'static str =
-    "transactions_registryProduct_getUserItems";
+pub const TRANSACTIONS_REGISTRY_PRODUCT_ADD_PRODUCT_HASH_TOPIC: &'static str = "transactions_registryProduct_addProductHash";
+pub const TRANSACTIONS_REGISTRY_PRODUCT_GET_USER_ITEMS_TOPIC: &'static str = "transactions_registryProduct_getUserItems";
 pub const TRANSACTIONS_REGISTRY_PRODUCT_GET_PERSONAL_TYPES_BY_USER_TOPIC: &'static str =
     "transactions_registryProduct_getPersonalTypesByUser";
 pub const TRANSACTIONS_REGISTRY_PRODUCT_DELETE_PRODUCT_BY_USER_ID_TOPIC: &'static str =
@@ -435,10 +396,8 @@ pub const USER_PROFILE_SET_SUSPICIOUS_TOPIC: &'static str = "user_profile_setSus
 pub const USER_PROFILE_UNSET_SUSPICIOUS_TOPIC: &'static str = "user_profile_unsetSuspicious";
 pub const USER_PROFILE_BAN_PROFILE_TOPIC: &'static str = "user_profile_banProfile";
 pub const USER_PROFILE_UN_BAN_TOPIC: &'static str = "user_profile_unBan";
-pub const USER_PROFILE_SET_MAILING_SUBSCRIPTION_STATUS_TOPIC: &'static str =
-    "user_profile_setMailingSubscriptionStatus";
-pub const USER_PROFILE_GET_ALL_USERS_SUBSCRIBED_TO_MAILING_TOPIC: &'static str =
-    "user_profile_getAllUsersSubscribedToMailing";
+pub const USER_PROFILE_SET_MAILING_SUBSCRIPTION_STATUS_TOPIC: &'static str = "user_profile_setMailingSubscriptionStatus";
+pub const USER_PROFILE_GET_ALL_USERS_SUBSCRIBED_TO_MAILING_TOPIC: &'static str = "user_profile_getAllUsersSubscribedToMailing";
 pub const USER_PROFILE_GET_BAN_INFO_TOPIC: &'static str = "user_profile_getBanInfo";
 pub const USER_PROFILE_GET_MY_BAN_INFO_TOPIC: &'static str = "user_profile_getMyBanInfo";
 pub const USER_PROFILE_GET_NUM_TOPIC: &'static str = "user_profile_getNum";
@@ -481,8 +440,7 @@ pub const REFERRAL_FROM_ADAPTER_PROCESSED_TOPIC: &'static str = "referral_from_a
 pub const REFERRAL_FROM_TRANSACTION_PROCESSED_TOPIC: &'static str = "referral_from_transaction_processed_topic";
 pub const PAY_REWARD_PROCESS_TOPIC: &'static str = "pay_reward_process_topic";
 pub const REWARD_REFERRAL_FROM_ADAPTER_PROCESSED_TOPIC: &'static str = "reward_referral_from_adapter_processed_topic";
-pub const REWARD_REFERRAL_FROM_TRANSACTION_PROCESSED_TOPIC: &'static str =
-    "reward_referral_from_transactions_processed_topic";
+pub const REWARD_REFERRAL_FROM_TRANSACTION_PROCESSED_TOPIC: &'static str = "reward_referral_from_transactions_processed_topic";
 pub const RESPONSE_FROM_ORCHESTRATOR_TOPIC: &'static str = "response_from_orchestrator_topic";
 pub const PURCHASE_TRANSACTION_RESPONSE_TOPIC: &'static str = "purchase_transaction_response_topic";
 pub const PURCHASE_ADAPTER_RESPONSE_TOPIC: &'static str = "purchase_adapter_response_topic";

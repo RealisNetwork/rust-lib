@@ -14,10 +14,7 @@ async fn main() {
 
     let message = "Hello, World!";
 
-    match transport
-        .publish(TOPIC, serde_json::to_vec(message).unwrap(), None)
-        .await
-    {
+    match transport.publish(TOPIC, serde_json::to_vec(message).unwrap(), None).await {
         Ok(()) => {
             println!("Publish by topic: `{}`, message: `{:?}`", TOPIC, message);
 

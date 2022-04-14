@@ -14,7 +14,7 @@ impl EnvDefaultAttrs {
         match self {
             EnvDefaultAttrs::Default => quote! { .unwrap_or_default() },
             EnvDefaultAttrs::DefaultPath(lit) => {
-                let path = parse_lit_into_expr_path(&lit);
+                let path = parse_lit_into_expr_path(lit);
                 quote! {.unwrap_or(#path()) }
             }
             EnvDefaultAttrs::Empty => quote! { ? },

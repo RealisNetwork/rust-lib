@@ -110,11 +110,7 @@ impl ByteDeserialize for char {
     where
         Self: Sized,
     {
-        byte_reader
-            .byte_buffer
-            .read_u8()
-            .map_err(Error::IO)
-            .map(std::convert::Into::into)
+        byte_reader.byte_buffer.read_u8().map_err(Error::IO).map(std::convert::Into::into)
     }
 }
 
@@ -123,7 +119,6 @@ impl ByteDeserialize for String {
     where
         Self: Sized,
     {
-        String::from_utf8(byte_reader.read_bytes_and_size()?)
-            .map_err(|error| Error::InvalidStringCharacter(format!("{:?}", error)))
+        String::from_utf8(byte_reader.read_bytes_and_size()?).map_err(|error| Error::InvalidStringCharacter(format!("{:?}", error)))
     }
 }

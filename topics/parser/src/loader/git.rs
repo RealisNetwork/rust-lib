@@ -89,11 +89,7 @@ impl GitLoader {
             .map(|parse_result| {
                 match parse_result {
                     ParseResult::Import(import) => self
-                        .process_file(
-                            root,
-                            &Self::get_absolute_path(root, &import.get_path()),
-                            &import.get_file(),
-                        )
+                        .process_file(root, &Self::get_absolute_path(root, &import.get_path()), &import.get_file())
                         .unwrap_or(vec![]), // TODO handle this unwrap()
                     ParseResult::Topic(topic) => vec![topic],
                 }

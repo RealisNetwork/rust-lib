@@ -11,11 +11,7 @@ const BUFFER_SIZE: usize = 2048;
 /// Initialize driver logging.
 pub fn init(filter: impl AsRef<str>) -> (Logger, GlobalLoggerGuard) {
     // Log errors to stderr and lower severities to stdout.
-    let format = CustomFormatter::new(
-        TermDecorator::new().stderr().build(),
-        TermDecorator::new().stdout().build(),
-    )
-    .fuse();
+    let format = CustomFormatter::new(TermDecorator::new().stderr().build(), TermDecorator::new().stdout().build()).fuse();
     let drain = Async::new(LogBuilder::new(format).parse(filter.as_ref()).build())
         .chan_size(BUFFER_SIZE)
         .build();
@@ -55,11 +51,7 @@ impl<ErrDecorator: Decorator, RestDecorator: Decorator> Drain for CustomFormatte
     }
 }
 
-fn log_to_decorator(
-    decorator: &impl Decorator,
-    record: &Record,
-    values: &OwnedKVList,
-) -> std::result::Result<(), std::io::Error> {
+fn log_to_decorator(decorator: &impl Decorator, record: &Record, values: &OwnedKVList) -> std::result::Result<(), std::io::Error> {
     decorator.with_record(record, values, |mut decorator| {
         decorator.start_timestamp()?;
         slog_term::timestamp_utc(&mut decorator)?;

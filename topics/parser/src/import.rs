@@ -21,9 +21,7 @@ impl FromStr for Import {
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let mut splitted = s.split_whitespace();
 
-        let _position = splitted
-            .position(|x| x == "from")
-            .ok_or(String::from("Missing key word `from`!"))?;
+        let _position = splitted.position(|x| x == "from").ok_or(String::from("Missing key word `from`!"))?;
 
         let path = splitted
             .next()
