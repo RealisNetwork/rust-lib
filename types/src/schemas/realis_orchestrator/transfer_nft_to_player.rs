@@ -1,12 +1,13 @@
+use crate::{
+    requests::AuthInfo, schemas::realis_adapter::transfer_nft_to_player::TransferNftToPlayerSchema as AdapterTransferNftToPlayerSchema,
+};
 use realis_primitives::TokenId;
 use runtime::AccountId;
-use crate::{
-    requests::AuthInfo,
-    schemas::realis_adapter::transfer_nft_to_player::TransferNftToPlayerSchema as AdapterTransferNftToPlayerSchema
+use rust_lib::{
+    blockchain::cold_wallets::RealisGameApi,
+    json::u128::{u128_from_string, u128_to_string},
 };
-use rust_lib::json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
-use rust_lib::blockchain::cold_wallets::RealisGameApi;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransferNftToPlayerSchema {
@@ -27,7 +28,7 @@ pub struct TransferNftToPlayerParams {
     pub token_id: TokenId,
 }
 
-impl From<AdapterTransferNftToPlayerSchema> for TransferNftToPlayerSchema{
+impl From<AdapterTransferNftToPlayerSchema> for TransferNftToPlayerSchema {
     fn from(other: AdapterTransferNftToPlayerSchema) -> Self {
         TransferNftToPlayerSchema {
             id: other.id,

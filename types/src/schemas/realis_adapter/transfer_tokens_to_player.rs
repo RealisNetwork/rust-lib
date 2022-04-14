@@ -1,12 +1,13 @@
-use runtime::AccountId;
 use crate::{
     requests::AuthInfo,
     schemas::realis_orchestrator::transfer_tokens_to_player::TransferTokensToPlayerSchema as OrchestratorTransferTokensToPlayerSchema,
 };
-use rust_lib::json::u128::{u128_from_string, u128_to_string};
+use runtime::AccountId;
+use rust_lib::{
+    blockchain::cold_wallets::RealisGameApi,
+    json::u128::{u128_from_string, u128_to_string},
+};
 use serde::{Deserialize, Serialize};
-use rust_lib::blockchain::cold_wallets::RealisGameApi;
-use crate::schemas::realis_adapter::transfer_nft_to_player::TransferNftToPlayerSchema;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransferTokensToPlayerSchema {

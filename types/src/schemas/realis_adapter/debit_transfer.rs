@@ -1,8 +1,10 @@
 use crate::{requests::AuthInfo, schemas::realis_orchestrator::debit_hard_currency::DebitHardCurrencySchema};
 use runtime::AccountId;
-use rust_lib::json::u128::{u128_from_string, u128_to_string};
+use rust_lib::{
+    blockchain::cold_wallets::RealisGameApi,
+    json::u128::{u128_from_string, u128_to_string},
+};
 use serde::{Deserialize, Serialize};
-use rust_lib::blockchain::cold_wallets::RealisGameApi;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DebitTransferSchema {
@@ -39,9 +41,6 @@ impl DebitTransferSchema {
 
 impl From<DebitTransferSchema> for Call {
     fn from(schema: DebitTransferSchema) -> Call {
-        Call::RealisGameApi(RealisGameApiCall::spend_in_game(
-            schema.params.account_id,
-            schema.params.amount,
-        ))
+        Call::RealisGameApi(RealisGameApiCall::spend_in_game(schema.params.account_id, schema.params.amount))
     }
 }

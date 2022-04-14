@@ -34,12 +34,7 @@ impl Transport for Jet {
     type MessageId = Message;
     type SubscribeId = PushSubscription;
 
-    async fn publish(
-        &self,
-        topic: &str,
-        message: Self::Message,
-        _topic_res: Option<String>,
-    ) -> Result<(), Self::Error> {
+    async fn publish(&self, topic: &str, message: Self::Message, _topic_res: Option<String>) -> Result<(), Self::Error> {
         self.jet_stream
             .publish(topic, &message)
             .map_err(|_| RealisErrors::Nats(NatsError::Send))?;
@@ -84,9 +79,7 @@ impl Transport for Jet {
     }
 
     async fn unsubscribe(&self, subscribe_id: Self::SubscribeId) -> Result<(), Self::Error> {
-        subscribe_id
-            .unsubscribe()
-            .map_err(|_| RealisErrors::Nats(NatsError::Unsubscribe))
+        subscribe_id.unsubscribe().map_err(|_| RealisErrors::Nats(NatsError::Unsubscribe))
     }
 
     async fn ok(&self, message_id: Self::MessageId) -> Result<(), Self::Error> {

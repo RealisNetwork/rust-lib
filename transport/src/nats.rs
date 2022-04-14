@@ -26,12 +26,7 @@ impl Transport for Nats {
     type MessageId = StanMessage;
     type SubscribeId = StanSid;
 
-    async fn publish(
-        &self,
-        topic: &str,
-        message: Self::Message,
-        _topic_res: Option<String>,
-    ) -> Result<(), Self::Error> {
+    async fn publish(&self, topic: &str, message: Self::Message, _topic_res: Option<String>) -> Result<(), Self::Error> {
         self.stan_client
             .publish(topic, &message)
             .await

@@ -1,11 +1,11 @@
-use crate::{
-    requests::AuthInfo, schemas::realis_orchestrator::add_nft_item::AddNftItemSchema as OrchestratorAddNftItemSchema,
-};
+use crate::{requests::AuthInfo, schemas::realis_orchestrator::add_nft_item::AddNftItemSchema as OrchestratorAddNftItemSchema};
 use realis_primitives::{Rarity, TokenId};
 use runtime::AccountId;
-use rust_lib::json::token_id::{token_id_from_string, token_id_to_string};
+use rust_lib::{
+    blockchain::cold_wallets::RealisGameApi,
+    json::token_id::{token_id_from_string, token_id_to_string},
+};
 use serde::{Deserialize, Serialize};
-use rust_lib::blockchain::cold_wallets::RealisGameApi;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AddNftItemSchema {

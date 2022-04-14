@@ -1,8 +1,10 @@
 use crate::{requests::AuthInfo, schemas::realis_orchestrator::credit_hard_currency::CreditHardCurrencySchema};
 use runtime::AccountId;
-use rust_lib::json::u128::{u128_from_string, u128_to_string};
+use rust_lib::{
+    blockchain::cold_wallets::RealisGameApi,
+    json::u128::{u128_from_string, u128_to_string},
+};
 use serde::{Deserialize, Serialize};
-use rust_lib::blockchain::cold_wallets::RealisGameApi;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CreditTransferSchema {

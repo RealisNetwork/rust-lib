@@ -50,22 +50,12 @@ impl Block {
     pub async fn get_block(host: &str, port: &str, number: &str) -> Result<Block, ()> {
         let request = format!("http://{}:{}/blocks/{}", host, port, number);
 
-        reqwest::get(request)
-            .await
-            .map_err(|_| ())?
-            .json()
-            .await
-            .map_err(|_| ())
+        reqwest::get(request).await.map_err(|_| ())?.json().await.map_err(|_| ())
     }
 
     /// # Panics
     /// # Errors
-    pub fn contains_event(
-        &self,
-        method: &Method,
-        event_name: &str,
-        account_id: &AccountId,
-    ) -> Result<(), ContainsError> {
+    pub fn contains_event(&self, method: &Method, event_name: &str, account_id: &AccountId) -> Result<(), ContainsError> {
         self.extrinsics
             .iter()
             .filter(|xt| xt.signature.is_some())
