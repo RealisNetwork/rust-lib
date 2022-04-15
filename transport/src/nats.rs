@@ -12,12 +12,13 @@ pub struct Nats {
 }
 
 impl Nats {
-    pub async fn new(nats_opts: &str, client_id: &str, cluster_id: &str) -> Result<Self, String> {
+    pub async fn new(nats_opts: &str, client_id: &str, cluster_id: &str) -> Result<Self, ratsio::RatsioError> {
         let opts = StanOptions::with_options(nats_opts, cluster_id, &client_id[..]);
         let stan_client = match StanClient::from_options(opts).await {
-            Ok(stan_client_) => Ok(Self { stan_client }),
-            Err(err) => Err(err),
-        }
+            Ok(stan_client_) => stan_client_,
+            Err(err) => return Err(err),
+        };
+        Ok(Self { stan_client })
     }
 }
 
