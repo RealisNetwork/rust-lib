@@ -31,8 +31,9 @@ impl Nats {
             }))
             .await
         {
-            Ok(nats_) => Ok(nats_),
+            Ok(nats_) => nats_,
             Err(err) => return Err(err.to_string()),
         }
+        Ok(nats)
     }
 }
