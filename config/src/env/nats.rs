@@ -1,7 +1,4 @@
-use crate::{
-    env::{Env, EnvLoaded, EnvLoadedError},
-    transport::nats,
-};
+use crate::env::{Env, EnvLoaded, EnvLoadedError};
 use rust_lib::healthchecker::HealthChecker;
 
 #[derive(Debug, Clone, Env)]
@@ -16,9 +13,12 @@ pub struct Nats {
 }
 
 impl Nats {
-    pub async fn build(&self, healthchecker: HealthChecker) -> Result<nats::Nats, String> {
+    pub async fn build(&self, healthchecker: HealthChecker) -> Result<transport::nats::Nats, String> {
         let nats_options = format!("{}:{}", self.host, self.port);
-        let nats = nats::Nats::new(&nats_options, self.client_id.as_str(), self.cluster_id.as_str()).await;
+        let nats = match transport::nats::Nats::new(&nats_options, self.client_id.as_str(), self.cluster_id.as_str()).await {
+            Ok(nats_) => nats_,
+            Err(err) => return Err(err.to_string()),
+        };
         // Add disconnect handler - make healthchecker sick if disconnect
         match nats
             .stan_client

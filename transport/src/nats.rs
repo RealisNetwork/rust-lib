@@ -12,10 +12,12 @@ pub struct Nats {
 }
 
 impl Nats {
-    pub async fn new(nats_opts: &str, client_id: &str, cluster_id: &str) -> Self {
+    pub async fn new(nats_opts: &str, client_id: &str, cluster_id: &str) -> Result<Self, String> {
         let opts = StanOptions::with_options(nats_opts, cluster_id, &client_id[..]);
-        let stan_client = StanClient::from_options(opts).await.expect("Cannot connect to nats!");
-        Self { stan_client }
+        let stan_client = match StanClient::from_options(opts).await {
+            Ok(stan_client_) => Ok(Self { stan_client }),
+            Err(err) => Err(err),
+        }
     }
 }
 
