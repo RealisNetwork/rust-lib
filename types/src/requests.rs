@@ -18,9 +18,9 @@ pub struct ResponseResult<T, Y> {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(tag = "type")]
-pub enum ResponseMessage<T> {
+pub enum ResponseMessage<Y> {
     Left { value: ResponseError },
-    Right { value: T },
+    Right { value: Y },
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
@@ -45,22 +45,12 @@ impl From<PoolError<Error>> for ResponseError {
     }
 }
 
-// impl Default for ResponseError {
-//     fn default() -> Self {
-//         ResponseError {
-//             msg: "".to_string(),
-//             error_type: RealisErrors::Common(Common::Unknown),
-//             trace: None,
-//             data: None,
-//             status: None
-//         }
-//     }
-// }
-
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthInfo {
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub address: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub continent: Option<String>,
 }
