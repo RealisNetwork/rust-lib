@@ -1,7 +1,5 @@
-use crate::{
-    env::{Env, EnvLoaded, EnvLoadedError},
-    transport::nats,
-};
+use crate::env::{Env, EnvLoaded, EnvLoadedError};
+use rust_lib::transport::nats;
 use rust_lib::healthchecker::HealthChecker;
 
 #[derive(Debug, Clone, Env)]
