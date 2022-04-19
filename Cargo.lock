@@ -6634,6 +6634,7 @@ dependencies = [
  "rust-lib",
  "serde",
  "serde_json",
+ "substrate-api-client",
  "tokio-postgres",
 ]
 

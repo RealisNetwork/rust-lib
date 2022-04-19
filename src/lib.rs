@@ -21,4 +21,3 @@ pub mod nats;
 
 #[cfg(feature = "vault")]
 pub mod vault;
-
