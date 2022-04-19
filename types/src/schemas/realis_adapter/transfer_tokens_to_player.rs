@@ -1,11 +1,9 @@
 use crate::{
     requests::AuthInfo,
-    schemas::realis_orchestrator::transfer_tokens_to_player::TransferTokensToPlayerSchema as OrchestratorTransferTokensToPlayerSchema,
+    schemas::realis_orchestrator::adapter_request::transfer_tokens_to_player::TransferTokensToPlayerSchema as OrchestratorTransferTokensToPlayerSchema,
 };
 use runtime::{realis_game_api::Call as RealisGameApiCall, AccountId, Call};
-use rust_lib::{
-    json::u128::{u128_from_string, u128_to_string},
-};
+use rust_lib::json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
 
 pub type Amount = u128;
