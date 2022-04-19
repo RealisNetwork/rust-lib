@@ -1,11 +1,12 @@
 use crate::{
     requests::AuthInfo,
-    schemas::realis_adapter::transfer_tokens_to_player::TransferTokensToPlayerSchema as AdapterTransferTokensToPlayerSchema,
+    schemas::realis_adapter::transfer_tokens_to_player::{
+        Amount, TransferTokensToPlayerSchema as AdapterTransferTokensToPlayerSchema,
+    },
 };
 use runtime::AccountId;
 use rust_lib::json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
-use crate::schemas::realis_adapter::transfer_tokens_to_player::Amount;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransferTokensToPlayerSchema {

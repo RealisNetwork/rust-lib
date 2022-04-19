@@ -1,4 +1,4 @@
-use crate::schemas::realis_orchestrator::change_batch::ChangeBatch as OrchestratorChangeBatch;
+use crate::schemas::realis_orchestrator::adapter_request::change_batch::ChangeBatch as OrchestratorChangeBatch;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
