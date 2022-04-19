@@ -3,9 +3,9 @@ use primitives::RequestId;
 use crate::Amount;
 use crate::requests::AuthInfo;
 
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ChangePriceSchema {
-    pub id:RequestId,
+    pub id: RequestId,
     #[serde(rename="topicRes", alias = "topicResponse")]
     pub topic_res: String,
     pub method: String,
@@ -15,7 +15,7 @@ pub struct ChangePriceSchema {
 }
 
 
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ChangePriceNftParams {
     #[serde(serialize_with = "token_id_to_string")]
     #[serde(deserialize_with = "token_id_from_string")]
