@@ -1,8 +1,8 @@
 use primitives::RequestId;
 use crate::requests::AuthInfo;
 use realis_primitives::TokenId;
-
-pub type Amount = u128;
+use serde::{Deserialize, Serialize};
+use crate::Amount;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SellNftSchema {

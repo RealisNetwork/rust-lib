@@ -1,6 +1,7 @@
 use primitives::RequestId;
 use crate::requests::AuthInfo;
 use realis_primitives::TokenId;
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RemoveNftSchema {

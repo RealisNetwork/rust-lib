@@ -2,6 +2,7 @@ use realis_primitives::TokenId;
 use primitives::RequestId;
 use crate::Amount;
 use crate::requests::AuthInfo;
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ChangePriceSchema {
