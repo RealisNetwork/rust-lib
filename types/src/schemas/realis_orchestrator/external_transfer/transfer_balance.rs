@@ -1,11 +1,10 @@
-use primitives::RequestId;
 use runtime::AccountId;
 use serde::{Deserialize, Serialize};
 use substrate_api_client::Hash;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransferBalanceSchema {
-    pub id: RequestId,
+    pub id: String,
     pub agent: String,
     pub method: String,
     pub params: TransferBalanceParams,
@@ -13,7 +12,7 @@ pub struct TransferBalanceSchema {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransferBalanceParams {
-    pub from: AccoundId,
+    pub from: AccountId,
     pub to: AccountId,
     pub amount: String,
     #[serde(rename = "blockHash")]

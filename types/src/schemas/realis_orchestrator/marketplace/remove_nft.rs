@@ -1,11 +1,11 @@
-use primitives::RequestId;
 use crate::requests::AuthInfo;
 use realis_primitives::TokenId;
 use serde::{Deserialize, Serialize};
+use rust_lib::json::token_id::{token_id_from_string, token_id_to_string};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RemoveNftSchema {
-    pub id: RequestId,
+    pub id: String,
     #[serde(rename = "topicRes", alias = "topicResponse")]
     pub topic_res: String,
     pub method: String,

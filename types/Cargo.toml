@@ -27,4 +27,5 @@ optional = true
 schemas = [
     "rust-lib/ser_des-types",
     "realis-primitives",
+    "substrate-api-client",
 ]

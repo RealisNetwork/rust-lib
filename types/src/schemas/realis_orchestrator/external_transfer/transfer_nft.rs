@@ -1,4 +1,3 @@
-use primitives::RequestId;
 use realis_primitives::TokenId;
 
 use runtime::AccountId;
@@ -7,7 +6,7 @@ use substrate_api_client::Hash;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransferNftSchema {
-    pub id: RequestId,
+    pub id: String,
     pub agent: String,
     pub method: String,
     pub params: TransferNftParams,
