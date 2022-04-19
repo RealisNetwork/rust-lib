@@ -13,11 +13,15 @@ pub struct Nats {
 }
 
 impl Nats {
-    pub async fn build(&self, healthchecker: HealthChecker) -> transport::nats::Nats {
+    pub async fn build(&self, healthchecker: HealthChecker) -> Result<transport::nats::Nats, String> {
         let nats_options = format!("{}:{}", self.host, self.port);
-        let nats = transport::nats::Nats::new(&nats_options, self.client_id.as_str(), self.cluster_id.as_str()).await;
+        let nats = match transport::nats::Nats::new(&nats_options, self.client_id.as_str(), self.cluster_id.as_str()).await {
+            Ok(nats_) => nats_,
+            Err(err) => return Err(err.to_string()),
+        };
         // Add disconnect handler - make healthchecker sick if disconnect
-        nats.stan_client
+        match nats
+            .stan_client
             .nats_client
             .add_disconnect_handler(Box::new({
                 let health_checker = healthchecker;
@@ -26,7 +30,10 @@ impl Nats {
                 }
             }))
             .await
-            .unwrap();
-        nats
+        {
+            Ok(nats_) => nats_,
+            Err(err) => return Err(err.to_string()),
+        }
+        Ok(nats)
     }
 }
