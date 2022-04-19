@@ -8,9 +8,10 @@ pub struct ChangePriceSchema {
     pub id:RequestId,
     #[serde(rename="topicRes", alias = "topicResponse")]
     pub topic_res: String,
+    pub method: String,
+    pub params: ChangePriceNftParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
-    pub params:ChangePriceNftParams,
 }
 
 

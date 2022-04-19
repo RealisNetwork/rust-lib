@@ -7,6 +7,7 @@ pub struct RemoveNftSchema {
     pub id: RequestId,
     #[serde(rename = "topicRes", alias = "topicResponse")]
     pub topic_res: String,
+    pub method: String,
     pub params: RemoveNftParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,

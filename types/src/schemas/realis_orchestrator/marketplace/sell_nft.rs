@@ -9,6 +9,7 @@ pub struct SellNftSchema {
     pub id: RequestId,
     #[serde(rename = "topicRes", alias = "topicResponse")]
     pub topic_res: String,
+    pub method: String,
     pub params: SellNftParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,

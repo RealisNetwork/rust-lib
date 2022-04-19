@@ -6,6 +6,7 @@ use substrate_api_client::Hash;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransferBalanceSchema {
     pub id: RequestId,
+    pub agent: String,
     pub method: String,
     pub params: TransferBalanceParams,
 }
