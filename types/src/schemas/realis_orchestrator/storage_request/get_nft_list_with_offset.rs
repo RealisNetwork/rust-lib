@@ -1,0 +1,24 @@
+use crate::requests::AuthInfo;
+use serde::{Deserialize, Serialize};
+use crate::schemas::storage_service::{option_u128_from_string, option_u128_to_string};
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct GetNftListWithOffset{
+    pub id: String,
+    #[serde(rename = "topicRes", alias = "topicResponse")]
+    pub topic_res: String,
+    pub params: GetNftListWithOffsetParams,
+    #[serde(rename = "authInfo")]
+    pub auth_info: AuthInfo,
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct GetNftListWithOffsetParams {
+    #[serde(default)]
+    #[serde(serialize_with = "option_u128_to_string")]
+    #[serde(deserialize_with = "option_u128_from_string")]
+    pub size: Option<u128>,
+    #[serde(default)]
+    #[serde(serialize_with = "option_u128_to_string")]
+    #[serde(deserialize_with = "option_u128_from_string")]
+    pub offset: Option<u128>,
+}
