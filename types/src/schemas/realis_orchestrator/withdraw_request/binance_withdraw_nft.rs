@@ -12,7 +12,7 @@ pub struct BinanceWithdrawNftSchema {
     pub id: String,
     #[serde(rename = "topicRes", alias = "topicResponse")]
     pub topic_res: String,
-    pub params: HashMap<String, BinanceWithdrawNftSchemaParams>,
+    pub params: BinanceWithdrawNftSchemaParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
 }
