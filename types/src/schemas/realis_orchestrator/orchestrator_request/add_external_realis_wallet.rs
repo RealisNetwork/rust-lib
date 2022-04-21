@@ -14,5 +14,5 @@ pub struct AddExternalRealisWalletSchema {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AddExternalRealisWalletSchemaParams {
     #[serde(rename = "accountId")]
-    account_id: String,
+    pub account_id: String,
 }

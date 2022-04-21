@@ -11,5 +11,5 @@ pub struct GetUserByRealisSchema {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GetUserByRealisSchemaParams {
     #[serde(rename = "accountId")]
-    account_id: AccountId,
+    pub account_id: AccountId,
 }
