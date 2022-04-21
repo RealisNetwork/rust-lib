@@ -10,6 +10,8 @@ pub struct RealisWithDrawTokensSchema {
     pub id: String,
     #[serde(rename = "topicRes", alias = "topicResponse")]
     pub topic_res: String,
+    #[serde(rename = "from")]
+    pub from_account_id: AccountId,
     pub params: RealisWithdrawSchemaParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
