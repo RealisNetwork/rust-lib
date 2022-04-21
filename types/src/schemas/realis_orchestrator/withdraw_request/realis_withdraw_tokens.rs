@@ -10,13 +10,13 @@ pub struct RealisWithdrawTokensSchema {
     pub topic_res: String,
     #[serde(rename = "from")]
     pub from_account_id: AccountId,
-    pub params: RealisWithdrawSchemaParams,
+    pub params: RealisWithdrawTokensSchemaParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct RealisWithdrawSchemaParams {
+pub struct RealisWithdrawTokensSchemaParams {
     #[serde(rename = "accountId")]
     pub account_id: AccountId,
     #[serde(serialize_with = "u128_to_string")]
