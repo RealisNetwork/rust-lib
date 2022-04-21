@@ -1,12 +1,10 @@
-use crate::requests::AuthInfo;
-use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
+use crate::{requests::AuthInfo, Amount};
 use runtime::AccountId;
 use rust_lib::json::u128::{u128_from_string, u128_to_string};
-use crate::Amount;
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct RealisWithDrawTokensSchema {
+pub struct RealisWithdrawTokensSchema {
     pub id: String,
     #[serde(rename = "topicRes", alias = "topicResponse")]
     pub topic_res: String,
@@ -15,7 +13,6 @@ pub struct RealisWithDrawTokensSchema {
     pub params: RealisWithdrawSchemaParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
-
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

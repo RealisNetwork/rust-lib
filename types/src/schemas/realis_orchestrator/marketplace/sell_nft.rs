@@ -1,11 +1,10 @@
-use crate::requests::AuthInfo;
+use crate::{requests::AuthInfo, Amount};
 use realis_primitives::TokenId;
-use serde::{Deserialize, Serialize};
-use crate::Amount;
 use rust_lib::json::{
     token_id::{token_id_from_string, token_id_to_string},
-    u128::{u128_from_string, u128_to_string}
+    u128::{u128_from_string, u128_to_string},
 };
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SellNftSchema {
@@ -17,7 +16,6 @@ pub struct SellNftSchema {
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
 }
-
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SellNftParams {
