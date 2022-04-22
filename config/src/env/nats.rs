@@ -27,6 +27,7 @@ impl Nats {
                 let health_checker = healthchecker;
                 move |_nats_client| {
                     health_checker.make_sick();
+                    panic!("Nats client die...");
                 }
             }))
             .await
