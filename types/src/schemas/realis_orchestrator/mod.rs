@@ -4,3 +4,5 @@ pub mod marketplace;
 pub mod orchestrator_request;
 pub mod storage_request;
 pub mod withdraw_request;
+pub mod response_message;
+pub mod extrinsic_confirmation;
