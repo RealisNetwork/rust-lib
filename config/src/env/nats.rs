@@ -27,7 +27,6 @@ impl Nats {
                 let health_checker = healthchecker;
                 move |_nats_client| {
                     health_checker.make_sick();
-                    return Err(String::from("Nats client disconnect..."))
                 }
             }))
             .await
