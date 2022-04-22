@@ -1,4 +1,3 @@
-use std::time::Duration;
 use crate::traits::{MessageReceiver, Transport};
 use async_trait::async_trait;
 use error_registry::{Nats as NatsError, RealisErrors};
@@ -7,6 +6,7 @@ use jet_nats::{
     jetstream::{push_subscription::PushSubscription, JetStream},
     Message,
 };
+use std::time::Duration;
 
 #[derive(Clone)]
 pub struct Jet {
@@ -87,7 +87,13 @@ impl Transport for Jet {
         message_id.ack().map_err(|_| RealisErrors::Nats(NatsError::Ok))
     }
 
-    async fn message_reply(&self, topic: &str, topic_res: &str, message: Self::Message, duration: Option<Duration>) -> Result<Self::Message, Self::Error> {
+    async fn message_reply(
+        &self,
+        topic: &str,
+        topic_res: &str,
+        message: Self::Message,
+        duration: Option<Duration>,
+    ) -> Result<Self::Message, Self::Error> {
         todo!()
     }
 }
