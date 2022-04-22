@@ -5,6 +5,7 @@ use crate::schemas::realis_orchestrator::response_message::default::OldRequest;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NftMindNotificationSchema {
+    #[serde(flatten)]
     pub result: Response<OldRequest, Value>
 }
 

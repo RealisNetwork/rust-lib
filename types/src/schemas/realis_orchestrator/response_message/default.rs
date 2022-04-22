@@ -4,6 +4,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdapterResponseSchema {
+    #[serde(flatten)]
     pub result: Response<OldRequest, Value>
 
 }
