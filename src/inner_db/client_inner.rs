@@ -22,7 +22,7 @@ impl DatabaseClientInner {
     }
 
     pub async fn import_tables_from_file(&self, path: &str) -> Result<(), RealisErrors> {
-        Config-Nats-builder-result
+        let futures = Loader::get_queries_from(path)?
             .0
             .into_iter()
             .sorted()
