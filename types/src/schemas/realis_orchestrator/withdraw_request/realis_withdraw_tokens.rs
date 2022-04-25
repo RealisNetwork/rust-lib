@@ -1,4 +1,4 @@
-use crate::{requests::AuthInfo, Amount};
+use crate::Amount;
 use runtime::AccountId;
 use rust_lib::json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
@@ -11,8 +11,6 @@ pub struct RealisWithdrawTokensSchema {
     #[serde(rename = "from")]
     pub from_account_id: AccountId,
     pub params: RealisWithdrawTokensSchemaParams,
-    #[serde(rename = "authInfo")]
-    pub auth_info: AuthInfo,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
