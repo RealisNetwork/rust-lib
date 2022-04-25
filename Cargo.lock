@@ -6737,6 +6737,8 @@ dependencies = [
 name = "vault"
 version = "0.1.0"
 dependencies = [
+ "aes",
+ "block-modes",
  "dotenv",
  "hashicorp_vault",
 ]
