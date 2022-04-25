@@ -1,4 +1,3 @@
-use crate::requests::AuthInfo;
 use realis_primitives::TokenId;
 use runtime::AccountId;
 use rust_lib::json::token_id::{token_id_from_string, token_id_to_string};
@@ -12,8 +11,6 @@ pub struct RealisWithdrawNftSchema {
     #[serde(rename = "from")]
     pub from_account_id: AccountId,
     pub params: RealisWithdrawNftSchemaParams,
-    #[serde(rename = "authInfo")]
-    pub auth_info: AuthInfo,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RealisWithdrawNftSchemaParams {
