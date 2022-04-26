@@ -130,6 +130,13 @@ pub trait Transport {
         callback: impl MessageReceiver<Self::Message, Self::MessageId, Self::Error> + 'a,
     ) -> Result<(), Self::Error>;
 
+    async fn subscribe_with_timeout<'a>(
+        &self,
+        topic: &str,
+        callback: impl MessageReceiver<Self::Message, Self::MessageId, Self::Error> + 'a,
+        secs: i32,
+    ) -> Result<(), Self::Error>;
+
     async fn unsubscribe(&self, subscribe_id: Self::SubscribeId) -> Result<(), Self::Error>;
 
     async fn message_reply(
