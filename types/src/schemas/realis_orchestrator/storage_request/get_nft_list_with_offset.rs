@@ -10,12 +10,12 @@ pub struct GetNftListWithOffsetSchema {
     pub id: String,
     #[serde(rename = "topicRes", alias = "topicResponse")]
     pub topic_res: String,
-    pub params: GetNftListWithOffsetParams,
+    pub params: Option<GetNftListWithOffsetSchemaParams>,
     #[serde(rename = "accountId")]
     pub account_id: AccountId,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct GetNftListWithOffsetParams {
+pub struct GetNftListWithOffsetSchemaParams {
     #[serde(default)]
     #[serde(serialize_with = "option_u128_to_string")]
     #[serde(deserialize_with = "option_u128_from_string")]
