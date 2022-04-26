@@ -3,6 +3,7 @@ use crate::{
     schemas::storage_service::{option_u128_from_string, option_u128_to_string},
 };
 use serde::{Deserialize, Serialize};
+use runtime::AccountId;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GetNftListWithOffsetSchema {
@@ -10,8 +11,8 @@ pub struct GetNftListWithOffsetSchema {
     #[serde(rename = "topicRes", alias = "topicResponse")]
     pub topic_res: String,
     pub params: GetNftListWithOffsetParams,
-    #[serde(rename = "authInfo")]
-    pub auth_info: AuthInfo,
+    #[serde(rename = "accountId")]
+    pub account_id: AccountId,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GetNftListWithOffsetParams {
