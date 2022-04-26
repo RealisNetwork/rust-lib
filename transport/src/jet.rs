@@ -42,11 +42,13 @@ impl Transport for Jet {
         Ok(())
     }
 
-    async fn subscribe<'a>(
+    async fn subscribe_with_timeout<'a>(
         &self,
         topic: &str,
         callback: impl MessageReceiver<Self::Message, Self::MessageId, Self::Error> + 'a,
+        _secs: i32
     ) -> Result<(), Self::Error> {
+        // TODO: Implement timeout (secs variable)
         let _stream_info = self
             .jet_stream
             .add_stream(topic)
@@ -77,6 +79,15 @@ impl Transport for Jet {
         }
 
         Ok(())
+    }
+
+    async fn subscribe<'a>(
+        &self,
+        topic: &str,
+        callback: impl MessageReceiver<Self::Message, Self::MessageId, Self::Error> + 'a,
+    ) -> Result<(), Self::Error> {
+        let default_timeout_in_secs: i32 = 30;
+        self.subscribe_with_timeout( topic, callback, default_timeout_in_secs).await
     }
 
     async fn unsubscribe(&self, subscribe_id: Self::SubscribeId) -> Result<(), Self::Error> {

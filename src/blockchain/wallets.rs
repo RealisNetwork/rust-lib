@@ -20,7 +20,7 @@ impl RealisWallet for BridgeMaster {
             "fault pretty bird biology budget table symptom build option wrist time detail",
             None,
         )
-        .unwrap()
+            .unwrap()
     }
 }
 
@@ -48,7 +48,7 @@ impl RealisWallet for WithdrawBscMaster1 {
             "lonely price whip repeat cricket vital change output october boost agent plunge",
             None,
         )
-        .unwrap()
+            .unwrap()
     }
 }
 
@@ -64,7 +64,7 @@ impl RealisWallet for WithdrawBscMaster2 {
             "bracket history husband click custom clean industry steak believe various noodle tuna",
             None,
         )
-        .unwrap()
+            .unwrap()
     }
 }
 
@@ -92,7 +92,7 @@ impl RealisWallet for AdapterMaster2 {
             "cinnamon left mind answer grid clarify chuckle flash then tobacco dance truth",
             None,
         )
-        .unwrap()
+            .unwrap()
     }
 }
 
@@ -108,7 +108,7 @@ impl RealisWallet for AdapterMaster3 {
             "island school shell demand muscle galaxy gesture pencil napkin wrong stumble dismiss",
             None,
         )
-        .unwrap()
+            .unwrap()
     }
 }
 
