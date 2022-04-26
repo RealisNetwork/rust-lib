@@ -1,2 +1,2 @@
-mod cold_wallets;
-mod wallets;
+pub mod cold_wallets;
+pub mod wallets;
