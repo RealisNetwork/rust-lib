@@ -24,4 +24,3 @@ pub struct NftTransferedParams {
     #[serde(rename = "txHash")]
     pub tx_hash: Hash,
 }
-
