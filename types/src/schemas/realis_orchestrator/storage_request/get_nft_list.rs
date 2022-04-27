@@ -1,11 +1,12 @@
 use crate::requests::AuthInfo;
 use serde::{Deserialize, Serialize};
+use runtime::AccountId;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GetNftListSchema {
     pub id: String,
-    #[serde(rename = "topicRes", alias = "topicResponse")]
+    #[serde(rename = "topicResponse")]
     pub topic_res: String,
-    #[serde(rename = "authInfo")]
-    pub auth_info: AuthInfo,
+    #[serde(rename = "accountId")]
+    pub account_id: AccountId,
 }

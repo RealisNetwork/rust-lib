@@ -41,9 +41,20 @@ impl Transport for Nats {
         topic: &str,
         callback: impl MessageReceiver<Self::Message, Self::MessageId, Self::Error> + 'a,
     ) -> Result<(), Self::Error> {
+        let default_timeout_in_secs: i32 = 30;
+        self.subscribe_with_timeout(topic, callback, default_timeout_in_secs).await
+    }
+
+    async fn subscribe_with_timeout<'a>(
+        &self,
+        topic: &str,
+        callback: impl MessageReceiver<Self::Message, Self::MessageId, Self::Error> + 'a,
+        secs: i32
+    ) -> Result<(), Self::Error> {
+
         let (stan_id, mut stream) = self
             .stan_client
-            .subscribe_with_all(topic, None, None, 1024, 30, StartPosition::First, 0, None, true)
+            .subscribe_with_all(topic, None, None, 1024, secs, StartPosition::First, 0, None, true)
             .await
             .map_err(|_| RealisErrors::Nats(NatsError::Disconnected))?;
 

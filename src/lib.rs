@@ -1,9 +1,6 @@
 #[cfg(feature = "async_logger")]
 pub mod async_logger;
 
-#[cfg(feature = "blockchain")]
-pub mod blockchain;
-
 #[cfg(feature = "config")]
 pub mod config;
 
@@ -21,3 +18,5 @@ pub mod nats;
 
 #[cfg(feature = "vault")]
 pub mod vault;
+#[cfg(feature = "blockchain")]
+pub mod blockchain;
