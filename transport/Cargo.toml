@@ -14,6 +14,9 @@ error_registry = { path = "../error_registry" }
 
 ratsio = { git = "https://github.com/RealisNetwork/ratsio.git", optional = true }
 jet-nats = { package = "nats", version = "0.18.1", optional = true }
+async-nats = "0.11.0"
+nats_v2 = { package = "nats", version = "0.19.0" }
+
 
 [dev-dependencies]
 # for jet-raw examples 
