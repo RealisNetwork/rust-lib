@@ -21,7 +21,13 @@ branch = "main"
 package = "realis-primitives"
 optional = true
 
-
+[dependencies.uuid]
+version = "1.0.0"
+features = [
+    "v4",                # Lets you generate random UUIDs
+    "fast-rng",          # Use a faster (but still sufficiently random) RNG
+    "macro-diagnostics", # Enable better diagnostics for compile-time UUIDs
+]
 
 [features]
 schemas = [
