@@ -19,5 +19,5 @@ pub struct BuyNftParams {
     #[serde(serialize_with = "token_id_to_string")]
     #[serde(deserialize_with = "token_id_from_string")]
     #[serde(rename = "tokenId")]
-    token_id: TokenId,
+    pub token_id: TokenId,
 }

@@ -1,3 +1,4 @@
+#[rustfmt::skip]
 use crate::{
     requests::AuthInfo,
     schemas::realis_orchestrator::adapter_request::transfer_tokens_to_player::TransferTokensToPlayerSchema as OrchestratorTransferTokensToPlayerSchema,

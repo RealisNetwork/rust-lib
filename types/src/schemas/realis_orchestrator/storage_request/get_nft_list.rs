@@ -1,6 +1,5 @@
-use crate::requests::AuthInfo;
-use serde::{Deserialize, Serialize};
 use runtime::AccountId;
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GetNftListSchema {
