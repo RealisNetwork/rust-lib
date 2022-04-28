@@ -14,22 +14,9 @@ pub struct NftMintedSuccessSchema {
 }
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
-pub struct NftMintedErrorSchema {
-    #[serde(rename = "topicResponse")]
-    pub topic_res: String,
-    pub id: String,
-    pub params: NftMintedErrorParams,
-}
-
-#[derive(Deserialize, Serialize, Clone, Debug)]
 pub struct NftMintedSuccessParams {
     #[serde(rename = "blockHash")]
     pub block_hash: Hash,
     #[serde(rename = "txHash")]
     pub tx_hash: Hash,
-}
-
-#[derive(Deserialize, Serialize, Clone, Debug)]
-pub struct NftMintedErrorParams {
-    pub error: RealisErrors,
 }
