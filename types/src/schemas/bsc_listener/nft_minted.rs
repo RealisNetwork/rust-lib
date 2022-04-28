@@ -1,7 +1,6 @@
-use rust_lib::json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
 use substrate_api_client::Hash;
-
+use rust_lib::json::uuid::{uuid_from_string, uuid_to_string};
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
 pub struct NftMintedSuccessSchema {
@@ -15,5 +14,7 @@ pub struct NftMintedSuccessSchema {
 pub struct NftMintedSuccessParams {
     #[serde(rename = "txId")]
     pub hash: Hash,
+    #[serde(serialize_with = "uuid_to_string")]
+    #[serde(deserialize_with = "uuid_from_string")]
     pub uuid: uuid::Uuid,
 }

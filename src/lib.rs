@@ -18,5 +18,6 @@ pub mod nats;
 
 #[cfg(feature = "vault")]
 pub mod vault;
+
 #[cfg(feature = "blockchain")]
 pub mod blockchain;

@@ -1,15 +1,8 @@
-use crate::schemas::bsc_listener::{
-    option_u64_from_string,
-    option_u64_to_string
-};
 use realis_primitives::TokenId;
-use rust_lib::json::{
-    u128::{u128_from_string, u128_to_string},
-    token_id::{token_id_from_string, token_id_to_string}
-};
 use runtime::AccountId;
+use rust_lib::json::token_id::{token_id_to_string, token_id_from_string};
 use serde::{Deserialize, Serialize};
-use substrate_api_client::Hash;
+use web3::types::{H160, H256, U64};
 
 type Amount = u128;
 type Block = Option<U64>;
@@ -24,11 +17,9 @@ pub struct TransferNftSchema {
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
 pub struct TransferNftParams {
-    #[serde(serialize_with = "option_u64_to_string")]
-    #[serde(deserialize_with = "option_u64_from_string")]
     pub block: Block,
-    pub hash: Hash,
-    pub to: Hash,
+    pub hash: H256,
+    pub to: H160,
     #[serde(rename = "accountId")]
     pub account_id: AccountId,
     #[serde(serialize_with = "token_id_to_string")]
