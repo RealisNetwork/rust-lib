@@ -10,13 +10,13 @@ pub struct BuyNftSchema {
     #[serde(rename = "topicRes", alias = "topicResponse")]
     pub topic_res: String,
     pub method: String,
-    pub params: BuyNftParams,
+    pub params: BuyNftSchemaParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct BuyNftParams {
+pub struct BuyNftSchemaParams {
     #[serde(serialize_with = "token_id_to_string")]
     #[serde(deserialize_with = "token_id_from_string")]
     #[serde(rename = "tokenId")]
@@ -32,7 +32,7 @@ impl BuyNftSchema {
             topic_res: other.topic_res,
             method: other.method,
             auth_info: other.auth_info,
-            params: BuyNftParams {
+            params: BuyNftSchemaParams {
                 token_id: other.params.token_id,
                 account_id,
             },
