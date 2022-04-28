@@ -10,7 +10,7 @@ pub struct BinanceTokensSchema {
     pub params: BinanceTokensSchemaParams,
 }
 #[derive(Serialize, Deserialize, Clone, Debug)]
-pub struct BinanceTokensSchemaParam{
+pub struct BinanceTokensSchemaParams {
     #[serde(rename = "accountId")]
     pub account_id: String,
     #[serde(serialize_with = "u128_to_string")]
@@ -18,5 +18,4 @@ pub struct BinanceTokensSchemaParam{
     pub amount: Amount,
     #[serde(rename = "from")]
     pub from_account_id: AccountId,
-}
 }
