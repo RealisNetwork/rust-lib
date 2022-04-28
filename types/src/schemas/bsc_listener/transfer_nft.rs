@@ -4,7 +4,6 @@ use rust_lib::json::token_id::{token_id_to_string, token_id_from_string};
 use serde::{Deserialize, Serialize};
 use web3::types::{H160, H256, U64};
 
-type Amount = u128;
 type Block = Option<U64>;
 
 #[derive(Deserialize, Serialize, Clone, Debug)]

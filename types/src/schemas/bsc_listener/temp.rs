@@ -19,6 +19,6 @@ pub struct TempParams {
 
 // TODO: restruct to rust-lib standard 
 #[derive(Deserialize, Serialize, Clone, Debug)]
-pub(super) struct AuthInfo {
+pub struct AuthInfo {
     pub account_id: AccountId,
 }
