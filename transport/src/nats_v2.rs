@@ -15,7 +15,7 @@ pub struct Nats_v2 {
 
 impl Nats_v2 {
 
-    pub async fn new(nats_opts: &str, client_id: &str, cluster_id: &str) -> Result<Self, ratsio::RatsioError> {
+    pub async fn new(nats_opts: &str, client_id: &str, cluster_id: &str) -> Result<Self, RealisErrors> {
         let client = nats_v2::asynk::Options::new()
             .with_name(client_id)
             .add_root_certificate(cluster_id)
