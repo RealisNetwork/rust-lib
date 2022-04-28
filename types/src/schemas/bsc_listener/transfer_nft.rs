@@ -11,11 +11,11 @@ pub struct TransferNftSchema {
     #[serde(rename = "topicResponse")]
     pub topic_res: String,
     pub id: String,
-    pub params: TransferNftParams,
+    pub params: TransferNftSchemaParams,
 }
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
-pub struct TransferNftParams {
+pub struct TransferNftSchemaParams {
     pub block: Block,
     pub hash: H256,
     pub to: H160,

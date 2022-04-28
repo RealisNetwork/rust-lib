@@ -11,11 +11,11 @@ pub struct TransferTokenSchema {
     #[serde(rename = "topicResponse")]
     pub topic_res: String,
     pub id: String,
-    pub params: TransferTokenParams,
+    pub params: TransferTokenSchemaParams,
 }
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
-pub struct TransferTokenParams {
+pub struct TransferTokenSchemaParams {
     pub block: Block,
     pub hash: H256,
     pub to: H256,

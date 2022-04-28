@@ -7,13 +7,13 @@ pub struct TempSchema {
     #[serde(rename = "topicResponse")]
     pub topic_res: String,
     pub id: String,
-    pub params: TempParams,
+    pub params: TempSchemaParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
 }
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
-pub struct TempParams {
+pub struct TempSchemaParams {
     pub hash: Hash,
 }
 

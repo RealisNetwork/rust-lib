@@ -7,11 +7,11 @@ pub struct NftMintedSuccessSchema {
     #[serde(rename = "topicResponse")]
     pub topic_res: String,
     pub id: String,
-    pub params: NftMintedSuccessParams,
+    pub params: NftMintedSuccessSchemaParams,
 }
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
-pub struct NftMintedSuccessParams {
+pub struct NftMintedSuccessSchemaParams {
     #[serde(rename = "txId")]
     pub hash: Hash,
     #[serde(serialize_with = "uuid_to_string")]
