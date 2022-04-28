@@ -4,7 +4,6 @@ use async_nats::{Subscriber};
 use crate::traits::{MessageReceiver, Transport};
 use nats_v2::asynk::{Connection, Subscription};
 use nats_v2::asynk::Message;
-use ratsio::StanClient;
 use tokio::time::timeout;
 use async_trait::async_trait;
 use error_registry::{Nats as NatsError, RealisErrors};
