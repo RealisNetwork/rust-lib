@@ -5,5 +5,6 @@ pub mod env;
 pub mod healthchecker;
 #[cfg(feature = "nats")]
 pub mod nats;
+pub mod nats_v2;
 
 pub use env::{Env, EnvLoaded, EnvLoadedError};
