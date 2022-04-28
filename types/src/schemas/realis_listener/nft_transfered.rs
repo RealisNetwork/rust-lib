@@ -8,11 +8,11 @@ pub struct NftTransferedSchema {
     #[serde(rename = "topicResponse")]
     pub topic_res: String,
     pub id: String,
-    pub params: NftTransferedParams,
+    pub params: NftTransferedSchemaParams,
 }
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
-pub struct NftTransferedParams {
+pub struct NftTransferedSchemaParams {
     pub from: AccountId,
     pub to: AccountId,
     #[serde(rename = "tokenId")]

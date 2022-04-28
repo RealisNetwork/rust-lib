@@ -8,11 +8,11 @@ pub struct BalanceTransferedSchema {
     #[serde(rename = "topicResponse")]
     pub topic_res: String,
     pub id: String,
-    pub params: BalanceTransferedParams,
+    pub params: BalanceTransferedSchemaParams,
 }
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
-pub struct BalanceTransferedParams {
+pub struct BalanceTransferedSchemaParams {
     pub from: AccountId,
     pub to: AccountId,
     #[serde(serialize_with = "u128_to_string")]

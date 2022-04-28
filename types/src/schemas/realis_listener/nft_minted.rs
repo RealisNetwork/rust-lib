@@ -6,11 +6,11 @@ pub struct NftMintedSuccessSchema {
     #[serde(rename = "topicResponse")]
     pub topic_res: String,
     pub id: String,
-    pub params: NftMintedSuccessParams,
+    pub params: NftMintedSuccessSchemaParams,
 }
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
-pub struct NftMintedSuccessParams {
+pub struct NftMintedSuccessSchemaParams {
     #[serde(rename = "blockHash")]
     pub block_hash: Hash,
     #[serde(rename = "txHash")]
