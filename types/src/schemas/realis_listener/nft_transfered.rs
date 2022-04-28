@@ -1,9 +1,7 @@
 use realis_primitives::TokenId;
-use rust_lib::json::u128::{u128_from_string, u128_to_string};
 use runtime::AccountId;
 use serde::{Deserialize, Serialize};
 use substrate_api_client::Hash;
-
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
 pub struct NftTransferedSchema {
