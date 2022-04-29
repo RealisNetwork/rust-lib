@@ -1,15 +1,12 @@
-use std::{thread, time::Duration};
-use std::thread::sleep;
 use error_registry::RealisErrors;
+use std::{thread, thread::sleep, time::Duration};
 // use transport::nats_v2::Nats_v2;
 // use transport::traits::MessageReceiver;
 use async_trait::async_trait;
-use nats_v2::asynk::Message;
-use nats_v2::{ConnectInfo, Connection};
-use serde_json::Value;
-use serde_json::Value::String;
+use nats_v2::{asynk::Message, ConnectInfo, Connection};
+use serde_json::{Value, Value::String};
 use transport::{
-    nats_v2::{Nats_v2},
+    nats_v2::Nats_v2,
     traits::{MessageReceiver, Transport},
 };
 
@@ -20,7 +17,8 @@ const CLUSTER_ID: &str = "test-cluster";
 
 #[tokio::main]
 async fn main() {
-    let LH = thread::spawn(move || { // Listener
+    let LH = thread::spawn(move || {
+        // Listener
         let connection: Connection;
         let nc = nats_v2::Options::new().with_name(CLIENT_ID).connect("nats://localhost:4222");
         match nc {
@@ -39,11 +37,13 @@ async fn main() {
                 println!("ERROR!");
             }
         }
-
     });
 
     let PH = thread::spawn(move || {
-        let nc = nats_v2::Options::new().with_name(CLIENT_ID).connect("nats://localhost:4222").unwrap();
+        let nc = nats_v2::Options::new()
+            .with_name(CLIENT_ID)
+            .connect("nats://localhost:4222")
+            .unwrap();
         println!("Publisher id {}", nc.client_id());
         nc.publish("my.subject", "uifehsf fhusiseh fhesiusufih fhesiuhifh1 1431");
         nc.publish("my.subject", "1283791 fhusiseh fhesiusufih fhesiuhifh1 1431");

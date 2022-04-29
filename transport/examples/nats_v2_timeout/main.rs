@@ -1,12 +1,10 @@
-use std::{thread, time::Duration};
-use error_registry::RealisErrors;
 use async_trait::async_trait;
-use nats_v2::asynk::Message;
-use nats_v2::{ConnectInfo, Connection};
-use serde_json::Value;
-use serde_json::Value::String;
+use error_registry::RealisErrors;
+use nats_v2::{asynk::Message, ConnectInfo, Connection};
+use serde_json::{Value, Value::String};
+use std::{thread, time::Duration};
 use transport::{
-    nats_v2::{Nats_v2},
+    nats_v2::Nats_v2,
     traits::{MessageReceiver, Transport},
 };
 
@@ -17,34 +15,28 @@ const CLUSTER_ID: &str = "test-cluster";
 
 #[tokio::main]
 async fn main() {
-    let LH = tokio::spawn(async { // Listener
+    let LH = tokio::spawn(async {
+        // Listener
         let nats = transport::nats_v2::Nats_v2::new("localhost:4222", "test-client");
 
         match nats {
             Ok(conect) => {
                 println!("Listener id {}", conect.client.client_id());
 
-                let mut message_handler = MessageHandler{};
+                let mut message_handler = MessageHandler {};
                 let rsub = conect.subscribe_with_timeout("my.subject", message_handler, 10).await;
                 println!("{:#?}", rsub);
-
             }
             Err(err) => {
                 println!("ERROR! {:#?}", err);
             }
         }
-
     });
 
     LH.await;
-
-
-
 }
 
-pub struct MessageHandler {
-
-}
+pub struct MessageHandler {}
 
 #[async_trait]
 impl MessageReceiver<Vec<u8>, nats_v2::Message, RealisErrors> for MessageHandler {

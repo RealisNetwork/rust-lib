@@ -13,6 +13,7 @@ pub struct Nats_v2 {
 }
 
 impl Nats_v2 {
+
     pub async fn build(&self, healthchecker: HealthChecker) -> Result<transport::nats_v2::Nats_v2, String> {
         let nats_options = format!("{}:{}", self.host, self.port);
         let nats = match transport::nats_v2::Nats_v2::new(&nats_options, self.client_id.as_str()) {
