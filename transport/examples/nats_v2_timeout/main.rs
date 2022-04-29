@@ -35,20 +35,8 @@ async fn main() {
         }
 
     });
-    std::thread::sleep(Duration::from_secs(2));
-    let PH = tokio::spawn(async {
-        let nc = nats_v2::Options::new().with_name(CLIENT_ID).connect("nats://localhost:4222").unwrap();
-        println!("Publisher id {}", nc.client_id());
-        for i in 0..200 {
-            nc.publish("my.subject", format!("uifehsf fhusiseh fhesiusufih fhesiuhifh1 1431: {}", i));
-            std::thread::sleep(Duration::from_millis(200));
-        }
-        nc.close();
-
-    });
 
     LH.await;
-    PH.await;
 
 
 

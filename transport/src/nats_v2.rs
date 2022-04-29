@@ -1,3 +1,4 @@
+use std::future::Future;
 use std::io::ErrorKind::TimedOut;
 use std::sync::Arc;
 use std::time::Duration;
@@ -8,7 +9,7 @@ use nats_v2::Message;
 use tokio::time::{timeout, Timeout};
 use async_trait::async_trait;
 use tokio::time::error::Elapsed;
-use error_registry::{Nats as NatsError, RealisErrors};
+use error_registry::{Nats as NatsError, Nats, RealisErrors};
 
 #[derive(Clone)]
 pub struct Nats_v2 {
@@ -63,13 +64,9 @@ impl Transport for Nats_v2 {
         let sub = self.client.subscribe(topic)?;
 
         loop {
-            match sub.next(){
-                None => {
-                    sub.unsubscribe()?;
-                    break;
-                },
-                Some(message) => {
-                    match callback.process(message.data.clone(), message).await {
+            match sub.next_timeout(Duration::from_secs(_secs as u64)) {
+                Ok(msg) => {
+                    match callback.process(msg.data.clone(), msg).await {
                         Ok(true) => {}
                         Ok(false) => {
                             sub.unsubscribe();
@@ -80,7 +77,11 @@ impl Transport for Nats_v2 {
                             return Err(error);
                         },
                     }
-                },
+                }
+                Err(err) => {
+                    sub.unsubscribe();
+                    return Err(RealisErrors::Nats(Nats::Unsubscribe));
+                }
             }
         }
         Ok(())
