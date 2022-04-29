@@ -52,8 +52,32 @@ impl Transport for Nats_v2 {
         topic: &str,
         callback: impl MessageReceiver<Self::Message, Self::MessageId, Self::Error> + 'a,
     ) -> Result<(), Self::Error> {
-        let default_timeout_in_secs: i32 = 30;
-        self.subscribe_with_timeout(topic, callback, default_timeout_in_secs).await}
+
+        let sub = self.client.subscribe(topic)?;
+
+        loop {
+            match sub.next() {
+                Some(msg) => {
+                    match callback.process(msg.data.clone(), msg).await {
+                        Ok(true) => {}
+                        Ok(false) => {
+                            sub.unsubscribe();
+                            break;
+                        }
+                        Err(error) => {
+                            sub.unsubscribe();
+                            return Err(error);
+                        },
+                    }
+                }
+                None => {
+                    sub.unsubscribe();
+                    return Err(RealisErrors::Nats(Nats::Unsubscribe));
+                }
+            }
+        }
+        Ok(())
+    }
 
     async fn subscribe_with_timeout<'a>(
         &self,
