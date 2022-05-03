@@ -1,20 +1,20 @@
 pub const CREATE_BINANCE_WALLET_TOPIC_TO_RESPONSE: &'static str = "create_binance_wallet_topic_to_response";
 
 // - Orchestrator - adapter topics
-pub const ORCHESTRATOR_FROM_ADAPTER_ADD_NFT_ITEM_TOPIC: &'static str = "add_nft_item";
-pub const ORCHESTRATOR_FROM_ADAPTER_REMOVE_NFT_ITEM_TOPIC: &'static str = "remove_nft_item";
-pub const ORCHESTRATOR_FROM_ADAPTER_CREDIT_HARD_CURRENCY_TOPIC: &'static str = "credit_hard_currency";
-pub const ORCHESTRATOR_FROM_ADAPTER_DEBIT_HARD_CURRENCY_TOPIC: &'static str = "debit_hard_currency";
-pub const ORCHESTRATOR_FROM_ADAPTER_TRANSFER_TOKEN_FROM_PLAYER_TOPIC: &'static str = "transfer_token_from_player";
-pub const ORCHESTRATOR_FROM_ADAPTER_TRANSFER_NFT_FROM_PLAYER_TOPIC: &'static str = "transfer_nft_from_player";
+pub const ORCHESTRATOR_ADD_NFT_ITEM_TOPIC: &'static str = "add_nft_item";
+pub const ORCHESTRATOR_REMOVE_NFT_ITEM_TOPIC: &'static str = "remove_nft_item";
+pub const ORCHESTRATOR_CREDIT_HARD_CURRENCY_TOPIC: &'static str = "credit_hard_currency";
+pub const ORCHESTRATOR_DEBIT_HARD_CURRENCY_TOPIC: &'static str = "debit_hard_currency";
+pub const ORCHESTRATOR_TRANSFER_TOKEN_FROM_PLAYER_TOPIC: &'static str = "transfer_token_from_player";
+pub const ORCHESTRATOR_TRANSFER_NFT_FROM_PLAYER_TOPIC: &'static str = "transfer_nft_from_player";
 // - Orchestrator - external transfer topics
-pub const ORCHESTRATOR_FROM_EXTERNAL_TRANSFER_NFT_TOPIC: &'static str = "transfer_nft";
-pub const ORCHESTRATOR_FROM_EXTERNAL_TRANSFER_BALANCE_TOPIC: &'static str = "transfer_balance";
+pub const ORCHESTRATOR_EXTERNAL_TRANSFER_NFT_TOPIC: &'static str = "transfer_nft";
+pub const ORCHESTRATOR_EXTERNAL_TRANSFER_BALANCE_TOPIC: &'static str = "transfer_balance";
 // - Orchestrator - marketplace topics
-pub const ORCHESTRATOR_FROM_MARKETPLACE_CHANGE_PRICE_NFT_TOPIC: &'static str = "change_price_nft";
-pub const ORCHESTRATOR_FROM_MARKETPLACE_BUY_NFT_TOPIC: &'static str = "buy_nft";
-pub const ORCHESTRATOR_FROM_MARKETPLACE_REMOVE_NFT_TOPIC: &'static str = "remove_nft";
-pub const ORCHESTRATOR_FROM_MARKETPLACE_SELL_NFT_TOPIC: &'static str = "sell_nft";
+pub const ORCHESTRATOR_CHANGE_PRICE_NFT_TOPIC: &'static str = "change_price_nft";
+pub const ORCHESTRATOR_BUY_NFT_TOPIC: &'static str = "buy_nft";
+pub const ORCHESTRATOR_REMOVE_NFT_TOPIC: &'static str = "remove_nft";
+pub const ORCHESTRATOR_SELL_NFT_TOPIC: &'static str = "sell_nft";
 // - Orchestrator requests
 pub const ORCHESTRATOR_ADD_EXTERNAL_REALIS_WALLET_TOPIC: &'static str = "add_external_realis_wallet";
 pub const ORCHESTRATOR_GET_ACCOUNT_ID_BY_USER_ID_TOPIC: &'static str = "get_account_id_by_user_id";
