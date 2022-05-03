@@ -500,7 +500,7 @@ pub const ORCHESTRATOR_FROM_EXTERNAL_TRANSFER_BALANCE_TOPIC: &'static str = "tra
 pub const ORCHESTRATOR_FROM_MARKETPLACE_CHANGE_PRICE_NFT_TOPIC: &'static str = "change_price_nft";
 pub const ORCHESTRATOR_FROM_MARKETPLACE_BUY_NFT_TOPIC: &'static str = "buy_nft";
 pub const ORCHESTRATOR_FROM_MARKETPLACE_REMOVE_NFT_TOPIC: &'static str = "remove_nft";
-pub const ORCHESTRATOR_FROM_MARKETPLACE_SHELL_NFT_TOPIC: &'static str = "sell_nft";
+pub const ORCHESTRATOR_FROM_MARKETPLACE_SELL_NFT_TOPIC: &'static str = "sell_nft";
 // - Orchestrator requests
 pub const ORCHESTRATOR_ADD_EXTERNAL_REALIS_WALLET_TOPIC: &'static str = "add_external_realis_wallet";
 pub const ORCHESTRATOR_GET_ACCOUNT_ID_BY_USER_ID_TOPIC: &'static str = "get_account_id_by_user_id";
