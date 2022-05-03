@@ -1,6 +1,6 @@
 pub use hashicorp_vault::Error;
 use hashicorp_vault::{
-    client::{VaultClient, TokenData, HttpVerb, EndpointResponse},
+    client::{EndpointResponse, HttpVerb, TokenData, VaultClient},
     Client,
 };
 use serde::de::DeserializeOwned;
@@ -50,12 +50,12 @@ impl Vault<()> {
 }
 
 /// This tests require
-/// *.env variable - with name `VAULT_ROLE_ID` and `VAULT_SECRET_ID` - for auth in vault
-/// *vault - running by host: `http://127.0.0.1:8200`
+/// *.env variable - with name `VAULT_ROLE_ID` and `VAULT_SECRET_ID` - for auth
+/// in vault *vault - running by host: `http://127.0.0.1:8200`
 #[cfg(test)]
 mod tests {
-    use std::collections::HashMap;
     use crate::vault::Vault;
+    use std::collections::HashMap;
 
     // Command for port forward
     // kubectl port-forward pods/vault-0 8200:8200 -n vault

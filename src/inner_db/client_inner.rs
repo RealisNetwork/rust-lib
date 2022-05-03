@@ -22,18 +22,14 @@ impl DatabaseClientInner {
     }
 
     pub async fn import_tables_from_file(&self, path: &str) -> Result<(), RealisErrors> {
-        let futures = Loader::get_queries_from(path)?
-            .0
-            .into_iter()
-            .sorted()
-            .map(|(_, query)| async move {
-                self.client_pool
-                    .get()
-                    .await?
-                    .execute(&query, &[])
-                    .await
-                    .map_err(|_| RealisErrors::Db(Db::Create))
-            });
+        let futures = Loader::get_queries_from(path)?.0.into_iter().sorted().map(|(_, query)| async move {
+            self.client_pool
+                .get()
+                .await?
+                .execute(&query, &[])
+                .await
+                .map_err(|_| RealisErrors::Db(Db::Create))
+        });
 
         for future in futures {
             match future.await {

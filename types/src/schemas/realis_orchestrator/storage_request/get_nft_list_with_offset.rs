@@ -2,8 +2,8 @@ use crate::{
     requests::AuthInfo,
     schemas::storage_service::{option_u128_from_string, option_u128_to_string},
 };
-use serde::{Deserialize, Serialize};
 use runtime::AccountId;
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GetNftListWithOffsetSchema {

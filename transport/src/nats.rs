@@ -49,9 +49,8 @@ impl Transport for Nats {
         &self,
         topic: &str,
         callback: impl MessageReceiver<Self::Message, Self::MessageId, Self::Error> + 'a,
-        secs: i32
+        secs: i32,
     ) -> Result<(), Self::Error> {
-
         let (stan_id, mut stream) = self
             .stan_client
             .subscribe_with_all(topic, None, None, 1024, secs, StartPosition::First, 0, None, true)
