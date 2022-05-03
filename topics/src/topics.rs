@@ -531,3 +531,8 @@ pub const ADAPTER_DEBIT_HARD_CURRENCY_TOPIC: &'static str = "adapter-debit_hard_
 pub const ADAPTER_TRANSFER_TOKEN_FROM_PLAYER_TOPIC: &'static str = "adapter-transfer_token_from_player";
 pub const ADAPTER_TRANSFER_NFT_FROM_PLAYER_TOPIC: &'static str = "adapter-transfer_nft_from_player";
 pub const ADAPTER_CHANGE_BATCH_TOPIC: &'static str = "adapter-change_batch";
+// - Storage topics
+pub const STORAGE_GET_BALANCE_TOPIC: &'static str = "storage-get_balance";
+pub const STORAGE_GET_MARKETPLACE_NFT_LIST_TOPIC: &'static str = "storage-get_marketplace_nft_list";
+pub const STORAGE_GET_NFT_LIST_TOPIC: &'static str = "storage-get_nft_list";
+pub const STORAGE_GET_NFT_LIST_WITH_OFFSET_TOPIC: &'static str = "storage-get_nft_list_with_offset";
