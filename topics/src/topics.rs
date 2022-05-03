@@ -485,3 +485,17 @@ pub const STATISTIC_BROADCAST_TOPIC: &'static str = "statistic_broadcast";
 pub const CHECK_IN_BROADCAST_TOPIC: &'static str = "check_in_broadcast";
 pub const GATEWAY_NOTIFICATION_TOPIC: &'static str = "gateway-notification";
 pub const STATS_BROADCAST_TOPIC: &'static str = "stats_broadcast";
+///////////////////////////////////////////////////////////////////
+pub const ORCHESTRATOR_FROM_ADAPTER_ADD_NFT_ITEM_TOPIC: &'static str = "add_nft_item";
+pub const ORCHESTRATOR_FROM_ADAPTER_REMOVE_NFT_ITEM_TOPIC: &'static str = "remove_nft_item";
+pub const ORCHESTRATOR_FROM_ADAPTER_CREDIT_HARD_CURRENCY_TOPIC: &'static str = "credit_hard_currency";
+pub const ORCHESTRATOR_FROM_ADAPTER_DEBIT_HARD_CURRENCY_TOPIC: &'static str = "debit_hard_currency";
+pub const ORCHESTRATOR_FROM_ADAPTER_TRANSFER_TOKEN_FROM_PLAYER_TOPIC: &'static str = "transfer_token_from_player";
+pub const ORCHESTRATOR_FROM_ADAPTER_TRANSFER_NFT_FROM_PLAYER_TOPIC: &'static str = "transfer_nft_from_player";
+
+///////////////////////////////////////////////////////////////////////////////////////
+pub const ADAPTER_ADD_NFT_ITEM_TOPIC: &'static str = "adapter-add_nft_item";
+pub const ADAPTER_REMOVE_NFT_ITEM_TOPIC: &'static str = "adapter-remove_nft_item";
+pub const ADAPTER_CREDIT_HARD_CURRENCY_TOPIC: &'static str = "adapter-credit_hard_currency";
+pub const ADAPTER_DEBIT_HARD_CURRENCY_TOPIC: &'static str = "adapter-debit_hard_currency";
+
