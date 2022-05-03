@@ -528,5 +528,3 @@ pub const ADAPTER_ADD_NFT_ITEM_TOPIC: &'static str = "adapter-add_nft_item";
 pub const ADAPTER_REMOVE_NFT_ITEM_TOPIC: &'static str = "adapter-remove_nft_item";
 pub const ADAPTER_CREDIT_HARD_CURRENCY_TOPIC: &'static str = "adapter-credit_hard_currency";
 pub const ADAPTER_DEBIT_HARD_CURRENCY_TOPIC: &'static str = "adapter-debit_hard_currency";
-
-

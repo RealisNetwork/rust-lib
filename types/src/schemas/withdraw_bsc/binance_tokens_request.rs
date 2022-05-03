@@ -1,8 +1,7 @@
-use rust_lib::json::u128::{u128_from_string,u128_to_string};
-use runtime::AccountId;
-use serde::{Deserialize, Serialize};
 use crate::Amount;
-
+use runtime::AccountId;
+use rust_lib::json::u128::{u128_from_string, u128_to_string};
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct BinanceTokensSchema {
