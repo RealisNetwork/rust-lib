@@ -3,8 +3,8 @@ pub const CREATE_BINANCE_WALLET_TOPIC_TO_RESPONSE: &'static str = "create_binanc
 // - Orchestrator - adapter topics
 pub const ORCHESTRATOR_ADD_NFT_ITEM_TOPIC: &'static str = "add_nft_item";
 pub const ORCHESTRATOR_REMOVE_NFT_ITEM_TOPIC: &'static str = "remove_nft_item";
-pub const ORCHESTRATOR_INCREASE_BALANCE_TOPIC: &'static str = "credit_hard_currency";
-pub const ORCHESTRATOR_DECREASE_BALANCE_TOPIC: &'static str = "debit_hard_currency";
+pub const ORCHESTRATOR_INCREASE_BALANCE_TOPIC: &'static str = "debit_hard_currency";
+pub const ORCHESTRATOR_DECREASE_BALANCE_TOPIC: &'static str = "credit_hard_currency";
 pub const ORCHESTRATOR_TRANSFER_TOKEN_FROM_PLAYER_TOPIC: &'static str = "transfer_token_from_player";
 pub const ORCHESTRATOR_TRANSFER_NFT_FROM_PLAYER_TOPIC: &'static str = "transfer_nft_from_player";
 // - Orchestrator - external transfer topics
