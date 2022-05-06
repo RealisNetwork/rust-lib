@@ -53,7 +53,7 @@ impl Transport for Nats {
     ) -> Result<(), Self::Error> {
         let (stan_id, mut stream) = self
             .stan_client
-            .subscribe_with_all(topic, None, None, 1024, secs, StartPosition::NewOnly, 0, None, true)
+            .subscribe_with_all(topic, None, None, 1024, secs, StartPosition::First, 0, None, true)
             .await
             .map_err(|_| RealisErrors::Nats(NatsError::Disconnected))?;
 
