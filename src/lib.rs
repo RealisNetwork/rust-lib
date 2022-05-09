@@ -16,7 +16,7 @@ pub mod json;
 #[cfg(feature = "nats")]
 pub mod nats;
 
-#[cfg(feature = "vault")]
-pub mod vault;
 #[cfg(feature = "blockchain")]
 pub mod blockchain;
+#[cfg(feature = "vault")]
+pub mod vault;

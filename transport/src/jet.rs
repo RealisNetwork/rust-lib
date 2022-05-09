@@ -46,7 +46,7 @@ impl Transport for Jet {
         &self,
         topic: &str,
         callback: impl MessageReceiver<Self::Message, Self::MessageId, Self::Error> + 'a,
-        _secs: i32
+        _secs: i32,
     ) -> Result<(), Self::Error> {
         // TODO: Implement timeout (secs variable)
         let _stream_info = self
@@ -87,7 +87,7 @@ impl Transport for Jet {
         callback: impl MessageReceiver<Self::Message, Self::MessageId, Self::Error> + 'a,
     ) -> Result<(), Self::Error> {
         let default_timeout_in_secs: i32 = 30;
-        self.subscribe_with_timeout( topic, callback, default_timeout_in_secs).await
+        self.subscribe_with_timeout(topic, callback, default_timeout_in_secs).await
     }
 
     async fn unsubscribe(&self, subscribe_id: Self::SubscribeId) -> Result<(), Self::Error> {
