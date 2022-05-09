@@ -1,20 +1,20 @@
-use crate::{requests::AuthInfo, schemas::realis_orchestrator::adapter_request::debit_hard_currency::DebitHardCurrencySchema};
+use crate::{requests::AuthInfo, schemas::realis_orchestrator::adapter_request::increase_balance::OrchestratorIncreaseBalanceSchema};
 use runtime::{realis_game_api::Call as RealisGameApiCall, AccountId, Call};
 use rust_lib::json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct DebitTransferSchema {
+pub struct IncreaseBalanceSchema {
     pub id: String,
     #[serde(rename = "topicResponse", alias = "topicRes")]
     pub topic_res: String,
-    pub params: DebitTransferParams,
+    pub params: IncreaseBalanceSchemaParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct DebitTransferParams {
+pub struct IncreaseBalanceSchemaParams {
     #[serde(serialize_with = "u128_to_string")]
     #[serde(deserialize_with = "u128_from_string")]
     pub amount: u128,
@@ -22,12 +22,12 @@ pub struct DebitTransferParams {
     pub account_id: AccountId,
 }
 
-impl DebitTransferSchema {
-    pub fn new(other: DebitHardCurrencySchema, account_id: AccountId) -> Self {
-        DebitTransferSchema {
+impl IncreaseBalanceSchema {
+    pub fn new(other: OrchestratorIncreaseBalanceSchema, account_id: AccountId) -> Self {
+        IncreaseBalanceSchema {
             id: other.id,
             topic_res: other.topic_res,
-            params: DebitTransferParams {
+            params: IncreaseBalanceSchemaParams {
                 amount: other.params.amount,
                 account_id,
             },
@@ -36,6 +36,9 @@ impl DebitTransferSchema {
     }
 
     pub fn into_call(&self) -> Call {
-        Call::RealisGameApi(RealisGameApiCall::spend_in_game(self.params.account_id.clone(), self.params.amount))
+        Call::RealisGameApi(RealisGameApiCall::transfer_from_pallet(
+            self.params.account_id.clone(),
+            self.params.amount,
+        ))
     }
 }
