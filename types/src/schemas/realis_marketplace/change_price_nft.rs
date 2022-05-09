@@ -1,5 +1,9 @@
-use crate::{requests::AuthInfo, Amount};
+use crate::{
+    requests::AuthInfo,
+    schemas::realis_orchestrator::marketplace::change_price_nft::ChangePriceSchema as OrchestratorChangePriceSchema, Amount,
+};
 use realis_primitives::TokenId;
+use runtime::AccountId;
 use rust_lib::json::{
     token_id::{token_id_from_string, token_id_to_string},
     u128::{u128_from_string, u128_to_string},
@@ -18,7 +22,7 @@ pub struct ChangePriceSchema {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ChangePriceNftParams {
+pub struct ChangePriceNftSchemaParams {
     #[serde(serialize_with = "token_id_to_string")]
     #[serde(deserialize_with = "token_id_from_string")]
     #[serde(rename = "tokenId")]
@@ -26,4 +30,22 @@ pub struct ChangePriceNftParams {
     #[serde(serialize_with = "u128_to_string")]
     #[serde(deserialize_with = "u128_from_string")]
     pub amount: Amount,
+    #[serde(rename = "accountId")]
+    pub account_id: AccountId,
+}
+
+impl ChangePriceSchema {
+    pub fn new(other: OrchestratorChangePriceSchema, account_id: AccountId) -> Self {
+        Self {
+            id: other.id,
+            topic_res: other.topic_res,
+            method: other.method,
+            auth_info: other.auth_info,
+            params: ChangePriceNftSchemaParams {
+                token_id: other.params.token_id,
+                amount: other.params.amount,
+                account_id,
+            },
+        }
+    }
 }

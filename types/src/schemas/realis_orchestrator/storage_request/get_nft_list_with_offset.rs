@@ -1,6 +1,5 @@
-use crate::{
-    schemas::storage_service::{option_u128_from_string, option_u128_to_string},
-};
+use crate::schemas::storage_service::{option_u128_from_string, option_u128_to_string};
+
 use runtime::AccountId;
 use serde::{Deserialize, Serialize};
 
