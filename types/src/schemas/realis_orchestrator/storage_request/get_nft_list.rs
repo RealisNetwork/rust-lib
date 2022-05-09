@@ -1,4 +1,3 @@
-use crate::requests::AuthInfo;
 use runtime::AccountId;
 use serde::{Deserialize, Serialize};
 

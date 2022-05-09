@@ -1,3 +1,4 @@
+#[rustfmt::skip]
 use crate::{
     requests::AuthInfo,
     schemas::realis_orchestrator::adapter_request::transfer_nft_to_player::TransferNftToPlayerSchema as OrchestratorTransferNftToPlayerSchema,
