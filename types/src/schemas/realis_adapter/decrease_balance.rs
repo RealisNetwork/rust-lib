@@ -1,20 +1,20 @@
-use crate::{requests::AuthInfo, schemas::realis_orchestrator::adapter_request::credit_hard_currency::CreditHardCurrencySchema};
+use crate::{requests::AuthInfo, schemas::realis_orchestrator::adapter_request::decrease_balance::OrchestratorDecreaseBalanceSchema};
 use runtime::{realis_game_api::Call as RealisGameApiCall, AccountId, Call};
 use rust_lib::json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct CreditTransferSchema {
+pub struct DecreaseBalanceSchema {
     pub id: String,
     #[serde(rename = "topicResponse", alias = "topicRes")]
     pub topic_res: String,
-    pub params: CreditTransferParams,
+    pub params: DecreaseBalanceSchemaParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct CreditTransferParams {
+pub struct DecreaseBalanceSchemaParams {
     #[serde(serialize_with = "u128_to_string")]
     #[serde(deserialize_with = "u128_from_string")]
     pub amount: u128,
@@ -22,12 +22,12 @@ pub struct CreditTransferParams {
     pub account_id: AccountId,
 }
 
-impl CreditTransferSchema {
-    pub fn new(other: CreditHardCurrencySchema, account_id: AccountId) -> Self {
-        CreditTransferSchema {
+impl DecreaseBalanceSchema {
+    pub fn new(other: OrchestratorDecreaseBalanceSchema, account_id: AccountId) -> Self {
+        DecreaseBalanceSchema {
             id: other.id,
             topic_res: other.topic_res,
-            params: CreditTransferParams {
+            params: DecreaseBalanceSchemaParams {
                 amount: other.params.amount,
                 account_id,
             },
@@ -36,9 +36,6 @@ impl CreditTransferSchema {
     }
 
     pub fn into_call(&self) -> Call {
-        Call::RealisGameApi(RealisGameApiCall::transfer_from_pallet(
-            self.params.account_id.clone(),
-            self.params.amount,
-        ))
+        Call::RealisGameApi(RealisGameApiCall::spend_in_game(self.params.account_id.clone(), self.params.amount))
     }
 }
