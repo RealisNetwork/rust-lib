@@ -2,7 +2,7 @@ use crate::requests::AuthInfo;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct GetNftListSchema {
+pub struct OrchestratorGetNftListSchema {
     pub id: String,
     #[serde(rename = "topicResponse")]
     pub topic_res: String,
