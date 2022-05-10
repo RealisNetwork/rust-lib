@@ -8,5 +8,7 @@ pub struct GetBalanceSchema {
     pub topic_res: String,
     #[serde(rename = "accountId")]
     pub account_id: AccountId,
+    #[serde(rename = "authInfo")]
+    pub auth_info: AuthInfo,
     pub id: String,
 }

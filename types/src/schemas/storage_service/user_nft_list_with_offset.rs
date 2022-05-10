@@ -9,8 +9,8 @@ pub struct GetNftListWithOffsetSchema {
     #[serde(rename = "topicResponse")]
     pub topic_res: String,
     pub id: String,
-    #[serde(rename = "accountId")]
-    pub account_id: AccountId,
+    #[serde(rename = "authInfo")]
+    pub auth_info: AuthInfo,
     pub params: Option<GetNftListWithOffsetSchemaParams>,
 }
 
@@ -24,4 +24,6 @@ pub struct GetNftListWithOffsetSchemaParams {
     #[serde(serialize_with = "option_u128_to_string")]
     #[serde(deserialize_with = "option_u128_from_string")]
     pub offset: Option<u128>,
+    #[serde(rename = "accountId")]
+    pub account_id: AccountId,
 }

@@ -9,4 +9,6 @@ pub struct GetUserNftListSchema {
     #[serde(rename = "accountId")]
     pub account_id: AccountId,
     pub id: String,
+    #[serde(rename = "authInfo")]
+    pub auth_info: AuthInfo,
 }
