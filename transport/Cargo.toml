@@ -48,8 +48,3 @@ path = "examples/jet-raw/main.rs"
 name = "nats"
 path = "examples/nats/main.rs"
 required-features = ["nats"]
-
-[[example]]
-name = "message_sender"
-path = "examples/message_sender/main.rs"
-required-features = ["nats"]

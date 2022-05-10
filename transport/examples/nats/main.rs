@@ -1,30 +1,24 @@
-
-use std::sync::Arc;
 use async_trait::async_trait;
 use error_registry::{Nats as NatsError, RealisErrors};
-use ratsio::StanMessage;
 use futures::StreamExt;
-use ratsio::{StanClient, StanOptions, StartPosition};
-use transport::{
-    nats::Nats,
-    traits::{MessageReceiver},
-};
+use ratsio::{StanClient, StanMessage, StanOptions, StartPosition};
+use std::sync::Arc;
+use transport::{nats::Nats, traits::MessageReceiver};
 
 const TOPIC: &str = "test-nust-stream-topic";
 const CLIENT_ID: &str = "test_nuts";
 const CLUSTER_ID: &str = "test-cluster";
 const NATS_URL: &str = "127.0.0.1:4222";
 
-
 #[tokio::main]
 async fn main() {
     let opts = StanOptions::with_options(NATS_URL, CLUSTER_ID, CLIENT_ID);
     let stan_client = StanClient::from_options(opts).await.expect("Stan client error");
 
-    // Subscription. Step 1 
+    // Subscription. Step 1
     let secs: i32 = 1;
     let (_stan_id, mut stream) = stan_client
-        .subscribe_with_all(TOPIC, None, None, 1024, secs , StartPosition::LastReceived, 0, None, true)
+        .subscribe_with_all(TOPIC, None, None, 1024, secs, StartPosition::LastReceived, 0, None, true)
         .await
         .expect("stan_client error");
 
@@ -38,7 +32,7 @@ async fn main() {
     };
 
     let message_handler = MessageHandler {
-        stan_client: stan_client.clone()
+        stan_client: stan_client.clone(),
     };
     loop {
         match stream.next().await {
@@ -70,15 +64,17 @@ async fn main() {
         }
     }
     // Test send message. Step 5.5
-    match stan_client.publish(TOPIC, &serde_json::to_vec("Test...Unsub message 111").unwrap()).await {
+    match stan_client
+        .publish(TOPIC, &serde_json::to_vec("Test...Unsub message 111").unwrap())
+        .await
+    {
         Ok(()) => println!("Published with topic '{}' ", TOPIC),
         Err(_) => println!("Error "),
     };
 
-
     // Subscription. Step 6
     let (stan_id, mut stream) = stan_client
-        .subscribe_with_all(TOPIC, None, None, 1024, secs , StartPosition::LastReceived, 0, None, true)
+        .subscribe_with_all(TOPIC, None, None, 1024, secs, StartPosition::LastReceived, 0, None, true)
         .await
         .expect("stan_client error");
 
@@ -106,9 +102,8 @@ async fn main() {
     }
 }
 
-
 pub struct MessageHandler {
-    stan_client: Arc<StanClient>
+    stan_client: Arc<StanClient>,
 }
 
 #[async_trait]
