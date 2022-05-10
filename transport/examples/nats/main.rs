@@ -4,10 +4,10 @@ use async_trait::async_trait;
 use error_registry::{Nats as NatsError, RealisErrors};
 use ratsio::StanMessage;
 use futures::StreamExt;
-use ratsio::{StanClient, StanOptions, StartPosition, RatsioError};
+use ratsio::{StanClient, StanOptions, StartPosition};
 use transport::{
     nats::Nats,
-    traits::{MessageReceiver, Transport},
+    traits::{MessageReceiver},
 };
 
 const TOPIC: &str = "test-nust-stream-topic";
@@ -23,8 +23,8 @@ async fn main() {
 
     // Subscription. Step 1 
     let secs: i32 = 1;
-    let (stan_id, mut stream) = stan_client
-        .subscribe_with_all(TOPIC, None, None, 1024, secs , StartPosition::NewOnly, 0, None, true)
+    let (_stan_id, mut stream) = stan_client
+        .subscribe_with_all(TOPIC, None, None, 1024, secs , StartPosition::LastReceived, 0, None, true)
         .await
         .expect("stan_client error");
 
@@ -69,10 +69,16 @@ async fn main() {
             },
         }
     }
+    // Test send message. Step 5.5
+    match stan_client.publish(TOPIC, &serde_json::to_vec("Test...Unsub message 111").unwrap()).await {
+        Ok(()) => println!("Published with topic '{}' ", TOPIC),
+        Err(_) => println!("Error "),
+    };
+
 
     // Subscription. Step 6
     let (stan_id, mut stream) = stan_client
-        .subscribe_with_all(TOPIC, None, None, 1024, secs , StartPosition::NewOnly, 0, None, true)
+        .subscribe_with_all(TOPIC, None, None, 1024, secs , StartPosition::LastReceived, 0, None, true)
         .await
         .expect("stan_client error");
 
@@ -80,19 +86,19 @@ async fn main() {
     loop {
         match stream.next().await {
             None => {
-                println!("Empty! Unsubscribe. #1");
+                println!("Empty! Unsubscribe. #2");
                 break;
             }
             Some(message) => match message_handler.process(message.payload.clone(), message).await {
                 Ok(true) => {}
                 Ok(false) => {
-                    // Unsub. Step 5
-                    println!("Unsubscribe. #1");
+                    // Unsub. Step 8
+                    println!("Unsubscribe. #2");
                     break;
                 }
                 Err(_) => {
-                    // Unsub. Step 5
-                    println!("Unsubscribe. #1");
+                    // Unsub. Step 8
+                    println!("Unsubscribe. #2");
                     break;
                 }
             },
