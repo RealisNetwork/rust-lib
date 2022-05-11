@@ -13,7 +13,7 @@ pub struct GetUserNftListSchema {
     pub id: String,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
-    pub params: Option<GetUserNftListSchemaParams>,
+    pub params: GetUserNftListSchemaParams,
 }
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
@@ -24,11 +24,10 @@ pub struct GetUserNftListSchemaParams {
 
 impl GetUserNftListSchema {
     pub fn new(other: OrchestratorGetNftListSchema, account_id: AccountId) -> Self {
-        let params: Option<GetUserNftListSchemaParams> = Option::from(GetUserNftListSchemaParams { account_id: account_id });
         Self {
             id: other.id,
             topic_res: other.topic_res,
-            params: params,
+            params: GetUserNftListSchemaParams { account_id: account_id },
             auth_info: other.auth_info,
         }
     }

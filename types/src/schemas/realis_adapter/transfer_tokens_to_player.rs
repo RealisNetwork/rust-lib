@@ -14,13 +14,13 @@ pub struct TransferTokensToPlayerSchema {
     pub id: String,
     #[serde(rename = "topicResponse", alias = "topicRes")]
     pub topic_res: String,
-    pub params: TTransferTokensToPlayerSchemaParams,
+    pub params: TransferTokensToPlayerSchemaParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TTransferTokensToPlayerSchemaParams {
+pub struct TransferTokensToPlayerSchemaParams {
     pub dest: AccountId,
     #[serde(serialize_with = "u128_to_string")]
     #[serde(deserialize_with = "u128_from_string")]
@@ -34,7 +34,7 @@ impl TransferTokensToPlayerSchema {
         Self {
             id: other.id,
             topic_res: other.topic_res,
-            params: TTransferTokensToPlayerSchemaParams {
+            params: TransferTokensToPlayerSchemaParams {
                 dest: other.params.dest,
                 amount: other.params.amount,
                 account_id,

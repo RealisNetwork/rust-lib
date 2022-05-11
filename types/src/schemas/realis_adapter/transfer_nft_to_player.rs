@@ -13,13 +13,13 @@ pub struct TransferNftToPlayerSchema {
     pub id: String,
     #[serde(rename = "topicResponse", alias = "topicRes")]
     pub topic_res: String,
-    pub params: TTransferNftToPlayerSchemaParams,
+    pub params: TransferNftToPlayerSchemaParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TTransferNftToPlayerSchemaParams {
+pub struct TransferNftToPlayerSchemaParams {
     pub dest: AccountId,
     #[serde(serialize_with = "token_id_to_string")]
     #[serde(deserialize_with = "token_id_from_string")]
@@ -34,7 +34,7 @@ impl TransferNftToPlayerSchema {
         Self {
             id: other.id,
             topic_res: other.topic_res,
-            params: TTransferNftToPlayerSchemaParams {
+            params: TransferNftToPlayerSchemaParams {
                 dest: other.params.dest,
                 token_id: other.params.token_id,
                 account_id,

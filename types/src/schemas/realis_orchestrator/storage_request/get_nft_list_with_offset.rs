@@ -29,13 +29,10 @@ pub struct GetNftListWithOffsetSchemaParams {
 
 impl From<StorageGetNftListWithOffsetSchema> for GetNftListWithOffsetSchema {
     fn from(other: StorageGetNftListWithOffsetSchema) -> Self {
-        let params: Option<GetNftListWithOffsetSchemaParams> = match other.params {
-            Some(params_) => Option::from(GetNftListWithOffsetSchemaParams {
-                size: Option::from(params_.size),
-                offset: Option::from(params_.offset),
-            }),
-            None => None,
-        };
+        let params = Some(GetNftListWithOffsetSchemaParams {
+            size: Option::from(other.params.size),
+            offset: Option::from(other.params.offset),
+        });
         Self {
             id: other.id,
             topic_res: other.topic_res,

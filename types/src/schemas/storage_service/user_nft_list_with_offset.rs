@@ -13,7 +13,7 @@ pub struct GetNftListWithOffsetSchema {
     #[serde(rename = "topicResponse")]
     pub topic_res: String,
     pub id: String,
-    pub params: Option<GetNftListWithOffsetSchemaParams>,
+    pub params: GetNftListWithOffsetSchemaParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
 }
@@ -34,13 +34,17 @@ pub struct GetNftListWithOffsetSchemaParams {
 
 impl GetNftListWithOffsetSchema {
     pub fn new(other: OrchestratorGetNftListWithOffsetSchema, account_id: AccountId) -> Self {
-        let params: Option<GetNftListWithOffsetSchemaParams> = match other.params {
-            Some(params_) => Option::from(GetNftListWithOffsetSchemaParams {
-                size: Option::from(params_.size),
-                offset: Option::from(params_.offset),
+        let params = match other.params {
+            Some(params_) => GetNftListWithOffsetSchemaParams {
+                size: params_.size,
+                offset: params_.offset,
                 account_id: account_id,
-            }),
-            None => None,
+            },
+            None => GetNftListWithOffsetSchemaParams {
+                size: None,
+                offset: None,
+                account_id: account_id,
+            },
         };
         Self {
             id: other.id,

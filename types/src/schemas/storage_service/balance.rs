@@ -12,7 +12,7 @@ pub struct GetBalanceSchema {
     pub topic_res: String,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
-    pub params: Option<GetBalanceSchemaParams>,
+    pub params: GetBalanceSchemaParams,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -23,12 +23,11 @@ pub struct GetBalanceSchemaParams {
 
 impl GetBalanceSchema {
     pub fn new(other: OrchestratorGetBalanceSchema, account_id: AccountId) -> Self {
-        let params: Option<GetBalanceSchemaParams> = Option::from(GetBalanceSchemaParams { account_id: account_id });
         Self {
             id: other.id,
             topic_res: other.topic_res,
             auth_info: other.auth_info,
-            params: params,
+            params: GetBalanceSchemaParams { account_id: account_id },
         }
     }
 }
