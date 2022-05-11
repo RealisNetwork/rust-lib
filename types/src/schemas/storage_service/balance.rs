@@ -2,7 +2,7 @@ use runtime::AccountId;
 use serde::{Deserialize, Serialize};
 use crate::{
     requests::AuthInfo,
-    schemas::realis_orchestrator::storage_request::get_balance::OrchestratorGetBalanceSchema,
+    schemas::realis_orchestrator::storage_request::get_balance::GetBalanceSchema as OrchestratorGetBalanceSchema,
 };
 
 #[allow(clippy::pedantic)]

@@ -24,7 +24,7 @@ pub struct IncreaseBalanceSchemaParams {
 
 impl IncreaseBalanceSchema {
     pub fn new(other: OrchestratorIncreaseBalanceSchema, account_id: AccountId) -> Self {
-        IncreaseBalanceSchema {
+        Self {
             id: other.id,
             topic_res: other.topic_res,
             params: IncreaseBalanceSchemaParams {

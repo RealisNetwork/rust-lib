@@ -11,13 +11,13 @@ pub struct AddNftItemSchema {
     pub id: String,
     #[serde(rename = "topicResponse", alias = "topicRes")]
     pub topic_res: String,
-    pub params: AddNftItemParams,
+    pub params: AddNftItemSchemaParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AddNftItemParams {
+pub struct AddNftItemSchemaParams {
     #[serde(serialize_with = "token_id_to_string")]
     #[serde(deserialize_with = "token_id_from_string")]
     #[serde(rename = "tokenId")]
@@ -33,10 +33,10 @@ pub struct AddNftItemParams {
 
 impl AddNftItemSchema {
     pub fn new(other: OrchestratorAddNftItemSchema, account_id: AccountId) -> Self {
-        AddNftItemSchema {
+        Self {
             id: other.id,
             topic_res: other.topic_res,
-            params: AddNftItemParams {
+            params: AddNftItemSchemaParams {
                 token_id: other.params.token_id,
                 mint_id: other.params.mint_id,
                 name: other.params.name,
