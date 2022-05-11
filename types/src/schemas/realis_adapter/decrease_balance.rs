@@ -24,7 +24,7 @@ pub struct DecreaseBalanceSchemaParams {
 
 impl DecreaseBalanceSchema {
     pub fn new(other: OrchestratorDecreaseBalanceSchema, account_id: AccountId) -> Self {
-        DecreaseBalanceSchema {
+        Self {
             id: other.id,
             topic_res: other.topic_res,
             params: DecreaseBalanceSchemaParams {

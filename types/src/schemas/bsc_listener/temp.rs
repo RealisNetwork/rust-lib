@@ -1,4 +1,4 @@
-use runtime::AccountId;
+use requests::AuthInfo;
 use serde::{Deserialize, Serialize};
 use substrate_api_client::Hash;
 
@@ -15,10 +15,4 @@ pub struct TempSchema {
 #[derive(Deserialize, Serialize, Clone, Debug)]
 pub struct TempSchemaParams {
     pub hash: Hash,
-}
-
-// TODO: restruct to rust-lib standard 
-#[derive(Deserialize, Serialize, Clone, Debug)]
-pub struct AuthInfo {
-    pub account_id: AccountId,
 }
