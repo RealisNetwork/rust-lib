@@ -1,19 +1,22 @@
 use crate::schemas::storage_service::{option_u128_from_string, option_u128_to_string};
-use crate::{requests::AuthInfo, schemas::storage_service::user_nft_list_with_offset::GetNftListWithOffsetSchema};
+use crate::{
+    requests::AuthInfo, 
+    schemas::storage_service::user_nft_list_with_offset::GetNftListWithOffsetSchema as StorageGetNftListWithOffsetSchema
+};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct OrchestratorGetNftListWithOffsetSchema {
+pub struct GetNftListWithOffsetSchema {
     pub id: String,
     #[serde(rename = "topicRes", alias = "topicResponse")]
     pub topic_res: String,
-    pub params: Option<OrchestratorGetNftListWithOffsetSchemaParams>,
+    pub params: Option<GetNftListWithOffsetSchemaParams>,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct OrchestratorGetNftListWithOffsetSchemaParams {
+pub struct GetNftListWithOffsetSchemaParams {
     #[serde(default)]
     #[serde(serialize_with = "option_u128_to_string")]
     #[serde(deserialize_with = "option_u128_from_string")]
@@ -24,12 +27,12 @@ pub struct OrchestratorGetNftListWithOffsetSchemaParams {
     pub offset: Option<u128>,
 }
 
-impl From<GetNftListWithOffsetSchema> for OrchestratorGetNftListWithOffsetSchema {
-    fn from(other: GetNftListWithOffsetSchema) -> Self {
-        OrchestratorGetNftListWithOffsetSchema {
+impl From<StorageGetNftListWithOffsetSchema> for GetNftListWithOffsetSchema {
+    fn from(other: StorageGetNftListWithOffsetSchema) -> Self {
+        Self {
             id: other.id,
             topic_res: other.topic_res,
-            params: OrchestratorGetNftListWithOffsetSchemaParams {
+            params: GetNftListWithOffsetSchemaParams {
                 size: other.params.size,
                 offset: other.params.offset,
             },
