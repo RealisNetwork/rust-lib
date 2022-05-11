@@ -8,7 +8,7 @@ pub struct AddNftItemSchema {
     pub id: String,
     #[serde(rename = "topicResponse", alias = "topicRes")]
     pub topic_res: String,
-    pub params: AddNftItemParams,
+    pub params: AddNftItemSchemaParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
 }

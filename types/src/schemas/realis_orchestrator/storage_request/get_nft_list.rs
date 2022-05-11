@@ -1,7 +1,4 @@
-use crate::{
-    requests::AuthInfo, 
-    schemas::storage_service::user_nft_list::GetUserNftListSchema as StorageGetUserNftListSchema,
-};
+use crate::{requests::AuthInfo, schemas::storage_service::user_nft_list::GetUserNftListSchema as StorageGetUserNftListSchema};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

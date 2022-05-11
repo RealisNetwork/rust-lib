@@ -1,7 +1,4 @@
-use crate::{
-    requests::AuthInfo,
-    schemas::realis_marketplace::remove_nft::RemoveNftSchema as MarketplaceRemoveNftSchema
-};
+use crate::{requests::AuthInfo, schemas::realis_marketplace::remove_nft::RemoveNftSchema as MarketplaceRemoveNftSchema};
 use realis_primitives::TokenId;
 use rust_lib::json::token_id::{token_id_from_string, token_id_to_string};
 use serde::{Deserialize, Serialize};
@@ -32,7 +29,7 @@ impl From<MarketplaceRemoveNftSchema> for RemoveNftSchema {
             topic_res: other.topic_res,
             method: other.method,
             params: RemoveNftSchemaParams {
-                other.params.token_id
+                token_id: other.params.token_id,
             },
             auth_info: other.auth_info,
         }

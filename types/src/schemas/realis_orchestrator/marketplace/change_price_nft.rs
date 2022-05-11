@@ -1,6 +1,5 @@
 use crate::{
-    requests::{AuthInfo, Amount},
-    schemas::realis_marketplace::change_price_nft::ChangePriceSchema as MarketplaceChangePriceSchema
+    requests::AuthInfo, schemas::realis_marketplace::change_price_nft::ChangePriceSchema as MarketplaceChangePriceSchema, Amount,
 };
 use realis_primitives::TokenId;
 use rust_lib::json::{
@@ -38,8 +37,8 @@ impl From<MarketplaceChangePriceSchema> for ChangePriceSchema {
             topic_res: other.topic_res,
             method: other.method,
             params: ChangePriceSchemaParams {
-                other.params.token_id
-                other.params.amount
+                token_id: other.params.token_id,
+                amount: other.params.amount,
             },
             auth_info: other.auth_info,
         }

@@ -1,8 +1,8 @@
-use crate::schemas::storage_service::{option_u128_from_string, option_u128_to_string};
 use crate::{
-    requests::AuthInfo, 
-    schemas::storage_service::user_nft_list_with_offset::GetNftListWithOffsetSchema as StorageGetNftListWithOffsetSchema
+    requests::AuthInfo,
+    schemas::storage_service::user_nft_list_with_offset::GetNftListWithOffsetSchema as StorageGetNftListWithOffsetSchema,
 };
+use rust_lib::json::u128::{option_u128_from_string, option_u128_to_string};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -29,13 +29,17 @@ pub struct GetNftListWithOffsetSchemaParams {
 
 impl From<StorageGetNftListWithOffsetSchema> for GetNftListWithOffsetSchema {
     fn from(other: StorageGetNftListWithOffsetSchema) -> Self {
+        let params: Option<GetNftListWithOffsetSchemaParams> = match other.params {
+            Some(params_) => Option::from(GetNftListWithOffsetSchemaParams {
+                size: Option::from(params_.size),
+                offset: Option::from(params_.offset),
+            }),
+            None => None,
+        };
         Self {
             id: other.id,
             topic_res: other.topic_res,
-            params: GetNftListWithOffsetSchemaParams {
-                size: other.params.size,
-                offset: other.params.offset,
-            },
+            params: params,
             auth_info: other.auth_info,
         }
     }

@@ -1,7 +1,5 @@
 use crate::{
-    requests::AuthInfo, 
-    schemas::realis_orchestrator::marketplace::sell_nft::SellNftSchema as OrchestratorSellNftSchema, 
-    Amount,
+    requests::AuthInfo, schemas::realis_orchestrator::marketplace::sell_nft::SellNftSchema as OrchestratorSellNftSchema, Amount,
 };
 use realis_primitives::TokenId;
 use runtime::AccountId;

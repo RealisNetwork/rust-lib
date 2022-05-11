@@ -3,8 +3,7 @@ use serde::{Deserialize, Serialize};
 
 use rust_lib::json::u128::{u128_from_string, u128_to_string};
 
-use crate::Amount;
-use crate::schemas::realis_orchestrator::withdraw_request::realis_withdraw_tokens::RealisWithdrawTokensSchema;
+use crate::{schemas::realis_orchestrator::withdraw_request::realis_withdraw_tokens::RealisWithdrawTokensSchema, Amount};
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct RealisTokenRequestSchema {

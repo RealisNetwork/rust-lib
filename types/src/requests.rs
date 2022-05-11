@@ -45,7 +45,7 @@ impl From<PoolError<Error>> for ResponseError {
     }
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct AuthInfo {
     #[serde(rename = "userId")]
     pub user_id: String,

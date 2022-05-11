@@ -1,4 +1,4 @@
-use requests::AuthInfo;
+use crate::requests::AuthInfo;
 use serde::{Deserialize, Serialize};
 use substrate_api_client::Hash;
 

@@ -24,11 +24,10 @@ pub struct RealisWithdrawNftSchemaParams {
     #[serde(serialize_with = "token_id_to_string")]
     #[serde(deserialize_with = "token_id_from_string")]
     pub token_id: TokenId,
-
 }
 
 impl From<RealisNftRequestSchema> for RealisWithdrawNftSchema {
-    fn from(other: &RealisNftRequestSchema) -> Self {
+    fn from(other: RealisNftRequestSchema) -> Self {
         RealisWithdrawNftSchema {
             id: other.id.clone(),
             topic_res: other.topic_res.clone(),

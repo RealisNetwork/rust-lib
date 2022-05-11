@@ -13,7 +13,7 @@ pub struct TransferTokensToPlayerSchema {
     pub id: String,
     #[serde(rename = "topicResponse", alias = "topicRes")]
     pub topic_res: String,
-    pub params: TransferTokensToPlayerParams,
+    pub params: TransferTokensToPlayerSchemaParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
 }

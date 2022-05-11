@@ -11,7 +11,7 @@ pub struct TransferNftToPlayerSchema {
     pub id: String,
     #[serde(rename = "topicResponse", alias = "topicRes")]
     pub topic_res: String,
-    pub params: TransferNftToPlayerParams,
+    pub params: TransferNftToPlayerSchemaParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
 }

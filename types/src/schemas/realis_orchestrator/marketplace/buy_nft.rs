@@ -1,7 +1,4 @@
-use crate::{
-    requests::AuthInfo,
-    schemas::realis_marketplace::buy_nft::BuyNftSchema as MarketplaceBuyNftSchema,
-};
+use crate::{requests::AuthInfo, schemas::realis_marketplace::buy_nft::BuyNftSchema as MarketplaceBuyNftSchema};
 use realis_primitives::TokenId;
 use rust_lib::json::token_id::{token_id_from_string, token_id_to_string};
 use serde::{Deserialize, Serialize};
@@ -32,7 +29,7 @@ impl From<MarketplaceBuyNftSchema> for BuyNftSchema {
             topic_res: other.topic_res,
             method: other.method,
             params: BuyNftSchemaParams {
-                other.params.token_id
+                token_id: other.params.token_id,
             },
             auth_info: other.auth_info,
         }

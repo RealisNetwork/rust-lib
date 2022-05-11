@@ -3,9 +3,9 @@ use serde::{Deserialize, Serialize};
 
 use rust_lib::json::u128::{u128_from_string, u128_to_string};
 
-use crate::Amount;
-use crate::requests::AuthInfo;
-use crate::schemas::realis_orchestrator::withdraw_request::binance_withdraw_tokens::BinanceWithdrawTokensSchema;
+use crate::{
+    requests::AuthInfo, schemas::realis_orchestrator::withdraw_request::binance_withdraw_tokens::BinanceWithdrawTokensSchema, Amount,
+};
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct BinanceTokensSchema {
@@ -31,8 +31,8 @@ pub struct BinanceTokensSchemaParams {
 impl BinanceTokensSchema {
     pub fn new(other: BinanceWithdrawTokensSchema, account_id: AccountId) -> Self {
         let params = BinanceTokensSchemaParams {
-            account_id: request.params.account_id.clone(),
-            amount: request.params.amount,
+            account_id: other.params.account_id.clone(),
+            amount: other.params.amount,
             from_account_id: account_id,
         };
         Self {

@@ -24,7 +24,7 @@ impl From<AdapterDecreaseBalanceSchema> for DecreaseBalanceSchema {
         Self {
             id: other.id,
             topic_res: other.topic_res,
-            params: OrchestratorDecreaseBalanceSchemaParams {
+            params: DecreaseBalanceSchemaParams {
                 amount: other.params.amount,
             },
             auth_info: other.auth_info,

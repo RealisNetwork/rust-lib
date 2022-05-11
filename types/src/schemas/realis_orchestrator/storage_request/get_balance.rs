@@ -1,7 +1,4 @@
-use crate::{
-    requests::AuthInfo,
-    schemas::storage_service::balance::GetBalanceSchema as StorageGetBalanceSchema,
-};
+use crate::{requests::AuthInfo, schemas::storage_service::balance::GetBalanceSchema as StorageGetBalanceSchema};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

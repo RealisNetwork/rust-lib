@@ -1,7 +1,6 @@
 use crate::{
     requests::AuthInfo,
-    schemas::realis_orchestrator::marketplace::change_price_nft::ChangePriceSchema as OrchestratorChangePriceSchema, 
-    Amount,
+    schemas::realis_orchestrator::marketplace::change_price_nft::ChangePriceSchema as OrchestratorChangePriceSchema, Amount,
 };
 use realis_primitives::TokenId;
 use runtime::AccountId;

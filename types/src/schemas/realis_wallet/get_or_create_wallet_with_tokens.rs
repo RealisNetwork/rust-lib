@@ -1,8 +1,6 @@
-use crate::{
-    requests::AuthInfo
-};
+use crate::requests::AuthInfo;
 use rust_lib::json::u128::{option_u128_from_string, option_u128_to_string};
-use serde::{Deserialize, Deserializer, Serialize, Serializer};
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GetOrCreateWalletWithTokensSchema {

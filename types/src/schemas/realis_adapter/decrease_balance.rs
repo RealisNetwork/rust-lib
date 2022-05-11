@@ -1,4 +1,7 @@
-use crate::{requests::AuthInfo, schemas::realis_orchestrator::adapter_request::decrease_balance::OrchestratorDecreaseBalanceSchema};
+use crate::{
+    requests::AuthInfo,
+    schemas::realis_orchestrator::adapter_request::decrease_balance::DecreaseBalanceSchema as OrchestratorDecreaseBalanceSchema,
+};
 use runtime::{realis_game_api::Call as RealisGameApiCall, AccountId, Call};
 use rust_lib::json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};

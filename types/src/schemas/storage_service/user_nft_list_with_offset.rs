@@ -1,9 +1,10 @@
-use crate::schemas::storage_service::{option_u128_from_string, option_u128_to_string};
+#[rustfmt::skip]
 use crate::{
-    requests::AuthInfo, 
-    schemas::realis_orchestrator::storage_request::get_nft_list_with_offset::GetNftListWithOffsetSchema as OrchestratorGetNftListWithOffsetSchema
+    requests::AuthInfo,
+    schemas::realis_orchestrator::storage_request::get_nft_list_with_offset::GetNftListWithOffsetSchema as OrchestratorGetNftListWithOffsetSchema,
 };
 use runtime::AccountId;
+use rust_lib::json::u128::{option_u128_from_string, option_u128_to_string};
 use serde::{Deserialize, Serialize};
 
 #[allow(clippy::pedantic)]
@@ -33,14 +34,18 @@ pub struct GetNftListWithOffsetSchemaParams {
 
 impl GetNftListWithOffsetSchema {
     pub fn new(other: OrchestratorGetNftListWithOffsetSchema, account_id: AccountId) -> Self {
+        let params: Option<GetNftListWithOffsetSchemaParams> = match other.params {
+            Some(params_) => Option::from(GetNftListWithOffsetSchemaParams {
+                size: Option::from(params_.size),
+                offset: Option::from(params_.offset),
+                account_id: account_id,
+            }),
+            None => None,
+        };
         Self {
             id: other.id,
             topic_res: other.topic_res,
-            params: GetNftListWithOffsetSchemaParams {
-                size: other.params.size,
-                offset: other.params.offset,
-                account_id,
-            },
+            params: params,
             auth_info: other.auth_info,
         }
     }
