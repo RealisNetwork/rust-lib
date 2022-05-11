@@ -1,13 +1,17 @@
-use crate::Amount;
 use runtime::AccountId;
-use rust_lib::json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
+
+use rust_lib::json::u128::{u128_from_string, u128_to_string};
+
+use crate::Amount;
+use crate::schemas::realis_orchestrator::withdraw_request::binance_withdraw_tokens::BinanceWithdrawTokensSchema;
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct BinanceTokensSchema {
     pub id: String,
     pub params: BinanceTokensSchemaParams,
 }
+
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct BinanceTokensSchemaParams {
     #[serde(rename = "accountId")]
@@ -17,4 +21,18 @@ pub struct BinanceTokensSchemaParams {
     pub amount: Amount,
     #[serde(rename = "from")]
     pub from_account_id: AccountId,
+}
+
+impl BinanceTokensSchema {
+    pub fn new(other: &BinanceWithdrawTokensSchema, account_id: AccountId) -> Self {
+        let params = BinanceTokensSchemaParams {
+            account_id: request.params.account_id.clone(),
+            amount: request.params.amount,
+            from_account_id: account_id,
+        };
+        BinanceTokensSchema {
+            id: other.id.clone(),
+            params,
+        }
+    }
 }
