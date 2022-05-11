@@ -20,4 +20,5 @@ pub struct RealisWithdrawTokensSchemaParams {
     #[serde(serialize_with = "u128_to_string")]
     #[serde(deserialize_with = "u128_from_string")]
     pub amount: Amount,
+
 }
