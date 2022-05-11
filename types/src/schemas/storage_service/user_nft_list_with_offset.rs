@@ -1,7 +1,8 @@
 use crate::schemas::storage_service::{option_u128_from_string, option_u128_to_string};
 use crate::{
     requests::AuthInfo, 
-    schemas::realis_orchestrator::storage_request::get_nft_list_with_offset::OrchestratorGetNftListWithOffsetSchema};
+    schemas::realis_orchestrator::storage_request::get_nft_list_with_offset::OrchestratorGetNftListWithOffsetSchema
+};
 use runtime::AccountId;
 use serde::{Deserialize, Serialize};
 
@@ -30,9 +31,9 @@ pub struct GetNftListWithOffsetSchemaParams {
     pub account_id: AccountId,
 }
 
-impl IncreaseBalanceSchema {
+impl GetNftListWithOffsetSchema {
     pub fn new(other: OrchestratorGetNftListWithOffsetSchema, account_id: AccountId) -> Self {
-        GetNftListWithOffsetSchema {
+        Self {
             id: other.id,
             topic_res: other.topic_res,
             params: GetNftListWithOffsetSchemaParams {

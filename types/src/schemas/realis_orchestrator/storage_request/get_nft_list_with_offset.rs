@@ -7,7 +7,7 @@ pub struct OrchestratorGetNftListWithOffsetSchema {
     pub id: String,
     #[serde(rename = "topicRes", alias = "topicResponse")]
     pub topic_res: String,
-    pub params: Option<GetNftListWithOffsetSchemaParams>,
+    pub params: Option<OrchestratorGetNftListWithOffsetSchemaParams>,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
 }
