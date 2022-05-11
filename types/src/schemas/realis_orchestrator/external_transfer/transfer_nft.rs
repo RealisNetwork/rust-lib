@@ -9,11 +9,11 @@ pub struct TransferNftSchema {
     pub id: String,
     pub agent: String,
     pub method: String,
-    pub params: TransferNftParams,
+    pub params: TransferNftSchemaParams,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransferNftParams {
+pub struct TransferNftSchemaParams {
     pub from: AccountId,
     pub to: AccountId,
     #[serde(rename = "tokenId")]

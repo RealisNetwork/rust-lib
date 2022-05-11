@@ -19,7 +19,7 @@ pub struct TransferTokensToPlayerSchema {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransferTokensToPlayerParams {
+pub struct TransferTokensToPlayerSchemaParams {
     pub dest: AccountId,
     #[serde(serialize_with = "u128_to_string")]
     #[serde(deserialize_with = "u128_from_string")]
@@ -28,10 +28,10 @@ pub struct TransferTokensToPlayerParams {
 
 impl From<AdapterTransferTokensToPlayerSchema> for TransferTokensToPlayerSchema {
     fn from(other: AdapterTransferTokensToPlayerSchema) -> Self {
-        TransferTokensToPlayerSchema {
+        Self {
             id: other.id,
             topic_res: other.topic_res,
-            params: TransferTokensToPlayerParams {
+            params: TransferTokensToPlayerSchemaParams {
                 dest: other.params.dest,
                 amount: other.params.amount,
             },
