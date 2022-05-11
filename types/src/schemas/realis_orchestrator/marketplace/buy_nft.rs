@@ -30,6 +30,7 @@ impl From<MarketplaceBuyNftSchema> for BuyNftSchema {
         Self {
             id: other.id,
             topic_res: other.topic_res,
+            method: other.method,
             params: BuyNftSchemaParams {
                 other.params.token_id
             },

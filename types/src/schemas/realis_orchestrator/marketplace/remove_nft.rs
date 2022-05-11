@@ -30,9 +30,9 @@ impl From<MarketplaceRemoveNftSchema> for RemoveNftSchema {
         Self {
             id: other.id,
             topic_res: other.topic_res,
+            method: other.method,
             params: RemoveNftSchemaParams {
                 other.params.token_id
-                other.params.amount
             },
             auth_info: other.auth_info,
         }

@@ -36,6 +36,7 @@ impl From<MarketplaceSellNftSchema> for SellNftSchema {
         Self {
             id: other.id,
             topic_res: other.topic_res,
+            method: other.method,
             params: SellNftSchemaParams {
                 other.params.token_id
                 other.params.amount

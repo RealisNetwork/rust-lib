@@ -36,6 +36,7 @@ impl From<MarketplaceChangePriceSchema> for ChangePriceSchema {
         Self {
             id: other.id,
             topic_res: other.topic_res,
+            method: other.method,
             params: ChangePriceSchemaParams {
                 other.params.token_id
                 other.params.amount
