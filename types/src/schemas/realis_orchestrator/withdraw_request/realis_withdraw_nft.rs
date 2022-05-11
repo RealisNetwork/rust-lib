@@ -12,6 +12,7 @@ pub struct RealisWithdrawNftSchema {
     pub from_account_id: AccountId,
     pub params: RealisWithdrawNftSchemaParams,
 }
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RealisWithdrawNftSchemaParams {
     #[serde(rename = "accountId")]

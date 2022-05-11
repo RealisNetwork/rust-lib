@@ -24,13 +24,13 @@ pub struct BinanceTokensSchemaParams {
 }
 
 impl BinanceTokensSchema {
-    pub fn new(other: &BinanceWithdrawTokensSchema, account_id: AccountId) -> Self {
+    pub fn new(other: BinanceWithdrawTokensSchema, account_id: AccountId) -> Self {
         let params = BinanceTokensSchemaParams {
             account_id: request.params.account_id.clone(),
             amount: request.params.amount,
             from_account_id: account_id,
         };
-        BinanceTokensSchema {
+        Self {
             id: other.id.clone(),
             params,
         }

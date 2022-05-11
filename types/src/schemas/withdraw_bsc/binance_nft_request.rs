@@ -8,11 +8,11 @@ use crate::schemas::realis_orchestrator::withdraw_request::binance_withdraw_nft:
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct BinanceNftRequestSchema {
     pub id: String,
-    pub params: BinanceNftSchemaParams,
+    pub params: BinanceNftRequestSchemaParams,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
-pub struct BinanceNftSchemaParams {
+pub struct BinanceNftRequestSchemaParams {
     #[serde(rename = "accountId")]
     pub account_id: String,
     #[serde(rename = "tokenId")]
@@ -24,13 +24,13 @@ pub struct BinanceNftSchemaParams {
 }
 
 impl BinanceNftRequestSchema {
-    pub fn new(other: &BinanceWithdrawNftSchema, account_id: AccountId) -> Self {
-        let params = BinanceNftSchemaParams {
+    pub fn new(other: BinanceWithdrawNftSchema, account_id: AccountId) -> Self {
+        let params = BinanceNftRequestSchemaParams {
             account_id: other.params.account_id.clone(),
             token_id: other.params.token_id.clone(),
             from_account_id: account_id,
         };
-        BinanceNftRequestSchema {
+        Self {
             id: other.id.clone(),
             params,
         }

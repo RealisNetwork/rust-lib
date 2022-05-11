@@ -29,7 +29,7 @@ impl RealisTokenRequestSchema {
             account_id: other.params.account_id.clone(),
             amount: other.params.amount,
         };
-        RealisTokenRequestSchema {
+        Self {
             from: other.params.account_id.clone(),
             id: other.id.clone(),
             params,

@@ -25,12 +25,12 @@ pub struct RealisNftRequestSchemaParams {
 }
 
 impl RealisNftRequestSchema {
-    pub fn new(other: &RealisWithdrawNftSchema) -> Self {
+    pub fn new(other: RealisWithdrawNftSchema) -> Self {
         let params = RealisNftRequestSchemaParams {
             account_id: other.params.account_id.clone(),
             token_id: other.params.token_id,
         };
-        RealisNftRequestSchema {
+        Self {
             from: other.params.account_id.clone(),
             id: other.id.clone(),
             params,
