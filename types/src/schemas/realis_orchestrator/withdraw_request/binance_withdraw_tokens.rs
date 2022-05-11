@@ -2,6 +2,7 @@ use crate::{requests::AuthInfo, Amount};
 use runtime::AccountId;
 use rust_lib::json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
+use crate::schemas::withdraw_bsc::binance_tokens_request::BinanceTokensSchema;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BinanceWithdrawTokensSchema {
@@ -21,4 +22,20 @@ pub struct BinanceWithdrawTokensSchemaParams {
     pub amount: Amount,
     #[serde(rename = "from")]
     pub from_account_id: AccountId,
+}
+
+impl From<BinanceTokensSchema> for BinanceWithdrawTokensSchema {
+    fn from(other: &BinanceTokensSchema) -> Self {
+        BinanceWithdrawTokensSchema {
+            id: other.id.clone(),
+            topic_res: other.topic_res.clone(),
+            params: BinanceWithdrawTokensSchemaParams {
+                account_id: other.params.account_id.clone(),
+                amount: other.params.amount,
+                from_account_id: other.params.from_account_id.clone(),
+
+            },
+            auth_info: other.auth_info.clone(),
+        }
+    }
 }

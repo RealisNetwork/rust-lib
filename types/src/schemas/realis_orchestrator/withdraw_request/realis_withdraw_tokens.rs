@@ -1,7 +1,10 @@
-use crate::Amount;
 use runtime::AccountId;
-use rust_lib::json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
+
+use rust_lib::json::u128::{u128_from_string, u128_to_string};
+
+use crate::Amount;
+use crate::schemas::withdraw_realis_service::realis_token_request::RealisTokenRequestSchema;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RealisWithdrawTokensSchema {
@@ -21,4 +24,18 @@ pub struct RealisWithdrawTokensSchemaParams {
     #[serde(deserialize_with = "u128_from_string")]
     pub amount: Amount,
 
+}
+
+impl From<RealisTokenRequestSchema> for RealisWithdrawTokensSchema {
+    fn from(other: &RealisTokenRequestSchema) -> Self {
+        RealisWithdrawTokensSchema {
+            id: other.id.clone(),
+            topic_res: other.topic_res.clone(),
+            from_account_id: other.from_account_id.clone(),
+            params: RealisWithdrawTokensSchemaParams {
+                account_id: other.params.account_id.clone(),
+                amount: other.params.amount,
+            },
+        }
+    }
 }
