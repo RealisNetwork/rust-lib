@@ -32,7 +32,7 @@ impl BinanceNftRequestSchema {
     pub fn new(other: &BinanceWithdrawNftSchema, account_id: AccountId) -> Self {
         let params = BinanceNftSchemaParams {
             account_id: other.params.account_id.clone(),
-            token_id: other.params.token_id.clone(),
+            token_id: other.params.token_id,
             from_account_id: account_id,
         };
         BinanceNftRequestSchema {
