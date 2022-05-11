@@ -11,6 +11,7 @@ pub struct TransferNftSchema {
     pub method: String,
     pub params: TransferNftParams,
 }
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransferNftParams {
     pub from: AccountId,

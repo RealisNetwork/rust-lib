@@ -1,4 +1,7 @@
-use crate::{requests::AuthInfo, Amount};
+use crate::{
+    requests::{AuthInfo, Amount},
+    schemas::realis_marketplace::sell_nft::SellNftSchema as MarketplaceSellNftSchema
+};
 use realis_primitives::TokenId;
 use rust_lib::json::{
     token_id::{token_id_from_string, token_id_to_string},
@@ -18,7 +21,7 @@ pub struct SellNftSchema {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct SellNftParams {
+pub struct SellNftSchemaParams {
     #[serde(serialize_with = "token_id_to_string")]
     #[serde(deserialize_with = "token_id_from_string")]
     #[serde(rename = "tokenId")]
@@ -26,4 +29,18 @@ pub struct SellNftParams {
     #[serde(serialize_with = "u128_to_string")]
     #[serde(deserialize_with = "u128_from_string")]
     pub amount: Amount,
+}
+
+impl From<MarketplaceSellNftSchema> for SellNftSchema {
+    fn from(other: MarketplaceSellNftSchema) -> Self {
+        Self {
+            id: other.id,
+            topic_res: other.topic_res,
+            params: SellNftSchemaParams {
+                other.params.token_id
+                other.params.amount
+            },
+            auth_info: other.auth_info,
+        }
+    }
 }
