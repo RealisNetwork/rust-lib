@@ -1,4 +1,7 @@
-use crate::{requests::AuthInfo, schemas::realis_orchestrator::adapter_request::decrease_balance::OrchestratorDecreaseBalanceSchema};
+use crate::{
+    requests::AuthInfo,
+    schemas::realis_orchestrator::adapter_request::decrease_balance::DecreaseBalanceSchema as OrchestratorDecreaseBalanceSchema,
+};
 use runtime::{realis_game_api::Call as RealisGameApiCall, AccountId, Call};
 use rust_lib::json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
@@ -24,7 +27,7 @@ pub struct DecreaseBalanceSchemaParams {
 
 impl DecreaseBalanceSchema {
     pub fn new(other: OrchestratorDecreaseBalanceSchema, account_id: AccountId) -> Self {
-        DecreaseBalanceSchema {
+        Self {
             id: other.id,
             topic_res: other.topic_res,
             params: DecreaseBalanceSchemaParams {

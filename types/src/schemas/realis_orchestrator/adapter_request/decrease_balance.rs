@@ -1,30 +1,30 @@
-use crate::{requests::AuthInfo, schemas::realis_adapter::decrease_balance::DecreaseBalanceSchema};
+use crate::{requests::AuthInfo, schemas::realis_adapter::decrease_balance::DecreaseBalanceSchema as AdapterDecreaseBalanceSchema};
 use rust_lib::json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct OrchestratorDecreaseBalanceSchema {
+pub struct DecreaseBalanceSchema {
     pub id: String,
     #[serde(rename = "topicResponse", alias = "topicRes")]
     pub topic_res: String,
-    pub params: OrchestratorDecreaseBalanceSchemaParams,
+    pub params: DecreaseBalanceSchemaParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct OrchestratorDecreaseBalanceSchemaParams {
+pub struct DecreaseBalanceSchemaParams {
     #[serde(serialize_with = "u128_to_string")]
     #[serde(deserialize_with = "u128_from_string")]
     pub amount: u128,
 }
 
-impl From<DecreaseBalanceSchema> for OrchestratorDecreaseBalanceSchema {
-    fn from(other: DecreaseBalanceSchema) -> Self {
-        OrchestratorDecreaseBalanceSchema {
+impl From<AdapterDecreaseBalanceSchema> for DecreaseBalanceSchema {
+    fn from(other: AdapterDecreaseBalanceSchema) -> Self {
+        Self {
             id: other.id,
             topic_res: other.topic_res,
-            params: OrchestratorDecreaseBalanceSchemaParams {
+            params: DecreaseBalanceSchemaParams {
                 amount: other.params.amount,
             },
             auth_info: other.auth_info,

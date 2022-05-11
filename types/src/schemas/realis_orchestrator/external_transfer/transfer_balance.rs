@@ -7,11 +7,11 @@ pub struct TransferBalanceSchema {
     pub id: String,
     pub agent: String,
     pub method: String,
-    pub params: TransferBalanceParams,
+    pub params: TransferBalanceSchemaParams,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransferBalanceParams {
+pub struct TransferBalanceSchemaParams {
     pub from: AccountId,
     pub to: AccountId,
     pub amount: String,

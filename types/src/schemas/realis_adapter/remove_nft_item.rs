@@ -12,13 +12,13 @@ pub struct RemoveNftItemSchema {
     pub id: String,
     #[serde(rename = "topicResponse", alias = "topicRes")]
     pub topic_res: String,
-    pub params: RemoveNftItemParams,
+    pub params: RemoveNftItemSchemaParams,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct RemoveNftItemParams {
+pub struct RemoveNftItemSchemaParams {
     #[serde(serialize_with = "token_id_to_string")]
     #[serde(deserialize_with = "token_id_from_string")]
     #[serde(rename = "tokenId")]
@@ -29,10 +29,10 @@ pub struct RemoveNftItemParams {
 
 impl RemoveNftItemSchema {
     pub fn new(other: OrchestratorRemoveNftItemSchema, account_id: AccountId) -> Self {
-        RemoveNftItemSchema {
+        Self {
             id: other.id,
             topic_res: other.topic_res,
-            params: RemoveNftItemParams {
+            params: RemoveNftItemSchemaParams {
                 token_id: other.params.token_id,
                 account_id,
             },

@@ -9,7 +9,7 @@ pub struct ChangeBatch {
 
 impl ChangeBatch {
     pub fn new(other: OrchestratorChangeBatch) -> Self {
-        ChangeBatch {
+        Self {
             batch_size: other.batch_size,
             batch_timeout: other.batch_timeout,
         }
