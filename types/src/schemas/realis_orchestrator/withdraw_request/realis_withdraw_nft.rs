@@ -1,7 +1,10 @@
 use realis_primitives::TokenId;
 use runtime::AccountId;
-use rust_lib::json::token_id::{token_id_from_string, token_id_to_string};
 use serde::{Deserialize, Serialize};
+
+use rust_lib::json::token_id::{token_id_from_string, token_id_to_string};
+
+use crate::schemas::withdraw_realis_service::realis_nft_request::RealisNftRequestSchema;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RealisWithdrawNftSchema {
@@ -22,4 +25,18 @@ pub struct RealisWithdrawNftSchemaParams {
     #[serde(deserialize_with = "token_id_from_string")]
     pub token_id: TokenId,
 
+}
+
+impl From<RealisNftRequestSchema> for RealisWithdrawNftSchema {
+    fn from(other: &RealisNftRequestSchema) -> Self {
+        RealisWithdrawNftSchema {
+            id: other.id.clone(),
+            topic_res: other.topic_res.clone(),
+            from_account_id: other.from_account_id.clone(),
+            params: RealisWithdrawNftSchemaParams {
+                account_id: other.params.account_id.clone(),
+                token_id: other.params.token_id,
+            },
+        }
+    }
 }

@@ -9,8 +9,10 @@ use crate::schemas::realis_orchestrator::withdraw_request::realis_withdraw_token
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct RealisTokenRequestSchema {
     #[serde(rename = "from")]
-    pub from: AccountId,
+    pub from_account_id: AccountId,
     pub id: String,
+    #[serde(rename = "topicResponse", alias = "topicRes")]
+    pub topic_res: String,
     pub params: RealisTokenRequestSchemaParams,
 }
 
@@ -30,8 +32,9 @@ impl RealisTokenRequestSchema {
             amount: other.params.amount,
         };
         Self {
-            from: other.params.account_id.clone(),
+            from_account_id: other.params.account_id.clone(),
             id: other.id.clone(),
+            topic_res: other.topic_res.clone(),
             params,
         }
     }
