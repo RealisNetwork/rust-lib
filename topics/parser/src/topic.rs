@@ -18,7 +18,7 @@ impl FromStr for Topic {
         // if splitted.next().ok_or(())?.ne("export") {
         //     return Err(());
         // }
-        if splitted.nth(1).ok_or(String::from("Parse error!"))?.ne("const") {
+        if splitted.nth(2).ok_or(String::from("Parse error!"))?.ne("const") {
             return Err(String::from("Missing key word `const`!"));
         }
 
@@ -37,10 +37,9 @@ impl FromStr for Topic {
                 .ok_or(String::from("Missing operator `=` right value!"))?
                 .to_string()
                 .trim_end_matches(';')
-                .trim_matches('\'')
+                .trim_matches('\"')
                 .to_string(),
         };
-
         Ok(topic)
     }
 }
@@ -53,7 +52,6 @@ impl ToTokens for Topic {
         let code = quote! {
             pub const #name: &'static str = #value;
         };
-
         tokens.extend(code);
     }
 }
