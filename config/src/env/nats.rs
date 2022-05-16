@@ -1,5 +1,5 @@
 use crate::env::{Env, EnvLoaded, EnvLoadedError};
-use rust_lib::healthchecker::HealthChecker;
+use healthchecker::HealthChecker;
 
 #[derive(Debug, Clone, Env)]
 pub struct Nats {

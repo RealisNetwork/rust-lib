@@ -1,6 +1,6 @@
 use crate::{requests::AuthInfo, schemas::realis_marketplace::sell_nft::SellNftSchema as MarketplaceSellNftSchema, Amount};
 use realis_primitives::TokenId;
-use rust_lib::json::{
+use json::{
     token_id::{token_id_from_string, token_id_to_string},
     u128::{u128_from_string, u128_to_string},
 };

@@ -3,7 +3,7 @@ use crate::{
     schemas::realis_orchestrator::adapter_request::increase_balance::IncreaseBalanceSchema as OrchestratorIncreaseBalanceSchema,
 };
 use runtime::{realis_game_api::Call as RealisGameApiCall, AccountId, Call};
-use rust_lib::json::u128::{u128_from_string, u128_to_string};
+use json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

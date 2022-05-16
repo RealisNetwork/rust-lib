@@ -4,7 +4,7 @@ use crate::{
 };
 use realis_primitives::TokenId;
 use runtime::AccountId;
-use rust_lib::json::{
+use json::{
     token_id::{token_id_from_string, token_id_to_string},
     u128::{u128_from_string, u128_to_string},
 };

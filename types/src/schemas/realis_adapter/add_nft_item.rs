@@ -3,7 +3,7 @@ use crate::{
 };
 use realis_primitives::{Rarity, TokenId};
 use runtime::{realis_game_api::Call as RealisGameApiCall, AccountId, Call};
-use rust_lib::json::token_id::{token_id_from_string, token_id_to_string};
+use json::token_id::{token_id_from_string, token_id_to_string};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

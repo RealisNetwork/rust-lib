@@ -1,5 +1,5 @@
 use crate::env::{Env, EnvLoaded, EnvLoadedError};
-use rust_lib::inner_db::{
+use inner_db::{
     client_inner::DatabaseClientInner,
     client_inner_builder::{BuildError, DatabaseClientInnerBuilder},
     consts::KEEPALIVES_IDLE_IN_SECS,

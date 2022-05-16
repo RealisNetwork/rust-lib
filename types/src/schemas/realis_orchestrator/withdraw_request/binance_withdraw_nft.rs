@@ -1,7 +1,8 @@
 use crate::{requests::AuthInfo, schemas::withdraw_bsc::binance_nft_request::BinanceNftRequestSchema};
 use realis_primitives::TokenId;
 use runtime::AccountId;
-use rust_lib::json::token_id::{token_id_from_string, token_id_to_string};
+use json::token_id::{token_id_from_string, token_id_to_string};
+
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

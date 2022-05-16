@@ -1,0 +1,9 @@
+[package]
+name = "json"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { version = "1.0.129" }
+uuid = { version = "1.0.0" }
+realis-primitives = { git = "https://github.com/RealisNetwork/Realis.Network.git", branch = "main", package = "realis-primitives" }

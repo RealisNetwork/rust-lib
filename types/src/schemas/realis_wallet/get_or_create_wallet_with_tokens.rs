@@ -1,5 +1,5 @@
 use crate::requests::AuthInfo;
-use rust_lib::json::u128::{option_u128_from_string, option_u128_to_string};
+use json::u128::{option_u128_from_string, option_u128_to_string};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

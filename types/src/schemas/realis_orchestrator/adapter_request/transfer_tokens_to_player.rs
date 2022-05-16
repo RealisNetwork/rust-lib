@@ -5,7 +5,7 @@ use crate::{
     },
 };
 use runtime::AccountId;
-use rust_lib::json::u128::{u128_from_string, u128_to_string};
+use json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

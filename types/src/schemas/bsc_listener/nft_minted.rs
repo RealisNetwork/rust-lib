@@ -1,4 +1,4 @@
-use rust_lib::json::serde_uuid::{uuid_from_string, uuid_to_string};
+use json::serde_uuid::{uuid_from_string, uuid_to_string};
 use serde::{Deserialize, Serialize};
 use substrate_api_client::Hash;
 
