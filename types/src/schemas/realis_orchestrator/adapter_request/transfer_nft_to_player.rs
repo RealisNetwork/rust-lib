@@ -1,9 +1,9 @@
 use crate::{
     requests::AuthInfo, schemas::realis_adapter::transfer_nft_to_player::TransferNftToPlayerSchema as AdapterTransferNftToPlayerSchema,
 };
+use json::token_id::{token_id_from_string, token_id_to_string};
 use realis_primitives::TokenId;
 use runtime::AccountId;
-use json::token_id::{token_id_from_string, token_id_to_string};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
