@@ -2,7 +2,7 @@ use crate::{
     requests::AuthInfo,
     schemas::storage_service::user_nft_list_with_offset::GetNftListWithOffsetSchema as StorageGetNftListWithOffsetSchema,
 };
-use rust_lib::json::u128::{option_u128_from_string, option_u128_to_string};
+use json::u128::{option_u128_from_string, option_u128_to_string};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

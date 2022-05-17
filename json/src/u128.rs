@@ -1,4 +1,4 @@
-use serde::{de::Error, Deserialize, Deserializer, Serializer};
+pub use serde::{de::Error, Deserialize, Deserializer, Serializer};
 
 const DECIMALS: u8 = 12;
 

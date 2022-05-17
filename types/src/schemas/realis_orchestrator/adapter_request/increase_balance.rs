@@ -1,5 +1,5 @@
 use crate::{requests::AuthInfo, schemas::realis_adapter::increase_balance::IncreaseBalanceSchema as AdapterIncreaseBalanceSchema};
-use rust_lib::json::u128::{u128_from_string, u128_to_string};
+use json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

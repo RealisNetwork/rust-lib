@@ -1,0 +1,15 @@
+[package]
+name = "blockchain"
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies]
+serde={version = "1.0.129"}
+runtime={git =  "https://github.com/RealisNetwork/Realis.Network.git", branch = "main" , package = "realis-node-runtime"}
+substrate-api-client={git = "https://github.com/RealisNetwork/substrate-api-client.git",branch = "polka_v0.9.9"}
+serde_json = { version = "1.0.66"}
+sp-runtime={version = "4.0.0-dev", git = "https://github.com/RealisNetwork/substrate.git", branch = "polkadot-v0.9.9"}
+sp-core={git = "https://github.com/RealisNetwork/substrate.git", branch = "polkadot-v0.9.9"}
+reqwest = { version = "0.11.4"}
+

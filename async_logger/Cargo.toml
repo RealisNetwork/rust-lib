@@ -1,0 +1,13 @@
+[package]
+name = "async_logger"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+slog = { version = "2.7"}
+slog-envlogger = { version = "2.2" }
+slog-async = { version = "2.5" }
+colored = { version = "2.0.0" }
+slog-term = { version = "2.8.0"}
+slog-scope = { version = "4.3"}
+slog-stdlog = { version = "4.1.0"}

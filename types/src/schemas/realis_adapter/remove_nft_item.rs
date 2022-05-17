@@ -2,9 +2,9 @@ use crate::{
     requests::AuthInfo,
     schemas::realis_orchestrator::adapter_request::remove_nft_item::RemoveNftItemSchema as OrchestratorRemoveNftItemSchema,
 };
+use json::token_id::{token_id_from_string, token_id_to_string};
 use realis_primitives::TokenId;
 use runtime::{realis_game_api::Call as RealisGameApiCall, AccountId, Call};
-use rust_lib::json::token_id::{token_id_from_string, token_id_to_string};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

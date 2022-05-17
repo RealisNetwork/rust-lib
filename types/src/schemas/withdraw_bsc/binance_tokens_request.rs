@@ -1,7 +1,7 @@
 use runtime::AccountId;
 use serde::{Deserialize, Serialize};
 
-use rust_lib::json::u128::{u128_from_string, u128_to_string};
+use json::u128::{u128_from_string, u128_to_string};
 
 use crate::{
     requests::AuthInfo, schemas::realis_orchestrator::withdraw_request::binance_withdraw_tokens::BinanceWithdrawTokensSchema, Amount,

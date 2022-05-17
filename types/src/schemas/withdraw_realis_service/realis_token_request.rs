@@ -1,7 +1,7 @@
 use runtime::AccountId;
 use serde::{Deserialize, Serialize};
 
-use rust_lib::json::u128::{u128_from_string, u128_to_string};
+use json::u128::{u128_from_string, u128_to_string};
 
 use crate::{schemas::realis_orchestrator::withdraw_request::realis_withdraw_tokens::RealisWithdrawTokensSchema, Amount};
 

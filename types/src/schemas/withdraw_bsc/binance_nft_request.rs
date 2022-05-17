@@ -3,7 +3,7 @@ use runtime::AccountId;
 use serde::{Deserialize, Serialize};
 
 use crate::{requests::AuthInfo, schemas::realis_orchestrator::withdraw_request::binance_withdraw_nft::BinanceWithdrawNftSchema};
-use rust_lib::json::token_id::{token_id_from_string, token_id_to_string};
+use json::token_id::{token_id_from_string, token_id_to_string};
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct BinanceNftRequestSchema {
