@@ -128,9 +128,9 @@ pub fn byte_decode_macro_derive(item: TokenStream) -> TokenStream {
 ///
 /// For example:
 ///
-///  >   default = "empty_value" would invoke empty_value()
+///  > default = "empty_value" would invoke empty_value()
 ///
-///  >   default = "SomeTrait::some_default" would invoke
+///  > default = "SomeTrait::some_default" would invoke
 /// SomeTrait::some_default().
 #[proc_macro_derive(Env, attributes(env))]
 pub fn config_macro_derive(item: TokenStream) -> TokenStream {
