@@ -21,6 +21,9 @@ jet-nats = { package = "nats", version = "0.18.1" }
 serde_json = "1.0.79"
 # for jet examples
 tokio = { version = "1.17.0", features = ["full"] }
+# for nats examples
+ratsio = { git = "https://github.com/RealisNetwork/ratsio.git" }
+
 
 [features]
 nats = [
@@ -40,3 +43,8 @@ required-features = ["jet"]
 [[example]]
 name = "jet-raw"
 path = "examples/jet-raw/main.rs"
+
+[[example]]
+name = "nats"
+path = "examples/nats/main.rs"
+required-features = ["nats"]

@@ -1,16 +1,22 @@
 use realis_primitives::TokenId;
 use runtime::AccountId;
-use rust_lib::json::token_id::{token_id_from_string, token_id_to_string};
 use serde::{Deserialize, Serialize};
+
+use crate::{requests::AuthInfo, schemas::realis_orchestrator::withdraw_request::binance_withdraw_nft::BinanceWithdrawNftSchema};
+use json::token_id::{token_id_from_string, token_id_to_string};
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct BinanceNftRequestSchema {
     pub id: String,
-    pub params: BinanceNftSchemaParams,
+    pub params: BinanceNftRequestSchemaParams,
+    #[serde(rename = "topicResponse", alias = "topicRes")]
+    pub topic_res: String,
+    #[serde(rename = "authInfo")]
+    pub auth_info: AuthInfo,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
-pub struct BinanceNftSchemaParams {
+pub struct BinanceNftRequestSchemaParams {
     #[serde(rename = "accountId")]
     pub account_id: String,
     #[serde(rename = "tokenId")]
@@ -19,4 +25,20 @@ pub struct BinanceNftSchemaParams {
     pub token_id: TokenId,
     #[serde(rename = "from")]
     pub from_account_id: AccountId,
+}
+
+impl BinanceNftRequestSchema {
+    pub fn new(other: BinanceWithdrawNftSchema, account_id: AccountId) -> Self {
+        let params = BinanceNftRequestSchemaParams {
+            account_id: other.params.account_id.clone(),
+            token_id: other.params.token_id,
+            from_account_id: account_id,
+        };
+        Self {
+            id: other.id.clone(),
+            topic_res: other.topic_res.clone(),
+            params,
+            auth_info: other.auth_info.clone(),
+        }
+    }
 }

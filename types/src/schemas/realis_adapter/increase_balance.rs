@@ -1,6 +1,9 @@
-use crate::{requests::AuthInfo, schemas::realis_orchestrator::adapter_request::increase_balance::OrchestratorIncreaseBalanceSchema};
+use crate::{
+    requests::AuthInfo,
+    schemas::realis_orchestrator::adapter_request::increase_balance::IncreaseBalanceSchema as OrchestratorIncreaseBalanceSchema,
+};
+use json::u128::{u128_from_string, u128_to_string};
 use runtime::{realis_game_api::Call as RealisGameApiCall, AccountId, Call};
-use rust_lib::json::u128::{u128_from_string, u128_to_string};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -24,7 +27,7 @@ pub struct IncreaseBalanceSchemaParams {
 
 impl IncreaseBalanceSchema {
     pub fn new(other: OrchestratorIncreaseBalanceSchema, account_id: AccountId) -> Self {
-        IncreaseBalanceSchema {
+        Self {
             id: other.id,
             topic_res: other.topic_res,
             params: IncreaseBalanceSchemaParams {

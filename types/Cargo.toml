@@ -6,26 +6,23 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-substrate-api-client = { git = "https://github.com/RealisNetwork/substrate-api-client.git", branch = "polka_v0.9.9", optional = true }
+substrate-api-client = { git = "https://github.com/RealisNetwork/substrate-api-client.git", branch = "polka_v0.9.9", optional = true}
 runtime = { git =  "https://github.com/RealisNetwork/Realis.Network.git", branch = "main", package = "realis-node-runtime" }
-rust-lib = { path = "../../rust-lib", features = ["ser_des-types", "blockchain"] }
+blockchain = { path = "./../blockchain" }
 serde = { version = "1.0.132", features = ["derive"] }
 serde_json = "1.0.73"
 error_registry = { path = "../error_registry" }
 deadpool = "0.9.2"
 tokio-postgres = "0.7.5"
-
-[dependencies.realis-primitives]
-git = "https://github.com/RealisNetwork/Realis.Network.git"
-branch = "main"
-package = "realis-primitives"
-optional = true
-
+web3 = "0.17.0"
+uuid = { version = "1.0.0" }
+json = { path = "./../json",  optional = true }
+realis-primitives = { git = "https://github.com/RealisNetwork/Realis.Network.git", branch = "main", package = "realis-primitives" ,  optional = true}
 
 
 [features]
 schemas = [
-    "rust-lib/ser_des-types",
-    "realis-primitives",
     "substrate-api-client",
+    "json",
+    "realis-primitives",
 ]

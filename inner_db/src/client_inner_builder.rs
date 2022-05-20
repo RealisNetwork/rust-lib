@@ -1,4 +1,4 @@
-use crate::inner_db::{
+use crate::{
     client_inner::DatabaseClientInner,
     consts::{MAX_RETRY_ELAPSED_TIME_IN_SECS, MAX_RETRY_INTERVAL_IN_SECS},
 };
