@@ -2,18 +2,18 @@
 
 # There are such packages and features available 
  - **async_logger**
- - **blockchain
- - **byte-formatter
+ - **blockchain**
+ - **byte-formatter**
  - **config**
    with features:
    - nats
    - database
- - **error_registry
- - **healthchecker
- - **inner_db
- - **json
- - **macros
- - **nats
+ - **error_registry**
+ - **healthchecker**
+ - **inner_db**
+ - **json**
+ - **macros**
+ - **nats**
  - **topics**
    with features:
    - rebuild
@@ -25,7 +25,7 @@
  - **types**
    with features:
    - schemas
- - **vault*
+ - **vault**
    with features:
    - default
    - crypto
