@@ -5,6 +5,7 @@
  - **blockchain**
  - **byte-formatter**
  - **config**
+   
    with features:
    - nats
    - database
@@ -19,13 +20,16 @@
    - rebuild
    - rebuild_local
  - **transport**
-  with features:
+  
+   with features:
    - nats
    - jet
  - **types**
+
    with features:
    - schemas
  - **vault**
+   
    with features:
    - default
    - crypto
