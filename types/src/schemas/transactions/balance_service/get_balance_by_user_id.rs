@@ -10,6 +10,7 @@ pub struct GetBalanceByUserIdSchema {
     pub auth_info: AuthInfo,
     pub params: GetBalanceByUserIdSchemaParams,
 }
+
 #[derive(Deserialize, Serialize, Clone, Debug)]
 pub struct GetBalanceByUserIdSchemaParams {
     pub currency: String,
