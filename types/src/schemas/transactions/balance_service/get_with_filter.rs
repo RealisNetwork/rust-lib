@@ -1,7 +1,18 @@
+use crate::requests::AuthInfo;
 use serde::{Deserialize, Serialize};
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
 pub struct GetWithFilterSchema {
+    pub id: String,
+    #[serde(rename = "topicResponse", alias = "topicRes")]
+    pub topic_res: String,
+    pub params: GetWithFilterSchemaParams,
+    #[serde(rename = "authInfo")]
+    pub auth_info: AuthInfo,
+}
+
+#[derive(Deserialize, Serialize, Clone, Debug)]
+pub struct GetWithFilterSchemaParams {
     #[serde(rename = "filterList")]
     pub filter_list: FilterList,
 }

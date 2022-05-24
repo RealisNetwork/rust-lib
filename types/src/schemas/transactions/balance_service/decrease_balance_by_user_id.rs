@@ -1,8 +1,19 @@
+use crate::requests::AuthInfo;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
 pub struct DecreaseBalanceByUserIdSchema {
+    pub id: String,
+    #[serde(rename = "topicResponse", alias = "topicRes")]
+    pub topic_res: String,
+    pub params: DecreaseBalanceByUserIdSchemaParams,
+    #[serde(rename = "authInfo")]
+    pub auth_info: AuthInfo,
+}
+
+#[derive(Deserialize, Serialize, Clone, Debug)]
+pub struct DecreaseBalanceByUserIdSchemaParams {
     #[serde(rename = "extraDetails")]
     pub extra_details: Option<Value>, // TODO as in TS schemas
     pub creator: String,

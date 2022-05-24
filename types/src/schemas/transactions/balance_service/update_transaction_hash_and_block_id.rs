@@ -1,7 +1,18 @@
+use crate::requests::AuthInfo;
 use serde::{Deserialize, Serialize};
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
-pub struct UpdateTransactionHashAndBlockSchema {
+pub struct UpdateTransactionHashAndBlockIdSchema {
+    pub id: String,
+    #[serde(rename = "topicResponse", alias = "topicRes")]
+    pub topic_res: String,
+    pub params: UpdateTransactionHashAndBlockIdSchemaParams,
+    #[serde(rename = "authInfo")]
+    pub auth_info: AuthInfo,
+}
+
+#[derive(Deserialize, Serialize, Clone, Debug)]
+pub struct UpdateTransactionHashAndBlockIdSchemaParams {
     #[serde(rename = "oldTxId")]
     pub old_tx_id: String,
     #[serde(rename = "newTxId")]
