@@ -2,6 +2,7 @@ use dotenv::Error;
 use hex::FromHexError;
 pub use realis_macros::Env;
 
+#[allow(clippy::module_name_repetitions)]
 #[derive(Debug)]
 pub enum EnvLoadedError {
     Load(Error),
