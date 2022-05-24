@@ -10,7 +10,7 @@ pub struct AddProductHashSchema {
     pub auth_info: AuthInfo,
     pub params: AddProductHashSchemaParams,
 }
-
+#[derive(Deserialize, Serialize, Clone, Debug)]
 pub struct AddProductHashSchemaParams {
     #[serde(rename = "productId")]
     pub product_id: String,
