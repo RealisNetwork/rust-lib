@@ -18,8 +18,7 @@ impl Cipher {
         self.cipher.encrypt_vec(value.as_bytes())
     }
 
-    pub fn decrypt(self, value: Vec<u8>) -> Result<String, BlockModeError> {
-        let value = &mut value.clone()[32..];
+    pub fn decrypt(self, value: &mut [u8]) -> Result<String, BlockModeError> {
         let decrypted_ciphertext = self.cipher.decrypt(value)?;
         Ok(String::from_utf8(decrypted_ciphertext.to_vec()).unwrap())
     }
