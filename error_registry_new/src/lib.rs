@@ -3,12 +3,12 @@ use error_registry::RealisErrors;
 use backtrace::Backtrace;
 
 // Want to Serialize and Deserialize?
-#[derive(Debug)]
+#[derive(Debug, serde::Serialize, serde::Deserialize)]
 pub struct BaseError<D> {
 	pub msg: String,
 	// #[serde(rename = "type")]
     // pub error_type: RealisErrors,
-    pub trace: Backtrace, // backtrace is not serializable type
+    pub trace: String,
     pub data: Option<D>,
     /// Numeric id of `error_type`
     pub status: Option<u32>, // Later will be not optional
@@ -20,7 +20,7 @@ impl<D> BaseError<D> {
         let trace = Backtrace::new();
         Self {
             msg: msg,
-            trace: trace,
+            trace: format!("{:?}", trace),
             data: data,
             status: status,
         }
