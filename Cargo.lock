@@ -1210,6 +1210,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "error_registry_new"
+version = "0.1.0"
+dependencies = [
+ "error_registry",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "ethabi"
 version = "14.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"

@@ -15,4 +15,5 @@ members = [
     "nats",
     "inner_db",
     "healthchecker",
+    "error_registry_new",
 ]
