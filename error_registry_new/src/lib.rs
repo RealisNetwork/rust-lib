@@ -1,16 +1,30 @@
 /// Custom Error type for Realis services
 use error_registry::RealisErrors;
+use backtrace::Backtrace;
 
 // Want to Serialize and Deserialize?
-#[derive(Debug, serde::Serialize, serde::Deserialize)]
+#[derive(Debug)]
 pub struct BaseError<D> {
 	pub msg: String,
-	#[serde(rename = "type")]
-    pub error_type: RealisErrors,
-    pub trace: String,
+	// #[serde(rename = "type")]
+    // pub error_type: RealisErrors,
+    pub trace: Backtrace, // backtrace is not serializable type
     pub data: Option<D>,
     /// Numeric id of `error_type`
     pub status: Option<u32>, // Later will be not optional
+}
+
+impl<D> BaseError<D> {
+    #[must_use]
+    pub fn new(msg: String, data: Option<D>, status: Option<u32>) -> Self {
+        let trace = Backtrace::new();
+        Self {
+            msg: msg,
+            trace: trace,
+            data: data,
+            status: status,
+        }
+    }
 }
 
 // impl<T> From<()> for BaseError<T> {
@@ -54,7 +68,7 @@ pub struct BaseError<D> {
 
 
 #[cfg(test)]
-mod tests {
+mod tests {   
 
     #[test]
     fn test_deserialize_base_error_with_no_data() {

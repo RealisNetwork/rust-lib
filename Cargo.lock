@@ -1213,6 +1213,7 @@ dependencies = [
 name = "error_registry_new"
 version = "0.1.0"
 dependencies = [
+ "backtrace",
  "error_registry",
  "serde",
  "serde_json",
