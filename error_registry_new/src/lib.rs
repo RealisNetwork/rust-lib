@@ -1,6 +1,6 @@
 /// Custom Error type for Realis services
-use error_registry::RealisErrors;
 use backtrace::Backtrace;
+use tokio::time::error::Elapsed;
 
 // Want to Serialize and Deserialize?
 #[derive(Debug, serde::Serialize, serde::Deserialize)]
@@ -23,6 +23,39 @@ impl<D> BaseError<D> {
             trace: format!("{:?}", trace),
             data: data,
             status: status,
+        }
+    }
+}
+
+impl<D> From<tokio::sync::oneshot::error::RecvError> for BaseError<D> {
+    fn from(_error: tokio::sync::oneshot::error::RecvError) -> Self {
+        BaseError {
+            msg: "Cannot parse value".to_string(),
+            trace: "".to_string(),
+            data: None,
+            status: None
+        }
+    }
+}
+
+impl<D> From<Elapsed> for BaseError<D> {
+    fn from(_: Elapsed) -> Self {
+        Self {
+            msg: "Message reply timeout".to_string(),
+            trace: "".to_string(),
+            data: None,
+            status: None
+        }
+    }
+}
+
+impl<D> From<Vec<u8>> for BaseError<D> {
+    fn from(_: Vec<u8>) -> Self {
+        BaseError {
+            msg: "Message reply timeout".to_string(),
+            trace: "".to_string(),
+            data: None,
+            status: None
         }
     }
 }

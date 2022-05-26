@@ -1217,6 +1217,7 @@ dependencies = [
  "error_registry",
  "serde",
  "serde_json",
+ "tokio 1.18.2",
 ]
 
 [[package]]
