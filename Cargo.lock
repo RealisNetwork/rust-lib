@@ -6804,6 +6804,7 @@ version = "0.1.0"
 dependencies = [
  "async-trait",
  "error_registry",
+ "error_registry_new",
  "futures 0.3.21",
  "nats 0.18.1",
  "ratsio",

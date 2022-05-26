@@ -1,6 +1,7 @@
 use crate::traits::{MessageReceiver, Transport};
 use async_trait::async_trait;
-use error_registry::{Nats as NatsError, RealisErrors};
+use error_registry::{Nats as NatsError};
+use error_registry_new::BaseError;
 use futures::StreamExt;
 use ratsio::{StanClient, StanMessage, StanOptions, StanSid, StartPosition};
 use std::{sync::Arc, time::Duration};
@@ -24,7 +25,7 @@ impl Nats {
 
 #[async_trait]
 impl Transport for Nats {
-    type Error = RealisErrors;
+    type Error = BaseError<()>;
     type Message = Vec<u8>;
     type MessageId = StanMessage;
     type SubscribeId = StanSid;
@@ -33,7 +34,7 @@ impl Transport for Nats {
         self.stan_client
             .publish(topic, &message)
             .await
-            .map_err(|_| RealisErrors::Nats(NatsError::Send))
+            .map_err( |err| BaseError::new(format!("{:?}",err),None,None))
     }
 
     async fn subscribe<'a>(
@@ -55,7 +56,7 @@ impl Transport for Nats {
             .stan_client
             .subscribe_with_all(topic, None, None, 1024, secs, StartPosition::LastReceived, 0, None, true)
             .await
-            .map_err(|_| RealisErrors::Nats(NatsError::Disconnected))?;
+            .map_err(|err| BaseError::new(format!("{:?}",err),None,None))?;
 
         loop {
             match stream.next().await {
@@ -84,7 +85,7 @@ impl Transport for Nats {
         self.stan_client
             .un_subscribe(&subscribe_id)
             .await
-            .map_err(|_| RealisErrors::Nats(NatsError::Unsubscribe))
+            .map_err(|err| BaseError::new(format!("{:?}",err),None,None))
     }
 
     async fn message_reply(
@@ -98,7 +99,7 @@ impl Transport for Nats {
             .stan_client
             .subscribe(topic_res, None, None)
             .await
-            .map_err(|_| RealisErrors::Nats(NatsError::Disconnected))?;
+            .map_err(|err| BaseError::new(format!("{:?}",err),None,None))?;
 
         self.publish(topic, message, None).await?;
 
@@ -109,7 +110,7 @@ impl Transport for Nats {
 
         self.unsubscribe(stan_id).await?;
 
-        let message = option_message.ok_or(RealisErrors::Nats(NatsError::Receive))?;
+        let message = option_message.ok_or(|err| BaseError::new(format!("{}",err),None,None))?;
 
         self.ok(message.clone()).await?;
 
@@ -120,6 +121,6 @@ impl Transport for Nats {
         self.stan_client
             .acknowledge(message_id)
             .await
-            .map_err(|_| RealisErrors::Nats(NatsError::Ok))
+            .map_err( |err| BaseError::new(format!("{:?}",err),None,None))
     }
 }

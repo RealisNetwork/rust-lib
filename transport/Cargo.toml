@@ -10,6 +10,7 @@ async-trait = "0.1.52"
 futures = "0.3.19"
 tokio = { version = "1.15.0", features = ["sync", "time"] }
 error_registry = { path = "../error_registry" }
+error_registry_new = {path = "../error_registry_new" }
 
 
 ratsio = { git = "https://github.com/RealisNetwork/ratsio.git", optional = true }
