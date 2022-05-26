@@ -110,7 +110,7 @@ impl Transport for Nats {
 
         self.unsubscribe(stan_id).await?;
 
-        let message = option_message.ok_or(|err| BaseError::new(format!("{}",err),None,None))?;
+        let message = option_message.ok_or(|err| BaseError::new(format!("{}",err),None,None));
 
         self.ok(message.clone()).await?;
 
