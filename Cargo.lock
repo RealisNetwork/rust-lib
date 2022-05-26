@@ -1218,9 +1218,16 @@ dependencies = [
 name = "error_registry_new"
 version = "0.1.0"
 dependencies = [
+ "convert_case 0.5.0",
+ "dotenv",
  "error_registry",
+ "octocrab",
+ "quote 1.0.18",
+ "reqwest 0.11.10",
  "serde",
  "serde_json",
+ "syn 1.0.94",
+ "tokio 1.18.2",
 ]
 
 [[package]]

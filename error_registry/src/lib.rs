@@ -1,4 +1,3 @@
-pub mod generated_errors;
 pub mod traits;
 
 use crate::traits::ToJson;
@@ -347,26 +346,5 @@ mod tests {
             _ => RealisErrors::Common(Common::Unknown),
         };
         println!("{:?}", a)
-    }
-
-    use crate::generated_errors::{GeneratedError, Geo};
-    use serde::{Deserialize, Serialize};
-    use serde_json::json;
-
-    #[test]
-    fn serializing() {
-        // Convert to a JSON string.
-        let serialized = serde_json::to_string(&GeneratedError::Geo(Geo::InternalError)).unwrap();
-        // Prints serialized
-        assert_eq!(&serialized.as_str()[1..18], "geo.internalError");
-        // println!("serialized = {:#?}", serialized); \"geo.internalError\"
-    }
-    #[test]
-    fn deserializing() {
-        // Convert to a JSON string.
-        let deserialized = serde_json::from_value::<GeneratedError>(json!("geo.invalidContinent"));
-        // Prints serialized
-        assert_eq!(deserialized.unwrap(), GeneratedError::Geo(Geo::InvalidContinent))
-        // println!("deserialized = {:#?}", deserialized);
     }
 }

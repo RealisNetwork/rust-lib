@@ -1,3 +1,5 @@
+pub mod generated_errors;
+
 /// Custom Error type for Realis services
 use error_registry::RealisErrors;
 
@@ -71,5 +73,26 @@ mod tests {
     fn test_deserialize_base_error_with_data() {
         // Should be success with BaseError.data == Some
         todo!();
+    }
+
+    use crate::generated_errors::{GeneratedError, Geo};
+    use serde::{Deserialize, Serialize};
+    use serde_json::json;
+
+    #[test]
+    fn serializing() {
+        // Convert to a JSON string.
+        let serialized = serde_json::to_string(&GeneratedError::Geo(Geo::InternalError)).unwrap();
+        // Prints serialized
+        assert_eq!(&serialized.as_str()[1..18], "geo.internalError");
+        // println!("serialized = {:#?}", serialized); \"geo.internalError\"
+    }
+    #[test]
+    fn deserializing() {
+        // Convert to a JSON string.
+        let deserialized = serde_json::from_value::<GeneratedError>(json!("geo.invalidContinent"));
+        // Prints serialized
+        assert_eq!(deserialized.unwrap(), GeneratedError::Geo(Geo::InvalidContinent))
+        // println!("deserialized = {:#?}", deserialized);
     }
 }
