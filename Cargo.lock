@@ -1196,27 +1196,22 @@ name = "error_registry"
 version = "0.1.0"
 dependencies = [
  "backoff",
+ "backtrace",
  "convert_case 0.5.0",
  "deadpool-postgres",
  "derive_more",
+ "dotenv",
  "log 0.4.17",
+ "octocrab",
+ "quote 1.0.18",
  "realis-macros",
+ "reqwest 0.11.10",
  "serde",
  "serde_json",
  "strum 0.23.0",
  "strum_macros 0.23.1",
+ "syn 1.0.94",
  "thiserror",
- "tokio 1.18.2",
-]
-
-[[package]]
-name = "error_registry_new"
-version = "0.1.0"
-dependencies = [
- "backtrace",
- "error_registry",
- "serde",
- "serde_json",
  "tokio 1.18.2",
 ]
 
