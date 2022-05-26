@@ -17,6 +17,7 @@ strum_macros = "0.23.1"
 backoff = "0.4.0"
 strum = "0.23.0"
 log = "0.4.14"
+backtrace = "0.3"
 
 serde = { version = "1.0.136", features = ["derive"] }
 tokio = { version = "1.16.1", features = ["time"]}

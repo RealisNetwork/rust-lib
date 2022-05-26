@@ -1196,6 +1196,7 @@ name = "error_registry"
 version = "0.1.0"
 dependencies = [
  "backoff",
+ "backtrace",
  "convert_case 0.5.0",
  "deadpool-postgres",
  "derive_more",

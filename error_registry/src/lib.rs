@@ -1,17 +1,70 @@
 /// Custom Error type for Realis services
 pub mod generated_errors;
+use backtrace::Backtrace;
 use generated_errors::GeneratedError;
+use log::error;
+use tokio::time::error::Elapsed;
 
 // Want to Serialize and Deserialize?
 #[derive(Debug, serde::Serialize, serde::Deserialize)]
 pub struct BaseError<D> {
     pub msg: String,
-    #[serde(rename = "err_type")]
+    #[serde(rename = "type")]
     pub error_type: ErrorType,
     pub trace: String,
     pub data: Option<D>,
     /// Numeric id of `error_type`
     pub status: Option<u32>, // Later will be not optional
+}
+
+impl<D> BaseError<D> {
+    #[must_use]
+    pub fn new(msg: String, data: Option<D>, status: Option<u32>, error_type: ErrorType) -> Self {
+        let trace = Backtrace::new();
+        Self {
+            msg: msg,
+            trace: format!("{:?}", trace),
+            error_type,
+            data: data,
+            status: status,
+        }
+    }
+}
+
+impl<D> From<tokio::sync::oneshot::error::RecvError> for BaseError<D> {
+    fn from(_error: tokio::sync::oneshot::error::RecvError) -> Self {
+        BaseError {
+            msg: "Cannot parse value".to_string(),
+            trace: "".to_string(),
+            error_type: ErrorType::Custom(CustomErrorType::Default),
+            data: None,
+            status: None,
+        }
+    }
+}
+
+impl<D> From<Elapsed> for BaseError<D> {
+    fn from(_: Elapsed) -> Self {
+        Self {
+            msg: "Message reply timeout".to_string(),
+            trace: "".to_string(),
+            error_type: ErrorType::Custom(CustomErrorType::Default),
+            data: None,
+            status: None,
+        }
+    }
+}
+
+impl<D> From<Vec<u8>> for BaseError<D> {
+    fn from(_: Vec<u8>) -> Self {
+        BaseError {
+            msg: "Message reply timeout".to_string(),
+            trace: "".to_string(),
+            error_type: ErrorType::Custom(CustomErrorType::Default),
+            data: None,
+            status: None,
+        }
+    }
 }
 
 // impl<T> From<()> for BaseError<T> {
@@ -62,7 +115,9 @@ pub enum ErrorType {
 
 #[serde(untagged)]
 #[derive(Debug, serde::Serialize, serde::Deserialize)]
-pub enum CustomErrorType {}
+pub enum CustomErrorType {
+    Default,
+}
 
 #[cfg(test)]
 mod tests {
