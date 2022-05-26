@@ -1,3 +1,4 @@
+pub mod generated_errors;
 pub mod traits;
 
 use crate::traits::ToJson;
@@ -336,12 +337,36 @@ mod tests {
     fn test() {
         let error = "blockchain.send";
         let splitted = error.split('.').map(String::from).collect::<Vec<String>>();
+        println!("splitted :{:#?}", splitted);
         let enum_name = splitted.first().unwrap().to_case(Case::UpperCamel);
+        println!("enum_name :{:#?}", enum_name);
         let enum_element = splitted.get(1).unwrap().to_case(Case::UpperCamel);
+        println!("enum_element :{:#?}", enum_element);
         let a = match enum_name.as_str() {
             "Blockchain" => RealisErrors::Blockchain(Blockchain::from_str(&enum_element).unwrap()),
             _ => RealisErrors::Common(Common::Unknown),
         };
         println!("{:?}", a)
+    }
+
+    use crate::generated_errors::{GeneratedError, Geo};
+    use serde::{Deserialize, Serialize};
+    use serde_json::json;
+
+    #[test]
+    fn serializing() {
+        // Convert to a JSON string.
+        let serialized = serde_json::to_string(&GeneratedError::Geo(Geo::InternalError)).unwrap();
+        // Prints serialized
+        assert_eq!(&serialized.as_str()[1..18], "geo.internalError");
+        // println!("serialized = {:#?}", serialized); \"geo.internalError\"
+    }
+    #[test]
+    fn deserializing() {
+        // Convert to a JSON string.
+        let deserialized = serde_json::from_value::<GeneratedError>(json!("geo.invalidContinent"));
+        // Prints serialized
+        assert_eq!(deserialized.unwrap(), GeneratedError::Geo(Geo::InvalidContinent))
+        // println!("deserialized = {:#?}", deserialized);
     }
 }

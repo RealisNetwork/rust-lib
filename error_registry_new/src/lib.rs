@@ -4,8 +4,8 @@ use error_registry::RealisErrors;
 // Want to Serialize and Deserialize?
 #[derive(Debug, serde::Serialize, serde::Deserialize)]
 pub struct BaseError<D> {
-	pub msg: String,
-	#[serde(rename = "type")]
+    pub msg: String,
+    #[serde(rename = "type")]
     pub error_type: RealisErrors,
     pub trace: String,
     pub data: Option<D>,
@@ -25,10 +25,10 @@ pub struct BaseError<D> {
 //     }
 // }
 
-// impl<T: serde::Serialize> TryFrom<BaseError<T>> for BaseError<serde_json::Value> {
-//     type Error = BaseError<String>;
-//     fn try_from(other: BaseError<T>) -> Result<BaseError<serde_json::Value>, Self::Error> {
-//         match serde_json::to_value(other.data) {
+// impl<T: serde::Serialize> TryFrom<BaseError<T>> for
+// BaseError<serde_json::Value> {     type Error = BaseError<String>;
+//     fn try_from(other: BaseError<T>) -> Result<BaseError<serde_json::Value>,
+// Self::Error> {         match serde_json::to_value(other.data) {
 //             Ok(value) => {
 //                 Ok(Self {
 //                     msg: other.msg,
@@ -43,15 +43,14 @@ pub struct BaseError<D> {
 //                 //     msg: other.msg,
 //                 //     error_type: other.error_type,
 //                 //     trace: other.trace,
-//                 //     data: format!("Data cannot be serialized with: {}", error),
-//                 //     status: other.status,
+//                 //     data: format!("Data cannot be serialized with: {}",
+// error),                 //     status: other.status,
 //                 // }
 //                 Err(error)
 //             }
-//         }   
+//         }
 //     }
 // }
-
 
 #[cfg(test)]
 mod tests {
