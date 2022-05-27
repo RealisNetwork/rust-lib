@@ -1,6 +1,7 @@
 use crate::traits::{MessageReceiver, Transport};
 use async_trait::async_trait;
 use error_registry::{
+    custom_errors::{CustomErrorType, Nats as CustomNatsError},
     generated_errors::{GeneratedError, Nats as NatsError, Nats::Send},
     BaseError, ErrorType,
 };
@@ -38,9 +39,9 @@ impl Transport for Nats {
                 "Can not Send to nats".to_string(),
                 None,
                 None,
-                ErrorType::Generated(GeneratedError::Nats(Send)),
+                ErrorType::Generated(GeneratedError::Nats(NatsError::Send)),
             )
-        }) // RealisErrors::Nats(NatsError::Send))
+        })
     }
 
     async fn subscribe<'a>(
@@ -62,14 +63,7 @@ impl Transport for Nats {
             .stan_client
             .subscribe_with_all(topic, None, None, 1024, secs, StartPosition::LastReceived, 0, None, true)
             .await
-            .map_err(|_| {
-                BaseError::new(
-                    "Nats error disconected".to_string(),
-                    None,
-                    None,
-                    ErrorType::Generated(GeneratedError::Nats(Send)),
-                )
-            })?; // RealisErrors::Nats(NatsError::Disconnected))?;
+            .map_err(|_| BaseError::from(CustomErrorType::Nats(CustomNatsError::Disconnected)))?;
 
         loop {
             match stream.next().await {
@@ -95,14 +89,10 @@ impl Transport for Nats {
     }
 
     async fn unsubscribe(&self, subscribe_id: Self::SubscribeId) -> Result<(), Self::Error> {
-        self.stan_client.un_subscribe(&subscribe_id).await.map_err(|_| {
-            BaseError::new(
-                "Nats Unsubscribed".to_string(),
-                None,
-                None,
-                ErrorType::Generated(GeneratedError::Nats(Send)),
-            )
-        }) // RealisErrors::Nats(NatsError::Unsubscribe))
+        self.stan_client
+            .un_subscribe(&subscribe_id)
+            .await
+            .map_err(|_| BaseError::from(CustomErrorType::Nats(CustomNatsError::Unsubscribe)))
     }
 
     async fn message_reply(
@@ -112,14 +102,11 @@ impl Transport for Nats {
         message: Self::Message,
         duration: Option<Duration>,
     ) -> Result<Self::Message, Self::Error> {
-        let (stan_id, mut stream) = self.stan_client.subscribe(topic_res, None, None).await.map_err(|_| {
-            BaseError::new(
-                "Can not Disconnected".to_string(),
-                None,
-                None,
-                ErrorType::Generated(GeneratedError::Nats(Send)),
-            )
-        })?; // RealisErrors::Nats(NatsError::Disconnected))?;
+        let (stan_id, mut stream) = self
+            .stan_client
+            .subscribe(topic_res, None, None)
+            .await
+            .map_err(|_| BaseError::from(CustomErrorType::Nats(CustomNatsError::Disconnected)))?;
 
         self.publish(topic, message, None).await?;
 
@@ -130,12 +117,7 @@ impl Transport for Nats {
 
         self.unsubscribe(stan_id).await?;
 
-        let message = option_message.ok_or(BaseError::new(
-            "Can not Receive".to_string(),
-            None,
-            None,
-            ErrorType::Generated(GeneratedError::Nats(NatsError::Receive)),
-        ))?; // RealisErrors::Nats(NatsError::Receive))?;
+        let message = option_message.ok_or(BaseError::from(CustomErrorType::Nats(CustomNatsError::Receive)))?;
 
         self.ok(message.clone()).await?;
 
@@ -143,13 +125,9 @@ impl Transport for Nats {
     }
 
     async fn ok(&self, message_id: Self::MessageId) -> Result<(), Self::Error> {
-        self.stan_client.acknowledge(message_id).await.map_err(|_| {
-            BaseError::new(
-                "Nats OKEY Error".to_string(),
-                None,
-                None,
-                ErrorType::Generated(GeneratedError::Nats(Send)),
-            )
-        }) // RealisErrors::Nats(NatsError::Ok))
+        self.stan_client
+            .acknowledge(message_id)
+            .await
+            .map_err(|_| BaseError::from(CustomErrorType::Nats(CustomNatsError::Ok)))
     }
 }

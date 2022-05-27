@@ -1,5 +1,8 @@
+pub mod custom_errors;
 /// Custom Error type for Realis services
 pub mod generated_errors;
+
+use crate::custom_errors::CustomErrorType;
 use backtrace::Backtrace;
 use deadpool_postgres::tokio_postgres;
 use generated_errors::GeneratedError;
@@ -75,7 +78,7 @@ impl<D> From<std::io::Error> for BaseError<D> {
             error_type: ErrorType::Custom(CustomErrorType::Default),
             trace: "".to_string(),
             data: None,
-            status: None
+            status: None,
         }
     }
 }
@@ -87,7 +90,7 @@ impl<D> From<deadpool_postgres::PoolError> for BaseError<D> {
             error_type: ErrorType::Custom(CustomErrorType::Default),
             trace: "".to_string(),
             data: None,
-            status: None
+            status: None,
         }
     }
 }
@@ -99,13 +102,40 @@ impl<D> Default for BaseError<D> {
             error_type: ErrorType::Custom(CustomErrorType::Default),
             trace: "".to_string(),
             data: None,
-            status: None
+            status: None,
         }
     }
 }
 
-// impl<D> From<deadpool::managed::errors::PoolError<tokio_postgres::Error>> for BaseError<D> {
-//     fn from(_error: deadpool::managed::errors::PoolError<tokio_postgres::Error>) -> Self {
+impl<D> From<GeneratedError> for BaseError<D> {
+    fn from(e: GeneratedError) -> Self {
+        let trace = Backtrace::new();
+        Self {
+            msg: "".to_string(),
+            error_type: ErrorType::Generated(e),
+            trace: format!("{:?}", trace),
+            data: None,
+            status: None,
+        }
+    }
+}
+
+impl<D> From<CustomErrorType> for BaseError<D> {
+    fn from(e: CustomErrorType) -> Self {
+        let trace = Backtrace::new();
+        Self {
+            msg: "".to_string(),
+            error_type: ErrorType::Custom(e),
+            trace: format!("{:?}", trace),
+            data: None,
+            status: None,
+        }
+    }
+}
+
+// impl<D> From<deadpool::managed::errors::PoolError<tokio_postgres::Error>> for
+// BaseError<D> {     fn from(_error:
+// deadpool::managed::errors::PoolError<tokio_postgres::Error>) -> Self {
 //         BaseError {
 //             msg: format!("{:?}", _error),
 //             trace: "".to_string(),
@@ -161,12 +191,6 @@ impl<D> Default for BaseError<D> {
 pub enum ErrorType {
     Custom(CustomErrorType),
     Generated(GeneratedError),
-}
-
-#[serde(untagged)]
-#[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
-pub enum CustomErrorType {
-    Default,
 }
 
 #[cfg(test)]

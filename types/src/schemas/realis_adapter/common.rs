@@ -1,6 +1,6 @@
 use crate::requests::{Response, ResponseError, ResponseMessage, ResponseResult};
-use serde::{Deserialize, Serialize};
 use error_registry::BaseError;
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlockchainResponseParams {

@@ -1,10 +1,12 @@
 use deadpool::managed::PoolError;
-use error_registry::{BaseError, ErrorType};
+use error_registry::{
+    custom_errors::{CustomErrorType, CustomErrorType::Db, Db::ConnectionError},
+    BaseError, ErrorType,
+};
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use substrate_api_client::extrinsic::log::trace;
 use tokio_postgres::Error;
-use error_registry::generated_errors::{Db, GeneratedError};
 
 /// M
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -39,7 +41,7 @@ impl From<PoolError<Error>> for ResponseError {
     fn from(error: PoolError<Error>) -> Self {
         Self {
             msg: format!("Fail to get db connection from pool `{:?}`", error),
-            error_type: BaseError::new("Connection Error".to_string(),None,None, ErrorType::Generated(GeneratedError::Db(Db::NotFound))),//RealisErrors::Db(Db::ConnectionError),
+            error_type: BaseError::from(CustomErrorType::Db(ConnectionError)),
             status: None,
             trace: None,
             data: None,

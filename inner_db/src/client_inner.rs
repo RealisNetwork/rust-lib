@@ -1,15 +1,13 @@
 use backoff::{ExponentialBackoff, ExponentialBackoffBuilder};
 use deadpool_postgres::Pool;
 use error_registry::{
-    generated_errors::Db,
+    generated_errors::{Db, GeneratedError},
     BaseError, ErrorType,
 };
 use itertools::Itertools;
 use log::{error, trace};
 use rawsql::Loader;
 use std::time::Duration;
-use error_registry::generated_errors::GeneratedError;
-
 
 pub struct DatabaseClientInner {
     pub client_pool: Pool,
@@ -38,8 +36,7 @@ impl DatabaseClientInner {
                     .await?
                     .execute(&query, &[])
                     .await
-                    .map_err(|_| BaseError::<()>::new("Error DB Create".to_string(), None, None, ErrorType::Generated(GeneratedError::Db(Db::Create))))
-                // BaseError::Db(Db::Create))
+                    .map_err(|_| BaseError::<()>::from(GeneratedError::Db(Db::Create)))
             });
 
         for future in futures {
