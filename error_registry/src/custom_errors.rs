@@ -1,3 +1,4 @@
+use log::error;
 use serde::{Deserialize, Serialize};
 
 #[serde(untagged)]
@@ -8,6 +9,30 @@ pub enum CustomErrorType {
     Rpc(Rpc),
     Nats(Nats),
     Db(Db),
+}
+
+impl From<Blockchain> for CustomErrorType {
+    fn from(error: Blockchain) -> Self {
+        CustomErrorType::Blockchain(error)
+    }
+}
+
+impl From<Nats> for CustomErrorType {
+    fn from(error: Nats) -> Self {
+        CustomErrorType::Nats(error)
+    }
+}
+
+impl From<Rpc> for CustomErrorType {
+    fn from(error: Rpc) -> Self {
+        CustomErrorType::Rpc(error)
+    }
+}
+
+impl From<Db> for CustomErrorType {
+    fn from(error: Db) -> Self {
+        CustomErrorType::Db(error)
+    }
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
