@@ -9,6 +9,9 @@ use generated_errors::GeneratedError;
 use log::error;
 use tokio::time::error::Elapsed;
 
+pub type ServiceResult<T> = Result<T, BaseError<()>>; // AbstractServiceResult<T, ()>
+pub type AbstractServiceResult<T, D> = Result<T, BaseError<D>>;
+
 // Want to Serialize and Deserialize?
 #[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
 pub struct BaseError<D> {
