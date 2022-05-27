@@ -1,6 +1,6 @@
 use crate::requests::{Response, ResponseError, ResponseMessage, ResponseResult};
-use error_registry::RealisErrors;
 use serde::{Deserialize, Serialize};
+use error_registry::BaseError;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlockchainResponseParams {
@@ -20,7 +20,7 @@ impl BlockchainResponseParams {
         }
     }
 
-    pub fn into_left_response<T>(request: T, msg: String, error_type: RealisErrors) -> Response<T, ()> {
+    pub fn into_left_response<T>(request: T, msg: String, error_type: BaseError<()>) -> Response<T, ()> {
         Response {
             result: ResponseResult {
                 request,

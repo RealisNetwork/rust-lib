@@ -1,12 +1,14 @@
 use crate::traits::{MessageReceiver, Transport};
 use async_trait::async_trait;
-use error_registry::{Nats as NatsError, RealisErrors};
+use error_registry::{BaseError, ErrorType};
 pub use jet_nats;
 use jet_nats::{
     jetstream::{push_subscription::PushSubscription, JetStream},
     Message,
 };
 use std::time::Duration;
+use error_registry::generated_errors::{GeneratedError, Nats as NatsError};
+
 
 #[derive(Clone)]
 pub struct Jet {
@@ -30,7 +32,7 @@ impl Jet {
 
 #[async_trait]
 impl Transport for Jet {
-    type Error = RealisErrors;
+    type Error = BaseError<()>;
     type Message = Vec<u8>;
     type MessageId = Message;
     type SubscribeId = PushSubscription;
@@ -38,7 +40,7 @@ impl Transport for Jet {
     async fn publish(&self, topic: &str, message: Self::Message, _topic_res: Option<String>) -> Result<(), Self::Error> {
         self.jet_stream
             .publish(topic, &message)
-            .map_err(|_| RealisErrors::Nats(NatsError::Send))?;
+            .map_err(|_| BaseError::new("Error Send".to_string(),None,None, ErrorType::Generated(GeneratedError::Nats(NatsError::Send))))?;//RealisErrors::Nats(NatsError::Send))?;
         Ok(())
     }
 
@@ -52,11 +54,11 @@ impl Transport for Jet {
         let _stream_info = self
             .jet_stream
             .add_stream(topic)
-            .map_err(|_| RealisErrors::Nats(NatsError::Disconnected))?;
+            .map_err(|_| BaseError::new("Error Disconnected".to_string(),None,None, ErrorType::Generated(GeneratedError::Nats(NatsError::Receive))))?;//RealisErrors::Nats(NatsError::Disconnected))?;
         let subscription = self
             .jet_stream
             .subscribe(topic)
-            .map_err(|_| RealisErrors::Nats(NatsError::Disconnected))?;
+            .map_err(|_| BaseError::new("Error Disconnected".to_string(),None,None, ErrorType::Generated(GeneratedError::Nats(NatsError::Receive))))?;//RealisErrors::Nats(NatsError::Disconnected))?;
 
         loop {
             match subscription.next() {
@@ -91,11 +93,11 @@ impl Transport for Jet {
     }
 
     async fn unsubscribe(&self, subscribe_id: Self::SubscribeId) -> Result<(), Self::Error> {
-        subscribe_id.unsubscribe().map_err(|_| RealisErrors::Nats(NatsError::Unsubscribe))
+        subscribe_id.unsubscribe().map_err(|_| BaseError::new("Error Unsubscribe".to_string(),None,None, ErrorType::Generated(GeneratedError::Nats(NatsError::Send))))//RealisErrors::Nats(NatsError::Unsubscribe))
     }
 
     async fn ok(&self, message_id: Self::MessageId) -> Result<(), Self::Error> {
-        message_id.ack().map_err(|_| RealisErrors::Nats(NatsError::Ok))
+        message_id.ack().map_err(|_| BaseError::new("Error OK".to_string(),None,None, ErrorType::Generated(GeneratedError::Nats(NatsError::Send))))//RealisErrors::Nats(NatsError::Ok))
     }
 
     async fn message_reply(

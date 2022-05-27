@@ -1,10 +1,15 @@
 use backoff::{ExponentialBackoff, ExponentialBackoffBuilder};
 use deadpool_postgres::Pool;
-use error_registry::{Db, RealisErrors};
+use error_registry::{
+    generated_errors::Db,
+    BaseError, ErrorType,
+};
 use itertools::Itertools;
 use log::{error, trace};
 use rawsql::Loader;
 use std::time::Duration;
+use error_registry::generated_errors::GeneratedError;
+
 
 pub struct DatabaseClientInner {
     pub client_pool: Pool,
@@ -21,15 +26,21 @@ impl DatabaseClientInner {
         }
     }
 
-    pub async fn import_tables_from_file(&self, path: &str) -> Result<(), RealisErrors> {
-        let futures = Loader::get_queries_from(path)?.0.into_iter().sorted().map(|(_, query)| async move {
-            self.client_pool
-                .get()
-                .await?
-                .execute(&query, &[])
-                .await
-                .map_err(|_| RealisErrors::Db(Db::Create))
-        });
+    pub async fn import_tables_from_file(&self, path: &str) -> Result<(), BaseError<()>> {
+        let futures = Loader::get_queries_from(path)
+            .unwrap()
+            .0
+            .into_iter()
+            .sorted()
+            .map(|(_, query)| async move {
+                self.client_pool
+                    .get()
+                    .await?
+                    .execute(&query, &[])
+                    .await
+                    .map_err(|_| BaseError::<()>::new("Error DB Create".to_string(), None, None, ErrorType::Generated(GeneratedError::Db(Db::Create))))
+                // BaseError::Db(Db::Create))
+            });
 
         for future in futures {
             match future.await {
