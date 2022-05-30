@@ -2,6 +2,9 @@ pub mod custom_errors;
 /// Custom Error type for Realis services
 pub mod generated_errors;
 
+use std::error::Error;
+use std::fmt;
+use std::fmt::{Debug, Display};
 use crate::custom_errors::CustomErrorType;
 use backtrace::Backtrace;
 use deadpool_postgres::tokio_postgres;
@@ -9,10 +12,7 @@ use generated_errors::GeneratedError;
 use log::error;
 use tokio::time::error::Elapsed;
 
-pub type ServiceResult<T> = Result<T, BaseError<()>>; // AbstractServiceResult<T, ()>
-pub type AbstractServiceResult<T, D> = Result<T, BaseError<D>>;
-
-// Want to Serialize and Deserialize?
+/// BaseError - custom error type
 #[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
 pub struct BaseError<D> {
     pub msg: String,
@@ -21,28 +21,59 @@ pub struct BaseError<D> {
     pub trace: String,
     pub data: Option<D>,
     /// Numeric id of `error_type`
-    pub status: Option<u32>, // Later will be not optional
+    pub status: Option<u32>,
 }
 
 impl<D> BaseError<D> {
+    /// Create a new `BaseError`
+    /// # Arguments
+    /// * `msg` - Extra message for explanation of Error
+    ///
+    /// * `error_type` - Type of Error. `ErrorType` - custom Enum
+    ///
+    /// * `data` - Data that led to the error
+    ///
+    /// * `status` - Code of Error type
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use error_registry::{BaseError, ErrorType};
+    /// use error_registry::generated_errors::Blockchain;
+    /// use error_registry::generated_errors::Blockchain::NotEnoughBalance;
+    /// use error_registry::generated_errors::GeneratedError::Blockchain;
+    ///
+    /// // BaseError save a error backtrace.
+    /// let err = BaseError::new("Custom message".to_string(), ErrorType::Generated(Blockchain(NotEnoughBalance)), None, None);
+    /// println!(err.trace);
+    ///
+    /// ```
     #[must_use]
-    pub fn new(msg: String, data: Option<D>, status: Option<u32>, error_type: ErrorType) -> Self {
+    pub fn new(msg: String, error_type: ErrorType, data: Option<D>, status: Option<u32>) -> Self {
         let trace = Backtrace::new();
         Self {
-            msg: msg,
+            msg,
             trace: format!("{:?}", trace),
             error_type,
-            data: data,
-            status: status,
+            data,
+            status,
         }
     }
 }
 
-impl<D> From<tokio::sync::oneshot::error::RecvError> for BaseError<D> {
-    fn from(_error: tokio::sync::oneshot::error::RecvError) -> Self {
+impl<D> Display for BaseError<D> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}\n{}\n", self.msg, self.trace)
+    }
+}
+
+/// Default realization for all structures who implemented `Error` trait
+impl<D, E: Error> From<E> for BaseError<D> {
+    fn from(error: E) -> Self {
+        let trace = Backtrace::new();
         BaseError {
-            msg: "Cannot parse value".to_string(),
-            trace: "".to_string(),
+            msg: error.to_string(),
+            trace: format!("{:?}", trace),
             error_type: ErrorType::Custom(CustomErrorType::Default),
             data: None,
             status: None,
@@ -50,23 +81,13 @@ impl<D> From<tokio::sync::oneshot::error::RecvError> for BaseError<D> {
     }
 }
 
-impl<D> From<Elapsed> for BaseError<D> {
-    fn from(_: Elapsed) -> Self {
-        Self {
-            msg: "Message reply timeout".to_string(),
-            trace: "".to_string(),
-            error_type: ErrorType::Custom(CustomErrorType::Default),
-            data: None,
-            status: None,
-        }
-    }
-}
-
-impl<D> From<Vec<u8>> for BaseError<D> {
-    fn from(_: Vec<u8>) -> Self {
+/// Default realization for all structures who implemented `Debug` trait
+impl<D, E: Debug> From<E> for BaseError<D> {
+    fn from(error: E) -> Self {
+        let trace = Backtrace::new();
         BaseError {
-            msg: "Message reply timeout".to_string(),
-            trace: "".to_string(),
+            msg: error.to_string(),
+            trace: format!("{:?}", trace),
             error_type: ErrorType::Custom(CustomErrorType::Default),
             data: None,
             status: None,
@@ -74,24 +95,14 @@ impl<D> From<Vec<u8>> for BaseError<D> {
     }
 }
 
-impl<D> From<std::io::Error> for BaseError<D> {
-    fn from(_: std::io::Error) -> Self {
-        Self {
-            msg: "std::io::Error".to_string(),
+/// Default realization for all structures who implemented `Display` trait
+impl<D, E: Display> From<E> for BaseError<D> {
+    fn from(error: E) -> Self {
+        let trace = Backtrace::new();
+        BaseError {
+            msg: error.to_string(),
+            trace: format!("{:?}", trace),
             error_type: ErrorType::Custom(CustomErrorType::Default),
-            trace: "".to_string(),
-            data: None,
-            status: None,
-        }
-    }
-}
-
-impl<D> From<deadpool_postgres::PoolError> for BaseError<D> {
-    fn from(_: deadpool_postgres::PoolError) -> Self {
-        Self {
-            msg: "deadpool_postgres::PoolError".to_string(),
-            error_type: ErrorType::Custom(CustomErrorType::Default),
-            trace: "".to_string(),
             data: None,
             status: None,
         }
@@ -100,10 +111,11 @@ impl<D> From<deadpool_postgres::PoolError> for BaseError<D> {
 
 impl<D> Default for BaseError<D> {
     fn default() -> Self {
+        let trace = Backtrace::new();
         Self {
-            msg: "Unknown".to_string(),
+            msg: "Error type not recognized. Default error.".to_string(),
             error_type: ErrorType::Custom(CustomErrorType::Default),
-            trace: "".to_string(),
+            trace: format!("{:?}", trace),
             data: None,
             status: None,
         }
@@ -124,70 +136,17 @@ impl<D> From<GeneratedError> for BaseError<D> {
 }
 
 impl<D> From<CustomErrorType> for BaseError<D> {
-    fn from(e: CustomErrorType) -> Self {
+    fn from(error: CustomErrorType) -> Self {
         let trace = Backtrace::new();
         Self {
-            msg: "".to_string(),
-            error_type: ErrorType::Custom(e),
+            msg: format!("{:?}", error),
+            error_type: ErrorType::Custom(error),
             trace: format!("{:?}", trace),
             data: None,
             status: None,
         }
     }
 }
-
-// impl<D> From<deadpool::managed::errors::PoolError<tokio_postgres::Error>> for
-// BaseError<D> {     fn from(_error:
-// deadpool::managed::errors::PoolError<tokio_postgres::Error>) -> Self {
-//         BaseError {
-//             msg: format!("{:?}", _error),
-//             trace: "".to_string(),
-//             error_type: ErrorType::Custom(CustomErrorType::Default),
-//             data: None,
-//             status: None,
-//         }
-//     }
-// }
-
-// From<deadpool::managed::errors::PoolError<tokio_postgres::Error>>
-// impl<T> From<()> for BaseError<T> {
-//     fn from(other: BaseError<()>) -> BaseError<T> {
-//         Self {
-//             msg: other.msg,
-//             // error_type: other.error_type,
-//             trace: other.trace,
-//             data: None,
-//             status: other.status,
-//         }
-//     }
-// }
-
-// impl<T: serde::Serialize> TryFrom<BaseError<T>> for
-// BaseError<serde_json::Value> {     type Error = BaseError<String>;
-//     fn try_from(other: BaseError<T>) -> Result<BaseError<serde_json::Value>,
-// Self::Error> {         match serde_json::to_value(other.data) {
-//             Ok(value) => {
-//                 Ok(Self {
-//                     msg: other.msg,
-//                     // error_type: other.error_type,
-//                     trace: other.trace,
-//                     data: Some(value),
-//                     status: other.status,
-//                 })
-//             }
-//             Err(error) => {
-//                 // Self {
-//                 //     msg: other.msg,
-//                 //     error_type: other.error_type,
-//                 //     trace: other.trace,
-//                 //     data: format!("Data cannot be serialized with: {}",
-// error),                 //     status: other.status,
-//                 // }
-//                 Err(error)
-//             }
-//         }
-//     }
-// }
 
 #[serde(untagged)]
 #[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
