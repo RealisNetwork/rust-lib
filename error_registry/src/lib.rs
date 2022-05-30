@@ -123,11 +123,11 @@ impl<D> Default for BaseError<D> {
 }
 
 impl<D> From<GeneratedError> for BaseError<D> {
-    fn from(e: GeneratedError) -> Self {
+    fn from(error: GeneratedError) -> Self {
         let trace = Backtrace::new();
         Self {
-            msg: "".to_string(),
-            error_type: ErrorType::Generated(e),
+            msg: format!("{:?}", error),
+            error_type: ErrorType::Generated(error),
             trace: format!("{:?}", trace),
             data: None,
             status: None,
@@ -157,7 +157,6 @@ pub enum ErrorType {
 
 #[cfg(test)]
 mod tests {
-
     use crate::generated_errors::{GeneratedError, Geo};
     use serde::{Deserialize, Serialize};
     use serde_json::json;
@@ -170,6 +169,7 @@ mod tests {
         assert_eq!(&serialized.as_str()[1..18], "geo.internalError");
         // println!("serialized = {:#?}", serialized); \"geo.internalError\"
     }
+
     #[test]
     fn deserializing() {
         // Convert to a JSON string.
@@ -178,6 +178,7 @@ mod tests {
         assert_eq!(deserialized.unwrap(), GeneratedError::Geo(Geo::InvalidContinent))
         // println!("deserialized = {:#?}", deserialized);
     }
+
     #[test]
     fn test_deserialize_base_error_with_no_data() {
         // Should be success with BaseError.data == None
