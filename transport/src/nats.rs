@@ -34,15 +34,14 @@ impl Transport for Nats {
     type SubscribeId = StanSid;
 
     async fn publish(&self, topic: &str, message: Self::Message, _topic_res: Option<String>) -> Result<(), Self::Error> {
-        Ok(self.stan_client.publish(topic, &message).await?)
-        //     .map_err(|_| {
-        //     BaseError::new(
-        //         "Can not Send to nats".to_string(),
-        //         ErrorType::Generated(GeneratedError::Nats(NatsError::Send)),
-        //         None,
-        //         None,
-        //     )
-        // })
+        self.stan_client.publish(topic, &message).await.map_err(|_| {
+            BaseError::new(
+                "Can not Send to nats".to_string(),
+                ErrorType::Generated(GeneratedError::Nats(NatsError::Send)),
+                None,
+                None,
+            )
+        })
     }
 
     async fn subscribe<'a>(
