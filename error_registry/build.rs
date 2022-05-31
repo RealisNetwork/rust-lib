@@ -1,6 +1,4 @@
 #![allow(unused_imports)]
-extern crate core;
-
 use convert_case::{Case, Casing};
 use quote::{
     __private::{Ident, Span, TokenStream},
