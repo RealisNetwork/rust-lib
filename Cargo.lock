@@ -940,9 +940,9 @@ checksum = "3ee2393c4a91429dffb4bedf19f4d6abf27d8a732c8ce4980305d782e5426d57"
 
 [[package]]
 name = "deadpool"
-version = "0.9.4"
+version = "0.9.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a90d58a15f5acfe41afcac9775d8e92f2338d14482220c778c6e42aa77778182"
+checksum = "421fe0f90f2ab22016f32a9881be5134fdd71c65298917084b0c7477cbc3856e"
 dependencies = [
  "async-trait",
  "deadpool-runtime",
@@ -1198,6 +1198,7 @@ dependencies = [
  "backoff",
  "backtrace",
  "convert_case 0.5.0",
+ "deadpool",
  "deadpool-postgres",
  "derive_more",
  "dotenv",
@@ -1213,6 +1214,7 @@ dependencies = [
  "syn 1.0.94",
  "thiserror",
  "tokio 1.18.2",
+ "tokio-postgres",
 ]
 
 [[package]]
@@ -6841,7 +6843,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "97fee6b57c6a41524a810daee9286c02d7752c4253064d0b05472833a438f675"
 dependencies = [
  "cfg-if 1.0.0",
- "rand 0.3.23",
+ "rand 0.8.5",
  "static_assertions",
 ]
 

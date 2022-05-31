@@ -11,7 +11,7 @@ use std::{
 
 use backtrace::Backtrace;
 
-use crate::custom_errors::{CustomErrorType, Nats};
+use crate::custom_errors::{CustomErrorType, Nats as CustomNats, Db as CustomDb};
 use generated_errors::GeneratedError;
 
 pub mod custom_errors;
@@ -172,9 +172,11 @@ impl<E: 'static + Error> From<E> for ErrorType {
     /// To extend list of matching types add it manually.
     fn from(_: E) -> Self {
         if TypeId::of::<E>() == TypeId::of::<tokio::sync::oneshot::error::RecvError>() {
-            ErrorType::Custom(CustomErrorType::Nats(Nats::Receive))
+            ErrorType::Custom(CustomErrorType::Nats(CustomNats::Receive))
         } else if TypeId::of::<E>() == TypeId::of::<tokio::time::error::Elapsed>() {
-            ErrorType::Custom(CustomErrorType::Nats(Nats::Disconnected))
+            ErrorType::Custom(CustomErrorType::Nats(CustomNats::Disconnected))
+        } else if TypeId::of::<E>() == TypeId::of::<deadpool::managed::PoolError<tokio_postgres::Error>>() {
+            ErrorType::Custom(CustomErrorType::Db(CustomDb::ConnectionError))
         } else {
             ErrorType::Custom(CustomErrorType::Default)
         }
