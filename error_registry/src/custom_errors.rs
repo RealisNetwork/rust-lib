@@ -1,4 +1,4 @@
-use log::error;
+
 use serde::{Deserialize, Serialize};
 
 #[serde(untagged)]

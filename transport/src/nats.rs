@@ -37,9 +37,9 @@ impl Transport for Nats {
         self.stan_client.publish(topic, &message).await.map_err(|_| {
             BaseError::new(
                 "Can not Send to nats".to_string(),
-                None,
-                None,
                 ErrorType::Generated(GeneratedError::Nats(NatsError::Send)),
+                None,
+                None,
             )
         })
     }

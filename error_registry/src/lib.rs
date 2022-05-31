@@ -1,16 +1,18 @@
-pub mod custom_errors;
-/// Custom Error type for Realis services
-pub mod generated_errors;
-
 use std::error::Error;
 use std::fmt;
 use std::fmt::{Debug, Display};
-use crate::custom_errors::CustomErrorType;
+
 use backtrace::Backtrace;
-use deadpool_postgres::tokio_postgres;
+
+
+
 use generated_errors::GeneratedError;
-use log::error;
-use tokio::time::error::Elapsed;
+
+use crate::custom_errors::CustomErrorType;
+
+pub mod custom_errors;
+/// Custom Error type for Realis services
+pub mod generated_errors;
 
 /// BaseError - custom error type
 #[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
@@ -81,33 +83,6 @@ impl<D, E: Error> From<E> for BaseError<D> {
     }
 }
 
-/// Default realization for all structures who implemented `Debug` trait
-impl<D, E: Debug> From<E> for BaseError<D> {
-    fn from(error: E) -> Self {
-        let trace = Backtrace::new();
-        BaseError {
-            msg: error.to_string(),
-            trace: format!("{:?}", trace),
-            error_type: ErrorType::Custom(CustomErrorType::Default),
-            data: None,
-            status: None,
-        }
-    }
-}
-
-/// Default realization for all structures who implemented `Display` trait
-impl<D, E: Display> From<E> for BaseError<D> {
-    fn from(error: E) -> Self {
-        let trace = Backtrace::new();
-        BaseError {
-            msg: error.to_string(),
-            trace: format!("{:?}", trace),
-            error_type: ErrorType::Custom(CustomErrorType::Default),
-            data: None,
-            status: None,
-        }
-    }
-}
 
 impl<D> Default for BaseError<D> {
     fn default() -> Self {
@@ -157,9 +132,10 @@ pub enum ErrorType {
 
 #[cfg(test)]
 mod tests {
-    use crate::generated_errors::{GeneratedError, Geo};
     use serde::{Deserialize, Serialize};
     use serde_json::json;
+
+    use crate::generated_errors::{GeneratedError, Geo};
 
     #[test]
     fn serializing() {
