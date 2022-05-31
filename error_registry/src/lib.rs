@@ -10,7 +10,6 @@ use std::{
 };
 
 use backtrace::Backtrace;
-use tokio::time;
 
 use crate::custom_errors::{CustomErrorType, Nats};
 use generated_errors::GeneratedError;
@@ -117,7 +116,7 @@ impl<D> Default for BaseError<D> {
     fn default() -> Self {
         let trace = Backtrace::new();
         Self {
-            msg: String::from("Error type not recognized. Default error."),
+            msg: String::from("Default error."),
             error_type: ErrorType::Custom(CustomErrorType::Default),
             trace: format!("{:?}", trace),
             data: None,
@@ -174,10 +173,8 @@ impl<E: 'static + Error> From<E> for ErrorType {
     fn from(_: E) -> Self {
         if TypeId::of::<E>() == TypeId::of::<tokio::sync::oneshot::error::RecvError>() {
             ErrorType::Custom(CustomErrorType::Nats(Nats::Receive))
-        } else if TypeId::of::<E>() == TypeId::of::<time::error::Elapsed>() {
+        } else if TypeId::of::<E>() == TypeId::of::<tokio::time::error::Elapsed>() {
             ErrorType::Custom(CustomErrorType::Nats(Nats::Disconnected))
-        } else if TypeId::of::<E>() == TypeId::of::<ratsio::error::RatsioError>() {
-            ErrorType::Custom(CustomErrorType::Nats(Nats::Send))
         } else {
             ErrorType::Custom(CustomErrorType::Default)
         }
