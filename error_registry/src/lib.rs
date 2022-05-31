@@ -9,6 +9,7 @@ use backtrace::Backtrace;
 use generated_errors::GeneratedError;
 
 use crate::custom_errors::CustomErrorType;
+use crate::generated_errors::BytesFormatter;
 
 pub mod custom_errors;
 /// Custom Error type for Realis services
@@ -80,6 +81,19 @@ impl<D, E: Error> From<E> for BaseError<D> {
             data: None,
             status: None,
         }
+    }
+}
+
+impl<D> From<Vec<u8>> for BaseError<D> {
+    fn from(_: Vec<u8>) -> Self {
+        let trace = Backtrace::new();
+      Self {
+          msg: "Fail to parse".to_string(),
+          error_type: ErrorType::Generated(BytesFormatter),
+          trace: format!("{:?}", trace),
+          data: None,
+          status: None
+      }
     }
 }
 
