@@ -181,8 +181,22 @@ impl<E: 'static + Error> From<E> for ErrorType {
     }
 }
 
+impl From<CustomErrorType> for ErrorType {
+    /// Cast `CustomErrorType` to `ErrorType`
+    fn from(error: CustomErrorType) -> Self {
+        ErrorType::Custom(error)
+    }
+}
+
+impl From<GeneratedError> for ErrorType {
+    /// Cast `GeneratedError` to `ErrorType`
+    fn from(gen_err: GeneratedError) -> Self {
+        ErrorType::Generated(gen_err)
+    }
+}
+
 #[cfg(test)]
-#[ignore]
+
 mod tests {
     use super::*;
     use crate::{CustomErrorType, ErrorType, Nats};
@@ -192,7 +206,6 @@ mod tests {
     use crate::generated_errors::{GeneratedError, Geo};
 
     #[test]
-    #[ignore]
     fn error_test() {
         let error = ratsio::error::RatsioError::AckInboxMissing;
         assert_eq!(
@@ -202,7 +215,6 @@ mod tests {
     }
 
     #[test]
-    #[ignore]
     fn serializing() {
         // Convert to a JSON string.
         let serialized = serde_json::to_string(&GeneratedError::Geo(Geo::InternalError)).unwrap();
@@ -212,7 +224,6 @@ mod tests {
     }
 
     #[test]
-    #[ignore]
     fn deserializing() {
         // Convert to a JSON string.
         let deserialized = serde_json::from_value::<GeneratedError>(json!("geo.invalidContinent"));
