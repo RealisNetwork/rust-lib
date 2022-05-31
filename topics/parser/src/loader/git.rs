@@ -138,21 +138,22 @@ mod tests {
         assert!(result.is_ok())
     }
 
-    #[test]
-    fn agents_package() {
-        let git_loader = EnvLoaded::load(None).unwrap();
-
-        let result = git_loader.load();
-
-        match result {
-            Ok(ref values) => {
-                for v in values {
-                    println!("{:?}", v);
-                }
-            }
-            Err(_) => {}
-        }
-
-        assert!(result.is_ok())
-    }
+    // #[test]
+    // #[]
+    // fn agents_package() {
+    //     let git_loader = EnvLoaded::load(None).unwrap();
+    //
+    //     let result = git_loader.load();
+    //
+    //     match result {
+    //         Ok(ref values) => {
+    //             for v in values {
+    //                 println!("{:?}", v);
+    //             }
+    //         }
+    //         Err(_) => {}
+    //     }
+    //
+    //     assert!(result.is_ok())
+    // }
 }

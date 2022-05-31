@@ -224,22 +224,4 @@ mod tests {
         // GeneratedError::Geo(Geo::InvalidContinent))
         // println!("deserialized = {:#?}", deserialized);
     }
-
-    #[test]
-    fn test_deserialize_base_error_with_no_data() {
-        // Should be success with BaseError.data == None
-        todo!();
-    }
-
-    #[test]
-    fn test_deserialize_base_error_with_null_data() {
-        // Should be success with BaseError.data == None
-        todo!();
-    }
-
-    #[test]
-    fn test_deserialize_base_error_with_data() {
-        // Should be success with BaseError.data == Some
-        todo!();
-    }
 }
