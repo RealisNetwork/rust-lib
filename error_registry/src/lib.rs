@@ -181,6 +181,20 @@ impl<E: 'static + Error> From<E> for ErrorType {
     }
 }
 
+impl From<CustomErrorType> for ErrorType {
+    /// Cast `CustomErrorType` to `ErrorType`
+    fn from(error: CustomErrorType) -> Self {
+        ErrorType::Custom(error)
+    }
+}
+
+impl From<GeneratedError> for ErrorType {
+    /// Cast `GeneratedError` to `ErrorType`
+    fn from(gen_err: GeneratedError) -> Self {
+        ErrorType::Generated(gen_err)
+    }
+}
+
 #[cfg(test)]
 #[ignore]
 mod tests {
