@@ -2152,6 +2152,7 @@ name = "inner_db"
 version = "0.1.0"
 dependencies = [
  "backoff",
+ "deadpool",
  "deadpool-postgres",
  "error_registry",
  "itertools 0.10.3",
