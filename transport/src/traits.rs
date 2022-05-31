@@ -118,7 +118,7 @@ pub trait MessageReceiver<M, O, E>: Send + Sync {
 #[async_trait]
 pub trait Transport {
     type Message: Send;
-    type Error: From<Elapsed> + From<RecvError> + From<Self::Message> + Send;
+    type Error: From<Elapsed> + From<RecvError> + Send;
     type SubscribeId;
     type MessageId: Send;
 
