@@ -8,6 +8,7 @@ edition = "2021"
 [dependencies]
 realis-macros = {path = "../macros"}
 
+ratsio = { git = "https://github.com/RealisNetwork/ratsio.git", optional = false }
 deadpool-postgres = "0.10.1"
 convert_case = "0.5.0"
 derive_more = "0.99.17"
@@ -23,6 +24,7 @@ serde = { version = "1.0.136", features = ["derive"] }
 tokio = { version = "1.16.1", features = ["time"]}
 
 [build-dependencies]
+ratsio = { git = "https://github.com/RealisNetwork/ratsio.git", optional = false }
 serde_json = "1.0.78"
 serde = { version = "1.0.136", features = ["derive"] }
 octocrab = "0.15.3"

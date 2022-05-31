@@ -1,4 +1,3 @@
-use log::error;
 use serde::{Deserialize, Serialize};
 
 #[serde(untagged)]
@@ -53,7 +52,9 @@ pub enum Nats {
     Ok,
     Unsubscribe,
     Disconnected,
+    Send,
 }
+
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
 pub enum Db {
     ConnectionError,

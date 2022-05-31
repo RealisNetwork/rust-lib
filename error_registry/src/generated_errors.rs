@@ -3,7 +3,7 @@
 /// recompilation
 use serde::{Deserialize, Serialize};
 #[serde(untagged)]
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize)]
 pub enum GeneratedError {
     GooglePlay(GooglePlay),
     ProductFactory(ProductFactory),
@@ -285,7 +285,7 @@ impl ToString for Roles {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Db {
     #[serde(rename = "db.notFound")]
     NotFound,
@@ -396,7 +396,7 @@ impl ToString for Status {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize)]
 pub enum Blockchain {
     #[serde(rename = "blockchain.notEnoughBalance")]
     NotEnoughBalance,
@@ -408,7 +408,7 @@ impl ToString for Blockchain {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize)]
 pub enum RestorePassword {
     #[serde(rename = "restorePassword.expiredToken")]
     ExpiredToken,
@@ -420,7 +420,7 @@ impl ToString for RestorePassword {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize)]
 pub enum Bff {
     #[serde(rename = "bff.invalidAgent")]
     InvalidAgent,
@@ -435,7 +435,7 @@ impl ToString for Bff {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize)]
 pub enum BytesFormatter {
     #[serde(rename = "bytesFormatter.handshakeSessionToken")]
     HandshakeSessionToken,
@@ -456,7 +456,7 @@ impl ToString for BytesFormatter {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize)]
 pub enum Auth {
     #[serde(rename = "auth.invalidCredentials")]
     InvalidCredentials,
@@ -522,7 +522,7 @@ impl ToString for Auth {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize)]
 pub enum CatsAndDragons {
     #[serde(rename = "catsAndDragons.notEnoughScience")]
     NotEnoughScience,
@@ -1345,7 +1345,7 @@ impl ToString for ProductRegistry {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Fs {
     #[serde(rename = "fs.readFile")]
     ReadFile,
@@ -1357,7 +1357,7 @@ impl ToString for Fs {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Redis {
     #[serde(rename = "redis.internalServerError")]
     InternalServerError,
@@ -1375,7 +1375,7 @@ impl ToString for Redis {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Utils {
     #[serde(rename = "utils.decryption")]
     Decryption,
@@ -1387,7 +1387,7 @@ impl ToString for Utils {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Bytes {
     #[serde(rename = "bytes.write")]
     Write,
@@ -1402,7 +1402,7 @@ impl ToString for Bytes {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Promo {
     #[serde(rename = "promo.internalError")]
     InternalError,
@@ -1423,7 +1423,7 @@ impl ToString for Promo {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum TwoFactorAuth {
     #[serde(rename = "twoFactorAuth.generate")]
     Generate,
@@ -1444,7 +1444,7 @@ impl ToString for TwoFactorAuth {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Nats {
     #[serde(rename = "nats.send")]
     Send,
@@ -1462,7 +1462,7 @@ impl ToString for Nats {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Transactions {
     #[serde(rename = "transactions.updateBalanceRecord")]
     UpdateBalanceRecord,
@@ -1477,7 +1477,7 @@ impl ToString for Transactions {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Http {
     #[serde(rename = "http.401")]
     E401,
@@ -1501,7 +1501,7 @@ impl ToString for Http {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Cron {
     #[serde(rename = "cron.delete")]
     Delete,
@@ -1516,7 +1516,7 @@ impl ToString for Cron {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Profile {
     #[serde(rename = "profile.notBanned")]
     NotBanned,
@@ -1534,7 +1534,7 @@ impl ToString for Profile {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Geo {
     #[serde(rename = "geo.invalidIp")]
     InvalidIp,
@@ -1555,7 +1555,7 @@ impl ToString for Geo {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Referrals {
     #[serde(rename = "referrals.alreadyHasCode")]
     AlreadyHasCode,
@@ -1573,7 +1573,7 @@ impl ToString for Referrals {
         }
     }
 }
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Orchestrator {
     #[serde(rename = "orchestrator.zeroAmount")]
     ZeroAmount,

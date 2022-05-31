@@ -1,3 +1,4 @@
+#![allow(unused_imports)]
 extern crate core;
 
 use convert_case::{Case, Casing};
