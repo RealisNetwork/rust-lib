@@ -9,6 +9,7 @@ pub enum CustomErrorType {
     Nats(Nats),
     Db(Db),
     EnvLoadedError(EnvLoadedError),
+    Common(Common),
 }
 
 impl From<Blockchain> for CustomErrorType {
