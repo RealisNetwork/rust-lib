@@ -5,7 +5,7 @@ use serde_json::Value;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdapterResponseSchema {
     #[serde(flatten)]
-    pub result: Response<OldRequest, Value>,
+    pub result: Response<OldRequest, Value, ()>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OldRequest {
