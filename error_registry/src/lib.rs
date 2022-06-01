@@ -185,12 +185,19 @@ impl<E: 'static + Error> From<E> for ErrorType {
     /// `ErrorType` in the structure `BaseError` without extra code.
     /// To extend list of matching types add it manually.
     fn from(_: E) -> Self {
-        if TypeId::of::<E>() == TypeId::of::<tokio::sync::oneshot::error::RecvError>() {
+        let type_id = TypeId::of::<E>();
+        if type_id == TypeId::of::<tokio::sync::oneshot::error::RecvError>() {
             ErrorType::Custom(CustomErrorType::Nats(CustomNats::Receive))
-        } else if TypeId::of::<E>() == TypeId::of::<tokio::time::error::Elapsed>() {
+        } else if type_id == TypeId::of::<tokio::time::error::Elapsed>() {
             ErrorType::Custom(CustomErrorType::Nats(CustomNats::Disconnected))
-        } else if TypeId::of::<E>() == TypeId::of::<deadpool::managed::PoolError<tokio_postgres::Error>>() {
+        } else if (type_id == TypeId::of::<deadpool::managed::PoolError<tokio_postgres::Error>>()) ||
+        (type_id == TypeId::of::<tokio_postgres::Error>()) ||
+        (type_id == TypeId::of::<openssl::error::ErrorStack>()) || 
+        (type_id == TypeId::of::<deadpool_postgres::CreatePoolError>()) {
             ErrorType::Custom(CustomErrorType::Db(CustomDb::ConnectionError))
+        } else if (type_id == TypeId::of::<dotenv::Error>()) ||
+        (type_id == TypeId::of::<hex::FromHexError>()) {
+            ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Convert))
         } else {
             ErrorType::Custom(CustomErrorType::Default)
         }

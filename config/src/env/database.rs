@@ -17,7 +17,7 @@ pub struct Database {
 }
 
 impl Database {
-    pub async fn build(&self) -> Result<DatabaseClientInner, BuildError> {
+    pub async fn build(&self) -> Result<DatabaseClientInner, BaseError<()>> {
         DatabaseClientInnerBuilder::build_with_params(
             self.host.clone(),
             self.port,
