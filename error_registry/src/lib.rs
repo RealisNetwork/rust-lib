@@ -6,9 +6,8 @@ use std::{
     any::TypeId,
     error::Error,
     fmt,
-    fmt::{Debug, Display},
+    fmt::{write, Debug, Display, Formatter},
 };
-use std::fmt::{Formatter, write};
 
 use backtrace::Backtrace;
 
@@ -66,13 +65,21 @@ impl<D: Debug> BaseError<D> {
 
 impl<D: Debug> Debug for BaseError<D> {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
-        write!(f,"{{ Error message: {}\nError type: {:?}\nTrace:\n{}\nData: {:?}\nStatus: {:?} }}", self.msg, self.error_type, self.trace, self.data, self.status)
+        write!(
+            f,
+            "{{ Error message: {}\nError type: {:?}\nTrace:\n{}\nData: {:?}\nStatus: {:?} }}",
+            self.msg, self.error_type, self.trace, self.data, self.status
+        )
     }
 }
 
 impl<D: Debug> Display for BaseError<D> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "\x1b[93mError message\x1b[0m: {}\n\x1b[93mError type\x1b[0m: {:?}\n", self.msg, self.error_type)
+        write!(
+            f,
+            "\x1b[93mError message\x1b[0m: {}\n\x1b[93mError type\x1b[0m: {:?}\n",
+            self.msg, self.error_type
+        )
     }
 }
 
@@ -189,23 +196,24 @@ impl<E: 'static + Error> From<E> for ErrorType {
         if type_id == TypeId::of::<tokio::sync::oneshot::error::RecvError>() {
             // Custom Nats: Receive
             ErrorType::Custom(CustomErrorType::Nats(CustomNats::Receive))
-        } else if (type_id == TypeId::of::<tokio::time::error::Elapsed>()) ||
-            (type_id == TypeId::of::<ratsio::RatsioError>()) {
+        } else if (type_id == TypeId::of::<tokio::time::error::Elapsed>()) || (type_id == TypeId::of::<ratsio::RatsioError>()) {
             // Custom Nats: Disconnected
             ErrorType::Custom(CustomErrorType::Nats(CustomNats::Disconnected))
-        } else if (type_id == TypeId::of::<deadpool::managed::PoolError<tokio_postgres::Error>>()) ||
-            (type_id == TypeId::of::<tokio_postgres::Error>()) ||
-            (type_id == TypeId::of::<openssl::error::ErrorStack>()) ||
-            (type_id == TypeId::of::<deadpool_postgres::CreatePoolError>()) {
+        } else if (type_id == TypeId::of::<deadpool::managed::PoolError<tokio_postgres::Error>>())
+            || (type_id == TypeId::of::<tokio_postgres::Error>())
+            || (type_id == TypeId::of::<openssl::error::ErrorStack>())
+            || (type_id == TypeId::of::<deadpool_postgres::CreatePoolError>())
+        {
             // Custom DB: ConnectionError
             ErrorType::Custom(CustomErrorType::Db(CustomDb::ConnectionError))
         } else if type_id == TypeId::of::<dotenv::Error>() {
             // Custom EnvLoadedError: Load
             ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Load))
-        } else if (type_id == TypeId::of::<hex::FromHexError>()) ||
-            (type_id == TypeId::of::<std::num::ParseIntError>()) ||
-            (type_id == TypeId::of::<std::net::AddrParseError>()) ||
-            (type_id == TypeId::of::<std::str::ParseBoolError>()) {
+        } else if (type_id == TypeId::of::<hex::FromHexError>())
+            || (type_id == TypeId::of::<std::num::ParseIntError>())
+            || (type_id == TypeId::of::<std::net::AddrParseError>())
+            || (type_id == TypeId::of::<std::str::ParseBoolError>())
+        {
             // Custom EnvLoadedError: Convert
             ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Convert))
         } else {
@@ -233,19 +241,22 @@ impl From<GeneratedError> for ErrorType {
 
 mod tests {
     use super::*;
-    use crate::{CustomErrorType, ErrorType};
+    use crate::{custom_errors::Db, CustomErrorType, ErrorType};
     use serde::{Deserialize, Serialize};
     use serde_json::json;
-    use crate::custom_errors::Db;
 
-    use crate::generated_errors::{GeneratedError, Geo, Db as GeneratedDb};
+    use crate::generated_errors::{Db as GeneratedDb, GeneratedError, Geo};
 
     #[test]
     fn error_debug_test() {
-        let err = BaseError::new("Message text ".to_string(),ErrorType::Generated(GeneratedError::Db(GeneratedDb::Select)), Some("Data"), Some(10));
+        let err = BaseError::new(
+            "Message text ".to_string(),
+            ErrorType::Generated(GeneratedError::Db(GeneratedDb::Select)),
+            Some("Data"),
+            Some(10),
+        );
         println!("Debug: \n{:?}", err);
         println!("Display: \n{}", err);
-
     }
 
     #[test]

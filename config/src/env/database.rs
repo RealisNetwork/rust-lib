@@ -1,11 +1,7 @@
 use crate::env::{Env, EnvLoaded};
-use inner_db::{
-    client_inner::DatabaseClientInner,
-    client_inner_builder::DatabaseClientInnerBuilder,
-    consts::KEEPALIVES_IDLE_IN_SECS,
-};
-use std::time::Duration;
 use error_registry::BaseError;
+use inner_db::{client_inner::DatabaseClientInner, client_inner_builder::DatabaseClientInnerBuilder, consts::KEEPALIVES_IDLE_IN_SECS};
+use std::time::Duration;
 
 #[derive(Debug, Clone, Env)]
 pub struct Database {
