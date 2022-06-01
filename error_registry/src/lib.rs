@@ -11,7 +11,7 @@ use std::{
 
 use backtrace::Backtrace;
 
-use crate::custom_errors::{CustomErrorType, Nats};
+use crate::custom_errors::{CustomErrorType, Nats as CustomNats, Db as CustomDb};
 use generated_errors::GeneratedError;
 
 pub mod custom_errors;
@@ -105,6 +105,12 @@ impl<D> Default for BaseError<D> {
     /// Use only if you explicitly want to get a default error!
     /// # Returns
     /// ```
+    /// use backtrace::Backtrace;
+    /// use error_registry::custom_errors::CustomErrorType;
+    /// use error_registry::ErrorType;
+    ///
+    /// let trace = Backtrace::new();
+    ///
     /// Self {
     ///     msg: String::from("Default error."),
     ///     error_type: ErrorType::Custom(CustomErrorType::Default),
@@ -172,9 +178,11 @@ impl<E: 'static + Error> From<E> for ErrorType {
     /// To extend list of matching types add it manually.
     fn from(_: E) -> Self {
         if TypeId::of::<E>() == TypeId::of::<tokio::sync::oneshot::error::RecvError>() {
-            ErrorType::Custom(CustomErrorType::Nats(Nats::Receive))
+            ErrorType::Custom(CustomErrorType::Nats(CustomNats::Receive))
         } else if TypeId::of::<E>() == TypeId::of::<tokio::time::error::Elapsed>() {
-            ErrorType::Custom(CustomErrorType::Nats(Nats::Disconnected))
+            ErrorType::Custom(CustomErrorType::Nats(CustomNats::Disconnected))
+        } else if TypeId::of::<E>() == TypeId::of::<deadpool::managed::PoolError<tokio_postgres::Error>>() {
+            ErrorType::Custom(CustomErrorType::Db(CustomDb::ConnectionError))
         } else {
             ErrorType::Custom(CustomErrorType::Default)
         }
@@ -210,7 +218,7 @@ mod tests {
         let error = ratsio::error::RatsioError::AckInboxMissing;
         assert_eq!(
             format!("{:?}", BaseError::<()>::from(error).error_type),
-            format!("{:?}", ErrorType::Custom(CustomErrorType::Nats(Nats::Send)))
+            format!("{:?}", ErrorType::Custom(CustomErrorType::Nats(CustomNats::Send)))
         )
     }
 
