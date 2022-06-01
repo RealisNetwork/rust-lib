@@ -1,5 +1,5 @@
 use backoff::{ExponentialBackoff, ExponentialBackoffBuilder};
-use deadpool_postgres::{Pool, Manager};
+use deadpool_postgres::{Manager, Pool};
 use error_registry::{
     custom_errors::{CustomErrorType, Db as CustomDb},
     generated_errors::{Db, GeneratedError},
@@ -26,16 +26,14 @@ impl DatabaseClientInner {
     }
 
     pub async fn get_pool_connection(&self) -> Result<deadpool::managed::Object<Manager>, BaseError<()>> {
-        self.client_pool
-            .get()
-            .await
-            .map_err(|error| BaseError::new(
-                    error.to_string(),
-                    ErrorType::Custom(CustomErrorType::Db(CustomDb::ConnectionError)),
-                    None,
-                    None,
-                )
+        self.client_pool.get().await.map_err(|error| {
+            BaseError::new(
+                error.to_string(),
+                ErrorType::Custom(CustomErrorType::Db(CustomDb::ConnectionError)),
+                None,
+                None,
             )
+        })
     }
 
     pub async fn import_tables_from_file(&self, path: &str) -> Result<(), BaseError<()>> {

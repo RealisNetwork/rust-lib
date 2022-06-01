@@ -1195,24 +1195,16 @@ dependencies = [
 name = "error_registry"
 version = "0.1.0"
 dependencies = [
- "backoff",
  "backtrace",
  "convert_case 0.5.0",
  "deadpool",
- "deadpool-postgres",
- "derive_more",
  "dotenv",
- "log 0.4.17",
  "octocrab",
  "quote 1.0.18",
- "realis-macros",
  "reqwest 0.11.10",
  "serde",
  "serde_json",
- "strum 0.23.0",
- "strum_macros 0.23.1",
  "syn 1.0.94",
- "thiserror",
  "tokio 1.18.2",
  "tokio-postgres",
 ]
@@ -5598,7 +5590,7 @@ dependencies = [
  "lazy_static",
  "sp-core",
  "sp-runtime",
- "strum 0.20.0",
+ "strum",
 ]
 
 [[package]]
@@ -5961,14 +5953,8 @@ version = "0.20.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7318c509b5ba57f18533982607f24070a55d353e90d4cae30c467cdb2ad5ac5c"
 dependencies = [
- "strum_macros 0.20.1",
+ "strum_macros",
 ]
-
-[[package]]
-name = "strum"
-version = "0.23.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cae14b91c7d11c9a851d3fbc80a963198998c2a64eec840477fa92d8ce9b70bb"
 
 [[package]]
 name = "strum_macros"
@@ -5979,19 +5965,6 @@ dependencies = [
  "heck 0.3.3",
  "proc-macro2 1.0.38",
  "quote 1.0.18",
- "syn 1.0.94",
-]
-
-[[package]]
-name = "strum_macros"
-version = "0.23.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5bb0dc7ee9c15cea6199cde9a127fa16a4c5819af85395457ad72d68edc85a38"
-dependencies = [
- "heck 0.3.3",
- "proc-macro2 1.0.38",
- "quote 1.0.18",
- "rustversion",
  "syn 1.0.94",
 ]
 
