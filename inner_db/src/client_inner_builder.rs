@@ -9,7 +9,8 @@ use openssl::{
 };
 use postgres_openssl::MakeTlsConnector;
 use std::time::Duration;
-use tokio_postgres::{Error, NoTls};
+use tokio_postgres::NoTls;
+use error_registry::BaseError;
 
 pub struct DatabaseClientInnerBuilder;
 

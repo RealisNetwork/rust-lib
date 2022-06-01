@@ -5,6 +5,7 @@ use tokio::time::{sleep, Duration};
 use tokio_minihttp::{Http, Request, Response};
 use tokio_proto::TcpServer;
 use tokio_service::Service;
+use error_registry::BaseError;
 
 use std::sync::{
     atomic::{AtomicBool, Ordering},

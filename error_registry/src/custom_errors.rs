@@ -37,7 +37,7 @@ impl From<Db> for CustomErrorType {
 
 impl From<EnvLoadedError> for CustomErrorType {
     fn from(error: EnvLoadedError) -> Self {
-        CustomErrorType::EnvLoadedError(EnvLoadedError)
+        CustomErrorType::EnvLoadedError(error)
     }
 }
 

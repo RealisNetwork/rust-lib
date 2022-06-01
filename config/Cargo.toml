@@ -14,6 +14,7 @@ hex = "0.4.3"
 transport = { path = "./../transport", optional = true }
 inner_db = { path = "./../inner_db", optional = true }
 healthchecker = { path = "./../healthchecker"}
+error_registry = { path = "./../error_registry"}
 
 [features]
 nats = [

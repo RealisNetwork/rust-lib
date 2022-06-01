@@ -12,7 +12,7 @@ use std::fmt::{Formatter, write};
 
 use backtrace::Backtrace;
 
-use crate::custom_errors::{CustomErrorType, Db as CustomDb, Nats as CustomNats};
+use crate::custom_errors::{CustomErrorType, Db as CustomDb, EnvLoadedError, Nats as CustomNats};
 use generated_errors::GeneratedError;
 
 pub mod custom_errors;
@@ -187,18 +187,29 @@ impl<E: 'static + Error> From<E> for ErrorType {
     fn from(_: E) -> Self {
         let type_id = TypeId::of::<E>();
         if type_id == TypeId::of::<tokio::sync::oneshot::error::RecvError>() {
+            // Custom Nats: Receive
             ErrorType::Custom(CustomErrorType::Nats(CustomNats::Receive))
-        } else if type_id == TypeId::of::<tokio::time::error::Elapsed>() {
+        } else if (type_id == TypeId::of::<tokio::time::error::Elapsed>()) ||
+            (type_id == TypeId::of::<ratsio::RatsioError>()) {
+            // Custom Nats: Disconnected
             ErrorType::Custom(CustomErrorType::Nats(CustomNats::Disconnected))
         } else if (type_id == TypeId::of::<deadpool::managed::PoolError<tokio_postgres::Error>>()) ||
-        (type_id == TypeId::of::<tokio_postgres::Error>()) ||
-        (type_id == TypeId::of::<openssl::error::ErrorStack>()) || 
-        (type_id == TypeId::of::<deadpool_postgres::CreatePoolError>()) {
+            (type_id == TypeId::of::<tokio_postgres::Error>()) ||
+            (type_id == TypeId::of::<openssl::error::ErrorStack>()) ||
+            (type_id == TypeId::of::<deadpool_postgres::CreatePoolError>()) {
+            // Custom DB: ConnectionError
             ErrorType::Custom(CustomErrorType::Db(CustomDb::ConnectionError))
-        } else if (type_id == TypeId::of::<dotenv::Error>()) ||
-        (type_id == TypeId::of::<hex::FromHexError>()) {
+        } else if type_id == TypeId::of::<dotenv::Error>() {
+            // Custom EnvLoadedError: Load
+            ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Load))
+        } else if (type_id == TypeId::of::<hex::FromHexError>()) ||
+            (type_id == TypeId::of::<std::num::ParseIntError>()) ||
+            (type_id == TypeId::of::<std::net::AddrParseError>()) ||
+            (type_id == TypeId::of::<std::str::ParseBoolError>()) {
+            // Custom EnvLoadedError: Convert
             ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Convert))
         } else {
+            // Custom: Default
             ErrorType::Custom(CustomErrorType::Default)
         }
     }

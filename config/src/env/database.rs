@@ -1,4 +1,4 @@
-use crate::env::{Env, EnvLoaded, EnvLoadedError};
+use crate::env::{Env, EnvLoaded};
 use inner_db::{
     client_inner::DatabaseClientInner,
     client_inner_builder::{BuildError, DatabaseClientInnerBuilder},
