@@ -8,6 +8,7 @@ use std::{
     fmt,
     fmt::{Debug, Display},
 };
+use std::fmt::{Formatter, write};
 
 use backtrace::Backtrace;
 
@@ -60,6 +61,12 @@ impl<D: Debug> BaseError<D> {
             data,
             status,
         }
+    }
+}
+
+impl<D: Debug> Debug for BaseError<D> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
+        write!(f,"{{ Error message: {}\nError type: {:?}\nTrace:\n{}\nData: {:?}\nStatus: {:?} }}", self.msg, self.error_type, self.trace, self.data, self.status)
     }
 }
 
@@ -211,6 +218,9 @@ mod tests {
     use crate::{CustomErrorType, ErrorType};
     use serde::{Deserialize, Serialize};
     use serde_json::json;
+    use crate::custom_errors::Db;
+
+    use crate::generated_errors::{GeneratedError, Geo, Db as GeneratedDb};
 
     #[test]
     fn error_debug_test() {
