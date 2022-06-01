@@ -1,6 +1,6 @@
 use crate::env::{Env, EnvLoaded};
-use healthchecker::HealthChecker;
 use error_registry::BaseError;
+use healthchecker::HealthChecker;
 
 #[derive(Debug, Clone, Env)]
 pub struct Nats {

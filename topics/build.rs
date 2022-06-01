@@ -1,4 +1,4 @@
-use config::env::{EnvLoaded, EnvLoadedError};
+use config::env::EnvLoaded;
 #[cfg(feature = "rebuild")]
 use parser::loader::{git::GitLoader, loader::Loader};
 use quote::{ToTokens, __private::TokenStream};
@@ -23,7 +23,7 @@ fn generate() {
     /// In case you want to add some topics, use custom.rs file\n\
     /// In case all the topics here are in one line, make cargo fmt or build with make build";
 
-    let result: Result<GitLoader, EnvLoadedError> = EnvLoaded::load(None);
+    let result: Result<GitLoader, _> = EnvLoaded::load(None);
 
     match result.map(|loader| loader.load()) {
         Ok(Ok(topics)) => {

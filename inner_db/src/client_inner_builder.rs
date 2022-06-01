@@ -3,13 +3,11 @@ use crate::{
     consts::{MAX_RETRY_ELAPSED_TIME_IN_SECS, MAX_RETRY_INTERVAL_IN_SECS},
 };
 use deadpool_postgres::{Config, ManagerConfig, Pool, RecyclingMethod, Runtime, SslMode};
-use openssl::{
-    ssl::{SslConnector, SslMethod, SslVerifyMode},
-};
+use error_registry::BaseError;
+use openssl::ssl::{SslConnector, SslMethod, SslVerifyMode};
 use postgres_openssl::MakeTlsConnector;
 use std::time::Duration;
 use tokio_postgres::NoTls;
-use error_registry::BaseError;
 
 pub struct DatabaseClientInnerBuilder;
 
