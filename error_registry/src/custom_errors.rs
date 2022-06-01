@@ -8,6 +8,7 @@ pub enum CustomErrorType {
     Rpc(Rpc),
     Nats(Nats),
     Db(Db),
+    EnvLoadedError(EnvLoadedError),
 }
 
 impl From<Blockchain> for CustomErrorType {
@@ -37,6 +38,12 @@ impl From<Db> for CustomErrorType {
 impl From<Common> for CustomErrorType {
     fn from(error: Common) -> Self {
         CustomErrorType::Common(error)
+    }
+}
+
+impl From<EnvLoadedError> for CustomErrorType {
+    fn from(error: EnvLoadedError) -> Self {
+        CustomErrorType::EnvLoadedError(error)
     }
 }
 
@@ -76,4 +83,10 @@ pub enum Common {
     ParseBool,
     OutOfRange,
     Other,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum EnvLoadedError {
+    Load,
+    Convert,
 }

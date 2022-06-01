@@ -2,14 +2,14 @@ use crate::{
     client_inner::DatabaseClientInner,
     consts::{MAX_RETRY_ELAPSED_TIME_IN_SECS, MAX_RETRY_INTERVAL_IN_SECS},
 };
-use deadpool_postgres::{Config, CreatePoolError, ManagerConfig, Pool, RecyclingMethod, Runtime, SslMode};
+use deadpool_postgres::{Config, ManagerConfig, Pool, RecyclingMethod, Runtime, SslMode};
 use openssl::{
-    error::ErrorStack,
     ssl::{SslConnector, SslMethod, SslVerifyMode},
 };
 use postgres_openssl::MakeTlsConnector;
 use std::time::Duration;
-use tokio_postgres::{Error, NoTls};
+use tokio_postgres::NoTls;
+use error_registry::BaseError;
 
 pub struct DatabaseClientInnerBuilder;
 
@@ -24,7 +24,7 @@ impl DatabaseClientInnerBuilder {
         ssl: bool,
         max_interval: u64,
         max_elapsed_time: u64,
-    ) -> Result<DatabaseClientInner, BuildError> {
+    ) -> Result<DatabaseClientInner, BaseError<()>> {
         Ok(DatabaseClientInner::new(
             Self::create_pool(host, port, user, password, dbname, keepalives_idle, ssl)?,
             max_interval,
@@ -40,7 +40,7 @@ impl DatabaseClientInnerBuilder {
         dbname: String,
         keepalives_idle: Option<Duration>,
         ssl: bool,
-    ) -> Result<DatabaseClientInner, BuildError> {
+    ) -> Result<DatabaseClientInner, BaseError<()>> {
         Ok(DatabaseClientInner::new(
             Self::create_pool(host, port, user, password, dbname, keepalives_idle, ssl)?,
             MAX_RETRY_INTERVAL_IN_SECS,
@@ -56,7 +56,7 @@ impl DatabaseClientInnerBuilder {
         dbname: String,
         keepalives_idle: Option<Duration>,
         ssl: bool,
-    ) -> Result<Pool, BuildError> {
+    ) -> Result<Pool, BaseError<()>> {
         let mut cfg = Config::new();
         cfg.host = Some(host);
         cfg.port = Some(port);
@@ -80,30 +80,5 @@ impl DatabaseClientInnerBuilder {
         } else {
             Ok(cfg.create_pool(Some(Runtime::Tokio1), NoTls)?)
         }
-    }
-}
-
-#[derive(Debug)]
-pub enum BuildError {
-    Postgres(tokio_postgres::Error),
-    Ssl(openssl::error::ErrorStack),
-    Pool(deadpool_postgres::CreatePoolError),
-}
-
-impl From<tokio_postgres::Error> for BuildError {
-    fn from(error: Error) -> Self {
-        BuildError::Postgres(error)
-    }
-}
-
-impl From<ErrorStack> for BuildError {
-    fn from(error: ErrorStack) -> Self {
-        BuildError::Ssl(error)
-    }
-}
-
-impl From<CreatePoolError> for BuildError {
-    fn from(error: CreatePoolError) -> Self {
-        BuildError::Pool(error)
     }
 }

@@ -696,10 +696,12 @@ name = "config"
 version = "0.1.0"
 dependencies = [
  "dotenv",
+ "error_registry",
  "healthchecker",
  "hex",
  "inner_db",
  "log 0.4.17",
+ "ratsio",
  "realis-macros",
  "transport",
 ]
@@ -1198,9 +1200,13 @@ dependencies = [
  "backtrace",
  "convert_case 0.5.0",
  "deadpool",
+ "deadpool-postgres",
  "dotenv",
+ "hex",
  "octocrab",
+ "openssl",
  "quote 1.0.18",
+ "ratsio",
  "reqwest 0.11.10",
  "serde",
  "serde_json",
@@ -1834,6 +1840,7 @@ dependencies = [
 name = "healthchecker"
 version = "0.1.0"
 dependencies = [
+ "error_registry",
  "futures 0.1.31",
  "tokio 1.18.2",
  "tokio-minihttp",
@@ -6817,7 +6824,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "97fee6b57c6a41524a810daee9286c02d7752c4253064d0b05472833a438f675"
 dependencies = [
  "cfg-if 1.0.0",
- "rand 0.8.5",
+ "rand 0.3.23",
  "static_assertions",
 ]
 

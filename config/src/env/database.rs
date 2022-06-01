@@ -1,10 +1,11 @@
-use crate::env::{Env, EnvLoaded, EnvLoadedError};
+use crate::env::{Env, EnvLoaded};
 use inner_db::{
     client_inner::DatabaseClientInner,
-    client_inner_builder::{BuildError, DatabaseClientInnerBuilder},
+    client_inner_builder::DatabaseClientInnerBuilder,
     consts::KEEPALIVES_IDLE_IN_SECS,
 };
 use std::time::Duration;
+use error_registry::BaseError;
 
 #[derive(Debug, Clone, Env)]
 pub struct Database {
@@ -17,7 +18,7 @@ pub struct Database {
 }
 
 impl Database {
-    pub async fn build(&self) -> Result<DatabaseClientInner, BuildError> {
+    pub async fn build(&self) -> Result<DatabaseClientInner, BaseError<()>> {
         DatabaseClientInnerBuilder::build_with_params(
             self.host.clone(),
             self.port,
