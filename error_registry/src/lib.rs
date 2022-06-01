@@ -18,8 +18,8 @@ pub mod custom_errors;
 pub mod generated_errors;
 
 /// BaseError - custom error type
-#[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
-pub struct BaseError<D> {
+#[derive(Clone, serde::Serialize, serde::Deserialize)]
+pub struct BaseError<D: Debug> {
     pub msg: String,
     #[serde(rename = "type")]
     pub error_type: ErrorType,
@@ -29,7 +29,7 @@ pub struct BaseError<D> {
     pub status: Option<u32>,
 }
 
-impl<D> BaseError<D> {
+impl<D: Debug> BaseError<D> {
     /// Create a new `BaseError`
     /// # Arguments
     /// * `msg` - Extra message for explanation of Error
@@ -63,13 +63,13 @@ impl<D> BaseError<D> {
     }
 }
 
-impl<D> Display for BaseError<D> {
+impl<D: Debug> Display for BaseError<D> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}\n{}\n", self.msg, self.trace)
+        write!(f, "\x1b[93mError message\x1b[0m: {}\n\x1b[93mError type\x1b[0m: {:?}\n", self.msg, self.error_type)
     }
 }
 
-impl<D, E: 'static + Error> From<E> for BaseError<D> {
+impl<D: Debug, E: 'static + Error> From<E> for BaseError<D> {
     /// Default realization for all structures who implemented
     /// `std::error::Error` trait
     ///
@@ -79,6 +79,7 @@ impl<D, E: 'static + Error> From<E> for BaseError<D> {
     /// use error_registry::custom_errors::{CustomErrorType, Nats};
     ///
     /// let error = ratsio::error::RatsioError::AckInboxMissing;
+    ///
     /// assert_eq!(
     ///     format!("{:?}", BaseError::<()>::from(error).error_type),
     ///     format!("{:?}", ErrorType::Custom(CustomErrorType::Nats(Nats::Send)))
@@ -99,7 +100,7 @@ impl<D, E: 'static + Error> From<E> for BaseError<D> {
     }
 }
 
-impl<D> Default for BaseError<D> {
+impl<D: Debug> Default for BaseError<D> {
     /// Default BaseError.
     ///
     /// Use only if you explicitly want to get a default error!
@@ -131,7 +132,7 @@ impl<D> Default for BaseError<D> {
     }
 }
 
-impl<D> From<GeneratedError> for BaseError<D> {
+impl<D: Debug> From<GeneratedError> for BaseError<D> {
     /// Create a `BaseError` by `GeneratedError`
     fn from(error: GeneratedError) -> Self {
         let trace = Backtrace::new();
@@ -145,7 +146,7 @@ impl<D> From<GeneratedError> for BaseError<D> {
     }
 }
 
-impl<D> From<CustomErrorType> for BaseError<D> {
+impl<D: Debug> From<CustomErrorType> for BaseError<D> {
     /// Create a `BaseError` by `CustomErrorType`
     fn from(error: CustomErrorType) -> Self {
         let trace = Backtrace::new();
@@ -207,19 +208,16 @@ impl From<GeneratedError> for ErrorType {
 
 mod tests {
     use super::*;
-    use crate::{CustomErrorType, ErrorType, Nats};
+    use crate::{CustomErrorType, ErrorType};
     use serde::{Deserialize, Serialize};
     use serde_json::json;
 
-    use crate::generated_errors::{GeneratedError, Geo};
-
     #[test]
-    fn error_test() {
-        let error = ratsio::error::RatsioError::AckInboxMissing;
-        assert_eq!(
-            format!("{:?}", BaseError::<()>::from(error).error_type),
-            format!("{:?}", ErrorType::Custom(CustomErrorType::Nats(CustomNats::Send)))
-        )
+    fn error_debug_test() {
+        let err = BaseError::new("Message text ".to_string(),ErrorType::Generated(GeneratedError::Db(GeneratedDb::Select)), Some("Data"), Some(10));
+        println!("Debug: \n{:?}", err);
+        println!("Display: \n{}", err);
+
     }
 
     #[test]
