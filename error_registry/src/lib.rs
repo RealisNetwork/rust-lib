@@ -11,7 +11,7 @@ use std::{
 
 use backtrace::Backtrace;
 
-use crate::custom_errors::{CustomErrorType, Nats as CustomNats, Db as CustomDb};
+use crate::custom_errors::{CustomErrorType, Db as CustomDb, Nats as CustomNats};
 use generated_errors::GeneratedError;
 
 pub mod custom_errors;
