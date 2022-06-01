@@ -23,12 +23,12 @@ pub struct HealthChecker {
 }
 
 impl HealthChecker {
-    pub async fn new(host: &String, timeout: u64) -> Result<Self, String> {
+    pub async fn new(host: &String, timeout: u64) -> Result<Self, BaseError<()>> {
         let health_checker = Self {
             health: Arc::new(AtomicBool::new(true)),
             timeout,
         };
-        let addr = host.parse().map_err(|error| format!("{:?}", error))?;
+        let addr = host.parse()?;
         tokio::spawn({
             let health_checker = health_checker.clone();
             async move { TcpServer::new(Http, addr).serve(move || Ok(health_checker.clone())) }

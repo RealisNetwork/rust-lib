@@ -5,6 +5,7 @@ use inner_db::{
     consts::KEEPALIVES_IDLE_IN_SECS,
 };
 use std::time::Duration;
+use error_registry::BaseError;
 
 #[derive(Debug, Clone, Env)]
 pub struct Database {

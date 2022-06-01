@@ -16,11 +16,7 @@ impl EnvLoaded for bool {
 impl EnvLoaded for usize {
     fn load(key: Option<String>) -> Result<Self, BaseError<()>> {
         // println!("Read env by key: {:?}", key);
-        Ok(dotenv::var(key.clone().unwrap())
-            .map_err(|error| println!("Cannot get env by key: {:?} with error {:?}", key, error))
-            .unwrap()
-            .parse::<usize>()
-            .map_err(|error| error.to_string())?)
+        Ok(dotenv::var(key.clone().unwrap())?.parse::<usize>()?)
     }
 }
 

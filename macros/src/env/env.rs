@@ -51,7 +51,7 @@ pub fn impl_env_macros(item: TokenStream) -> TokenStream {
 
     let code = quote! {
         impl EnvLoaded for #struct_name {
-            fn load(_key: Option<String>) -> Result<Self, EnvLoadedError> {
+            fn load(_key: Option<String>) -> Result<Self, BaseError<()>> {
                 Ok(Self {
                     #(#fields)*
                 })

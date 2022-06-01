@@ -2,9 +2,8 @@ use crate::{
     client_inner::DatabaseClientInner,
     consts::{MAX_RETRY_ELAPSED_TIME_IN_SECS, MAX_RETRY_INTERVAL_IN_SECS},
 };
-use deadpool_postgres::{Config, CreatePoolError, ManagerConfig, Pool, RecyclingMethod, Runtime, SslMode};
+use deadpool_postgres::{Config, ManagerConfig, Pool, RecyclingMethod, Runtime, SslMode};
 use openssl::{
-    error::ErrorStack,
     ssl::{SslConnector, SslMethod, SslVerifyMode},
 };
 use postgres_openssl::MakeTlsConnector;
