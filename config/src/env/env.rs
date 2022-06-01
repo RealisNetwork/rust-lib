@@ -1,109 +1,57 @@
-use dotenv::Error;
-use hex::FromHexError;
+use error_registry::BaseError;
 pub use realis_macros::Env;
 
 #[allow(clippy::module_name_repetitions)]
-#[derive(Debug)]
-pub enum EnvLoadedError {
-    Load(Error),
-    Convert(String),
-}
-
-impl From<Error> for EnvLoadedError {
-    fn from(error: Error) -> Self {
-        Self::Load(error)
-    }
-}
-
-impl From<String> for EnvLoadedError {
-    fn from(error_msg: String) -> Self {
-        Self::Convert(error_msg)
-    }
-}
-
-impl From<FromHexError> for EnvLoadedError {
-    fn from(error: FromHexError) -> Self {
-        Self::Convert(error.to_string())
-    }
-}
-
 pub trait EnvLoaded: Sized {
-    fn load(key: Option<String>) -> Result<Self, EnvLoadedError>;
+    fn load(key: Option<String>) -> Result<Self, BaseError<()>>;
 }
 
 impl EnvLoaded for bool {
-    fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
+    fn load(key: Option<String>) -> Result<Self, BaseError<()>> {
         // println!("Read env by key: {:?}", key);
-        Ok(dotenv::var(key.clone().unwrap())
-            .map_err(|error| println!("Cannot get env by key: {:?} with error {:?}", key, error))
-            .unwrap()
-            .parse::<bool>()
-            .map_err(|error| error.to_string())?)
+        Ok(dotenv::var(key.clone().unwrap())?.parse::<bool>()?)
     }
 }
 
 impl EnvLoaded for usize {
-    fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
+    fn load(key: Option<String>) -> Result<Self, BaseError<()>> {
         // println!("Read env by key: {:?}", key);
-        Ok(dotenv::var(key.clone().unwrap())
-            .map_err(|error| println!("Cannot get env by key: {:?} with error {:?}", key, error))
-            .unwrap()
-            .parse::<usize>()
-            .map_err(|error| error.to_string())?)
+        Ok(dotenv::var(key.clone().unwrap())?.parse::<usize>()?)
     }
 }
 
 impl EnvLoaded for u16 {
-    fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
+    fn load(key: Option<String>) -> Result<Self, BaseError<()>> {
         // println!("Read env by key: {:?}", key);
-        Ok(dotenv::var(key.clone().unwrap())
-            .map_err(|error| println!("Cannot get env by key: {:?} with error {:?}", key, error))
-            .unwrap()
-            .parse::<u16>()
-            .map_err(|error| error.to_string())?)
+        Ok(dotenv::var(key.clone().unwrap())?.parse::<u16>()?)
     }
 }
 
 impl EnvLoaded for u32 {
-    fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
+    fn load(key: Option<String>) -> Result<Self, BaseError<()>> {
         // println!("Read env by key: {:?}", key);
-        Ok(dotenv::var(key.clone().unwrap())
-            .map_err(|error| println!("Cannot get env by key: {:?} with error {:?}", key, error))
-            .unwrap()
-            .parse::<u32>()
-            .map_err(|error| error.to_string())?)
+        Ok(dotenv::var(key.clone().unwrap())?.parse::<u32>()?)
     }
 }
 
 impl EnvLoaded for u64 {
-    fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
+    fn load(key: Option<String>) -> Result<Self, BaseError<()>> {
         // println!("Read env by key: {:?}", key);
-        Ok(dotenv::var(key.clone().unwrap())
-            .map_err(|error| println!("Cannot get env by key: {:?} with error {:?}", key, error))
-            .unwrap()
-            .parse::<u64>()
-            .map_err(|error| error.to_string())?)
+        Ok(dotenv::var(key.clone().unwrap())?.parse::<u64>()?)
     }
 }
 
 impl EnvLoaded for Vec<u8> {
-    fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
+    fn load(key: Option<String>) -> Result<Self, BaseError<()>> {
         // println!("Read env by key: {:?}", key);
-        Ok(hex::decode(
-            dotenv::var(key.clone().unwrap())
-                .map_err(|error| println!("Cannot get env by key: {:?} with error {:?}", key, error))
-                .unwrap(),
-        )
-        .map_err(|error| error.to_string())?)
+        Ok(hex::decode(dotenv::var(key.clone().unwrap())?)?)
     }
 }
 
 impl EnvLoaded for String {
-    fn load(key: Option<String>) -> Result<Self, EnvLoadedError> {
+    fn load(key: Option<String>) -> Result<Self, BaseError<()>> {
         // println!("Read env by key: {:?}", key);
-        Ok(dotenv::var(key.clone().unwrap())
-            .map_err(|error| println!("Cannot get env by key: {:?} with error {:?}", key, error))
-            .unwrap())
+        Ok(dotenv::var(key.clone().unwrap())?)
     }
 }
 

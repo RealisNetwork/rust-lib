@@ -25,17 +25,6 @@ impl DatabaseClientInner {
         }
     }
 
-    pub async fn get_pool_connection(&self) -> Result<deadpool::managed::Object<Manager>, BaseError<()>> {
-        self.client_pool.get().await.map_err(|error| {
-            BaseError::new(
-                error.to_string(),
-                ErrorType::Custom(CustomErrorType::Db(CustomDb::ConnectionError)),
-                None,
-                None,
-            )
-        })
-    }
-
     pub async fn import_tables_from_file(&self, path: &str) -> Result<(), BaseError<()>> {
         let futures = Loader::get_queries_from(path)
             .unwrap()
