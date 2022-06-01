@@ -34,6 +34,12 @@ impl From<Db> for CustomErrorType {
     }
 }
 
+impl From<Common> for CustomErrorType {
+    fn from(error: Common) -> Self {
+        CustomErrorType::Common(error)
+    }
+}
+
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
 pub enum Blockchain {
     Send,
@@ -58,4 +64,16 @@ pub enum Nats {
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
 pub enum Db {
     ConnectionError,
+}
+
+/// Common error types
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Common {
+    Overflow,
+    Parse,
+    ParseString,
+    ParseInt,
+    ParseBool,
+    OutOfRange,
+    Other,
 }
