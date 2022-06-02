@@ -80,6 +80,8 @@ pub enum Nats {
 pub enum Db {
     ConnectionError,
     WalletNotFound,
+    AlreadyExists,
+    UserIdNotFound,
 }
 
 /// Common error types
