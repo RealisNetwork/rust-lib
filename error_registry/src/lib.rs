@@ -11,9 +11,11 @@ use std::{
 
 use backtrace::Backtrace;
 
-use crate::custom_errors::{CustomErrorType, Db as CustomDb, EnvLoadedError, Nats as CustomNats, Utils};
+use crate::{
+    custom_errors::{CustomErrorType, Db as CustomDb, EnvLoadedError, Nats as CustomNats, Utils},
+    generated_errors::Common,
+};
 use generated_errors::GeneratedError;
-use crate::generated_errors::Common;
 
 pub mod custom_errors;
 pub mod generated_errors;
@@ -248,7 +250,7 @@ mod tests {
     use serde::{Deserialize, Serialize};
     use serde_json::json;
 
-    use crate::generated_errors::{Db as GeneratedDb, GeneratedError, Geo};
+    use crate::generated_errors::{Db as GeneratedDb, GeneratedError, Geo, Utils};
 
     #[test]
     fn error_debug_test() {
@@ -279,5 +281,11 @@ mod tests {
         // assert_eq!(deserialized.unwrap(),
         // GeneratedError::Geo(Geo::InvalidContinent))
         // println!("deserialized = {:#?}", deserialized);
+    }
+
+    #[test]
+    fn get_code() {
+        let code: u64 = GeneratedError::Utils(Utils::Decryption).to_u64();
+        assert_eq!(1148968u64, code);
     }
 }
