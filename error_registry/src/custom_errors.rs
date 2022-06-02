@@ -10,6 +10,7 @@ pub enum CustomErrorType {
     Db(Db),
     EnvLoadedError(EnvLoadedError),
     Common(Common),
+    Utils(Utils)
 }
 
 impl From<Blockchain> for CustomErrorType {
@@ -48,6 +49,12 @@ impl From<EnvLoadedError> for CustomErrorType {
     }
 }
 
+impl From<Utils> for CustomErrorType {
+    fn from(error: Utils) -> Self {
+        CustomErrorType::Utils(error)
+    }
+}
+
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
 pub enum Blockchain {
     Send,
@@ -72,6 +79,7 @@ pub enum Nats {
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
 pub enum Db {
     ConnectionError,
+    WalletNotFound,
 }
 
 /// Common error types
@@ -89,5 +97,10 @@ pub enum Common {
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
 pub enum EnvLoadedError {
     Load,
+    Convert,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Utils {
     Convert,
 }
