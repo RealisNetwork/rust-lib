@@ -11,7 +11,7 @@ use std::{
 
 use backtrace::Backtrace;
 
-use crate::custom_errors::{CustomErrorType, Db as CustomDb, EnvLoadedError, Nats as CustomNats};
+use crate::custom_errors::{CustomErrorType, Db as CustomDb, EnvLoadedError, Nats as CustomNats, Utils};
 use generated_errors::GeneratedError;
 
 pub mod custom_errors;
@@ -216,6 +216,8 @@ impl<E: 'static + Error> From<E> for ErrorType {
         {
             // Custom EnvLoadedError: Convert
             ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Convert))
+        } else if type_id == TypeId::of::<tokio::task::JoinError>() {
+            ErrorType::Custom(CustomErrorType::Utils(Utils::JoinError))
         } else {
             // Custom: Default
             ErrorType::Custom(CustomErrorType::Default)

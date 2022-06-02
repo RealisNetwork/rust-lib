@@ -105,4 +105,5 @@ pub enum EnvLoadedError {
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
 pub enum Utils {
     Convert,
+    JoinError,
 }
