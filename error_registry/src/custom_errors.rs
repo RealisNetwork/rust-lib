@@ -13,17 +13,17 @@ pub enum CustomErrorType {
     Utils(Utils),
 }
 
-impl Into<u32> for CustomErrorType {
-    fn into(self) -> u32 {
-        match self {
+impl From<CustomErrorType> for u32 {
+    fn from(error_type: CustomErrorType) -> u32 {
+        match error_type {
             CustomErrorType::Default => 1000u32, // error code, three digits after must be zeros
-            CustomErrorType::Blockchain(blockchain) => 2000u32 + Into::<u32>::into(blockchain),
-            CustomErrorType::Rpc(rpc) => 3000u32 + Into::<u32>::into(rpc),
-            CustomErrorType::Nats(nats) => 4000u32 + Into::<u32>::into(nats),
-            CustomErrorType::Db(db) => 5000u32 + Into::<u32>::into(db),
-            CustomErrorType::EnvLoadedError(env_loaded_error) => 6000u32 + Into::<u32>::into(env_loaded_error),
-            CustomErrorType::Common(common) => 7000u32 + Into::<u32>::into(common),
-            CustomErrorType::Utils(utils) => 8000u32 + Into::<u32>::into(utils),
+            CustomErrorType::Blockchain(blockchain) => 2000u32 + u32::from(blockchain),
+            CustomErrorType::Rpc(rpc) => 3000u32 + u32::from(rpc),
+            CustomErrorType::Nats(nats) => 4000u32 + u32::from(nats),
+            CustomErrorType::Db(db) => 5000u32 + u32::from(db),
+            CustomErrorType::EnvLoadedError(env_loaded_error) => 6000u32 + u32::from(env_loaded_error),
+            CustomErrorType::Common(common) => 7000u32 + u32::from(common),
+            CustomErrorType::Utils(utils) => 8000u32 + u32::from(utils),
         }
     }
 }
@@ -75,9 +75,9 @@ pub enum Blockchain {
     Send,
 }
 
-impl Into<u32> for Blockchain {
-    fn into(self) -> u32 {
-        match self {
+impl From<Blockchain> for u32 {
+    fn from(error_type: Blockchain) -> u32 {
+        match error_type {
             Blockchain::Send => 1u32,
         }
     }
@@ -91,9 +91,9 @@ pub enum Rpc {
     Disconnected,
 }
 
-impl Into<u32> for Rpc {
-    fn into(self) -> u32 {
-        match self {
+impl From<Rpc> for u32 {
+    fn from(error_type: Rpc) -> u32 {
+        match error_type {
             Rpc::Api => 1u32,
             Rpc::BlockNotFound => 2u32,
             Rpc::EventNotFound => 3u32,
@@ -111,9 +111,9 @@ pub enum Nats {
     Send,
 }
 
-impl Into<u32> for Nats {
-    fn into(self) -> u32 {
-        match self {
+impl From<Nats> for u32 {
+    fn from(error_type: Nats) -> u32 {
+        match error_type {
             Nats::Receive => 1u32,
             Nats::Ok => 2u32,
             Nats::Unsubscribe => 3u32,
@@ -130,9 +130,9 @@ pub enum Db {
     AlreadyExists,
     UserIdNotFound,
 }
-impl Into<u32> for Db {
-    fn into(self) -> u32 {
-        match self {
+impl From<Db> for u32 {
+    fn from(error_type: Db) -> u32 {
+        match error_type {
             Db::ConnectionError => 1u32,
             Db::WalletNotFound => 2u32,
             Db::AlreadyExists => 3u32,
@@ -153,9 +153,9 @@ pub enum Common {
     Other,
 }
 
-impl Into<u32> for Common {
-    fn into(self) -> u32 {
-        match self {
+impl From<Common> for u32 {
+    fn from(error_type: Common) -> u32 {
+        match error_type {
             Common::Overflow => 1u32,
             Common::Parse => 2u32,
             Common::ParseString => 3u32,
@@ -173,9 +173,9 @@ pub enum EnvLoadedError {
     Convert,
 }
 
-impl Into<u32> for EnvLoadedError {
-    fn into(self) -> u32 {
-        match self {
+impl From<EnvLoadedError> for u32 {
+    fn from(error_type: EnvLoadedError) -> u32 {
+        match error_type {
             EnvLoadedError::Load => 1u32,
             EnvLoadedError::Convert => 2u32,
         }
@@ -187,9 +187,9 @@ pub enum Utils {
     Convert, // 777008001
 }
 
-impl Into<u32> for Utils {
-    fn into(self) -> u32 {
-        match self {
+impl From<Utils> for u32 {
+    fn from(error_type: Utils) -> u32 {
+        match error_type {
             Utils::Convert => 1u32,
         }
     }

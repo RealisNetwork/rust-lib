@@ -197,11 +197,11 @@ pub enum ErrorType {
     Generated(GeneratedError),
 }
 
-impl Into<u32> for ErrorType {
-    fn into(self) -> u32 {
-        match self {
-            ErrorType::Custom(custom) => 777000000u32 + Into::<u32>::into(custom), //<CustomErrorType as Into<u32>>::into(custom)
-            ErrorType::Generated(generated) => Into::<u32>::into(generated),
+impl From<ErrorType> for u32 {
+    fn from(error_type: ErrorType) -> u32 {
+        match error_type {
+            ErrorType::Custom(custom) => 777000000u32 + u32::from(custom), // Into<u32>>::into(custom)
+            ErrorType::Generated(generated) => generated.into(),
         }
     }
 }
