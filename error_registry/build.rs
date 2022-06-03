@@ -26,7 +26,7 @@ pub struct Error {
 #[derive(Debug, serde::Serialize, serde::Deserialize)]
 pub struct ErrorParams {
     err_type: String,
-    code: u64,
+    code: u32,
     full_name: String,
 }
 
@@ -99,7 +99,7 @@ pub fn rebuild() {
         if res2.contains_key(&head[0]) {
             res2.get_mut(head[0].as_str()).unwrap().push(ErrorParams {
                 err_type: head[1].clone(),
-                code: params["code"].as_u64().unwrap(),
+                code: params["code"].as_u64().unwrap() as u32,
                 full_name: header.clone(),
             });
         } else {
@@ -107,7 +107,7 @@ pub fn rebuild() {
                 head[0].clone(),
                 vec![ErrorParams {
                     err_type: head[1].clone(),
-                    code: params["code"].as_u64().unwrap(),
+                    code: params["code"].as_u64().unwrap() as u32,
                     full_name: header.clone(),
                 }],
             );
@@ -179,7 +179,7 @@ pub fn rebuild() {
             }
 
             impl #enum_name_indent {
-                pub fn to_u64(&self) -> u64 {
+                pub fn to_u32(&self) -> u32 {
                     match self {
                         #(
                             #enum_name_indent::#postifx4=>#error_code,
@@ -201,9 +201,9 @@ pub fn rebuild() {
             }
         )*
         impl #general_enum_name{
-        pub fn to_u64(&self) -> u64 {
+        pub fn to_u32(&self) -> u32 {
             match self {
-                 #(#general_enum_name::#field_name3(#field_name_subfield) => { #field_name_subfield.to_u64() })*
+                 #(#general_enum_name::#field_name3(#field_name_subfield) => { #field_name_subfield.to_u32() })*
 
             }
         }

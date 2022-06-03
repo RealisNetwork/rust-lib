@@ -134,13 +134,13 @@ impl<D: Debug> Default for BaseError<D> {
     /// let trace = Backtrace::new();
     /// let error_type = ErrorType::Custom(CustomErrorType::Default);
     ///
-    ///Self {
+    /// Self {
     ///     msg: String::from("Default error."),
     ///     status: Some(error_type.to_u32),
     ///     error_type: error_type,
     ///     trace: format!("{:?}", trace),
     ///     data: None,
-    ///}
+    /// }
     /// ```
     fn default() -> Self {
         let trace = Backtrace::new();
@@ -197,11 +197,11 @@ pub enum ErrorType {
     Generated(GeneratedError),
 }
 
-impl ErrorType{
+impl ErrorType {
     pub fn to_u32(&self) -> u32 {
         match self {
             ErrorType::Custom(custom) => 777000000u32 + custom.to_u32(),
-            ErrorType::Generated(generated) => generated.to_u64() as u32,
+            ErrorType::Generated(generated) => generated.to_u32(),
         }
     }
 }
@@ -304,11 +304,17 @@ mod tests {
     fn get_code() {
         let generated_code: u32 = ErrorType::Generated(GeneratedError::Utils(Utils::Decryption)).to_u32();
         let custom_code: u32 = ErrorType::Custom(CustomErrorType::Db(Db::UserIdNotFound)).to_u32();
-        println!("Code for ErrorType::Generated(GeneratedError::Utils(Utils::Decryption)): {}", generated_code);
+        println!(
+            "Code for ErrorType::Generated(GeneratedError::Utils(Utils::Decryption)): {}",
+            generated_code
+        );
 
         assert_eq!(1148968u32, generated_code);
 
-        println!("Code for ErrorType::Custom(CustomErrorType::Db(Db::UserIdNotFound)): {}", custom_code);
+        println!(
+            "Code for ErrorType::Custom(CustomErrorType::Db(Db::UserIdNotFound)): {}",
+            custom_code
+        );
         assert_eq!(777005004u32, custom_code);
     }
 }

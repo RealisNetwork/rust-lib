@@ -5,138 +5,58 @@ use serde::{Deserialize, Serialize};
 #[serde(untagged)]
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
 pub enum GeneratedError {
-    Bytes(Bytes),
-    ProductFactory(ProductFactory),
-    Functions(Functions),
-    Fs(Fs),
-    Db(Db),
-    Promo(Promo),
-    Status(Status),
-    Validation(Validation),
     Blockchain(Blockchain),
-    CatsAndDragons(CatsAndDragons),
-    Auth(Auth),
-    Redis(Redis),
-    AdminOptions(AdminOptions),
-    Orchestrator(Orchestrator),
-    Soul(Soul),
-    BytesFormatter(BytesFormatter),
-    Permissions(Permissions),
-    Action(Action),
-    Utils(Utils),
-    Nats(Nats),
-    Roles(Roles),
-    Profile(Profile),
+    Bff(Bff),
+    Geo(Geo),
     ProductRegistry(ProductRegistry),
+    Roles(Roles),
+    Auth(Auth),
+    CatsAndDragons(CatsAndDragons),
+    Orchestrator(Orchestrator),
+    Referrals(Referrals),
+    Promo(Promo),
+    Transactions(Transactions),
+    TwoFactorAuth(TwoFactorAuth),
+    Action(Action),
+    Validation(Validation),
+    Permissions(Permissions),
+    AdminOptions(AdminOptions),
+    Db(Db),
+    Redis(Redis),
+    Soul(Soul),
+    Bytes(Bytes),
+    Nats(Nats),
+    BytesFormatter(BytesFormatter),
+    GooglePlay(GooglePlay),
+    RestorePassword(RestorePassword),
+    Fs(Fs),
+    Functions(Functions),
+    Profile(Profile),
     Http(Http),
     Common(Common),
-    Geo(Geo),
-    Referrals(Referrals),
+    Status(Status),
+    Utils(Utils),
     Cron(Cron),
-    Bff(Bff),
-    RestorePassword(RestorePassword),
-    Transactions(Transactions),
-    GooglePlay(GooglePlay),
-    TwoFactorAuth(TwoFactorAuth),
-}
-impl From<Bytes> for GeneratedError {
-    fn from(error: Bytes) -> Self {
-        GeneratedError::Bytes(error)
-    }
-}
-impl From<ProductFactory> for GeneratedError {
-    fn from(error: ProductFactory) -> Self {
-        GeneratedError::ProductFactory(error)
-    }
-}
-impl From<Functions> for GeneratedError {
-    fn from(error: Functions) -> Self {
-        GeneratedError::Functions(error)
-    }
-}
-impl From<Fs> for GeneratedError {
-    fn from(error: Fs) -> Self {
-        GeneratedError::Fs(error)
-    }
-}
-impl From<Db> for GeneratedError {
-    fn from(error: Db) -> Self {
-        GeneratedError::Db(error)
-    }
-}
-impl From<Promo> for GeneratedError {
-    fn from(error: Promo) -> Self {
-        GeneratedError::Promo(error)
-    }
-}
-impl From<Status> for GeneratedError {
-    fn from(error: Status) -> Self {
-        GeneratedError::Status(error)
-    }
-}
-impl From<Validation> for GeneratedError {
-    fn from(error: Validation) -> Self {
-        GeneratedError::Validation(error)
-    }
+    ProductFactory(ProductFactory),
 }
 impl From<Blockchain> for GeneratedError {
     fn from(error: Blockchain) -> Self {
         GeneratedError::Blockchain(error)
     }
 }
-impl From<CatsAndDragons> for GeneratedError {
-    fn from(error: CatsAndDragons) -> Self {
-        GeneratedError::CatsAndDragons(error)
+impl From<Bff> for GeneratedError {
+    fn from(error: Bff) -> Self {
+        GeneratedError::Bff(error)
     }
 }
-impl From<Auth> for GeneratedError {
-    fn from(error: Auth) -> Self {
-        GeneratedError::Auth(error)
+impl From<Geo> for GeneratedError {
+    fn from(error: Geo) -> Self {
+        GeneratedError::Geo(error)
     }
 }
-impl From<Redis> for GeneratedError {
-    fn from(error: Redis) -> Self {
-        GeneratedError::Redis(error)
-    }
-}
-impl From<AdminOptions> for GeneratedError {
-    fn from(error: AdminOptions) -> Self {
-        GeneratedError::AdminOptions(error)
-    }
-}
-impl From<Orchestrator> for GeneratedError {
-    fn from(error: Orchestrator) -> Self {
-        GeneratedError::Orchestrator(error)
-    }
-}
-impl From<Soul> for GeneratedError {
-    fn from(error: Soul) -> Self {
-        GeneratedError::Soul(error)
-    }
-}
-impl From<BytesFormatter> for GeneratedError {
-    fn from(error: BytesFormatter) -> Self {
-        GeneratedError::BytesFormatter(error)
-    }
-}
-impl From<Permissions> for GeneratedError {
-    fn from(error: Permissions) -> Self {
-        GeneratedError::Permissions(error)
-    }
-}
-impl From<Action> for GeneratedError {
-    fn from(error: Action) -> Self {
-        GeneratedError::Action(error)
-    }
-}
-impl From<Utils> for GeneratedError {
-    fn from(error: Utils) -> Self {
-        GeneratedError::Utils(error)
-    }
-}
-impl From<Nats> for GeneratedError {
-    fn from(error: Nats) -> Self {
-        GeneratedError::Nats(error)
+impl From<ProductRegistry> for GeneratedError {
+    fn from(error: ProductRegistry) -> Self {
+        GeneratedError::ProductRegistry(error)
     }
 }
 impl From<Roles> for GeneratedError {
@@ -144,14 +64,114 @@ impl From<Roles> for GeneratedError {
         GeneratedError::Roles(error)
     }
 }
+impl From<Auth> for GeneratedError {
+    fn from(error: Auth) -> Self {
+        GeneratedError::Auth(error)
+    }
+}
+impl From<CatsAndDragons> for GeneratedError {
+    fn from(error: CatsAndDragons) -> Self {
+        GeneratedError::CatsAndDragons(error)
+    }
+}
+impl From<Orchestrator> for GeneratedError {
+    fn from(error: Orchestrator) -> Self {
+        GeneratedError::Orchestrator(error)
+    }
+}
+impl From<Referrals> for GeneratedError {
+    fn from(error: Referrals) -> Self {
+        GeneratedError::Referrals(error)
+    }
+}
+impl From<Promo> for GeneratedError {
+    fn from(error: Promo) -> Self {
+        GeneratedError::Promo(error)
+    }
+}
+impl From<Transactions> for GeneratedError {
+    fn from(error: Transactions) -> Self {
+        GeneratedError::Transactions(error)
+    }
+}
+impl From<TwoFactorAuth> for GeneratedError {
+    fn from(error: TwoFactorAuth) -> Self {
+        GeneratedError::TwoFactorAuth(error)
+    }
+}
+impl From<Action> for GeneratedError {
+    fn from(error: Action) -> Self {
+        GeneratedError::Action(error)
+    }
+}
+impl From<Validation> for GeneratedError {
+    fn from(error: Validation) -> Self {
+        GeneratedError::Validation(error)
+    }
+}
+impl From<Permissions> for GeneratedError {
+    fn from(error: Permissions) -> Self {
+        GeneratedError::Permissions(error)
+    }
+}
+impl From<AdminOptions> for GeneratedError {
+    fn from(error: AdminOptions) -> Self {
+        GeneratedError::AdminOptions(error)
+    }
+}
+impl From<Db> for GeneratedError {
+    fn from(error: Db) -> Self {
+        GeneratedError::Db(error)
+    }
+}
+impl From<Redis> for GeneratedError {
+    fn from(error: Redis) -> Self {
+        GeneratedError::Redis(error)
+    }
+}
+impl From<Soul> for GeneratedError {
+    fn from(error: Soul) -> Self {
+        GeneratedError::Soul(error)
+    }
+}
+impl From<Bytes> for GeneratedError {
+    fn from(error: Bytes) -> Self {
+        GeneratedError::Bytes(error)
+    }
+}
+impl From<Nats> for GeneratedError {
+    fn from(error: Nats) -> Self {
+        GeneratedError::Nats(error)
+    }
+}
+impl From<BytesFormatter> for GeneratedError {
+    fn from(error: BytesFormatter) -> Self {
+        GeneratedError::BytesFormatter(error)
+    }
+}
+impl From<GooglePlay> for GeneratedError {
+    fn from(error: GooglePlay) -> Self {
+        GeneratedError::GooglePlay(error)
+    }
+}
+impl From<RestorePassword> for GeneratedError {
+    fn from(error: RestorePassword) -> Self {
+        GeneratedError::RestorePassword(error)
+    }
+}
+impl From<Fs> for GeneratedError {
+    fn from(error: Fs) -> Self {
+        GeneratedError::Fs(error)
+    }
+}
+impl From<Functions> for GeneratedError {
+    fn from(error: Functions) -> Self {
+        GeneratedError::Functions(error)
+    }
+}
 impl From<Profile> for GeneratedError {
     fn from(error: Profile) -> Self {
         GeneratedError::Profile(error)
-    }
-}
-impl From<ProductRegistry> for GeneratedError {
-    fn from(error: ProductRegistry) -> Self {
-        GeneratedError::ProductRegistry(error)
     }
 }
 impl From<Http> for GeneratedError {
@@ -164,14 +184,14 @@ impl From<Common> for GeneratedError {
         GeneratedError::Common(error)
     }
 }
-impl From<Geo> for GeneratedError {
-    fn from(error: Geo) -> Self {
-        GeneratedError::Geo(error)
+impl From<Status> for GeneratedError {
+    fn from(error: Status) -> Self {
+        GeneratedError::Status(error)
     }
 }
-impl From<Referrals> for GeneratedError {
-    fn from(error: Referrals) -> Self {
-        GeneratedError::Referrals(error)
+impl From<Utils> for GeneratedError {
+    fn from(error: Utils) -> Self {
+        GeneratedError::Utils(error)
     }
 }
 impl From<Cron> for GeneratedError {
@@ -179,299 +199,47 @@ impl From<Cron> for GeneratedError {
         GeneratedError::Cron(error)
     }
 }
-impl From<Bff> for GeneratedError {
-    fn from(error: Bff) -> Self {
-        GeneratedError::Bff(error)
-    }
-}
-impl From<RestorePassword> for GeneratedError {
-    fn from(error: RestorePassword) -> Self {
-        GeneratedError::RestorePassword(error)
-    }
-}
-impl From<Transactions> for GeneratedError {
-    fn from(error: Transactions) -> Self {
-        GeneratedError::Transactions(error)
-    }
-}
-impl From<GooglePlay> for GeneratedError {
-    fn from(error: GooglePlay) -> Self {
-        GeneratedError::GooglePlay(error)
-    }
-}
-impl From<TwoFactorAuth> for GeneratedError {
-    fn from(error: TwoFactorAuth) -> Self {
-        GeneratedError::TwoFactorAuth(error)
+impl From<ProductFactory> for GeneratedError {
+    fn from(error: ProductFactory) -> Self {
+        GeneratedError::ProductFactory(error)
     }
 }
 impl GeneratedError {
-    pub fn to_u64(&self) -> u64 {
+    pub fn to_u32(&self) -> u32 {
         match self {
-            GeneratedError::Bytes(bytes) => bytes.to_u64(),
-            GeneratedError::ProductFactory(product_factory) => product_factory.to_u64(),
-            GeneratedError::Functions(functions) => functions.to_u64(),
-            GeneratedError::Fs(fs) => fs.to_u64(),
-            GeneratedError::Db(db) => db.to_u64(),
-            GeneratedError::Promo(promo) => promo.to_u64(),
-            GeneratedError::Status(status) => status.to_u64(),
-            GeneratedError::Validation(validation) => validation.to_u64(),
-            GeneratedError::Blockchain(blockchain) => blockchain.to_u64(),
-            GeneratedError::CatsAndDragons(cats_and_dragons) => cats_and_dragons.to_u64(),
-            GeneratedError::Auth(auth) => auth.to_u64(),
-            GeneratedError::Redis(redis) => redis.to_u64(),
-            GeneratedError::AdminOptions(admin_options) => admin_options.to_u64(),
-            GeneratedError::Orchestrator(orchestrator) => orchestrator.to_u64(),
-            GeneratedError::Soul(soul) => soul.to_u64(),
-            GeneratedError::BytesFormatter(bytes_formatter) => bytes_formatter.to_u64(),
-            GeneratedError::Permissions(permissions) => permissions.to_u64(),
-            GeneratedError::Action(action) => action.to_u64(),
-            GeneratedError::Utils(utils) => utils.to_u64(),
-            GeneratedError::Nats(nats) => nats.to_u64(),
-            GeneratedError::Roles(roles) => roles.to_u64(),
-            GeneratedError::Profile(profile) => profile.to_u64(),
-            GeneratedError::ProductRegistry(product_registry) => product_registry.to_u64(),
-            GeneratedError::Http(http) => http.to_u64(),
-            GeneratedError::Common(common) => common.to_u64(),
-            GeneratedError::Geo(geo) => geo.to_u64(),
-            GeneratedError::Referrals(referrals) => referrals.to_u64(),
-            GeneratedError::Cron(cron) => cron.to_u64(),
-            GeneratedError::Bff(bff) => bff.to_u64(),
-            GeneratedError::RestorePassword(restore_password) => restore_password.to_u64(),
-            GeneratedError::Transactions(transactions) => transactions.to_u64(),
-            GeneratedError::GooglePlay(google_play) => google_play.to_u64(),
-            GeneratedError::TwoFactorAuth(two_factor_auth) => two_factor_auth.to_u64(),
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Bytes {
-    #[serde(rename = "bytes.read")]
-    Read,
-    #[serde(rename = "bytes.write")]
-    Write,
-}
-impl ToString for Bytes {
-    fn to_string(&self) -> String {
-        match self {
-            Self::Read => "bytes.read".to_string(),
-            Self::Write => "bytes.write".to_string(),
-        }
-    }
-}
-impl Bytes {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            Bytes::Read => 15652u64,
-            Bytes::Write => 4683826u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum ProductFactory {
-    #[serde(rename = "productFactory.lootboxDropGeneration")]
-    LootboxDropGeneration,
-    #[serde(rename = "productFactory.invalidProductType")]
-    InvalidProductType,
-    #[serde(rename = "productFactory.invalidLimit")]
-    InvalidLimit,
-    #[serde(rename = "productFactory.attributesGeneration")]
-    AttributesGeneration,
-    #[serde(rename = "productFactory.invalidChance")]
-    InvalidChance,
-}
-impl ToString for ProductFactory {
-    fn to_string(&self) -> String {
-        match self {
-            Self::LootboxDropGeneration => "productFactory.lootboxDropGeneration".to_string(),
-            Self::InvalidProductType => "productFactory.invalidProductType".to_string(),
-            Self::InvalidLimit => "productFactory.invalidLimit".to_string(),
-            Self::AttributesGeneration => "productFactory.attributesGeneration".to_string(),
-            Self::InvalidChance => "productFactory.invalidChance".to_string(),
-        }
-    }
-}
-impl ProductFactory {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            ProductFactory::LootboxDropGeneration => 43156u64,
-            ProductFactory::InvalidProductType => 2107697u64,
-            ProductFactory::InvalidLimit => 3180596u64,
-            ProductFactory::AttributesGeneration => 7968804u64,
-            ProductFactory::InvalidChance => 27433u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Functions {
-    #[serde(rename = "functions.moreThanOneParam")]
-    MoreThanOneParam,
-    #[serde(rename = "functions.emptyParams")]
-    EmptyParams,
-}
-impl ToString for Functions {
-    fn to_string(&self) -> String {
-        match self {
-            Self::MoreThanOneParam => "functions.moreThanOneParam".to_string(),
-            Self::EmptyParams => "functions.emptyParams".to_string(),
-        }
-    }
-}
-impl Functions {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            Functions::MoreThanOneParam => 36137u64,
-            Functions::EmptyParams => 10534u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Fs {
-    #[serde(rename = "fs.readFile")]
-    ReadFile,
-}
-impl ToString for Fs {
-    fn to_string(&self) -> String {
-        match self {
-            Self::ReadFile => "fs.readFile".to_string(),
-        }
-    }
-}
-impl Fs {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            Fs::ReadFile => 15748u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Db {
-    #[serde(rename = "db.invalidTransaction")]
-    InvalidTransaction,
-    #[serde(rename = "db.select")]
-    Select,
-    #[serde(rename = "db.notFound")]
-    NotFound,
-    #[serde(rename = "db.remove")]
-    Remove,
-    #[serde(rename = "db.save")]
-    Save,
-    #[serde(rename = "db.insert")]
-    Insert,
-    #[serde(rename = "db.update")]
-    Update,
-    #[serde(rename = "db.create")]
-    Create,
-}
-impl ToString for Db {
-    fn to_string(&self) -> String {
-        match self {
-            Self::InvalidTransaction => "db.invalidTransaction".to_string(),
-            Self::Select => "db.select".to_string(),
-            Self::NotFound => "db.notFound".to_string(),
-            Self::Remove => "db.remove".to_string(),
-            Self::Save => "db.save".to_string(),
-            Self::Insert => "db.insert".to_string(),
-            Self::Update => "db.update".to_string(),
-            Self::Create => "db.create".to_string(),
-        }
-    }
-}
-impl Db {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            Db::InvalidTransaction => 9857073u64,
-            Db::Select => 16473u64,
-            Db::NotFound => 18291u64,
-            Db::Remove => 14630u64,
-            Db::Save => 9451561u64,
-            Db::Insert => 47648u64,
-            Db::Update => 15988u64,
-            Db::Create => 5290272u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Promo {
-    #[serde(rename = "promo.internalError")]
-    InternalError,
-    #[serde(rename = "promo.codeNotExists")]
-    CodeNotExists,
-    #[serde(rename = "promo.codeExpired")]
-    CodeExpired,
-    #[serde(rename = "promo.codeIsAlreadyUsed")]
-    CodeIsAlreadyUsed,
-}
-impl ToString for Promo {
-    fn to_string(&self) -> String {
-        match self {
-            Self::InternalError => "promo.internalError".to_string(),
-            Self::CodeNotExists => "promo.codeNotExists".to_string(),
-            Self::CodeExpired => "promo.codeExpired".to_string(),
-            Self::CodeIsAlreadyUsed => "promo.codeIsAlreadyUsed".to_string(),
-        }
-    }
-}
-impl Promo {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            Promo::InternalError => 2730273u64,
-            Promo::CodeNotExists => 4483108u64,
-            Promo::CodeExpired => 41013u64,
-            Promo::CodeIsAlreadyUsed => 10007u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Status {
-    #[serde(rename = "status.update")]
-    Update,
-    #[serde(rename = "status.delete")]
-    Delete,
-    #[serde(rename = "status.add")]
-    Add,
-    #[serde(rename = "status.get")]
-    Get,
-}
-impl ToString for Status {
-    fn to_string(&self) -> String {
-        match self {
-            Self::Update => "status.update".to_string(),
-            Self::Delete => "status.delete".to_string(),
-            Self::Add => "status.add".to_string(),
-            Self::Get => "status.get".to_string(),
-        }
-    }
-}
-impl Status {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            Status::Update => 1292339u64,
-            Status::Delete => 157731u64,
-            Status::Add => 14150u64,
-            Status::Get => 27698u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Validation {
-    #[serde(rename = "validation.invalid")]
-    Invalid,
-    #[serde(rename = "validation.doesNotMatchPattern")]
-    DoesNotMatchPattern,
-}
-impl ToString for Validation {
-    fn to_string(&self) -> String {
-        match self {
-            Self::Invalid => "validation.invalid".to_string(),
-            Self::DoesNotMatchPattern => "validation.doesNotMatchPattern".to_string(),
-        }
-    }
-}
-impl Validation {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            Validation::Invalid => 1423409u64,
-            Validation::DoesNotMatchPattern => 2439464u64,
+            GeneratedError::Blockchain(blockchain) => blockchain.to_u32(),
+            GeneratedError::Bff(bff) => bff.to_u32(),
+            GeneratedError::Geo(geo) => geo.to_u32(),
+            GeneratedError::ProductRegistry(product_registry) => product_registry.to_u32(),
+            GeneratedError::Roles(roles) => roles.to_u32(),
+            GeneratedError::Auth(auth) => auth.to_u32(),
+            GeneratedError::CatsAndDragons(cats_and_dragons) => cats_and_dragons.to_u32(),
+            GeneratedError::Orchestrator(orchestrator) => orchestrator.to_u32(),
+            GeneratedError::Referrals(referrals) => referrals.to_u32(),
+            GeneratedError::Promo(promo) => promo.to_u32(),
+            GeneratedError::Transactions(transactions) => transactions.to_u32(),
+            GeneratedError::TwoFactorAuth(two_factor_auth) => two_factor_auth.to_u32(),
+            GeneratedError::Action(action) => action.to_u32(),
+            GeneratedError::Validation(validation) => validation.to_u32(),
+            GeneratedError::Permissions(permissions) => permissions.to_u32(),
+            GeneratedError::AdminOptions(admin_options) => admin_options.to_u32(),
+            GeneratedError::Db(db) => db.to_u32(),
+            GeneratedError::Redis(redis) => redis.to_u32(),
+            GeneratedError::Soul(soul) => soul.to_u32(),
+            GeneratedError::Bytes(bytes) => bytes.to_u32(),
+            GeneratedError::Nats(nats) => nats.to_u32(),
+            GeneratedError::BytesFormatter(bytes_formatter) => bytes_formatter.to_u32(),
+            GeneratedError::GooglePlay(google_play) => google_play.to_u32(),
+            GeneratedError::RestorePassword(restore_password) => restore_password.to_u32(),
+            GeneratedError::Fs(fs) => fs.to_u32(),
+            GeneratedError::Functions(functions) => functions.to_u32(),
+            GeneratedError::Profile(profile) => profile.to_u32(),
+            GeneratedError::Http(http) => http.to_u32(),
+            GeneratedError::Common(common) => common.to_u32(),
+            GeneratedError::Status(status) => status.to_u32(),
+            GeneratedError::Utils(utils) => utils.to_u32(),
+            GeneratedError::Cron(cron) => cron.to_u32(),
+            GeneratedError::ProductFactory(product_factory) => product_factory.to_u32(),
         }
     }
 }
@@ -488,1418 +256,63 @@ impl ToString for Blockchain {
     }
 }
 impl Blockchain {
-    pub fn to_u64(&self) -> u64 {
+    pub fn to_u32(&self) -> u32 {
         match self {
-            Blockchain::NotEnoughBalance => 24100u64,
+            Blockchain::NotEnoughBalance => 24100u32,
         }
     }
 }
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum CatsAndDragons {
-    #[serde(rename = "catsAndDragons.notEnoughScience")]
-    NotEnoughScience,
-    #[serde(rename = "catsAndDragons.oneRequestKeyWithMultipleValues")]
-    OneRequestKeyWithMultipleValues,
-    #[serde(rename = "catsAndDragons.invalidSkillKey")]
-    InvalidSkillKey,
-    #[serde(rename = "catsAndDragons.usersLootboxNotFound")]
-    UsersLootboxNotFound,
-    #[serde(rename = "catsAndDragons.noPaymentState")]
-    NoPaymentState,
-    #[serde(rename = "catsAndDragons.invalidAmountFormat")]
-    InvalidAmountFormat,
-    #[serde(rename = "catsAndDragons.noLootboxId")]
-    NoLootboxId,
-    #[serde(rename = "catsAndDragons.taskIsOutOfDate")]
-    TaskIsOutOfDate,
-    #[serde(rename = "catsAndDragons.noAppId")]
-    NoAppId,
-    #[serde(rename = "catsAndDragons.noJson")]
-    NoJson,
-    #[serde(rename = "catsAndDragons.noSpinType")]
-    NoSpinType,
-    #[serde(rename = "catsAndDragons.achievementCompleted")]
-    AchievementCompleted,
-    #[serde(rename = "catsAndDragons.membershipSubscriptionPurchaseIsNotAvailable")]
-    MembershipSubscriptionPurchaseIsNotAvailable,
-    #[serde(rename = "catsAndDragons.toWebIdLinked")]
-    ToWebIdLinked,
-    #[serde(rename = "catsAndDragons.invitedUserAlreadyHaveCompletedAchievements")]
-    InvitedUserAlreadyHaveCompletedAchievements,
-    #[serde(rename = "catsAndDragons.successWithoutCredit")]
-    SuccessWithoutCredit,
-    #[serde(rename = "catsAndDragons.cardUpgradeInfoNotFound")]
-    CardUpgradeInfoNotFound,
-    #[serde(rename = "catsAndDragons.amountLessOne")]
-    AmountLessOne,
-    #[serde(rename = "catsAndDragons.noCardId")]
-    NoCardId,
-    #[serde(rename = "catsAndDragons.invalidValidation")]
-    InvalidValidation,
-    #[serde(rename = "catsAndDragons.noPrice")]
-    NoPrice,
-    #[serde(rename = "catsAndDragons.noConfigJson")]
-    NoConfigJson,
-    #[serde(rename = "catsAndDragons.noStartDate")]
-    NoStartDate,
-    #[serde(rename = "catsAndDragons.invalidSpinType")]
-    InvalidSpinType,
-    #[serde(rename = "catsAndDragons.scoreParseError")]
-    ScoreParseError,
-    #[serde(rename = "catsAndDragons.noStoreType")]
-    NoStoreType,
-    #[serde(rename = "catsAndDragons.userInBlackList")]
-    UserInBlackList,
-    #[serde(rename = "catsAndDragons.noTaskId")]
-    NoTaskId,
-    #[serde(rename = "catsAndDragons.noTheoremReachReward")]
-    NoTheoremReachReward,
-    #[serde(rename = "catsAndDragons.invalidHardCurrencyFormat")]
-    InvalidHardCurrencyFormat,
-    #[serde(rename = "catsAndDragons.purchaseReceiptEmptyOrNull")]
-    PurchaseReceiptEmptyOrNull,
-    #[serde(rename = "catsAndDragons.offerKeyNotExists")]
-    OfferKeyNotExists,
-    #[serde(rename = "catsAndDragons.noReferralLink")]
-    NoReferralLink,
-    #[serde(rename = "catsAndDragons.alreadyAuthorized")]
-    AlreadyAuthorized,
-    #[serde(rename = "catsAndDragons.noCompletedTasks")]
-    NoCompletedTasks,
-    #[serde(rename = "catsAndDragons.undergoingServerUpdate")]
-    UndergoingServerUpdate,
-    #[serde(rename = "catsAndDragons.noSuchSkillKey")]
-    NoSuchSkillKey,
-    #[serde(rename = "catsAndDragons.mapLevelIsEmpty")]
-    MapLevelIsEmpty,
-    #[serde(rename = "catsAndDragons.noToken")]
-    NoToken,
-    #[serde(rename = "catsAndDragons.purchaseRefunded")]
-    PurchaseRefunded,
-    #[serde(rename = "catsAndDragons.profileIsNull")]
-    ProfileIsNull,
-    #[serde(rename = "catsAndDragons.invalidOid")]
-    InvalidOid,
-    #[serde(rename = "catsAndDragons.purchaseKeyEmptyOrNull")]
-    PurchaseKeyEmptyOrNull,
-    #[serde(rename = "catsAndDragons.notEnoughMoneyOnBalance")]
-    NotEnoughMoneyOnBalance,
-    #[serde(rename = "catsAndDragons.referralTaskRewardAlreadyTaken")]
-    ReferralTaskRewardAlreadyTaken,
-    #[serde(rename = "catsAndDragons.chestLevelIsUnavailable")]
-    ChestLevelIsUnavailable,
-    #[serde(rename = "catsAndDragons.couldNotCreditHardCurrency")]
-    CouldNotCreditHardCurrency,
-    #[serde(rename = "catsAndDragons.capitalizationChecksumTestFailedOrInvalidEthereumWallet")]
-    CapitalizationChecksumTestFailedOrInvalidEthereumWallet,
-    #[serde(rename = "catsAndDragons.catPurchaseParseError")]
-    CatPurchaseParseError,
-    #[serde(rename = "catsAndDragons.appKeyNotExist")]
-    AppKeyNotExist,
-    #[serde(rename = "catsAndDragons.scoreCannotBeLessThanZero")]
-    ScoreCannotBeLessThanZero,
-    #[serde(rename = "catsAndDragons.invalidWebId")]
-    InvalidWebId,
-    #[serde(rename = "catsAndDragons.thisDeviceIdNotExists")]
-    ThisDeviceIdNotExists,
-    #[serde(rename = "catsAndDragons.noTransactionId")]
-    NoTransactionId,
-    #[serde(rename = "catsAndDragons.lootboxIsOnCooldown")]
-    LootboxIsOnCooldown,
-    #[serde(rename = "catsAndDragons.invalidAppMetricaDeviceId")]
-    InvalidAppMetricaDeviceId,
-    #[serde(rename = "catsAndDragons.invalidAppId")]
-    InvalidAppId,
-    #[serde(rename = "catsAndDragons.noPurchaseKey")]
-    NoPurchaseKey,
-    #[serde(rename = "catsAndDragons.invalidSurveyToken")]
-    InvalidSurveyToken,
-    #[serde(rename = "catsAndDragons.bingoRecipeNotCrafted")]
-    BingoRecipeNotCrafted,
-    #[serde(rename = "catsAndDragons.invalidOfferKey")]
-    InvalidOfferKey,
-    #[serde(rename = "catsAndDragons.userHasNotCompletedRequiredAmountOfAchievements")]
-    UserHasNotCompletedRequiredAmountOfAchievements,
-    #[serde(rename = "catsAndDragons.invalidAppIdOrSecureKey")]
-    InvalidAppIdOrSecureKey,
-    #[serde(rename = "catsAndDragons.configWasNotFound")]
-    ConfigWasNotFound,
-    #[serde(rename = "catsAndDragons.invalidCurrencyPurchaseKey")]
-    InvalidCurrencyPurchaseKey,
-    #[serde(rename = "catsAndDragons.emailNotVerified")]
-    EmailNotVerified,
-    #[serde(rename = "catsAndDragons.invalidConfigKey")]
-    InvalidConfigKey,
-    #[serde(rename = "catsAndDragons.offerKeyEmptyOrNull")]
-    OfferKeyEmptyOrNull,
-    #[serde(rename = "catsAndDragons.noSuchTask")]
-    NoSuchTask,
-    #[serde(rename = "catsAndDragons.noHandlerInApp")]
-    NoHandlerInApp,
-    #[serde(rename = "catsAndDragons.spendingRecordUnsuccessful")]
-    SpendingRecordUnsuccessful,
-    #[serde(rename = "catsAndDragons.noSecureKey")]
-    NoSecureKey,
-    #[serde(rename = "catsAndDragons.invalidPaymentStateForSubscriptionRenewal")]
-    InvalidPaymentStateForSubscriptionRenewal,
-    #[serde(rename = "catsAndDragons.subscriptionPaymentPending")]
-    SubscriptionPaymentPending,
-    #[serde(rename = "catsAndDragons.notAllowed")]
-    NotAllowed,
-    #[serde(rename = "catsAndDragons.emailAlreadyInUse")]
-    EmailAlreadyInUse,
-    #[serde(rename = "catsAndDragons.purchaseRewardUnsuccessful")]
-    PurchaseRewardUnsuccessful,
-    #[serde(rename = "catsAndDragons.serverTemporarilyUnavailable")]
-    ServerTemporarilyUnavailable,
-    #[serde(rename = "catsAndDragons.unavailableOfferRecordUnsuccessful")]
-    UnavailableOfferRecordUnsuccessful,
-    #[serde(rename = "catsAndDragons.thisDeviceIdIsOccupied")]
-    ThisDeviceIdIsOccupied,
-    #[serde(rename = "catsAndDragons.notEnoughCardExperience")]
-    NotEnoughCardExperience,
-    #[serde(rename = "catsAndDragons.cardInfoNotFound")]
-    CardInfoNotFound,
-    #[serde(rename = "catsAndDragons.noOid")]
-    NoOid,
-    #[serde(rename = "catsAndDragons.invalidDeviceId")]
-    InvalidDeviceId,
-    #[serde(rename = "catsAndDragons.noInappPurchaseData")]
-    NoInappPurchaseData,
-    #[serde(rename = "catsAndDragons.jsonEmptyOrNull")]
-    JsonEmptyOrNull,
-    #[serde(rename = "catsAndDragons.noBingoRecipeId")]
-    NoBingoRecipeId,
-    #[serde(rename = "catsAndDragons.noBingoItem")]
-    NoBingoItem,
-    #[serde(rename = "catsAndDragons.invalidToken")]
-    InvalidToken,
-    #[serde(rename = "catsAndDragons.taskCompleted")]
-    TaskCompleted,
-    #[serde(rename = "catsAndDragons.catIdParseError")]
-    CatIdParseError,
-    #[serde(rename = "catsAndDragons.hardCurrencyLessOne")]
-    HardCurrencyLessOne,
-    #[serde(rename = "catsAndDragons.invalidPurchase")]
-    InvalidPurchase,
-    #[serde(rename = "catsAndDragons.deviceIsOccupied")]
-    DeviceIsOccupied,
-    #[serde(rename = "catsAndDragons.userWhoInvitesAndInvitedUserAreSame")]
-    UserWhoInvitesAndInvitedUserAreSame,
-    #[serde(rename = "catsAndDragons.disconnect")]
-    Disconnect,
-    #[serde(rename = "catsAndDragons.purchaseCanceled")]
-    PurchaseCanceled,
-    #[serde(rename = "catsAndDragons.subscriptionRenewalNumberIsSame")]
-    SubscriptionRenewalNumberIsSame,
-    #[serde(rename = "catsAndDragons.cantBuyScience")]
-    CantBuyScience,
-    #[serde(rename = "catsAndDragons.invalidMembershipTypeForPurchase")]
-    InvalidMembershipTypeForPurchase,
-    #[serde(rename = "catsAndDragons.mapLevelTooLow")]
-    MapLevelTooLow,
-    #[serde(rename = "catsAndDragons.unknownLootboxRewardType")]
-    UnknownLootboxRewardType,
-    #[serde(rename = "catsAndDragons.invalidJson")]
-    InvalidJson,
-    #[serde(rename = "catsAndDragons.userWhoInvitesDoesNotExists")]
-    UserWhoInvitesDoesNotExists,
-    #[serde(rename = "catsAndDragons.invalidPurchaseParam")]
-    InvalidPurchaseParam,
-    #[serde(rename = "catsAndDragons.invalidTaskId")]
-    InvalidTaskId,
-    #[serde(rename = "catsAndDragons.saveDataNotFound")]
-    SaveDataNotFound,
-    #[serde(rename = "catsAndDragons.errorWithConnectionToMicroservice")]
-    ErrorWithConnectionToMicroservice,
-    #[serde(rename = "catsAndDragons.cardMaxLevelNotFound")]
-    CardMaxLevelNotFound,
-    #[serde(rename = "catsAndDragons.invalidTheoremReachTransactionId")]
-    InvalidTheoremReachTransactionId,
-    #[serde(rename = "catsAndDragons.noSuchAchievement")]
-    NoSuchAchievement,
-    #[serde(rename = "catsAndDragons.noWebId")]
-    NoWebId,
-    #[serde(rename = "catsAndDragons.cantParseDateTimeFormat")]
-    CantParseDateTimeFormat,
-    #[serde(rename = "catsAndDragons.offerIsUnavailable")]
-    OfferIsUnavailable,
-    #[serde(rename = "catsAndDragons.noProductId")]
-    NoProductId,
-    #[serde(rename = "catsAndDragons.lootboxIdParseError")]
-    LootboxIdParseError,
-    #[serde(rename = "catsAndDragons.noReferralCode")]
-    NoReferralCode,
-    #[serde(rename = "catsAndDragons.noPurchaseParam")]
-    NoPurchaseParam,
-    #[serde(rename = "catsAndDragons.noStatusPurchaseAppId")]
-    NoStatusPurchaseAppId,
-    #[serde(rename = "catsAndDragons.cantUpdateAppmetricaDeviceId")]
-    CantUpdateAppmetricaDeviceId,
-    #[serde(rename = "catsAndDragons.notEnoughTokensOnBalance")]
-    NotEnoughTokensOnBalance,
-    #[serde(rename = "catsAndDragons.noNick")]
-    NoNick,
-    #[serde(rename = "catsAndDragons.scoreCannotBeMoreThanLimit")]
-    ScoreCannotBeMoreThanLimit,
-    #[serde(rename = "catsAndDragons.questRewardCloningFailed")]
-    QuestRewardCloningFailed,
-    #[serde(rename = "catsAndDragons.purchaseInitialized")]
-    PurchaseInitialized,
-    #[serde(rename = "catsAndDragons.accountIsAlreadyTied")]
-    AccountIsAlreadyTied,
-    #[serde(rename = "catsAndDragons.nickChangeCooldownIsNotExpired")]
-    NickChangeCooldownIsNotExpired,
-    #[serde(rename = "catsAndDragons.noPurchaseReceipt")]
-    NoPurchaseReceipt,
-    #[serde(rename = "catsAndDragons.noServiceNeeded")]
-    NoServiceNeeded,
-    #[serde(rename = "catsAndDragons.userIsNotConnected")]
-    UserIsNotConnected,
-    #[serde(rename = "catsAndDragons.purchasePending")]
-    PurchasePending,
-    #[serde(rename = "catsAndDragons.crossreferralNotAllowed")]
-    CrossreferralNotAllowed,
-    #[serde(rename = "catsAndDragons.noSurveyUserId")]
-    NoSurveyUserId,
-    #[serde(rename = "catsAndDragons.noDepositAmount")]
-    NoDepositAmount,
-    #[serde(rename = "catsAndDragons.invalidCurrencyType")]
-    InvalidCurrencyType,
-    #[serde(rename = "catsAndDragons.deviceIdEmptyOrNull")]
-    DeviceIdEmptyOrNull,
-    #[serde(rename = "catsAndDragons.invalidPurchaseReceiptOrStoreId")]
-    InvalidPurchaseReceiptOrStoreId,
-    #[serde(rename = "catsAndDragons.noCatId")]
-    NoCatId,
-    #[serde(rename = "catsAndDragons.usersLootboxAmountIsNotEnough")]
-    UsersLootboxAmountIsNotEnough,
-    #[serde(rename = "catsAndDragons.noAdSpinsAvailable")]
-    NoAdSpinsAvailable,
-    #[serde(rename = "catsAndDragons.cantDebitHardCurrency")]
-    CantDebitHardCurrency,
-    #[serde(rename = "catsAndDragons.invalidIp")]
+pub enum Bff {
+    #[serde(rename = "bff.invalidMethod")]
+    InvalidMethod,
+    #[serde(rename = "bff.invalidAgent")]
+    InvalidAgent,
+}
+impl ToString for Bff {
+    fn to_string(&self) -> String {
+        match self {
+            Self::InvalidMethod => "bff.invalidMethod".to_string(),
+            Self::InvalidAgent => "bff.invalidAgent".to_string(),
+        }
+    }
+}
+impl Bff {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            Bff::InvalidMethod => 6707232u32,
+            Bff::InvalidAgent => 2378022u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Geo {
+    #[serde(rename = "geo.invalidContinent")]
+    InvalidContinent,
+    #[serde(rename = "geo.invalidIp")]
     InvalidIp,
-    #[serde(rename = "catsAndDragons.noReferrerCode")]
-    NoReferrerCode,
-    #[serde(rename = "catsAndDragons.invitedUserWasInvitedBefore")]
-    InvitedUserWasInvitedBefore,
-    #[serde(rename = "catsAndDragons.referrerSetUnsuccessful")]
-    ReferrerSetUnsuccessful,
-    #[serde(rename = "catsAndDragons.invalidTransactionId")]
-    InvalidTransactionId,
-    #[serde(rename = "catsAndDragons.cantFindStorePurchase")]
-    CantFindStorePurchase,
-    #[serde(rename = "catsAndDragons.invalidResponseCode")]
-    InvalidResponseCode,
-    #[serde(rename = "catsAndDragons.invalidCardId")]
-    InvalidCardId,
-    #[serde(rename = "catsAndDragons.noLevel")]
-    NoLevel,
-    #[serde(rename = "catsAndDragons.invalidMultiplierFormat")]
-    InvalidMultiplierFormat,
-    #[serde(rename = "catsAndDragons.unsuccessfulLootboxDataUpdate")]
-    UnsuccessfulLootboxDataUpdate,
-    #[serde(rename = "catsAndDragons.noAppMetricaDeviceId")]
-    NoAppMetricaDeviceId,
-    #[serde(rename = "catsAndDragons.usersCardNotFound")]
-    UsersCardNotFound,
-    #[serde(rename = "catsAndDragons.nicknameIsTooShort")]
-    NicknameIsTooShort,
-    #[serde(rename = "catsAndDragons.noOfferKey")]
-    NoOfferKey,
-    #[serde(rename = "catsAndDragons.transactionIdParseError")]
-    TransactionIdParseError,
-    #[serde(rename = "catsAndDragons.invalidSecureKey")]
-    InvalidSecureKey,
-    #[serde(rename = "catsAndDragons.noUserId")]
-    NoUserId,
-    #[serde(rename = "catsAndDragons.invalidStatusPurchaseAppId")]
-    InvalidStatusPurchaseAppId,
-    #[serde(rename = "catsAndDragons.undergoingServerMaintenance")]
-    UndergoingServerMaintenance,
-    #[serde(rename = "catsAndDragons.noMultiplier")]
-    NoMultiplier,
-    #[serde(rename = "catsAndDragons.noMailOrPassword")]
-    NoMailOrPassword,
-    #[serde(rename = "catsAndDragons.invalidScienceName")]
-    InvalidScienceName,
-    #[serde(rename = "catsAndDragons.nicknameIsTooLong")]
-    NicknameIsTooLong,
-    #[serde(rename = "catsAndDragons.invalidBalance")]
-    InvalidBalance,
-    #[serde(rename = "catsAndDragons.referrerCodeParseError")]
-    ReferrerCodeParseError,
-    #[serde(rename = "catsAndDragons.scoreEmptyOrNull")]
-    ScoreEmptyOrNull,
-    #[serde(rename = "catsAndDragons.invalidMembership")]
-    InvalidMembership,
-    #[serde(rename = "catsAndDragons.cantUpdateTransaction")]
-    CantUpdateTransaction,
-    #[serde(rename = "catsAndDragons.authenticationAndProfileWebIdNotEqual")]
-    AuthenticationAndProfileWebIdNotEqual,
-    #[serde(rename = "catsAndDragons.invalidEventId")]
-    InvalidEventId,
-    #[serde(rename = "catsAndDragons.userIsNotAllowedToCompleteTask")]
-    UserIsNotAllowedToCompleteTask,
-    #[serde(rename = "catsAndDragons.noSaveData")]
-    NoSaveData,
-    #[serde(rename = "catsAndDragons.invalidMailOrPassword")]
-    InvalidMailOrPassword,
-    #[serde(rename = "catsAndDragons.orderIdParseError")]
-    OrderIdParseError,
-    #[serde(rename = "catsAndDragons.noJsonData")]
-    NoJsonData,
-    #[serde(rename = "catsAndDragons.ipEmptyOrNull")]
-    IpEmptyOrNull,
-    #[serde(rename = "catsAndDragons.notEnoughBingoItemAmount")]
-    NotEnoughBingoItemAmount,
-    #[serde(rename = "catsAndDragons.noScore")]
-    NoScore,
-    #[serde(rename = "catsAndDragons.noPurchaseRecord")]
-    NoPurchaseRecord,
-    #[serde(rename = "catsAndDragons.invalidStoreType")]
-    InvalidStoreType,
-    #[serde(rename = "catsAndDragons.noConfigKey")]
-    NoConfigKey,
-    #[serde(rename = "catsAndDragons.subscriptionIsInTrialPeriod")]
-    SubscriptionIsInTrialPeriod,
-    #[serde(rename = "catsAndDragons.invalidClientVersion")]
-    InvalidClientVersion,
-    #[serde(rename = "catsAndDragons.purchaseValidationUnsuccessful")]
-    PurchaseValidationUnsuccessful,
-    #[serde(rename = "catsAndDragons.noSuchStrategy")]
-    NoSuchStrategy,
-    #[serde(rename = "catsAndDragons.hardCurrencyNullOrEmpty")]
-    HardCurrencyNullOrEmpty,
-    #[serde(rename = "catsAndDragons.invalidScore")]
-    InvalidScore,
-    #[serde(rename = "catsAndDragons.noDeviceId")]
-    NoDeviceId,
-    #[serde(rename = "catsAndDragons.invalidRecipeId")]
-    InvalidRecipeId,
-    #[serde(rename = "catsAndDragons.noTheoremReachTransactionId")]
-    NoTheoremReachTransactionId,
-    #[serde(rename = "catsAndDragons.nickAlreadyExists")]
-    NickAlreadyExists,
-    #[serde(rename = "catsAndDragons.unlinkingTheDeviceMoreThanOnceAWeek")]
-    UnlinkingTheDeviceMoreThanOnceAWeek,
-    #[serde(rename = "catsAndDragons.toWebIdNotExists")]
-    ToWebIdNotExists,
-    #[serde(rename = "catsAndDragons.invalidNick")]
-    InvalidNick,
-    #[serde(rename = "catsAndDragons.userMembershipIsHigher")]
-    UserMembershipIsHigher,
-    #[serde(rename = "catsAndDragons.webIdNotFound")]
-    WebIdNotFound,
-    #[serde(rename = "catsAndDragons.cantCreateTransaction")]
-    CantCreateTransaction,
-    #[serde(rename = "catsAndDragons.invalidHardCurrencyTransactionType")]
-    InvalidHardCurrencyTransactionType,
-    #[serde(rename = "catsAndDragons.invalidStatusPurchaseAppIdFormat")]
-    InvalidStatusPurchaseAppIdFormat,
-    #[serde(rename = "catsAndDragons.membershipSubscriptionPurchaseRecordDoesNotExist")]
-    MembershipSubscriptionPurchaseRecordDoesNotExist,
-    #[serde(rename = "catsAndDragons.errorWithDatabaseColumnName")]
-    ErrorWithDatabaseColumnName,
-    #[serde(rename = "catsAndDragons.webRequestError")]
-    WebRequestError,
-    #[serde(rename = "catsAndDragons.endDateIsLessThanStartDate")]
-    EndDateIsLessThanStartDate,
-    #[serde(rename = "catsAndDragons.theoremReachTransactionIdEmptyOrNull")]
-    TheoremReachTransactionIdEmptyOrNull,
-    #[serde(rename = "catsAndDragons.invalidConfigJson")]
-    InvalidConfigJson,
-    #[serde(rename = "catsAndDragons.noProductType")]
-    NoProductType,
-    #[serde(rename = "catsAndDragons.noAchievements")]
-    NoAchievements,
-    #[serde(rename = "catsAndDragons.invitedUserDoesNotExists")]
-    InvitedUserDoesNotExists,
-    #[serde(rename = "catsAndDragons.doubleRequest")]
-    DoubleRequest,
-    #[serde(rename = "catsAndDragons.cantFindHardCurrencyTransactionType")]
-    CantFindHardCurrencyTransactionType,
-    #[serde(rename = "catsAndDragons.webDataNotFound")]
-    WebDataNotFound,
-    #[serde(rename = "catsAndDragons.noSuchTaskReward")]
-    NoSuchTaskReward,
-    #[serde(rename = "catsAndDragons.noEndDate")]
-    NoEndDate,
-    #[serde(rename = "catsAndDragons.webIdEmptyOrNull")]
-    WebIdEmptyOrNull,
-    #[serde(rename = "catsAndDragons.noOfferToroAmount")]
-    NoOfferToroAmount,
-    #[serde(rename = "catsAndDragons.invalidPurchaseType")]
-    InvalidPurchaseType,
-    #[serde(rename = "catsAndDragons.noIp")]
-    NoIp,
-    #[serde(rename = "catsAndDragons.nicknameEmptyOrNull")]
-    NicknameEmptyOrNull,
-    #[serde(rename = "catsAndDragons.invalidIsNull")]
-    InvalidIsNull,
-    #[serde(rename = "catsAndDragons.transactionTypeIsNull")]
-    TransactionTypeIsNull,
-    #[serde(rename = "catsAndDragons.invalidProductId")]
-    InvalidProductId,
-    #[serde(rename = "catsAndDragons.rewardsIsNull")]
-    RewardsIsNull,
-    #[serde(rename = "catsAndDragons.invalidReferrerId")]
-    InvalidReferrerId,
-    #[serde(rename = "catsAndDragons.missingParameter")]
-    MissingParameter,
-    #[serde(rename = "catsAndDragons.cardAlreadyAtMaxLevel")]
-    CardAlreadyAtMaxLevel,
-    #[serde(rename = "catsAndDragons.noDeviceAttached")]
-    NoDeviceAttached,
-    #[serde(rename = "catsAndDragons.unknownPurchaseStatus")]
-    UnknownPurchaseStatus,
-    #[serde(rename = "catsAndDragons.referrerIdParseError")]
-    ReferrerIdParseError,
-    #[serde(rename = "catsAndDragons.priceParseError")]
-    PriceParseError,
-    #[serde(rename = "catsAndDragons.noMembership")]
-    NoMembership,
-    #[serde(rename = "catsAndDragons.errorWithNameOfDatabaseRelation")]
-    ErrorWithNameOfDatabaseRelation,
-    #[serde(rename = "catsAndDragons.invalidLootboxId")]
-    InvalidLootboxId,
-    #[serde(rename = "catsAndDragons.invalidProductType")]
-    InvalidProductType,
-    #[serde(rename = "catsAndDragons.invalidTheoremReachReward")]
-    InvalidTheoremReachReward,
-    #[serde(rename = "catsAndDragons.transactionIdNullOrEmpty")]
-    TransactionIdNullOrEmpty,
-    #[serde(rename = "catsAndDragons.exchangeWebRequestError")]
-    ExchangeWebRequestError,
-    #[serde(rename = "catsAndDragons.webIdAlreadyDefaultOrNotExists")]
-    WebIdAlreadyDefaultOrNotExists,
-    #[serde(rename = "catsAndDragons.accountWithWebidHasProgress")]
-    AccountWithWebidHasProgress,
-    #[serde(rename = "catsAndDragons.taskListEmpty")]
-    TaskListEmpty,
-    #[serde(rename = "catsAndDragons.authorizationFail")]
-    AuthorizationFail,
-    #[serde(rename = "catsAndDragons.productIdEmptyOrNull")]
-    ProductIdEmptyOrNull,
-    #[serde(rename = "catsAndDragons.bingoSeasonIsNoActive")]
-    BingoSeasonIsNoActive,
-    #[serde(rename = "catsAndDragons.noPurchaseToken")]
-    NoPurchaseToken,
-    #[serde(rename = "catsAndDragons.noTask")]
-    NoTask,
-    #[serde(rename = "catsAndDragons.userNotExist")]
-    UserNotExist,
-    #[serde(rename = "catsAndDragons.noName")]
-    NoName,
-    #[serde(rename = "catsAndDragons.passwordEmptyOrNull")]
-    PasswordEmptyOrNull,
-    #[serde(rename = "catsAndDragons.invalidPurchaseKey")]
-    InvalidPurchaseKey,
-    #[serde(rename = "catsAndDragons.membershipNotExists")]
-    MembershipNotExists,
-    #[serde(rename = "catsAndDragons.invalidMultiplier")]
-    InvalidMultiplier,
-    #[serde(rename = "catsAndDragons.noHardCurrency")]
-    NoHardCurrency,
-    #[serde(rename = "catsAndDragons.invalidOfferToroAmountFormat")]
-    InvalidOfferToroAmountFormat,
-    #[serde(rename = "catsAndDragons.purchaseRecordUnsuccessful")]
-    PurchaseRecordUnsuccessful,
-    #[serde(rename = "catsAndDragons.requiredScienceNotFound")]
-    RequiredScienceNotFound,
-    #[serde(rename = "catsAndDragons.invalidParseSurveyToken")]
-    InvalidParseSurveyToken,
-    #[serde(rename = "catsAndDragons.noPurchaseTokenData")]
-    NoPurchaseTokenData,
-    #[serde(rename = "catsAndDragons.surveyIsAlreadyRecorded")]
-    SurveyIsAlreadyRecorded,
-}
-impl ToString for CatsAndDragons {
-    fn to_string(&self) -> String {
-        match self {
-            Self::NotEnoughScience => "catsAndDragons.notEnoughScience".to_string(),
-            Self::OneRequestKeyWithMultipleValues => "catsAndDragons.oneRequestKeyWithMultipleValues".to_string(),
-            Self::InvalidSkillKey => "catsAndDragons.invalidSkillKey".to_string(),
-            Self::UsersLootboxNotFound => "catsAndDragons.usersLootboxNotFound".to_string(),
-            Self::NoPaymentState => "catsAndDragons.noPaymentState".to_string(),
-            Self::InvalidAmountFormat => "catsAndDragons.invalidAmountFormat".to_string(),
-            Self::NoLootboxId => "catsAndDragons.noLootboxId".to_string(),
-            Self::TaskIsOutOfDate => "catsAndDragons.taskIsOutOfDate".to_string(),
-            Self::NoAppId => "catsAndDragons.noAppId".to_string(),
-            Self::NoJson => "catsAndDragons.noJson".to_string(),
-            Self::NoSpinType => "catsAndDragons.noSpinType".to_string(),
-            Self::AchievementCompleted => "catsAndDragons.achievementCompleted".to_string(),
-            Self::MembershipSubscriptionPurchaseIsNotAvailable => {
-                "catsAndDragons.membershipSubscriptionPurchaseIsNotAvailable".to_string()
-            }
-            Self::ToWebIdLinked => "catsAndDragons.toWebIdLinked".to_string(),
-            Self::InvitedUserAlreadyHaveCompletedAchievements => {
-                "catsAndDragons.invitedUserAlreadyHaveCompletedAchievements".to_string()
-            }
-            Self::SuccessWithoutCredit => "catsAndDragons.successWithoutCredit".to_string(),
-            Self::CardUpgradeInfoNotFound => "catsAndDragons.cardUpgradeInfoNotFound".to_string(),
-            Self::AmountLessOne => "catsAndDragons.amountLessOne".to_string(),
-            Self::NoCardId => "catsAndDragons.noCardId".to_string(),
-            Self::InvalidValidation => "catsAndDragons.invalidValidation".to_string(),
-            Self::NoPrice => "catsAndDragons.noPrice".to_string(),
-            Self::NoConfigJson => "catsAndDragons.noConfigJson".to_string(),
-            Self::NoStartDate => "catsAndDragons.noStartDate".to_string(),
-            Self::InvalidSpinType => "catsAndDragons.invalidSpinType".to_string(),
-            Self::ScoreParseError => "catsAndDragons.scoreParseError".to_string(),
-            Self::NoStoreType => "catsAndDragons.noStoreType".to_string(),
-            Self::UserInBlackList => "catsAndDragons.userInBlackList".to_string(),
-            Self::NoTaskId => "catsAndDragons.noTaskId".to_string(),
-            Self::NoTheoremReachReward => "catsAndDragons.noTheoremReachReward".to_string(),
-            Self::InvalidHardCurrencyFormat => "catsAndDragons.invalidHardCurrencyFormat".to_string(),
-            Self::PurchaseReceiptEmptyOrNull => "catsAndDragons.purchaseReceiptEmptyOrNull".to_string(),
-            Self::OfferKeyNotExists => "catsAndDragons.offerKeyNotExists".to_string(),
-            Self::NoReferralLink => "catsAndDragons.noReferralLink".to_string(),
-            Self::AlreadyAuthorized => "catsAndDragons.alreadyAuthorized".to_string(),
-            Self::NoCompletedTasks => "catsAndDragons.noCompletedTasks".to_string(),
-            Self::UndergoingServerUpdate => "catsAndDragons.undergoingServerUpdate".to_string(),
-            Self::NoSuchSkillKey => "catsAndDragons.noSuchSkillKey".to_string(),
-            Self::MapLevelIsEmpty => "catsAndDragons.mapLevelIsEmpty".to_string(),
-            Self::NoToken => "catsAndDragons.noToken".to_string(),
-            Self::PurchaseRefunded => "catsAndDragons.purchaseRefunded".to_string(),
-            Self::ProfileIsNull => "catsAndDragons.profileIsNull".to_string(),
-            Self::InvalidOid => "catsAndDragons.invalidOid".to_string(),
-            Self::PurchaseKeyEmptyOrNull => "catsAndDragons.purchaseKeyEmptyOrNull".to_string(),
-            Self::NotEnoughMoneyOnBalance => "catsAndDragons.notEnoughMoneyOnBalance".to_string(),
-            Self::ReferralTaskRewardAlreadyTaken => "catsAndDragons.referralTaskRewardAlreadyTaken".to_string(),
-            Self::ChestLevelIsUnavailable => "catsAndDragons.chestLevelIsUnavailable".to_string(),
-            Self::CouldNotCreditHardCurrency => "catsAndDragons.couldNotCreditHardCurrency".to_string(),
-            Self::CapitalizationChecksumTestFailedOrInvalidEthereumWallet => {
-                "catsAndDragons.capitalizationChecksumTestFailedOrInvalidEthereumWallet".to_string()
-            }
-            Self::CatPurchaseParseError => "catsAndDragons.catPurchaseParseError".to_string(),
-            Self::AppKeyNotExist => "catsAndDragons.appKeyNotExist".to_string(),
-            Self::ScoreCannotBeLessThanZero => "catsAndDragons.scoreCannotBeLessThanZero".to_string(),
-            Self::InvalidWebId => "catsAndDragons.invalidWebId".to_string(),
-            Self::ThisDeviceIdNotExists => "catsAndDragons.thisDeviceIdNotExists".to_string(),
-            Self::NoTransactionId => "catsAndDragons.noTransactionId".to_string(),
-            Self::LootboxIsOnCooldown => "catsAndDragons.lootboxIsOnCooldown".to_string(),
-            Self::InvalidAppMetricaDeviceId => "catsAndDragons.invalidAppMetricaDeviceId".to_string(),
-            Self::InvalidAppId => "catsAndDragons.invalidAppId".to_string(),
-            Self::NoPurchaseKey => "catsAndDragons.noPurchaseKey".to_string(),
-            Self::InvalidSurveyToken => "catsAndDragons.invalidSurveyToken".to_string(),
-            Self::BingoRecipeNotCrafted => "catsAndDragons.bingoRecipeNotCrafted".to_string(),
-            Self::InvalidOfferKey => "catsAndDragons.invalidOfferKey".to_string(),
-            Self::UserHasNotCompletedRequiredAmountOfAchievements => {
-                "catsAndDragons.userHasNotCompletedRequiredAmountOfAchievements".to_string()
-            }
-            Self::InvalidAppIdOrSecureKey => "catsAndDragons.invalidAppIdOrSecureKey".to_string(),
-            Self::ConfigWasNotFound => "catsAndDragons.configWasNotFound".to_string(),
-            Self::InvalidCurrencyPurchaseKey => "catsAndDragons.invalidCurrencyPurchaseKey".to_string(),
-            Self::EmailNotVerified => "catsAndDragons.emailNotVerified".to_string(),
-            Self::InvalidConfigKey => "catsAndDragons.invalidConfigKey".to_string(),
-            Self::OfferKeyEmptyOrNull => "catsAndDragons.offerKeyEmptyOrNull".to_string(),
-            Self::NoSuchTask => "catsAndDragons.noSuchTask".to_string(),
-            Self::NoHandlerInApp => "catsAndDragons.noHandlerInApp".to_string(),
-            Self::SpendingRecordUnsuccessful => "catsAndDragons.spendingRecordUnsuccessful".to_string(),
-            Self::NoSecureKey => "catsAndDragons.noSecureKey".to_string(),
-            Self::InvalidPaymentStateForSubscriptionRenewal => "catsAndDragons.invalidPaymentStateForSubscriptionRenewal".to_string(),
-            Self::SubscriptionPaymentPending => "catsAndDragons.subscriptionPaymentPending".to_string(),
-            Self::NotAllowed => "catsAndDragons.notAllowed".to_string(),
-            Self::EmailAlreadyInUse => "catsAndDragons.emailAlreadyInUse".to_string(),
-            Self::PurchaseRewardUnsuccessful => "catsAndDragons.purchaseRewardUnsuccessful".to_string(),
-            Self::ServerTemporarilyUnavailable => "catsAndDragons.serverTemporarilyUnavailable".to_string(),
-            Self::UnavailableOfferRecordUnsuccessful => "catsAndDragons.unavailableOfferRecordUnsuccessful".to_string(),
-            Self::ThisDeviceIdIsOccupied => "catsAndDragons.thisDeviceIdIsOccupied".to_string(),
-            Self::NotEnoughCardExperience => "catsAndDragons.notEnoughCardExperience".to_string(),
-            Self::CardInfoNotFound => "catsAndDragons.cardInfoNotFound".to_string(),
-            Self::NoOid => "catsAndDragons.noOid".to_string(),
-            Self::InvalidDeviceId => "catsAndDragons.invalidDeviceId".to_string(),
-            Self::NoInappPurchaseData => "catsAndDragons.noInappPurchaseData".to_string(),
-            Self::JsonEmptyOrNull => "catsAndDragons.jsonEmptyOrNull".to_string(),
-            Self::NoBingoRecipeId => "catsAndDragons.noBingoRecipeId".to_string(),
-            Self::NoBingoItem => "catsAndDragons.noBingoItem".to_string(),
-            Self::InvalidToken => "catsAndDragons.invalidToken".to_string(),
-            Self::TaskCompleted => "catsAndDragons.taskCompleted".to_string(),
-            Self::CatIdParseError => "catsAndDragons.catIdParseError".to_string(),
-            Self::HardCurrencyLessOne => "catsAndDragons.hardCurrencyLessOne".to_string(),
-            Self::InvalidPurchase => "catsAndDragons.invalidPurchase".to_string(),
-            Self::DeviceIsOccupied => "catsAndDragons.deviceIsOccupied".to_string(),
-            Self::UserWhoInvitesAndInvitedUserAreSame => "catsAndDragons.userWhoInvitesAndInvitedUserAreSame".to_string(),
-            Self::Disconnect => "catsAndDragons.disconnect".to_string(),
-            Self::PurchaseCanceled => "catsAndDragons.purchaseCanceled".to_string(),
-            Self::SubscriptionRenewalNumberIsSame => "catsAndDragons.subscriptionRenewalNumberIsSame".to_string(),
-            Self::CantBuyScience => "catsAndDragons.cantBuyScience".to_string(),
-            Self::InvalidMembershipTypeForPurchase => "catsAndDragons.invalidMembershipTypeForPurchase".to_string(),
-            Self::MapLevelTooLow => "catsAndDragons.mapLevelTooLow".to_string(),
-            Self::UnknownLootboxRewardType => "catsAndDragons.unknownLootboxRewardType".to_string(),
-            Self::InvalidJson => "catsAndDragons.invalidJson".to_string(),
-            Self::UserWhoInvitesDoesNotExists => "catsAndDragons.userWhoInvitesDoesNotExists".to_string(),
-            Self::InvalidPurchaseParam => "catsAndDragons.invalidPurchaseParam".to_string(),
-            Self::InvalidTaskId => "catsAndDragons.invalidTaskId".to_string(),
-            Self::SaveDataNotFound => "catsAndDragons.saveDataNotFound".to_string(),
-            Self::ErrorWithConnectionToMicroservice => "catsAndDragons.errorWithConnectionToMicroservice".to_string(),
-            Self::CardMaxLevelNotFound => "catsAndDragons.cardMaxLevelNotFound".to_string(),
-            Self::InvalidTheoremReachTransactionId => "catsAndDragons.invalidTheoremReachTransactionId".to_string(),
-            Self::NoSuchAchievement => "catsAndDragons.noSuchAchievement".to_string(),
-            Self::NoWebId => "catsAndDragons.noWebId".to_string(),
-            Self::CantParseDateTimeFormat => "catsAndDragons.cantParseDateTimeFormat".to_string(),
-            Self::OfferIsUnavailable => "catsAndDragons.offerIsUnavailable".to_string(),
-            Self::NoProductId => "catsAndDragons.noProductId".to_string(),
-            Self::LootboxIdParseError => "catsAndDragons.lootboxIdParseError".to_string(),
-            Self::NoReferralCode => "catsAndDragons.noReferralCode".to_string(),
-            Self::NoPurchaseParam => "catsAndDragons.noPurchaseParam".to_string(),
-            Self::NoStatusPurchaseAppId => "catsAndDragons.noStatusPurchaseAppId".to_string(),
-            Self::CantUpdateAppmetricaDeviceId => "catsAndDragons.cantUpdateAppmetricaDeviceId".to_string(),
-            Self::NotEnoughTokensOnBalance => "catsAndDragons.notEnoughTokensOnBalance".to_string(),
-            Self::NoNick => "catsAndDragons.noNick".to_string(),
-            Self::ScoreCannotBeMoreThanLimit => "catsAndDragons.scoreCannotBeMoreThanLimit".to_string(),
-            Self::QuestRewardCloningFailed => "catsAndDragons.questRewardCloningFailed".to_string(),
-            Self::PurchaseInitialized => "catsAndDragons.purchaseInitialized".to_string(),
-            Self::AccountIsAlreadyTied => "catsAndDragons.accountIsAlreadyTied".to_string(),
-            Self::NickChangeCooldownIsNotExpired => "catsAndDragons.nickChangeCooldownIsNotExpired".to_string(),
-            Self::NoPurchaseReceipt => "catsAndDragons.noPurchaseReceipt".to_string(),
-            Self::NoServiceNeeded => "catsAndDragons.noServiceNeeded".to_string(),
-            Self::UserIsNotConnected => "catsAndDragons.userIsNotConnected".to_string(),
-            Self::PurchasePending => "catsAndDragons.purchasePending".to_string(),
-            Self::CrossreferralNotAllowed => "catsAndDragons.crossreferralNotAllowed".to_string(),
-            Self::NoSurveyUserId => "catsAndDragons.noSurveyUserId".to_string(),
-            Self::NoDepositAmount => "catsAndDragons.noDepositAmount".to_string(),
-            Self::InvalidCurrencyType => "catsAndDragons.invalidCurrencyType".to_string(),
-            Self::DeviceIdEmptyOrNull => "catsAndDragons.deviceIdEmptyOrNull".to_string(),
-            Self::InvalidPurchaseReceiptOrStoreId => "catsAndDragons.invalidPurchaseReceiptOrStoreId".to_string(),
-            Self::NoCatId => "catsAndDragons.noCatId".to_string(),
-            Self::UsersLootboxAmountIsNotEnough => "catsAndDragons.usersLootboxAmountIsNotEnough".to_string(),
-            Self::NoAdSpinsAvailable => "catsAndDragons.noAdSpinsAvailable".to_string(),
-            Self::CantDebitHardCurrency => "catsAndDragons.cantDebitHardCurrency".to_string(),
-            Self::InvalidIp => "catsAndDragons.invalidIp".to_string(),
-            Self::NoReferrerCode => "catsAndDragons.noReferrerCode".to_string(),
-            Self::InvitedUserWasInvitedBefore => "catsAndDragons.invitedUserWasInvitedBefore".to_string(),
-            Self::ReferrerSetUnsuccessful => "catsAndDragons.referrerSetUnsuccessful".to_string(),
-            Self::InvalidTransactionId => "catsAndDragons.invalidTransactionId".to_string(),
-            Self::CantFindStorePurchase => "catsAndDragons.cantFindStorePurchase".to_string(),
-            Self::InvalidResponseCode => "catsAndDragons.invalidResponseCode".to_string(),
-            Self::InvalidCardId => "catsAndDragons.invalidCardId".to_string(),
-            Self::NoLevel => "catsAndDragons.noLevel".to_string(),
-            Self::InvalidMultiplierFormat => "catsAndDragons.invalidMultiplierFormat".to_string(),
-            Self::UnsuccessfulLootboxDataUpdate => "catsAndDragons.unsuccessfulLootboxDataUpdate".to_string(),
-            Self::NoAppMetricaDeviceId => "catsAndDragons.noAppMetricaDeviceId".to_string(),
-            Self::UsersCardNotFound => "catsAndDragons.usersCardNotFound".to_string(),
-            Self::NicknameIsTooShort => "catsAndDragons.nicknameIsTooShort".to_string(),
-            Self::NoOfferKey => "catsAndDragons.noOfferKey".to_string(),
-            Self::TransactionIdParseError => "catsAndDragons.transactionIdParseError".to_string(),
-            Self::InvalidSecureKey => "catsAndDragons.invalidSecureKey".to_string(),
-            Self::NoUserId => "catsAndDragons.noUserId".to_string(),
-            Self::InvalidStatusPurchaseAppId => "catsAndDragons.invalidStatusPurchaseAppId".to_string(),
-            Self::UndergoingServerMaintenance => "catsAndDragons.undergoingServerMaintenance".to_string(),
-            Self::NoMultiplier => "catsAndDragons.noMultiplier".to_string(),
-            Self::NoMailOrPassword => "catsAndDragons.noMailOrPassword".to_string(),
-            Self::InvalidScienceName => "catsAndDragons.invalidScienceName".to_string(),
-            Self::NicknameIsTooLong => "catsAndDragons.nicknameIsTooLong".to_string(),
-            Self::InvalidBalance => "catsAndDragons.invalidBalance".to_string(),
-            Self::ReferrerCodeParseError => "catsAndDragons.referrerCodeParseError".to_string(),
-            Self::ScoreEmptyOrNull => "catsAndDragons.scoreEmptyOrNull".to_string(),
-            Self::InvalidMembership => "catsAndDragons.invalidMembership".to_string(),
-            Self::CantUpdateTransaction => "catsAndDragons.cantUpdateTransaction".to_string(),
-            Self::AuthenticationAndProfileWebIdNotEqual => "catsAndDragons.authenticationAndProfileWebIdNotEqual".to_string(),
-            Self::InvalidEventId => "catsAndDragons.invalidEventId".to_string(),
-            Self::UserIsNotAllowedToCompleteTask => "catsAndDragons.userIsNotAllowedToCompleteTask".to_string(),
-            Self::NoSaveData => "catsAndDragons.noSaveData".to_string(),
-            Self::InvalidMailOrPassword => "catsAndDragons.invalidMailOrPassword".to_string(),
-            Self::OrderIdParseError => "catsAndDragons.orderIdParseError".to_string(),
-            Self::NoJsonData => "catsAndDragons.noJsonData".to_string(),
-            Self::IpEmptyOrNull => "catsAndDragons.ipEmptyOrNull".to_string(),
-            Self::NotEnoughBingoItemAmount => "catsAndDragons.notEnoughBingoItemAmount".to_string(),
-            Self::NoScore => "catsAndDragons.noScore".to_string(),
-            Self::NoPurchaseRecord => "catsAndDragons.noPurchaseRecord".to_string(),
-            Self::InvalidStoreType => "catsAndDragons.invalidStoreType".to_string(),
-            Self::NoConfigKey => "catsAndDragons.noConfigKey".to_string(),
-            Self::SubscriptionIsInTrialPeriod => "catsAndDragons.subscriptionIsInTrialPeriod".to_string(),
-            Self::InvalidClientVersion => "catsAndDragons.invalidClientVersion".to_string(),
-            Self::PurchaseValidationUnsuccessful => "catsAndDragons.purchaseValidationUnsuccessful".to_string(),
-            Self::NoSuchStrategy => "catsAndDragons.noSuchStrategy".to_string(),
-            Self::HardCurrencyNullOrEmpty => "catsAndDragons.hardCurrencyNullOrEmpty".to_string(),
-            Self::InvalidScore => "catsAndDragons.invalidScore".to_string(),
-            Self::NoDeviceId => "catsAndDragons.noDeviceId".to_string(),
-            Self::InvalidRecipeId => "catsAndDragons.invalidRecipeId".to_string(),
-            Self::NoTheoremReachTransactionId => "catsAndDragons.noTheoremReachTransactionId".to_string(),
-            Self::NickAlreadyExists => "catsAndDragons.nickAlreadyExists".to_string(),
-            Self::UnlinkingTheDeviceMoreThanOnceAWeek => "catsAndDragons.unlinkingTheDeviceMoreThanOnceAWeek".to_string(),
-            Self::ToWebIdNotExists => "catsAndDragons.toWebIdNotExists".to_string(),
-            Self::InvalidNick => "catsAndDragons.invalidNick".to_string(),
-            Self::UserMembershipIsHigher => "catsAndDragons.userMembershipIsHigher".to_string(),
-            Self::WebIdNotFound => "catsAndDragons.webIdNotFound".to_string(),
-            Self::CantCreateTransaction => "catsAndDragons.cantCreateTransaction".to_string(),
-            Self::InvalidHardCurrencyTransactionType => "catsAndDragons.invalidHardCurrencyTransactionType".to_string(),
-            Self::InvalidStatusPurchaseAppIdFormat => "catsAndDragons.invalidStatusPurchaseAppIdFormat".to_string(),
-            Self::MembershipSubscriptionPurchaseRecordDoesNotExist => {
-                "catsAndDragons.membershipSubscriptionPurchaseRecordDoesNotExist".to_string()
-            }
-            Self::ErrorWithDatabaseColumnName => "catsAndDragons.errorWithDatabaseColumnName".to_string(),
-            Self::WebRequestError => "catsAndDragons.webRequestError".to_string(),
-            Self::EndDateIsLessThanStartDate => "catsAndDragons.endDateIsLessThanStartDate".to_string(),
-            Self::TheoremReachTransactionIdEmptyOrNull => "catsAndDragons.theoremReachTransactionIdEmptyOrNull".to_string(),
-            Self::InvalidConfigJson => "catsAndDragons.invalidConfigJson".to_string(),
-            Self::NoProductType => "catsAndDragons.noProductType".to_string(),
-            Self::NoAchievements => "catsAndDragons.noAchievements".to_string(),
-            Self::InvitedUserDoesNotExists => "catsAndDragons.invitedUserDoesNotExists".to_string(),
-            Self::DoubleRequest => "catsAndDragons.doubleRequest".to_string(),
-            Self::CantFindHardCurrencyTransactionType => "catsAndDragons.cantFindHardCurrencyTransactionType".to_string(),
-            Self::WebDataNotFound => "catsAndDragons.webDataNotFound".to_string(),
-            Self::NoSuchTaskReward => "catsAndDragons.noSuchTaskReward".to_string(),
-            Self::NoEndDate => "catsAndDragons.noEndDate".to_string(),
-            Self::WebIdEmptyOrNull => "catsAndDragons.webIdEmptyOrNull".to_string(),
-            Self::NoOfferToroAmount => "catsAndDragons.noOfferToroAmount".to_string(),
-            Self::InvalidPurchaseType => "catsAndDragons.invalidPurchaseType".to_string(),
-            Self::NoIp => "catsAndDragons.noIp".to_string(),
-            Self::NicknameEmptyOrNull => "catsAndDragons.nicknameEmptyOrNull".to_string(),
-            Self::InvalidIsNull => "catsAndDragons.invalidIsNull".to_string(),
-            Self::TransactionTypeIsNull => "catsAndDragons.transactionTypeIsNull".to_string(),
-            Self::InvalidProductId => "catsAndDragons.invalidProductId".to_string(),
-            Self::RewardsIsNull => "catsAndDragons.rewardsIsNull".to_string(),
-            Self::InvalidReferrerId => "catsAndDragons.invalidReferrerId".to_string(),
-            Self::MissingParameter => "catsAndDragons.missingParameter".to_string(),
-            Self::CardAlreadyAtMaxLevel => "catsAndDragons.cardAlreadyAtMaxLevel".to_string(),
-            Self::NoDeviceAttached => "catsAndDragons.noDeviceAttached".to_string(),
-            Self::UnknownPurchaseStatus => "catsAndDragons.unknownPurchaseStatus".to_string(),
-            Self::ReferrerIdParseError => "catsAndDragons.referrerIdParseError".to_string(),
-            Self::PriceParseError => "catsAndDragons.priceParseError".to_string(),
-            Self::NoMembership => "catsAndDragons.noMembership".to_string(),
-            Self::ErrorWithNameOfDatabaseRelation => "catsAndDragons.errorWithNameOfDatabaseRelation".to_string(),
-            Self::InvalidLootboxId => "catsAndDragons.invalidLootboxId".to_string(),
-            Self::InvalidProductType => "catsAndDragons.invalidProductType".to_string(),
-            Self::InvalidTheoremReachReward => "catsAndDragons.invalidTheoremReachReward".to_string(),
-            Self::TransactionIdNullOrEmpty => "catsAndDragons.transactionIdNullOrEmpty".to_string(),
-            Self::ExchangeWebRequestError => "catsAndDragons.exchangeWebRequestError".to_string(),
-            Self::WebIdAlreadyDefaultOrNotExists => "catsAndDragons.webIdAlreadyDefaultOrNotExists".to_string(),
-            Self::AccountWithWebidHasProgress => "catsAndDragons.accountWithWebidHasProgress".to_string(),
-            Self::TaskListEmpty => "catsAndDragons.taskListEmpty".to_string(),
-            Self::AuthorizationFail => "catsAndDragons.authorizationFail".to_string(),
-            Self::ProductIdEmptyOrNull => "catsAndDragons.productIdEmptyOrNull".to_string(),
-            Self::BingoSeasonIsNoActive => "catsAndDragons.bingoSeasonIsNoActive".to_string(),
-            Self::NoPurchaseToken => "catsAndDragons.noPurchaseToken".to_string(),
-            Self::NoTask => "catsAndDragons.noTask".to_string(),
-            Self::UserNotExist => "catsAndDragons.userNotExist".to_string(),
-            Self::NoName => "catsAndDragons.noName".to_string(),
-            Self::PasswordEmptyOrNull => "catsAndDragons.passwordEmptyOrNull".to_string(),
-            Self::InvalidPurchaseKey => "catsAndDragons.invalidPurchaseKey".to_string(),
-            Self::MembershipNotExists => "catsAndDragons.membershipNotExists".to_string(),
-            Self::InvalidMultiplier => "catsAndDragons.invalidMultiplier".to_string(),
-            Self::NoHardCurrency => "catsAndDragons.noHardCurrency".to_string(),
-            Self::InvalidOfferToroAmountFormat => "catsAndDragons.invalidOfferToroAmountFormat".to_string(),
-            Self::PurchaseRecordUnsuccessful => "catsAndDragons.purchaseRecordUnsuccessful".to_string(),
-            Self::RequiredScienceNotFound => "catsAndDragons.requiredScienceNotFound".to_string(),
-            Self::InvalidParseSurveyToken => "catsAndDragons.invalidParseSurveyToken".to_string(),
-            Self::NoPurchaseTokenData => "catsAndDragons.noPurchaseTokenData".to_string(),
-            Self::SurveyIsAlreadyRecorded => "catsAndDragons.surveyIsAlreadyRecorded".to_string(),
-        }
-    }
-}
-impl CatsAndDragons {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            CatsAndDragons::NotEnoughScience => 127u64,
-            CatsAndDragons::OneRequestKeyWithMultipleValues => 204u64,
-            CatsAndDragons::InvalidSkillKey => 177u64,
-            CatsAndDragons::UsersLootboxNotFound => 135u64,
-            CatsAndDragons::NoPaymentState => 57u64,
-            CatsAndDragons::InvalidAmountFormat => 38u64,
-            CatsAndDragons::NoLootboxId => 137u64,
-            CatsAndDragons::TaskIsOutOfDate => 39u64,
-            CatsAndDragons::NoAppId => 205u64,
-            CatsAndDragons::NoJson => 7u64,
-            CatsAndDragons::NoSpinType => 20u64,
-            CatsAndDragons::AchievementCompleted => 35u64,
-            CatsAndDragons::MembershipSubscriptionPurchaseIsNotAvailable => 63u64,
-            CatsAndDragons::ToWebIdLinked => 123u64,
-            CatsAndDragons::InvitedUserAlreadyHaveCompletedAchievements => 78u64,
-            CatsAndDragons::SuccessWithoutCredit => 103u64,
-            CatsAndDragons::CardUpgradeInfoNotFound => 130u64,
-            CatsAndDragons::AmountLessOne => 11u64,
-            CatsAndDragons::NoCardId => 129u64,
-            CatsAndDragons::InvalidValidation => 80u64,
-            CatsAndDragons::NoPrice => 183u64,
-            CatsAndDragons::NoConfigJson => 116u64,
-            CatsAndDragons::NoStartDate => 224u64,
-            CatsAndDragons::InvalidSpinType => 21u64,
-            CatsAndDragons::ScoreParseError => 51u64,
-            CatsAndDragons::NoStoreType => 26u64,
-            CatsAndDragons::UserInBlackList => 4u64,
-            CatsAndDragons::NoTaskId => 189u64,
-            CatsAndDragons::NoTheoremReachReward => 213u64,
-            CatsAndDragons::InvalidHardCurrencyFormat => 221u64,
-            CatsAndDragons::PurchaseReceiptEmptyOrNull => 228u64,
-            CatsAndDragons::OfferKeyNotExists => 104u64,
-            CatsAndDragons::NoReferralLink => 169u64,
-            CatsAndDragons::AlreadyAuthorized => 119u64,
-            CatsAndDragons::NoCompletedTasks => 34u64,
-            CatsAndDragons::UndergoingServerUpdate => 112u64,
-            CatsAndDragons::NoSuchSkillKey => 181u64,
-            CatsAndDragons::MapLevelIsEmpty => 240u64,
-            CatsAndDragons::NoToken => 28u64,
-            CatsAndDragons::PurchaseRefunded => 201u64,
-            CatsAndDragons::ProfileIsNull => 178u64,
-            CatsAndDragons::InvalidOid => 253u64,
-            CatsAndDragons::PurchaseKeyEmptyOrNull => 248u64,
-            CatsAndDragons::NotEnoughMoneyOnBalance => 108u64,
-            CatsAndDragons::ReferralTaskRewardAlreadyTaken => 75u64,
-            CatsAndDragons::ChestLevelIsUnavailable => 90u64,
-            CatsAndDragons::CouldNotCreditHardCurrency => 98u64,
-            CatsAndDragons::CapitalizationChecksumTestFailedOrInvalidEthereumWallet => 164u64,
-            CatsAndDragons::CatPurchaseParseError => 186u64,
-            CatsAndDragons::AppKeyNotExist => 15u64,
-            CatsAndDragons::ScoreCannotBeLessThanZero => 52u64,
-            CatsAndDragons::InvalidWebId => 252u64,
-            CatsAndDragons::ThisDeviceIdNotExists => 122u64,
-            CatsAndDragons::NoTransactionId => 155u64,
-            CatsAndDragons::LootboxIsOnCooldown => 141u64,
-            CatsAndDragons::InvalidAppMetricaDeviceId => 196u64,
-            CatsAndDragons::InvalidAppId => 29u64,
-            CatsAndDragons::NoPurchaseKey => 179u64,
-            CatsAndDragons::InvalidSurveyToken => 215u64,
-            CatsAndDragons::BingoRecipeNotCrafted => 258u64,
-            CatsAndDragons::InvalidOfferKey => 242u64,
-            CatsAndDragons::UserHasNotCompletedRequiredAmountOfAchievements => 74u64,
-            CatsAndDragons::InvalidAppIdOrSecureKey => 250u64,
-            CatsAndDragons::ConfigWasNotFound => 117u64,
-            CatsAndDragons::InvalidCurrencyPurchaseKey => 176u64,
-            CatsAndDragons::EmailNotVerified => 83u64,
-            CatsAndDragons::InvalidConfigKey => 244u64,
-            CatsAndDragons::OfferKeyEmptyOrNull => 238u64,
-            CatsAndDragons::NoSuchTask => 37u64,
-            CatsAndDragons::NoHandlerInApp => 32u64,
-            CatsAndDragons::SpendingRecordUnsuccessful => 53u64,
-            CatsAndDragons::NoSecureKey => 17u64,
-            CatsAndDragons::InvalidPaymentStateForSubscriptionRenewal => 61u64,
-            CatsAndDragons::SubscriptionPaymentPending => 67u64,
-            CatsAndDragons::NotAllowed => 77u64,
-            CatsAndDragons::EmailAlreadyInUse => 82u64,
-            CatsAndDragons::PurchaseRewardUnsuccessful => 100u64,
-            CatsAndDragons::ServerTemporarilyUnavailable => 111u64,
-            CatsAndDragons::UnavailableOfferRecordUnsuccessful => 105u64,
-            CatsAndDragons::ThisDeviceIdIsOccupied => 124u64,
-            CatsAndDragons::NotEnoughCardExperience => 128u64,
-            CatsAndDragons::CardInfoNotFound => 131u64,
-            CatsAndDragons::NoOid => 209u64,
-            CatsAndDragons::InvalidDeviceId => 245u64,
-            CatsAndDragons::NoInappPurchaseData => 200u64,
-            CatsAndDragons::JsonEmptyOrNull => 237u64,
-            CatsAndDragons::NoBingoRecipeId => 259u64,
-            CatsAndDragons::NoBingoItem => 255u64,
-            CatsAndDragons::InvalidToken => 14u64,
-            CatsAndDragons::TaskCompleted => 13u64,
-            CatsAndDragons::CatIdParseError => 184u64,
-            CatsAndDragons::HardCurrencyLessOne => 30u64,
-            CatsAndDragons::InvalidPurchase => 97u64,
-            CatsAndDragons::DeviceIsOccupied => 43u64,
-            CatsAndDragons::UserWhoInvitesAndInvitedUserAreSame => 71u64,
-            CatsAndDragons::Disconnect => 159u64,
-            CatsAndDragons::PurchaseCanceled => 193u64,
-            CatsAndDragons::SubscriptionRenewalNumberIsSame => 62u64,
-            CatsAndDragons::CantBuyScience => 154u64,
-            CatsAndDragons::InvalidMembershipTypeForPurchase => 58u64,
-            CatsAndDragons::MapLevelTooLow => 89u64,
-            CatsAndDragons::UnknownLootboxRewardType => 139u64,
-            CatsAndDragons::InvalidJson => 8u64,
-            CatsAndDragons::UserWhoInvitesDoesNotExists => 70u64,
-            CatsAndDragons::InvalidPurchaseParam => 174u64,
-            CatsAndDragons::InvalidTaskId => 219u64,
-            CatsAndDragons::SaveDataNotFound => 86u64,
-            CatsAndDragons::ErrorWithConnectionToMicroservice => 167u64,
-            CatsAndDragons::CardMaxLevelNotFound => 134u64,
-            CatsAndDragons::InvalidTheoremReachTransactionId => 254u64,
-            CatsAndDragons::NoSuchAchievement => 36u64,
-            CatsAndDragons::NoWebId => 41u64,
-            CatsAndDragons::CantParseDateTimeFormat => 94u64,
-            CatsAndDragons::OfferIsUnavailable => 114u64,
-            CatsAndDragons::NoProductId => 24u64,
-            CatsAndDragons::LootboxIdParseError => 138u64,
-            CatsAndDragons::NoReferralCode => 168u64,
-            CatsAndDragons::NoPurchaseParam => 172u64,
-            CatsAndDragons::NoStatusPurchaseAppId => 187u64,
-            CatsAndDragons::CantUpdateAppmetricaDeviceId => 195u64,
-            CatsAndDragons::NotEnoughTokensOnBalance => 76u64,
-            CatsAndDragons::NoNick => 44u64,
-            CatsAndDragons::ScoreCannotBeMoreThanLimit => 87u64,
-            CatsAndDragons::QuestRewardCloningFailed => 192u64,
-            CatsAndDragons::PurchaseInitialized => 202u64,
-            CatsAndDragons::AccountIsAlreadyTied => 40u64,
-            CatsAndDragons::NickChangeCooldownIsNotExpired => 48u64,
-            CatsAndDragons::NoPurchaseReceipt => 102u64,
-            CatsAndDragons::NoServiceNeeded => 107u64,
-            CatsAndDragons::UserIsNotConnected => 162u64,
-            CatsAndDragons::PurchasePending => 194u64,
-            CatsAndDragons::CrossreferralNotAllowed => 73u64,
-            CatsAndDragons::NoSurveyUserId => 214u64,
-            CatsAndDragons::NoDepositAmount => 79u64,
-            CatsAndDragons::InvalidCurrencyType => 175u64,
-            CatsAndDragons::DeviceIdEmptyOrNull => 227u64,
-            CatsAndDragons::InvalidPurchaseReceiptOrStoreId => 229u64,
-            CatsAndDragons::NoCatId => 182u64,
-            CatsAndDragons::UsersLootboxAmountIsNotEnough => 136u64,
-            CatsAndDragons::NoAdSpinsAvailable => 22u64,
-            CatsAndDragons::CantDebitHardCurrency => 23u64,
-            CatsAndDragons::InvalidIp => 246u64,
-            CatsAndDragons::NoReferrerCode => 64u64,
-            CatsAndDragons::InvitedUserWasInvitedBefore => 72u64,
-            CatsAndDragons::ReferrerSetUnsuccessful => 66u64,
-            CatsAndDragons::InvalidTransactionId => 251u64,
-            CatsAndDragons::CantFindStorePurchase => 151u64,
-            CatsAndDragons::InvalidResponseCode => 199u64,
-            CatsAndDragons::InvalidCardId => 206u64,
-            CatsAndDragons::NoLevel => 88u64,
-            CatsAndDragons::InvalidMultiplierFormat => 235u64,
-            CatsAndDragons::UnsuccessfulLootboxDataUpdate => 142u64,
-            CatsAndDragons::NoAppMetricaDeviceId => 197u64,
-            CatsAndDragons::UsersCardNotFound => 126u64,
-            CatsAndDragons::NicknameIsTooShort => 47u64,
-            CatsAndDragons::NoOfferKey => 106u64,
-            CatsAndDragons::TransactionIdParseError => 156u64,
-            CatsAndDragons::InvalidSecureKey => 5u64,
-            CatsAndDragons::NoUserId => 3u64,
-            CatsAndDragons::InvalidStatusPurchaseAppId => 188u64,
-            CatsAndDragons::UndergoingServerMaintenance => 113u64,
-            CatsAndDragons::NoMultiplier => 149u64,
-            CatsAndDragons::NoMailOrPassword => 2u64,
-            CatsAndDragons::InvalidScienceName => 152u64,
-            CatsAndDragons::NicknameIsTooLong => 49u64,
-            CatsAndDragons::InvalidBalance => 96u64,
-            CatsAndDragons::ReferrerCodeParseError => 65u64,
-            CatsAndDragons::ScoreEmptyOrNull => 233u64,
-            CatsAndDragons::InvalidMembership => 148u64,
-            CatsAndDragons::CantUpdateTransaction => 144u64,
-            CatsAndDragons::AuthenticationAndProfileWebIdNotEqual => 118u64,
-            CatsAndDragons::InvalidEventId => 9u64,
-            CatsAndDragons::UserIsNotAllowedToCompleteTask => 191u64,
-            CatsAndDragons::NoSaveData => 85u64,
-            CatsAndDragons::InvalidMailOrPassword => 1u64,
-            CatsAndDragons::OrderIdParseError => 60u64,
-            CatsAndDragons::NoJsonData => 207u64,
-            CatsAndDragons::IpEmptyOrNull => 230u64,
-            CatsAndDragons::NotEnoughBingoItemAmount => 256u64,
-            CatsAndDragons::NoScore => 50u64,
-            CatsAndDragons::NoPurchaseRecord => 157u64,
-            CatsAndDragons::InvalidStoreType => 27u64,
-            CatsAndDragons::NoConfigKey => 115u64,
-            CatsAndDragons::SubscriptionIsInTrialPeriod => 68u64,
-            CatsAndDragons::InvalidClientVersion => 161u64,
-            CatsAndDragons::PurchaseValidationUnsuccessful => 101u64,
-            CatsAndDragons::NoSuchStrategy => 170u64,
-            CatsAndDragons::HardCurrencyNullOrEmpty => 220u64,
-            CatsAndDragons::InvalidScore => 249u64,
-            CatsAndDragons::NoDeviceId => 18u64,
-            CatsAndDragons::InvalidRecipeId => 260u64,
-            CatsAndDragons::NoTheoremReachTransactionId => 211u64,
-            CatsAndDragons::NickAlreadyExists => 45u64,
-            CatsAndDragons::UnlinkingTheDeviceMoreThanOnceAWeek => 110u64,
-            CatsAndDragons::ToWebIdNotExists => 121u64,
-            CatsAndDragons::InvalidNick => 46u64,
-            CatsAndDragons::UserMembershipIsHigher => 55u64,
-            CatsAndDragons::WebIdNotFound => 91u64,
-            CatsAndDragons::CantCreateTransaction => 143u64,
-            CatsAndDragons::InvalidHardCurrencyTransactionType => 222u64,
-            CatsAndDragons::InvalidStatusPurchaseAppIdFormat => 236u64,
-            CatsAndDragons::MembershipSubscriptionPurchaseRecordDoesNotExist => 59u64,
-            CatsAndDragons::ErrorWithDatabaseColumnName => 166u64,
-            CatsAndDragons::WebRequestError => 163u64,
-            CatsAndDragons::EndDateIsLessThanStartDate => 95u64,
-            CatsAndDragons::TheoremReachTransactionIdEmptyOrNull => 212u64,
-            CatsAndDragons::InvalidConfigJson => 243u64,
-            CatsAndDragons::NoProductType => 171u64,
-            CatsAndDragons::NoAchievements => 33u64,
-            CatsAndDragons::InvitedUserDoesNotExists => 69u64,
-            CatsAndDragons::DoubleRequest => 10u64,
-            CatsAndDragons::CantFindHardCurrencyTransactionType => 93u64,
-            CatsAndDragons::WebDataNotFound => 146u64,
-            CatsAndDragons::NoSuchTaskReward => 190u64,
-            CatsAndDragons::NoEndDate => 225u64,
-            CatsAndDragons::WebIdEmptyOrNull => 239u64,
-            CatsAndDragons::NoOfferToroAmount => 210u64,
-            CatsAndDragons::InvalidPurchaseType => 56u64,
-            CatsAndDragons::NoIp => 81u64,
-            CatsAndDragons::NicknameEmptyOrNull => 226u64,
-            CatsAndDragons::InvalidIsNull => 234u64,
-            CatsAndDragons::TransactionTypeIsNull => 241u64,
-            CatsAndDragons::InvalidProductId => 247u64,
-            CatsAndDragons::RewardsIsNull => 19u64,
-            CatsAndDragons::InvalidReferrerId => 208u64,
-            CatsAndDragons::MissingParameter => 84u64,
-            CatsAndDragons::CardAlreadyAtMaxLevel => 132u64,
-            CatsAndDragons::NoDeviceAttached => 109u64,
-            CatsAndDragons::UnknownPurchaseStatus => 203u64,
-            CatsAndDragons::ReferrerIdParseError => 125u64,
-            CatsAndDragons::PriceParseError => 185u64,
-            CatsAndDragons::NoMembership => 147u64,
-            CatsAndDragons::ErrorWithNameOfDatabaseRelation => 165u64,
-            CatsAndDragons::InvalidLootboxId => 140u64,
-            CatsAndDragons::InvalidProductType => 173u64,
-            CatsAndDragons::InvalidTheoremReachReward => 217u64,
-            CatsAndDragons::TransactionIdNullOrEmpty => 223u64,
-            CatsAndDragons::ExchangeWebRequestError => 145u64,
-            CatsAndDragons::WebIdAlreadyDefaultOrNotExists => 42u64,
-            CatsAndDragons::AccountWithWebidHasProgress => 120u64,
-            CatsAndDragons::TaskListEmpty => 16u64,
-            CatsAndDragons::AuthorizationFail => 160u64,
-            CatsAndDragons::ProductIdEmptyOrNull => 232u64,
-            CatsAndDragons::BingoSeasonIsNoActive => 257u64,
-            CatsAndDragons::NoPurchaseToken => 25u64,
-            CatsAndDragons::NoTask => 12u64,
-            CatsAndDragons::UserNotExist => 6u64,
-            CatsAndDragons::NoName => 153u64,
-            CatsAndDragons::PasswordEmptyOrNull => 231u64,
-            CatsAndDragons::InvalidPurchaseKey => 180u64,
-            CatsAndDragons::MembershipNotExists => 54u64,
-            CatsAndDragons::InvalidMultiplier => 150u64,
-            CatsAndDragons::NoHardCurrency => 31u64,
-            CatsAndDragons::InvalidOfferToroAmountFormat => 218u64,
-            CatsAndDragons::PurchaseRecordUnsuccessful => 99u64,
-            CatsAndDragons::RequiredScienceNotFound => 133u64,
-            CatsAndDragons::InvalidParseSurveyToken => 216u64,
-            CatsAndDragons::NoPurchaseTokenData => 198u64,
-            CatsAndDragons::SurveyIsAlreadyRecorded => 158u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Auth {
-    #[serde(rename = "auth.notEnoughPermissions")]
-    NotEnoughPermissions,
-    #[serde(rename = "auth.accessDenied")]
-    AccessDenied,
-    #[serde(rename = "auth.alreadyBanned")]
-    AlreadyBanned,
-    #[serde(rename = "auth.unconfirmedEmail")]
-    UnconfirmedEmail,
-    #[serde(rename = "auth.userAttemptsExhausted")]
-    UserAttemptsExhausted,
-    #[serde(rename = "auth.invalidCredentials")]
-    InvalidCredentials,
-    #[serde(rename = "auth.invalidRefreshToken")]
-    InvalidRefreshToken,
-    #[serde(rename = "auth.deleteUser")]
-    DeleteUser,
-    #[serde(rename = "auth.unauthorized")]
-    Unauthorized,
-    #[serde(rename = "auth.alreadySent")]
-    AlreadySent,
-    #[serde(rename = "auth.userAlreadyExists")]
-    UserAlreadyExists,
-    #[serde(rename = "auth.passwordMinLength")]
-    PasswordMinLength,
-    #[serde(rename = "auth.sessionsError")]
-    SessionsError,
-    #[serde(rename = "auth.wrongToken")]
-    WrongToken,
-    #[serde(rename = "auth.invalidToken")]
-    InvalidToken,
-    #[serde(rename = "auth.userDoesntExists")]
-    UserDoesntExists,
-    #[serde(rename = "auth.internalError")]
+    #[serde(rename = "geo.invalidCountry")]
+    InvalidCountry,
+    #[serde(rename = "geo.internalError")]
     InternalError,
-    #[serde(rename = "auth.invalidConfirmationCode")]
-    InvalidConfirmationCode,
-    #[serde(rename = "auth.expiredLink")]
-    ExpiredLink,
 }
-impl ToString for Auth {
+impl ToString for Geo {
     fn to_string(&self) -> String {
         match self {
-            Self::NotEnoughPermissions => "auth.notEnoughPermissions".to_string(),
-            Self::AccessDenied => "auth.accessDenied".to_string(),
-            Self::AlreadyBanned => "auth.alreadyBanned".to_string(),
-            Self::UnconfirmedEmail => "auth.unconfirmedEmail".to_string(),
-            Self::UserAttemptsExhausted => "auth.userAttemptsExhausted".to_string(),
-            Self::InvalidCredentials => "auth.invalidCredentials".to_string(),
-            Self::InvalidRefreshToken => "auth.invalidRefreshToken".to_string(),
-            Self::DeleteUser => "auth.deleteUser".to_string(),
-            Self::Unauthorized => "auth.unauthorized".to_string(),
-            Self::AlreadySent => "auth.alreadySent".to_string(),
-            Self::UserAlreadyExists => "auth.userAlreadyExists".to_string(),
-            Self::PasswordMinLength => "auth.passwordMinLength".to_string(),
-            Self::SessionsError => "auth.sessionsError".to_string(),
-            Self::WrongToken => "auth.wrongToken".to_string(),
-            Self::InvalidToken => "auth.invalidToken".to_string(),
-            Self::UserDoesntExists => "auth.userDoesntExists".to_string(),
-            Self::InternalError => "auth.internalError".to_string(),
-            Self::InvalidConfirmationCode => "auth.invalidConfirmationCode".to_string(),
-            Self::ExpiredLink => "auth.expiredLink".to_string(),
+            Self::InvalidContinent => "geo.invalidContinent".to_string(),
+            Self::InvalidIp => "geo.invalidIp".to_string(),
+            Self::InvalidCountry => "geo.invalidCountry".to_string(),
+            Self::InternalError => "geo.internalError".to_string(),
         }
     }
 }
-impl Auth {
-    pub fn to_u64(&self) -> u64 {
+impl Geo {
+    pub fn to_u32(&self) -> u32 {
         match self {
-            Auth::NotEnoughPermissions => 38952u64,
-            Auth::AccessDenied => 15666u64,
-            Auth::AlreadyBanned => 5548064u64,
-            Auth::UnconfirmedEmail => 4532516u64,
-            Auth::UserAttemptsExhausted => 5273895u64,
-            Auth::InvalidCredentials => 18560u64,
-            Auth::InvalidRefreshToken => 1611813u64,
-            Auth::DeleteUser => 2447657u64,
-            Auth::Unauthorized => 43056u64,
-            Auth::AlreadySent => 16291u64,
-            Auth::UserAlreadyExists => 28514u64,
-            Auth::PasswordMinLength => 16273u64,
-            Auth::SessionsError => 16435u64,
-            Auth::WrongToken => 40752u64,
-            Auth::InvalidToken => 35873u64,
-            Auth::UserDoesntExists => 15425u64,
-            Auth::InternalError => 9795625u64,
-            Auth::InvalidConfirmationCode => 15233u64,
-            Auth::ExpiredLink => 26661u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Redis {
-    #[serde(rename = "redis.parse")]
-    Parse,
-    #[serde(rename = "redis.internalServerError")]
-    InternalServerError,
-    #[serde(rename = "redis.notFound")]
-    NotFound,
-}
-impl ToString for Redis {
-    fn to_string(&self) -> String {
-        match self {
-            Self::Parse => "redis.parse".to_string(),
-            Self::InternalServerError => "redis.internalServerError".to_string(),
-            Self::NotFound => "redis.notFound".to_string(),
-        }
-    }
-}
-impl Redis {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            Redis::Parse => 1214752u64,
-            Redis::InternalServerError => 18566u64,
-            Redis::NotFound => 10067u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum AdminOptions {
-    #[serde(rename = "adminOptions.add")]
-    Add,
-    #[serde(rename = "adminOptions.update")]
-    Update,
-}
-impl ToString for AdminOptions {
-    fn to_string(&self) -> String {
-        match self {
-            Self::Add => "adminOptions.add".to_string(),
-            Self::Update => "adminOptions.update".to_string(),
-        }
-    }
-}
-impl AdminOptions {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            AdminOptions::Add => 15945u64,
-            AdminOptions::Update => 36625u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Orchestrator {
-    #[serde(rename = "orchestrator.zeroAmount")]
-    ZeroAmount,
-}
-impl ToString for Orchestrator {
-    fn to_string(&self) -> String {
-        match self {
-            Self::ZeroAmount => "orchestrator.zeroAmount".to_string(),
-        }
-    }
-}
-impl Orchestrator {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            Orchestrator::ZeroAmount => 2115620u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Soul {
-    #[serde(rename = "soul.txAlreadySending")]
-    TxAlreadySending,
-    #[serde(rename = "soul.callContractMethod")]
-    CallContractMethod,
-    #[serde(rename = "soul.getData")]
-    GetData,
-}
-impl ToString for Soul {
-    fn to_string(&self) -> String {
-        match self {
-            Self::TxAlreadySending => "soul.txAlreadySending".to_string(),
-            Self::CallContractMethod => "soul.callContractMethod".to_string(),
-            Self::GetData => "soul.getData".to_string(),
-        }
-    }
-}
-impl Soul {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            Soul::TxAlreadySending => 15921u64,
-            Soul::CallContractMethod => 10279u64,
-            Soul::GetData => 4569392u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum BytesFormatter {
-    #[serde(rename = "bytesFormatter.internalError")]
-    InternalError,
-    #[serde(rename = "bytesFormatter.handshakeAuthToken")]
-    HandshakeAuthToken,
-    #[serde(rename = "bytesFormatter.handshakeSessionToken")]
-    HandshakeSessionToken,
-    #[serde(rename = "bytesFormatter.handshakeInvalidVersion")]
-    HandshakeInvalidVersion,
-}
-impl ToString for BytesFormatter {
-    fn to_string(&self) -> String {
-        match self {
-            Self::InternalError => "bytesFormatter.internalError".to_string(),
-            Self::HandshakeAuthToken => "bytesFormatter.handshakeAuthToken".to_string(),
-            Self::HandshakeSessionToken => "bytesFormatter.handshakeSessionToken".to_string(),
-            Self::HandshakeInvalidVersion => "bytesFormatter.handshakeInvalidVersion".to_string(),
-        }
-    }
-}
-impl BytesFormatter {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            BytesFormatter::InternalError => 43553u64,
-            BytesFormatter::HandshakeAuthToken => 18579u64,
-            BytesFormatter::HandshakeSessionToken => 40024u64,
-            BytesFormatter::HandshakeInvalidVersion => 10087u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Permissions {
-    #[serde(rename = "permissions.notAllowed")]
-    NotAllowed,
-}
-impl ToString for Permissions {
-    fn to_string(&self) -> String {
-        match self {
-            Self::NotAllowed => "permissions.notAllowed".to_string(),
-        }
-    }
-}
-impl Permissions {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            Permissions::NotAllowed => 9918500u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Action {
-    #[serde(rename = "action.notCancelable")]
-    NotCancelable,
-}
-impl ToString for Action {
-    fn to_string(&self) -> String {
-        match self {
-            Self::NotCancelable => "action.notCancelable".to_string(),
-        }
-    }
-}
-impl Action {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            Action::NotCancelable => 4405299u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Utils {
-    #[serde(rename = "utils.decryption")]
-    Decryption,
-}
-impl ToString for Utils {
-    fn to_string(&self) -> String {
-        match self {
-            Self::Decryption => "utils.decryption".to_string(),
-        }
-    }
-}
-impl Utils {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            Utils::Decryption => 1148968u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Nats {
-    #[serde(rename = "nats.internalServiceCall")]
-    InternalServiceCall,
-    #[serde(rename = "nats.receive")]
-    Receive,
-    #[serde(rename = "nats.send")]
-    Send,
-}
-impl ToString for Nats {
-    fn to_string(&self) -> String {
-        match self {
-            Self::InternalServiceCall => "nats.internalServiceCall".to_string(),
-            Self::Receive => "nats.receive".to_string(),
-            Self::Send => "nats.send".to_string(),
-        }
-    }
-}
-impl Nats {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            Nats::InternalServiceCall => 19509u64,
-            Nats::Receive => 39721u64,
-            Nats::Send => 36898u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Roles {
-    #[serde(rename = "roles.alreadyHasRole")]
-    AlreadyHasRole,
-}
-impl ToString for Roles {
-    fn to_string(&self) -> String {
-        match self {
-            Self::AlreadyHasRole => "roles.alreadyHasRole".to_string(),
-        }
-    }
-}
-impl Roles {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            Roles::AlreadyHasRole => 4815156u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Profile {
-    #[serde(rename = "profile.alreadyBanned")]
-    AlreadyBanned,
-    #[serde(rename = "profile.alreadySubscribed")]
-    AlreadySubscribed,
-    #[serde(rename = "profile.notBanned")]
-    NotBanned,
-}
-impl ToString for Profile {
-    fn to_string(&self) -> String {
-        match self {
-            Self::AlreadyBanned => "profile.alreadyBanned".to_string(),
-            Self::AlreadySubscribed => "profile.alreadySubscribed".to_string(),
-            Self::NotBanned => "profile.notBanned".to_string(),
-        }
-    }
-}
-impl Profile {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            Profile::AlreadyBanned => 15945u64,
-            Profile::AlreadySubscribed => 10274u64,
-            Profile::NotBanned => 2123817u64,
+            Geo::InvalidContinent => 48163u32,
+            Geo::InvalidIp => 3696947u32,
+            Geo::InvalidCountry => 9590823u32,
+            Geo::InternalError => 5331251u32,
         }
     }
 }
@@ -1916,98 +329,1199 @@ impl ToString for ProductRegistry {
     }
 }
 impl ProductRegistry {
-    pub fn to_u64(&self) -> u64 {
+    pub fn to_u32(&self) -> u32 {
         match self {
-            ProductRegistry::InternalError => 18497u64,
+            ProductRegistry::InternalError => 18497u32,
         }
     }
 }
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Http {
-    #[serde(rename = "http.400")]
-    E400,
-    #[serde(rename = "http.500")]
-    E500,
-    #[serde(rename = "http.403")]
-    E403,
-    #[serde(rename = "http.401")]
-    E401,
-    #[serde(rename = "http.404")]
-    E404,
+pub enum Roles {
+    #[serde(rename = "roles.alreadyHasRole")]
+    AlreadyHasRole,
 }
-impl ToString for Http {
+impl ToString for Roles {
     fn to_string(&self) -> String {
         match self {
-            Self::E400 => "http.400".to_string(),
-            Self::E500 => "http.500".to_string(),
-            Self::E403 => "http.403".to_string(),
-            Self::E401 => "http.401".to_string(),
-            Self::E404 => "http.404".to_string(),
+            Self::AlreadyHasRole => "roles.alreadyHasRole".to_string(),
         }
     }
 }
-impl Http {
-    pub fn to_u64(&self) -> u64 {
+impl Roles {
+    pub fn to_u32(&self) -> u32 {
         match self {
-            Http::E400 => 400u64,
-            Http::E500 => 500u64,
-            Http::E403 => 403u64,
-            Http::E401 => 401u64,
-            Http::E404 => 404u64,
+            Roles::AlreadyHasRole => 4815156u32,
         }
     }
 }
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Common {
-    #[serde(rename = "common.unknown")]
-    Unknown,
-    #[serde(rename = "common.internalServerError")]
-    InternalServerError,
-}
-impl ToString for Common {
-    fn to_string(&self) -> String {
-        match self {
-            Self::Unknown => "common.unknown".to_string(),
-            Self::InternalServerError => "common.internalServerError".to_string(),
-        }
-    }
-}
-impl Common {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            Common::Unknown => 18497u64,
-            Common::InternalServerError => 18582u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Geo {
-    #[serde(rename = "geo.invalidIp")]
-    InvalidIp,
-    #[serde(rename = "geo.invalidContinent")]
-    InvalidContinent,
-    #[serde(rename = "geo.invalidCountry")]
-    InvalidCountry,
-    #[serde(rename = "geo.internalError")]
+pub enum Auth {
+    #[serde(rename = "auth.userAttemptsExhausted")]
+    UserAttemptsExhausted,
+    #[serde(rename = "auth.alreadyBanned")]
+    AlreadyBanned,
+    #[serde(rename = "auth.invalidConfirmationCode")]
+    InvalidConfirmationCode,
+    #[serde(rename = "auth.alreadySent")]
+    AlreadySent,
+    #[serde(rename = "auth.notEnoughPermissions")]
+    NotEnoughPermissions,
+    #[serde(rename = "auth.userDoesntExists")]
+    UserDoesntExists,
+    #[serde(rename = "auth.wrongToken")]
+    WrongToken,
+    #[serde(rename = "auth.invalidRefreshToken")]
+    InvalidRefreshToken,
+    #[serde(rename = "auth.invalidCredentials")]
+    InvalidCredentials,
+    #[serde(rename = "auth.userAlreadyExists")]
+    UserAlreadyExists,
+    #[serde(rename = "auth.accessDenied")]
+    AccessDenied,
+    #[serde(rename = "auth.unauthorized")]
+    Unauthorized,
+    #[serde(rename = "auth.sessionsError")]
+    SessionsError,
+    #[serde(rename = "auth.deleteUser")]
+    DeleteUser,
+    #[serde(rename = "auth.invalidToken")]
+    InvalidToken,
+    #[serde(rename = "auth.internalError")]
     InternalError,
+    #[serde(rename = "auth.unconfirmedEmail")]
+    UnconfirmedEmail,
+    #[serde(rename = "auth.expiredLink")]
+    ExpiredLink,
+    #[serde(rename = "auth.passwordMinLength")]
+    PasswordMinLength,
 }
-impl ToString for Geo {
+impl ToString for Auth {
     fn to_string(&self) -> String {
         match self {
-            Self::InvalidIp => "geo.invalidIp".to_string(),
-            Self::InvalidContinent => "geo.invalidContinent".to_string(),
-            Self::InvalidCountry => "geo.invalidCountry".to_string(),
-            Self::InternalError => "geo.internalError".to_string(),
+            Self::UserAttemptsExhausted => "auth.userAttemptsExhausted".to_string(),
+            Self::AlreadyBanned => "auth.alreadyBanned".to_string(),
+            Self::InvalidConfirmationCode => "auth.invalidConfirmationCode".to_string(),
+            Self::AlreadySent => "auth.alreadySent".to_string(),
+            Self::NotEnoughPermissions => "auth.notEnoughPermissions".to_string(),
+            Self::UserDoesntExists => "auth.userDoesntExists".to_string(),
+            Self::WrongToken => "auth.wrongToken".to_string(),
+            Self::InvalidRefreshToken => "auth.invalidRefreshToken".to_string(),
+            Self::InvalidCredentials => "auth.invalidCredentials".to_string(),
+            Self::UserAlreadyExists => "auth.userAlreadyExists".to_string(),
+            Self::AccessDenied => "auth.accessDenied".to_string(),
+            Self::Unauthorized => "auth.unauthorized".to_string(),
+            Self::SessionsError => "auth.sessionsError".to_string(),
+            Self::DeleteUser => "auth.deleteUser".to_string(),
+            Self::InvalidToken => "auth.invalidToken".to_string(),
+            Self::InternalError => "auth.internalError".to_string(),
+            Self::UnconfirmedEmail => "auth.unconfirmedEmail".to_string(),
+            Self::ExpiredLink => "auth.expiredLink".to_string(),
+            Self::PasswordMinLength => "auth.passwordMinLength".to_string(),
         }
     }
 }
-impl Geo {
-    pub fn to_u64(&self) -> u64 {
+impl Auth {
+    pub fn to_u32(&self) -> u32 {
         match self {
-            Geo::InvalidIp => 3696947u64,
-            Geo::InvalidContinent => 48163u64,
-            Geo::InvalidCountry => 9590823u64,
-            Geo::InternalError => 5331251u64,
+            Auth::UserAttemptsExhausted => 5273895u32,
+            Auth::AlreadyBanned => 5548064u32,
+            Auth::InvalidConfirmationCode => 15233u32,
+            Auth::AlreadySent => 16291u32,
+            Auth::NotEnoughPermissions => 38952u32,
+            Auth::UserDoesntExists => 15425u32,
+            Auth::WrongToken => 40752u32,
+            Auth::InvalidRefreshToken => 1611813u32,
+            Auth::InvalidCredentials => 18560u32,
+            Auth::UserAlreadyExists => 28514u32,
+            Auth::AccessDenied => 15666u32,
+            Auth::Unauthorized => 43056u32,
+            Auth::SessionsError => 16435u32,
+            Auth::DeleteUser => 2447657u32,
+            Auth::InvalidToken => 35873u32,
+            Auth::InternalError => 9795625u32,
+            Auth::UnconfirmedEmail => 4532516u32,
+            Auth::ExpiredLink => 26661u32,
+            Auth::PasswordMinLength => 16273u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum CatsAndDragons {
+    #[serde(rename = "catsAndDragons.invitedUserDoesNotExists")]
+    InvitedUserDoesNotExists,
+    #[serde(rename = "catsAndDragons.cardMaxLevelNotFound")]
+    CardMaxLevelNotFound,
+    #[serde(rename = "catsAndDragons.noCompletedTasks")]
+    NoCompletedTasks,
+    #[serde(rename = "catsAndDragons.rewardsIsNull")]
+    RewardsIsNull,
+    #[serde(rename = "catsAndDragons.invalidMembershipTypeForPurchase")]
+    InvalidMembershipTypeForPurchase,
+    #[serde(rename = "catsAndDragons.noPurchaseParam")]
+    NoPurchaseParam,
+    #[serde(rename = "catsAndDragons.crossreferralNotAllowed")]
+    CrossreferralNotAllowed,
+    #[serde(rename = "catsAndDragons.referrerCodeParseError")]
+    ReferrerCodeParseError,
+    #[serde(rename = "catsAndDragons.passwordEmptyOrNull")]
+    PasswordEmptyOrNull,
+    #[serde(rename = "catsAndDragons.invalidTheoremReachTransactionId")]
+    InvalidTheoremReachTransactionId,
+    #[serde(rename = "catsAndDragons.noPurchaseToken")]
+    NoPurchaseToken,
+    #[serde(rename = "catsAndDragons.offerIsUnavailable")]
+    OfferIsUnavailable,
+    #[serde(rename = "catsAndDragons.noLootboxId")]
+    NoLootboxId,
+    #[serde(rename = "catsAndDragons.noTask")]
+    NoTask,
+    #[serde(rename = "catsAndDragons.notAllowed")]
+    NotAllowed,
+    #[serde(rename = "catsAndDragons.catPurchaseParseError")]
+    CatPurchaseParseError,
+    #[serde(rename = "catsAndDragons.noDeviceAttached")]
+    NoDeviceAttached,
+    #[serde(rename = "catsAndDragons.webDataNotFound")]
+    WebDataNotFound,
+    #[serde(rename = "catsAndDragons.invalidPurchaseReceiptOrStoreId")]
+    InvalidPurchaseReceiptOrStoreId,
+    #[serde(rename = "catsAndDragons.doubleRequest")]
+    DoubleRequest,
+    #[serde(rename = "catsAndDragons.noAchievements")]
+    NoAchievements,
+    #[serde(rename = "catsAndDragons.nicknameIsTooShort")]
+    NicknameIsTooShort,
+    #[serde(rename = "catsAndDragons.noDepositAmount")]
+    NoDepositAmount,
+    #[serde(rename = "catsAndDragons.invalidAppIdOrSecureKey")]
+    InvalidAppIdOrSecureKey,
+    #[serde(rename = "catsAndDragons.taskCompleted")]
+    TaskCompleted,
+    #[serde(rename = "catsAndDragons.cantParseDateTimeFormat")]
+    CantParseDateTimeFormat,
+    #[serde(rename = "catsAndDragons.noMailOrPassword")]
+    NoMailOrPassword,
+    #[serde(rename = "catsAndDragons.invalidJson")]
+    InvalidJson,
+    #[serde(rename = "catsAndDragons.userHasNotCompletedRequiredAmountOfAchievements")]
+    UserHasNotCompletedRequiredAmountOfAchievements,
+    #[serde(rename = "catsAndDragons.noCatId")]
+    NoCatId,
+    #[serde(rename = "catsAndDragons.invalidParseSurveyToken")]
+    InvalidParseSurveyToken,
+    #[serde(rename = "catsAndDragons.nicknameIsTooLong")]
+    NicknameIsTooLong,
+    #[serde(rename = "catsAndDragons.cardAlreadyAtMaxLevel")]
+    CardAlreadyAtMaxLevel,
+    #[serde(rename = "catsAndDragons.emailNotVerified")]
+    EmailNotVerified,
+    #[serde(rename = "catsAndDragons.invalidEventId")]
+    InvalidEventId,
+    #[serde(rename = "catsAndDragons.missingParameter")]
+    MissingParameter,
+    #[serde(rename = "catsAndDragons.unsuccessfulLootboxDataUpdate")]
+    UnsuccessfulLootboxDataUpdate,
+    #[serde(rename = "catsAndDragons.invalidMultiplier")]
+    InvalidMultiplier,
+    #[serde(rename = "catsAndDragons.noSuchSkillKey")]
+    NoSuchSkillKey,
+    #[serde(rename = "catsAndDragons.purchaseInitialized")]
+    PurchaseInitialized,
+    #[serde(rename = "catsAndDragons.jsonEmptyOrNull")]
+    JsonEmptyOrNull,
+    #[serde(rename = "catsAndDragons.noHandlerInApp")]
+    NoHandlerInApp,
+    #[serde(rename = "catsAndDragons.noSuchTask")]
+    NoSuchTask,
+    #[serde(rename = "catsAndDragons.invitedUserWasInvitedBefore")]
+    InvitedUserWasInvitedBefore,
+    #[serde(rename = "catsAndDragons.notEnoughTokensOnBalance")]
+    NotEnoughTokensOnBalance,
+    #[serde(rename = "catsAndDragons.noConfigKey")]
+    NoConfigKey,
+    #[serde(rename = "catsAndDragons.noPurchaseKey")]
+    NoPurchaseKey,
+    #[serde(rename = "catsAndDragons.noSuchStrategy")]
+    NoSuchStrategy,
+    #[serde(rename = "catsAndDragons.unknownPurchaseStatus")]
+    UnknownPurchaseStatus,
+    #[serde(rename = "catsAndDragons.noBingoItem")]
+    NoBingoItem,
+    #[serde(rename = "catsAndDragons.errorWithConnectionToMicroservice")]
+    ErrorWithConnectionToMicroservice,
+    #[serde(rename = "catsAndDragons.referrerSetUnsuccessful")]
+    ReferrerSetUnsuccessful,
+    #[serde(rename = "catsAndDragons.successWithoutCredit")]
+    SuccessWithoutCredit,
+    #[serde(rename = "catsAndDragons.subscriptionIsInTrialPeriod")]
+    SubscriptionIsInTrialPeriod,
+    #[serde(rename = "catsAndDragons.noServiceNeeded")]
+    NoServiceNeeded,
+    #[serde(rename = "catsAndDragons.nicknameEmptyOrNull")]
+    NicknameEmptyOrNull,
+    #[serde(rename = "catsAndDragons.noJsonData")]
+    NoJsonData,
+    #[serde(rename = "catsAndDragons.noStatusPurchaseAppId")]
+    NoStatusPurchaseAppId,
+    #[serde(rename = "catsAndDragons.emailAlreadyInUse")]
+    EmailAlreadyInUse,
+    #[serde(rename = "catsAndDragons.cantDebitHardCurrency")]
+    CantDebitHardCurrency,
+    #[serde(rename = "catsAndDragons.thisDeviceIdNotExists")]
+    ThisDeviceIdNotExists,
+    #[serde(rename = "catsAndDragons.noJson")]
+    NoJson,
+    #[serde(rename = "catsAndDragons.membershipNotExists")]
+    MembershipNotExists,
+    #[serde(rename = "catsAndDragons.cantFindHardCurrencyTransactionType")]
+    CantFindHardCurrencyTransactionType,
+    #[serde(rename = "catsAndDragons.invalidSecureKey")]
+    InvalidSecureKey,
+    #[serde(rename = "catsAndDragons.purchaseValidationUnsuccessful")]
+    PurchaseValidationUnsuccessful,
+    #[serde(rename = "catsAndDragons.lootboxIdParseError")]
+    LootboxIdParseError,
+    #[serde(rename = "catsAndDragons.purchaseRefunded")]
+    PurchaseRefunded,
+    #[serde(rename = "catsAndDragons.noStoreType")]
+    NoStoreType,
+    #[serde(rename = "catsAndDragons.noSecureKey")]
+    NoSecureKey,
+    #[serde(rename = "catsAndDragons.authorizationFail")]
+    AuthorizationFail,
+    #[serde(rename = "catsAndDragons.invalidLootboxId")]
+    InvalidLootboxId,
+    #[serde(rename = "catsAndDragons.invalidMailOrPassword")]
+    InvalidMailOrPassword,
+    #[serde(rename = "catsAndDragons.noReferralCode")]
+    NoReferralCode,
+    #[serde(rename = "catsAndDragons.invalidIp")]
+    InvalidIp,
+    #[serde(rename = "catsAndDragons.nickChangeCooldownIsNotExpired")]
+    NickChangeCooldownIsNotExpired,
+    #[serde(rename = "catsAndDragons.invalidCurrencyType")]
+    InvalidCurrencyType,
+    #[serde(rename = "catsAndDragons.noPurchaseReceipt")]
+    NoPurchaseReceipt,
+    #[serde(rename = "catsAndDragons.noUserId")]
+    NoUserId,
+    #[serde(rename = "catsAndDragons.referrerIdParseError")]
+    ReferrerIdParseError,
+    #[serde(rename = "catsAndDragons.noReferralLink")]
+    NoReferralLink,
+    #[serde(rename = "catsAndDragons.purchaseCanceled")]
+    PurchaseCanceled,
+    #[serde(rename = "catsAndDragons.offerKeyNotExists")]
+    OfferKeyNotExists,
+    #[serde(rename = "catsAndDragons.membershipSubscriptionPurchaseIsNotAvailable")]
+    MembershipSubscriptionPurchaseIsNotAvailable,
+    #[serde(rename = "catsAndDragons.userInBlackList")]
+    UserInBlackList,
+    #[serde(rename = "catsAndDragons.scoreEmptyOrNull")]
+    ScoreEmptyOrNull,
+    #[serde(rename = "catsAndDragons.invalidProductType")]
+    InvalidProductType,
+    #[serde(rename = "catsAndDragons.invalidOfferKey")]
+    InvalidOfferKey,
+    #[serde(rename = "catsAndDragons.invalidAppId")]
+    InvalidAppId,
+    #[serde(rename = "catsAndDragons.cantBuyScience")]
+    CantBuyScience,
+    #[serde(rename = "catsAndDragons.productIdEmptyOrNull")]
+    ProductIdEmptyOrNull,
+    #[serde(rename = "catsAndDragons.authenticationAndProfileWebIdNotEqual")]
+    AuthenticationAndProfileWebIdNotEqual,
+    #[serde(rename = "catsAndDragons.noPurchaseTokenData")]
+    NoPurchaseTokenData,
+    #[serde(rename = "catsAndDragons.invalidSurveyToken")]
+    InvalidSurveyToken,
+    #[serde(rename = "catsAndDragons.mapLevelIsEmpty")]
+    MapLevelIsEmpty,
+    #[serde(rename = "catsAndDragons.noProductId")]
+    NoProductId,
+    #[serde(rename = "catsAndDragons.invalidValidation")]
+    InvalidValidation,
+    #[serde(rename = "catsAndDragons.scoreParseError")]
+    ScoreParseError,
+    #[serde(rename = "catsAndDragons.invalidTheoremReachReward")]
+    InvalidTheoremReachReward,
+    #[serde(rename = "catsAndDragons.toWebIdNotExists")]
+    ToWebIdNotExists,
+    #[serde(rename = "catsAndDragons.invalidPurchase")]
+    InvalidPurchase,
+    #[serde(rename = "catsAndDragons.spendingRecordUnsuccessful")]
+    SpendingRecordUnsuccessful,
+    #[serde(rename = "catsAndDragons.mapLevelTooLow")]
+    MapLevelTooLow,
+    #[serde(rename = "catsAndDragons.invalidCurrencyPurchaseKey")]
+    InvalidCurrencyPurchaseKey,
+    #[serde(rename = "catsAndDragons.profileIsNull")]
+    ProfileIsNull,
+    #[serde(rename = "catsAndDragons.invalidToken")]
+    InvalidToken,
+    #[serde(rename = "catsAndDragons.invalidTaskId")]
+    InvalidTaskId,
+    #[serde(rename = "catsAndDragons.noBingoRecipeId")]
+    NoBingoRecipeId,
+    #[serde(rename = "catsAndDragons.invalidPurchaseType")]
+    InvalidPurchaseType,
+    #[serde(rename = "catsAndDragons.oneRequestKeyWithMultipleValues")]
+    OneRequestKeyWithMultipleValues,
+    #[serde(rename = "catsAndDragons.disconnect")]
+    Disconnect,
+    #[serde(rename = "catsAndDragons.exchangeWebRequestError")]
+    ExchangeWebRequestError,
+    #[serde(rename = "catsAndDragons.configWasNotFound")]
+    ConfigWasNotFound,
+    #[serde(rename = "catsAndDragons.scoreCannotBeLessThanZero")]
+    ScoreCannotBeLessThanZero,
+    #[serde(rename = "catsAndDragons.usersCardNotFound")]
+    UsersCardNotFound,
+    #[serde(rename = "catsAndDragons.noTransactionId")]
+    NoTransactionId,
+    #[serde(rename = "catsAndDragons.noSuchAchievement")]
+    NoSuchAchievement,
+    #[serde(rename = "catsAndDragons.lootboxIsOnCooldown")]
+    LootboxIsOnCooldown,
+    #[serde(rename = "catsAndDragons.errorWithDatabaseColumnName")]
+    ErrorWithDatabaseColumnName,
+    #[serde(rename = "catsAndDragons.invalidPurchaseParam")]
+    InvalidPurchaseParam,
+    #[serde(rename = "catsAndDragons.invalidPurchaseKey")]
+    InvalidPurchaseKey,
+    #[serde(rename = "catsAndDragons.noReferrerCode")]
+    NoReferrerCode,
+    #[serde(rename = "catsAndDragons.membershipSubscriptionPurchaseRecordDoesNotExist")]
+    MembershipSubscriptionPurchaseRecordDoesNotExist,
+    #[serde(rename = "catsAndDragons.noPrice")]
+    NoPrice,
+    #[serde(rename = "catsAndDragons.invalidResponseCode")]
+    InvalidResponseCode,
+    #[serde(rename = "catsAndDragons.cantFindStorePurchase")]
+    CantFindStorePurchase,
+    #[serde(rename = "catsAndDragons.noSurveyUserId")]
+    NoSurveyUserId,
+    #[serde(rename = "catsAndDragons.invalidConfigJson")]
+    InvalidConfigJson,
+    #[serde(rename = "catsAndDragons.notEnoughScience")]
+    NotEnoughScience,
+    #[serde(rename = "catsAndDragons.invalidConfigKey")]
+    InvalidConfigKey,
+    #[serde(rename = "catsAndDragons.bingoRecipeNotCrafted")]
+    BingoRecipeNotCrafted,
+    #[serde(rename = "catsAndDragons.hardCurrencyNullOrEmpty")]
+    HardCurrencyNullOrEmpty,
+    #[serde(rename = "catsAndDragons.amountLessOne")]
+    AmountLessOne,
+    #[serde(rename = "catsAndDragons.notEnoughCardExperience")]
+    NotEnoughCardExperience,
+    #[serde(rename = "catsAndDragons.noOfferToroAmount")]
+    NoOfferToroAmount,
+    #[serde(rename = "catsAndDragons.taskIsOutOfDate")]
+    TaskIsOutOfDate,
+    #[serde(rename = "catsAndDragons.userWhoInvitesAndInvitedUserAreSame")]
+    UserWhoInvitesAndInvitedUserAreSame,
+    #[serde(rename = "catsAndDragons.noIp")]
+    NoIp,
+    #[serde(rename = "catsAndDragons.noProductType")]
+    NoProductType,
+    #[serde(rename = "catsAndDragons.notEnoughMoneyOnBalance")]
+    NotEnoughMoneyOnBalance,
+    #[serde(rename = "catsAndDragons.accountIsAlreadyTied")]
+    AccountIsAlreadyTied,
+    #[serde(rename = "catsAndDragons.noSuchTaskReward")]
+    NoSuchTaskReward,
+    #[serde(rename = "catsAndDragons.invalidScore")]
+    InvalidScore,
+    #[serde(rename = "catsAndDragons.notEnoughBingoItemAmount")]
+    NotEnoughBingoItemAmount,
+    #[serde(rename = "catsAndDragons.invalidScienceName")]
+    InvalidScienceName,
+    #[serde(rename = "catsAndDragons.alreadyAuthorized")]
+    AlreadyAuthorized,
+    #[serde(rename = "catsAndDragons.undergoingServerMaintenance")]
+    UndergoingServerMaintenance,
+    #[serde(rename = "catsAndDragons.noInappPurchaseData")]
+    NoInappPurchaseData,
+    #[serde(rename = "catsAndDragons.invalidHardCurrencyTransactionType")]
+    InvalidHardCurrencyTransactionType,
+    #[serde(rename = "catsAndDragons.invalidCardId")]
+    InvalidCardId,
+    #[serde(rename = "catsAndDragons.unknownLootboxRewardType")]
+    UnknownLootboxRewardType,
+    #[serde(rename = "catsAndDragons.usersLootboxNotFound")]
+    UsersLootboxNotFound,
+    #[serde(rename = "catsAndDragons.userMembershipIsHigher")]
+    UserMembershipIsHigher,
+    #[serde(rename = "catsAndDragons.purchaseRewardUnsuccessful")]
+    PurchaseRewardUnsuccessful,
+    #[serde(rename = "catsAndDragons.errorWithNameOfDatabaseRelation")]
+    ErrorWithNameOfDatabaseRelation,
+    #[serde(rename = "catsAndDragons.noWebId")]
+    NoWebId,
+    #[serde(rename = "catsAndDragons.noAppId")]
+    NoAppId,
+    #[serde(rename = "catsAndDragons.invalidSpinType")]
+    InvalidSpinType,
+    #[serde(rename = "catsAndDragons.invalidOid")]
+    InvalidOid,
+    #[serde(rename = "catsAndDragons.noOid")]
+    NoOid,
+    #[serde(rename = "catsAndDragons.requiredScienceNotFound")]
+    RequiredScienceNotFound,
+    #[serde(rename = "catsAndDragons.transactionIdNullOrEmpty")]
+    TransactionIdNullOrEmpty,
+    #[serde(rename = "catsAndDragons.userIsNotConnected")]
+    UserIsNotConnected,
+    #[serde(rename = "catsAndDragons.invalidOfferToroAmountFormat")]
+    InvalidOfferToroAmountFormat,
+    #[serde(rename = "catsAndDragons.cantUpdateTransaction")]
+    CantUpdateTransaction,
+    #[serde(rename = "catsAndDragons.userIsNotAllowedToCompleteTask")]
+    UserIsNotAllowedToCompleteTask,
+    #[serde(rename = "catsAndDragons.scoreCannotBeMoreThanLimit")]
+    ScoreCannotBeMoreThanLimit,
+    #[serde(rename = "catsAndDragons.ipEmptyOrNull")]
+    IpEmptyOrNull,
+    #[serde(rename = "catsAndDragons.webIdEmptyOrNull")]
+    WebIdEmptyOrNull,
+    #[serde(rename = "catsAndDragons.noPurchaseRecord")]
+    NoPurchaseRecord,
+    #[serde(rename = "catsAndDragons.unlinkingTheDeviceMoreThanOnceAWeek")]
+    UnlinkingTheDeviceMoreThanOnceAWeek,
+    #[serde(rename = "catsAndDragons.chestLevelIsUnavailable")]
+    ChestLevelIsUnavailable,
+    #[serde(rename = "catsAndDragons.invalidBalance")]
+    InvalidBalance,
+    #[serde(rename = "catsAndDragons.noOfferKey")]
+    NoOfferKey,
+    #[serde(rename = "catsAndDragons.offerKeyEmptyOrNull")]
+    OfferKeyEmptyOrNull,
+    #[serde(rename = "catsAndDragons.invalidMultiplierFormat")]
+    InvalidMultiplierFormat,
+    #[serde(rename = "catsAndDragons.noTaskId")]
+    NoTaskId,
+    #[serde(rename = "catsAndDragons.purchaseReceiptEmptyOrNull")]
+    PurchaseReceiptEmptyOrNull,
+    #[serde(rename = "catsAndDragons.noDeviceId")]
+    NoDeviceId,
+    #[serde(rename = "catsAndDragons.noHardCurrency")]
+    NoHardCurrency,
+    #[serde(rename = "catsAndDragons.invalidProductId")]
+    InvalidProductId,
+    #[serde(rename = "catsAndDragons.invalidStatusPurchaseAppId")]
+    InvalidStatusPurchaseAppId,
+    #[serde(rename = "catsAndDragons.saveDataNotFound")]
+    SaveDataNotFound,
+    #[serde(rename = "catsAndDragons.accountWithWebidHasProgress")]
+    AccountWithWebidHasProgress,
+    #[serde(rename = "catsAndDragons.subscriptionRenewalNumberIsSame")]
+    SubscriptionRenewalNumberIsSame,
+    #[serde(rename = "catsAndDragons.invalidReferrerId")]
+    InvalidReferrerId,
+    #[serde(rename = "catsAndDragons.capitalizationChecksumTestFailedOrInvalidEthereumWallet")]
+    CapitalizationChecksumTestFailedOrInvalidEthereumWallet,
+    #[serde(rename = "catsAndDragons.invitedUserAlreadyHaveCompletedAchievements")]
+    InvitedUserAlreadyHaveCompletedAchievements,
+    #[serde(rename = "catsAndDragons.cantUpdateAppmetricaDeviceId")]
+    CantUpdateAppmetricaDeviceId,
+    #[serde(rename = "catsAndDragons.invalidIsNull")]
+    InvalidIsNull,
+    #[serde(rename = "catsAndDragons.noMembership")]
+    NoMembership,
+    #[serde(rename = "catsAndDragons.userNotExist")]
+    UserNotExist,
+    #[serde(rename = "catsAndDragons.achievementCompleted")]
+    AchievementCompleted,
+    #[serde(rename = "catsAndDragons.appKeyNotExist")]
+    AppKeyNotExist,
+    #[serde(rename = "catsAndDragons.invalidPaymentStateForSubscriptionRenewal")]
+    InvalidPaymentStateForSubscriptionRenewal,
+    #[serde(rename = "catsAndDragons.userWhoInvitesDoesNotExists")]
+    UserWhoInvitesDoesNotExists,
+    #[serde(rename = "catsAndDragons.purchaseRecordUnsuccessful")]
+    PurchaseRecordUnsuccessful,
+    #[serde(rename = "catsAndDragons.surveyIsAlreadyRecorded")]
+    SurveyIsAlreadyRecorded,
+    #[serde(rename = "catsAndDragons.questRewardCloningFailed")]
+    QuestRewardCloningFailed,
+    #[serde(rename = "catsAndDragons.endDateIsLessThanStartDate")]
+    EndDateIsLessThanStartDate,
+    #[serde(rename = "catsAndDragons.invalidStoreType")]
+    InvalidStoreType,
+    #[serde(rename = "catsAndDragons.noLevel")]
+    NoLevel,
+    #[serde(rename = "catsAndDragons.undergoingServerUpdate")]
+    UndergoingServerUpdate,
+    #[serde(rename = "catsAndDragons.invalidMembership")]
+    InvalidMembership,
+    #[serde(rename = "catsAndDragons.invalidAmountFormat")]
+    InvalidAmountFormat,
+    #[serde(rename = "catsAndDragons.nickAlreadyExists")]
+    NickAlreadyExists,
+    #[serde(rename = "catsAndDragons.noMultiplier")]
+    NoMultiplier,
+    #[serde(rename = "catsAndDragons.purchasePending")]
+    PurchasePending,
+    #[serde(rename = "catsAndDragons.invalidWebId")]
+    InvalidWebId,
+    #[serde(rename = "catsAndDragons.bingoSeasonIsNoActive")]
+    BingoSeasonIsNoActive,
+    #[serde(rename = "catsAndDragons.deviceIsOccupied")]
+    DeviceIsOccupied,
+    #[serde(rename = "catsAndDragons.unavailableOfferRecordUnsuccessful")]
+    UnavailableOfferRecordUnsuccessful,
+    #[serde(rename = "catsAndDragons.invalidNick")]
+    InvalidNick,
+    #[serde(rename = "catsAndDragons.invalidHardCurrencyFormat")]
+    InvalidHardCurrencyFormat,
+    #[serde(rename = "catsAndDragons.referralTaskRewardAlreadyTaken")]
+    ReferralTaskRewardAlreadyTaken,
+    #[serde(rename = "catsAndDragons.invalidTransactionId")]
+    InvalidTransactionId,
+    #[serde(rename = "catsAndDragons.noPaymentState")]
+    NoPaymentState,
+    #[serde(rename = "catsAndDragons.noSaveData")]
+    NoSaveData,
+    #[serde(rename = "catsAndDragons.priceParseError")]
+    PriceParseError,
+    #[serde(rename = "catsAndDragons.invalidAppMetricaDeviceId")]
+    InvalidAppMetricaDeviceId,
+    #[serde(rename = "catsAndDragons.hardCurrencyLessOne")]
+    HardCurrencyLessOne,
+    #[serde(rename = "catsAndDragons.purchaseKeyEmptyOrNull")]
+    PurchaseKeyEmptyOrNull,
+    #[serde(rename = "catsAndDragons.transactionIdParseError")]
+    TransactionIdParseError,
+    #[serde(rename = "catsAndDragons.deviceIdEmptyOrNull")]
+    DeviceIdEmptyOrNull,
+    #[serde(rename = "catsAndDragons.cardInfoNotFound")]
+    CardInfoNotFound,
+    #[serde(rename = "catsAndDragons.thisDeviceIdIsOccupied")]
+    ThisDeviceIdIsOccupied,
+    #[serde(rename = "catsAndDragons.taskListEmpty")]
+    TaskListEmpty,
+    #[serde(rename = "catsAndDragons.invalidClientVersion")]
+    InvalidClientVersion,
+    #[serde(rename = "catsAndDragons.webIdNotFound")]
+    WebIdNotFound,
+    #[serde(rename = "catsAndDragons.noConfigJson")]
+    NoConfigJson,
+    #[serde(rename = "catsAndDragons.catIdParseError")]
+    CatIdParseError,
+    #[serde(rename = "catsAndDragons.noScore")]
+    NoScore,
+    #[serde(rename = "catsAndDragons.usersLootboxAmountIsNotEnough")]
+    UsersLootboxAmountIsNotEnough,
+    #[serde(rename = "catsAndDragons.noAppMetricaDeviceId")]
+    NoAppMetricaDeviceId,
+    #[serde(rename = "catsAndDragons.noTheoremReachTransactionId")]
+    NoTheoremReachTransactionId,
+    #[serde(rename = "catsAndDragons.couldNotCreditHardCurrency")]
+    CouldNotCreditHardCurrency,
+    #[serde(rename = "catsAndDragons.toWebIdLinked")]
+    ToWebIdLinked,
+    #[serde(rename = "catsAndDragons.theoremReachTransactionIdEmptyOrNull")]
+    TheoremReachTransactionIdEmptyOrNull,
+    #[serde(rename = "catsAndDragons.invalidRecipeId")]
+    InvalidRecipeId,
+    #[serde(rename = "catsAndDragons.cardUpgradeInfoNotFound")]
+    CardUpgradeInfoNotFound,
+    #[serde(rename = "catsAndDragons.noAdSpinsAvailable")]
+    NoAdSpinsAvailable,
+    #[serde(rename = "catsAndDragons.subscriptionPaymentPending")]
+    SubscriptionPaymentPending,
+    #[serde(rename = "catsAndDragons.cantCreateTransaction")]
+    CantCreateTransaction,
+    #[serde(rename = "catsAndDragons.webIdAlreadyDefaultOrNotExists")]
+    WebIdAlreadyDefaultOrNotExists,
+    #[serde(rename = "catsAndDragons.invalidStatusPurchaseAppIdFormat")]
+    InvalidStatusPurchaseAppIdFormat,
+    #[serde(rename = "catsAndDragons.noNick")]
+    NoNick,
+    #[serde(rename = "catsAndDragons.invalidSkillKey")]
+    InvalidSkillKey,
+    #[serde(rename = "catsAndDragons.webRequestError")]
+    WebRequestError,
+    #[serde(rename = "catsAndDragons.noTheoremReachReward")]
+    NoTheoremReachReward,
+    #[serde(rename = "catsAndDragons.noName")]
+    NoName,
+    #[serde(rename = "catsAndDragons.noToken")]
+    NoToken,
+    #[serde(rename = "catsAndDragons.noSpinType")]
+    NoSpinType,
+    #[serde(rename = "catsAndDragons.orderIdParseError")]
+    OrderIdParseError,
+    #[serde(rename = "catsAndDragons.noCardId")]
+    NoCardId,
+    #[serde(rename = "catsAndDragons.transactionTypeIsNull")]
+    TransactionTypeIsNull,
+    #[serde(rename = "catsAndDragons.noEndDate")]
+    NoEndDate,
+    #[serde(rename = "catsAndDragons.noStartDate")]
+    NoStartDate,
+    #[serde(rename = "catsAndDragons.serverTemporarilyUnavailable")]
+    ServerTemporarilyUnavailable,
+    #[serde(rename = "catsAndDragons.invalidDeviceId")]
+    InvalidDeviceId,
+}
+impl ToString for CatsAndDragons {
+    fn to_string(&self) -> String {
+        match self {
+            Self::InvitedUserDoesNotExists => "catsAndDragons.invitedUserDoesNotExists".to_string(),
+            Self::CardMaxLevelNotFound => "catsAndDragons.cardMaxLevelNotFound".to_string(),
+            Self::NoCompletedTasks => "catsAndDragons.noCompletedTasks".to_string(),
+            Self::RewardsIsNull => "catsAndDragons.rewardsIsNull".to_string(),
+            Self::InvalidMembershipTypeForPurchase => "catsAndDragons.invalidMembershipTypeForPurchase".to_string(),
+            Self::NoPurchaseParam => "catsAndDragons.noPurchaseParam".to_string(),
+            Self::CrossreferralNotAllowed => "catsAndDragons.crossreferralNotAllowed".to_string(),
+            Self::ReferrerCodeParseError => "catsAndDragons.referrerCodeParseError".to_string(),
+            Self::PasswordEmptyOrNull => "catsAndDragons.passwordEmptyOrNull".to_string(),
+            Self::InvalidTheoremReachTransactionId => "catsAndDragons.invalidTheoremReachTransactionId".to_string(),
+            Self::NoPurchaseToken => "catsAndDragons.noPurchaseToken".to_string(),
+            Self::OfferIsUnavailable => "catsAndDragons.offerIsUnavailable".to_string(),
+            Self::NoLootboxId => "catsAndDragons.noLootboxId".to_string(),
+            Self::NoTask => "catsAndDragons.noTask".to_string(),
+            Self::NotAllowed => "catsAndDragons.notAllowed".to_string(),
+            Self::CatPurchaseParseError => "catsAndDragons.catPurchaseParseError".to_string(),
+            Self::NoDeviceAttached => "catsAndDragons.noDeviceAttached".to_string(),
+            Self::WebDataNotFound => "catsAndDragons.webDataNotFound".to_string(),
+            Self::InvalidPurchaseReceiptOrStoreId => "catsAndDragons.invalidPurchaseReceiptOrStoreId".to_string(),
+            Self::DoubleRequest => "catsAndDragons.doubleRequest".to_string(),
+            Self::NoAchievements => "catsAndDragons.noAchievements".to_string(),
+            Self::NicknameIsTooShort => "catsAndDragons.nicknameIsTooShort".to_string(),
+            Self::NoDepositAmount => "catsAndDragons.noDepositAmount".to_string(),
+            Self::InvalidAppIdOrSecureKey => "catsAndDragons.invalidAppIdOrSecureKey".to_string(),
+            Self::TaskCompleted => "catsAndDragons.taskCompleted".to_string(),
+            Self::CantParseDateTimeFormat => "catsAndDragons.cantParseDateTimeFormat".to_string(),
+            Self::NoMailOrPassword => "catsAndDragons.noMailOrPassword".to_string(),
+            Self::InvalidJson => "catsAndDragons.invalidJson".to_string(),
+            Self::UserHasNotCompletedRequiredAmountOfAchievements => {
+                "catsAndDragons.userHasNotCompletedRequiredAmountOfAchievements".to_string()
+            }
+            Self::NoCatId => "catsAndDragons.noCatId".to_string(),
+            Self::InvalidParseSurveyToken => "catsAndDragons.invalidParseSurveyToken".to_string(),
+            Self::NicknameIsTooLong => "catsAndDragons.nicknameIsTooLong".to_string(),
+            Self::CardAlreadyAtMaxLevel => "catsAndDragons.cardAlreadyAtMaxLevel".to_string(),
+            Self::EmailNotVerified => "catsAndDragons.emailNotVerified".to_string(),
+            Self::InvalidEventId => "catsAndDragons.invalidEventId".to_string(),
+            Self::MissingParameter => "catsAndDragons.missingParameter".to_string(),
+            Self::UnsuccessfulLootboxDataUpdate => "catsAndDragons.unsuccessfulLootboxDataUpdate".to_string(),
+            Self::InvalidMultiplier => "catsAndDragons.invalidMultiplier".to_string(),
+            Self::NoSuchSkillKey => "catsAndDragons.noSuchSkillKey".to_string(),
+            Self::PurchaseInitialized => "catsAndDragons.purchaseInitialized".to_string(),
+            Self::JsonEmptyOrNull => "catsAndDragons.jsonEmptyOrNull".to_string(),
+            Self::NoHandlerInApp => "catsAndDragons.noHandlerInApp".to_string(),
+            Self::NoSuchTask => "catsAndDragons.noSuchTask".to_string(),
+            Self::InvitedUserWasInvitedBefore => "catsAndDragons.invitedUserWasInvitedBefore".to_string(),
+            Self::NotEnoughTokensOnBalance => "catsAndDragons.notEnoughTokensOnBalance".to_string(),
+            Self::NoConfigKey => "catsAndDragons.noConfigKey".to_string(),
+            Self::NoPurchaseKey => "catsAndDragons.noPurchaseKey".to_string(),
+            Self::NoSuchStrategy => "catsAndDragons.noSuchStrategy".to_string(),
+            Self::UnknownPurchaseStatus => "catsAndDragons.unknownPurchaseStatus".to_string(),
+            Self::NoBingoItem => "catsAndDragons.noBingoItem".to_string(),
+            Self::ErrorWithConnectionToMicroservice => "catsAndDragons.errorWithConnectionToMicroservice".to_string(),
+            Self::ReferrerSetUnsuccessful => "catsAndDragons.referrerSetUnsuccessful".to_string(),
+            Self::SuccessWithoutCredit => "catsAndDragons.successWithoutCredit".to_string(),
+            Self::SubscriptionIsInTrialPeriod => "catsAndDragons.subscriptionIsInTrialPeriod".to_string(),
+            Self::NoServiceNeeded => "catsAndDragons.noServiceNeeded".to_string(),
+            Self::NicknameEmptyOrNull => "catsAndDragons.nicknameEmptyOrNull".to_string(),
+            Self::NoJsonData => "catsAndDragons.noJsonData".to_string(),
+            Self::NoStatusPurchaseAppId => "catsAndDragons.noStatusPurchaseAppId".to_string(),
+            Self::EmailAlreadyInUse => "catsAndDragons.emailAlreadyInUse".to_string(),
+            Self::CantDebitHardCurrency => "catsAndDragons.cantDebitHardCurrency".to_string(),
+            Self::ThisDeviceIdNotExists => "catsAndDragons.thisDeviceIdNotExists".to_string(),
+            Self::NoJson => "catsAndDragons.noJson".to_string(),
+            Self::MembershipNotExists => "catsAndDragons.membershipNotExists".to_string(),
+            Self::CantFindHardCurrencyTransactionType => "catsAndDragons.cantFindHardCurrencyTransactionType".to_string(),
+            Self::InvalidSecureKey => "catsAndDragons.invalidSecureKey".to_string(),
+            Self::PurchaseValidationUnsuccessful => "catsAndDragons.purchaseValidationUnsuccessful".to_string(),
+            Self::LootboxIdParseError => "catsAndDragons.lootboxIdParseError".to_string(),
+            Self::PurchaseRefunded => "catsAndDragons.purchaseRefunded".to_string(),
+            Self::NoStoreType => "catsAndDragons.noStoreType".to_string(),
+            Self::NoSecureKey => "catsAndDragons.noSecureKey".to_string(),
+            Self::AuthorizationFail => "catsAndDragons.authorizationFail".to_string(),
+            Self::InvalidLootboxId => "catsAndDragons.invalidLootboxId".to_string(),
+            Self::InvalidMailOrPassword => "catsAndDragons.invalidMailOrPassword".to_string(),
+            Self::NoReferralCode => "catsAndDragons.noReferralCode".to_string(),
+            Self::InvalidIp => "catsAndDragons.invalidIp".to_string(),
+            Self::NickChangeCooldownIsNotExpired => "catsAndDragons.nickChangeCooldownIsNotExpired".to_string(),
+            Self::InvalidCurrencyType => "catsAndDragons.invalidCurrencyType".to_string(),
+            Self::NoPurchaseReceipt => "catsAndDragons.noPurchaseReceipt".to_string(),
+            Self::NoUserId => "catsAndDragons.noUserId".to_string(),
+            Self::ReferrerIdParseError => "catsAndDragons.referrerIdParseError".to_string(),
+            Self::NoReferralLink => "catsAndDragons.noReferralLink".to_string(),
+            Self::PurchaseCanceled => "catsAndDragons.purchaseCanceled".to_string(),
+            Self::OfferKeyNotExists => "catsAndDragons.offerKeyNotExists".to_string(),
+            Self::MembershipSubscriptionPurchaseIsNotAvailable => {
+                "catsAndDragons.membershipSubscriptionPurchaseIsNotAvailable".to_string()
+            }
+            Self::UserInBlackList => "catsAndDragons.userInBlackList".to_string(),
+            Self::ScoreEmptyOrNull => "catsAndDragons.scoreEmptyOrNull".to_string(),
+            Self::InvalidProductType => "catsAndDragons.invalidProductType".to_string(),
+            Self::InvalidOfferKey => "catsAndDragons.invalidOfferKey".to_string(),
+            Self::InvalidAppId => "catsAndDragons.invalidAppId".to_string(),
+            Self::CantBuyScience => "catsAndDragons.cantBuyScience".to_string(),
+            Self::ProductIdEmptyOrNull => "catsAndDragons.productIdEmptyOrNull".to_string(),
+            Self::AuthenticationAndProfileWebIdNotEqual => "catsAndDragons.authenticationAndProfileWebIdNotEqual".to_string(),
+            Self::NoPurchaseTokenData => "catsAndDragons.noPurchaseTokenData".to_string(),
+            Self::InvalidSurveyToken => "catsAndDragons.invalidSurveyToken".to_string(),
+            Self::MapLevelIsEmpty => "catsAndDragons.mapLevelIsEmpty".to_string(),
+            Self::NoProductId => "catsAndDragons.noProductId".to_string(),
+            Self::InvalidValidation => "catsAndDragons.invalidValidation".to_string(),
+            Self::ScoreParseError => "catsAndDragons.scoreParseError".to_string(),
+            Self::InvalidTheoremReachReward => "catsAndDragons.invalidTheoremReachReward".to_string(),
+            Self::ToWebIdNotExists => "catsAndDragons.toWebIdNotExists".to_string(),
+            Self::InvalidPurchase => "catsAndDragons.invalidPurchase".to_string(),
+            Self::SpendingRecordUnsuccessful => "catsAndDragons.spendingRecordUnsuccessful".to_string(),
+            Self::MapLevelTooLow => "catsAndDragons.mapLevelTooLow".to_string(),
+            Self::InvalidCurrencyPurchaseKey => "catsAndDragons.invalidCurrencyPurchaseKey".to_string(),
+            Self::ProfileIsNull => "catsAndDragons.profileIsNull".to_string(),
+            Self::InvalidToken => "catsAndDragons.invalidToken".to_string(),
+            Self::InvalidTaskId => "catsAndDragons.invalidTaskId".to_string(),
+            Self::NoBingoRecipeId => "catsAndDragons.noBingoRecipeId".to_string(),
+            Self::InvalidPurchaseType => "catsAndDragons.invalidPurchaseType".to_string(),
+            Self::OneRequestKeyWithMultipleValues => "catsAndDragons.oneRequestKeyWithMultipleValues".to_string(),
+            Self::Disconnect => "catsAndDragons.disconnect".to_string(),
+            Self::ExchangeWebRequestError => "catsAndDragons.exchangeWebRequestError".to_string(),
+            Self::ConfigWasNotFound => "catsAndDragons.configWasNotFound".to_string(),
+            Self::ScoreCannotBeLessThanZero => "catsAndDragons.scoreCannotBeLessThanZero".to_string(),
+            Self::UsersCardNotFound => "catsAndDragons.usersCardNotFound".to_string(),
+            Self::NoTransactionId => "catsAndDragons.noTransactionId".to_string(),
+            Self::NoSuchAchievement => "catsAndDragons.noSuchAchievement".to_string(),
+            Self::LootboxIsOnCooldown => "catsAndDragons.lootboxIsOnCooldown".to_string(),
+            Self::ErrorWithDatabaseColumnName => "catsAndDragons.errorWithDatabaseColumnName".to_string(),
+            Self::InvalidPurchaseParam => "catsAndDragons.invalidPurchaseParam".to_string(),
+            Self::InvalidPurchaseKey => "catsAndDragons.invalidPurchaseKey".to_string(),
+            Self::NoReferrerCode => "catsAndDragons.noReferrerCode".to_string(),
+            Self::MembershipSubscriptionPurchaseRecordDoesNotExist => {
+                "catsAndDragons.membershipSubscriptionPurchaseRecordDoesNotExist".to_string()
+            }
+            Self::NoPrice => "catsAndDragons.noPrice".to_string(),
+            Self::InvalidResponseCode => "catsAndDragons.invalidResponseCode".to_string(),
+            Self::CantFindStorePurchase => "catsAndDragons.cantFindStorePurchase".to_string(),
+            Self::NoSurveyUserId => "catsAndDragons.noSurveyUserId".to_string(),
+            Self::InvalidConfigJson => "catsAndDragons.invalidConfigJson".to_string(),
+            Self::NotEnoughScience => "catsAndDragons.notEnoughScience".to_string(),
+            Self::InvalidConfigKey => "catsAndDragons.invalidConfigKey".to_string(),
+            Self::BingoRecipeNotCrafted => "catsAndDragons.bingoRecipeNotCrafted".to_string(),
+            Self::HardCurrencyNullOrEmpty => "catsAndDragons.hardCurrencyNullOrEmpty".to_string(),
+            Self::AmountLessOne => "catsAndDragons.amountLessOne".to_string(),
+            Self::NotEnoughCardExperience => "catsAndDragons.notEnoughCardExperience".to_string(),
+            Self::NoOfferToroAmount => "catsAndDragons.noOfferToroAmount".to_string(),
+            Self::TaskIsOutOfDate => "catsAndDragons.taskIsOutOfDate".to_string(),
+            Self::UserWhoInvitesAndInvitedUserAreSame => "catsAndDragons.userWhoInvitesAndInvitedUserAreSame".to_string(),
+            Self::NoIp => "catsAndDragons.noIp".to_string(),
+            Self::NoProductType => "catsAndDragons.noProductType".to_string(),
+            Self::NotEnoughMoneyOnBalance => "catsAndDragons.notEnoughMoneyOnBalance".to_string(),
+            Self::AccountIsAlreadyTied => "catsAndDragons.accountIsAlreadyTied".to_string(),
+            Self::NoSuchTaskReward => "catsAndDragons.noSuchTaskReward".to_string(),
+            Self::InvalidScore => "catsAndDragons.invalidScore".to_string(),
+            Self::NotEnoughBingoItemAmount => "catsAndDragons.notEnoughBingoItemAmount".to_string(),
+            Self::InvalidScienceName => "catsAndDragons.invalidScienceName".to_string(),
+            Self::AlreadyAuthorized => "catsAndDragons.alreadyAuthorized".to_string(),
+            Self::UndergoingServerMaintenance => "catsAndDragons.undergoingServerMaintenance".to_string(),
+            Self::NoInappPurchaseData => "catsAndDragons.noInappPurchaseData".to_string(),
+            Self::InvalidHardCurrencyTransactionType => "catsAndDragons.invalidHardCurrencyTransactionType".to_string(),
+            Self::InvalidCardId => "catsAndDragons.invalidCardId".to_string(),
+            Self::UnknownLootboxRewardType => "catsAndDragons.unknownLootboxRewardType".to_string(),
+            Self::UsersLootboxNotFound => "catsAndDragons.usersLootboxNotFound".to_string(),
+            Self::UserMembershipIsHigher => "catsAndDragons.userMembershipIsHigher".to_string(),
+            Self::PurchaseRewardUnsuccessful => "catsAndDragons.purchaseRewardUnsuccessful".to_string(),
+            Self::ErrorWithNameOfDatabaseRelation => "catsAndDragons.errorWithNameOfDatabaseRelation".to_string(),
+            Self::NoWebId => "catsAndDragons.noWebId".to_string(),
+            Self::NoAppId => "catsAndDragons.noAppId".to_string(),
+            Self::InvalidSpinType => "catsAndDragons.invalidSpinType".to_string(),
+            Self::InvalidOid => "catsAndDragons.invalidOid".to_string(),
+            Self::NoOid => "catsAndDragons.noOid".to_string(),
+            Self::RequiredScienceNotFound => "catsAndDragons.requiredScienceNotFound".to_string(),
+            Self::TransactionIdNullOrEmpty => "catsAndDragons.transactionIdNullOrEmpty".to_string(),
+            Self::UserIsNotConnected => "catsAndDragons.userIsNotConnected".to_string(),
+            Self::InvalidOfferToroAmountFormat => "catsAndDragons.invalidOfferToroAmountFormat".to_string(),
+            Self::CantUpdateTransaction => "catsAndDragons.cantUpdateTransaction".to_string(),
+            Self::UserIsNotAllowedToCompleteTask => "catsAndDragons.userIsNotAllowedToCompleteTask".to_string(),
+            Self::ScoreCannotBeMoreThanLimit => "catsAndDragons.scoreCannotBeMoreThanLimit".to_string(),
+            Self::IpEmptyOrNull => "catsAndDragons.ipEmptyOrNull".to_string(),
+            Self::WebIdEmptyOrNull => "catsAndDragons.webIdEmptyOrNull".to_string(),
+            Self::NoPurchaseRecord => "catsAndDragons.noPurchaseRecord".to_string(),
+            Self::UnlinkingTheDeviceMoreThanOnceAWeek => "catsAndDragons.unlinkingTheDeviceMoreThanOnceAWeek".to_string(),
+            Self::ChestLevelIsUnavailable => "catsAndDragons.chestLevelIsUnavailable".to_string(),
+            Self::InvalidBalance => "catsAndDragons.invalidBalance".to_string(),
+            Self::NoOfferKey => "catsAndDragons.noOfferKey".to_string(),
+            Self::OfferKeyEmptyOrNull => "catsAndDragons.offerKeyEmptyOrNull".to_string(),
+            Self::InvalidMultiplierFormat => "catsAndDragons.invalidMultiplierFormat".to_string(),
+            Self::NoTaskId => "catsAndDragons.noTaskId".to_string(),
+            Self::PurchaseReceiptEmptyOrNull => "catsAndDragons.purchaseReceiptEmptyOrNull".to_string(),
+            Self::NoDeviceId => "catsAndDragons.noDeviceId".to_string(),
+            Self::NoHardCurrency => "catsAndDragons.noHardCurrency".to_string(),
+            Self::InvalidProductId => "catsAndDragons.invalidProductId".to_string(),
+            Self::InvalidStatusPurchaseAppId => "catsAndDragons.invalidStatusPurchaseAppId".to_string(),
+            Self::SaveDataNotFound => "catsAndDragons.saveDataNotFound".to_string(),
+            Self::AccountWithWebidHasProgress => "catsAndDragons.accountWithWebidHasProgress".to_string(),
+            Self::SubscriptionRenewalNumberIsSame => "catsAndDragons.subscriptionRenewalNumberIsSame".to_string(),
+            Self::InvalidReferrerId => "catsAndDragons.invalidReferrerId".to_string(),
+            Self::CapitalizationChecksumTestFailedOrInvalidEthereumWallet => {
+                "catsAndDragons.capitalizationChecksumTestFailedOrInvalidEthereumWallet".to_string()
+            }
+            Self::InvitedUserAlreadyHaveCompletedAchievements => {
+                "catsAndDragons.invitedUserAlreadyHaveCompletedAchievements".to_string()
+            }
+            Self::CantUpdateAppmetricaDeviceId => "catsAndDragons.cantUpdateAppmetricaDeviceId".to_string(),
+            Self::InvalidIsNull => "catsAndDragons.invalidIsNull".to_string(),
+            Self::NoMembership => "catsAndDragons.noMembership".to_string(),
+            Self::UserNotExist => "catsAndDragons.userNotExist".to_string(),
+            Self::AchievementCompleted => "catsAndDragons.achievementCompleted".to_string(),
+            Self::AppKeyNotExist => "catsAndDragons.appKeyNotExist".to_string(),
+            Self::InvalidPaymentStateForSubscriptionRenewal => "catsAndDragons.invalidPaymentStateForSubscriptionRenewal".to_string(),
+            Self::UserWhoInvitesDoesNotExists => "catsAndDragons.userWhoInvitesDoesNotExists".to_string(),
+            Self::PurchaseRecordUnsuccessful => "catsAndDragons.purchaseRecordUnsuccessful".to_string(),
+            Self::SurveyIsAlreadyRecorded => "catsAndDragons.surveyIsAlreadyRecorded".to_string(),
+            Self::QuestRewardCloningFailed => "catsAndDragons.questRewardCloningFailed".to_string(),
+            Self::EndDateIsLessThanStartDate => "catsAndDragons.endDateIsLessThanStartDate".to_string(),
+            Self::InvalidStoreType => "catsAndDragons.invalidStoreType".to_string(),
+            Self::NoLevel => "catsAndDragons.noLevel".to_string(),
+            Self::UndergoingServerUpdate => "catsAndDragons.undergoingServerUpdate".to_string(),
+            Self::InvalidMembership => "catsAndDragons.invalidMembership".to_string(),
+            Self::InvalidAmountFormat => "catsAndDragons.invalidAmountFormat".to_string(),
+            Self::NickAlreadyExists => "catsAndDragons.nickAlreadyExists".to_string(),
+            Self::NoMultiplier => "catsAndDragons.noMultiplier".to_string(),
+            Self::PurchasePending => "catsAndDragons.purchasePending".to_string(),
+            Self::InvalidWebId => "catsAndDragons.invalidWebId".to_string(),
+            Self::BingoSeasonIsNoActive => "catsAndDragons.bingoSeasonIsNoActive".to_string(),
+            Self::DeviceIsOccupied => "catsAndDragons.deviceIsOccupied".to_string(),
+            Self::UnavailableOfferRecordUnsuccessful => "catsAndDragons.unavailableOfferRecordUnsuccessful".to_string(),
+            Self::InvalidNick => "catsAndDragons.invalidNick".to_string(),
+            Self::InvalidHardCurrencyFormat => "catsAndDragons.invalidHardCurrencyFormat".to_string(),
+            Self::ReferralTaskRewardAlreadyTaken => "catsAndDragons.referralTaskRewardAlreadyTaken".to_string(),
+            Self::InvalidTransactionId => "catsAndDragons.invalidTransactionId".to_string(),
+            Self::NoPaymentState => "catsAndDragons.noPaymentState".to_string(),
+            Self::NoSaveData => "catsAndDragons.noSaveData".to_string(),
+            Self::PriceParseError => "catsAndDragons.priceParseError".to_string(),
+            Self::InvalidAppMetricaDeviceId => "catsAndDragons.invalidAppMetricaDeviceId".to_string(),
+            Self::HardCurrencyLessOne => "catsAndDragons.hardCurrencyLessOne".to_string(),
+            Self::PurchaseKeyEmptyOrNull => "catsAndDragons.purchaseKeyEmptyOrNull".to_string(),
+            Self::TransactionIdParseError => "catsAndDragons.transactionIdParseError".to_string(),
+            Self::DeviceIdEmptyOrNull => "catsAndDragons.deviceIdEmptyOrNull".to_string(),
+            Self::CardInfoNotFound => "catsAndDragons.cardInfoNotFound".to_string(),
+            Self::ThisDeviceIdIsOccupied => "catsAndDragons.thisDeviceIdIsOccupied".to_string(),
+            Self::TaskListEmpty => "catsAndDragons.taskListEmpty".to_string(),
+            Self::InvalidClientVersion => "catsAndDragons.invalidClientVersion".to_string(),
+            Self::WebIdNotFound => "catsAndDragons.webIdNotFound".to_string(),
+            Self::NoConfigJson => "catsAndDragons.noConfigJson".to_string(),
+            Self::CatIdParseError => "catsAndDragons.catIdParseError".to_string(),
+            Self::NoScore => "catsAndDragons.noScore".to_string(),
+            Self::UsersLootboxAmountIsNotEnough => "catsAndDragons.usersLootboxAmountIsNotEnough".to_string(),
+            Self::NoAppMetricaDeviceId => "catsAndDragons.noAppMetricaDeviceId".to_string(),
+            Self::NoTheoremReachTransactionId => "catsAndDragons.noTheoremReachTransactionId".to_string(),
+            Self::CouldNotCreditHardCurrency => "catsAndDragons.couldNotCreditHardCurrency".to_string(),
+            Self::ToWebIdLinked => "catsAndDragons.toWebIdLinked".to_string(),
+            Self::TheoremReachTransactionIdEmptyOrNull => "catsAndDragons.theoremReachTransactionIdEmptyOrNull".to_string(),
+            Self::InvalidRecipeId => "catsAndDragons.invalidRecipeId".to_string(),
+            Self::CardUpgradeInfoNotFound => "catsAndDragons.cardUpgradeInfoNotFound".to_string(),
+            Self::NoAdSpinsAvailable => "catsAndDragons.noAdSpinsAvailable".to_string(),
+            Self::SubscriptionPaymentPending => "catsAndDragons.subscriptionPaymentPending".to_string(),
+            Self::CantCreateTransaction => "catsAndDragons.cantCreateTransaction".to_string(),
+            Self::WebIdAlreadyDefaultOrNotExists => "catsAndDragons.webIdAlreadyDefaultOrNotExists".to_string(),
+            Self::InvalidStatusPurchaseAppIdFormat => "catsAndDragons.invalidStatusPurchaseAppIdFormat".to_string(),
+            Self::NoNick => "catsAndDragons.noNick".to_string(),
+            Self::InvalidSkillKey => "catsAndDragons.invalidSkillKey".to_string(),
+            Self::WebRequestError => "catsAndDragons.webRequestError".to_string(),
+            Self::NoTheoremReachReward => "catsAndDragons.noTheoremReachReward".to_string(),
+            Self::NoName => "catsAndDragons.noName".to_string(),
+            Self::NoToken => "catsAndDragons.noToken".to_string(),
+            Self::NoSpinType => "catsAndDragons.noSpinType".to_string(),
+            Self::OrderIdParseError => "catsAndDragons.orderIdParseError".to_string(),
+            Self::NoCardId => "catsAndDragons.noCardId".to_string(),
+            Self::TransactionTypeIsNull => "catsAndDragons.transactionTypeIsNull".to_string(),
+            Self::NoEndDate => "catsAndDragons.noEndDate".to_string(),
+            Self::NoStartDate => "catsAndDragons.noStartDate".to_string(),
+            Self::ServerTemporarilyUnavailable => "catsAndDragons.serverTemporarilyUnavailable".to_string(),
+            Self::InvalidDeviceId => "catsAndDragons.invalidDeviceId".to_string(),
+        }
+    }
+}
+impl CatsAndDragons {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            CatsAndDragons::InvitedUserDoesNotExists => 69u32,
+            CatsAndDragons::CardMaxLevelNotFound => 134u32,
+            CatsAndDragons::NoCompletedTasks => 34u32,
+            CatsAndDragons::RewardsIsNull => 19u32,
+            CatsAndDragons::InvalidMembershipTypeForPurchase => 58u32,
+            CatsAndDragons::NoPurchaseParam => 172u32,
+            CatsAndDragons::CrossreferralNotAllowed => 73u32,
+            CatsAndDragons::ReferrerCodeParseError => 65u32,
+            CatsAndDragons::PasswordEmptyOrNull => 231u32,
+            CatsAndDragons::InvalidTheoremReachTransactionId => 254u32,
+            CatsAndDragons::NoPurchaseToken => 25u32,
+            CatsAndDragons::OfferIsUnavailable => 114u32,
+            CatsAndDragons::NoLootboxId => 137u32,
+            CatsAndDragons::NoTask => 12u32,
+            CatsAndDragons::NotAllowed => 77u32,
+            CatsAndDragons::CatPurchaseParseError => 186u32,
+            CatsAndDragons::NoDeviceAttached => 109u32,
+            CatsAndDragons::WebDataNotFound => 146u32,
+            CatsAndDragons::InvalidPurchaseReceiptOrStoreId => 229u32,
+            CatsAndDragons::DoubleRequest => 10u32,
+            CatsAndDragons::NoAchievements => 33u32,
+            CatsAndDragons::NicknameIsTooShort => 47u32,
+            CatsAndDragons::NoDepositAmount => 79u32,
+            CatsAndDragons::InvalidAppIdOrSecureKey => 250u32,
+            CatsAndDragons::TaskCompleted => 13u32,
+            CatsAndDragons::CantParseDateTimeFormat => 94u32,
+            CatsAndDragons::NoMailOrPassword => 2u32,
+            CatsAndDragons::InvalidJson => 8u32,
+            CatsAndDragons::UserHasNotCompletedRequiredAmountOfAchievements => 74u32,
+            CatsAndDragons::NoCatId => 182u32,
+            CatsAndDragons::InvalidParseSurveyToken => 216u32,
+            CatsAndDragons::NicknameIsTooLong => 49u32,
+            CatsAndDragons::CardAlreadyAtMaxLevel => 132u32,
+            CatsAndDragons::EmailNotVerified => 83u32,
+            CatsAndDragons::InvalidEventId => 9u32,
+            CatsAndDragons::MissingParameter => 84u32,
+            CatsAndDragons::UnsuccessfulLootboxDataUpdate => 142u32,
+            CatsAndDragons::InvalidMultiplier => 150u32,
+            CatsAndDragons::NoSuchSkillKey => 181u32,
+            CatsAndDragons::PurchaseInitialized => 202u32,
+            CatsAndDragons::JsonEmptyOrNull => 237u32,
+            CatsAndDragons::NoHandlerInApp => 32u32,
+            CatsAndDragons::NoSuchTask => 37u32,
+            CatsAndDragons::InvitedUserWasInvitedBefore => 72u32,
+            CatsAndDragons::NotEnoughTokensOnBalance => 76u32,
+            CatsAndDragons::NoConfigKey => 115u32,
+            CatsAndDragons::NoPurchaseKey => 179u32,
+            CatsAndDragons::NoSuchStrategy => 170u32,
+            CatsAndDragons::UnknownPurchaseStatus => 203u32,
+            CatsAndDragons::NoBingoItem => 255u32,
+            CatsAndDragons::ErrorWithConnectionToMicroservice => 167u32,
+            CatsAndDragons::ReferrerSetUnsuccessful => 66u32,
+            CatsAndDragons::SuccessWithoutCredit => 103u32,
+            CatsAndDragons::SubscriptionIsInTrialPeriod => 68u32,
+            CatsAndDragons::NoServiceNeeded => 107u32,
+            CatsAndDragons::NicknameEmptyOrNull => 226u32,
+            CatsAndDragons::NoJsonData => 207u32,
+            CatsAndDragons::NoStatusPurchaseAppId => 187u32,
+            CatsAndDragons::EmailAlreadyInUse => 82u32,
+            CatsAndDragons::CantDebitHardCurrency => 23u32,
+            CatsAndDragons::ThisDeviceIdNotExists => 122u32,
+            CatsAndDragons::NoJson => 7u32,
+            CatsAndDragons::MembershipNotExists => 54u32,
+            CatsAndDragons::CantFindHardCurrencyTransactionType => 93u32,
+            CatsAndDragons::InvalidSecureKey => 5u32,
+            CatsAndDragons::PurchaseValidationUnsuccessful => 101u32,
+            CatsAndDragons::LootboxIdParseError => 138u32,
+            CatsAndDragons::PurchaseRefunded => 201u32,
+            CatsAndDragons::NoStoreType => 26u32,
+            CatsAndDragons::NoSecureKey => 17u32,
+            CatsAndDragons::AuthorizationFail => 160u32,
+            CatsAndDragons::InvalidLootboxId => 140u32,
+            CatsAndDragons::InvalidMailOrPassword => 1u32,
+            CatsAndDragons::NoReferralCode => 168u32,
+            CatsAndDragons::InvalidIp => 246u32,
+            CatsAndDragons::NickChangeCooldownIsNotExpired => 48u32,
+            CatsAndDragons::InvalidCurrencyType => 175u32,
+            CatsAndDragons::NoPurchaseReceipt => 102u32,
+            CatsAndDragons::NoUserId => 3u32,
+            CatsAndDragons::ReferrerIdParseError => 125u32,
+            CatsAndDragons::NoReferralLink => 169u32,
+            CatsAndDragons::PurchaseCanceled => 193u32,
+            CatsAndDragons::OfferKeyNotExists => 104u32,
+            CatsAndDragons::MembershipSubscriptionPurchaseIsNotAvailable => 63u32,
+            CatsAndDragons::UserInBlackList => 4u32,
+            CatsAndDragons::ScoreEmptyOrNull => 233u32,
+            CatsAndDragons::InvalidProductType => 173u32,
+            CatsAndDragons::InvalidOfferKey => 242u32,
+            CatsAndDragons::InvalidAppId => 29u32,
+            CatsAndDragons::CantBuyScience => 154u32,
+            CatsAndDragons::ProductIdEmptyOrNull => 232u32,
+            CatsAndDragons::AuthenticationAndProfileWebIdNotEqual => 118u32,
+            CatsAndDragons::NoPurchaseTokenData => 198u32,
+            CatsAndDragons::InvalidSurveyToken => 215u32,
+            CatsAndDragons::MapLevelIsEmpty => 240u32,
+            CatsAndDragons::NoProductId => 24u32,
+            CatsAndDragons::InvalidValidation => 80u32,
+            CatsAndDragons::ScoreParseError => 51u32,
+            CatsAndDragons::InvalidTheoremReachReward => 217u32,
+            CatsAndDragons::ToWebIdNotExists => 121u32,
+            CatsAndDragons::InvalidPurchase => 97u32,
+            CatsAndDragons::SpendingRecordUnsuccessful => 53u32,
+            CatsAndDragons::MapLevelTooLow => 89u32,
+            CatsAndDragons::InvalidCurrencyPurchaseKey => 176u32,
+            CatsAndDragons::ProfileIsNull => 178u32,
+            CatsAndDragons::InvalidToken => 14u32,
+            CatsAndDragons::InvalidTaskId => 219u32,
+            CatsAndDragons::NoBingoRecipeId => 259u32,
+            CatsAndDragons::InvalidPurchaseType => 56u32,
+            CatsAndDragons::OneRequestKeyWithMultipleValues => 204u32,
+            CatsAndDragons::Disconnect => 159u32,
+            CatsAndDragons::ExchangeWebRequestError => 145u32,
+            CatsAndDragons::ConfigWasNotFound => 117u32,
+            CatsAndDragons::ScoreCannotBeLessThanZero => 52u32,
+            CatsAndDragons::UsersCardNotFound => 126u32,
+            CatsAndDragons::NoTransactionId => 155u32,
+            CatsAndDragons::NoSuchAchievement => 36u32,
+            CatsAndDragons::LootboxIsOnCooldown => 141u32,
+            CatsAndDragons::ErrorWithDatabaseColumnName => 166u32,
+            CatsAndDragons::InvalidPurchaseParam => 174u32,
+            CatsAndDragons::InvalidPurchaseKey => 180u32,
+            CatsAndDragons::NoReferrerCode => 64u32,
+            CatsAndDragons::MembershipSubscriptionPurchaseRecordDoesNotExist => 59u32,
+            CatsAndDragons::NoPrice => 183u32,
+            CatsAndDragons::InvalidResponseCode => 199u32,
+            CatsAndDragons::CantFindStorePurchase => 151u32,
+            CatsAndDragons::NoSurveyUserId => 214u32,
+            CatsAndDragons::InvalidConfigJson => 243u32,
+            CatsAndDragons::NotEnoughScience => 127u32,
+            CatsAndDragons::InvalidConfigKey => 244u32,
+            CatsAndDragons::BingoRecipeNotCrafted => 258u32,
+            CatsAndDragons::HardCurrencyNullOrEmpty => 220u32,
+            CatsAndDragons::AmountLessOne => 11u32,
+            CatsAndDragons::NotEnoughCardExperience => 128u32,
+            CatsAndDragons::NoOfferToroAmount => 210u32,
+            CatsAndDragons::TaskIsOutOfDate => 39u32,
+            CatsAndDragons::UserWhoInvitesAndInvitedUserAreSame => 71u32,
+            CatsAndDragons::NoIp => 81u32,
+            CatsAndDragons::NoProductType => 171u32,
+            CatsAndDragons::NotEnoughMoneyOnBalance => 108u32,
+            CatsAndDragons::AccountIsAlreadyTied => 40u32,
+            CatsAndDragons::NoSuchTaskReward => 190u32,
+            CatsAndDragons::InvalidScore => 249u32,
+            CatsAndDragons::NotEnoughBingoItemAmount => 256u32,
+            CatsAndDragons::InvalidScienceName => 152u32,
+            CatsAndDragons::AlreadyAuthorized => 119u32,
+            CatsAndDragons::UndergoingServerMaintenance => 113u32,
+            CatsAndDragons::NoInappPurchaseData => 200u32,
+            CatsAndDragons::InvalidHardCurrencyTransactionType => 222u32,
+            CatsAndDragons::InvalidCardId => 206u32,
+            CatsAndDragons::UnknownLootboxRewardType => 139u32,
+            CatsAndDragons::UsersLootboxNotFound => 135u32,
+            CatsAndDragons::UserMembershipIsHigher => 55u32,
+            CatsAndDragons::PurchaseRewardUnsuccessful => 100u32,
+            CatsAndDragons::ErrorWithNameOfDatabaseRelation => 165u32,
+            CatsAndDragons::NoWebId => 41u32,
+            CatsAndDragons::NoAppId => 205u32,
+            CatsAndDragons::InvalidSpinType => 21u32,
+            CatsAndDragons::InvalidOid => 253u32,
+            CatsAndDragons::NoOid => 209u32,
+            CatsAndDragons::RequiredScienceNotFound => 133u32,
+            CatsAndDragons::TransactionIdNullOrEmpty => 223u32,
+            CatsAndDragons::UserIsNotConnected => 162u32,
+            CatsAndDragons::InvalidOfferToroAmountFormat => 218u32,
+            CatsAndDragons::CantUpdateTransaction => 144u32,
+            CatsAndDragons::UserIsNotAllowedToCompleteTask => 191u32,
+            CatsAndDragons::ScoreCannotBeMoreThanLimit => 87u32,
+            CatsAndDragons::IpEmptyOrNull => 230u32,
+            CatsAndDragons::WebIdEmptyOrNull => 239u32,
+            CatsAndDragons::NoPurchaseRecord => 157u32,
+            CatsAndDragons::UnlinkingTheDeviceMoreThanOnceAWeek => 110u32,
+            CatsAndDragons::ChestLevelIsUnavailable => 90u32,
+            CatsAndDragons::InvalidBalance => 96u32,
+            CatsAndDragons::NoOfferKey => 106u32,
+            CatsAndDragons::OfferKeyEmptyOrNull => 238u32,
+            CatsAndDragons::InvalidMultiplierFormat => 235u32,
+            CatsAndDragons::NoTaskId => 189u32,
+            CatsAndDragons::PurchaseReceiptEmptyOrNull => 228u32,
+            CatsAndDragons::NoDeviceId => 18u32,
+            CatsAndDragons::NoHardCurrency => 31u32,
+            CatsAndDragons::InvalidProductId => 247u32,
+            CatsAndDragons::InvalidStatusPurchaseAppId => 188u32,
+            CatsAndDragons::SaveDataNotFound => 86u32,
+            CatsAndDragons::AccountWithWebidHasProgress => 120u32,
+            CatsAndDragons::SubscriptionRenewalNumberIsSame => 62u32,
+            CatsAndDragons::InvalidReferrerId => 208u32,
+            CatsAndDragons::CapitalizationChecksumTestFailedOrInvalidEthereumWallet => 164u32,
+            CatsAndDragons::InvitedUserAlreadyHaveCompletedAchievements => 78u32,
+            CatsAndDragons::CantUpdateAppmetricaDeviceId => 195u32,
+            CatsAndDragons::InvalidIsNull => 234u32,
+            CatsAndDragons::NoMembership => 147u32,
+            CatsAndDragons::UserNotExist => 6u32,
+            CatsAndDragons::AchievementCompleted => 35u32,
+            CatsAndDragons::AppKeyNotExist => 15u32,
+            CatsAndDragons::InvalidPaymentStateForSubscriptionRenewal => 61u32,
+            CatsAndDragons::UserWhoInvitesDoesNotExists => 70u32,
+            CatsAndDragons::PurchaseRecordUnsuccessful => 99u32,
+            CatsAndDragons::SurveyIsAlreadyRecorded => 158u32,
+            CatsAndDragons::QuestRewardCloningFailed => 192u32,
+            CatsAndDragons::EndDateIsLessThanStartDate => 95u32,
+            CatsAndDragons::InvalidStoreType => 27u32,
+            CatsAndDragons::NoLevel => 88u32,
+            CatsAndDragons::UndergoingServerUpdate => 112u32,
+            CatsAndDragons::InvalidMembership => 148u32,
+            CatsAndDragons::InvalidAmountFormat => 38u32,
+            CatsAndDragons::NickAlreadyExists => 45u32,
+            CatsAndDragons::NoMultiplier => 149u32,
+            CatsAndDragons::PurchasePending => 194u32,
+            CatsAndDragons::InvalidWebId => 252u32,
+            CatsAndDragons::BingoSeasonIsNoActive => 257u32,
+            CatsAndDragons::DeviceIsOccupied => 43u32,
+            CatsAndDragons::UnavailableOfferRecordUnsuccessful => 105u32,
+            CatsAndDragons::InvalidNick => 46u32,
+            CatsAndDragons::InvalidHardCurrencyFormat => 221u32,
+            CatsAndDragons::ReferralTaskRewardAlreadyTaken => 75u32,
+            CatsAndDragons::InvalidTransactionId => 251u32,
+            CatsAndDragons::NoPaymentState => 57u32,
+            CatsAndDragons::NoSaveData => 85u32,
+            CatsAndDragons::PriceParseError => 185u32,
+            CatsAndDragons::InvalidAppMetricaDeviceId => 196u32,
+            CatsAndDragons::HardCurrencyLessOne => 30u32,
+            CatsAndDragons::PurchaseKeyEmptyOrNull => 248u32,
+            CatsAndDragons::TransactionIdParseError => 156u32,
+            CatsAndDragons::DeviceIdEmptyOrNull => 227u32,
+            CatsAndDragons::CardInfoNotFound => 131u32,
+            CatsAndDragons::ThisDeviceIdIsOccupied => 124u32,
+            CatsAndDragons::TaskListEmpty => 16u32,
+            CatsAndDragons::InvalidClientVersion => 161u32,
+            CatsAndDragons::WebIdNotFound => 91u32,
+            CatsAndDragons::NoConfigJson => 116u32,
+            CatsAndDragons::CatIdParseError => 184u32,
+            CatsAndDragons::NoScore => 50u32,
+            CatsAndDragons::UsersLootboxAmountIsNotEnough => 136u32,
+            CatsAndDragons::NoAppMetricaDeviceId => 197u32,
+            CatsAndDragons::NoTheoremReachTransactionId => 211u32,
+            CatsAndDragons::CouldNotCreditHardCurrency => 98u32,
+            CatsAndDragons::ToWebIdLinked => 123u32,
+            CatsAndDragons::TheoremReachTransactionIdEmptyOrNull => 212u32,
+            CatsAndDragons::InvalidRecipeId => 260u32,
+            CatsAndDragons::CardUpgradeInfoNotFound => 130u32,
+            CatsAndDragons::NoAdSpinsAvailable => 22u32,
+            CatsAndDragons::SubscriptionPaymentPending => 67u32,
+            CatsAndDragons::CantCreateTransaction => 143u32,
+            CatsAndDragons::WebIdAlreadyDefaultOrNotExists => 42u32,
+            CatsAndDragons::InvalidStatusPurchaseAppIdFormat => 236u32,
+            CatsAndDragons::NoNick => 44u32,
+            CatsAndDragons::InvalidSkillKey => 177u32,
+            CatsAndDragons::WebRequestError => 163u32,
+            CatsAndDragons::NoTheoremReachReward => 213u32,
+            CatsAndDragons::NoName => 153u32,
+            CatsAndDragons::NoToken => 28u32,
+            CatsAndDragons::NoSpinType => 20u32,
+            CatsAndDragons::OrderIdParseError => 60u32,
+            CatsAndDragons::NoCardId => 129u32,
+            CatsAndDragons::TransactionTypeIsNull => 241u32,
+            CatsAndDragons::NoEndDate => 225u32,
+            CatsAndDragons::NoStartDate => 224u32,
+            CatsAndDragons::ServerTemporarilyUnavailable => 111u32,
+            CatsAndDragons::InvalidDeviceId => 245u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Orchestrator {
+    #[serde(rename = "orchestrator.zeroAmount")]
+    ZeroAmount,
+}
+impl ToString for Orchestrator {
+    fn to_string(&self) -> String {
+        match self {
+            Self::ZeroAmount => "orchestrator.zeroAmount".to_string(),
+        }
+    }
+}
+impl Orchestrator {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            Orchestrator::ZeroAmount => 2115620u32,
         }
     }
 }
@@ -2030,76 +1544,42 @@ impl ToString for Referrals {
     }
 }
 impl Referrals {
-    pub fn to_u64(&self) -> u64 {
+    pub fn to_u32(&self) -> u32 {
         match self {
-            Referrals::UnavailableTransaction => 7759911u64,
-            Referrals::AlreadyHasReferrer => 2128181u64,
-            Referrals::AlreadyHasCode => 88355u64,
+            Referrals::UnavailableTransaction => 7759911u32,
+            Referrals::AlreadyHasReferrer => 2128181u32,
+            Referrals::AlreadyHasCode => 88355u32,
         }
     }
 }
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Cron {
-    #[serde(rename = "cron.delete")]
-    Delete,
-    #[serde(rename = "cron.create")]
-    Create,
+pub enum Promo {
+    #[serde(rename = "promo.codeIsAlreadyUsed")]
+    CodeIsAlreadyUsed,
+    #[serde(rename = "promo.codeExpired")]
+    CodeExpired,
+    #[serde(rename = "promo.codeNotExists")]
+    CodeNotExists,
+    #[serde(rename = "promo.internalError")]
+    InternalError,
 }
-impl ToString for Cron {
+impl ToString for Promo {
     fn to_string(&self) -> String {
         match self {
-            Self::Delete => "cron.delete".to_string(),
-            Self::Create => "cron.create".to_string(),
+            Self::CodeIsAlreadyUsed => "promo.codeIsAlreadyUsed".to_string(),
+            Self::CodeExpired => "promo.codeExpired".to_string(),
+            Self::CodeNotExists => "promo.codeNotExists".to_string(),
+            Self::InternalError => "promo.internalError".to_string(),
         }
     }
 }
-impl Cron {
-    pub fn to_u64(&self) -> u64 {
+impl Promo {
+    pub fn to_u32(&self) -> u32 {
         match self {
-            Cron::Delete => 3323952u64,
-            Cron::Create => 10004u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum Bff {
-    #[serde(rename = "bff.invalidMethod")]
-    InvalidMethod,
-    #[serde(rename = "bff.invalidAgent")]
-    InvalidAgent,
-}
-impl ToString for Bff {
-    fn to_string(&self) -> String {
-        match self {
-            Self::InvalidMethod => "bff.invalidMethod".to_string(),
-            Self::InvalidAgent => "bff.invalidAgent".to_string(),
-        }
-    }
-}
-impl Bff {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            Bff::InvalidMethod => 6707232u64,
-            Bff::InvalidAgent => 2378022u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum RestorePassword {
-    #[serde(rename = "restorePassword.expiredToken")]
-    ExpiredToken,
-}
-impl ToString for RestorePassword {
-    fn to_string(&self) -> String {
-        match self {
-            Self::ExpiredToken => "restorePassword.expiredToken".to_string(),
-        }
-    }
-}
-impl RestorePassword {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            RestorePassword::ExpiredToken => 48294u64,
+            Promo::CodeIsAlreadyUsed => 10007u32,
+            Promo::CodeExpired => 41013u32,
+            Promo::CodeNotExists => 4483108u32,
+            Promo::InternalError => 2730273u32,
         }
     }
 }
@@ -2119,64 +1599,584 @@ impl ToString for Transactions {
     }
 }
 impl Transactions {
-    pub fn to_u64(&self) -> u64 {
+    pub fn to_u32(&self) -> u32 {
         match self {
-            Transactions::UpdateBalanceRecord => 22578u64,
-            Transactions::NotEnoughBalance => 22562u64,
-        }
-    }
-}
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
-pub enum GooglePlay {
-    #[serde(rename = "googlePlay.invalidSubscription")]
-    InvalidSubscription,
-    #[serde(rename = "googlePlay.invalidPurchaseStatus")]
-    InvalidPurchaseStatus,
-}
-impl ToString for GooglePlay {
-    fn to_string(&self) -> String {
-        match self {
-            Self::InvalidSubscription => "googlePlay.invalidSubscription".to_string(),
-            Self::InvalidPurchaseStatus => "googlePlay.invalidPurchaseStatus".to_string(),
-        }
-    }
-}
-impl GooglePlay {
-    pub fn to_u64(&self) -> u64 {
-        match self {
-            GooglePlay::InvalidSubscription => 18593u64,
-            GooglePlay::InvalidPurchaseStatus => 12336u64,
+            Transactions::UpdateBalanceRecord => 22578u32,
+            Transactions::NotEnoughBalance => 22562u32,
         }
     }
 }
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
 pub enum TwoFactorAuth {
+    #[serde(rename = "twoFactorAuth.expiredToken")]
+    ExpiredToken,
     #[serde(rename = "twoFactorAuth.invalidToken")]
     InvalidToken,
     #[serde(rename = "twoFactorAuth.hasEntry")]
     HasEntry,
     #[serde(rename = "twoFactorAuth.generate")]
     Generate,
-    #[serde(rename = "twoFactorAuth.expiredToken")]
-    ExpiredToken,
 }
 impl ToString for TwoFactorAuth {
     fn to_string(&self) -> String {
         match self {
+            Self::ExpiredToken => "twoFactorAuth.expiredToken".to_string(),
             Self::InvalidToken => "twoFactorAuth.invalidToken".to_string(),
             Self::HasEntry => "twoFactorAuth.hasEntry".to_string(),
             Self::Generate => "twoFactorAuth.generate".to_string(),
-            Self::ExpiredToken => "twoFactorAuth.expiredToken".to_string(),
         }
     }
 }
 impl TwoFactorAuth {
-    pub fn to_u64(&self) -> u64 {
+    pub fn to_u32(&self) -> u32 {
         match self {
-            TwoFactorAuth::InvalidToken => 2398260u64,
-            TwoFactorAuth::HasEntry => 19360u64,
-            TwoFactorAuth::Generate => 35880u64,
-            TwoFactorAuth::ExpiredToken => 26673u64,
+            TwoFactorAuth::ExpiredToken => 26673u32,
+            TwoFactorAuth::InvalidToken => 2398260u32,
+            TwoFactorAuth::HasEntry => 19360u32,
+            TwoFactorAuth::Generate => 35880u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Action {
+    #[serde(rename = "action.notCancelable")]
+    NotCancelable,
+}
+impl ToString for Action {
+    fn to_string(&self) -> String {
+        match self {
+            Self::NotCancelable => "action.notCancelable".to_string(),
+        }
+    }
+}
+impl Action {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            Action::NotCancelable => 4405299u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Validation {
+    #[serde(rename = "validation.invalid")]
+    Invalid,
+    #[serde(rename = "validation.doesNotMatchPattern")]
+    DoesNotMatchPattern,
+}
+impl ToString for Validation {
+    fn to_string(&self) -> String {
+        match self {
+            Self::Invalid => "validation.invalid".to_string(),
+            Self::DoesNotMatchPattern => "validation.doesNotMatchPattern".to_string(),
+        }
+    }
+}
+impl Validation {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            Validation::Invalid => 1423409u32,
+            Validation::DoesNotMatchPattern => 2439464u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Permissions {
+    #[serde(rename = "permissions.notAllowed")]
+    NotAllowed,
+}
+impl ToString for Permissions {
+    fn to_string(&self) -> String {
+        match self {
+            Self::NotAllowed => "permissions.notAllowed".to_string(),
+        }
+    }
+}
+impl Permissions {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            Permissions::NotAllowed => 9918500u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum AdminOptions {
+    #[serde(rename = "adminOptions.update")]
+    Update,
+    #[serde(rename = "adminOptions.add")]
+    Add,
+}
+impl ToString for AdminOptions {
+    fn to_string(&self) -> String {
+        match self {
+            Self::Update => "adminOptions.update".to_string(),
+            Self::Add => "adminOptions.add".to_string(),
+        }
+    }
+}
+impl AdminOptions {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            AdminOptions::Update => 36625u32,
+            AdminOptions::Add => 15945u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Db {
+    #[serde(rename = "db.save")]
+    Save,
+    #[serde(rename = "db.select")]
+    Select,
+    #[serde(rename = "db.create")]
+    Create,
+    #[serde(rename = "db.invalidTransaction")]
+    InvalidTransaction,
+    #[serde(rename = "db.remove")]
+    Remove,
+    #[serde(rename = "db.update")]
+    Update,
+    #[serde(rename = "db.notFound")]
+    NotFound,
+    #[serde(rename = "db.insert")]
+    Insert,
+}
+impl ToString for Db {
+    fn to_string(&self) -> String {
+        match self {
+            Self::Save => "db.save".to_string(),
+            Self::Select => "db.select".to_string(),
+            Self::Create => "db.create".to_string(),
+            Self::InvalidTransaction => "db.invalidTransaction".to_string(),
+            Self::Remove => "db.remove".to_string(),
+            Self::Update => "db.update".to_string(),
+            Self::NotFound => "db.notFound".to_string(),
+            Self::Insert => "db.insert".to_string(),
+        }
+    }
+}
+impl Db {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            Db::Save => 9451561u32,
+            Db::Select => 16473u32,
+            Db::Create => 5290272u32,
+            Db::InvalidTransaction => 9857073u32,
+            Db::Remove => 14630u32,
+            Db::Update => 15988u32,
+            Db::NotFound => 18291u32,
+            Db::Insert => 47648u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Redis {
+    #[serde(rename = "redis.parse")]
+    Parse,
+    #[serde(rename = "redis.internalServerError")]
+    InternalServerError,
+    #[serde(rename = "redis.notFound")]
+    NotFound,
+}
+impl ToString for Redis {
+    fn to_string(&self) -> String {
+        match self {
+            Self::Parse => "redis.parse".to_string(),
+            Self::InternalServerError => "redis.internalServerError".to_string(),
+            Self::NotFound => "redis.notFound".to_string(),
+        }
+    }
+}
+impl Redis {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            Redis::Parse => 1214752u32,
+            Redis::InternalServerError => 18566u32,
+            Redis::NotFound => 10067u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Soul {
+    #[serde(rename = "soul.getData")]
+    GetData,
+    #[serde(rename = "soul.callContractMethod")]
+    CallContractMethod,
+    #[serde(rename = "soul.txAlreadySending")]
+    TxAlreadySending,
+}
+impl ToString for Soul {
+    fn to_string(&self) -> String {
+        match self {
+            Self::GetData => "soul.getData".to_string(),
+            Self::CallContractMethod => "soul.callContractMethod".to_string(),
+            Self::TxAlreadySending => "soul.txAlreadySending".to_string(),
+        }
+    }
+}
+impl Soul {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            Soul::GetData => 4569392u32,
+            Soul::CallContractMethod => 10279u32,
+            Soul::TxAlreadySending => 15921u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Bytes {
+    #[serde(rename = "bytes.write")]
+    Write,
+    #[serde(rename = "bytes.read")]
+    Read,
+}
+impl ToString for Bytes {
+    fn to_string(&self) -> String {
+        match self {
+            Self::Write => "bytes.write".to_string(),
+            Self::Read => "bytes.read".to_string(),
+        }
+    }
+}
+impl Bytes {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            Bytes::Write => 4683826u32,
+            Bytes::Read => 15652u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Nats {
+    #[serde(rename = "nats.send")]
+    Send,
+    #[serde(rename = "nats.internalServiceCall")]
+    InternalServiceCall,
+    #[serde(rename = "nats.receive")]
+    Receive,
+}
+impl ToString for Nats {
+    fn to_string(&self) -> String {
+        match self {
+            Self::Send => "nats.send".to_string(),
+            Self::InternalServiceCall => "nats.internalServiceCall".to_string(),
+            Self::Receive => "nats.receive".to_string(),
+        }
+    }
+}
+impl Nats {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            Nats::Send => 36898u32,
+            Nats::InternalServiceCall => 19509u32,
+            Nats::Receive => 39721u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum BytesFormatter {
+    #[serde(rename = "bytesFormatter.handshakeSessionToken")]
+    HandshakeSessionToken,
+    #[serde(rename = "bytesFormatter.handshakeInvalidVersion")]
+    HandshakeInvalidVersion,
+    #[serde(rename = "bytesFormatter.internalError")]
+    InternalError,
+    #[serde(rename = "bytesFormatter.handshakeAuthToken")]
+    HandshakeAuthToken,
+}
+impl ToString for BytesFormatter {
+    fn to_string(&self) -> String {
+        match self {
+            Self::HandshakeSessionToken => "bytesFormatter.handshakeSessionToken".to_string(),
+            Self::HandshakeInvalidVersion => "bytesFormatter.handshakeInvalidVersion".to_string(),
+            Self::InternalError => "bytesFormatter.internalError".to_string(),
+            Self::HandshakeAuthToken => "bytesFormatter.handshakeAuthToken".to_string(),
+        }
+    }
+}
+impl BytesFormatter {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            BytesFormatter::HandshakeSessionToken => 40024u32,
+            BytesFormatter::HandshakeInvalidVersion => 10087u32,
+            BytesFormatter::InternalError => 43553u32,
+            BytesFormatter::HandshakeAuthToken => 18579u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum GooglePlay {
+    #[serde(rename = "googlePlay.invalidPurchaseStatus")]
+    InvalidPurchaseStatus,
+    #[serde(rename = "googlePlay.invalidSubscription")]
+    InvalidSubscription,
+}
+impl ToString for GooglePlay {
+    fn to_string(&self) -> String {
+        match self {
+            Self::InvalidPurchaseStatus => "googlePlay.invalidPurchaseStatus".to_string(),
+            Self::InvalidSubscription => "googlePlay.invalidSubscription".to_string(),
+        }
+    }
+}
+impl GooglePlay {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            GooglePlay::InvalidPurchaseStatus => 12336u32,
+            GooglePlay::InvalidSubscription => 18593u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum RestorePassword {
+    #[serde(rename = "restorePassword.expiredToken")]
+    ExpiredToken,
+}
+impl ToString for RestorePassword {
+    fn to_string(&self) -> String {
+        match self {
+            Self::ExpiredToken => "restorePassword.expiredToken".to_string(),
+        }
+    }
+}
+impl RestorePassword {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            RestorePassword::ExpiredToken => 48294u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Fs {
+    #[serde(rename = "fs.readFile")]
+    ReadFile,
+}
+impl ToString for Fs {
+    fn to_string(&self) -> String {
+        match self {
+            Self::ReadFile => "fs.readFile".to_string(),
+        }
+    }
+}
+impl Fs {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            Fs::ReadFile => 15748u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Functions {
+    #[serde(rename = "functions.moreThanOneParam")]
+    MoreThanOneParam,
+    #[serde(rename = "functions.emptyParams")]
+    EmptyParams,
+}
+impl ToString for Functions {
+    fn to_string(&self) -> String {
+        match self {
+            Self::MoreThanOneParam => "functions.moreThanOneParam".to_string(),
+            Self::EmptyParams => "functions.emptyParams".to_string(),
+        }
+    }
+}
+impl Functions {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            Functions::MoreThanOneParam => 36137u32,
+            Functions::EmptyParams => 10534u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Profile {
+    #[serde(rename = "profile.notBanned")]
+    NotBanned,
+    #[serde(rename = "profile.alreadyBanned")]
+    AlreadyBanned,
+    #[serde(rename = "profile.alreadySubscribed")]
+    AlreadySubscribed,
+}
+impl ToString for Profile {
+    fn to_string(&self) -> String {
+        match self {
+            Self::NotBanned => "profile.notBanned".to_string(),
+            Self::AlreadyBanned => "profile.alreadyBanned".to_string(),
+            Self::AlreadySubscribed => "profile.alreadySubscribed".to_string(),
+        }
+    }
+}
+impl Profile {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            Profile::NotBanned => 2123817u32,
+            Profile::AlreadyBanned => 15945u32,
+            Profile::AlreadySubscribed => 10274u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Http {
+    #[serde(rename = "http.404")]
+    E404,
+    #[serde(rename = "http.401")]
+    E401,
+    #[serde(rename = "http.403")]
+    E403,
+    #[serde(rename = "http.500")]
+    E500,
+    #[serde(rename = "http.400")]
+    E400,
+}
+impl ToString for Http {
+    fn to_string(&self) -> String {
+        match self {
+            Self::E404 => "http.404".to_string(),
+            Self::E401 => "http.401".to_string(),
+            Self::E403 => "http.403".to_string(),
+            Self::E500 => "http.500".to_string(),
+            Self::E400 => "http.400".to_string(),
+        }
+    }
+}
+impl Http {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            Http::E404 => 404u32,
+            Http::E401 => 401u32,
+            Http::E403 => 403u32,
+            Http::E500 => 500u32,
+            Http::E400 => 400u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Common {
+    #[serde(rename = "common.internalServerError")]
+    InternalServerError,
+    #[serde(rename = "common.unknown")]
+    Unknown,
+}
+impl ToString for Common {
+    fn to_string(&self) -> String {
+        match self {
+            Self::InternalServerError => "common.internalServerError".to_string(),
+            Self::Unknown => "common.unknown".to_string(),
+        }
+    }
+}
+impl Common {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            Common::InternalServerError => 18582u32,
+            Common::Unknown => 18497u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Status {
+    #[serde(rename = "status.delete")]
+    Delete,
+    #[serde(rename = "status.get")]
+    Get,
+    #[serde(rename = "status.add")]
+    Add,
+    #[serde(rename = "status.update")]
+    Update,
+}
+impl ToString for Status {
+    fn to_string(&self) -> String {
+        match self {
+            Self::Delete => "status.delete".to_string(),
+            Self::Get => "status.get".to_string(),
+            Self::Add => "status.add".to_string(),
+            Self::Update => "status.update".to_string(),
+        }
+    }
+}
+impl Status {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            Status::Delete => 157731u32,
+            Status::Get => 27698u32,
+            Status::Add => 14150u32,
+            Status::Update => 1292339u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Utils {
+    #[serde(rename = "utils.decryption")]
+    Decryption,
+}
+impl ToString for Utils {
+    fn to_string(&self) -> String {
+        match self {
+            Self::Decryption => "utils.decryption".to_string(),
+        }
+    }
+}
+impl Utils {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            Utils::Decryption => 1148968u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum Cron {
+    #[serde(rename = "cron.create")]
+    Create,
+    #[serde(rename = "cron.delete")]
+    Delete,
+}
+impl ToString for Cron {
+    fn to_string(&self) -> String {
+        match self {
+            Self::Create => "cron.create".to_string(),
+            Self::Delete => "cron.delete".to_string(),
+        }
+    }
+}
+impl Cron {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            Cron::Create => 10004u32,
+            Cron::Delete => 3323952u32,
+        }
+    }
+}
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+pub enum ProductFactory {
+    #[serde(rename = "productFactory.invalidChance")]
+    InvalidChance,
+    #[serde(rename = "productFactory.attributesGeneration")]
+    AttributesGeneration,
+    #[serde(rename = "productFactory.invalidLimit")]
+    InvalidLimit,
+    #[serde(rename = "productFactory.invalidProductType")]
+    InvalidProductType,
+    #[serde(rename = "productFactory.lootboxDropGeneration")]
+    LootboxDropGeneration,
+}
+impl ToString for ProductFactory {
+    fn to_string(&self) -> String {
+        match self {
+            Self::InvalidChance => "productFactory.invalidChance".to_string(),
+            Self::AttributesGeneration => "productFactory.attributesGeneration".to_string(),
+            Self::InvalidLimit => "productFactory.invalidLimit".to_string(),
+            Self::InvalidProductType => "productFactory.invalidProductType".to_string(),
+            Self::LootboxDropGeneration => "productFactory.lootboxDropGeneration".to_string(),
+        }
+    }
+}
+impl ProductFactory {
+    pub fn to_u32(&self) -> u32 {
+        match self {
+            ProductFactory::InvalidChance => 27433u32,
+            ProductFactory::AttributesGeneration => 7968804u32,
+            ProductFactory::InvalidLimit => 3180596u32,
+            ProductFactory::InvalidProductType => 2107697u32,
+            ProductFactory::LootboxDropGeneration => 43156u32,
         }
     }
 }

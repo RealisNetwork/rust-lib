@@ -16,7 +16,7 @@ pub enum CustomErrorType {
 impl CustomErrorType {
     pub fn to_u32(&self) -> u32 {
         match self {
-            CustomErrorType::Default => 1000u32, //error code, three digits after must be zeros
+            CustomErrorType::Default => 1000u32, // error code, three digits after must be zeros
             CustomErrorType::Blockchain(blockchain) => 2000u32 + blockchain.to_u32(),
             CustomErrorType::Rpc(rpc) => 3000u32 + rpc.to_u32(),
             CustomErrorType::Nats(nats) => 4000u32 + nats.to_u32(),
