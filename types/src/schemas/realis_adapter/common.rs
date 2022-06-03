@@ -25,12 +25,7 @@ impl BlockchainResponseParams {
             result: ResponseResult {
                 request,
                 response: ResponseMessage::Left {
-                    value: BaseError::<()>::new(
-                        msg,
-                        error_type.error_type,
-                        None,
-                        None
-                    ),
+                    value: BaseError::<()>::new(msg, error_type.error_type, None, None),
                 },
             },
         }

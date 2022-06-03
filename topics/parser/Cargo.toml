@@ -14,3 +14,4 @@ octocrab = "0.15.3"
 tokio = "1.15.0"
 quote = "1.0.15"
 syn = "1"
+error_registry = { path = "../../error_registry"}
