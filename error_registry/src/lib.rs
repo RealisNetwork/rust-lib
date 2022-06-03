@@ -29,7 +29,7 @@ pub struct BaseError<D: Debug> {
     pub trace: String,
     pub data: Option<D>,
     /// Numeric id of `error_type`
-    pub status: Option<u32>,
+    pub status: u32,
 }
 
 impl<D: Debug> BaseError<D> {
@@ -50,13 +50,13 @@ impl<D: Debug> BaseError<D> {
     /// use error_registry::custom_errors::{CustomErrorType, Nats};
     ///
     /// // BaseError save a error backtrace.
-    /// let err = BaseError::<()>::new("Custom message".to_string(), ErrorType::Custom(CustomErrorType::Nats(Nats::Send)), None, None);
+    /// let err = BaseError::<()>::new("Custom message".to_string(), ErrorType::Custom(CustomErrorType::Nats(Nats::Send)), None);
     /// println!("{}", err.trace);
     /// ```
     #[must_use]
-    pub fn new(msg: String, error_type: ErrorType, data: Option<D>, status: Option<u32>) -> Self {
+    pub fn new(msg: String, error_type: ErrorType, data: Option<D>) -> Self {
         let trace = Backtrace::new();
-        let status = status.or(Some(error_type.clone().into()));
+        let status = error_type.clone().into();
 
         Self {
             msg,
@@ -114,7 +114,7 @@ impl<D: Debug, E: 'static + Error> From<E> for BaseError<D> {
             // Do not cast error type to ErrorType automatically
             // Need to add error type manually to `from` method of ErrorType
             // If error type not recognized return a default ErrorType
-            status: Some(error_type.clone().into()),
+            status: error_type.clone().into(),
             error_type,
             data: None,
         }
@@ -136,7 +136,7 @@ impl<D: Debug> Default for BaseError<D> {
     ///
     /// Self {
     ///     msg: String::from("Default error."),
-    ///     status: Some(error_type.clone().into()),
+    ///     status: error_type.clone().into(),
     ///     error_type: error_type,
     ///     trace: format!("{:?}", trace),
     ///     data: None,
@@ -147,7 +147,7 @@ impl<D: Debug> Default for BaseError<D> {
         let error_type = ErrorType::Custom(CustomErrorType::Default);
         Self {
             msg: String::from("Default error."),
-            status: Some(error_type.clone().into()),
+            status: error_type.clone().into(),
             error_type: error_type,
             trace: format!("{:?}", trace),
             data: None,
@@ -162,7 +162,7 @@ impl<D: Debug> From<GeneratedError> for BaseError<D> {
         let error_type = ErrorType::Generated(error);
         Self {
             msg: format!("{:?}", error_type),
-            status: Some(error_type.clone().into()),
+            status: error_type.clone().into(),
             error_type: error_type,
             trace: format!("{:?}", trace),
             data: None,
@@ -177,7 +177,7 @@ impl<D: Debug> From<CustomErrorType> for BaseError<D> {
         let error_type = ErrorType::Custom(error);
         Self {
             msg: format!("{:?}", error_type),
-            status: Some(error_type.clone().into()),
+            status: error_type.clone().into(),
             error_type: error_type,
             trace: format!("{:?}", trace),
             data: None,
@@ -275,7 +275,6 @@ mod tests {
             "Message text ".to_string(),
             ErrorType::Generated(GeneratedError::Db(GeneratedDb::Select)),
             Some("Data"),
-            Some(10),
         );
         println!("Debug: \n{:?}", err);
         println!("Display: \n{}", err);
