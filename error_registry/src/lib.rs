@@ -56,7 +56,7 @@ impl<D: Debug> BaseError<D> {
     #[must_use]
     pub fn new(msg: String, error_type: ErrorType, data: Option<D>, status: Option<u32>) -> Self {
         let trace = Backtrace::new();
-        let status = status.or(Some(error_type.to_u32() as u32));
+        let status = status.or(Some(error_type.clone().into()));
 
         Self {
             msg,
@@ -114,7 +114,7 @@ impl<D: Debug, E: 'static + Error> From<E> for BaseError<D> {
             // Do not cast error type to ErrorType automatically
             // Need to add error type manually to `from` method of ErrorType
             // If error type not recognized return a default ErrorType
-            status: Some(error_type.to_u32()),
+            status: Some(error_type.clone().into()),
             error_type,
             data: None,
         }
@@ -136,7 +136,7 @@ impl<D: Debug> Default for BaseError<D> {
     ///
     /// Self {
     ///     msg: String::from("Default error."),
-    ///     status: Some(error_type.to_u32),
+    ///     status: Some(error_type.clone().into()),
     ///     error_type: error_type,
     ///     trace: format!("{:?}", trace),
     ///     data: None,
@@ -147,7 +147,7 @@ impl<D: Debug> Default for BaseError<D> {
         let error_type = ErrorType::Custom(CustomErrorType::Default);
         Self {
             msg: String::from("Default error."),
-            status: Some(error_type.to_u32()),
+            status: Some(error_type.clone().into()),
             error_type: error_type,
             trace: format!("{:?}", trace),
             data: None,
@@ -162,7 +162,7 @@ impl<D: Debug> From<GeneratedError> for BaseError<D> {
         let error_type = ErrorType::Generated(error);
         Self {
             msg: format!("{:?}", error_type),
-            status: Some(error_type.to_u32()),
+            status: Some(error_type.clone().into()),
             error_type: error_type,
             trace: format!("{:?}", trace),
             data: None,
@@ -177,7 +177,7 @@ impl<D: Debug> From<CustomErrorType> for BaseError<D> {
         let error_type = ErrorType::Custom(error);
         Self {
             msg: format!("{:?}", error_type),
-            status: Some(error_type.to_u32()),
+            status: Some(error_type.clone().into()),
             error_type: error_type,
             trace: format!("{:?}", trace),
             data: None,
@@ -197,11 +197,11 @@ pub enum ErrorType {
     Generated(GeneratedError),
 }
 
-impl ErrorType {
-    pub fn to_u32(&self) -> u32 {
+impl Into<u32> for ErrorType {
+    fn into(self) -> u32 {
         match self {
-            ErrorType::Custom(custom) => 777000000u32 + custom.to_u32(),
-            ErrorType::Generated(generated) => generated.to_u32(),
+            ErrorType::Custom(custom) => 777000000u32 + Into::<u32>::into(custom), //<CustomErrorType as Into<u32>>::into(custom)
+            ErrorType::Generated(generated) => Into::<u32>::into(generated),
         }
     }
 }
@@ -302,8 +302,8 @@ mod tests {
 
     #[test]
     fn get_code() {
-        let generated_code: u32 = ErrorType::Generated(GeneratedError::Utils(Utils::Decryption)).to_u32();
-        let custom_code: u32 = ErrorType::Custom(CustomErrorType::Db(Db::UserIdNotFound)).to_u32();
+        let generated_code: u32 = ErrorType::Generated(GeneratedError::Utils(Utils::Decryption)).into();
+        let custom_code: u32 = ErrorType::Custom(CustomErrorType::Db(Db::UserIdNotFound)).into();
         println!(
             "Code for ErrorType::Generated(GeneratedError::Utils(Utils::Decryption)): {}",
             generated_code

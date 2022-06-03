@@ -178,8 +178,8 @@ pub fn rebuild() {
                 }
             }
 
-            impl #enum_name_indent {
-                pub fn to_u32(&self) -> u32 {
+            impl Into<u32> for #enum_name_indent {
+                fn into(self) -> u32 {
                     match self {
                         #(
                             #enum_name_indent::#postifx4=>#error_code,
@@ -200,10 +200,10 @@ pub fn rebuild() {
                 }
             }
         )*
-        impl #general_enum_name{
-        pub fn to_u32(&self) -> u32 {
-            match self {
-                 #(#general_enum_name::#field_name3(#field_name_subfield) => { #field_name_subfield.to_u32() })*
+        impl Into<u32> for #general_enum_name {
+                fn into(self) -> u32 {
+                    match self {
+                 #(#general_enum_name::#field_name3(#field_name_subfield) => { Into::<u32>::into(#field_name_subfield) })*
 
             }
         }
