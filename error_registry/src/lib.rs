@@ -189,6 +189,15 @@ pub enum ErrorType {
     Generated(GeneratedError),
 }
 
+impl ErrorType{
+    pub fn to_u64(&self) -> u64 {
+        match self {
+            ErrorType::Custom(custom) => 777000000u64 + custom.to_u64(),
+            ErrorType::Generated(generated) => generated.to_u64(),
+        }
+    }
+}
+
 impl<E: 'static + Error> From<E> for ErrorType {
     /// Matching `TypeId` of the error type which
     /// implement `std::error:Error` to get relevant
@@ -285,7 +294,13 @@ mod tests {
 
     #[test]
     fn get_code() {
-        let code: u64 = GeneratedError::Utils(Utils::Decryption).to_u64();
-        assert_eq!(1148968u64, code);
+        let generated_code: u64 = ErrorType::Generated(GeneratedError::Utils(Utils::Decryption)).to_u64();
+        let custom_code: u64 = ErrorType::Custom(CustomErrorType::Db(Db::UserIdNotFound)).to_u64();
+        println!("Code for ErrorType::Generated(GeneratedError::Utils(Utils::Decryption)): {}", generated_code);
+
+        assert_eq!(1148968u64, generated_code);
+
+        println!("Code for ErrorType::Custom(CustomErrorType::Db(Db::UserIdNotFound)): {}", custom_code);
+        assert_eq!(777005004u64, custom_code);
     }
 }
