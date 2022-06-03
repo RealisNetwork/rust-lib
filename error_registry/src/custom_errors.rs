@@ -14,16 +14,16 @@ pub enum CustomErrorType {
 }
 
 impl CustomErrorType {
-    pub fn to_u64(&self) -> u64 {
+    pub fn to_u32(&self) -> u32 {
         match self {
-            CustomErrorType::Default => 1000u64, //error code, three digits after must be zeros
-            CustomErrorType::Blockchain(blockchain) => 2000u64 + blockchain.to_u64(),
-            CustomErrorType::Rpc(rpc) => 3000u64 + rpc.to_u64(),
-            CustomErrorType::Nats(nats) => 4000u64 + nats.to_u64(),
-            CustomErrorType::Db(db) => 5000u64 + db.to_u64(),
-            CustomErrorType::EnvLoadedError(env_loaded_error) => 6000u64 + env_loaded_error.to_u64(),
-            CustomErrorType::Common(common) => 7000u64 + common.to_u64(),
-            CustomErrorType::Utils(utils) => 8000u64 + utils.to_u64(),
+            CustomErrorType::Default => 1000u32, //error code, three digits after must be zeros
+            CustomErrorType::Blockchain(blockchain) => 2000u32 + blockchain.to_u32(),
+            CustomErrorType::Rpc(rpc) => 3000u32 + rpc.to_u32(),
+            CustomErrorType::Nats(nats) => 4000u32 + nats.to_u32(),
+            CustomErrorType::Db(db) => 5000u32 + db.to_u32(),
+            CustomErrorType::EnvLoadedError(env_loaded_error) => 6000u32 + env_loaded_error.to_u32(),
+            CustomErrorType::Common(common) => 7000u32 + common.to_u32(),
+            CustomErrorType::Utils(utils) => 8000u32 + utils.to_u32(),
         }
     }
 }
@@ -76,9 +76,9 @@ pub enum Blockchain {
 }
 
 impl Blockchain {
-    pub fn to_u64(&self) -> u64 {
+    pub fn to_u32(&self) -> u32 {
         match self {
-            Blockchain::Send => 1u64,
+            Blockchain::Send => 1u32,
         }
     }
 }
@@ -92,12 +92,12 @@ pub enum Rpc {
 }
 
 impl Rpc {
-    pub fn to_u64(&self) -> u64 {
+    pub fn to_u32(&self) -> u32 {
         match self {
-            Rpc::Api => 1u64,
-            Rpc::BlockNotFound => 2u64,
-            Rpc::EventNotFound => 3u64,
-            Rpc::Disconnected => 4u64,
+            Rpc::Api => 1u32,
+            Rpc::BlockNotFound => 2u32,
+            Rpc::EventNotFound => 3u32,
+            Rpc::Disconnected => 4u32,
         }
     }
 }
@@ -112,13 +112,13 @@ pub enum Nats {
 }
 
 impl Nats {
-    pub fn to_u64(&self) -> u64 {
+    pub fn to_u32(&self) -> u32 {
         match self {
-            Nats::Receive => 1u64,
-            Nats::Ok => 2u64,
-            Nats::Unsubscribe => 3u64,
-            Nats::Disconnected => 4u64,
-            Nats::Send => 5u64,
+            Nats::Receive => 1u32,
+            Nats::Ok => 2u32,
+            Nats::Unsubscribe => 3u32,
+            Nats::Disconnected => 4u32,
+            Nats::Send => 5u32,
         }
     }
 }
@@ -131,12 +131,12 @@ pub enum Db {
     UserIdNotFound,
 }
 impl Db {
-    pub fn to_u64(&self) -> u64 {
+    pub fn to_u32(&self) -> u32 {
         match self {
-            Db::ConnectionError => 1u64,
-            Db::WalletNotFound => 2u64,
-            Db::AlreadyExists => 3u64,
-            Db::UserIdNotFound => 4u64,
+            Db::ConnectionError => 1u32,
+            Db::WalletNotFound => 2u32,
+            Db::AlreadyExists => 3u32,
+            Db::UserIdNotFound => 4u32,
         }
     }
 }
@@ -154,15 +154,15 @@ pub enum Common {
 }
 
 impl Common {
-    pub fn to_u64(&self) -> u64 {
+    pub fn to_u32(&self) -> u32 {
         match self {
-            Common::Overflow => 1u64,
-            Common::Parse => 2u64,
-            Common::ParseString => 3u64,
-            Common::ParseInt => 4u64,
-            Common::ParseBool => 5u64,
-            Common::OutOfRange => 6u64,
-            Common::Other => 7u64,
+            Common::Overflow => 1u32,
+            Common::Parse => 2u32,
+            Common::ParseString => 3u32,
+            Common::ParseInt => 4u32,
+            Common::ParseBool => 5u32,
+            Common::OutOfRange => 6u32,
+            Common::Other => 7u32,
         }
     }
 }
@@ -174,10 +174,10 @@ pub enum EnvLoadedError {
 }
 
 impl EnvLoadedError {
-    pub fn to_u64(&self) -> u64 {
+    pub fn to_u32(&self) -> u32 {
         match self {
-            EnvLoadedError::Load => 1u64,
-            EnvLoadedError::Convert => 2u64,
+            EnvLoadedError::Load => 1u32,
+            EnvLoadedError::Convert => 2u32,
         }
     }
 }
@@ -188,9 +188,9 @@ pub enum Utils {
 }
 
 impl Utils {
-    pub fn to_u64(&self) -> u64 {
+    pub fn to_u32(&self) -> u32 {
         match self {
-            Utils::Convert => 1u64,
+            Utils::Convert => 1u32,
         }
     }
 }

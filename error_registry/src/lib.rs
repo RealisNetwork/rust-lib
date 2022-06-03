@@ -56,6 +56,8 @@ impl<D: Debug> BaseError<D> {
     #[must_use]
     pub fn new(msg: String, error_type: ErrorType, data: Option<D>, status: Option<u32>) -> Self {
         let trace = Backtrace::new();
+        let status = status.or(Some(error_type.to_u32() as u32));
+
         Self {
             msg,
             trace: format!("{:?}", trace),
@@ -104,15 +106,17 @@ impl<D: Debug, E: 'static + Error> From<E> for BaseError<D> {
     /// ```
     fn from(error: E) -> Self {
         let trace = Backtrace::new();
+        let msg = error.to_string();
+        let error_type = ErrorType::from(error);
         BaseError {
-            msg: error.to_string(),
+            msg,
             trace: format!("{:?}", trace),
             // Do not cast error type to ErrorType automatically
             // Need to add error type manually to `from` method of ErrorType
             // If error type not recognized return a default ErrorType
-            error_type: ErrorType::from(error),
+            status: Some(error_type.to_u32()),
+            error_type,
             data: None,
-            status: None,
         }
     }
 }
@@ -128,23 +132,25 @@ impl<D: Debug> Default for BaseError<D> {
     /// use error_registry::ErrorType;
     ///
     /// let trace = Backtrace::new();
+    /// let error_type = ErrorType::Custom(CustomErrorType::Default);
     ///
-    /// Self {
+    ///Self {
     ///     msg: String::from("Default error."),
-    ///     error_type: ErrorType::Custom(CustomErrorType::Default),
+    ///     status: Some(error_type.to_u32),
+    ///     error_type: error_type,
     ///     trace: format!("{:?}", trace),
     ///     data: None,
-    ///     status: None,
-    /// }
+    ///}
     /// ```
     fn default() -> Self {
         let trace = Backtrace::new();
+        let error_type = ErrorType::Custom(CustomErrorType::Default);
         Self {
             msg: String::from("Default error."),
-            error_type: ErrorType::Custom(CustomErrorType::Default),
+            status: Some(error_type.to_u32()),
+            error_type: error_type,
             trace: format!("{:?}", trace),
             data: None,
-            status: None,
         }
     }
 }
@@ -153,12 +159,13 @@ impl<D: Debug> From<GeneratedError> for BaseError<D> {
     /// Create a `BaseError` by `GeneratedError`
     fn from(error: GeneratedError) -> Self {
         let trace = Backtrace::new();
+        let error_type = ErrorType::Generated(error);
         Self {
-            msg: format!("{:?}", error),
-            error_type: ErrorType::Generated(error),
+            msg: format!("{:?}", error_type),
+            status: Some(error_type.to_u32()),
+            error_type: error_type,
             trace: format!("{:?}", trace),
             data: None,
-            status: None,
         }
     }
 }
@@ -167,12 +174,13 @@ impl<D: Debug> From<CustomErrorType> for BaseError<D> {
     /// Create a `BaseError` by `CustomErrorType`
     fn from(error: CustomErrorType) -> Self {
         let trace = Backtrace::new();
+        let error_type = ErrorType::Custom(error);
         Self {
-            msg: format!("{:?}", error),
-            error_type: ErrorType::Custom(error),
+            msg: format!("{:?}", error_type),
+            status: Some(error_type.to_u32()),
+            error_type: error_type,
             trace: format!("{:?}", trace),
             data: None,
-            status: None,
         }
     }
 }
@@ -190,10 +198,10 @@ pub enum ErrorType {
 }
 
 impl ErrorType{
-    pub fn to_u64(&self) -> u64 {
+    pub fn to_u32(&self) -> u32 {
         match self {
-            ErrorType::Custom(custom) => 777000000u64 + custom.to_u64(),
-            ErrorType::Generated(generated) => generated.to_u64(),
+            ErrorType::Custom(custom) => 777000000u32 + custom.to_u32(),
+            ErrorType::Generated(generated) => generated.to_u64() as u32,
         }
     }
 }
@@ -294,13 +302,13 @@ mod tests {
 
     #[test]
     fn get_code() {
-        let generated_code: u64 = ErrorType::Generated(GeneratedError::Utils(Utils::Decryption)).to_u64();
-        let custom_code: u64 = ErrorType::Custom(CustomErrorType::Db(Db::UserIdNotFound)).to_u64();
+        let generated_code: u32 = ErrorType::Generated(GeneratedError::Utils(Utils::Decryption)).to_u32();
+        let custom_code: u32 = ErrorType::Custom(CustomErrorType::Db(Db::UserIdNotFound)).to_u32();
         println!("Code for ErrorType::Generated(GeneratedError::Utils(Utils::Decryption)): {}", generated_code);
 
-        assert_eq!(1148968u64, generated_code);
+        assert_eq!(1148968u32, generated_code);
 
         println!("Code for ErrorType::Custom(CustomErrorType::Db(Db::UserIdNotFound)): {}", custom_code);
-        assert_eq!(777005004u64, custom_code);
+        assert_eq!(777005004u32, custom_code);
     }
 }
