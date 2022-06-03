@@ -185,12 +185,15 @@ impl From<EnvLoadedError> for u32 {
 #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
 pub enum Utils {
     Convert, // 777008001
+    Parse,
 }
 
 impl From<Utils> for u32 {
     fn from(error_type: Utils) -> u32 {
         match error_type {
             Utils::Convert => 1u32,
+            Utils::Parse => 2u32,
         }
     }
 }
+
