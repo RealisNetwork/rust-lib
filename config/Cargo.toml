@@ -14,7 +14,7 @@ ratsio = { git = "https://github.com/RealisNetwork/ratsio.git" }
 transport = { path = "./../transport", optional = true }
 inner_db = { path = "./../inner_db", optional = true }
 healthchecker = { path = "./../healthchecker"}
-error_registry = { path = "./../error_registry"}
+error_registry = { path = "../error_registry"}
 
 [features]
 nats = [

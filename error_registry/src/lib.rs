@@ -11,9 +11,11 @@ use std::{
 
 use backtrace::Backtrace;
 
-use crate::custom_errors::{CustomErrorType, Db as CustomDb, EnvLoadedError, Nats as CustomNats, Utils};
+use crate::{
+    custom_errors::{CustomErrorType, Db as CustomDb, EnvLoadedError, Nats as CustomNats, Utils},
+    generated_errors::Common,
+};
 use generated_errors::GeneratedError;
-use crate::generated_errors::Common;
 
 pub mod custom_errors;
 pub mod generated_errors;
@@ -27,7 +29,7 @@ pub struct BaseError<D: Debug> {
     pub trace: String,
     pub data: Option<D>,
     /// Numeric id of `error_type`
-    pub status: Option<u32>,
+    pub status: u32,
 }
 
 impl<D: Debug> BaseError<D> {
@@ -48,12 +50,14 @@ impl<D: Debug> BaseError<D> {
     /// use error_registry::custom_errors::{CustomErrorType, Nats};
     ///
     /// // BaseError save a error backtrace.
-    /// let err = BaseError::<()>::new("Custom message".to_string(), ErrorType::Custom(CustomErrorType::Nats(Nats::Send)), None, None);
+    /// let err = BaseError::<()>::new("Custom message".to_string(), ErrorType::Custom(CustomErrorType::Nats(Nats::Send)), None);
     /// println!("{}", err.trace);
     /// ```
     #[must_use]
-    pub fn new(msg: String, error_type: ErrorType, data: Option<D>, status: Option<u32>) -> Self {
+    pub fn new(msg: String, error_type: ErrorType, data: Option<D>) -> Self {
         let trace = Backtrace::new();
+        let status = error_type.clone().into();
+
         Self {
             msg,
             trace: format!("{:?}", trace),
@@ -102,15 +106,17 @@ impl<D: Debug, E: 'static + Error> From<E> for BaseError<D> {
     /// ```
     fn from(error: E) -> Self {
         let trace = Backtrace::new();
+        let msg = error.to_string();
+        let error_type = ErrorType::from(error);
         BaseError {
-            msg: error.to_string(),
+            msg,
             trace: format!("{:?}", trace),
             // Do not cast error type to ErrorType automatically
             // Need to add error type manually to `from` method of ErrorType
             // If error type not recognized return a default ErrorType
-            error_type: ErrorType::from(error),
+            status: error_type.clone().into(),
+            error_type,
             data: None,
-            status: None,
         }
     }
 }
@@ -126,23 +132,25 @@ impl<D: Debug> Default for BaseError<D> {
     /// use error_registry::ErrorType;
     ///
     /// let trace = Backtrace::new();
+    /// let error_type = ErrorType::Custom(CustomErrorType::Default);
     ///
     /// Self {
     ///     msg: String::from("Default error."),
-    ///     error_type: ErrorType::Custom(CustomErrorType::Default),
+    ///     status: error_type.clone().into(),
+    ///     error_type: error_type,
     ///     trace: format!("{:?}", trace),
     ///     data: None,
-    ///     status: None,
     /// }
     /// ```
     fn default() -> Self {
         let trace = Backtrace::new();
+        let error_type = ErrorType::Custom(CustomErrorType::Default);
         Self {
             msg: String::from("Default error."),
-            error_type: ErrorType::Custom(CustomErrorType::Default),
+            status: error_type.clone().into(),
+            error_type: error_type,
             trace: format!("{:?}", trace),
             data: None,
-            status: None,
         }
     }
 }
@@ -151,12 +159,13 @@ impl<D: Debug> From<GeneratedError> for BaseError<D> {
     /// Create a `BaseError` by `GeneratedError`
     fn from(error: GeneratedError) -> Self {
         let trace = Backtrace::new();
+        let error_type = ErrorType::Generated(error);
         Self {
-            msg: format!("{:?}", error),
-            error_type: ErrorType::Generated(error),
+            msg: format!("{:?}", error_type),
+            status: error_type.clone().into(),
+            error_type: error_type,
             trace: format!("{:?}", trace),
             data: None,
-            status: None,
         }
     }
 }
@@ -165,12 +174,13 @@ impl<D: Debug> From<CustomErrorType> for BaseError<D> {
     /// Create a `BaseError` by `CustomErrorType`
     fn from(error: CustomErrorType) -> Self {
         let trace = Backtrace::new();
+        let error_type = ErrorType::Custom(error);
         Self {
-            msg: format!("{:?}", error),
-            error_type: ErrorType::Custom(error),
+            msg: format!("{:?}", error_type),
+            status: error_type.clone().into(),
+            error_type: error_type,
             trace: format!("{:?}", trace),
             data: None,
-            status: None,
         }
     }
 }
@@ -185,6 +195,15 @@ impl<D: Debug> From<CustomErrorType> for BaseError<D> {
 pub enum ErrorType {
     Custom(CustomErrorType),
     Generated(GeneratedError),
+}
+
+impl From<ErrorType> for u32 {
+    fn from(error_type: ErrorType) -> u32 {
+        match error_type {
+            ErrorType::Custom(custom) => 777000000u32 + u32::from(custom), // Into<u32>>::into(custom)
+            ErrorType::Generated(generated) => generated.into(),
+        }
+    }
 }
 
 impl<E: 'static + Error> From<E> for ErrorType {
@@ -248,7 +267,7 @@ mod tests {
     use serde::{Deserialize, Serialize};
     use serde_json::json;
 
-    use crate::generated_errors::{Db as GeneratedDb, GeneratedError, Geo};
+    use crate::generated_errors::{Db as GeneratedDb, GeneratedError, Geo, Utils};
 
     #[test]
     fn error_debug_test() {
@@ -256,7 +275,6 @@ mod tests {
             "Message text ".to_string(),
             ErrorType::Generated(GeneratedError::Db(GeneratedDb::Select)),
             Some("Data"),
-            Some(10),
         );
         println!("Debug: \n{:?}", err);
         println!("Display: \n{}", err);
@@ -279,5 +297,23 @@ mod tests {
         // assert_eq!(deserialized.unwrap(),
         // GeneratedError::Geo(Geo::InvalidContinent))
         // println!("deserialized = {:#?}", deserialized);
+    }
+
+    #[test]
+    fn get_code() {
+        let generated_code: u32 = ErrorType::Generated(GeneratedError::Utils(Utils::Decryption)).into();
+        let custom_code: u32 = ErrorType::Custom(CustomErrorType::Db(Db::UserIdNotFound)).into();
+        println!(
+            "Code for ErrorType::Generated(GeneratedError::Utils(Utils::Decryption)): {}",
+            generated_code
+        );
+
+        assert_eq!(1148968u32, generated_code);
+
+        println!(
+            "Code for ErrorType::Custom(CustomErrorType::Db(Db::UserIdNotFound)): {}",
+            custom_code
+        );
+        assert_eq!(777005004u32, custom_code);
     }
 }
