@@ -39,7 +39,6 @@ impl Transport for Nats {
                 "Can not Send to nats".to_string(),
                 ErrorType::Generated(GeneratedError::Nats(NatsError::Send)),
                 None,
-                None,
             )
         })
     }
