@@ -19,10 +19,34 @@ uuid = { version = "1.0.0" }
 json = { path = "./../json",  optional = true }
 realis-primitives = { git = "https://github.com/RealisNetwork/Realis.Network.git", branch = "main", package = "realis-primitives" ,  optional = true}
 
+[build-dependencies]
+config = { path = "./../config" , features = ["database", "nats"] , optional = true }
+syn = { version = "1", features = ["full", "parsing"], optional = true }
+serde = { version = "1.0.132", features = ["derive"], optional = true }
+tokio = { version = "1", features = ["full"], optional = true }
+convert_case = { version = "0.5.0", optional = true }
+serde_json = { version = "1.0.73", optional = true }
+octocrab = { version = "0.15.3", optional = true }
+reqwest = { version = "0.11.7", optional = true }
+quote = { version = "1.0.10", optional = true }
+
 
 [features]
 schemas = [
     "substrate-api-client",
     "json",
     "realis-primitives",
+]
+rebuild = [
+    "config",
+    "syn/full",
+    "syn/parsing",
+    "reqwest/json",
+    "reqwest/blocking",
+    "serde/derive",
+    "tokio/full",
+    "octocrab",
+    "quote",
+    "convert_case",
+    "serde_json",
 ]
