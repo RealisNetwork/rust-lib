@@ -1,5 +1,6 @@
-use crate::env::{Env, EnvLoaded, EnvLoadedError};
-use rust_lib::healthchecker::HealthChecker;
+use crate::env::{Env, EnvLoaded};
+use error_registry::BaseError;
+use healthchecker::HealthChecker;
 
 #[derive(Debug, Clone, Env)]
 pub struct Healthchecker {
@@ -8,7 +9,7 @@ pub struct Healthchecker {
 }
 
 impl Healthchecker {
-    pub async fn build(&self) -> Result<HealthChecker, String> {
+    pub async fn build(&self) -> Result<HealthChecker, BaseError<()>> {
         HealthChecker::new(&self.host, 10000).await
     }
 }

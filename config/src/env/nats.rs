@@ -1,5 +1,6 @@
-use crate::env::{Env, EnvLoaded, EnvLoadedError};
-use rust_lib::healthchecker::HealthChecker;
+use crate::env::{Env, EnvLoaded};
+use error_registry::BaseError;
+use healthchecker::HealthChecker;
 
 #[derive(Debug, Clone, Env)]
 pub struct Nats {
@@ -13,15 +14,11 @@ pub struct Nats {
 }
 
 impl Nats {
-    pub async fn build(&self, healthchecker: HealthChecker) -> Result<transport::nats::Nats, String> {
+    pub async fn build(&self, healthchecker: HealthChecker) -> Result<transport::nats::Nats, BaseError<()>> {
         let nats_options = format!("{}:{}", self.host, self.port);
-        let nats = match transport::nats::Nats::new(&nats_options, self.client_id.as_str(), self.cluster_id.as_str()).await {
-            Ok(nats_) => nats_,
-            Err(err) => return Err(err.to_string()),
-        };
+        let nats = transport::nats::Nats::new(&nats_options, self.client_id.as_str(), self.cluster_id.as_str()).await?;
         // Add disconnect handler - make healthchecker sick if disconnect
-        match nats
-            .stan_client
+        nats.stan_client
             .nats_client
             .add_disconnect_handler(Box::new({
                 let health_checker = healthchecker;
@@ -29,11 +26,7 @@ impl Nats {
                     health_checker.make_sick();
                 }
             }))
-            .await
-        {
-            Ok(nats_) => nats_,
-            Err(err) => return Err(err.to_string()),
-        }
+            .await?;
         Ok(nats)
     }
 }

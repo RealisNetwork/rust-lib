@@ -1,7 +1,8 @@
-use crate::requests::AuthInfo;
+use crate::{requests::AuthInfo, schemas::withdraw_bsc::binance_nft_request::BinanceNftRequestSchema};
+use json::token_id::{token_id_from_string, token_id_to_string};
 use realis_primitives::TokenId;
 use runtime::AccountId;
-use rust_lib::json::token_id::{token_id_from_string, token_id_to_string};
+
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -24,4 +25,19 @@ pub struct BinanceWithdrawNftSchemaParams {
     pub token_id: TokenId,
     #[serde(rename = "from")]
     pub from_account_id: AccountId,
+}
+
+impl From<BinanceNftRequestSchema> for BinanceWithdrawNftSchema {
+    fn from(other: BinanceNftRequestSchema) -> Self {
+        BinanceWithdrawNftSchema {
+            id: other.id.clone(),
+            topic_res: other.topic_res.clone(),
+            params: BinanceWithdrawNftSchemaParams {
+                account_id: other.params.account_id.clone(),
+                token_id: other.params.token_id,
+                from_account_id: other.params.from_account_id.clone(),
+            },
+            auth_info: other.auth_info.clone(),
+        }
+    }
 }

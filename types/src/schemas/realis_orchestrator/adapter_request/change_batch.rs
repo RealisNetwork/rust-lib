@@ -9,7 +9,7 @@ pub struct ChangeBatch {
 
 impl From<AdapterChangeBatch> for ChangeBatch {
     fn from(other: AdapterChangeBatch) -> Self {
-        ChangeBatch {
+        Self {
             batch_size: other.batch_size,
             batch_timeout: other.batch_timeout,
         }

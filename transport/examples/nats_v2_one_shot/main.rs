@@ -1,10 +1,9 @@
-use error_registry::RealisErrors;
 use std::{borrow::BorrowMut, mem::transmute, os::unix::raw::time_t, thread, thread::sleep, time::Duration};
 // use transport::nats_v2::Nats_v2;
 // use transport::traits::MessageReceiver;
 use async_trait::async_trait;
-use error_registry::Nats::MessageReplyTimeout;
-use nats_v2::{asynk::Message, ConnectInfo, Connection};
+use error_registry::BaseError;
+use nats_not_async::{asynk::Message, ConnectInfo, Connection};
 use serde_json::{Value, Value::String};
 use transport::{
     nats_v2::Nats_v2,
@@ -18,7 +17,7 @@ const CLUSTER_ID: &str = "test-cluster";
 
 #[tokio::main]
 async fn main() {
-    let ResponseHandler = tokio::spawn(async {
+    let response_handler = tokio::spawn(async {
         let nats = transport::nats_v2::Nats_v2::new("localhost:4222", "test-client");
 
         match nats {
@@ -33,7 +32,7 @@ async fn main() {
         }
     });
 
-    let RequestHandler = tokio::spawn(async {
+    let request_handler = tokio::spawn(async {
         // Listener
         let nats = transport::nats_v2::Nats_v2::new("localhost:4222", "test-client");
 
@@ -43,8 +42,8 @@ async fn main() {
                 let replyment = connect
                     .message_reply(TOPIC, "Responce-topic", "Request message".as_bytes().to_vec(), None)
                     .await;
-                let replyMsg = std::string::String::from_utf8_lossy(replyment.as_ref().unwrap().as_slice());
-                println!("REPLY: {:#?}", replyMsg);
+                let reply_msg = std::string::String::from_utf8_lossy(replyment.as_ref().unwrap().as_slice());
+                println!("REPLY: {:#?}", reply_msg);
             }
             Err(err) => {
                 println!("ERROR! {:#?}", err);
@@ -52,16 +51,16 @@ async fn main() {
         }
     });
 
-    ResponseHandler.await;
-    RequestHandler.await;
+    request_handler.await;
+    response_handler.await;
 }
 pub struct MessageHandler {
     pub client: transport::nats_v2::Nats_v2,
 }
 
 #[async_trait]
-impl MessageReceiver<Vec<u8>, nats_v2::Message, RealisErrors> for MessageHandler {
-    async fn process(&self, message: Vec<u8>, message_id: nats_v2::Message) -> Result<bool, RealisErrors> {
+impl MessageReceiver<Vec<u8>, nats_not_async::Message, BaseError<()>> for MessageHandler {
+    async fn process(&self, message: Vec<u8>, message_id: nats_not_async::Message) -> Result<bool, BaseError<()>> {
         println!("Got message: {:?}", message_id.subject);
         let data = std::string::String::from_utf8_lossy(&message);
         println!("Got data: {:?}", data);

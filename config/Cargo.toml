@@ -10,17 +10,17 @@ realis-macros = {path = "../macros"}
 dotenv = "0.15.0"
 log = "0.4.14"
 hex = "0.4.3"
-
-transport = { path = "../transport", optional = true }
-rust-lib = { path = "../../rust-lib", optional = true }
+ratsio = { git = "https://github.com/RealisNetwork/ratsio.git" }
+transport = { path = "./../transport", optional = true }
+inner_db = { path = "./../inner_db", optional = true }
+healthchecker = { path = "./../healthchecker"}
+error_registry = { path = "../error_registry"}
 
 [features]
 nats = [
     "transport/nats",
 ]
 database = [
-    "rust-lib/db",
+    "inner_db",
 ]
-healthchecker = [
-    "rust-lib/healthchecker",
-]
+

@@ -1,10 +1,15 @@
 use crate::traits::{MessageReceiver, Transport};
 use async_nats::Subscriber;
 use async_trait::async_trait;
-use error_registry::{Nats as NatsError, RealisErrors};
-use nats_v2::{Connection, Message, Subscription};
+use nats_not_async::{Connection, Message, Subscription};
 use std::{future::Future, io::ErrorKind::TimedOut, sync::Arc, time::Duration};
 use tokio::time::{error::Elapsed, timeout, Timeout};
+
+use error_registry::{
+    custom_errors::{CustomErrorType, Nats as CustomNatsError},
+    generated_errors::{GeneratedError, Nats, Nats as GeneratedNatsError},
+    BaseError, ErrorType,
+};
 
 #[derive(Clone)]
 pub struct Nats_v2 {
@@ -12,8 +17,8 @@ pub struct Nats_v2 {
 }
 
 impl Nats_v2 {
-    pub fn new(nats_opts: &str, client_id: &str) -> Result<Self, RealisErrors> {
-        let client = nats_v2::Options::new()
+    pub fn new(nats_opts: &str, client_id: &str) -> Result<Self, BaseError<()>> {
+        let client = nats_not_async::Options::new()
             .with_name(client_id)
             .connect(format!("nats://{}", nats_opts))?;
         Ok(Self { client })
@@ -22,18 +27,20 @@ impl Nats_v2 {
 
 #[async_trait]
 impl Transport for Nats_v2 {
-    type Error = RealisErrors;
+    type Error = BaseError<()>;
     type Message = Vec<u8>;
-    type MessageId = nats_v2::Message;
+    type MessageId = Message;
     type SubscribeId = Subscription;
 
     async fn publish(&self, topic: &str, message: Self::Message, _topic_res: Option<String>) -> Result<(), Self::Error> {
         if _topic_res.is_none() {
-            self.client.publish(topic, message).map_err(|_| RealisErrors::Nats(NatsError::Send))
+            self.client
+                .publish(topic, message)
+                .map_err(|_| BaseError::from(GeneratedError::Nats(GeneratedNatsError::Send)))
         } else {
             self.client
                 .publish_request(topic, _topic_res.unwrap().as_str(), message)
-                .map_err(|_| RealisErrors::Nats(NatsError::Send))
+                .map_err(|_| BaseError::<()>::from(GeneratedError::Nats(GeneratedNatsError::Send)))
         }
     }
 
@@ -59,7 +66,7 @@ impl Transport for Nats_v2 {
                 },
                 None => {
                     sub.unsubscribe();
-                    return Err(RealisErrors::Nats(NatsError::Unsubscribe));
+                    return Err(BaseError::from(CustomErrorType::Nats(CustomNatsError::Unsubscribe)));
                 }
             }
         }
@@ -89,7 +96,7 @@ impl Transport for Nats_v2 {
                 },
                 Err(err) => {
                     sub.unsubscribe();
-                    return Err(RealisErrors::Nats(NatsError::Unsubscribe));
+                    return Err(BaseError::from(CustomErrorType::Nats(CustomNatsError::Unsubscribe)));
                 }
             }
         }
@@ -97,7 +104,9 @@ impl Transport for Nats_v2 {
     }
 
     async fn unsubscribe(&self, subscribe_id: Self::SubscribeId) -> Result<(), Self::Error> {
-        subscribe_id.unsubscribe().map_err(|_| RealisErrors::Nats(NatsError::Unsubscribe))
+        subscribe_id
+            .unsubscribe()
+            .map_err(|_| BaseError::from(CustomErrorType::Nats(CustomNatsError::Unsubscribe)))
     }
 
     async fn message_reply(
@@ -110,7 +119,7 @@ impl Transport for Nats_v2 {
         let sub = self
             .client
             .subscribe(topic_res)
-            .map_err(|_| RealisErrors::Nats(NatsError::Disconnected))?;
+            .map_err(|_| BaseError::from(CustomErrorType::Nats(CustomNatsError::Disconnected)))?;
 
         self.publish(topic, message, None).await?;
 
@@ -118,7 +127,7 @@ impl Transport for Nats_v2 {
 
         let option_message = timeout(timeout_dur, async { sub.next() }).await?;
 
-        let message = option_message.ok_or(RealisErrors::Nats(NatsError::Receive))?;
+        let message = option_message.ok_or(BaseError::from(CustomErrorType::Nats(CustomNatsError::Receive)))?;
 
         self.ok(message.clone()).await;
 
@@ -128,6 +137,8 @@ impl Transport for Nats_v2 {
     }
 
     async fn ok(&self, message_id: Self::MessageId) -> Result<(), Self::Error> {
-        message_id.ack().map_err(|_| RealisErrors::Nats(NatsError::Unsubscribe))
+        message_id
+            .ack()
+            .map_err(|_| BaseError::from(CustomErrorType::Nats(CustomNatsError::Unsubscribe)))
     }
 }

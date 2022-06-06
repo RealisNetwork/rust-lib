@@ -1,5 +1,5 @@
-use crate::requests::{Response, ResponseError, ResponseMessage, ResponseResult};
-use error_registry::RealisErrors;
+use crate::requests::{Response, ResponseMessage, ResponseResult};
+use error_registry::BaseError;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -11,7 +11,7 @@ pub struct BlockchainResponseParams {
 }
 
 impl BlockchainResponseParams {
-    pub fn into_response<T>(self, request: T) -> Response<T, BlockchainResponseParams> {
+    pub fn into_response<T>(self, request: T) -> Response<T, BlockchainResponseParams, ()> {
         Response {
             result: ResponseResult {
                 request,
@@ -20,16 +20,12 @@ impl BlockchainResponseParams {
         }
     }
 
-    pub fn into_left_response<T>(request: T, msg: String, error_type: RealisErrors) -> Response<T, ()> {
+    pub fn into_left_response<T>(request: T, msg: String, error_type: BaseError<()>) -> Response<T, (), ()> {
         Response {
             result: ResponseResult {
                 request,
                 response: ResponseMessage::Left {
-                    value: ResponseError {
-                        msg,
-                        error_type,
-                        ..Default::default()
-                    },
+                    value: BaseError::<()>::new(msg, error_type.error_type, None),
                 },
             },
         }

@@ -3,7 +3,8 @@ use crate::{
     topic::Topic,
     utils::{parse_line, ParseResult},
 };
-use config::env::{Env, EnvLoaded, EnvLoadedError};
+use config::env::{Env, EnvLoaded};
+use error_registry::BaseError;
 use tokio::runtime::Runtime;
 
 #[derive(Env)]

@@ -1,6 +1,10 @@
 use crate::traits::{MessageReceiver, Transport};
 use async_trait::async_trait;
-use error_registry::{Nats as NatsError, RealisErrors};
+use error_registry::{
+    custom_errors::{CustomErrorType, Nats as CustomNatsError},
+    generated_errors::{GeneratedError, Nats as NatsError, Nats::Send},
+    BaseError, ErrorType,
+};
 use futures::StreamExt;
 use ratsio::{StanClient, StanMessage, StanOptions, StanSid, StartPosition};
 use std::{sync::Arc, time::Duration};
@@ -24,16 +28,19 @@ impl Nats {
 
 #[async_trait]
 impl Transport for Nats {
-    type Error = RealisErrors;
+    type Error = BaseError<()>;
     type Message = Vec<u8>;
     type MessageId = StanMessage;
     type SubscribeId = StanSid;
 
     async fn publish(&self, topic: &str, message: Self::Message, _topic_res: Option<String>) -> Result<(), Self::Error> {
-        self.stan_client
-            .publish(topic, &message)
-            .await
-            .map_err(|_| RealisErrors::Nats(NatsError::Send))
+        self.stan_client.publish(topic, &message).await.map_err(|_| {
+            BaseError::new(
+                "Can not Send to nats".to_string(),
+                ErrorType::Generated(GeneratedError::Nats(NatsError::Send)),
+                None,
+            )
+        })
     }
 
     async fn subscribe<'a>(
@@ -53,9 +60,9 @@ impl Transport for Nats {
     ) -> Result<(), Self::Error> {
         let (stan_id, mut stream) = self
             .stan_client
-            .subscribe_with_all(topic, None, None, 1024, secs, StartPosition::First, 0, None, true)
+            .subscribe_with_all(topic, None, None, 1024, secs, StartPosition::LastReceived, 0, None, true)
             .await
-            .map_err(|_| RealisErrors::Nats(NatsError::Disconnected))?;
+            .map_err(|_| BaseError::from(CustomErrorType::Nats(CustomNatsError::Disconnected)))?;
 
         loop {
             match stream.next().await {
@@ -84,7 +91,7 @@ impl Transport for Nats {
         self.stan_client
             .un_subscribe(&subscribe_id)
             .await
-            .map_err(|_| RealisErrors::Nats(NatsError::Unsubscribe))
+            .map_err(|_| BaseError::from(CustomErrorType::Nats(CustomNatsError::Unsubscribe)))
     }
 
     async fn message_reply(
@@ -98,7 +105,7 @@ impl Transport for Nats {
             .stan_client
             .subscribe(topic_res, None, None)
             .await
-            .map_err(|_| RealisErrors::Nats(NatsError::Disconnected))?;
+            .map_err(|_| BaseError::from(CustomErrorType::Nats(CustomNatsError::Disconnected)))?;
 
         self.publish(topic, message, None).await?;
 
@@ -109,7 +116,7 @@ impl Transport for Nats {
 
         self.unsubscribe(stan_id).await?;
 
-        let message = option_message.ok_or(RealisErrors::Nats(NatsError::Receive))?;
+        let message = option_message.ok_or(BaseError::from(CustomErrorType::Nats(CustomNatsError::Receive)))?;
 
         self.ok(message.clone()).await?;
 
@@ -120,6 +127,6 @@ impl Transport for Nats {
         self.stan_client
             .acknowledge(message_id)
             .await
-            .map_err(|_| RealisErrors::Nats(NatsError::Ok))
+            .map_err(|_| BaseError::from(CustomErrorType::Nats(CustomNatsError::Ok)))
     }
 }

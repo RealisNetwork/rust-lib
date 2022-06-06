@@ -1,347 +1,319 @@
-pub mod traits;
+//! Implementation of custom error type for Realis.
+//! `BaseError` its custom error data structure.
+//! `ErrorType` its enum of possible errors
+//! what need to be traced for Realis microservices.
+use std::{
+    any::TypeId,
+    error::Error,
+    fmt,
+    fmt::{write, Debug, Display, Formatter},
+};
 
-use crate::traits::ToJson;
-use convert_case::{Case, Casing};
-use derive_more::Display;
-use realis_macros::{IntoRealisErrors, RealisErrors, ToJson};
-use serde::{de::Error, Deserialize, Deserializer, Serialize, Serializer};
-use std::str::FromStr;
-use strum::ParseError;
-use strum_macros::EnumString;
-use thiserror::Error;
-use tokio::time::error::Elapsed;
+use backtrace::Backtrace;
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Display, RealisErrors, IntoRealisErrors)]
-pub enum RealisErrors {
-    Db(Db),
-    Common(Common),
-    AdminOptions(AdminOptions),
-    Fs(Fs),
-    Bff(Bff),
-    Utils(Utils),
-    Nats(Nats),
-    Rpc(Rpc),
-    Validation(Validation),
-    TwoFactorAuth(TwoFactorAuth),
-    Redis(Redis),
-    Billing(Billing),
-    ProductRegistry(ProductRegistry),
-    Permissions(Permissions),
-    Cron(Cron),
-    Profile(Profile),
-    Roles(Roles),
-    GooglePlay(GooglePlay),
-    Orchestrator(Orchestrator),
-    RestorePassword(RestorePassword),
-    Blockchain(Blockchain),
-    ProductFactory(ProductFactory),
-    Soul(Soul),
-    Functions(Functions),
-    Referrals(Referrals),
-    BytesFormatter(BytesFormatter),
-    Status(Status),
-    Geo(Geo),
-    Action(Action),
-    Promo(Promo),
-    CustomInt(i32),
-    CustomString(String),
+use crate::{
+    custom_errors::{CustomErrorType, Db as CustomDb, EnvLoadedError, Nats as CustomNats, Utils},
+    generated_errors::Common,
+};
+use generated_errors::GeneratedError;
+
+pub mod custom_errors;
+pub mod generated_errors;
+
+/// BaseError - custom error type
+#[derive(Clone, serde::Serialize, serde::Deserialize)]
+pub struct BaseError<D: Debug> {
+    pub msg: String,
+    #[serde(rename = "type")]
+    pub error_type: ErrorType,
+    pub trace: String,
+    pub data: Option<D>,
+    /// Numeric id of `error_type`
+    pub status: u32,
 }
 
-impl Default for RealisErrors {
-    fn default() -> Self {
-        RealisErrors::Common(Common::Unknown)
-    }
-}
+impl<D: Debug> BaseError<D> {
+    /// Create a new `BaseError`
+    /// # Arguments
+    /// * `msg` - Extra message for explanation of Error
+    ///
+    /// * `error_type` - Type of Error. `ErrorType` - custom Enum
+    ///
+    /// * `data` - Data that led to the error. Optional
+    ///
+    /// * `status` - Code of Error type
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use error_registry::{BaseError, ErrorType};
+    /// use error_registry::custom_errors::{CustomErrorType, Nats};
+    ///
+    /// // BaseError save a error backtrace.
+    /// let err = BaseError::<()>::new("Custom message".to_string(), ErrorType::Custom(CustomErrorType::Nats(Nats::Send)), None);
+    /// println!("{}", err.trace);
+    /// ```
+    #[must_use]
+    pub fn new(msg: String, error_type: ErrorType, data: Option<D>) -> Self {
+        let trace = Backtrace::new();
+        let status = error_type.clone().into();
 
-impl Serialize for RealisErrors {
-    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-    where
-        S: Serializer,
-    {
-        serializer.serialize_str(&self.as_string())
-    }
-}
-
-// impl From<RealisErrors> for backoff::Error<RealisErrors> {
-//     fn from(error: RealisErrors) -> Self {
-//         // TODO decide which errors are critical
-//         // use for them `backoff::Error::permanent()`
-//         backoff::Error::transient(error)
-//     }
-// }
-
-impl From<tokio::sync::oneshot::error::RecvError> for RealisErrors {
-    fn from(_error: tokio::sync::oneshot::error::RecvError) -> Self {
-        RealisErrors::Utils(Utils::Parse)
-    }
-}
-
-impl From<Vec<u8>> for RealisErrors {
-    fn from(_: Vec<u8>) -> Self {
-        RealisErrors::Nats(Nats::Send)
-    }
-}
-
-impl From<backoff::Error<RealisErrors>> for RealisErrors {
-    fn from(error: backoff::Error<RealisErrors>) -> Self {
-        match error {
-            backoff::Error::Permanent(err) | backoff::Error::Transient { err, .. } => err,
+        Self {
+            msg,
+            trace: format!("{:?}", trace),
+            error_type,
+            data,
+            status,
         }
     }
 }
 
-impl From<std::io::Error> for RealisErrors {
-    fn from(_: std::io::Error) -> Self {
-        RealisErrors::Utils(Utils::IO)
+impl<D: Debug> Debug for BaseError<D> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
+        write!(
+            f,
+            "{{ Error message: {}\nError type: {:?}\nTrace:\n{}\nData: {:?}\nStatus: {:?} }}",
+            self.msg, self.error_type, self.trace, self.data, self.status
+        )
     }
 }
 
-impl From<deadpool_postgres::PoolError> for RealisErrors {
-    fn from(_: deadpool_postgres::PoolError) -> Self {
-        RealisErrors::Db(Db::Pool)
+impl<D: Debug> Display for BaseError<D> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(
+            f,
+            "\x1b[93mError message\x1b[0m: {}\n\x1b[93mError type\x1b[0m: {:?}\n",
+            self.msg, self.error_type
+        )
     }
 }
 
-impl From<serde_json::Error> for RealisErrors {
-    fn from(_: serde_json::Error) -> Self {
-        RealisErrors::Utils(Utils::Parse)
+impl<D: Debug, E: 'static + Error> From<E> for BaseError<D> {
+    /// Default realization for all structures who implemented
+    /// `std::error::Error` trait
+    ///
+    /// # Examples
+    /// ```
+    /// use error_registry::{BaseError, ErrorType};
+    /// use error_registry::custom_errors::{CustomErrorType, Nats};
+    ///
+    /// let error = ratsio::error::RatsioError::AckInboxMissing;
+    ///
+    /// assert_eq!(
+    ///     format!("{:?}", BaseError::<()>::from(error).error_type),
+    ///     format!("{:?}", ErrorType::Custom(CustomErrorType::Nats(Nats::Send)))
+    /// );
+    /// ```
+    fn from(error: E) -> Self {
+        let trace = Backtrace::new();
+        let msg = error.to_string();
+        let error_type = ErrorType::from(error);
+        BaseError {
+            msg,
+            trace: format!("{:?}", trace),
+            // Do not cast error type to ErrorType automatically
+            // Need to add error type manually to `from` method of ErrorType
+            // If error type not recognized return a default ErrorType
+            status: error_type.clone().into(),
+            error_type,
+            data: None,
+        }
     }
 }
 
-impl From<Elapsed> for RealisErrors {
-    fn from(_: Elapsed) -> Self {
-        RealisErrors::Nats(Nats::MessageReplyTimeout)
+impl<D: Debug> Default for BaseError<D> {
+    /// Default BaseError.
+    ///
+    /// Use only if you explicitly want to get a default error!
+    /// # Returns
+    /// ```
+    /// use backtrace::Backtrace;
+    /// use error_registry::custom_errors::CustomErrorType;
+    /// use error_registry::ErrorType;
+    ///
+    /// let trace = Backtrace::new();
+    /// let error_type = ErrorType::Custom(CustomErrorType::Default);
+    ///
+    /// Self {
+    ///     msg: String::from("Default error."),
+    ///     status: error_type.clone().into(),
+    ///     error_type: error_type,
+    ///     trace: format!("{:?}", trace),
+    ///     data: None,
+    /// }
+    /// ```
+    fn default() -> Self {
+        let trace = Backtrace::new();
+        let error_type = ErrorType::Custom(CustomErrorType::Default);
+        Self {
+            msg: String::from("Default error."),
+            status: error_type.clone().into(),
+            error_type: error_type,
+            trace: format!("{:?}", trace),
+            data: None,
+        }
     }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Db {
-    Select,
-    Insert,
-    Update,
-    InvalidTransaction,
-    NotFound,
-    WalletNotFound,
-    UserIdNotFound,
-    Remove,
-    Create,
-    Save,
-    Disconnected,
-    ConnectionError,
-    AlreadyExists,
-    Pool,
+impl<D: Debug> From<GeneratedError> for BaseError<D> {
+    /// Create a `BaseError` by `GeneratedError`
+    fn from(error: GeneratedError) -> Self {
+        let trace = Backtrace::new();
+        let error_type = ErrorType::Generated(error);
+        Self {
+            msg: format!("{:?}", error_type),
+            status: error_type.clone().into(),
+            error_type: error_type,
+            trace: format!("{:?}", trace),
+            data: None,
+        }
+    }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Common {
-    Unknown,
-    InternalServerError,
+impl<D: Debug> From<CustomErrorType> for BaseError<D> {
+    /// Create a `BaseError` by `CustomErrorType`
+    fn from(error: CustomErrorType) -> Self {
+        let trace = Backtrace::new();
+        let error_type = ErrorType::Custom(error);
+        Self {
+            msg: format!("{:?}", error_type),
+            status: error_type.clone().into(),
+            error_type: error_type,
+            trace: format!("{:?}", trace),
+            data: None,
+        }
+    }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum AdminOptions {
-    Update,
-    Add,
+/// All custom types of errors in Realis.
+///
+/// Custom enum extends manually.
+///
+/// Generated enum create and extend automatically.
+#[serde(untagged)]
+#[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
+pub enum ErrorType {
+    Custom(CustomErrorType),
+    Generated(GeneratedError),
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Fs {
-    ReadFile,
+impl From<ErrorType> for u32 {
+    fn from(error_type: ErrorType) -> u32 {
+        match error_type {
+            ErrorType::Custom(custom) => 777000000u32 + u32::from(custom), // Into<u32>>::into(custom)
+            ErrorType::Generated(generated) => generated.into(),
+        }
+    }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Bff {
-    InvalidAgent,
-    InvalidMethod,
+impl<E: 'static + Error> From<E> for ErrorType {
+    /// Matching `TypeId` of the error type which
+    /// implement `std::error:Error` to get relevant
+    /// `ErrorType` in the structure `BaseError` without extra code.
+    /// To extend list of matching types add it manually.
+    fn from(_: E) -> Self {
+        let type_id = TypeId::of::<E>();
+        if type_id == TypeId::of::<tokio::sync::oneshot::error::RecvError>() {
+            // Custom Nats: Receive
+            ErrorType::Custom(CustomErrorType::Nats(CustomNats::Receive))
+        } else if (type_id == TypeId::of::<tokio::time::error::Elapsed>()) || (type_id == TypeId::of::<ratsio::RatsioError>()) {
+            // Custom Nats: Disconnected
+            ErrorType::Custom(CustomErrorType::Nats(CustomNats::Disconnected))
+        } else if (type_id == TypeId::of::<deadpool::managed::PoolError<tokio_postgres::Error>>())
+            || (type_id == TypeId::of::<tokio_postgres::Error>())
+            || (type_id == TypeId::of::<openssl::error::ErrorStack>())
+            || (type_id == TypeId::of::<deadpool_postgres::CreatePoolError>())
+        {
+            // Custom DB: ConnectionError
+            ErrorType::Custom(CustomErrorType::Db(CustomDb::ConnectionError))
+        } else if type_id == TypeId::of::<dotenv::Error>() {
+            // Custom EnvLoadedError: Load
+            ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Load))
+        } else if (type_id == TypeId::of::<hex::FromHexError>())
+            || (type_id == TypeId::of::<std::num::ParseIntError>())
+            || (type_id == TypeId::of::<std::net::AddrParseError>())
+            || (type_id == TypeId::of::<std::str::ParseBoolError>())
+        {
+            // Custom EnvLoadedError: Convert
+            ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Convert))
+        } else if type_id == TypeId::of::<tokio::task::JoinError>() {
+            ErrorType::Generated(GeneratedError::Common(Common::InternalServerError))
+        } else {
+            // Custom: Default
+            ErrorType::Custom(CustomErrorType::Default)
+        }
+    }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Utils {
-    Description,
-    HexDecode,
-    Convert,
-    Parse,
-    IO,
-    Web3,
+impl From<CustomErrorType> for ErrorType {
+    /// Cast `CustomErrorType` to `ErrorType`
+    fn from(error: CustomErrorType) -> Self {
+        ErrorType::Custom(error)
+    }
 }
 
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Nats {
-    Send,
-    Receive,
-    InternalServiceCall,
-    Disconnected,
-    AddReconnectHandlerError,
-    MessageReplyTimeout,
-    Unsubscribe,
-    Ok,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Rpc {
-    Api,
-    BlockNotFound,
-    EventsNotFound,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Validation {
-    Invalid,
-    DoesNotMatchPattern,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum TwoFactorAuth {
-    HasEntry,
-    InvalidToken,
-    ExpiredToken,
-    Generate,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Redis {
-    NotFound,
-    InternalServerError,
-    Parse,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Billing {
-    UpdateBalanceRecord,
-    NotEnoughBalance,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum ProductRegistry {
-    InternalError,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Permissions {
-    NotAllowed,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Cron {
-    Create,
-    Delete,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Profile {
-    AlreadyBanned,
-    AlreadySubscribed,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Roles {
-    AlreadyHasRole,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum GooglePlay {
-    InvalidSubscription,
-    InvalidPurchaseStatus,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Orchestrator {
-    ZeroAmount,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum RestorePassword {
-    ExpiredToken,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Blockchain {
-    Storage,
-    NotEnoughBalance,
-    Send,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum ProductFactory {
-    InvalidChance,
-    InvalidLimit,
-    InvalidProductType,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Soul {
-    GetData,
-    CallContractMethod,
-    TxAlreadySending,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Functions {
-    EmptyParams,
-    MoreThanOneParam,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Referrals {
-    AlreadyHasReferrer,
-    AlreadyHasCode,
-    UnavailableTransaction,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum BytesFormatter {
-    HandshakeAuthToken,
-    HandshakeSessionToken,
-    HandshakeInvalidVersion,
-    InternalError,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Status {
-    Update,
-    Get,
-    Delete,
-    Add,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Geo {
-    InternalError,
-    InvalidCountry,
-    InvalidContinent,
-    InvalidIp,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Action {
-    NotCancelable,
-}
-
-#[derive(Error, Debug, Eq, PartialEq, Clone, Serialize, Display, ToJson, EnumString)]
-pub enum Promo {
-    CodeExpired,
-    CodeNotExists,
-    CodeIsAlreadyUsed,
-    InternalError,
+impl From<GeneratedError> for ErrorType {
+    /// Cast `GeneratedError` to `ErrorType`
+    fn from(gen_err: GeneratedError) -> Self {
+        ErrorType::Generated(gen_err)
+    }
 }
 
 #[cfg(test)]
+
 mod tests {
-    use crate::{traits::ToJson, Blockchain, Common, Db, Promo, RealisErrors};
-    use convert_case::{Case, Casing};
-    use log::info;
-    use std::str::FromStr;
+    use super::*;
+    use crate::{custom_errors::Db, CustomErrorType, ErrorType};
+    use serde::{Deserialize, Serialize};
+    use serde_json::json;
+
+    use crate::generated_errors::{Db as GeneratedDb, GeneratedError, Geo, Utils};
 
     #[test]
-    fn test() {
-        let error = "blockchain.send";
-        let splitted = error.split('.').map(String::from).collect::<Vec<String>>();
-        let enum_name = splitted.first().unwrap().to_case(Case::UpperCamel);
-        let enum_element = splitted.get(1).unwrap().to_case(Case::UpperCamel);
-        let a = match enum_name.as_str() {
-            "Blockchain" => RealisErrors::Blockchain(Blockchain::from_str(&enum_element).unwrap()),
-            _ => RealisErrors::Common(Common::Unknown),
-        };
-        println!("{:?}", a)
+    fn error_debug_test() {
+        let err = BaseError::new(
+            "Message text ".to_string(),
+            ErrorType::Generated(GeneratedError::Db(GeneratedDb::Select)),
+            Some("Data"),
+        );
+        println!("Debug: \n{:?}", err);
+        println!("Display: \n{}", err);
+    }
+
+    #[test]
+    fn serializing() {
+        // Convert to a JSON string.
+        let serialized = serde_json::to_string(&GeneratedError::Geo(Geo::InternalError)).unwrap();
+        // Prints serialized
+        assert_eq!(&serialized.as_str()[1..18], "geo.internalError");
+        // println!("serialized = {:#?}", serialized); \"geo.internalError\"
+    }
+
+    #[test]
+    fn deserializing() {
+        // Convert to a JSON string.
+        let deserialized = serde_json::from_value::<GeneratedError>(json!("geo.invalidContinent"));
+        // Prints serialized
+        // assert_eq!(deserialized.unwrap(),
+        // GeneratedError::Geo(Geo::InvalidContinent))
+        // println!("deserialized = {:#?}", deserialized);
+    }
+
+    #[test]
+    fn get_code() {
+        let generated_code: u32 = ErrorType::Generated(GeneratedError::Utils(Utils::Decryption)).into();
+        let custom_code: u32 = ErrorType::Custom(CustomErrorType::Db(Db::UserIdNotFound)).into();
+        println!(
+            "Code for ErrorType::Generated(GeneratedError::Utils(Utils::Decryption)): {}",
+            generated_code
+        );
+
+        assert_eq!(1148968u32, generated_code);
+
+        println!(
+            "Code for ErrorType::Custom(CustomErrorType::Db(Db::UserIdNotFound)): {}",
+            custom_code
+        );
+        assert_eq!(777005004u32, custom_code);
     }
 }
