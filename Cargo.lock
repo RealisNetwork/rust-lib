@@ -6944,6 +6944,7 @@ name = "types"
 version = "0.1.0"
 dependencies = [
  "blockchain",
+ "byte-formatter",
  "config",
  "convert_case 0.5.0",
  "deadpool",

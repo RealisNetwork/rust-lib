@@ -18,6 +18,8 @@ web3 = "0.17.0"
 uuid = { version = "1.0.0" }
 json = { path = "./../json",  optional = true }
 realis-primitives = { git = "https://github.com/RealisNetwork/Realis.Network.git", branch = "main", package = "realis-primitives" ,  optional = true}
+byte-formatter = { path = "./../byte-formatter" }
+
 
 [build-dependencies]
 config = { path = "./../config" , features = ["database", "nats"] , optional = true }
