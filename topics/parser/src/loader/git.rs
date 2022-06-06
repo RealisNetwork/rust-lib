@@ -3,11 +3,9 @@ use crate::{
     topic::Topic,
     utils::{parse_line, ParseResult},
 };
-use config::env::Env;
+use config::env::{Env, EnvLoaded};
 use error_registry::BaseError;
-use config::env::EnvLoaded;
 use tokio::runtime::Runtime;
-
 
 #[derive(Env)]
 pub struct GitLoader {

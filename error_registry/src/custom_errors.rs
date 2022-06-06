@@ -196,4 +196,3 @@ impl From<Utils> for u32 {
         }
     }
 }
-

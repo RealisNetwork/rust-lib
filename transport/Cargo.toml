@@ -10,13 +10,14 @@ async-trait = "0.1.52"
 futures = "0.3.19"
 tokio = { version = "1.15.0", features = ["sync", "time"] }
 error_registry = { path = "../error_registry" }
-
+#async-nats = { version="0.11.0", optional = true}
+nats_not_async = { git = "https://github.com/nats-io/nats.rs", package = "nats", version = "0.20.0", optional = true }
 
 ratsio = { git = "https://github.com/RealisNetwork/ratsio.git", optional = true }
 jet-nats = { package = "nats", version = "0.18.1", optional = true }
 
 [dev-dependencies]
-# for jet-raw examples 
+# for jet-raw examples
 jet-nats = { package = "nats", version = "0.18.1" }
 serde_json = "1.0.79"
 # for jet examples
@@ -28,6 +29,10 @@ ratsio = { git = "https://github.com/RealisNetwork/ratsio.git" }
 [features]
 nats = [
     "ratsio",
+]
+nats_v2 = [
+#    "async-nats",
+    "nats_not_async"
 ]
 
 jet = [
@@ -48,3 +53,19 @@ path = "examples/jet-raw/main.rs"
 name = "nats"
 path = "examples/nats/main.rs"
 required-features = ["nats"]
+
+[[example]]
+name = "nats_v2_one_shot"
+path = "examples/nats_v2_one_shot/main.rs"
+required-features = ["nats_v2"]
+
+[[example]]
+name = "nats_v2_raw"
+path = "examples/nats_v2_raw/main.rs"
+required-features = ["nats_v2"]
+
+[[example]]
+name = "nats_v2_timeout"
+path = "examples/nats_v2_timeout/main.rs"
+required-features = ["nats_v2"]
+
