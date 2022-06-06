@@ -1,5 +1,4 @@
 use crate::traits::{MessageReceiver, Transport};
-use async_nats::Subscriber;
 use async_trait::async_trait;
 use nats_not_async::{Connection, Message, Subscription};
 use std::{future::Future, io::ErrorKind::TimedOut, sync::Arc, time::Duration};

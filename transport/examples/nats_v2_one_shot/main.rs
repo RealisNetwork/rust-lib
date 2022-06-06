@@ -51,8 +51,8 @@ async fn main() {
         }
     });
 
-    request_handler.await;
     response_handler.await;
+    request_handler.await;
 }
 pub struct MessageHandler {
     pub client: transport::nats_v2::Nats_v2,

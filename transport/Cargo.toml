@@ -10,7 +10,7 @@ async-trait = "0.1.52"
 futures = "0.3.19"
 tokio = { version = "1.15.0", features = ["sync", "time"] }
 error_registry = { path = "../error_registry" }
-async-nats = { version="0.11.0", optional = true}
+#async-nats = { version="0.11.0", optional = true}
 nats_not_async = { git = "https://github.com/nats-io/nats.rs", package = "nats", version = "0.20.0", optional = true }
 
 ratsio = { git = "https://github.com/RealisNetwork/ratsio.git", optional = true }
@@ -31,7 +31,7 @@ nats = [
     "ratsio",
 ]
 nats_v2 = [
-    "async-nats",
+#    "async-nats",
     "nats_not_async"
 ]
 
