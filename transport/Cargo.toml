@@ -68,3 +68,4 @@ required-features = ["nats_v2"]
 name = "nats_v2_timeout"
 path = "examples/nats_v2_timeout/main.rs"
 required-features = ["nats_v2"]
+
