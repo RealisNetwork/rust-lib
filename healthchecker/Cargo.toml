@@ -1,0 +1,15 @@
+[package]
+name = "healthchecker"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+error_registry = { path = "./../error_registry"}
+tokio={version = "1.11.0", features = ["full","time"]}
+futures={version = "0.1.11"}
+tokio-minihttp={git = "https://github.com/tokio-rs/tokio-minihttp.git"}
+tokio-proto={version = "0.1"}
+tokio-service={version = "0.1"}
