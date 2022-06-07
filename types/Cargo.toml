@@ -52,3 +52,6 @@ rebuild = [
     "convert_case",
     "serde_json",
 ]
+rust_byte_api = [
+
+]
