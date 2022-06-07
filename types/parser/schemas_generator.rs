@@ -193,6 +193,7 @@ impl ToTokens for SchemasGenerator {
     fn to_tokens(&self, tokens: &mut TokenStream) {
         let imports = quote! {
             use byte_formatter::{ByteReader, ByteWriter, ByteSerialize, ByteDeserialize, Error};
+            use crate::common::traits::{Convertable, EncodeError};
             use serde_json::Value;
             use serde::{Serialize, Deserialize};
         };
@@ -249,11 +250,11 @@ impl ToTokens for SchemasGenerator {
 
             #schemas_declaration
 
-        };
+            //#declaration
 
-        // #declaration
-        //
-        // #implementation
+            //#implementation
+
+        };
 
         tokens.extend(stream);
     }

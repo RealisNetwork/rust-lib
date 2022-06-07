@@ -40,24 +40,16 @@ impl Schema {
 
         // TODO: Check this
 
-        quote! { // Generating schema
+        quote! {
             #params_prefix
             #returns_prefix
 
-            #[derive(Debug, Serialize, Deserialize, Default, Clone)]
-            //#[serde(untagged)]
-            pub struct #name {
-                #params_declaration
+            #[derive(Debug, Serialize, Deserialize)]
+            #[serde(untagged)]
+            pub enum #name {
+                #params_declaration,
                 #returns_declaration
             }
-            //
-            // #[derive(Debug, Serialize, Deserialize)]
-            // #[serde(untagged)]
-            // pub enum #name {
-            //     #params_declaration,
-            //     #returns_declaration
-            // }
-
         }
     }
 
@@ -65,12 +57,12 @@ impl Schema {
         match self.params {
             Parameter::Object(_) | Parameter::String(_) | Parameter::Integer(_) | Parameter::Bool | Parameter::Array(_) => {
                 let (prefix, variant_type) = self.params.get_type(&format!("{}ParamsObject", self.create_name()));
-                let declaration = quote! { pub params: #variant_type, };
+                let declaration = quote! { Params(#variant_type) };
                 (prefix, declaration)
             }
             Parameter::Empty => {
                 let prefix = quote! {};
-                let declaration = quote! {};
+                let declaration = quote! { Params };
                 (prefix, declaration)
             }
         }
@@ -80,12 +72,12 @@ impl Schema {
         match self.returns {
             Parameter::Object(_) | Parameter::String(_) | Parameter::Integer(_) | Parameter::Bool | Parameter::Array(_) => {
                 let (prefix, variant_type) = self.returns.get_type(&format!("{}ReturnsObject", self.create_name()));
-                let declaration = quote! { pub returns: #variant_type, };
+                let declaration = quote! { Returns(#variant_type), };
                 (prefix, declaration)
             }
             Parameter::Empty => {
                 let prefix = quote! {};
-                let declaration = quote! {};
+                let declaration = quote! { Returns };
                 (prefix, declaration)
             }
         }
@@ -136,23 +128,23 @@ impl Schema {
         let from_value_to_bytes = self.get_impl_from_value_to_bytes();
 
         quote! {
-            impl Convertable for #name {
-                fn from_bytes_to_json(_byte_reader: &mut ByteReader) -> Result<Value, byte_formatter::Error> {
-                    #from_bytes_to_params
-                }
-
-                fn topic_to_send() -> String {
-                    String::from(#topic_to_send)
-                }
-
-                fn topic_to_response() -> String {
-                    String::from(#topic_to_response)
-                }
-
-                fn from_value_to_bytes(json: Value) -> Result<Vec<u8>, EncodeError> {
-                    #from_value_to_bytes
-                }
-            }
+            // impl Convertable for #name {
+            //     fn from_bytes_to_json(_byte_reader: &mut ByteReader) -> Result<Value, byte_formatter::Error> {
+            //         #from_bytes_to_params
+            //     }
+            //
+            //     fn topic_to_send() -> String {
+            //         String::from(#topic_to_send)
+            //     }
+            //
+            //     fn topic_to_response() -> String {
+            //         String::from(#topic_to_response)
+            //     }
+            //
+            //     fn from_value_to_bytes(json: Value) -> Result<Vec<u8>, EncodeError> {
+            //         #from_value_to_bytes
+            //     }
+            // }
         }
     }
 }
@@ -160,8 +152,10 @@ impl Schema {
 impl ToTokens for Schema {
     fn to_tokens(&self, tokens: &mut TokenStream) {
         let declaration = self.get_declaration();
+        let implementation = self.get_impl_convertable();
 
-        tokens.extend(declaration)
+        tokens.extend(declaration);
+        tokens.extend(implementation);
     }
 }
 
