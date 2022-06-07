@@ -41,6 +41,9 @@ impl Parameterizable for Integer {
     fn impl_write_to_bytes(&self) -> TokenStream {
         quote! { object.encode(&mut byte_writer).map_err(EncodeError::Byte)?; }
         // quote! { byte_writer.write_bytes(&object.to_ne_bytes()); } // TODO:
-        // Check this quote! { byte_writer.write_type(object); }
+        // Check this
+        // quote! { byte_writer.
+        // write_type(object);
+        // }
     }
 }

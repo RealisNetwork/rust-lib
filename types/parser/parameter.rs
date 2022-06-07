@@ -1,6 +1,6 @@
 use crate::parser::{
     traits::Parameterizable,
-    types::{array::Array, bool::Bool, integer::Integer, object::Object, str::Str},
+    types::{array::Array, bool::Bool, integer::Integer, number::Number, object::Object, str::Str},
 };
 use quote::{__private::TokenStream, quote};
 use serde::{Deserialize, Serialize};
@@ -12,6 +12,7 @@ pub enum Parameter {
     Object(Object),
     String(Str),
     Integer(Integer),
+    Number(Number),
     Bool,
     Empty,
 }
@@ -23,6 +24,7 @@ impl Parameter {
             Parameter::Empty => (quote! {}, quote! {}),
             Parameter::Bool => Bool.get_type(name),
             Parameter::Integer(integer) => integer.get_type(name),
+            Parameter::Number(number) => number.get_type(name),
             Parameter::String(str) => str.get_type(name),
             Parameter::Array(array) => array.get_type(name),
             Parameter::Object(object) => object.get_type(name),
@@ -34,6 +36,7 @@ impl Parameter {
         match self {
             Parameter::String(str) => str.impl_read_from_bytes(name),
             Parameter::Integer(integer) => integer.impl_read_from_bytes(name),
+            Parameter::Number(number) => number.impl_read_from_bytes(name),
             Parameter::Bool => Bool.impl_read_from_bytes(name),
             Parameter::Empty => quote! { let params = (); },
             Parameter::Array(array) => array.impl_read_from_bytes(name),
@@ -46,6 +49,7 @@ impl Parameter {
         match self {
             Parameter::String(str) => str.impl_write_to_bytes(),
             Parameter::Integer(integer) => integer.impl_write_to_bytes(),
+            Parameter::Number(number) => number.impl_write_to_bytes(),
             Parameter::Bool => Bool.impl_write_to_bytes(),
             Parameter::Empty => quote! {},
             Parameter::Array(array) => array.impl_write_to_bytes(),
@@ -62,7 +66,14 @@ impl From<MaybeTaggedParameter> for Parameter {
             }),
             MaybeTaggedParameter::Tagged(TaggedParameter::Object(value)) => Parameter::Object(value),
             MaybeTaggedParameter::Tagged(TaggedParameter::String(value)) => Parameter::String(value),
-            MaybeTaggedParameter::Tagged(TaggedParameter::Integer(value)) => Parameter::Integer(value),
+            MaybeTaggedParameter::Tagged(TaggedParameter::Integer(value)) => {
+                // panic!("It's integer MF");
+                Parameter::Integer(value)
+            }
+            MaybeTaggedParameter::Tagged(TaggedParameter::Number(value)) => {
+                // panic!("It's number MF");
+                Parameter::Number(value)
+            }
             MaybeTaggedParameter::Tagged(TaggedParameter::Bool) => Parameter::Bool,
             MaybeTaggedParameter::Empty {} => Parameter::Empty,
         }
@@ -87,6 +98,8 @@ enum TaggedParameter {
     String(Str),
     #[serde(alias = "integer")]
     Integer(Integer),
+    #[serde(alias = "number")]
+    Number(Number),
     #[serde(alias = "boolean")]
     Bool,
 }

@@ -55,7 +55,12 @@ impl Schema {
 
     fn get_params_declaration(&self) -> (TokenStream, TokenStream) {
         match self.params {
-            Parameter::Object(_) | Parameter::String(_) | Parameter::Integer(_) | Parameter::Bool | Parameter::Array(_) => {
+            Parameter::Object(_)
+            | Parameter::String(_)
+            | Parameter::Integer(_)
+            | Parameter::Bool
+            | Parameter::Array(_)
+            | Parameter::Number(_) => {
                 let (prefix, variant_type) = self.params.get_type(&format!("{}ParamsObject", self.create_name()));
                 let declaration = quote! { Params(#variant_type) };
                 (prefix, declaration)
@@ -70,7 +75,12 @@ impl Schema {
 
     fn get_returns_declaration(&self) -> (TokenStream, TokenStream) {
         match self.returns {
-            Parameter::Object(_) | Parameter::String(_) | Parameter::Integer(_) | Parameter::Bool | Parameter::Array(_) => {
+            Parameter::Object(_)
+            | Parameter::String(_)
+            | Parameter::Integer(_)
+            | Parameter::Bool
+            | Parameter::Array(_)
+            | Parameter::Number(_) => {
                 let (prefix, variant_type) = self.returns.get_type(&format!("{}ReturnsObject", self.create_name()));
                 let declaration = quote! { Returns(#variant_type), };
                 (prefix, declaration)
