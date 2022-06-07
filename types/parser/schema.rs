@@ -128,23 +128,23 @@ impl Schema {
         let from_value_to_bytes = self.get_impl_from_value_to_bytes();
 
         quote! {
-            // impl Convertable for #name {
-            //     fn from_bytes_to_json(_byte_reader: &mut ByteReader) -> Result<Value, byte_formatter::Error> {
-            //         #from_bytes_to_params
-            //     }
-            //
-            //     fn topic_to_send() -> String {
-            //         String::from(#topic_to_send)
-            //     }
-            //
-            //     fn topic_to_response() -> String {
-            //         String::from(#topic_to_response)
-            //     }
-            //
-            //     fn from_value_to_bytes(json: Value) -> Result<Vec<u8>, EncodeError> {
-            //         #from_value_to_bytes
-            //     }
-            // }
+            impl Convertable for #name {
+                fn from_bytes_to_json(_byte_reader: &mut ByteReader) -> Result<Value, byte_formatter::Error> {
+                    #from_bytes_to_params
+                }
+
+                fn topic_to_send() -> String {
+                    String::from(#topic_to_send)
+                }
+
+                fn topic_to_response() -> String {
+                    String::from(#topic_to_response)
+                }
+
+                fn from_value_to_bytes(json: Value) -> Result<Vec<u8>, EncodeError> {
+                    #from_value_to_bytes
+                }
+            }
         }
     }
 }

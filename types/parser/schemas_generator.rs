@@ -250,9 +250,9 @@ impl ToTokens for SchemasGenerator {
 
             #schemas_declaration
 
-            //#declaration
+            #declaration
 
-            //#implementation
+            #implementation
 
         };
 
