@@ -44,9 +44,9 @@ impl Schema {
             #params_prefix
             #returns_prefix
 
-            #[derive(Debug, Serialize, Deserialize)]
+            #[derive(Debug, Serialize, Deserialize, Default, Clone)]
             //#[serde(untagged)]
-            struct #name {
+            pub struct #name {
                 #params_declaration
                 #returns_declaration
             }
