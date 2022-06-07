@@ -67,7 +67,7 @@ impl Parameterizable for Object {
         let name = Ident::new(name, Span::call_site());
         let declaration = quote! {
             #(#prefix)*
-            #[derive(Debug, Clone, Serialize, Deserialize, Default, Sized)] //  ByteSerialize, ByteDeserialize
+            #[derive(Debug, Clone, Serialize, Deserialize, Default)] //  ByteSerialize, ByteDeserialize
             pub struct #name {
                 #(#fields)*
             }
