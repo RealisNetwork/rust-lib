@@ -28,7 +28,9 @@
 
    with features:
    - schemas
+   - rust_byte_api
  - **vault**
+
    
    with features:
    - default
