@@ -29,7 +29,7 @@ mod build {
             _ => panic!("Unknown loader type"),
         };
 
-        generate_schemas(schemas.clone(), "./src/schemas/rust_byte_api_gateway", "full_schemas.rs");
+        generate_schemas(schemas.clone(), "./src/rust_byte_api_gateway", "full_schemas.rs");
     }
 
     fn generate_schemas(schemas: Vec<Schema>, path: &str, filename: &str) {

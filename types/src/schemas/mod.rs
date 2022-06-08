@@ -5,7 +5,6 @@ pub mod realis_listener;
 pub mod realis_marketplace;
 pub mod realis_orchestrator;
 pub mod realis_wallet;
-pub mod rust_byte_api_gateway;
 pub mod storage_service;
 pub mod transactions;
 pub mod withdraw_bsc;

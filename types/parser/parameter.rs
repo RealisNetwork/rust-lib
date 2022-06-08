@@ -66,14 +66,8 @@ impl From<MaybeTaggedParameter> for Parameter {
             }),
             MaybeTaggedParameter::Tagged(TaggedParameter::Object(value)) => Parameter::Object(value),
             MaybeTaggedParameter::Tagged(TaggedParameter::String(value)) => Parameter::String(value),
-            MaybeTaggedParameter::Tagged(TaggedParameter::Integer(value)) => {
-                // panic!("It's integer MF");
-                Parameter::Integer(value)
-            }
-            MaybeTaggedParameter::Tagged(TaggedParameter::Number(value)) => {
-                // panic!("It's number MF");
-                Parameter::Number(value)
-            }
+            MaybeTaggedParameter::Tagged(TaggedParameter::Integer(value)) => Parameter::Integer(value),
+            MaybeTaggedParameter::Tagged(TaggedParameter::Number(value)) => Parameter::Number(value),
             MaybeTaggedParameter::Tagged(TaggedParameter::Bool) => Parameter::Bool,
             MaybeTaggedParameter::Empty {} => Parameter::Empty,
         }
