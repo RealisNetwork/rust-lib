@@ -3,15 +3,16 @@ use serde_json::Value;
 use app::{Service, ServiceApp};
 use error_registry::BaseError;
 use healthchecker::HealthChecker;
-use transport::response::{Response, VResponse};
-use transport::transport::StanTransport;
-use serde::Deserialize;
+use transport::{Response, VResponse};
+use serde::{Serialize, Deserialize};
 use async_trait::async_trait;
 use app::app::{App, Runnable};
 use transport::{Transport, VTransport, StanTransport};
 
-const TOPIC: &str = "test-topic";
-const CLIENT_ID: &str = "test-client";
+const TOPIC_1: &str = "test-topic";
+const TOPIC_2: &str = "test-topic-2";
+const CLIENT_ID_1: &str = "test-client-1";
+const CLIENT_ID_2: &str = "test-client-2";
 const CLUSTER_ID: &str = "nats-streaming";
 const NATS_URL: &str = "127.0.0.1:4222";
 
@@ -55,7 +56,7 @@ struct SchemaService;
 #[async_trait]
 impl Service<Schema> for SchemaService {
     fn topic_to_subscribe(&self) -> String {
-        TOPIC.to_owned()
+        TOPIC_1.to_owned()
     }
 
     async fn process(&mut self, schema: Schema) -> Result<Vec<VResponse>, BaseError<Value>> {

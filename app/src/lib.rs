@@ -1,5 +1,6 @@
 pub mod service;
 pub mod service_app;
+pub mod app;
 
 pub use transport;
 pub use healthchecker;

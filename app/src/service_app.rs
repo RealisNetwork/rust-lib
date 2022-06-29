@@ -7,7 +7,7 @@ use transport::{ReceivedMessage, Subscription, Transport, VReceivedMessage, VSub
 use crate::app::Runnable;
 use async_trait::async_trait;
 
-pub struct ServiceApp<T: DeserializeOwned, S: Service<T>> {
+pub struct ServiceApp<T: DeserializeOwned + Send + Sync, S: Service<T>> {
     service: S,
     transport: VTransport, // TODO: use generic type `T: Transport`
     subscription: VSubscription, // TODO: use generic type `_: Subscription`
