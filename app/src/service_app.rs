@@ -4,6 +4,8 @@ use healthchecker::HealthChecker;
 use serde::de::DeserializeOwned;
 use serde_json::Value;
 use transport::{ReceivedMessage, Subscription, Transport, VReceivedMessage, VSubscription, VTransport};
+use crate::app::Runnable;
+use async_trait::async_trait;
 
 pub struct ServiceApp<T: DeserializeOwned, S: Service<T>> {
     service: S,
@@ -13,7 +15,18 @@ pub struct ServiceApp<T: DeserializeOwned, S: Service<T>> {
     _marker: std::marker::PhantomData<T>,
 }
 
-impl<T: DeserializeOwned, S: Service<T>> ServiceApp<T, S> {
+#[async_trait]
+impl<T: DeserializeOwned + Send + Sync, S: Service<T>> Runnable for ServiceApp<T, S> {
+    async fn run(&mut self) {
+        let health_checker = self.health_checker.clone();
+        if let Err(error) = self.run_internal().await {
+            log::error!("{:?}", error);
+            health_checker.make_sick();
+        }
+    }
+}
+
+impl<T: DeserializeOwned + Send + Sync, S: Service<T>> ServiceApp<T, S> {
     pub async fn new(service: S, mut transport: VTransport, health_checker: HealthChecker) -> Result<Self, BaseError<Value>> {
         transport
             .subscribe(&service.topic_to_subscribe())
@@ -26,16 +39,8 @@ impl<T: DeserializeOwned, S: Service<T>> ServiceApp<T, S> {
                 _marker: Default::default()
             })
     }
-    
-    pub async fn run(self) {
-        let health_checker = self.health_checker.clone();
-        if let Err(error) = self.run_internal().await {
-            log::error!("{:?}", error);
-            health_checker.make_sick();
-        }
-    }
 
-    async fn run_internal(mut self) -> Result<(), BaseError<Value>> {
+    async fn run_internal(&mut self) -> Result<(), BaseError<Value>> {
         loop {
             let message = self.subscription.next().await?;
             match message.deserialize() {

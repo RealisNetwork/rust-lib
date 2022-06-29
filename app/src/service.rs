@@ -4,7 +4,7 @@ use serde_json::Value;
 use transport::response::VResponse;
 
 #[async_trait]
-pub trait Service<T> {
+pub trait Service<T>: Send + Sync {
     fn topic_to_subscribe(&self) -> String;
 
     async fn process(&mut self, schema: T) -> Result<Vec<VResponse>, BaseError<Value>>;

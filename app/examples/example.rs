@@ -7,7 +7,8 @@ use transport::response::{Response, VResponse};
 use transport::transport::StanTransport;
 use serde::Deserialize;
 use async_trait::async_trait;
-use transport::Transport;
+use app::app::{App, Runnable};
+use transport::{Transport, VTransport, StanTransport};
 
 const TOPIC: &str = "test-topic";
 const CLIENT_ID: &str = "test-client";
@@ -16,30 +17,35 @@ const NATS_URL: &str = "127.0.0.1:4222";
 
 #[tokio::main]
 async fn main() {
-    let mut transport = StanTransport::new(NATS_URL, CLUSTER_ID, CLIENT_ID)
-        .expect("Fail to init transport");
+    let mut transport_1 = StanTransport::new(NATS_URL, CLUSTER_ID, CLIENT_ID_1)
+        .expect("Fail to init transport_1");
+    let mut transport_2 = StanTransport::new(NATS_URL, CLUSTER_ID, CLIENT_ID_2)
+        .expect("Fail to init transport_2");
     let service = SchemaService;
     let health_checker = HealthChecker::new(&"127.0.0.1:4444".to_owned(), 1_000)
         .await
         .expect("Fail to init health_checker");
 
-    // transport.publish(VResponse::Response(Response {
-    //     topic_res: TOPIC.to_owned(),
-    //     response: serde_json::to_vec(&serde_json::json!({
-    //         "msgs": "test fail"
-    //     })).expect("Fail to serialise to bytes")
-    // })).await.expect("Fail to publish test message");
 
-    ServiceApp::new(
+
+    let service_app = ServiceApp::new(
         service,
-        transport.into(),
+        transport_1.into(),
         health_checker
-    )
+    ).await.expect("Fail to subscribe");
+
+    let sender = Sender {
+        transport: transport_2.into()
+    };
+
+    App::default()
+        .push(service_app)
+        .push(sender)
         .run()
         .await;
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 struct Schema {
     msg: String,
 }
@@ -55,5 +61,27 @@ impl Service<Schema> for SchemaService {
     async fn process(&mut self, schema: Schema) -> Result<Vec<VResponse>, BaseError<Value>> {
         println!("{:#?}", schema);
         Ok(vec![])
+    }
+}
+
+pub struct Sender {
+    pub transport: VTransport
+}
+
+#[async_trait]
+impl Runnable for Sender {
+    async fn run(&mut self) {
+        for i in 0..10 {
+            let schema = Schema { msg: format!("{}", i) };
+
+            let response = VResponse::Response(Response {
+                    topic_res: TOPIC_1.to_owned(),
+                    response: serde_json::to_vec(&schema).unwrap()
+            });
+            self.transport.publish(response).await;
+            println!("publish");
+
+            tokio::time::sleep(tokio::time::Duration::from_secs(1)).await;
+        }
     }
 }
