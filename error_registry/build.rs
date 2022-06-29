@@ -31,7 +31,14 @@ pub struct ErrorParams {
 }
 
 #[cfg(feature = "rebuild")]
-pub fn get_file(path: &str, file: &str, token: &str, repo: &str, owner: &str, branch: &str) -> Result<String, String> {
+pub fn get_file(
+    path: &str,
+    file: &str,
+    token: &str,
+    repo: &str,
+    owner: &str,
+    branch: &str,
+) -> Result<String, String> {
     use octocrab::OctocrabBuilder;
     use reqwest::blocking;
     use tokio::runtime::Runtime;
@@ -78,10 +85,26 @@ pub fn rebuild() {
             .parse::<String>()
             .unwrap()
             .as_str(),
-        dotenv::var("GIT_LOADER_TOKEN").unwrap().parse::<String>().unwrap().as_str(),
-        dotenv::var("GIT_LOADER_REPO").unwrap().parse::<String>().unwrap().as_str(),
-        dotenv::var("GIT_LOADER_OWNER").unwrap().parse::<String>().unwrap().as_str(),
-        dotenv::var("GIT_LOADER_BRANCH").unwrap().parse::<String>().unwrap().as_str(),
+        dotenv::var("GIT_LOADER_TOKEN")
+            .unwrap()
+            .parse::<String>()
+            .unwrap()
+            .as_str(),
+        dotenv::var("GIT_LOADER_REPO")
+            .unwrap()
+            .parse::<String>()
+            .unwrap()
+            .as_str(),
+        dotenv::var("GIT_LOADER_OWNER")
+            .unwrap()
+            .parse::<String>()
+            .unwrap()
+            .as_str(),
+        dotenv::var("GIT_LOADER_BRANCH")
+            .unwrap()
+            .parse::<String>()
+            .unwrap()
+            .as_str(),
     );
 
     if let Err(e) = json {
@@ -116,7 +139,10 @@ pub fn rebuild() {
 
     let mut code = TokenStream::default();
 
-    let general_enum_name = Ident::new("GeneratedError".to_case(Case::UpperCamel).as_str(), Span::call_site());
+    let general_enum_name = Ident::new(
+        "GeneratedError".to_case(Case::UpperCamel).as_str(),
+        Span::call_site(),
+    );
     let mut general_enum = TokenStream::default();
 
     let field_name = res2
@@ -145,19 +171,36 @@ pub fn rebuild() {
     ));
 
     for enum_name in res2.keys() {
-        let enum_name_indent = Ident::new(enum_name.to_case(Case::UpperCamel).as_str(), Span::call_site());
+        let enum_name_indent = Ident::new(
+            enum_name.to_case(Case::UpperCamel).as_str(),
+            Span::call_site(),
+        );
         let postfix = res2.get(enum_name).unwrap().iter().map(|field| {
             return match field.err_type.parse::<u32>() {
-                Ok(_) => Ident::new(format!("E{}", field.err_type.to_case(Case::UpperCamel)).as_str(), Span::call_site()),
-                Err(e) => Ident::new(field.err_type.to_case(Case::UpperCamel).as_str(), Span::call_site()),
+                Ok(_) => Ident::new(
+                    format!("E{}", field.err_type.to_case(Case::UpperCamel)).as_str(),
+                    Span::call_site(),
+                ),
+                Err(e) => Ident::new(
+                    field.err_type.to_case(Case::UpperCamel).as_str(),
+                    Span::call_site(),
+                ),
             };
         });
 
         let postifx2 = postfix.clone();
         let postifx3 = postfix.clone();
         let postifx4 = postfix.clone();
-        let full_names = res2.get(enum_name).unwrap().iter().map(|field| field.full_name.clone());
-        let error_code = res2.get(enum_name).unwrap().iter().map(|field| field.code.clone());
+        let full_names = res2
+            .get(enum_name)
+            .unwrap()
+            .iter()
+            .map(|field| field.full_name.clone());
+        let error_code = res2
+            .get(enum_name)
+            .unwrap()
+            .iter()
+            .map(|field| field.code.clone());
         let full_names2 = full_names.clone();
 
         code.extend(quote!(
@@ -215,6 +258,11 @@ pub fn rebuild() {
 
     std::fs::write(
         "./src/generated_errors.rs",
-        format!("{}\n\n{}\n{}", header, general_enum.to_string(), code.to_string()),
+        format!(
+            "{}\n\n{}\n{}",
+            header,
+            general_enum.to_string(),
+            code.to_string()
+        ),
     );
 }

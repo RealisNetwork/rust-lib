@@ -216,7 +216,9 @@ impl<E: 'static + Error> From<E> for ErrorType {
         if type_id == TypeId::of::<tokio::sync::oneshot::error::RecvError>() {
             // Custom Nats: Receive
             ErrorType::Custom(CustomErrorType::Nats(CustomNats::Receive))
-        } else if (type_id == TypeId::of::<tokio::time::error::Elapsed>()) || (type_id == TypeId::of::<ratsio::RatsioError>()) {
+        } else if (type_id == TypeId::of::<tokio::time::error::Elapsed>())
+            || (type_id == TypeId::of::<ratsio::RatsioError>())
+        {
             // Custom Nats: Disconnected
             ErrorType::Custom(CustomErrorType::Nats(CustomNats::Disconnected))
         } else if (type_id == TypeId::of::<deadpool::managed::PoolError<tokio_postgres::Error>>())
@@ -301,7 +303,8 @@ mod tests {
 
     #[test]
     fn get_code() {
-        let generated_code: u32 = ErrorType::Generated(GeneratedError::Utils(Utils::Decryption)).into();
+        let generated_code: u32 =
+            ErrorType::Generated(GeneratedError::Utils(Utils::Decryption)).into();
         let custom_code: u32 = ErrorType::Custom(CustomErrorType::Db(Db::UserIdNotFound)).into();
         println!(
             "Code for ErrorType::Generated(GeneratedError::Utils(Utils::Decryption)): {}",

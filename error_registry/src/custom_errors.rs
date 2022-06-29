@@ -21,7 +21,9 @@ impl From<CustomErrorType> for u32 {
             CustomErrorType::Rpc(rpc) => 3000u32 + u32::from(rpc),
             CustomErrorType::Nats(nats) => 4000u32 + u32::from(nats),
             CustomErrorType::Db(db) => 5000u32 + u32::from(db),
-            CustomErrorType::EnvLoadedError(env_loaded_error) => 6000u32 + u32::from(env_loaded_error),
+            CustomErrorType::EnvLoadedError(env_loaded_error) => {
+                6000u32 + u32::from(env_loaded_error)
+            }
             CustomErrorType::Common(common) => 7000u32 + u32::from(common),
             CustomErrorType::Utils(utils) => 8000u32 + u32::from(utils),
         }

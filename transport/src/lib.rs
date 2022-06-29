@@ -1,10 +1,9 @@
-pub mod traits;
+pub mod message;
+pub mod response;
+pub mod subscription;
+pub mod transport;
+pub mod common;
 
-#[cfg(feature = "nats")]
-pub mod nats;
-
-#[cfg(feature = "jet")]
-pub mod jet;
-
-#[cfg(feature = "nats_v2")]
-pub mod nats_v2;
+pub use message::{ReceivedMessage, VReceivedMessage};
+pub use subscription::{Subscription, VSubscription};
+pub use transport::{Transport, VTransport};
