@@ -6,13 +6,13 @@ use std::{
     any::TypeId,
     error::Error,
     fmt,
-    fmt::{write, Debug, Display, Formatter},
+    fmt::{Debug, Display, Formatter},
 };
 
 use backtrace::Backtrace;
 
 use crate::{
-    custom_errors::{CustomErrorType, Db as CustomDb, EnvLoadedError, Nats as CustomNats, Utils},
+    custom_errors::{CustomErrorType, Db as CustomDb, EnvLoadedError, Nats as CustomNats},
     generated_errors::Common,
 };
 use generated_errors::GeneratedError;
