@@ -13,6 +13,28 @@ pub struct StanTransport {
     pub client: Client,
 }
 
+impl StanTransport {
+    pub fn new(url: &str, cluster_id: &str, client_id: &str) -> TransportResult<Self> {
+        let nats = nats::connect(url)
+            .map_err(|error| BaseError::new(
+                format!("{:?}", error),
+                CustomErrorType::Nats(CustomNats::Disconnected).into(),
+                None,
+            ))?;
+        let stan = stan::connect(nats, cluster_id, client_id)
+            .map_err(|error| BaseError::new(
+                format!("{:?}", error),
+                CustomErrorType::Nats(CustomNats::Disconnected).into(),
+                None
+            ))?;
+
+        Ok(Self {
+            client_id: client_id.to_owned(),
+            client: stan
+        })
+    }
+}
+
 #[async_trait]
 impl Transport for StanTransport {
     async fn publish(&mut self, response: VResponse) -> TransportResult<()> {
