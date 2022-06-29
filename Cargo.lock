@@ -2901,6 +2901,7 @@ dependencies = [
  "async-trait",
  "enum_dispatch",
  "error_registry",
+ "nats",
  "serde",
  "serde_json",
  "stan",

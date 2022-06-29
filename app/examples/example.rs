@@ -16,12 +16,8 @@ const NATS_URL: &str = "127.0.0.1:4222";
 
 #[tokio::main]
 async fn main() {
-    let nats_connection = nats::connect(NATS_URL)
-        .expect("Fail to connect to NATS");
-    let stan_connection = stan::connect(nats_connection, CLUSTER_ID, CLIENT_ID)
-        .expect("Fail to connect to STAN");
-
-    let mut transport = StanTransport { client_id: CLIENT_ID.to_owned(), client: stan_connection };
+    let mut transport = StanTransport::new(NATS_URL, CLUSTER_ID, CLIENT_ID)
+        .expect("Fail to init transport");
     let service = SchemaService;
     let health_checker = HealthChecker::new(&"127.0.0.1:4444".to_owned(), 1_000)
         .await
