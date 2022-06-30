@@ -1,13 +1,13 @@
-use nats;
-use serde_json::Value;
+use app::app::{App, Runnable};
 use app::{Service, ServiceApp};
+use async_trait::async_trait;
 use error_registry::BaseError;
 use healthchecker::HealthChecker;
+use nats;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
 use transport::{Response, VResponse};
-use serde::{Serialize, Deserialize};
-use async_trait::async_trait;
-use app::app::{App, Runnable};
-use transport::{Transport, VTransport, StanTransport};
+use transport::{StanTransport, Transport, VTransport};
 
 const TOPIC_1: &str = "test-topic";
 const TOPIC_2: &str = "test-topic-2";
@@ -18,32 +18,24 @@ const NATS_URL: &str = "127.0.0.1:4222";
 
 #[tokio::main]
 async fn main() {
-    let mut transport_1 = StanTransport::new(NATS_URL, CLUSTER_ID, CLIENT_ID_1)
-        .expect("Fail to init transport_1");
-    let mut transport_2 = StanTransport::new(NATS_URL, CLUSTER_ID, CLIENT_ID_2)
-        .expect("Fail to init transport_2");
+    let mut transport_1 =
+        StanTransport::new(NATS_URL, CLUSTER_ID, CLIENT_ID_1).expect("Fail to init transport_1");
+    let mut transport_2 =
+        StanTransport::new(NATS_URL, CLUSTER_ID, CLIENT_ID_2).expect("Fail to init transport_2");
     let service = SchemaService;
     let health_checker = HealthChecker::new(&"127.0.0.1:4444".to_owned(), 1_000)
         .await
         .expect("Fail to init health_checker");
 
-
-
-    let service_app = ServiceApp::new(
-        service,
-        transport_1.into(),
-        health_checker
-    ).await.expect("Fail to subscribe");
+    let service_app = ServiceApp::new(service, transport_1.into(), health_checker)
+        .await
+        .expect("Fail to subscribe");
 
     let sender = Sender {
-        transport: transport_2.into()
+        transport: transport_2.into(),
     };
 
-    App::default()
-        .push(service_app)
-        .push(sender)
-        .run()
-        .await;
+    App::default().push(service_app).push(sender).run().await;
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -59,25 +51,27 @@ impl Service<Schema> for SchemaService {
         TOPIC_1.to_owned()
     }
 
-    async fn process(&mut self, schema: Schema) -> Result<Vec<VResponse>, BaseError<Value>> {
+    async fn process(&mut self, request: Schema) -> Result<Vec<VResponse>, BaseError<Value>> {
         println!("{:#?}", schema);
         Ok(vec![])
     }
 }
 
 pub struct Sender {
-    pub transport: VTransport
+    pub transport: VTransport,
 }
 
 #[async_trait]
 impl Runnable for Sender {
     async fn run(&mut self) {
         for i in 0..10 {
-            let schema = Schema { msg: format!("{}", i) };
+            let schema = Schema {
+                msg: format!("{}", i),
+            };
 
             let response = VResponse::Response(Response {
-                    topic_res: TOPIC_1.to_owned(),
-                    response: serde_json::to_vec(&schema).unwrap()
+                topic_res: TOPIC_1.to_owned(),
+                response: serde_json::to_vec(&schema).unwrap(),
             });
             self.transport.publish(response).await;
             println!("publish");

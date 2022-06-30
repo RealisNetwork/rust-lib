@@ -44,8 +44,8 @@ impl<T: DeserializeOwned + Send + Sync, S: Service<T>> ServiceApp<T, S> {
         loop {
             let message = self.subscription.next().await?;
             match message.deserialize() {
-                Ok(schema) => {
-                    let result = self.service.process(schema).await?;
+                Ok(request) => {
+                    let result = self.service.process(request).await?;
                     message.ok().await?;
 
                     for response in result {

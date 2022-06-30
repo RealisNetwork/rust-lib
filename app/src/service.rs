@@ -7,5 +7,5 @@ use transport::response::VResponse;
 pub trait Service<T>: Send + Sync {
     fn topic_to_subscribe(&self) -> String;
 
-    async fn process(&mut self, schema: T) -> Result<Vec<VResponse>, BaseError<Value>>;
+    async fn process(&mut self, request: T) -> Result<Vec<VResponse>, BaseError<Value>>;
 }
