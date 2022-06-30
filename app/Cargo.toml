@@ -16,6 +16,7 @@ serde = "1.0.137"
 log = "0.4.17"
 tokio = "1.19.2"
 
+
 [dev-dependencies]
 nats = "0.9.18"
 serde = "1.0.137"

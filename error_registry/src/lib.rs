@@ -101,7 +101,7 @@ impl<D: Debug, E: 'static + Error> From<E> for BaseError<D> {
     ///
     /// assert_eq!(
     ///     format!("{:?}", BaseError::<()>::from(error).error_type),
-    ///     format!("{:?}", ErrorType::Custom(CustomErrorType::Nats(Nats::Send)))
+    ///     format!("{:?}", ErrorType::Custom(CustomErrorType::Nats(Nats::Disconnected)))
     /// );
     /// ```
     fn from(error: E) -> Self {
@@ -129,18 +129,19 @@ impl<D: Debug> Default for BaseError<D> {
     /// ```
     /// use backtrace::Backtrace;
     /// use error_registry::custom_errors::CustomErrorType;
-    /// use error_registry::ErrorType;
+    /// use error_registry::{BaseError, ErrorType};
+    /// use error_registry::custom_errors::CustomErrorType::Default;
     ///
     /// let trace = Backtrace::new();
     /// let error_type = ErrorType::Custom(CustomErrorType::Default);
     ///
-    /// Self {
+    /// BaseError::<()> {
     ///     msg: String::from("Default error."),
     ///     status: error_type.clone().into(),
     ///     error_type: error_type,
     ///     trace: format!("{:?}", trace),
     ///     data: None,
-    /// }
+    /// };
     /// ```
     fn default() -> Self {
         let trace = Backtrace::new();
