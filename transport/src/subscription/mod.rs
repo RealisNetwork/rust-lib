@@ -1,11 +1,11 @@
 pub mod stan;
 
+use crate::common::TransportResult;
 use crate::message::VReceivedMessage;
+use crate::subscription::stan::StanSubscription;
+use ::stan::Subscription as LibStanSubscription;
 use async_trait::async_trait;
 use enum_dispatch::enum_dispatch;
-use ::stan::Subscription as LibStanSubscription;
-use crate::common::TransportResult;
-use crate::subscription::stan::StanSubscription;
 
 #[async_trait]
 #[enum_dispatch]

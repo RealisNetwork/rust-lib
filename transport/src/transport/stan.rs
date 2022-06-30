@@ -1,12 +1,12 @@
+use crate::common::TransportResult;
 use crate::response::VResponse;
 use crate::subscription::VSubscription;
+use crate::Transport;
 use async_trait::async_trait;
 use error_registry::custom_errors::{CustomErrorType, Nats as CustomNats};
 use error_registry::generated_errors::{GeneratedError, Nats};
 use error_registry::BaseError;
 use stan::{Client, SubscriptionConfig, SubscriptionStart};
-use crate::common::TransportResult;
-use crate::Transport;
 
 pub struct StanTransport {
     pub client_id: String,
@@ -15,22 +15,24 @@ pub struct StanTransport {
 
 impl StanTransport {
     pub fn new(url: &str, cluster_id: &str, client_id: &str) -> TransportResult<Self> {
-        let nats = nats::connect(url)
-            .map_err(|error| BaseError::new(
+        let nats = nats::connect(url).map_err(|error| {
+            BaseError::new(
                 format!("{:?}", error),
                 CustomErrorType::Nats(CustomNats::Disconnected).into(),
                 None,
-            ))?;
-        let stan = stan::connect(nats, cluster_id, client_id)
-            .map_err(|error| BaseError::new(
+            )
+        })?;
+        let stan = stan::connect(nats, cluster_id, client_id).map_err(|error| {
+            BaseError::new(
                 format!("{:?}", error),
                 CustomErrorType::Nats(CustomNats::Disconnected).into(),
-                None
-            ))?;
+                None,
+            )
+        })?;
 
         Ok(Self {
             client_id: client_id.to_owned(),
-            client: stan
+            client: stan,
         })
     }
 }

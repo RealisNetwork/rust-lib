@@ -12,9 +12,7 @@ pub struct App {
 
 impl Default for App {
     fn default() -> Self {
-        Self {
-            services: vec![]
-        }
+        Self { services: vec![] }
     }
 }
 
@@ -29,15 +27,11 @@ impl App {
 impl Runnable for App {
     async fn run(&mut self) {
         let services = self.services.drain(..);
-        futures::future::join_all(services
-            .into_iter()
-            .map(|service| tokio::spawn(async move {
-                service
-                    .lock()
-                    .await
-                    .run()
-                    .await;
-            })))
-            .await;
+        futures::future::join_all(services.into_iter().map(|service| {
+            tokio::spawn(async move {
+                service.lock().await.run().await;
+            })
+        }))
+        .await;
     }
 }
