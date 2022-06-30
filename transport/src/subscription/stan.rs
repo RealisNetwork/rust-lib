@@ -1,10 +1,10 @@
-use async_trait::async_trait;
-use error_registry::BaseError;
-use error_registry::custom_errors::{CustomErrorType, Nats as CustomNats};
-use error_registry::generated_errors::{GeneratedError, Nats};
 use crate::common::TransportResult;
 use crate::{Subscription, VReceivedMessage};
 use ::stan::Subscription as LibStanSubscription;
+use async_trait::async_trait;
+use error_registry::custom_errors::{CustomErrorType, Nats as CustomNats};
+use error_registry::generated_errors::{GeneratedError, Nats};
+use error_registry::BaseError;
 
 pub struct StanSubscription {
     pub subscription: LibStanSubscription,

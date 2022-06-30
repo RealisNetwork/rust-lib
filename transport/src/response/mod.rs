@@ -12,5 +12,3 @@ impl From<Response> for VResponse {
         VResponse::Response(response)
     }
 }
-
-

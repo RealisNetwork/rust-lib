@@ -1,15 +1,19 @@
+use crate::app::Runnable;
 use crate::service::Service;
+use async_trait::async_trait;
 use error_registry::BaseError;
 use healthchecker::HealthChecker;
 use serde::de::DeserializeOwned;
 use serde_json::Value;
-use transport::{ReceivedMessage, Subscription, Transport, VReceivedMessage, VSubscription, VTransport};
-use crate::app::Runnable;
-use async_trait::async_trait;
+use std::sync::Arc;
+use transport::{
+    ReceivedMessage, Subscription, Transport, VReceivedMessage, VSubscription, VTransport,
+};
 
+// TODO: ServiceAppBuilder|ServiceAppContainer?
 pub struct ServiceApp<T: DeserializeOwned + Send + Sync, S: Service<T>> {
     service: S,
-    transport: VTransport, // TODO: use generic type `T: Transport`
+    transport: VTransport,       // TODO: use generic type `T: Transport`
     subscription: VSubscription, // TODO: use generic type `_: Subscription`
     health_checker: HealthChecker,
     _marker: std::marker::PhantomData<T>,
@@ -27,7 +31,11 @@ impl<T: DeserializeOwned + Send + Sync, S: Service<T>> Runnable for ServiceApp<T
 }
 
 impl<T: DeserializeOwned + Send + Sync, S: Service<T>> ServiceApp<T, S> {
-    pub async fn new(service: S, mut transport: VTransport, health_checker: HealthChecker) -> Result<Self, BaseError<Value>> {
+    pub async fn new(
+        service: S,
+        mut transport: VTransport,
+        health_checker: HealthChecker,
+    ) -> Result<Self, BaseError<Value>> {
         transport
             .subscribe(&service.topic_to_subscribe())
             .await
@@ -36,7 +44,7 @@ impl<T: DeserializeOwned + Send + Sync, S: Service<T>> ServiceApp<T, S> {
                 transport,
                 subscription,
                 health_checker,
-                _marker: Default::default()
+                _marker: Default::default(),
             })
     }
 
