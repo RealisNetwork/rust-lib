@@ -1,11 +1,11 @@
-use async_trait::async_trait;
-use serde::de::DeserializeOwned;
-use stan::Message;
-use error_registry::BaseError;
-use error_registry::generated_errors::{Common, GeneratedError};
 use crate::common::TransportResult;
 use crate::ReceivedMessage;
+use async_trait::async_trait;
 use error_registry::custom_errors::{CustomErrorType, Nats as CustomNats};
+use error_registry::generated_errors::{Common, GeneratedError};
+use error_registry::BaseError;
+use serde::de::DeserializeOwned;
+use stan::Message;
 
 #[derive(Debug)]
 pub struct StanMessage {
