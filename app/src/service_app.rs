@@ -12,16 +12,19 @@ use transport::{
 };
 
 // TODO: ServiceAppBuilder|ServiceAppContainer?
-pub struct ServiceApp<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send> {
+pub struct ServiceApp<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send>
+{
     service: S,
-    transport: Arc<Mutex<N>>,
+    transport: Arc<N>,
     subscription: VSubscription, // TODO: use generic type `_: Subscription`
     health_checker: HealthChecker,
     _marker: std::marker::PhantomData<T>,
 }
 
 #[async_trait]
-impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send> Runnable for ServiceApp<T, S, N> {
+impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send> Runnable
+    for ServiceApp<T, S, N>
+{
     async fn run(&mut self) {
         let health_checker = self.health_checker.clone();
         if let Err(error) = self.run_internal().await {
@@ -31,23 +34,24 @@ impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Sen
     }
 }
 
-impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send> ServiceApp<T, S, N> {
+impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send>
+    ServiceApp<T, S, N>
+{
     pub async fn new(
         service: S,
-        mut transport: Arc<Mutex<N>>,
+        mut transport: Arc<N>,
         health_checker: HealthChecker,
     ) -> Result<Self, BaseError<Value>> {
-        let subscription = transport.lock().await
+        transport
             .subscribe(&service.topic_to_subscribe())
-            .await?;
-
-        Ok(Self {
-            service,
-            transport,
-            subscription,
-            health_checker,
-            _marker: Default::default(),
-        })
+            .await
+            .map(|subscription| Self {
+                service,
+                transport,
+                subscription,
+                health_checker,
+                _marker: Default::default(),
+            })
     }
 
     async fn run_internal(&mut self) -> Result<(), BaseError<Value>> {
@@ -59,7 +63,7 @@ impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Sen
                     message.ok().await?;
 
                     for response in result {
-                        self.transport.lock().await.publish(response).await?
+                        self.transport.publish(response).await?
                     }
                 }
                 Err(error) => {
