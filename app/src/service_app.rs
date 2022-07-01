@@ -11,16 +11,16 @@ use transport::{
 };
 
 // TODO: ServiceAppBuilder|ServiceAppContainer?
-pub struct ServiceApp<T: DeserializeOwned + Send + Sync, S: Service<T>> {
+pub struct ServiceApp<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send> {
     service: S,
-    transport: VTransport,       // TODO: use generic type `T: Transport`
+    transport: N,       // TODO: use generic type `T: Transport`
     subscription: VSubscription, // TODO: use generic type `_: Subscription`
     health_checker: HealthChecker,
     _marker: std::marker::PhantomData<T>,
 }
 
 #[async_trait]
-impl<T: DeserializeOwned + Send + Sync, S: Service<T>> Runnable for ServiceApp<T, S> {
+impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send> Runnable for ServiceApp<T, S, N> {
     async fn run(&mut self) {
         let health_checker = self.health_checker.clone();
         if let Err(error) = self.run_internal().await {
@@ -30,10 +30,10 @@ impl<T: DeserializeOwned + Send + Sync, S: Service<T>> Runnable for ServiceApp<T
     }
 }
 
-impl<T: DeserializeOwned + Send + Sync, S: Service<T>> ServiceApp<T, S> {
+impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send> ServiceApp<T, S, N> {
     pub async fn new(
         service: S,
-        mut transport: VTransport,
+        mut transport: N,
         health_checker: HealthChecker,
     ) -> Result<Self, BaseError<Value>> {
         transport
