@@ -6,6 +6,8 @@ use healthchecker::HealthChecker;
 use nats;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
+use std::sync::Arc;
+use tokio::sync::Mutex;
 use transport::{Response, VResponse};
 use transport::{StanTransport, Transport, VTransport};
 
@@ -18,8 +20,9 @@ const NATS_URL: &str = "127.0.0.1:4222";
 
 #[tokio::main]
 async fn main() {
-    let mut transport_1 =
-        StanTransport::new(NATS_URL, CLUSTER_ID, CLIENT_ID_1).expect("Fail to init transport_1");
+    let mut transport_1 = Arc::new(VTransport::Stan(
+        StanTransport::new(NATS_URL, CLUSTER_ID, CLIENT_ID_1).expect("Fail to init transport_1"),
+    ));
     let mut transport_2 =
         StanTransport::new(NATS_URL, CLUSTER_ID, CLIENT_ID_2).expect("Fail to init transport_2");
     let service = SchemaService;
@@ -27,9 +30,10 @@ async fn main() {
         .await
         .expect("Fail to init health_checker");
 
-    let service_app: ServiceApp<Schema, SchemaService, VTransport> = ServiceApp::new(service, transport_1.into(), health_checker)
-        .await
-        .expect("Fail to subscribe");
+    let service_app: ServiceApp<Schema, SchemaService, VTransport> =
+        ServiceApp::new(service, transport_1.into(), health_checker)
+            .await
+            .expect("Fail to subscribe");
 
     let sender = Sender {
         transport: transport_2.into(),

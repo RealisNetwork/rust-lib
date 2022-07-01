@@ -6,21 +6,25 @@ use healthchecker::HealthChecker;
 use serde::de::DeserializeOwned;
 use serde_json::Value;
 use std::sync::Arc;
+use tokio::sync::Mutex;
 use transport::{
     ReceivedMessage, Subscription, Transport, VReceivedMessage, VSubscription, VTransport,
 };
 
 // TODO: ServiceAppBuilder|ServiceAppContainer?
-pub struct ServiceApp<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send> {
+pub struct ServiceApp<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send>
+{
     service: S,
-    transport: N,       // TODO: use generic type `T: Transport`
+    transport: Arc<N>,
     subscription: VSubscription, // TODO: use generic type `_: Subscription`
     health_checker: HealthChecker,
     _marker: std::marker::PhantomData<T>,
 }
 
 #[async_trait]
-impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send> Runnable for ServiceApp<T, S, N> {
+impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send> Runnable
+    for ServiceApp<T, S, N>
+{
     async fn run(&mut self) {
         let health_checker = self.health_checker.clone();
         if let Err(error) = self.run_internal().await {
@@ -30,10 +34,12 @@ impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Sen
     }
 }
 
-impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send> ServiceApp<T, S, N> {
+impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send>
+    ServiceApp<T, S, N>
+{
     pub async fn new(
         service: S,
-        mut transport: N,
+        mut transport: Arc<N>,
         health_checker: HealthChecker,
     ) -> Result<Self, BaseError<Value>> {
         transport
