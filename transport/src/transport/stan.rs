@@ -39,7 +39,7 @@ impl StanTransport {
 
 #[async_trait]
 impl Transport for StanTransport {
-    async fn publish(&mut self, response: VResponse) -> TransportResult<()> {
+    async fn publish(&self, response: VResponse) -> TransportResult<()> {
         let (topic_res, response) = match response {
             VResponse::Response(response) => (response.topic_res, response.response),
         };
@@ -55,7 +55,7 @@ impl Transport for StanTransport {
         })
     }
 
-    async fn subscribe(&mut self, topic: &str) -> TransportResult<VSubscription> {
+    async fn subscribe(&self, topic: &str) -> TransportResult<VSubscription> {
         let durable_name = format!("{}_{}", topic, self.client_id);
         let subscription_config = SubscriptionConfig {
             queue_group: None,

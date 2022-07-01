@@ -11,9 +11,9 @@ use enum_dispatch::enum_dispatch;
 #[async_trait]
 #[enum_dispatch]
 pub trait Transport {
-    async fn publish(&mut self, response: VResponse) -> TransportResult<()>;
+    async fn publish(&self, response: VResponse) -> TransportResult<()>;
 
-    async fn subscribe(&mut self, topic: &str) -> TransportResult<VSubscription>;
+    async fn subscribe(&self, topic: &str) -> TransportResult<VSubscription>;
 }
 
 #[enum_dispatch(Transport)]
