@@ -6,6 +6,7 @@ use healthchecker::HealthChecker;
 use serde::de::DeserializeOwned;
 use serde_json::Value;
 use std::sync::Arc;
+use tokio::sync::Mutex;
 use transport::{
     ReceivedMessage, Subscription, Transport, VReceivedMessage, VSubscription, VTransport,
 };
@@ -13,7 +14,7 @@ use transport::{
 // TODO: ServiceAppBuilder|ServiceAppContainer?
 pub struct ServiceApp<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send> {
     service: S,
-    transport: N,       // TODO: use generic type `T: Transport`
+    transport: Arc<Mutex<N>>,
     subscription: VSubscription, // TODO: use generic type `_: Subscription`
     health_checker: HealthChecker,
     _marker: std::marker::PhantomData<T>,
@@ -33,19 +34,20 @@ impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Sen
 impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send> ServiceApp<T, S, N> {
     pub async fn new(
         service: S,
-        mut transport: N,
+        mut transport: Arc<Mutex<N>>,
         health_checker: HealthChecker,
     ) -> Result<Self, BaseError<Value>> {
-        transport
+        let subscription = transport.lock().await
             .subscribe(&service.topic_to_subscribe())
-            .await
-            .map(|subscription| Self {
-                service,
-                transport,
-                subscription,
-                health_checker,
-                _marker: Default::default(),
-            })
+            .await?;
+
+        Ok(Self {
+            service,
+            transport,
+            subscription,
+            health_checker,
+            _marker: Default::default(),
+        })
     }
 
     async fn run_internal(&mut self) -> Result<(), BaseError<Value>> {
@@ -57,7 +59,7 @@ impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Sen
                     message.ok().await?;
 
                     for response in result {
-                        self.transport.publish(response).await?
+                        self.transport.lock().await.publish(response).await?
                     }
                 }
                 Err(error) => {

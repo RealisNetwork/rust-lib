@@ -1,5 +1,6 @@
 pub mod stan;
 
+use std::sync::Arc;
 use crate::common::TransportResult;
 use crate::response::VResponse;
 use crate::subscription::VSubscription;
