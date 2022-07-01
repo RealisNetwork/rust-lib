@@ -13,7 +13,7 @@ const TOPIC_1: &str = "test-topic";
 const TOPIC_2: &str = "test-topic-2";
 const CLIENT_ID_1: &str = "test-client-1";
 const CLIENT_ID_2: &str = "test-client-2";
-const CLUSTER_ID: &str = "nats-streaming";
+const CLUSTER_ID: &str = "test-cluster";
 const NATS_URL: &str = "127.0.0.1:4222";
 
 #[tokio::main]
@@ -27,7 +27,7 @@ async fn main() {
         .await
         .expect("Fail to init health_checker");
 
-    let service_app = ServiceApp::new(service, transport_1.into(), health_checker)
+    let service_app: ServiceApp<Schema, SchemaService, VTransport> = ServiceApp::new(service, transport_1.into(), health_checker)
         .await
         .expect("Fail to subscribe");
 
@@ -52,7 +52,7 @@ impl Service<Schema> for SchemaService {
     }
 
     async fn process(&mut self, request: Schema) -> Result<Vec<VResponse>, BaseError<Value>> {
-        println!("{:#?}", schema);
+        println!("{:#?}", request);
         Ok(vec![])
     }
 }
