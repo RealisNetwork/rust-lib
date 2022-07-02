@@ -8,11 +8,13 @@ use schemas::Schema;
 pub trait Service<T: Schema, G: Schema>: Send + Sync {
     fn topic_to_subscribe(&self) -> String;
 
+    // TODO: remove vec
     async fn process(&mut self, request: T) -> Result<Vec<ServiceResult<G>>, BaseError<Value>>;
 }
 
 pub enum ServiceResult<T: Schema> {
     RawResult(T),
+    A(T),
     // OrchestratorResult(&'a dyn Schema, String),
     // NotificationResult(&'a dyn Schema, &'a dyn Schema, String)
 }
