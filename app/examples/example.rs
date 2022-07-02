@@ -80,7 +80,7 @@ pub struct Sender {
 impl Runnable for Sender {
     async fn run(&mut self) {
         for i in 0..10 {
-            let schema = RequestSchema {
+            let schema = ResponseSchema {
                 msg: format!("{}", i),
             };
 
