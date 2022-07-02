@@ -12,12 +12,6 @@ pub trait Service<T: Schema, G: Schema>: Send + Sync {
     async fn process(&mut self, request: T) -> Result<Vec<ServiceResult<G>>, BaseError<Value>>;
 }
 
-pub enum ServiceResult<T: Schema> {
-    RawResult(T),
-    A(T),
-    // OrchestratorResult(&'a dyn Schema, String),
-    // NotificationResult(&'a dyn Schema, &'a dyn Schema, String)
-}
 //
 // impl<S: Schema, D: Schema> From<S> for ServiceResult<S, D> {
 //
