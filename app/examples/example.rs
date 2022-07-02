@@ -8,6 +8,8 @@ use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::sync::Arc;
 use tokio::sync::Mutex;
+use app::service::ServiceResult;
+use schemas::Schema;
 use transport::{Response, VResponse};
 use transport::{StanTransport, Transport, VTransport};
 
@@ -30,8 +32,8 @@ async fn main() {
         .await
         .expect("Fail to init health_checker");
 
-    let service_app: ServiceApp<Schema, SchemaService, VTransport> =
-        ServiceApp::new(service, transport_1.into(), health_checker)
+    let service_app: ServiceApp<RequestSchema, ResponseSchema, ExampleService, VTransport> =
+        ServiceApp::new(service, transport_1, health_checker)
             .await
             .expect("Fail to subscribe");
 
@@ -42,20 +44,27 @@ async fn main() {
     App::default().push(service_app).push(sender).run().await;
 }
 
-#[derive(Debug, Serialize, Deserialize)]
-struct Schema {
+#[derive(Debug, Clone, Serialize, Deserialize)]
+struct RequestSchema {
     msg: String,
 }
 
-struct SchemaService;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+struct ResponseSchema {
+    msg: String,
+}
+
+impl Schema for ResponseSchema {}
+
+struct ExampleService;
 
 #[async_trait]
-impl Service<Schema> for SchemaService {
+impl Service<RequestSchema, ResponseSchema> for ExampleService {
     fn topic_to_subscribe(&self) -> String {
         TOPIC_1.to_owned()
     }
 
-    async fn process(&mut self, request: Schema) -> Result<Vec<VResponse>, BaseError<Value>> {
+    async fn process(&mut self, request: RequestSchema) -> Result<Vec<ServiceResult<ResponseSchema>>, BaseError<Value>> {
         println!("{:#?}", request);
         Ok(vec![])
     }
@@ -69,7 +78,7 @@ pub struct Sender {
 impl Runnable for Sender {
     async fn run(&mut self) {
         for i in 0..10 {
-            let schema = Schema {
+            let schema = RequestSchema {
                 msg: format!("{}", i),
             };
 

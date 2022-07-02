@@ -59,7 +59,7 @@ impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Sen
             let message = self.subscription.next().await?;
             match message.deserialize() {
                 Ok(request) => {
-                    let result = self.service.process(request).await?;
+                    let result_list = self.service.process(request).await?;
                     message.ok().await?;
 
                     for response in result {
