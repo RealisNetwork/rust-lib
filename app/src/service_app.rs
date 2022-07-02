@@ -1,5 +1,5 @@
 use crate::app::Runnable;
-use crate::service::{Service, ServiceResult};
+use crate::service::Service;
 use async_trait::async_trait;
 use error_registry::BaseError;
 use healthchecker::HealthChecker;
@@ -61,39 +61,29 @@ impl<T: Schema, G: Schema, S: Service<T, G>, N: Transport + Sync + Send>
             let raw_request: Value = message.deserialize()?;
             match message.deserialize() {
                 Ok(request) => {
-                    let result_list = self.service.process(request).await?;
+                    let response_schema = self.service.process(request).await?;
                     message.ok().await?;
 
-                    // (response, None)
-                    // (notification, Some("create_useer_notification"))
+                    let topic = "test".to_owned(); // TODO: fix me
+                    let response: Response<_, _, ()> = Response {
+                        result: ResponseResult {
+                            request: raw_request,
+                            response: ResponseMessage::Right { value: response_schema },
+                        }
+                    };
+                    let payload = serde_json::to_vec(&response)
+                        .unwrap(); // TODO: handle this
 
-                    for result in result_list {
-                        if let ServiceResult::RawResult(response_schema) = result {
-                            let topic = "test".to_owned();
-                            let response: Response<_, _, ()> = Response {
-                                result: ResponseResult {
-                                    request: raw_request.clone(),
-                                    response: ResponseMessage::Right { value: response_schema.clone() },
+                    // TODO: rewrite publish raw_publish / publish
+                    self.transport.publish(
+                            VResponse::Response(
+                                TransportResponse {
+                                    topic_res: topic,
+                                    response: payload
                                 }
-                            };
-                            let payload = serde_json::to_vec(&response)
-                                .unwrap(); // TODO: handle this
-
-                            self.transport.publish(
-                                VResponse::Response(
-                                    TransportResponse {
-                                        topic_res: topic,
-                                        response: payload
-                                    }
-                                )
                             )
-                                .await?;
-                        };
-
-
-                        // self.transport.publish()
-                        // self.transport.publish(response).await?
-                    }
+                        )
+                        .await?;
                 }
                 Err(error) => {
                     self.on_deserialize_fail(message).await;

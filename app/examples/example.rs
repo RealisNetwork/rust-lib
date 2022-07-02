@@ -8,7 +8,6 @@ use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::sync::Arc;
 use tokio::sync::Mutex;
-use app::service::ServiceResult;
 use schemas::Schema;
 use transport::{Response, VResponse};
 use transport::{StanTransport, Transport, VTransport};
@@ -66,9 +65,11 @@ impl Service<RequestSchema, ResponseSchema> for ExampleService {
         TOPIC_1.to_owned()
     }
 
-    async fn process(&mut self, request: RequestSchema) -> Result<Vec<ServiceResult<ResponseSchema>>, BaseError<Value>> {
+    async fn process(&mut self, request: RequestSchema) -> Result<ResponseSchema, BaseError<Value>> {
         println!("{:#?}", request);
-        Ok(vec![])
+        Ok(ResponseSchema {
+            msg: "".to_string()
+        })
     }
 }
 
