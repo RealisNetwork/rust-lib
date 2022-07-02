@@ -1,5 +1,5 @@
 use crate::app::Runnable;
-use crate::service::Service;
+use crate::service::{Service, ServiceResult};
 use async_trait::async_trait;
 use error_registry::BaseError;
 use healthchecker::HealthChecker;
@@ -7,23 +7,24 @@ use serde::de::DeserializeOwned;
 use serde_json::Value;
 use std::sync::Arc;
 use tokio::sync::Mutex;
-use transport::{
-    ReceivedMessage, Subscription, Transport, VReceivedMessage, VSubscription, VTransport,
-};
+use schemas::{Response, ResponseMessage, ResponseResult, Schema};
+use transport::{ReceivedMessage, Subscription, Transport, VReceivedMessage, VResponse, VSubscription, VTransport};
+use transport::Response as TransportResponse;
+
 
 // TODO: ServiceAppBuilder|ServiceAppContainer?
-pub struct ServiceApp<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send>
+pub struct ServiceApp<T: Schema, G: Schema, S: Service<T, G>, N: Transport + Sync + Send>
 {
     service: S,
     transport: Arc<N>,
-    subscription: VSubscription, // TODO: use generic type `_: Subscription`
+    subscription: VSubscription,
     health_checker: HealthChecker,
-    _marker: std::marker::PhantomData<T>,
+    _marker: std::marker::PhantomData<(T, G)>,
 }
 
 #[async_trait]
-impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send> Runnable
-    for ServiceApp<T, S, N>
+impl<T: Schema, G: Schema, S: Service<T, G>, N: Transport + Sync + Send> Runnable
+    for ServiceApp<T, G, S, N>
 {
     async fn run(&mut self) {
         let health_checker = self.health_checker.clone();
@@ -34,8 +35,8 @@ impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Sen
     }
 }
 
-impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send>
-    ServiceApp<T, S, N>
+impl<T: Schema, G: Schema, S: Service<T, G>, N: Transport + Sync + Send>
+    ServiceApp<T, G, S, N>
 {
     pub async fn new(
         service: S,
@@ -57,13 +58,41 @@ impl<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Sen
     async fn run_internal(&mut self) -> Result<(), BaseError<Value>> {
         loop {
             let message = self.subscription.next().await?;
+            let raw_request: Value = message.deserialize()?;
             match message.deserialize() {
                 Ok(request) => {
                     let result_list = self.service.process(request).await?;
                     message.ok().await?;
 
-                    for response in result {
-                        self.transport.publish(response).await?
+                    // (response, None)
+                    // (notification, Some("create_useer_notification"))
+
+                    for result in result_list {
+                        if let ServiceResult::RawResult(response_schema) = result {
+                            let topic = "test".to_owned();
+                            let response: Response<_, _, ()> = Response {
+                                result: ResponseResult {
+                                    request: raw_request.clone(),
+                                    response: ResponseMessage::Right { value: response_schema.clone() },
+                                }
+                            };
+                            let payload = serde_json::to_vec(&response)
+                                .unwrap(); // TODO: handle this
+
+                            self.transport.publish(
+                                VResponse::Response(
+                                    TransportResponse {
+                                        topic_res: topic,
+                                        response: payload
+                                    }
+                                )
+                            )
+                                .await?;
+                        };
+
+
+                        // self.transport.publish()
+                        // self.transport.publish(response).await?
                     }
                 }
                 Err(error) => {

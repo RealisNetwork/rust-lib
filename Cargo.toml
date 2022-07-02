@@ -2,5 +2,6 @@
 members = [
     "app",
     "error_registry",
+    "schemas",
     "transport",
 ]

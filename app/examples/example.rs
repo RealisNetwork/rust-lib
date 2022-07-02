@@ -27,7 +27,7 @@ async fn main() {
     ));
     let mut transport_2 =
         StanTransport::new(NATS_URL, CLUSTER_ID, CLIENT_ID_2).expect("Fail to init transport_2");
-    let service = SchemaService;
+    let service = ExampleService;
     let health_checker = HealthChecker::new(&"127.0.0.1:4444".to_owned(), 1_000)
         .await
         .expect("Fail to init health_checker");
@@ -48,6 +48,8 @@ async fn main() {
 struct RequestSchema {
     msg: String,
 }
+
+impl Schema for RequestSchema {}
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 struct ResponseSchema {
