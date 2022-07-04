@@ -163,8 +163,8 @@ pub fn rebuild() {
 
     general_enum.extend(quote!(
         use serde::{Serialize, Deserialize};
-        #[serde(untagged)]
         #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+        #[serde(untagged)]
         pub enum #general_enum_name{
             #(#field_name(#field_name),)*
         }

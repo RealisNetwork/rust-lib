@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
-#[serde(untagged)]
 #[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
+#[serde(untagged)]
 pub enum CustomErrorType {
     Default,
     Blockchain(Blockchain),
