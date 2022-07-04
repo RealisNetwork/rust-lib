@@ -51,12 +51,15 @@ pub struct AuthInfo {
 
 #[derive(Clone, Serialize, Deserialize)]
 pub struct Auth {
-    pub token: Option<String>
+    pub token: Option<String>,
 }
 
 impl Debug for Auth {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        let a = self.token.as_ref().map(|token| "*".to_owned().repeat(token.len()));
+        let a = self
+            .token
+            .as_ref()
+            .map(|token| "*".to_owned().repeat(token.len()));
         f.debug_struct("Auth")
             .field("token", &a as &dyn Debug)
             .finish()

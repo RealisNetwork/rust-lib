@@ -1,6 +1,6 @@
 use async_trait::async_trait;
 use error_registry::BaseError;
-use schemas::{Agent, common::Request, Schema};
+use schemas::{common::Request, Agent, Schema};
 use serde_json::Value;
 
 #[async_trait]
