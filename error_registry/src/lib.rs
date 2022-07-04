@@ -33,6 +33,12 @@ pub struct BaseError<D: Debug> {
 }
 
 impl<D: Debug> BaseError<D> {
+    pub fn is_critical(&self) -> bool {
+        todo!()
+    }
+}
+
+impl<D: Debug> BaseError<D> {
     /// Create a new `BaseError`
     /// # Arguments
     /// * `msg` - Extra message for explanation of Error

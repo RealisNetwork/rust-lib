@@ -5,14 +5,11 @@ use transport::response::VResponse;
 use schemas::Schema;
 
 #[async_trait]
-pub trait Service<T: Schema, G: Schema>: Send + Sync {
-    fn topic_to_subscribe(&self) -> String;
+pub trait Service<P: Agent, G: Schema>: Send + Sync {
+    fn topic_to_subscribe(&self) -> &'static str {
+        P::topic()
+    }
 
     // TODO: Result<Option<G>, _>
     async fn process(&mut self, request: T) -> Result<G, BaseError<Value>>;
 }
-
-//
-// impl<S: Schema, D: Schema> From<S> for ServiceResult<S, D> {
-//
-// }

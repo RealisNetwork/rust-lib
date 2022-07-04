@@ -19,12 +19,12 @@ pub struct ServiceApp<T: Schema, G: Schema, S: Service<T, G>, N: Transport + Syn
     transport: Arc<N>,
     subscription: VSubscription,
     health_checker: HealthChecker,
-    _marker: std::marker::PhantomData<(T, G)>,
+    _marker: std::marker::PhantomData<(P, G)>,
 }
 
 #[async_trait]
-impl<T: Schema, G: Schema, S: Service<T, G>, N: Transport + Sync + Send> Runnable
-    for ServiceApp<T, G, S, N>
+impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> Runnable
+    for ServiceApp<P, G, S, N>
 {
     async fn run(&mut self) {
         let health_checker = self.health_checker.clone();
@@ -40,7 +40,7 @@ impl<T: Schema, G: Schema, S: Service<T, G>, N: Transport + Sync + Send>
 {
     pub async fn new(
         service: S,
-        mut transport: Arc<N>,
+        transport: Arc<N>,
         health_checker: HealthChecker,
     ) -> Result<Self, BaseError<Value>> {
         transport
@@ -86,7 +86,7 @@ impl<T: Schema, G: Schema, S: Service<T, G>, N: Transport + Sync + Send>
                         .await?;
                 }
                 Err(error) => {
-                    self.on_deserialize_fail(message).await;
+                    self.on_process_error(message, error.clone()).await?;
                     return Err(error);
                 }
             }

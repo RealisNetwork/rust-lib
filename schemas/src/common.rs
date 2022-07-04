@@ -1,7 +1,24 @@
-use std::fmt::Debug;
-use crate::Schema;
-use serde::{Serialize, Deserialize};
-use serde::de::DeserializeOwned;
+use error_registry::BaseError;
+use serde::{Deserialize, Serialize};
+use std::fmt::{Debug, Formatter};
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Request<P> {
+    pub id: String,
+    #[serde(rename = "topicResponse")]
+    pub topic_res: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub agent: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub method: Option<String>,
+
+    pub params: P,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub auth: Option<Auth>,
+    #[serde(rename = "authInfo")]
+    pub auth_info: AuthInfo,
+}
 
 /// M
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -32,16 +49,16 @@ pub struct AuthInfo {
     pub continent: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct BaseError<D: Debug> {
-    pub msg: String,
-    #[serde(rename = "type")]
-    pub error_type: ErrorType,
-    pub trace: String,
-    pub data: Option<D>,
-    /// Numeric id of `error_type`
-    pub status: u32,
+#[derive(Clone, Serialize, Deserialize)]
+pub struct Auth {
+    pub token: Option<String>
 }
 
-
-pub type ErrorType = String;
+impl Debug for Auth {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        let a = self.token.as_ref().map(|token| "*".to_owned().repeat(token.len()));
+        f.debug_struct("Auth")
+            .field("token", &a as &dyn Debug)
+            .finish()
+    }
+}

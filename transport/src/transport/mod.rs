@@ -6,7 +6,6 @@ use crate::subscription::VSubscription;
 use crate::transport::stan::StanTransport;
 use async_trait::async_trait;
 use enum_dispatch::enum_dispatch;
-use std::sync::Arc;
 
 #[async_trait]
 #[enum_dispatch]
