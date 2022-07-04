@@ -1,8 +1,7 @@
 use async_trait::async_trait;
 use error_registry::BaseError;
+use schemas::{Agent, common::Request, Schema};
 use serde_json::Value;
-use transport::response::VResponse;
-use schemas::Schema;
 
 #[async_trait]
 pub trait Service<P: Agent, G: Schema>: Send + Sync {
@@ -10,6 +9,5 @@ pub trait Service<P: Agent, G: Schema>: Send + Sync {
         P::topic()
     }
 
-    // TODO: Result<Option<G>, _>
-    async fn process(&mut self, request: T) -> Result<G, BaseError<Value>>;
+    async fn process(&mut self, request: Request<P>) -> Result<G, BaseError<Value>>;
 }

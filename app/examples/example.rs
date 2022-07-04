@@ -4,11 +4,11 @@ use async_trait::async_trait;
 use error_registry::BaseError;
 use healthchecker::HealthChecker;
 use nats;
+use schemas::Schema;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::sync::Arc;
 use tokio::sync::Mutex;
-use schemas::Schema;
 use transport::{Response, VResponse};
 use transport::{StanTransport, Transport, VTransport};
 
@@ -65,10 +65,13 @@ impl Service<RequestSchema, ResponseSchema> for ExampleService {
         TOPIC_1.to_owned()
     }
 
-    async fn process(&mut self, request: RequestSchema) -> Result<ResponseSchema, BaseError<Value>> {
+    async fn process(
+        &mut self,
+        request: RequestSchema,
+    ) -> Result<ResponseSchema, BaseError<Value>> {
         println!("{:#?}", request);
         Ok(ResponseSchema {
-            msg: "".to_string()
+            msg: "".to_string(),
         })
     }
 }

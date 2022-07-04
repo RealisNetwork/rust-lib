@@ -2130,6 +2130,7 @@ dependencies = [
 name = "schemas"
 version = "0.1.0"
 dependencies = [
+ "error_registry",
  "serde",
  "serde_json",
 ]
