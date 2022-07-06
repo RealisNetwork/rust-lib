@@ -1,4 +1,3 @@
-use std::time::Duration;
 use crate::common::TransportResult;
 use crate::message::ReceivedMessage;
 use crate::response::VResponse;
@@ -12,6 +11,7 @@ use serde::de::DeserializeOwned;
 use serde::Serialize;
 use serde_json::Value;
 use stan::{Client, SubscriptionConfig, SubscriptionStart};
+use std::time::Duration;
 
 pub struct StanTransport {
     pub client_id: String,
