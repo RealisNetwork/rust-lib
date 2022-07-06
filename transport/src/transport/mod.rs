@@ -1,16 +1,15 @@
 pub mod stan;
 
-use std::time::Duration;
 use crate::common::TransportResult;
 use crate::response::VResponse;
 use crate::subscription::VSubscription;
 use crate::transport::stan::StanTransport;
+use crate::VReceivedMessage;
 use async_trait::async_trait;
 use enum_dispatch::enum_dispatch;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
-use crate::VReceivedMessage;
-
+use std::time::Duration;
 
 #[async_trait]
 #[enum_dispatch]
@@ -22,9 +21,9 @@ pub trait Transport {
     async fn send_message_and_observe_reply(
         &self,
         topic_response: String,
-        msg: VResponse,//SendSchema,
+        msg: VResponse, //SendSchema,
         max_duration: Option<Duration>,
-    ) -> TransportResult<VReceivedMessage>;//Schema>;
+    ) -> TransportResult<VReceivedMessage>; //Schema>;
 }
 
 #[enum_dispatch(Transport)]

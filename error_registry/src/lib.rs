@@ -11,6 +11,7 @@ use std::{
 };
 
 use backtrace::Backtrace;
+use serde_json::Value;
 
 use crate::{
     custom_errors::{CustomErrorType, Db as CustomDb, EnvLoadedError, Nats as CustomNats},
@@ -176,6 +177,19 @@ impl<D: Debug> From<GeneratedError> for BaseError<D> {
             status: error_type.clone().into(),
             error_type: error_type,
             trace: format!("{:?}", trace),
+            data: None,
+        }
+    }
+}
+
+impl From<BaseError<()>> for BaseError<Value> {
+    /// Create a `BaseError` by `GeneratedError`
+    fn from(error: BaseError<()>) -> BaseError<Value> {
+        Self {
+            msg: error.msg,
+            status: error.status,
+            error_type: error.error_type,
+            trace: error.trace,
             data: None,
         }
     }

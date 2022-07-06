@@ -8,8 +8,10 @@ use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::sync::Arc;
 use std::time::Duration;
+use transport::{
+    ReceivedMessage, Response as ServiceResponse, StanTransport, VResponse, VTransport,
+};
 use transport::{Response, Transport};
-use transport::{Response as ServiceResponse, StanTransport, VResponse, VTransport, ReceivedMessage};
 
 const TOPIC_TEST_1: &str = "test-topic";
 const TOPIC_TEST_2: &str = "test-topic-2";
@@ -88,10 +90,14 @@ impl Runnable for Sender {
                 .transport
                 .send_message_and_observe_reply(
                     "topic_to_wait".to_string(),
-                    VResponse::Response(Response::new(TOPIC_TEST_1, serde_json::to_vec(&schema).expect("Can't serialize"))),
+                    VResponse::Response(Response::new(
+                        TOPIC_TEST_1,
+                        serde_json::to_vec(&schema).expect("Can't serialize"),
+                    )),
                     Some(Duration::from_secs(5)),
                 )
-                .await.unwrap();
+                .await
+                .unwrap();
 
             let obtained_msg: Schema = message.deserialize().unwrap();
 
