@@ -6,10 +6,7 @@ use healthchecker::HealthChecker;
 use serde::de::DeserializeOwned;
 use serde_json::Value;
 use std::sync::Arc;
-use tokio::sync::Mutex;
-use transport::{
-    ReceivedMessage, Subscription, Transport, VReceivedMessage, VSubscription, VTransport,
-};
+use transport::{ReceivedMessage, Subscription, Transport, VReceivedMessage, VSubscription};
 
 // TODO: ServiceAppBuilder|ServiceAppContainer?
 pub struct ServiceApp<T: DeserializeOwned + Send + Sync, S: Service<T>, N: Transport + Sync + Send>

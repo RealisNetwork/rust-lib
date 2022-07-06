@@ -5,6 +5,7 @@ use async_trait::async_trait;
 use error_registry::custom_errors::{CustomErrorType, Nats as CustomNats};
 use error_registry::generated_errors::{GeneratedError, Nats};
 use error_registry::BaseError;
+use serde_json::Value;
 
 pub struct StanSubscription {
     pub subscription: LibStanSubscription,
@@ -21,8 +22,25 @@ impl Subscription for StanSubscription {
         })
     }
 
-    async fn unsubscribe(mut self) -> TransportResult<()> {
+    async fn next_timeout(
+        &mut self,
+        timeout: std::time::Duration,
+    ) -> TransportResult<VReceivedMessage> {
         tokio::task::block_in_place(move || {
+            self.subscription
+                .next_timeout(timeout)
+                .map(|message| message.into())
+                .map_err(|err| {
+                    BaseError::new(
+                        err.to_string(),
+                        CustomErrorType::Nats(CustomNats::Timeout).into(),
+                        None,
+                    )
+                })
+        })
+    }
+    async fn unsubscribe(mut self) -> TransportResult<()> {
+        tokio::spawn(async move {
             self.subscription.unsubscribe().map_err(|error| {
                 BaseError::new(
                     format!("{:?}", error),
@@ -31,5 +49,7 @@ impl Subscription for StanSubscription {
                 )
             })
         })
+        .await
+        .map_err(|err| BaseError::from(GeneratedError::Nats(Nats::Receive)))?
     }
 }

@@ -30,7 +30,7 @@ async fn main() {
         .await
         .expect("Fail to init health_checker");
 
-    let service_app: ServiceApp<Schema, SchemaService, VTransport> =
+    let service_app: ServiceApp<Schema, SchemaService, Arc<VTransport>> =
         ServiceApp::new(service, transport_1.into(), health_checker)
             .await
             .expect("Fail to subscribe");

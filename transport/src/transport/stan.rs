@@ -1,11 +1,14 @@
 use crate::common::TransportResult;
+use crate::message::ReceivedMessage;
 use crate::response::VResponse;
-use crate::subscription::VSubscription;
-use crate::Transport;
+use crate::subscription::{Subscription, VSubscription};
+use crate::{Response, Transport};
 use async_trait::async_trait;
 use error_registry::custom_errors::{CustomErrorType, Nats as CustomNats};
-use error_registry::generated_errors::{GeneratedError, Nats};
+use error_registry::generated_errors::{GeneratedError, Nats as GeneratedNats};
 use error_registry::BaseError;
+use serde::de::DeserializeOwned;
+use serde::Serialize;
 use stan::{Client, SubscriptionConfig, SubscriptionStart};
 
 pub struct StanTransport {
@@ -70,10 +73,44 @@ impl Transport for StanTransport {
                 .map_err(|error| {
                     BaseError::new(
                         format!("{:?}", error),
-                        GeneratedError::Nats(Nats::InternalServiceCall).into(),
+                        GeneratedError::Nats(GeneratedNats::InternalServiceCall).into(),
                         None,
                     )
                 })
         })
+    }
+
+    async fn send_message_and_observe_reply<
+        Schema: DeserializeOwned + Send,
+        SendSchema: Serialize + Send + Sync,
+    >(
+        &mut self,
+        topic_response: String,
+        publish_topic: String,
+        msg: SendSchema,
+        max_duration: Option<u64>,
+    ) -> TransportResult<Schema> {
+        let mut subscription = self.subscribe(topic_response.as_str()).await?;
+
+        self.publish(VResponse::Response(Response::new(
+            publish_topic.as_str(),
+            serde_json::to_vec(&msg)
+                .map_err(|err| BaseError::from(CustomErrorType::Nats(CustomNats::CantSerialize)))?,
+        )))
+        .await?;
+
+        let message = subscription
+            .next_timeout(std::time::Duration::from_secs(max_duration.unwrap_or(25)))
+            .await?;
+
+        let result = message
+            .deserialize::<Schema>()
+            .map_err(|_| BaseError::from(GeneratedError::Nats(GeneratedNats::Receive)));
+
+        message.ok();
+
+        subscription.unsubscribe().await;
+
+        result
     }
 }
