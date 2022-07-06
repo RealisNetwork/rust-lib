@@ -42,6 +42,7 @@ dependencies = [
  "healthchecker",
  "log 0.4.17",
  "nats",
+ "schemas",
  "serde",
  "serde_json",
  "stan",
@@ -2123,6 +2124,15 @@ checksum = "88d6731146462ea25d9244b2ed5fd1d716d25c52e4d54aa4fb0f3c4e9854dbe2"
 dependencies = [
  "lazy_static",
  "windows-sys",
+]
+
+[[package]]
+name = "schemas"
+version = "0.1.0"
+dependencies = [
+ "error_registry",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]

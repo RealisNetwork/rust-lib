@@ -2,6 +2,7 @@
 //! `BaseError` its custom error data structure.
 //! `ErrorType` its enum of possible errors
 //! what need to be traced for Realis microservices.
+use serde::{Deserialize, Serialize};
 use std::{
     any::TypeId,
     error::Error,
@@ -21,7 +22,7 @@ pub mod custom_errors;
 pub mod generated_errors;
 
 /// BaseError - custom error type
-#[derive(Clone, serde::Serialize, serde::Deserialize)]
+#[derive(Clone, Serialize, Deserialize)]
 pub struct BaseError<D: Debug> {
     pub msg: String,
     #[serde(rename = "type")]
@@ -30,6 +31,15 @@ pub struct BaseError<D: Debug> {
     pub data: Option<D>,
     /// Numeric id of `error_type`
     pub status: u32,
+}
+
+impl<D: Debug> BaseError<D> {
+    pub fn is_critical(&self) -> bool {
+        match self.error_type {
+            ErrorType::Generated(GeneratedError::Critical(_)) => true,
+            _ => false,
+        }
+    }
 }
 
 impl<D: Debug> BaseError<D> {
@@ -191,8 +201,8 @@ impl<D: Debug> From<CustomErrorType> for BaseError<D> {
 /// Custom enum extends manually.
 ///
 /// Generated enum create and extend automatically.
+#[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(untagged)]
-#[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
 pub enum ErrorType {
     Custom(CustomErrorType),
     Generated(GeneratedError),

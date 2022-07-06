@@ -4,6 +4,7 @@ use async_trait::async_trait;
 use error_registry::BaseError;
 use healthchecker::HealthChecker;
 use nats;
+use schemas::Schema;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::sync::Arc;
@@ -25,13 +26,13 @@ async fn main() {
     ));
     let mut transport_2 =
         StanTransport::new(NATS_URL, CLUSTER_ID, CLIENT_ID_2).expect("Fail to init transport_2");
-    let service = SchemaService;
+    let service = ExampleService;
     let health_checker = HealthChecker::new(&"127.0.0.1:4444".to_owned(), 1_000)
         .await
         .expect("Fail to init health_checker");
 
-    let service_app: ServiceApp<Schema, SchemaService, VTransport> =
-        ServiceApp::new(service, transport_1.into(), health_checker)
+    let service_app: ServiceApp<RequestSchema, ResponseSchema, ExampleService, VTransport> =
+        ServiceApp::new(service, transport_1, health_checker)
             .await
             .expect("Fail to subscribe");
 
@@ -42,22 +43,36 @@ async fn main() {
     App::default().push(service_app).push(sender).run().await;
 }
 
-#[derive(Debug, Serialize, Deserialize)]
-struct Schema {
+#[derive(Debug, Clone, Serialize, Deserialize)]
+struct RequestSchema {
     msg: String,
 }
 
-struct SchemaService;
+impl Schema for RequestSchema {}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+struct ResponseSchema {
+    msg: String,
+}
+
+impl Schema for ResponseSchema {}
+
+struct ExampleService;
 
 #[async_trait]
-impl Service<Schema> for SchemaService {
+impl Service<RequestSchema, ResponseSchema> for ExampleService {
     fn topic_to_subscribe(&self) -> String {
         TOPIC_1.to_owned()
     }
 
-    async fn process(&mut self, request: Schema) -> Result<Vec<VResponse>, BaseError<Value>> {
+    async fn process(
+        &mut self,
+        request: RequestSchema,
+    ) -> Result<ResponseSchema, BaseError<Value>> {
         println!("{:#?}", request);
-        Ok(vec![])
+        Ok(ResponseSchema {
+            msg: "".to_string(),
+        })
     }
 }
 
@@ -69,7 +84,7 @@ pub struct Sender {
 impl Runnable for Sender {
     async fn run(&mut self) {
         for i in 0..10 {
-            let schema = Schema {
+            let schema = ResponseSchema {
                 msg: format!("{}", i),
             };
 
