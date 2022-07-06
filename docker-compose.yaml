@@ -1,0 +1,8 @@
+version: "2.2"
+
+services:
+  nats:
+    image: nats-streaming
+    ports:
+      - "4222:4222"
+    command: '--max_channels=2000'
