@@ -20,7 +20,7 @@ pub trait Transport {
         Schema: DeserializeOwned + Send,
         SendSchema: Serialize + Send + Sync,
     >(
-        &mut self,
+        &self,
         topic_response: String,
         publish_topic: String,
         msg: SendSchema,
