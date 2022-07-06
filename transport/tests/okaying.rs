@@ -128,14 +128,9 @@ pub async fn okaying_test() {
     );
     assert!(matches!(result.ok().await, Ok(())));
 
-    // Waiting 10 sec
-    tokio::time::sleep(tokio::time::Duration::from_secs(10)).await;
-    let check_for_messages = if let VSubscription::Stan(mut subscription) = vsubscription {
-        subscription.subscription.try_next()
-    } else {
-        panic!("Unknown VSubscription");
-    };
+    let check_messages = vsubscription
+        .next_timeout(std::time::Duration::from_secs(10))
+        .await;
 
-    // Check there are no messages
-    assert!(matches!(check_for_messages, None));
+    assert!(matches!(check_messages, Err(_)));
 }

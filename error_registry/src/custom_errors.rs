@@ -111,6 +111,8 @@ pub enum Nats {
     Unsubscribe,
     Disconnected,
     Send,
+    Timeout,
+    CantSerialize,
 }
 
 impl From<Nats> for u32 {
@@ -121,6 +123,8 @@ impl From<Nats> for u32 {
             Nats::Unsubscribe => 3u32,
             Nats::Disconnected => 4u32,
             Nats::Send => 5u32,
+            Nats::Timeout => 6u32,
+            Nats::CantSerialize => 7u32,
         }
     }
 }
