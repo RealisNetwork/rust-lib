@@ -145,7 +145,7 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
         let result = match request.get("topicResponse") {
             None => Err(GeneratedError::Common(Common::InternalServerError).into()),
 
-            Some(topic) => Ok(topic.to_string()),
+            Some(topic) => Ok(topic.as_str().unwrap().to_string()),
         };
         log::debug!("request {:#?} : ", request );
         result
