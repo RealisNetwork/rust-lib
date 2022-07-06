@@ -1,8 +1,9 @@
+use std::time::Duration;
 use crate::common::TransportResult;
 use crate::message::ReceivedMessage;
 use crate::response::VResponse;
 use crate::subscription::{Subscription, VSubscription};
-use crate::{Response, Transport};
+use crate::{Response, Transport, VReceivedMessage};
 use async_trait::async_trait;
 use error_registry::custom_errors::{CustomErrorType, Nats as CustomNats};
 use error_registry::generated_errors::{GeneratedError, Nats as GeneratedNats};
@@ -80,37 +81,22 @@ impl Transport for StanTransport {
         })
     }
 
-    async fn send_message_and_observe_reply<
-        Schema: DeserializeOwned + Send,
-        SendSchema: Serialize + Send + Sync,
-    >(
+    async fn send_message_and_observe_reply(
         &self,
         topic_response: String,
-        publish_topic: String,
-        msg: SendSchema,
-        max_duration: Option<u64>,
-    ) -> TransportResult<Schema> {
+        msg: VResponse,
+        max_duration: Option<Duration>,
+    ) -> TransportResult<VReceivedMessage> {
         let mut subscription = self.subscribe(topic_response.as_str()).await?;
 
-        self.publish(VResponse::Response(Response::new(
-            publish_topic.as_str(),
-            serde_json::to_vec(&msg)
-                .map_err(|err| BaseError::from(CustomErrorType::Nats(CustomNats::CantSerialize)))?,
-        )))
-        .await?;
+        self.publish(msg).await?;
 
         let message = subscription
-            .next_timeout(std::time::Duration::from_secs(max_duration.unwrap_or(25)))
+            .next_timeout(max_duration.unwrap_or_else(|| Duration::from_secs(25)))
             .await?;
-
-        let result = message
-            .deserialize::<Schema>()
-            .map_err(|_| BaseError::from(GeneratedError::Nats(GeneratedNats::Receive)));
-
-        message.ok();
 
         subscription.unsubscribe().await;
 
-        result
+        Ok(message)
     }
 }
