@@ -7,6 +7,7 @@ use healthchecker::HealthChecker;
 use schemas::{Agent, Response, ResponseMessage, ResponseResult, Schema};
 use serde_json::Value;
 use std::sync::Arc;
+use log::{debug, info};
 use transport::Response as TransportResponse;
 use transport::{
     ReceivedMessage, Subscription, Transport, VReceivedMessage, VResponse, VSubscription,
@@ -58,12 +59,20 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
             match message.deserialize() {
                 Ok(request) => match self.service.process(request).await {
                     Ok(response_schema) => {
+                        debug!("got response schema{:#?}", response_schema);
                         self.on_process_success(message, response_schema).await?
                     }
-                    Err(error) if error.is_critical() => return Err(error),
-                    Err(error) => self.on_process_error(message, error).await?,
+                    Err(error) if error.is_critical() => {
+                        log::debug!("Got response error critical: {:#?}", error);
+                        return Err(error)
+                    },
+                    Err(error) => {
+                        log::debug!("Got response left: {:#?}", error);
+                        self.on_process_error(message, error).await?
+                    },
                 },
                 Err(error) => {
+                    debug!("got error{:#?}", error);
                     self.on_process_error(message, error.clone()).await?;
                     return Err(error);
                 }
@@ -108,6 +117,8 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
                 response,
             },
         };
+        log::debug!("Preparing schema: {:#?} for publish by topic: {}", response, topic);
+
         let payload = serde_json::to_vec(&response).map_err(|error| {
             BaseError::new(
                 format!("{:?}", error),
@@ -116,21 +127,27 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
             )
         })?;
 
-        self.transport
+        let publish_result = self.transport
             .publish(VResponse::Response(TransportResponse {
                 topic_res: topic,
                 response: payload,
             }))
-            .await
+            .await;
+        log::debug!("publish result {:#?} : ", publish_result);
+
+        publish_result
     }
 
     /// Try get topic to response from raw request
     /// return `OK` if find topic in one of such fields "topicResponse"
     /// otherwise return `Err`
     fn get_topic_response(request: &Value) -> Result<String, BaseError<Value>> {
-        match request.get("topicResponse") {
+        let result = match request.get("topicResponse") {
             None => Err(GeneratedError::Common(Common::InternalServerError).into()),
+
             Some(topic) => Ok(topic.to_string()),
-        }
+        };
+        log::debug!("request {:#?} : ", request );
+        result
     }
 }

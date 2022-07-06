@@ -18,7 +18,7 @@ impl Subscription for StanSubscription {
             self.subscription
                 .next()
                 .map(|message| message.into())
-                .ok_or(BaseError::from(GeneratedError::Nats(Nats::Receive)))
+                .ok_or(BaseError::<Value>::from(GeneratedError::Nats(Nats::Receive)))
         })
     }
 
@@ -31,7 +31,7 @@ impl Subscription for StanSubscription {
                 .next_timeout(timeout)
                 .map(|message| message.into())
                 .map_err(|err| {
-                    BaseError::new(
+                    BaseError::<Value>::new(
                         err.to_string(),
                         CustomErrorType::Nats(CustomNats::Timeout).into(),
                         None,
@@ -42,7 +42,7 @@ impl Subscription for StanSubscription {
     async fn unsubscribe(mut self) -> TransportResult<()> {
         tokio::spawn(async move {
             self.subscription.unsubscribe().map_err(|error| {
-                BaseError::new(
+                BaseError::<Value>::new(
                     format!("{:?}", error),
                     CustomErrorType::Nats(CustomNats::Unsubscribe).into(),
                     None,
@@ -50,6 +50,6 @@ impl Subscription for StanSubscription {
             })
         })
         .await
-        .map_err(|err| BaseError::from(GeneratedError::Nats(Nats::Receive)))?
+        .map_err(|err| BaseError::<Value>::from(GeneratedError::Nats(Nats::Receive)))?
     }
 }
