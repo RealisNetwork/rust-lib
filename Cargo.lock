@@ -2101,6 +2101,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "realis-macros"
+version = "0.1.0"
+dependencies = [
+ "convert_case",
+ "proc-macro2 1.0.40",
+ "quote 1.0.20",
+ "schemas",
+ "syn 1.0.98",
+]
+
+[[package]]
 name = "redox_syscall"
 version = "0.1.57"
 source = "registry+https://github.com/rust-lang/crates.io-index"
