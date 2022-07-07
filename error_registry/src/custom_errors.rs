@@ -157,6 +157,7 @@ pub enum Common {
     ParseBool,
     OutOfRange,
     Other,
+    CaNotSerialize,
 }
 
 impl From<Common> for u32 {
@@ -169,6 +170,7 @@ impl From<Common> for u32 {
             Common::ParseBool => 5u32,
             Common::OutOfRange => 6u32,
             Common::Other => 7u32,
+            Common::CaNotSerialize => 8u32,
         }
     }
 }
