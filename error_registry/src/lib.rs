@@ -2,19 +2,19 @@
 //! `BaseError` its custom error data structure.
 //! `ErrorType` its enum of possible errors
 //! what need to be traced for Realis microservices.
-use serde::{Deserialize, Serialize};
-use std::{
-    fmt,
-    fmt::{Debug, Display, Formatter},
-};
-use backtrace::Backtrace;
-use serde_json::Value;
+use crate::generated_errors::{Critical, Db};
 use crate::{
     custom_errors::{CustomErrorType, EnvLoadedError, Nats as CustomNats},
     generated_errors::Common,
 };
+use backtrace::Backtrace;
 use generated_errors::GeneratedError;
-use crate::generated_errors::{Critical, Db};
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+use std::{
+    fmt,
+    fmt::{Debug, Display, Formatter},
+};
 
 pub mod custom_errors;
 pub mod generated_errors;
@@ -33,7 +33,10 @@ pub struct BaseError<D: Debug> {
 
 impl<D: Debug> BaseError<D> {
     pub fn is_critical(&self) -> bool {
-        matches!(self.error_type, ErrorType::Generated(GeneratedError::Critical(_)))
+        matches!(
+            self.error_type,
+            ErrorType::Generated(GeneratedError::Critical(_))
+        )
     }
 }
 
@@ -302,6 +305,7 @@ impl<D: Debug> From<std::str::ParseBoolError> for BaseError<D> {
         }
     }
 }
+
 impl<D: Debug> Default for BaseError<D> {
     /// Default BaseError.
     ///
@@ -432,7 +436,8 @@ impl From<deadpool::managed::PoolError<tokio_postgres::Error>> for ErrorType {
         // Custom DB: ConnectionError
         ErrorType::Generated(GeneratedError::Critical(Critical::Db))
     }
-}impl From<tokio_postgres::Error> for ErrorType {
+}
+impl From<tokio_postgres::Error> for ErrorType {
     fn from(_: tokio_postgres::Error) -> Self {
         // Custom DB: ConnectionError
         ErrorType::Generated(GeneratedError::Critical(Critical::Db))
@@ -462,7 +467,9 @@ impl From<sqlx::error::Error> for ErrorType {
             | sqlx::error::Error::PoolTimedOut
             | sqlx::error::Error::Configuration(_)
             | sqlx::error::Error::Tls(_)
-            | sqlx::error::Error::WorkerCrashed => ErrorType::Generated(GeneratedError::Critical(Critical::Db)),
+            | sqlx::error::Error::WorkerCrashed => {
+                ErrorType::Generated(GeneratedError::Critical(Critical::Db))
+            }
             // Generated DB: Invalid Transaction
             sqlx::error::Error::Database(_)
             | sqlx::error::Error::ColumnDecode { .. }
@@ -471,11 +478,15 @@ impl From<sqlx::error::Error> for ErrorType {
             | sqlx::error::Error::ColumnNotFound(_)
             | sqlx::error::Error::ColumnIndexOutOfBounds { .. }
             | sqlx::error::Error::Decode(_)
-            | sqlx::error::Error::Migrate(_) => ErrorType::Generated(GeneratedError::Db(Db::InvalidTransaction)),
+            | sqlx::error::Error::Migrate(_) => {
+                ErrorType::Generated(GeneratedError::Db(Db::InvalidTransaction))
+            }
             // Generated DB: Not Found
-            sqlx::error::Error::RowNotFound => ErrorType::Generated(GeneratedError::Db(Db::NotFound)),
+            sqlx::error::Error::RowNotFound => {
+                ErrorType::Generated(GeneratedError::Db(Db::NotFound))
+            }
             // Custom: Default
-            _ => ErrorType::Custom(CustomErrorType::Default)
+            _ => ErrorType::Custom(CustomErrorType::Default),
         }
     }
 }
