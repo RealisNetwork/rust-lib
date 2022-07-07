@@ -4,7 +4,7 @@ use async_trait::async_trait;
 use error_registry::generated_errors::{Common, GeneratedError};
 use error_registry::BaseError;
 use healthchecker::HealthChecker;
-use log::{debug, info};
+use log::debug;
 use schemas::{Agent, Response, ResponseMessage, ResponseResult, Schema};
 use serde_json::Value;
 use std::sync::Arc;
@@ -42,7 +42,7 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
         health_checker: HealthChecker,
     ) -> Result<Self, BaseError<Value>> {
         transport
-            .subscribe(&service.topic_to_subscribe())
+            .subscribe(service.topic_to_subscribe())
             .await
             .map(|subscription| Self {
                 service,
@@ -152,7 +152,7 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
 
             Some(topic) => Ok(topic
                 .as_str()
-                .ok_or(BaseError::<Value>::new(
+                .ok_or_else(||BaseError::<Value>::new(
                     "Unexpected type".to_string(),
                     GeneratedError::Common(Common::Unknown).into(),
                     None,
