@@ -7,7 +7,6 @@ pub trait Runnable: Send + Sync {
     async fn run(&mut self);
 }
 
-
 pub struct App {
     services: Vec<Box<Mutex<dyn Runnable>>>,
 }
@@ -31,8 +30,7 @@ impl App {
     }
 
     pub fn init_logger(self) -> Self {
-        env_logger::Builder::from_env(env_logger::Env::new()
-            .filter_or("LOGGER_LEVEL", "debug"))
+        env_logger::Builder::from_env(env_logger::Env::new().filter_or("LOGGER_LEVEL", "debug"))
             .init();
         self
     }

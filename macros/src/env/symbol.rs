@@ -57,7 +57,10 @@ fn spanned_tokens(s: &syn::LitStr) -> parse::Result<TokenStream> {
 }
 
 fn respan(stream: TokenStream, span: Span) -> TokenStream {
-    stream.into_iter().map(|token| respan_token(token, span)).collect()
+    stream
+        .into_iter()
+        .map(|token| respan_token(token, span))
+        .collect()
 }
 
 fn respan_token(mut token: TokenTree, span: Span) -> TokenTree {
