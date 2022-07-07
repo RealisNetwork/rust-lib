@@ -13,9 +13,8 @@ pub struct App {
 
 impl Default for App {
     fn default() -> Self {
-        env_logger::Builder::new().filter_level(LevelFilter::Debug).parse_default_env().init();
-        Self { services: vec![]
-        }
+        env_logger::Builder::from_env(env_logger::Env::new().default_filter_or("debug")).init();
+        Self { services: vec![] }
     }
 }
 
