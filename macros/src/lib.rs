@@ -6,6 +6,7 @@ mod gettable;
 mod gettable_errors;
 mod retry;
 mod to_json;
+mod schema;
 
 use proc_macro::TokenStream;
 
@@ -14,6 +15,7 @@ use crate::{
     env::env::impl_env_macros, gettable::impl_gettable_macros, gettable_errors::impl_gettable_errors_macros, retry::impl_retry_macros,
     to_json::impl_to_json_macros,
 };
+use crate::schema::schema_macros;
 
 /// # Panics
 #[proc_macro_derive(Gettable, attributes(gettable))]
@@ -37,6 +39,7 @@ pub fn deserialize_macro_derive_errors(input: TokenStream) -> TokenStream {
 pub fn gettable_macro_derive_errors(input: TokenStream) -> TokenStream {
     impl_gettable_errors_macros(input)
 }
+
 
 #[proc_macro_attribute]
 pub fn macro_retry(_attr: TokenStream, item: TokenStream) -> TokenStream {
@@ -136,3 +139,6 @@ pub fn byte_decode_macro_derive(item: TokenStream) -> TokenStream {
 pub fn config_macro_derive(item: TokenStream) -> TokenStream {
     impl_env_macros(item)
 }
+
+#[proc_macro_derive(Schema)]
+pub fn impl_schema_macro(item: TokenStream) -> TokenStream { schema_macros(item) }
