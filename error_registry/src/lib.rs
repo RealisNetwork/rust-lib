@@ -33,10 +33,7 @@ pub struct BaseError<D: Debug> {
 
 impl<D: Debug> BaseError<D> {
     pub fn is_critical(&self) -> bool {
-        match self.error_type {
-            ErrorType::Generated(GeneratedError::Critical(_)) => true,
-            _ => false,
-        }
+        matches!(self.error_type, ErrorType::Generated(GeneratedError::Critical(_)))
     }
 }
 
@@ -319,7 +316,7 @@ impl<D: Debug> Default for BaseError<D> {
         Self {
             msg: String::from("Default error."),
             status: error_type.clone().into(),
-            error_type: error_type,
+            error_type,
             trace: format!("{:?}", trace),
             data: None,
         }
@@ -334,7 +331,7 @@ impl<D: Debug> From<GeneratedError> for BaseError<D> {
         Self {
             msg: format!("{:?}", error_type),
             status: error_type.clone().into(),
-            error_type: error_type,
+            error_type,
             trace: format!("{:?}", trace),
             data: None,
         }

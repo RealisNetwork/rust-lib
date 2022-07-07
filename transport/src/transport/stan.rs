@@ -1,14 +1,11 @@
 use crate::common::TransportResult;
-use crate::message::ReceivedMessage;
 use crate::response::VResponse;
 use crate::subscription::{Subscription, VSubscription};
-use crate::{Response, Transport, VReceivedMessage};
+use crate::{Transport, VReceivedMessage};
 use async_trait::async_trait;
 use error_registry::custom_errors::{CustomErrorType, Nats as CustomNats};
 use error_registry::generated_errors::{GeneratedError, Nats as GeneratedNats};
 use error_registry::{BaseError, ErrorType};
-use serde::de::DeserializeOwned;
-use serde::Serialize;
 use serde_json::Value;
 use stan::{Client, SubscriptionConfig, SubscriptionStart};
 use std::time::Duration;
@@ -96,7 +93,7 @@ impl Transport for StanTransport {
             .next_timeout(max_duration.unwrap_or_else(|| Duration::from_secs(25)))
             .await?;
 
-        subscription.unsubscribe().await;
+        subscription.unsubscribe().await?;
 
         Ok(message)
     }

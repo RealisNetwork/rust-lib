@@ -1,4 +1,5 @@
 use async_trait::async_trait;
+use log::LevelFilter;
 use tokio::sync::Mutex;
 
 #[async_trait]
@@ -6,10 +7,12 @@ pub trait Runnable: Send + Sync {
     async fn run(&mut self);
 }
 
+
 pub struct App {
     services: Vec<Box<Mutex<dyn Runnable>>>,
 }
 
+#[allow(clippy::derivable_impls)]
 impl Default for App {
     fn default() -> Self {
         Self { services: vec![] }
@@ -19,6 +22,18 @@ impl Default for App {
 impl App {
     pub fn push(mut self, service: impl Runnable + 'static) -> Self {
         self.services.push(Box::new(Mutex::new(service)));
+        self
+    }
+
+    pub fn init_logger_with_level(self, logger_level: LevelFilter) -> Self {
+        env_logger::Builder::new().filter_level(logger_level).init();
+        self
+    }
+
+    pub fn init_logger(self) -> Self {
+        env_logger::Builder::from_env(env_logger::Env::new()
+            .filter_or("LOGGER_LEVEL", "debug"))
+            .init();
         self
     }
 }
