@@ -4,20 +4,17 @@
 //! what need to be traced for Realis microservices.
 use serde::{Deserialize, Serialize};
 use std::{
-    any::TypeId,
-    error::Error,
     fmt,
     fmt::{Debug, Display, Formatter},
 };
-
 use backtrace::Backtrace;
 use serde_json::Value;
-
 use crate::{
-    custom_errors::{CustomErrorType, Db as CustomDb, EnvLoadedError, Nats as CustomNats},
+    custom_errors::{CustomErrorType, EnvLoadedError, Nats as CustomNats},
     generated_errors::Common,
 };
 use generated_errors::GeneratedError;
+use crate::generated_errors::{Critical, Db};
 
 pub mod custom_errors;
 pub mod generated_errors;
@@ -122,9 +119,6 @@ impl<D: Debug, E: 'static + Error> From<E> for BaseError<D> {
         BaseError {
             msg,
             trace: format!("{:?}", trace),
-            // Do not cast error type to ErrorType automatically
-            // Need to add error type manually to `from` method of ErrorType
-            // If error type not recognized return a default ErrorType
             status: error_type.clone().into(),
             error_type,
             data: None,
@@ -203,7 +197,7 @@ impl<D: Debug> From<CustomErrorType> for BaseError<D> {
         Self {
             msg: format!("{:?}", error_type),
             status: error_type.clone().into(),
-            error_type: error_type,
+            error_type,
             trace: format!("{:?}", trace),
             data: None,
         }
@@ -231,44 +225,117 @@ impl From<ErrorType> for u32 {
     }
 }
 
-impl<E: 'static + Error> From<E> for ErrorType {
-    /// Matching `TypeId` of the error type which
-    /// implement `std::error:Error` to get relevant
-    /// `ErrorType` in the structure `BaseError` without extra code.
-    /// To extend list of matching types add it manually.
-    fn from(_: E) -> Self {
-        let type_id = TypeId::of::<E>();
-        if type_id == TypeId::of::<tokio::sync::oneshot::error::RecvError>() {
-            // Custom Nats: Receive
-            ErrorType::Custom(CustomErrorType::Nats(CustomNats::Receive))
-        } else if (type_id == TypeId::of::<tokio::time::error::Elapsed>())
-            || (type_id == TypeId::of::<ratsio::RatsioError>())
-        {
-            // Custom Nats: Disconnected
-            ErrorType::Custom(CustomErrorType::Nats(CustomNats::Disconnected))
-        } else if (type_id == TypeId::of::<deadpool::managed::PoolError<tokio_postgres::Error>>())
-            || (type_id == TypeId::of::<tokio_postgres::Error>())
-            || (type_id == TypeId::of::<openssl::error::ErrorStack>())
-            || (type_id == TypeId::of::<deadpool_postgres::CreatePoolError>())
-        {
+impl From<tokio::sync::oneshot::error::RecvError> for ErrorType {
+    fn from(_: tokio::sync::oneshot::error::RecvError) -> Self {
+        ErrorType::Custom(CustomErrorType::Nats(CustomNats::Receive))
+    }
+}
+
+impl From<tokio::time::error::Elapsed> for ErrorType {
+    fn from(_: tokio::time::error::Elapsed) -> Self {
+        // Custom Nats: Disconnected
+        ErrorType::Custom(CustomErrorType::Nats(CustomNats::Disconnected))
+    }
+}
+
+impl From<ratsio::RatsioError> for ErrorType {
+    fn from(_: ratsio::RatsioError) -> Self {
+        // Custom Nats: Disconnected
+        ErrorType::Custom(CustomErrorType::Nats(CustomNats::Disconnected))
+    }
+}
+
+impl From<deadpool::managed::PoolError<tokio_postgres::Error>> for ErrorType {
+    fn from(_: deadpool::managed::PoolError<tokio_postgres::Error>) -> Self {
+        // Custom DB: ConnectionError
+        ErrorType::Generated(GeneratedError::Critical(Critical::Db))
+    }
+}impl From<tokio_postgres::Error> for ErrorType {
+    fn from(_: tokio_postgres::Error) -> Self {
+        // Custom DB: ConnectionError
+        ErrorType::Generated(GeneratedError::Critical(Critical::Db))
+    }
+}
+
+impl From<openssl::error::ErrorStack> for ErrorType {
+    fn from(_: openssl::error::ErrorStack) -> Self {
+        // Custom DB: ConnectionError
+        ErrorType::Generated(GeneratedError::Critical(Critical::Db))
+    }
+}
+
+impl From<deadpool_postgres::CreatePoolError> for ErrorType {
+    fn from(_: deadpool_postgres::CreatePoolError) -> Self {
+        // Custom DB: ConnectionError
+        ErrorType::Generated(GeneratedError::Critical(Critical::Db))
+    }
+}
+
+impl From<sqlx::error::Error> for ErrorType {
+    fn from(error: sqlx::error::Error) -> Self {
+        match error {
             // Custom DB: ConnectionError
-            ErrorType::Custom(CustomErrorType::Db(CustomDb::ConnectionError))
-        } else if type_id == TypeId::of::<dotenv::Error>() {
-            // Custom EnvLoadedError: Load
-            ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Load))
-        } else if (type_id == TypeId::of::<hex::FromHexError>())
-            || (type_id == TypeId::of::<std::num::ParseIntError>())
-            || (type_id == TypeId::of::<std::net::AddrParseError>())
-            || (type_id == TypeId::of::<std::str::ParseBoolError>())
-        {
-            // Custom EnvLoadedError: Convert
-            ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Convert))
-        } else if type_id == TypeId::of::<tokio::task::JoinError>() {
-            ErrorType::Generated(GeneratedError::Common(Common::InternalServerError))
-        } else {
+            sqlx::error::Error::Io(_)
+            | sqlx::error::Error::PoolClosed
+            | sqlx::error::Error::PoolTimedOut
+            | sqlx::error::Error::Configuration(_)
+            | sqlx::error::Error::Tls(_)
+            | sqlx::error::Error::WorkerCrashed => ErrorType::Generated(GeneratedError::Critical(Critical::Db)),
+            // Generated DB: Invalid Transaction
+            sqlx::error::Error::Database(_)
+            | sqlx::error::Error::ColumnDecode { .. }
+            | sqlx::error::Error::Protocol(_)
+            | sqlx::error::Error::TypeNotFound { .. }
+            | sqlx::error::Error::ColumnNotFound(_)
+            | sqlx::error::Error::ColumnIndexOutOfBounds { .. }
+            | sqlx::error::Error::Decode(_)
+            | sqlx::error::Error::Migrate(_) => ErrorType::Generated(GeneratedError::Db(Db::InvalidTransaction)),
+            // Generated DB: Not Found
+            sqlx::error::Error::RowNotFound => ErrorType::Generated(GeneratedError::Db(Db::NotFound)),
             // Custom: Default
-            ErrorType::Custom(CustomErrorType::Default)
+            _ => ErrorType::Custom(CustomErrorType::Default)
         }
+    }
+}
+
+impl From<dotenv::Error> for ErrorType {
+    fn from(_: dotenv::Error) -> Self {
+        // Custom EnvLoadedError: Load
+        ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Load))
+    }
+}
+
+impl From<hex::FromHexError> for ErrorType {
+    fn from(_: hex::FromHexError) -> Self {
+        // Custom EnvLoadedError: Convert
+        ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Convert))
+    }
+}
+
+impl From<std::num::ParseIntError> for ErrorType {
+    fn from(_: std::num::ParseIntError) -> Self {
+        // Custom EnvLoadedError: Convert
+        ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Convert))
+    }
+}
+
+impl From<std::net::AddrParseError> for ErrorType {
+    fn from(_: std::net::AddrParseError) -> Self {
+        // Custom EnvLoadedError: Convert
+        ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Convert))
+    }
+}
+
+impl From<std::str::ParseBoolError> for ErrorType {
+    fn from(_: std::str::ParseBoolError) -> Self {
+        // Custom EnvLoadedError: Convert
+        ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Convert))
+    }
+}
+
+impl From<tokio::task::JoinError> for ErrorType {
+    fn from(_: tokio::task::JoinError) -> Self {
+        ErrorType::Generated(GeneratedError::Common(Common::InternalServerError))
     }
 }
 
