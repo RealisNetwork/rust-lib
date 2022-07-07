@@ -1,4 +1,5 @@
 use async_trait::async_trait;
+use log::LevelFilter;
 use tokio::sync::Mutex;
 
 #[async_trait]
@@ -12,7 +13,9 @@ pub struct App {
 
 impl Default for App {
     fn default() -> Self {
-        Self { services: vec![] }
+        env_logger::Builder::new().filter_level(LevelFilter::Off).parse_default_env().init();
+        Self { services: vec![]
+        }
     }
 }
 
@@ -26,6 +29,7 @@ impl App {
 #[async_trait]
 impl Runnable for App {
     async fn run(&mut self) {
+
         let services = self.services.drain(..);
         futures::future::join_all(services.into_iter().map(|service| {
             tokio::spawn(async move {
