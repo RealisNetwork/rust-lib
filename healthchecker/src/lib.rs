@@ -23,7 +23,7 @@ pub struct HealthChecker {
 }
 
 impl HealthChecker {
-    pub async fn new(host: &String, timeout: u64) -> Result<Self, BaseError<()>> {
+    pub async fn new(host: &str, timeout: u64) -> Result<Self, BaseError<()>> {
         let health_checker = Self {
             health: Arc::new(AtomicBool::new(true)),
             timeout,

@@ -18,7 +18,7 @@ impl Subscription for StanSubscription {
             self.subscription
                 .next()
                 .map(|message| message.into())
-                .ok_or(BaseError::<Value>::from(GeneratedError::Nats(
+                .ok_or_else(|| BaseError::<Value>::from(GeneratedError::Nats(
                     Nats::Receive,
                 )))
         })
@@ -52,6 +52,6 @@ impl Subscription for StanSubscription {
             })
         })
         .await
-        .map_err(|err| BaseError::<Value>::from(GeneratedError::Nats(Nats::Receive)))?
+        .map_err(|_| BaseError::<Value>::from(GeneratedError::Nats(Nats::Receive)))?
     }
 }

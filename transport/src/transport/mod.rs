@@ -7,8 +7,6 @@ use crate::transport::stan::StanTransport;
 use crate::VReceivedMessage;
 use async_trait::async_trait;
 use enum_dispatch::enum_dispatch;
-use serde::de::DeserializeOwned;
-use serde::Serialize;
 use std::time::Duration;
 
 #[async_trait]
