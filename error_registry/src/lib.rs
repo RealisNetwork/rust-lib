@@ -96,23 +96,188 @@ impl<D: Debug> Display for BaseError<D> {
     }
 }
 
-impl<D: Debug, E: 'static + Error> From<E> for BaseError<D> {
-    /// Default realization for all structures who implemented
-    /// `std::error::Error` trait
-    ///
-    /// # Examples
-    /// ```
-    /// use error_registry::{BaseError, ErrorType};
-    /// use error_registry::custom_errors::{CustomErrorType, Nats};
-    ///
-    /// let error = ratsio::error::RatsioError::AckInboxMissing;
-    ///
-    /// assert_eq!(
-    ///     format!("{:?}", BaseError::<()>::from(error).error_type),
-    ///     format!("{:?}", ErrorType::Custom(CustomErrorType::Nats(Nats::Disconnected)))
-    /// );
-    /// ```
-    fn from(error: E) -> Self {
+impl<D:Debug> From<tokio::sync::oneshot::error::RecvError> for BaseError<D> {
+    fn from(error: tokio::sync::oneshot::error::RecvError) -> Self {
+        let trace = Backtrace::new();
+        let msg = error.to_string();
+        let error_type = ErrorType::from(error);
+        BaseError {
+            msg,
+            trace: format!("{:?}", trace),
+            status: error_type.clone().into(),
+            error_type,
+            data: None,
+        }
+    }
+}
+
+impl<D:Debug> From<tokio::time::error::Elapsed> for BaseError<D> {
+    fn from(error: tokio::time::error::Elapsed) -> Self {
+        let trace = Backtrace::new();
+        let msg = error.to_string();
+        let error_type = ErrorType::from(error);
+        BaseError {
+            msg,
+            trace: format!("{:?}", trace),
+            status: error_type.clone().into(),
+            error_type,
+            data: None,
+        }
+    }
+}
+
+impl<D:Debug> From<ratsio::RatsioError> for BaseError<D> {
+    fn from(error: ratsio::RatsioError) -> Self {
+        let trace = Backtrace::new();
+        let msg = error.to_string();
+        let error_type = ErrorType::from(error);
+        BaseError {
+            msg,
+            trace: format!("{:?}", trace),
+            status: error_type.clone().into(),
+            error_type,
+            data: None,
+        }
+    }
+}
+
+impl<D:Debug> From<tokio::task::JoinError> for BaseError<D> {
+    fn from(error: tokio::task::JoinError) -> Self {
+        let trace = Backtrace::new();
+        let msg = error.to_string();
+        let error_type = ErrorType::from(error);
+        BaseError {
+            msg,
+            trace: format!("{:?}", trace),
+            status: error_type.clone().into(),
+            error_type,
+            data: None,
+        }
+    }
+}
+
+impl<D:Debug> From<tokio_postgres::Error> for BaseError<D> {
+    fn from(error: tokio_postgres::Error) -> Self {
+        let trace = Backtrace::new();
+        let msg = error.to_string();
+        let error_type = ErrorType::from(error);
+        BaseError {
+            msg,
+            trace: format!("{:?}", trace),
+            status: error_type.clone().into(),
+            error_type,
+            data: None,
+        }
+    }
+}
+
+impl<D:Debug> From<deadpool::managed::PoolError<tokio_postgres::Error>> for BaseError<D> {
+    fn from(error: deadpool::managed::PoolError<tokio_postgres::Error>) -> Self {
+        let trace = Backtrace::new();
+        let msg = error.to_string();
+        let error_type = ErrorType::from(error);
+        BaseError {
+            msg,
+            trace: format!("{:?}", trace),
+            status: error_type.clone().into(),
+            error_type,
+            data: None,
+        }
+    }
+}
+
+impl<D:Debug> From<std::net::AddrParseError> for BaseError<D> {
+    fn from(error: std::net::AddrParseError) -> Self {
+        let trace = Backtrace::new();
+        let msg = error.to_string();
+        let error_type = ErrorType::from(error);
+        BaseError {
+            msg,
+            trace: format!("{:?}", trace),
+            status: error_type.clone().into(),
+            error_type,
+            data: None,
+        }
+    }
+}
+
+impl<D:Debug> From<std::num::ParseIntError> for BaseError<D> {
+    fn from(error: std::num::ParseIntError) -> Self {
+        let trace = Backtrace::new();
+        let msg = error.to_string();
+        let error_type = ErrorType::from(error);
+        BaseError {
+            msg,
+            trace: format!("{:?}", trace),
+            status: error_type.clone().into(),
+            error_type,
+            data: None,
+        }
+    }
+}
+
+impl<D:Debug> From<hex::FromHexError> for BaseError<D> {
+    fn from(error: hex::FromHexError) -> Self {
+        let trace = Backtrace::new();
+        let msg = error.to_string();
+        let error_type = ErrorType::from(error);
+        BaseError {
+            msg,
+            trace: format!("{:?}", trace),
+            status: error_type.clone().into(),
+            error_type,
+            data: None,
+        }
+    }
+}
+
+impl<D:Debug> From<openssl::error::ErrorStack> for BaseError<D> {
+    fn from(error: openssl::error::ErrorStack) -> Self {
+        let trace = Backtrace::new();
+        let msg = error.to_string();
+        let error_type = ErrorType::from(error);
+        BaseError {
+            msg,
+            trace: format!("{:?}", trace),
+            status: error_type.clone().into(),
+            error_type,
+            data: None,
+        }
+    }
+}
+
+impl<D:Debug> From<dotenv::Error> for BaseError<D> {
+    fn from(error: dotenv::Error) -> Self {
+        let trace = Backtrace::new();
+        let msg = error.to_string();
+        let error_type = ErrorType::from(error);
+        BaseError {
+            msg,
+            trace: format!("{:?}", trace),
+            status: error_type.clone().into(),
+            error_type,
+            data: None,
+        }
+    }
+}
+
+impl<D:Debug> From<sqlx::error::Error> for BaseError<D> {
+    fn from(error: sqlx::error::Error) -> Self {
+        let trace = Backtrace::new();
+        let msg = error.to_string();
+        let error_type = ErrorType::from(error);
+        BaseError {
+            msg,
+            trace: format!("{:?}", trace),
+            status: error_type.clone().into(),
+            error_type,
+            data: None,
+        }
+    }
+}
+
+impl<D:Debug> From<deadpool_postgres::CreatePoolError> for BaseError<D> {
+    fn from(error: deadpool_postgres::CreatePoolError) -> Self {
         let trace = Backtrace::new();
         let msg = error.to_string();
         let error_type = ErrorType::from(error);
@@ -222,6 +387,12 @@ impl From<ErrorType> for u32 {
             ErrorType::Custom(custom) => 777000000u32 + u32::from(custom), // Into<u32>>::into(custom)
             ErrorType::Generated(generated) => generated.into(),
         }
+    }
+}
+
+impl Default for ErrorType {
+    fn default() -> Self {
+        ErrorType::Custom(CustomErrorType::Default)
     }
 }
 
