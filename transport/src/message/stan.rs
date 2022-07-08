@@ -19,7 +19,7 @@ impl ReceivedMessage for StanMessage {
             BaseError::new(
                 format!("{:?}", error),
                 GeneratedError::Common(Common::InternalServerError).into(),
-                serde_json::to_value(&self.message.data).ok(),
+                serde_json::from_slice(&self.message.data).ok(),
             )
         })
     }
