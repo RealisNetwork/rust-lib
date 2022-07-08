@@ -152,11 +152,13 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
 
             Some(topic) => Ok(topic
                 .as_str()
-                .ok_or_else(||BaseError::<Value>::new(
-                    "Unexpected type".to_string(),
-                    GeneratedError::Common(Common::Unknown).into(),
-                    None,
-                ))?
+                .ok_or_else(|| {
+                    BaseError::<Value>::new(
+                        "Unexpected type".to_string(),
+                        GeneratedError::Common(Common::Unknown).into(),
+                        None,
+                    )
+                })?
                 .to_string()),
         };
         log::debug!("request {:#?} : ", request);

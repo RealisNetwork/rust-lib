@@ -2,19 +2,19 @@
 //! `BaseError` its custom error data structure.
 //! `ErrorType` its enum of possible errors
 //! what need to be traced for Realis microservices.
-use serde::{Deserialize, Serialize};
-use std::{
-    fmt,
-    fmt::{Debug, Display, Formatter},
-};
-use backtrace::Backtrace;
-use serde_json::Value;
+use crate::generated_errors::{Critical, Db};
 use crate::{
     custom_errors::{CustomErrorType, EnvLoadedError, Nats as CustomNats},
     generated_errors::Common,
 };
+use backtrace::Backtrace;
 use generated_errors::GeneratedError;
-use crate::generated_errors::{Critical, Db};
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+use std::{
+    fmt,
+    fmt::{Debug, Display, Formatter},
+};
 
 pub mod custom_errors;
 pub mod generated_errors;
@@ -33,7 +33,10 @@ pub struct BaseError<D: Debug> {
 
 impl<D: Debug> BaseError<D> {
     pub fn is_critical(&self) -> bool {
-        matches!(self.error_type, ErrorType::Generated(GeneratedError::Critical(_)))
+        matches!(
+            self.error_type,
+            ErrorType::Generated(GeneratedError::Critical(_))
+        )
     }
 }
 
@@ -93,7 +96,7 @@ impl<D: Debug> Display for BaseError<D> {
     }
 }
 
-impl<D:Debug> From<tokio::sync::oneshot::error::RecvError> for BaseError<D> {
+impl<D: Debug> From<tokio::sync::oneshot::error::RecvError> for BaseError<D> {
     fn from(error: tokio::sync::oneshot::error::RecvError) -> Self {
         let trace = Backtrace::new();
         let msg = error.to_string();
@@ -108,7 +111,7 @@ impl<D:Debug> From<tokio::sync::oneshot::error::RecvError> for BaseError<D> {
     }
 }
 
-impl<D:Debug> From<tokio::time::error::Elapsed> for BaseError<D> {
+impl<D: Debug> From<tokio::time::error::Elapsed> for BaseError<D> {
     fn from(error: tokio::time::error::Elapsed) -> Self {
         let trace = Backtrace::new();
         let msg = error.to_string();
@@ -123,7 +126,7 @@ impl<D:Debug> From<tokio::time::error::Elapsed> for BaseError<D> {
     }
 }
 
-impl<D:Debug> From<ratsio::RatsioError> for BaseError<D> {
+impl<D: Debug> From<ratsio::RatsioError> for BaseError<D> {
     fn from(error: ratsio::RatsioError) -> Self {
         let trace = Backtrace::new();
         let msg = error.to_string();
@@ -138,7 +141,7 @@ impl<D:Debug> From<ratsio::RatsioError> for BaseError<D> {
     }
 }
 
-impl<D:Debug> From<tokio::task::JoinError> for BaseError<D> {
+impl<D: Debug> From<tokio::task::JoinError> for BaseError<D> {
     fn from(error: tokio::task::JoinError) -> Self {
         let trace = Backtrace::new();
         let msg = error.to_string();
@@ -153,7 +156,7 @@ impl<D:Debug> From<tokio::task::JoinError> for BaseError<D> {
     }
 }
 
-impl<D:Debug> From<tokio_postgres::Error> for BaseError<D> {
+impl<D: Debug> From<tokio_postgres::Error> for BaseError<D> {
     fn from(error: tokio_postgres::Error) -> Self {
         let trace = Backtrace::new();
         let msg = error.to_string();
@@ -168,7 +171,7 @@ impl<D:Debug> From<tokio_postgres::Error> for BaseError<D> {
     }
 }
 
-impl<D:Debug> From<deadpool::managed::PoolError<tokio_postgres::Error>> for BaseError<D> {
+impl<D: Debug> From<deadpool::managed::PoolError<tokio_postgres::Error>> for BaseError<D> {
     fn from(error: deadpool::managed::PoolError<tokio_postgres::Error>) -> Self {
         let trace = Backtrace::new();
         let msg = error.to_string();
@@ -183,7 +186,7 @@ impl<D:Debug> From<deadpool::managed::PoolError<tokio_postgres::Error>> for Base
     }
 }
 
-impl<D:Debug> From<std::net::AddrParseError> for BaseError<D> {
+impl<D: Debug> From<std::net::AddrParseError> for BaseError<D> {
     fn from(error: std::net::AddrParseError) -> Self {
         let trace = Backtrace::new();
         let msg = error.to_string();
@@ -198,7 +201,7 @@ impl<D:Debug> From<std::net::AddrParseError> for BaseError<D> {
     }
 }
 
-impl<D:Debug> From<std::num::ParseIntError> for BaseError<D> {
+impl<D: Debug> From<std::num::ParseIntError> for BaseError<D> {
     fn from(error: std::num::ParseIntError) -> Self {
         let trace = Backtrace::new();
         let msg = error.to_string();
@@ -213,7 +216,7 @@ impl<D:Debug> From<std::num::ParseIntError> for BaseError<D> {
     }
 }
 
-impl<D:Debug> From<hex::FromHexError> for BaseError<D> {
+impl<D: Debug> From<hex::FromHexError> for BaseError<D> {
     fn from(error: hex::FromHexError) -> Self {
         let trace = Backtrace::new();
         let msg = error.to_string();
@@ -228,7 +231,7 @@ impl<D:Debug> From<hex::FromHexError> for BaseError<D> {
     }
 }
 
-impl<D:Debug> From<openssl::error::ErrorStack> for BaseError<D> {
+impl<D: Debug> From<openssl::error::ErrorStack> for BaseError<D> {
     fn from(error: openssl::error::ErrorStack) -> Self {
         let trace = Backtrace::new();
         let msg = error.to_string();
@@ -243,7 +246,7 @@ impl<D:Debug> From<openssl::error::ErrorStack> for BaseError<D> {
     }
 }
 
-impl<D:Debug> From<dotenv::Error> for BaseError<D> {
+impl<D: Debug> From<dotenv::Error> for BaseError<D> {
     fn from(error: dotenv::Error) -> Self {
         let trace = Backtrace::new();
         let msg = error.to_string();
@@ -258,7 +261,7 @@ impl<D:Debug> From<dotenv::Error> for BaseError<D> {
     }
 }
 
-impl<D:Debug> From<sqlx::error::Error> for BaseError<D> {
+impl<D: Debug> From<sqlx::error::Error> for BaseError<D> {
     fn from(error: sqlx::error::Error) -> Self {
         let trace = Backtrace::new();
         let msg = error.to_string();
@@ -273,7 +276,7 @@ impl<D:Debug> From<sqlx::error::Error> for BaseError<D> {
     }
 }
 
-impl<D:Debug> From<deadpool_postgres::CreatePoolError> for BaseError<D> {
+impl<D: Debug> From<deadpool_postgres::CreatePoolError> for BaseError<D> {
     fn from(error: deadpool_postgres::CreatePoolError) -> Self {
         let trace = Backtrace::new();
         let msg = error.to_string();
@@ -418,7 +421,8 @@ impl From<deadpool::managed::PoolError<tokio_postgres::Error>> for ErrorType {
         // Custom DB: ConnectionError
         ErrorType::Generated(GeneratedError::Critical(Critical::Db))
     }
-}impl From<tokio_postgres::Error> for ErrorType {
+}
+impl From<tokio_postgres::Error> for ErrorType {
     fn from(_: tokio_postgres::Error) -> Self {
         // Custom DB: ConnectionError
         ErrorType::Generated(GeneratedError::Critical(Critical::Db))
@@ -448,7 +452,9 @@ impl From<sqlx::error::Error> for ErrorType {
             | sqlx::error::Error::PoolTimedOut
             | sqlx::error::Error::Configuration(_)
             | sqlx::error::Error::Tls(_)
-            | sqlx::error::Error::WorkerCrashed => ErrorType::Generated(GeneratedError::Critical(Critical::Db)),
+            | sqlx::error::Error::WorkerCrashed => {
+                ErrorType::Generated(GeneratedError::Critical(Critical::Db))
+            }
             // Generated DB: Invalid Transaction
             sqlx::error::Error::Database(_)
             | sqlx::error::Error::ColumnDecode { .. }
@@ -457,11 +463,15 @@ impl From<sqlx::error::Error> for ErrorType {
             | sqlx::error::Error::ColumnNotFound(_)
             | sqlx::error::Error::ColumnIndexOutOfBounds { .. }
             | sqlx::error::Error::Decode(_)
-            | sqlx::error::Error::Migrate(_) => ErrorType::Generated(GeneratedError::Db(Db::InvalidTransaction)),
+            | sqlx::error::Error::Migrate(_) => {
+                ErrorType::Generated(GeneratedError::Db(Db::InvalidTransaction))
+            }
             // Generated DB: Not Found
-            sqlx::error::Error::RowNotFound => ErrorType::Generated(GeneratedError::Db(Db::NotFound)),
+            sqlx::error::Error::RowNotFound => {
+                ErrorType::Generated(GeneratedError::Db(Db::NotFound))
+            }
             // Custom: Default
-            _ => ErrorType::Custom(CustomErrorType::Default)
+            _ => ErrorType::Custom(CustomErrorType::Default),
         }
     }
 }
@@ -498,6 +508,13 @@ impl From<std::str::ParseBoolError> for ErrorType {
     fn from(_: std::str::ParseBoolError) -> Self {
         // Custom EnvLoadedError: Convert
         ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Convert))
+    }
+}
+
+impl From<std::str::ParseBoolError> for BaseError<()> {
+    fn from(_: std::str::ParseBoolError) -> Self {
+        // Custom EnvLoadedError: Convert
+        BaseError::from(CustomErrorType::EnvLoadedError(EnvLoadedError::Convert))
     }
 }
 
