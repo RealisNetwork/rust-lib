@@ -1,5 +1,6 @@
 pub mod stan;
 
+use std::fmt::Debug;
 use crate::common::TransportResult;
 use crate::message::stan::StanMessage;
 use ::stan::Message;
@@ -10,7 +11,7 @@ use serde::de::DeserializeOwned;
 #[async_trait]
 #[enum_dispatch]
 pub trait ReceivedMessage {
-    fn deserialize<T: DeserializeOwned>(&self) -> TransportResult<T>;
+    fn deserialize<T: DeserializeOwned + Debug>(&self) -> TransportResult<T>;
 
     async fn ok(self) -> TransportResult<()>;
 }
