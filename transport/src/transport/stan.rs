@@ -91,10 +91,10 @@ impl Transport for StanTransport {
 
         let message = subscription
             .next_timeout(max_duration.unwrap_or_else(|| Duration::from_secs(25)))
-            .await?;
+            .await;
 
         subscription.unsubscribe().await?;
 
-        Ok(message)
+        Ok(message?)
     }
 }
