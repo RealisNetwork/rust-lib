@@ -116,12 +116,12 @@ impl Transport for StanTransport {
 
         self.publish(msg).await?;
 
-        let message = subscription
+        let message_result = subscription
             .next_timeout(max_duration.unwrap_or_else(|| Duration::from_secs(25)))
             .await;
 
         subscription.unsubscribe().await?;
 
-        Ok(message?)
+        Ok(message_result?)
     }
 }
