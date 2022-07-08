@@ -46,6 +46,8 @@ impl Transport for StanTransport {
             VResponse::Response(response) => (response.topic_res, response.response),
         };
 
+        log::debug!("Publishing: {:#?} by topic: {}", serde_json::from_slice::<Value>(&response), topic_res);
+
         tokio::task::block_in_place(move || {
             self.client.publish(&topic_res, response).map_err(|error| {
                 BaseError::<Value>::new(
