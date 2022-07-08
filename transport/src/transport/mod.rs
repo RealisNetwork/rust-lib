@@ -16,6 +16,8 @@ pub trait Transport {
 
     async fn subscribe(&self, topic: &str) -> TransportResult<VSubscription>;
 
+    async fn subscribe_not_durable(&self, topic: &str) -> TransportResult<VSubscription>;
+
     async fn send_message_and_observe_reply(
         &self,
         topic_response: String,

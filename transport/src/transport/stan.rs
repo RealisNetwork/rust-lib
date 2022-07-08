@@ -46,7 +46,11 @@ impl Transport for StanTransport {
             VResponse::Response(response) => (response.topic_res, response.response),
         };
 
-        log::debug!("Publishing: {:#?} by topic: {}", serde_json::from_slice::<Value>(&response), topic_res);
+        log::debug!(
+            "Publishing: {:#?} by topic: {}",
+            serde_json::from_slice::<Value>(&response),
+            topic_res
+        );
 
         tokio::task::block_in_place(move || {
             self.client.publish(&topic_res, response).map_err(|error| {
@@ -81,13 +85,34 @@ impl Transport for StanTransport {
         })
     }
 
+    async fn subscribe_not_durable(&self, topic: &str) -> TransportResult<VSubscription> {
+        let subscription_config = SubscriptionConfig {
+            queue_group: None,
+            durable_name: None,
+            start: SubscriptionStart::LastReceived,
+            ..Default::default()
+        };
+        tokio::task::block_in_place(move || {
+            self.client
+                .subscribe(topic, subscription_config)
+                .map(|subscription| subscription.into())
+                .map_err(|error| {
+                    BaseError::<Value>::new(
+                        format!("{:?}", error),
+                        GeneratedError::Nats(GeneratedNats::InternalServiceCall).into(),
+                        None,
+                    )
+                })
+        })
+    }
+
     async fn send_message_and_observe_reply(
         &self,
         topic_response: String,
         msg: VResponse,
         max_duration: Option<Duration>,
     ) -> TransportResult<VReceivedMessage> {
-        let mut subscription = self.subscribe(topic_response.as_str()).await?;
+        let mut subscription = self.subscribe_not_durable(topic_response.as_str()).await?;
 
         self.publish(msg).await?;
 

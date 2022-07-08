@@ -1,12 +1,12 @@
 pub mod stan;
 
-use std::fmt::Debug;
 use crate::common::TransportResult;
 use crate::message::stan::StanMessage;
 use ::stan::Message;
 use async_trait::async_trait;
 use enum_dispatch::enum_dispatch;
 use serde::de::DeserializeOwned;
+use std::fmt::Debug;
 
 #[async_trait]
 #[enum_dispatch]
