@@ -13,7 +13,9 @@ impl EnvNameAttrs {
         match self {
             EnvNameAttrs::Flatten => field_name.to_string(),
             EnvNameAttrs::RenameAbs(Str(str)) => str.value().to_string(),
-            EnvNameAttrs::Rename(Str(str)) => format!("{}_{}", struct_name.to_string(), str.value()),
+            EnvNameAttrs::Rename(Str(str)) => {
+                format!("{}_{}", struct_name.to_string(), str.value())
+            }
             _ => format!("{}_{}", struct_name.to_string(), field_name.to_string()),
         }
         .to_case(Case::UpperSnake)

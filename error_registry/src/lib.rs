@@ -291,6 +291,21 @@ impl<D: Debug> From<deadpool_postgres::CreatePoolError> for BaseError<D> {
     }
 }
 
+impl<D: Debug> From<std::str::ParseBoolError> for BaseError<D> {
+    fn from(error: std::str::ParseBoolError) -> Self {
+        let trace = Backtrace::new();
+        let msg = error.to_string();
+        let error_type = ErrorType::from(error);
+        BaseError {
+            msg,
+            trace: format!("{:?}", trace),
+            status: error_type.clone().into(),
+            error_type,
+            data: None,
+        }
+    }
+}
+
 impl<D: Debug> Default for BaseError<D> {
     /// Default BaseError.
     ///
@@ -497,15 +512,15 @@ impl From<std::num::ParseIntError> for ErrorType {
     }
 }
 
-impl From<std::net::AddrParseError> for ErrorType {
-    fn from(_: std::net::AddrParseError) -> Self {
+impl From<std::str::ParseBoolError> for ErrorType {
+    fn from(_: std::str::ParseBoolError) -> Self {
         // Custom EnvLoadedError: Convert
         ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Convert))
     }
 }
 
-impl From<std::str::ParseBoolError> for ErrorType {
-    fn from(_: std::str::ParseBoolError) -> Self {
+impl From<std::net::AddrParseError> for ErrorType {
+    fn from(_: std::net::AddrParseError) -> Self {
         // Custom EnvLoadedError: Convert
         ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Convert))
     }
