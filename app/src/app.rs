@@ -1,5 +1,6 @@
+pub use log::LevelFilter;
+
 use async_trait::async_trait;
-use log::LevelFilter;
 use tokio::sync::Mutex;
 
 #[async_trait]

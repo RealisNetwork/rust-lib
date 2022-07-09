@@ -4,7 +4,6 @@ use async_trait::async_trait;
 use error_registry::generated_errors::{Common, GeneratedError};
 use error_registry::BaseError;
 use healthchecker::HealthChecker;
-use log::debug;
 use schemas::{Agent, Response, ResponseMessage, ResponseResult, Schema};
 use serde_json::Value;
 use std::sync::Arc;
@@ -32,6 +31,12 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> Runnable
             log::error!("{:?}", error);
             health_checker.make_sick();
         }
+        log::warn!(
+            "Stop service: \nagent: \t{:?},\nmethod:\t{:?},\ntopic: \t{:?},",
+            P::agent(),
+            P::method(),
+            P::topic(),
+        );
     }
 }
 
@@ -53,26 +58,43 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
             })
     }
 
+    async fn before_run(&mut self) -> Result<(), BaseError<Value>> {
+        // Logs
+        log::info!(
+            "Run service: \nagent: \t{:?},\nmethod:\t{:?},\ntopic: \t{:?},",
+            P::agent(),
+            P::method(),
+            P::topic(),
+        );
+        Ok(())
+    }
+
     async fn run_internal(&mut self) -> Result<(), BaseError<Value>> {
+        self.before_run().await?;
+        let topic = P::topic();
+
         loop {
             let message = self.subscription.next().await?;
             match message.deserialize() {
-                Ok(request) => match self.service.process(request).await {
-                    Ok(response_schema) => {
-                        debug!("got response schema{:#?}", response_schema);
-                        self.on_process_success(message, response_schema).await?
+                Ok(request) => {
+                    log::info!("By topic: {:?} | Got request: {:#?}", topic, request);
+                    match self.service.process(request).await {
+                        Ok(response_schema) => {
+                            log::debug!("got response schema{:#?}", response_schema);
+                            self.on_process_success(message, response_schema).await?
+                        }
+                        Err(error) if error.is_critical() => {
+                            log::debug!("Got response error critical: {:#?}", error);
+                            return Err(error);
+                        }
+                        Err(error) => {
+                            log::debug!("Got response left: {:#?}", error);
+                            self.on_process_error(message, error).await?
+                        }
                     }
-                    Err(error) if error.is_critical() => {
-                        log::debug!("Got response error critical: {:#?}", error);
-                        return Err(error);
-                    }
-                    Err(error) => {
-                        log::debug!("Got response left: {:#?}", error);
-                        self.on_process_error(message, error).await?
-                    }
-                },
+                }
                 Err(error) => {
-                    debug!("got error{:#?}", error);
+                    log::debug!("got error{:#?}", error);
                     self.on_process_error(message, error.clone()).await?;
                     return Err(error);
                 }
@@ -131,16 +153,16 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
             )
         })?;
 
-        let publish_result = self
+        self
             .transport
             .publish(VResponse::Response(TransportResponse {
-                topic_res: topic,
+                topic_res: topic.clone(),
                 response: payload,
             }))
-            .await;
-        log::debug!("publish result {:#?} : ", publish_result);
+            .await?;
 
-        publish_result
+        log::info!("By topic: {:?} | Publish {:#?}", topic, response);
+        Ok(())
     }
 
     /// Try get topic to response from raw request
