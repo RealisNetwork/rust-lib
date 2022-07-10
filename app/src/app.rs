@@ -8,14 +8,9 @@ pub trait Runnable: Send + Sync {
     async fn run(&mut self);
 }
 
+#[derive(Default)]
 pub struct App {
     services: Vec<Box<Mutex<dyn Runnable>>>,
-}
-
-impl Default for App {
-    fn default() -> Self {
-        Self { services: vec![] }
-    }
 }
 
 impl App {

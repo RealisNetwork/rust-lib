@@ -7,10 +7,7 @@ use healthchecker::HealthChecker;
 use schemas::{Agent, Response, ResponseMessage, ResponseResult, Schema};
 use serde_json::Value;
 use std::sync::Arc;
-use transport::Response as TransportResponse;
-use transport::{
-    ReceivedMessage, Subscription, Transport, VReceivedMessage, VResponse, VSubscription,
-};
+use transport::{ReceivedMessage, Subscription, Transport, VReceivedMessage, VSubscription};
 
 // TODO: ServiceAppBuilder|ServiceAppContainer?
 pub struct ServiceApp<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> {
@@ -106,19 +103,9 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
                 "responseSchema": G::schema(),
             }
         });
-        let payload = serde_json::to_vec(&notification).map_err(|error| {
-            BaseError::<()>::new(
-                format!("{:?}", error),
-                GeneratedError::Common(Common::InternalServerError).into(),
-                None,
-            )
-        })?;
 
         self.transport
-            .publish(VResponse::Response(TransportResponse {
-                topic_res: TOPIC.to_owned(),
-                response: payload,
-            }))
+            .raw_publish(TOPIC.to_owned(), &notification)
             .await?;
 
         Ok(())
@@ -200,20 +187,7 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
             topic
         );
 
-        let payload = serde_json::to_vec(&response).map_err(|error| {
-            BaseError::new(
-                format!("{:?}", error),
-                GeneratedError::Common(Common::InternalServerError).into(),
-                serde_json::to_value(&raw_request).ok(),
-            )
-        })?;
-
-        self.transport
-            .publish(VResponse::Response(TransportResponse {
-                topic_res: topic.clone(),
-                response: payload,
-            }))
-            .await?;
+        self.transport.raw_publish(topic.clone(), &response).await?;
 
         log::info!("By topic: {:?} | Publish {:#?}", topic, response);
         Ok(())

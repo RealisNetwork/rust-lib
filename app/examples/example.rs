@@ -32,9 +32,15 @@ async fn main() {
         .expect("Fail to init health_checker");
 
     let service_app: ServiceApp<RequestParamsSchema, ResponseSchema, ExampleService, VTransport> =
-        ServiceApp::new(NAME.to_owned(), CLIENT_ID_1.to_owned(), service, transport_1, health_checker)
-            .await
-            .expect("Fail to subscribe");
+        ServiceApp::new(
+            NAME.to_owned(),
+            CLIENT_ID_1.to_owned(),
+            service,
+            transport_1,
+            health_checker,
+        )
+        .await
+        .expect("Fail to subscribe");
 
     let sender = Sender {
         transport: transport_2.into(),
