@@ -1,6 +1,7 @@
 use app::app::{App, LevelFilter, Runnable};
 use app::{Service, ServiceApp};
 use async_trait::async_trait;
+use error_registry::generated_errors::{Critical, GeneratedError};
 use error_registry::BaseError;
 use healthchecker::HealthChecker;
 use schemas::{Agent, AuthInfo, Request, Schema};
@@ -9,8 +10,8 @@ use serde_json::Value;
 use std::sync::Arc;
 use transport::{Response, VResponse};
 use transport::{StanTransport, Transport, VTransport};
-use error_registry::generated_errors::{GeneratedError, Critical};
 
+const NAME: &str = "example-0";
 const TOPIC_1: &str = "test-topic";
 const CLIENT_ID_1: &str = "test-client-1";
 const CLIENT_ID_2: &str = "test-client-2";
@@ -31,7 +32,7 @@ async fn main() {
         .expect("Fail to init health_checker");
 
     let service_app: ServiceApp<RequestParamsSchema, ResponseSchema, ExampleService, VTransport> =
-        ServiceApp::new(service, transport_1, health_checker)
+        ServiceApp::new(NAME.to_owned(), CLIENT_ID_1.to_owned(), service, transport_1, health_checker)
             .await
             .expect("Fail to subscribe");
 
@@ -40,7 +41,7 @@ async fn main() {
     };
 
     App::default()
-        .init_logger_with_level(LevelFilter::Info)
+        .init_logger_with_level(LevelFilter::Debug)
         .push(service_app)
         .push(sender)
         .run()
@@ -54,7 +55,15 @@ struct RequestParamsSchema {
     msg: String,
 }
 
-impl Schema for RequestParamsSchema {}
+impl Schema for RequestParamsSchema {
+    fn schema() -> Value {
+        serde_json::json!({
+            "msg": {
+                "type": "string"
+            }
+        })
+    }
+}
 
 impl Agent for RequestParamsSchema {
     fn topic() -> &'static str {
@@ -76,7 +85,15 @@ struct ResponseSchema {
     msg: String,
 }
 
-impl Schema for ResponseSchema {}
+impl Schema for ResponseSchema {
+    fn schema() -> Value {
+        serde_json::json!({
+            "msg": {
+                "type": "string"
+            }
+        })
+    }
+}
 
 // --- Service ---
 
@@ -102,8 +119,8 @@ impl Service<RequestParamsSchema, ResponseSchema> for ExampleService {
             return Err(BaseError::new(
                 "".to_owned(),
                 GeneratedError::Critical(Critical::Db).into(),
-                None
-            ))
+                None,
+            ));
         }
 
         Ok(ResponseSchema {

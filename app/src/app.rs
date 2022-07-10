@@ -12,7 +12,6 @@ pub struct App {
     services: Vec<Box<Mutex<dyn Runnable>>>,
 }
 
-#[allow(clippy::derivable_impls)]
 impl Default for App {
     fn default() -> Self {
         Self { services: vec![] }

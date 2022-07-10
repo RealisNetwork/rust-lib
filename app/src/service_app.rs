@@ -14,6 +14,8 @@ use transport::{
 
 // TODO: ServiceAppBuilder|ServiceAppContainer?
 pub struct ServiceApp<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> {
+    name: String,
+    client_id: String,
     service: S,
     transport: Arc<N>,
     subscription: VSubscription,
@@ -31,17 +33,14 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> Runnable
             log::error!("{:?}", error);
             health_checker.make_sick();
         }
-        log::warn!(
-            "Stop service: \nagent: \t{:?},\nmethod:\t{:?},\ntopic: \t{:?},",
-            P::agent(),
-            P::method(),
-            P::topic(),
-        );
+        let _result = self.after_run().await;
     }
 }
 
 impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceApp<P, G, S, N> {
     pub async fn new(
+        name: String,
+        client_id: String,
         service: S,
         transport: Arc<N>,
         health_checker: HealthChecker,
@@ -50,6 +49,8 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
             .subscribe(service.topic_to_subscribe())
             .await
             .map(|subscription| Self {
+                name,
+                client_id,
                 service,
                 transport,
                 subscription,
@@ -66,6 +67,60 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
             P::method(),
             P::topic(),
         );
+        // Notification gateway
+        self.run_notification().await?;
+
+        Ok(())
+    }
+
+    async fn after_run(&mut self) -> Result<(), BaseError<Value>> {
+        // Logs
+        log::warn!(
+            "Stop service: \nagent: \t{:?},\nmethod:\t{:?},\ntopic: \t{:?},",
+            P::agent(),
+            P::method(),
+            P::topic(),
+        );
+
+        Ok(())
+    }
+
+    /// Send notification to gateway in JSON format:
+    /// {
+    ///   "name": "string",
+    ///   "client_id": "string",
+    ///   "schemas": {
+    ///     "topic": "string"
+    ///     "paramsSchema": {}
+    ///     "responseSchema": {}
+    ///   }
+    /// }
+    async fn run_notification(&mut self) -> Result<(), BaseError<Value>> {
+        const TOPIC: &str = "pasha_help_plz";
+        let notification = serde_json::json!({
+            "name": self.name,
+            "client_id": self.client_id,
+            "schemas": {
+                "topic": P::topic(),
+                "paramsSchema": P::schema(),
+                "responseSchema": G::schema(),
+            }
+        });
+        let payload = serde_json::to_vec(&notification).map_err(|error| {
+            BaseError::<()>::new(
+                format!("{:?}", error),
+                GeneratedError::Common(Common::InternalServerError).into(),
+                None,
+            )
+        })?;
+
+        self.transport
+            .publish(VResponse::Response(TransportResponse {
+                topic_res: TOPIC.to_owned(),
+                response: payload,
+            }))
+            .await?;
+
         Ok(())
     }
 
@@ -153,8 +208,7 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
             )
         })?;
 
-        self
-            .transport
+        self.transport
             .publish(VResponse::Response(TransportResponse {
                 topic_res: topic.clone(),
                 response: payload,
