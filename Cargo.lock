@@ -37,9 +37,9 @@ name = "app"
 version = "0.1.0"
 dependencies = [
  "async-trait",
- "error_registry",
+ "error_registry 0.1.0",
  "futures 0.3.21",
- "healthchecker",
+ "healthchecker 0.1.0",
  "log 0.4.17",
  "nats",
  "schemas",
@@ -215,7 +215,7 @@ dependencies = [
  "num-integer",
  "num-traits",
  "serde",
- "time",
+ "time 0.1.44",
  "winapi 0.3.9",
 ]
 
@@ -226,6 +226,20 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ddfc5b9aa5d4507acaf872de71051dfd0e309860e88966e1051e462a077aac4f"
 dependencies = [
  "bitflags",
+]
+
+[[package]]
+name = "config"
+version = "0.1.0"
+source = "git+https://github.com/RealisNetwork/rust-lib.git#8c79cf293a30504540bcfc82c183f9a5e725fc7d"
+dependencies = [
+ "dotenv",
+ "error_registry 0.1.0 (git+https://github.com/RealisNetwork/rust-lib.git)",
+ "healthchecker 0.1.0 (git+https://github.com/RealisNetwork/rust-lib.git)",
+ "hex",
+ "log 0.4.17",
+ "ratsio",
+ "realis-macros",
 ]
 
 [[package]]
@@ -555,7 +569,30 @@ dependencies = [
  "deadpool-postgres",
  "dotenv",
  "hex",
- "octocrab",
+ "octocrab 0.15.4",
+ "openssl",
+ "quote 1.0.20",
+ "ratsio",
+ "reqwest",
+ "serde",
+ "serde_json",
+ "syn 1.0.98",
+ "tokio 1.19.2",
+ "tokio-postgres",
+]
+
+[[package]]
+name = "error_registry"
+version = "0.1.0"
+source = "git+https://github.com/RealisNetwork/rust-lib.git#8c79cf293a30504540bcfc82c183f9a5e725fc7d"
+dependencies = [
+ "backtrace",
+ "convert_case",
+ "deadpool",
+ "deadpool-postgres",
+ "dotenv",
+ "hex",
+ "octocrab 0.15.4",
  "openssl",
  "quote 1.0.20",
  "ratsio",
@@ -809,7 +846,20 @@ checksum = "db0d4cf898abf0081f964436dc980e96670a0f36863e4b83aaacdb65c9d7ccc3"
 name = "healthchecker"
 version = "0.1.0"
 dependencies = [
- "error_registry",
+ "error_registry 0.1.0",
+ "futures 0.1.31",
+ "tokio 1.19.2",
+ "tokio-minihttp",
+ "tokio-proto",
+ "tokio-service",
+]
+
+[[package]]
+name = "healthchecker"
+version = "0.1.0"
+source = "git+https://github.com/RealisNetwork/rust-lib.git#8c79cf293a30504540bcfc82c183f9a5e725fc7d"
+dependencies = [
+ "error_registry 0.1.0 (git+https://github.com/RealisNetwork/rust-lib.git)",
  "futures 0.1.31",
  "tokio 1.19.2",
  "tokio-minihttp",
@@ -1046,11 +1096,25 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "afabcc15e437a6484fc4f12d0fd63068fe457bf93f1c148d3d9649c60b103f32"
 dependencies = [
  "base64 0.12.3",
- "pem",
+ "pem 0.8.3",
  "ring",
  "serde",
  "serde_json",
- "simple_asn1",
+ "simple_asn1 0.4.1",
+]
+
+[[package]]
+name = "jsonwebtoken"
+version = "8.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1aa4b4af834c6cfd35d8763d359661b90f2e45d8f750a0849156c7f4671af09c"
+dependencies = [
+ "base64 0.13.0",
+ "pem 1.0.2",
+ "ring",
+ "serde",
+ "serde_json",
+ "simple_asn1 0.6.2",
 ]
 
 [[package]]
@@ -1331,6 +1395,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "num-bigint"
+version = "0.4.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f93ab6289c7b344a8a9f60f88d80aa20032336fe78da341afc91c8a2341fc75f"
+dependencies = [
+ "autocfg 1.1.0",
+ "num-integer",
+ "num-traits",
+]
+
+[[package]]
 name = "num-integer"
 version = "0.1.45"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1360,6 +1435,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "num_threads"
+version = "0.1.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2819ce041d2ee131036f4fc9d6ae7ae125a3a40e97ba64d04fe799ad9dabbb44"
+dependencies = [
+ "libc",
+]
+
+[[package]]
 name = "object"
 version = "0.28.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1380,9 +1464,32 @@ dependencies = [
  "bytes 1.1.0",
  "chrono",
  "hyperx",
- "jsonwebtoken",
+ "jsonwebtoken 7.2.0",
  "once_cell",
  "reqwest",
+ "serde",
+ "serde_json",
+ "serde_path_to_error",
+ "snafu",
+ "url",
+]
+
+[[package]]
+name = "octocrab"
+version = "0.16.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8d3731cf8af31e9df81c7f529d3907f8a01c6ffea0cb8a989a637f66a9201a23"
+dependencies = [
+ "arc-swap",
+ "async-trait",
+ "base64 0.13.0",
+ "bytes 1.1.0",
+ "chrono",
+ "hyperx",
+ "jsonwebtoken 8.1.1",
+ "once_cell",
+ "reqwest",
+ "secrecy",
  "serde",
  "serde_json",
  "serde_path_to_error",
@@ -1530,6 +1637,15 @@ dependencies = [
  "base64 0.13.0",
  "once_cell",
  "regex",
+]
+
+[[package]]
+name = "pem"
+version = "1.0.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e9a3b09a20e374558580a4914d3b7d89bd61b954a5a5e1dcbea98753addb1947"
+dependencies = [
+ "base64 0.13.0",
 ]
 
 [[package]]
@@ -1972,6 +2088,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "realis-macros"
+version = "0.1.0"
+source = "git+https://github.com/RealisNetwork/rust-lib.git#8c79cf293a30504540bcfc82c183f9a5e725fc7d"
+dependencies = [
+ "convert_case",
+ "proc-macro2 1.0.40",
+ "quote 1.0.20",
+ "syn 1.0.98",
+]
+
+[[package]]
 name = "redox_syscall"
 version = "0.1.57"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2130,9 +2257,29 @@ dependencies = [
 name = "schemas"
 version = "0.1.0"
 dependencies = [
- "error_registry",
+ "config",
+ "error_registry 0.1.0",
+ "schemas-generator",
  "serde",
  "serde_json",
+]
+
+[[package]]
+name = "schemas-generator"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "async-trait",
+ "config",
+ "convert_case",
+ "error_registry 0.1.0 (git+https://github.com/RealisNetwork/rust-lib.git)",
+ "octocrab 0.16.0",
+ "quote 1.0.20",
+ "reqwest",
+ "serde",
+ "serde_json",
+ "syn 1.0.98",
+ "tokio 1.19.2",
 ]
 
 [[package]]
@@ -2155,6 +2302,15 @@ checksum = "b362b83898e0e69f38515b82ee15aa80636befe47c3b6d3d89a911e78fc228ce"
 dependencies = [
  "ring",
  "untrusted",
+]
+
+[[package]]
+name = "secrecy"
+version = "0.8.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9bd1c54ea06cfd2f6b63219704de0b9b4f72dcc2b8fdef820be6cd799780e91e"
+dependencies = [
+ "zeroize",
 ]
 
 [[package]]
@@ -2305,8 +2461,20 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "692ca13de57ce0613a363c8c2f1de925adebc81b04c923ac60c5488bb44abe4b"
 dependencies = [
  "chrono",
- "num-bigint",
+ "num-bigint 0.2.6",
  "num-traits",
+]
+
+[[package]]
+name = "simple_asn1"
+version = "0.6.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "adc4e5204eb1910f40f9cfa375f6f05b68c3abac4b6fd879c8ff5e7ae8a0a085"
+dependencies = [
+ "num-bigint 0.4.3",
+ "num-traits",
+ "thiserror",
+ "time 0.3.11",
 ]
 
 [[package]]
@@ -2527,6 +2695,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "time"
+version = "0.3.11"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "72c91f41dcb2f096c05f0873d667dceec1087ce5bcf984ec8ffb19acddbb3217"
+dependencies = [
+ "itoa 1.0.2",
+ "libc",
+ "num_threads",
+ "time-macros",
+]
+
+[[package]]
+name = "time-macros"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "42657b1a6f4d817cda8e7a0ace261fe0cc946cf3a80314390b22cc61ae080792"
+
+[[package]]
 name = "tinyvec"
 version = "1.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2678,7 +2864,7 @@ dependencies = [
  "httparse",
  "log 0.3.9",
  "net2",
- "time",
+ "time 0.1.44",
  "tokio-core",
  "tokio-io",
  "tokio-proto",
@@ -2910,7 +3096,7 @@ version = "0.1.0"
 dependencies = [
  "async-trait",
  "enum_dispatch",
- "error_registry",
+ "error_registry 0.1.0",
  "nats",
  "serde",
  "serde_json",

@@ -1,4 +1,5 @@
 pub mod common;
+pub mod generated_schemas;
 
 pub use crate::common::*;
 use serde_json::Value;

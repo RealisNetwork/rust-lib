@@ -7,6 +7,11 @@ edition = "2021"
 
 [dependencies]
 error_registry = { path = "../error_registry" }
+schemas-generator = { path = "schemas-generator" }
 
 serde_json = "1.0.82"
 serde = "1.0.138"
+
+[build-dependencies]
+schemas-generator = { path = "schemas-generator" }
+config = { git = "https://github.com/RealisNetwork/rust-lib.git" }
