@@ -13,3 +13,6 @@ futures={version = "0.1.11"}
 tokio-minihttp={git = "https://github.com/tokio-rs/tokio-minihttp.git"}
 tokio-proto={version = "0.1"}
 tokio-service={version = "0.1"}
+log = "0.4.17"
+env_logger = "0.8.4"
+async-trait = "0.1.56"

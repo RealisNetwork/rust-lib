@@ -2,9 +2,9 @@ use app::app::{App, Runnable};
 use app::{Service, ServiceApp};
 use async_trait::async_trait;
 use error_registry::BaseError;
-use healthchecker::HealthChecker;
+use healthchecker::HealthcheckerServer;
 use nats;
-use schemas::Schema;
+use schemas::{Agent, Request, Schema};
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::sync::Arc;
@@ -27,12 +27,12 @@ async fn main() {
     let mut transport_2 =
         StanTransport::new(NATS_URL, CLUSTER_ID, CLIENT_ID_2).expect("Fail to init transport_2");
     let service = ExampleService;
-    let health_checker = HealthChecker::new(&"127.0.0.1:4444".to_owned(), 1_000)
+    let health_checker = HealthcheckerServer::new(&"127.0.0.1:4444".to_owned(), 1_000, None)
         .await
         .expect("Fail to init health_checker");
 
     let service_app: ServiceApp<RequestSchema, ResponseSchema, ExampleService, VTransport> =
-        ServiceApp::new(service, transport_1, health_checker)
+        ServiceApp::new(service, transport_1, health_checker.get_health_cheker())
             .await
             .expect("Fail to subscribe");
 
@@ -50,6 +50,20 @@ struct RequestSchema {
 
 impl Schema for RequestSchema {}
 
+impl Agent for RequestSchema {
+    fn topic() -> &'static str {
+        TOPIC_1
+    }
+
+    fn method() -> &'static str {
+        "todo!()"
+    }
+
+    fn agent() -> &'static str {
+        "todo!()"
+    }
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 struct ResponseSchema {
     msg: String,
@@ -61,13 +75,9 @@ struct ExampleService;
 
 #[async_trait]
 impl Service<RequestSchema, ResponseSchema> for ExampleService {
-    fn topic_to_subscribe(&self) -> String {
-        TOPIC_1.to_owned()
-    }
-
     async fn process(
         &mut self,
-        request: RequestSchema,
+        request: Request<RequestSchema>,
     ) -> Result<ResponseSchema, BaseError<Value>> {
         println!("{:#?}", request);
         Ok(ResponseSchema {
