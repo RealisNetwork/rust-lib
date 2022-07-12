@@ -1,4 +1,5 @@
 pub mod balance_increase_user_balance;
+pub mod balance_user_blockchain_deposit;
 pub mod battle_pass_generate_product;
 pub mod battle_pass_purchase_experience;
 pub mod battle_pass_purchase_premium;
@@ -11,6 +12,7 @@ pub mod purchase_purchase_product;
 pub mod wallet_get_by_user_id;
 pub mod wallet_get_my;
 pub use balance_increase_user_balance::*;
+pub use balance_user_blockchain_deposit::*;
 pub use battle_pass_generate_product::*;
 pub use battle_pass_purchase_experience::*;
 pub use battle_pass_purchase_premium::*;

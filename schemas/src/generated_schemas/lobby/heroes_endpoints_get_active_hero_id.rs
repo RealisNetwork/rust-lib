@@ -6,4 +6,4 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LobbyHeroesEndpointsGetActiveHeroIdParams;
 #[derive(Debug, Serialize, Deserialize)]
-pub struct LobbyHeroesEndpointsGetActiveHeroIdReturns;
+pub struct LobbyHeroesEndpointsGetActiveHeroIdReturns(i32);

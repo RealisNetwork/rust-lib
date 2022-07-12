@@ -82,7 +82,20 @@ impl Agent {
             AgentParams::Array(_array) => (quote! {}, quote! {pub struct #name;}), // pub struct ..Params(Vec<...>)
             AgentParams::Object(_object) => (quote! {}, quote! {pub struct #name;}), // pub struct ..Params{...}
             AgentParams::String(_string) => (quote! {}, quote! {pub struct #name(String);}), // pub struct ..Params(String)
-            AgentParams::Integer(_integer) => (quote! {}, quote! {pub struct #name;}), // pub struct ..Params(u8|u16...)
+            AgentParams::Integer(integer) => match integer {
+                Some(value) => match value.additional_attributes {
+                    AdditionalAttribute::Byte => {
+                        (quote! {}, quote! { pub struct #name{Integer{i8}} })
+                    }
+                    AdditionalAttribute::Short => {
+                        (quote! {}, quote! { pub struct #name{Integer{i16}} })
+                    }
+                    AdditionalAttribute::Int => {
+                        (quote! {}, quote! { pub struct #name{Integer{i32}} })
+                    }
+                },
+                None => (quote! {}, quote! {pub struct #name(Integer);}),
+            }, // pub struct ..Params(u8|u16...)
             // pub struct ..Params(bool)
             AgentParams::Bool => (quote! {}, quote! { pub struct #name(bool); }),
             AgentParams::Empty => (quote! {}, quote! {pub struct #name;}), // pub struct ..Params or ..Params {}
@@ -97,13 +110,30 @@ impl Agent {
             //     let prefix = quote! {};
             //     (prefix, declaration)
             // }
-            AgentParams::Array(_array) => (quote! {}, quote! {pub struct #name;}), // pub struct ..Returns(Vec<...>)
-            AgentParams::Object(_object) => (quote! {}, quote! {pub struct #name;}), // pub struct ..Returns{...}
-            AgentParams::String(_string) => (quote! {}, quote! {pub struct #name(String);}), // pub struct ..Returns(String)
-            AgentParams::Integer(_integer) => (quote! {}, quote! {pub struct #name;}), // pub struct ..Returns(u8|u16...)
+            // pub struct ..Returns(Vec<...>)
+            AgentParams::Array(_array) => (quote! {}, quote! {pub struct #name;}),
+            // pub struct ..Returns{...}
+            AgentParams::Object(_object) => (quote! {}, quote! {pub struct #name;}),
+            // pub struct ..Returns(String)
+            AgentParams::String(_string) => (quote! {}, quote! {pub struct #name(String);}),
+            // pub struct ..Returns(u8|u16...)
+            AgentParams::Integer(integer) => match integer {
+                Some(value) => {
+                    let declaration = value.get_declaration();
+                    (quote! {}, quote! { pub struct #name(#declaration); })
+                }
+                None => (
+                    quote! {
+                        use schemas_generator::types::integer::Integer;
+                    },
+                    quote! {
+                    pub struct #name(Integer);},
+                ),
+            },
             // pub struct ..Returns(bool)
             AgentParams::Bool => (quote! {}, quote! { pub struct #name(bool); }),
-            AgentParams::Empty => (quote! {}, quote! {pub struct #name;}), // pub struct ..Returns or ..Returns {}
+            // pub struct ..Returns or ..Returns {}
+            AgentParams::Empty => (quote! {}, quote! {pub struct #name;}),
         }
     }
 }

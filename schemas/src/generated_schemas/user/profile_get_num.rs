@@ -2,8 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use schemas_generator::types::integer::Integer;
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct UserProfileGetNumParams;
 #[derive(Debug, Serialize, Deserialize)]
-pub struct UserProfileGetNumReturns;
+pub struct UserProfileGetNumReturns(Integer);

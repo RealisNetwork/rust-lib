@@ -45,17 +45,19 @@ fn main() {
         // Creating `pub mod ...`
         let agent_methods = agents
             .iter()
-            .filter(|a| a.agent == agent)
+            .filter(|a| a.create_directory_name() == agent)
             .map(|agent| Ident::new(&agent.create_file_name(), Span::call_site()))
             .collect::<Vec<_>>();
         let pub_mods = quote! {
           #( pub mod #agent_methods; )*
         };
+        println!("{:?}", agent_methods);
         mod_file
             .write(pub_mods.to_string().as_bytes())
             .expect("Fail to write to \"mod.rs\"");
 
         // Creating `pub use ...::*
+        // Maybe get rid of this?
         let agent_methods = agents
             .iter()
             .filter(|a| a.agent == agent)

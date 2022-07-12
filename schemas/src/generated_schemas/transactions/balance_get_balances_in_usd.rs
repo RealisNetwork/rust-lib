@@ -2,8 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use schemas_generator::types::integer::Integer;
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetBalancesInUsdParams;
 #[derive(Debug, Serialize, Deserialize)]
-pub struct TransactionsBalanceGetBalancesInUsdReturns;
+pub struct TransactionsBalanceGetBalancesInUsdReturns(Integer);

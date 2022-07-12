@@ -4,6 +4,6 @@
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
-pub struct GameBalancerGameBalancerAddPlayerInSearchParams;
+pub struct OrchestratorBalanceUserBlockchainDepositParams;
 #[derive(Debug, Serialize, Deserialize)]
-pub struct GameBalancerGameBalancerAddPlayerInSearchReturns(bool);
+pub struct OrchestratorBalanceUserBlockchainDepositReturns(bool);
