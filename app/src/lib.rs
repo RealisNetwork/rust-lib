@@ -1,4 +1,3 @@
-#![feature(inherent_associated_types)]
 
 pub mod app;
 pub mod service;
