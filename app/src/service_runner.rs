@@ -1,6 +1,4 @@
 use std::future::Future;
-
-use serde::Serialize;
 use serde_json::Value;
 use error_registry::BaseError;
 
@@ -19,7 +17,7 @@ impl<T: Sized> ServiceRunner<T> {
         }
     }
 
-    pub async fn run<Fut>(self, run: impl FnOnce(T) -> Fut, env_config: T)
+    pub fn run<Fut>(self, run: impl FnOnce(T) -> Fut, env_config: T)
         where Fut: Future<Output=Result<(), BaseError<Value>>> {
         let rt = tokio::runtime::Builder::new_multi_thread()
             .worker_threads(self.workers_number)
@@ -56,7 +54,6 @@ impl<T: Sized> ServiceRunner<T> {
         });
     }
 }
-
 
 
 impl<T> Default for ServiceRunner<T> {
