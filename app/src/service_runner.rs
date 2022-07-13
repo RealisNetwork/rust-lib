@@ -20,7 +20,7 @@ impl<T: Sized> ServiceRunner<T> {
     }
 
     pub async fn run<Fut>(self, run: impl FnOnce(T) -> Fut, env_config: T)
-        where Fut: Future<Output=Result<(), BaseError<()>>> {
+        where Fut: Future<Output=Result<(), BaseError<Value>>> {
         let rt = tokio::runtime::Builder::new_multi_thread()
             .worker_threads(self.workers_number)
             .max_blocking_threads(self.blocking_treads)
