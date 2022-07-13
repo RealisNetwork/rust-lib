@@ -512,12 +512,6 @@ impl From<std::num::ParseIntError> for ErrorType {
     }
 }
 
-impl From<std::str::ParseBoolError> for ErrorType {
-    fn from(_: std::str::ParseBoolError) -> Self {
-        // Custom EnvLoadedError: Convert
-        ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Convert))
-    }
-}
 
 impl From<std::net::AddrParseError> for ErrorType {
     fn from(_: std::net::AddrParseError) -> Self {
