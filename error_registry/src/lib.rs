@@ -526,6 +526,13 @@ impl From<std::net::AddrParseError> for ErrorType {
     }
 }
 
+impl From<std::str::ParseBoolError> for BaseError<()> {
+    fn from(_: std::str::ParseBoolError) -> Self {
+        // Custom EnvLoadedError: Convert
+        BaseError::from(CustomErrorType::EnvLoadedError(EnvLoadedError::Convert))
+    }
+}
+
 impl From<tokio::task::JoinError> for ErrorType {
     fn from(_: tokio::task::JoinError) -> Self {
         ErrorType::Generated(GeneratedError::Common(Common::InternalServerError))

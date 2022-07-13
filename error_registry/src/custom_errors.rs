@@ -113,6 +113,7 @@ pub enum Nats {
     Send,
     Timeout,
     CantSerialize,
+    FailedToSubscribe,
 }
 
 impl From<Nats> for u32 {
@@ -125,6 +126,7 @@ impl From<Nats> for u32 {
             Nats::Send => 5u32,
             Nats::Timeout => 6u32,
             Nats::CantSerialize => 7u32,
+            Nats::FailedToSubscribe => 8u32,
         }
     }
 }
@@ -157,6 +159,10 @@ pub enum Common {
     ParseBool,
     OutOfRange,
     Other,
+    CanNotSerialize,
+    ExternalServiceError,
+    NotImplemented,
+    FailedToInit,
 }
 
 impl From<Common> for u32 {
@@ -169,6 +175,10 @@ impl From<Common> for u32 {
             Common::ParseBool => 5u32,
             Common::OutOfRange => 6u32,
             Common::Other => 7u32,
+            Common::CanNotSerialize => 8u32,
+            Common::ExternalServiceError => 9u32,
+            Common::NotImplemented => 10u32,
+            Common::FailedToInit => 11u32,
         }
     }
 }
