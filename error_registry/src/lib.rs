@@ -15,6 +15,8 @@ use std::{
     fmt,
     fmt::{Debug, Display, Formatter},
 };
+use std::str::ParseBoolError;
+use crate::custom_errors::Utils;
 
 pub mod custom_errors;
 pub mod generated_errors;
@@ -525,6 +527,12 @@ impl From<tokio::task::JoinError> for ErrorType {
         ErrorType::Generated(GeneratedError::Common(Common::InternalServerError))
     }
 }
+impl From<ParseBoolError> for ErrorType {
+    fn from(_: ParseBoolError) -> Self
+    {
+        ErrorType::Custom(CustomErrorType::Utils(Utils::Parse))
+    }
+}
 
 impl From<CustomErrorType> for ErrorType {
     /// Cast `CustomErrorType` to `ErrorType`
@@ -539,6 +547,7 @@ impl From<GeneratedError> for ErrorType {
         ErrorType::Generated(gen_err)
     }
 }
+
 
 #[cfg(test)]
 
