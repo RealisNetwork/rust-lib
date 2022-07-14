@@ -4,13 +4,13 @@ use async_trait::async_trait;
 use error_registry::BaseError;
 use healthchecker::Alivable;
 use healthchecker::HealthcheckerServer;
+use log::LevelFilter;
 use nats;
 use realis_macros::Alivable;
 use schemas::{Agent, AuthInfo, Request, Schema};
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::sync::Arc;
-use log::LevelFilter;
 use tokio::sync::Mutex;
 use transport::{Response, VResponse};
 use transport::{StanTransport, Transport, VTransport};
@@ -24,29 +24,41 @@ const NATS_URL: &str = "localhost:4222";
 
 #[tokio::main]
 async fn main() {
-    let mut transport_1 = Arc::new(VTransport::Stan(
-        StanTransport::new(NATS_URL, CLUSTER_ID, CLIENT_ID_1).expect("Fail to init transport_1"),
-    ));
+    let mut stan_transport_1 =
+        StanTransport::new(NATS_URL, CLUSTER_ID, CLIENT_ID_1).expect("Fail to init transport_1");
+
+    let mut transport_1 = Arc::new(VTransport::Stan(stan_transport_1));
     let mut transport_2 =
         StanTransport::new(NATS_URL, CLUSTER_ID, CLIENT_ID_2).expect("Fail to init transport_2");
     let service = ExampleService {
         a: 1,
         transport: transport_1.clone(),
     };
-    let health_checker = HealthcheckerServer::new(&"127.0.0.1:8080".to_owned(), 1_000, None)
+    let mut health_checker = HealthcheckerServer::new(&"127.0.0.1:8080".to_owned(), 1_000, None)
         .await
         .expect("Fail to init health_checker");
 
     let service_app: ServiceApp<RequestSchema, ResponseSchema, ExampleService, VTransport> =
-        ServiceApp::new(service, transport_1, health_checker.get_health_cheker())
-            .await
-            .expect("Fail to subscribe");
+        ServiceApp::new(
+            service.clone(),
+            transport_1.clone(),
+            health_checker.get_health_cheker(),
+        )
+        .await
+        .expect("Fail to subscribe");
+
+    health_checker.push(Box::new(service)).await;
 
     let sender = Sender {
         transport: transport_2.into(),
     };
 
-    App::default().init_logger_with_level(LevelFilter::Info).push(service_app).push(sender).run().await;
+    App::default()
+        .init_logger_with_level(LevelFilter::Info)
+        .push(service_app)
+        .push(sender)
+        .run()
+        .await;
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -77,7 +89,7 @@ struct ResponseSchema {
 
 impl Schema for ResponseSchema {}
 
-#[derive(Alivable)]
+#[derive(Alivable, Clone)]
 struct ExampleService {
     #[AliveAttr(skip)]
     a: i32,
@@ -117,8 +129,8 @@ impl Runnable for Sender {
                 auth_info: AuthInfo {
                     user_id: "".to_string(),
                     address: None,
-                    continent: None
-                }
+                    continent: None,
+                },
             };
 
             let response = VResponse::Response(Response {

@@ -1,5 +1,4 @@
 use proc_macro2::{Group, Span, TokenStream, TokenTree};
-use std::mem::transmute;
 use syn::{
     parse::{self, Parse},
     Meta::List,
@@ -32,6 +31,7 @@ pub fn get_env_meta_items(attr: &syn::Attribute) -> Vec<syn::NestedMeta> {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 pub fn get_lit_str<'a>(lit: &'a syn::Lit) -> &'a syn::LitStr {
     match lit {
         syn::Lit::Str(lit) => lit,

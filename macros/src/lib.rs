@@ -140,6 +140,22 @@ pub fn config_macro_derive(item: TokenStream) -> TokenStream {
     impl_env_macros(item)
 }
 
+/// Macro for automatically implement Alivable trait, objects of this trait can be passed to
+/// healthchecker and, by default, all the fields of such object will be checked, in case
+/// some field does not have to implement Alivable it can be annotated, using
+/// #[AliveAttr(skip)] annotation
+/// # Examples
+/// ```
+/// use std::sync::Arc;
+/// use healthchecker::Alivable;
+///
+/// #[derive(Alivable, Clone)]
+/// struct ExampleService {
+///     #[AliveAttr(skip)]
+///     a: i32,
+///     transport: Arc<VTransport>,
+/// }
+/// ```
 #[proc_macro_derive(Alivable, attributes(AliveAttr))]
 pub fn alivable(input: TokenStream) -> TokenStream {
     impl_alivable(input)
