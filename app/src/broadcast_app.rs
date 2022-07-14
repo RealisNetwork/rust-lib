@@ -18,7 +18,7 @@ pub trait BroadcastService<P: Agent, G: Schema>: Send + Sync {
 }
 
 // TODO: ServiceAppBuilder|ServiceAppContainer?
-pub struct BroadcastApp<P: Agent, G: Schema, S: BroadcastService<P, G>>
+pub struct BroadcastApp<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Transport + Sync + Send>
 {
     service: S,
     subscription: VSubscription,
@@ -27,8 +27,8 @@ pub struct BroadcastApp<P: Agent, G: Schema, S: BroadcastService<P, G>>
 }
 
 #[async_trait]
-impl<P: Agent, G: Schema, S: BroadcastService<P, G>> Runnable
-    for BroadcastApp<P, G, S>
+impl<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Transport + Sync + Send> Runnable
+    for BroadcastApp<P, G, S, N>
 {
     async fn run(&mut self) {
         let health_checker = self.health_checker.clone();
