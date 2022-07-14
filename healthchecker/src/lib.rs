@@ -23,11 +23,11 @@ pub trait Alivable: Sync + Send {
 #[async_trait]
 impl<T: Alivable> Alivable for Arc<T> {
     async fn is_alive(&self) -> bool {
-        self.is_alive().await
+        (*self).is_alive().await
     }
 
     async fn info(&self) -> &'static str {
-        self.info().await
+        (*self).info().await
     }
 }
 
