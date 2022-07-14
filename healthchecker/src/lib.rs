@@ -26,19 +26,15 @@ pub struct HealthcheckerServer {
     /// false - something goes wrong, need restart
     health: Arc<AtomicBool>,
     services: Arc<Mutex<Vec<Box<dyn Alivable>>>>,
-    /// Timeout between checks, in millis
-    pub timeout: u64,
 }
 
 impl HealthcheckerServer {
     pub async fn new(
         host: &str,
-        timeout: u64,
         services: Option<Vec<Box<dyn Alivable>>>,
     ) -> Result<Self, BaseError<()>> {
         let health_checker = Self {
             health: Arc::new(AtomicBool::new(true)),
-            timeout,
             services: Arc::new(Mutex::new(services.unwrap_or_default())),
         };
 
@@ -75,20 +71,19 @@ impl HealthcheckerServer {
         }
     }
 
-    /// Checks inner state of healthchecker
-    pub async fn is_alive(&self) {
-        while self.health.load(Ordering::Acquire) {
-            sleep(Duration::from_millis(self.timeout)).await;
-        }
-    }
-
     /// Checks every single service in the list and checks inner state
     pub async fn is_ok(&self) -> bool {
-        let mut is_alive = true;
-        for service in self.services.lock().await.iter() {
-            is_alive = is_alive && service.is_alive().await;
+        if self.health.load(Ordering::Acquire) {
+            for service in self.services.lock().await.iter() {
+                if !service.is_alive().await {
+                    error!("Healthchecker fallen by reason: {}", service.info().await);
+                    return false;
+                }
+            }
+        } else {
+            return false;
         }
-        self.health.load(Ordering::Acquire) && is_alive
+        true
     }
 
     /// Toggle state of healthchecker to not alive
@@ -111,6 +106,7 @@ impl HealthChecker {
     }
 }
 
+// TODO: try remove wrapper
 pub struct HealthcheckerHTTPService {
     healthchecker: HealthcheckerServer,
 }

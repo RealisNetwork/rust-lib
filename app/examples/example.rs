@@ -34,7 +34,7 @@ async fn main() {
         a: 1,
         transport: transport_1.clone(),
     };
-    let mut health_checker = HealthcheckerServer::new(&"127.0.0.1:8080".to_owned(), 1_000, None)
+    let mut health_checker = HealthcheckerServer::new(&"127.0.0.1:8080".to_owned(), None)
         .await
         .expect("Fail to init health_checker");
 

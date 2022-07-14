@@ -908,7 +908,6 @@ dependencies = [
  "hyper",
  "log 0.4.17",
  "tokio 1.19.2",
- "tokio-minihttp",
  "tokio-proto",
  "tokio-service",
 ]
@@ -2936,23 +2935,6 @@ dependencies = [
  "proc-macro2 1.0.40",
  "quote 1.0.20",
  "syn 1.0.98",
-]
-
-[[package]]
-name = "tokio-minihttp"
-version = "0.1.0"
-source = "git+https://github.com/tokio-rs/tokio-minihttp.git#c8afcc000c3d1427bb6d317e9a1809f7e953b325"
-dependencies = [
- "bytes 0.4.12",
- "futures 0.1.31",
- "httparse",
- "log 0.3.9",
- "net2",
- "time",
- "tokio-core",
- "tokio-io",
- "tokio-proto",
- "tokio-service",
 ]
 
 [[package]]

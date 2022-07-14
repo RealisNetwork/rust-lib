@@ -47,8 +47,7 @@ impl Alivable for StanTransport {
         // TODO: fixme, try use method like ping for this, current solution works, but it is unappropriated
         let res = self.subscribe_not_durable("Healthchecker_ping").await;
         if let Ok(subscription) = res {
-            subscription.unsubscribe();
-            true
+            subscription.unsubscribe().await.is_ok()
         } else {
             false
         }
