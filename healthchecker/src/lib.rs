@@ -13,11 +13,22 @@ use std::task::{Context, Poll};
 use tokio::sync::Mutex;
 
 /// Implement this trait on your service structure or any service that can loose connection or etc.
-/// Object of this trait can be passed as servisec to healthchecker in oreder to check em all.
+/// Object of this trait can be passed as services to healthchecker in oreder to check em all.
 #[async_trait]
 pub trait Alivable: Sync + Send {
     async fn is_alive(&self) -> bool;
     async fn info(&self) -> &'static str;
+}
+
+#[async_trait]
+impl<T: Alivable> Alivable for Arc<T> {
+    async fn is_alive(&self) -> bool {
+        self.is_alive().await
+    }
+
+    async fn info(&self) -> &'static str {
+        self.info().await
+    }
 }
 
 /// Base of healthchecker, should be made one time, in case you have to control state of
