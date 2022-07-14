@@ -114,11 +114,11 @@ impl HealthChecker {
 }
 
 // TODO: try remove wrapper
-pub struct HealthcheckerHTTPService {
-    healthchecker: HealthcheckerServer,
-}
+// pub struct HealthcheckerHTTPService {
+//     healthchecker: HealthcheckerServer,
+// }
 
-impl Service<Request<Body>> for HealthcheckerHTTPService {
+impl Service<Request<Body>> for HealthcheckerServer {
     type Response = Response<Body>;
     type Error = http::Error;
     type Future =
@@ -132,7 +132,7 @@ impl Service<Request<Body>> for HealthcheckerHTTPService {
     fn call(&mut self, req: Request<Body>) -> Self::Future {
         let rsp = Response::builder();
 
-        let healthchecker = self.healthchecker.clone();
+        let healthchecker = self.clone();
 
         // Prepare future to response
         let fut = async move {
@@ -160,7 +160,7 @@ pub struct HealthcheckerHTTPBuilder {
 }
 
 impl<T> Service<T> for HealthcheckerHTTPBuilder {
-    type Response = HealthcheckerHTTPService;
+    type Response = HealthcheckerServer;
     type Error = std::io::Error;
     type Future = future::Ready<Result<Self::Response, Self::Error>>;
 
@@ -169,8 +169,6 @@ impl<T> Service<T> for HealthcheckerHTTPBuilder {
     }
 
     fn call(&mut self, _: T) -> Self::Future {
-        future::ok(HealthcheckerHTTPService {
-            healthchecker: self.healthchecker.clone(),
-        })
+        future::ok(self.healthchecker.clone())
     }
 }
