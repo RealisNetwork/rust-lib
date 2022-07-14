@@ -15,4 +15,6 @@ tokio-proto={version = "0.1"}
 tokio-service={version = "0.1"}
 log = "0.4.17"
 env_logger = "0.8.4"
+enum_dispatch = "0.3.8"
 async-trait = "0.1.56"
+hyper = { version = "0.14.20", features = ["full"]}

@@ -12,7 +12,7 @@ use tokio_proto::TcpServer;
 use tokio_service::Service;
 
 #[async_trait]
-pub trait Aliveable: Sync + Send {
+pub trait Alivable: Sync + Send {
     async fn is_alive(&self) -> bool;
     async fn info(&self) -> &'static str;
 }
@@ -39,7 +39,7 @@ pub struct HealthcheckerServer {
     /// true - all okay
     /// false - something goes wrong, need restart
     health: Arc<AtomicBool>,
-    services: Arc<Vec<Box<dyn Aliveable>>>,
+    services: Arc<Vec<Box<dyn Alivable>>>,
     /// Timeout between checks, in millis
     pub timeout: u64,
 }
@@ -48,7 +48,7 @@ impl HealthcheckerServer {
     pub async fn new(
         host: &str,
         timeout: u64,
-        services: Option<Vec<Box<dyn Aliveable>>>,
+        services: Option<Vec<Box<dyn Alivable>>>,
     ) -> Result<Self, BaseError<()>> {
         let health_checker = Self {
             health: Arc::new(AtomicBool::new(true)),

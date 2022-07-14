@@ -2,8 +2,10 @@ use app::app::{App, Runnable};
 use app::{Service, ServiceApp};
 use async_trait::async_trait;
 use error_registry::BaseError;
+use healthchecker::Alivable;
 use healthchecker::HealthcheckerServer;
 use nats;
+use realis_macros::Alivable;
 use schemas::{Agent, Request, Schema};
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
@@ -26,7 +28,10 @@ async fn main() {
     ));
     let mut transport_2 =
         StanTransport::new(NATS_URL, CLUSTER_ID, CLIENT_ID_2).expect("Fail to init transport_2");
-    let service = ExampleService;
+    let service = ExampleService {
+        a: 1,
+        transport: transport_1.clone(),
+    };
     let health_checker = HealthcheckerServer::new(&"127.0.0.1:4444".to_owned(), 1_000, None)
         .await
         .expect("Fail to init health_checker");
@@ -71,7 +76,12 @@ struct ResponseSchema {
 
 impl Schema for ResponseSchema {}
 
-struct ExampleService;
+#[derive(Alivable)]
+struct ExampleService {
+    #[AliveAttr(skip)]
+    a: i32,
+    transport: Arc<VTransport>,
+}
 
 #[async_trait]
 impl Service<RequestSchema, ResponseSchema> for ExampleService {

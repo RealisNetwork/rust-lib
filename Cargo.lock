@@ -54,6 +54,7 @@ dependencies = [
  "healthchecker",
  "log 0.4.17",
  "nats",
+ "realis-macros",
  "schemas",
  "serde",
  "serde_json",
@@ -899,9 +900,11 @@ name = "healthchecker"
 version = "0.1.0"
 dependencies = [
  "async-trait",
+ "enum_dispatch",
  "env_logger 0.8.4",
  "error_registry",
  "futures 0.1.31",
+ "hyper",
  "log 0.4.17",
  "tokio 1.19.2",
  "tokio-minihttp",
@@ -1002,9 +1005,9 @@ checksum = "9a3a5bfb195931eeb336b2a7b4d761daec841b97f947d34394601737a7bba5e4"
 
 [[package]]
 name = "hyper"
-version = "0.14.19"
+version = "0.14.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "42dc3c131584288d375f2d07f822b0cb012d8c6fb899a5b9fdb3cb7eb9b6004f"
+checksum = "02c929dc5c39e335a03c405292728118860721b10190d98c2a0f0efd5baafbac"
 dependencies = [
  "bytes 1.1.0",
  "futures-channel",
@@ -2104,6 +2107,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "realis-macros"
+version = "0.1.0"
+dependencies = [
+ "convert_case",
+ "proc-macro2 1.0.40",
+ "quote 1.0.20",
+ "syn 1.0.98",
+]
+
+[[package]]
 name = "redox_syscall"
 version = "0.1.57"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2654,7 +2667,7 @@ dependencies = [
  "nats",
  "prost",
  "prost-build",
- "uuid",
+ "uuid 0.8.2",
 ]
 
 [[package]]
@@ -3198,6 +3211,7 @@ dependencies = [
  "serde_json",
  "stan",
  "tokio 1.19.2",
+ "uuid 1.1.2",
 ]
 
 [[package]]
@@ -3290,6 +3304,15 @@ name = "uuid"
 version = "0.8.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bc5cf98d8186244414c848017f0e2676b3fcb46807f6668a97dfe67359a3c4b7"
+dependencies = [
+ "getrandom 0.2.7",
+]
+
+[[package]]
+name = "uuid"
+version = "1.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dd6469f4314d5f1ffec476e05f17cc9a78bc7a27a6a857842170bdf8d6f98d2f"
 dependencies = [
  "getrandom 0.2.7",
 ]

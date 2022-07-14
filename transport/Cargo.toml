@@ -16,6 +16,8 @@ stan = "0.0.16"
 nats = "0.9.18"
 log = "0.4.17"
 env_logger = "0.8.4"
+uuid = { version = "1.1.2", features = ["v4"]}
+healthchecker = { path = "./../healthchecker" }
 
 [dev-dependencies]
 app = { path = "./../app" }
