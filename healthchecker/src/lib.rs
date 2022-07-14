@@ -21,14 +21,15 @@ pub trait Alivable: Sync + Send {
 }
 
 #[async_trait]
-impl<T: Alivable> Alivable for Arc<T> {
+impl<T: Alivable + Clone> Alivable for Arc<T> {
     async fn is_alive(&self) -> bool {
         info!("is_alive?");
-        (*self).is_alive().await
+        let other: Arc<T> = (*self).clone();
+        other.is_alive().await
     }
 
     async fn info(&self) -> &'static str {
-        (*self).info().await
+        self.info().await
     }
 }
 
