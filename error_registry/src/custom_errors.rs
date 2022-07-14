@@ -163,6 +163,7 @@ pub enum Common {
     ExternalServiceError,
     NotImplemented,
     FailedToInit,
+    HealthChecker,
 }
 
 impl From<Common> for u32 {
@@ -179,6 +180,7 @@ impl From<Common> for u32 {
             Common::ExternalServiceError => 9u32,
             Common::NotImplemented => 10u32,
             Common::FailedToInit => 11u32,
+            Common::HealthChecker => 12u32,
         }
     }
 }

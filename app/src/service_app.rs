@@ -30,7 +30,7 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> Runnable
         let health_checker = self.health_checker.clone();
         if let Err(error) = self.run_internal().await {
             log::error!("{:?}", error);
-            health_checker.make_sick();
+            health_checker.make_sick::<String>(None);
         }
     }
 }

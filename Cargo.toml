@@ -4,4 +4,6 @@ members = [
     "error_registry",
     "schemas",
     "transport",
+    "healthchecker",
+    "macros"
 ]
