@@ -18,7 +18,7 @@ pub trait BroadcastService<P: Agent, G: Schema>: Send + Sync {
 }
 
 // TODO: ServiceAppBuilder|ServiceAppContainer?
-pub struct BroadcastApp<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Transport + Sync + Send>
+pub struct BroadcastApp<P: Agent, G: Schema, S: BroadcastService<P, G>>
 {
     service: S,
     subscription: VSubscription,
@@ -27,8 +27,8 @@ pub struct BroadcastApp<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Trans
 }
 
 #[async_trait]
-impl<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Transport + Sync + Send> Runnable
-    for BroadcastApp<P, G, S, N>
+impl<P: Agent, G: Schema, S: BroadcastService<P, G>> Runnable
+    for BroadcastApp<P, G, S>
 {
     async fn run(&mut self) {
         let health_checker = self.health_checker.clone();
@@ -39,14 +39,15 @@ impl<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Transport + Sync + Send>
     }
 }
 
-impl<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Transport + Sync + Send>
-    BroadcastApp<P, G, S, N>
+impl<P: Agent, G: Schema, S: BroadcastService<P, G>>
+    BroadcastApp<P, G, S>
 {
-    pub async fn new(
+    pub async fn new<N>(
         service: S,
         transport: Arc<N>,
         health_checker: HealthChecker,
-    ) -> Result<Self, BaseError<Value>> {
+    ) -> Result<Self, BaseError<Value>>
+        where N: Transport + Sync + Send {
         transport
             .subscribe(service.topic_to_subscribe())
             .await
