@@ -39,7 +39,7 @@ impl<P: Agent, G: Schema, S: BroadcastService<P, G>> Runnable
     }
 }
 
-impl<P: Agent, G: Schema, S: BroadcastService<P, G>>
+impl<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Transport + Sync + Send>
     BroadcastApp<P, G, S>
 {
     pub async fn new(
