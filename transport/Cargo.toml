@@ -17,6 +17,8 @@ log = "0.4.17"
 env_logger = "0.8.4"
 uuid = { version = "1.1.2", features = ["v4"]}
 healthchecker = { path = "./../healthchecker" }
+jet_stream = { version = "0.22.0", package = "nats" }
+
 
 [dev-dependencies]
 app = { path = "./../app" }

@@ -53,7 +53,7 @@ impl Alivable for StanTransport {
         }
     }
 
-    async fn info(&self) -> &'static str {
+     async fn info(&self) -> &'static str {
         "StanTransport"
     }
 }
