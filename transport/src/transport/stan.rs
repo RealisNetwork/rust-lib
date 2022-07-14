@@ -6,17 +6,14 @@ use async_trait::async_trait;
 use error_registry::custom_errors::{CustomErrorType, Nats as CustomNats};
 use error_registry::generated_errors::{GeneratedError, Nats as GeneratedNats};
 use error_registry::{BaseError, ErrorType};
-use healthchecker::{Alivable, HealthChecker};
-use nats::Connection;
+use healthchecker::Alivable;
 use serde_json::Value;
 use stan::{Client, SubscriptionConfig, SubscriptionStart};
 use std::time::Duration;
-use uuid::Uuid;
 
 pub struct StanTransport {
     pub client_id: String,
     pub client: Client,
-    connection: Connection,
 }
 
 impl StanTransport {
@@ -28,7 +25,7 @@ impl StanTransport {
                 None,
             )
         })?;
-        let stan = stan::connect(nats.clone(), cluster_id, client_id).map_err(|error| {
+        let stan = stan::connect(nats, cluster_id, client_id).map_err(|error| {
             BaseError::<Value>::new(
                 format!("{:?}", error),
                 CustomErrorType::Nats(CustomNats::Disconnected).into(),
@@ -39,15 +36,21 @@ impl StanTransport {
         Ok(Self {
             client_id: client_id.to_owned(),
             client: stan,
-            connection: nats,
         })
     }
 }
 
 #[async_trait]
 impl Alivable for StanTransport {
+    #[allow(unused_must_use)]
     async fn is_alive(&self) -> bool {
-        self.connection.rtt().is_ok()
+        // TODO: fixme, try use method like ping for this, current solution works, but it is unappropriated
+        let res = self.subscribe_not_durable("Healthchecker_ping").await;
+        if let Ok(subscription) = res {
+            subscription.unsubscribe().await.is_ok()
+        } else {
+            false
+        }
     }
 
     async fn info(&self) -> &'static str {

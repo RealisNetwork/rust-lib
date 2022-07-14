@@ -1,35 +1,32 @@
 use proc_macro::TokenStream;
-use quote::__private::ext::RepToTokensExt;
-use quote::{quote, ToTokens};
-use syn::spanned::Spanned;
-use syn::{self, Attribute, DeriveInput, Fields, Item, ItemStruct, TypeGroup, TypeTuple};
+use quote::quote;
+use syn::{self, ItemStruct};
 
 pub fn impl_alivable(item: TokenStream) -> TokenStream {
     let object = syn::parse::<ItemStruct>(item).unwrap();
-    let name = object.ident;
+    let name = object.ident; // Get name of derived structure
+    let hc_info = name.to_string();
 
+    // Iterate through all fields
     let fields = object
         .fields
         .into_iter()
         .filter_map(|field| {
-            let is_skiped = field
-                .attrs
-                .iter()
-                .find(|attribute| -> bool {
-                    let meta = attribute.parse_meta();
-                    meta.as_ref()
-                        .unwrap()
-                        .path()
-                        .segments
-                        .first()
-                        .unwrap()
-                        .ident
-                        .to_string()
-                        .find("AliveAttr")
-                        .is_some()
-                        && attribute.tokens.to_string().find("(skip)").is_some()
-                })
-                .is_some();
+            let is_skiped = field.attrs.iter().any(|attribute| -> bool {
+                let meta = attribute.parse_meta();
+                meta.as_ref()
+                    .unwrap()
+                    .path()
+                    .segments
+                    .first()
+                    .unwrap()
+                    .ident
+                    .to_string()
+                    .contains("AliveAttr")
+                    && attribute.tokens.to_string().contains("(skip)")
+            });
+            // If some field is not annotated as #[AliveAttr(skip)], than it will be added to
+            // is_alive() method
             if !is_skiped {
                 Some(field.ident.unwrap())
             } else {
@@ -40,6 +37,7 @@ pub fn impl_alivable(item: TokenStream) -> TokenStream {
 
     let fields_iter = fields.iter();
 
+    // Generate trait implementation
     let gen = quote! {
         #[async_trait]
         impl Alivable for #name {
@@ -49,7 +47,7 @@ pub fn impl_alivable(item: TokenStream) -> TokenStream {
             }
 
             async fn info(&self) -> &'static str {
-                "#name"
+                #hc_info
             }
         }
     };
