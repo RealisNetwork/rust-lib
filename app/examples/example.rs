@@ -81,7 +81,6 @@ impl Schema for ResponseSchema {}
 struct ExampleService {
     #[AliveAttr(skip)]
     a: i32,
-    #[AliveAttr(skip)]
     transport: Arc<VTransport>,
 }
 

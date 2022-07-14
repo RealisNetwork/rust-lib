@@ -1,15 +1,20 @@
 use async_trait::async_trait;
 use error_registry::BaseError;
-use futures::future;
 use log::{error, info};
 use std::fmt::{Debug, format};
+use std::future::Future;
 use std::io;
+use std::pin::Pin;
+use std::process::Output;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
+use std::task::{Context, Poll};
+use hyper::{Body, Server, Response, Request, StatusCode, http};
+use hyper::service::Service;
 use tokio::time::{sleep, Duration};
-use tokio_minihttp::{Http, Request, Response};
-use tokio_proto::TcpServer;
-use tokio_service::Service;
+use futures_util::future;
+
+const ROOT: &str = "/";
 
 #[async_trait]
 pub trait Alivable: Sync + Send {
@@ -33,6 +38,7 @@ impl HealthcheckerServer {
         host: &str,
         timeout: u64,
         services: Option<Vec<Box<dyn Alivable>>>,
+
     ) -> Result<Self, BaseError<()>> {
         let health_checker = Self {
             health: Arc::new(AtomicBool::new(true)),
@@ -43,29 +49,20 @@ impl HealthcheckerServer {
         let health_checker_replica = health_checker.clone();
         let host_str = String::from(host);
         tokio::spawn({
-            async move { health_checker_replica.http_loop(host_str).await }
+            async move { health_checker_replica.http_init(host_str).await }
         });
         Ok(health_checker)
     }
 
-    pub async fn http_loop(&self, host: String) {
-        use tiny_http::{Server, Response};
+    pub async fn http_init(self, host: String) {
 
-        let server = Server::http(host).unwrap();
+        let addr = host.parse().unwrap();
 
-        loop {
-            info!("Loop");
-            for request in server.incoming_requests() {
-                let is_ok = self.is_ok().await;
-                let response = if is_ok {
-                    Response::from_string("DEBUG_OK").with_status_code(200u16)
-                } else {
-                    Response::from_string("DEBUG_ERROR").with_status_code(500u16)
-                };
-                info!("Healthchecker request responding: {:?}", request.respond(response));
-            }
-            tokio::time::sleep(Duration::from_millis(500));
-        }
+        let server = Server::bind(&addr).serve(HealthcheckerHTTP {healthchecker: self});
+
+        println!("Listening on http://{}", addr);
+
+        server.await.unwrap();
     }
 
     pub fn get_health_cheker(&self) -> HealthChecker {
@@ -103,5 +100,57 @@ impl HealthChecker {
     pub fn make_sick<D: Debug>(&self, log: Option<D>) {
         error!("Made sick on: {:#?}", log);
         self.health.store(false, Ordering::SeqCst);
+    }
+}
+
+pub struct Svc {
+    healthchecker: HealthcheckerServer,
+}
+
+impl Service<Request<Body>> for Svc {
+    type Response = Response<Body>;
+    type Error = http::Error;
+    type Future = Pin<Box<dyn Future<Output = Result<Self::Response, Self::Error>> + 'static + Send>>;
+
+    fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
+        Ok(()).into()
+    }
+
+    fn call(&mut self, req: Request<Body>) -> Self::Future {
+        let rsp = Response::builder();
+
+        let healthchecker = self.healthchecker.clone();
+
+        let fut = async move{
+            let state = healthchecker.is_ok().await;
+            let rsp = if state {
+                rsp.status(200).body(Body::from(Vec::from(format!("DEBUG_OK")))).unwrap()
+            } else {
+                rsp.status(500).body(Body::from(Vec::from(format!("DEBUG_ERROR")))).unwrap()
+            };
+            
+            Ok(rsp)
+        };
+
+        Box::pin(fut)
+    }
+}
+
+pub struct HealthcheckerHTTP {
+    healthchecker: HealthcheckerServer,
+}
+
+impl<T> Service<T> for HealthcheckerHTTP {
+
+    type Response = Svc;
+    type Error = std::io::Error;
+    type Future = future::Ready<Result<Self::Response, Self::Error>>;
+
+    fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
+        Ok(()).into()
+    }
+
+    fn call(&mut self, _: T) -> Self::Future {
+        future::ok(Svc {healthchecker: self.healthchecker.clone()})
     }
 }
