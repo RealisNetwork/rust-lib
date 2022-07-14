@@ -11,8 +11,6 @@ use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
 use std::task::{Context, Poll};
 use tokio::sync::Mutex;
-use tokio::time::{sleep, Duration};
-
 
 /// Implement this trait on your service structure or any service that can loose connection or etc.
 /// Object of this trait can be passed as servisec to healthchecker in oreder to check em all.
@@ -47,7 +45,7 @@ impl HealthcheckerServer {
 
         let health_checker_replica = health_checker.clone();
         let host_str = String::from(host);
-        tokio::spawn( async move { health_checker_replica.http_init(host_str).await } );
+        tokio::spawn(async move { health_checker_replica.http_init(host_str).await });
 
         Ok(health_checker)
     }
@@ -112,11 +110,6 @@ impl HealthChecker {
         self.health.store(false, Ordering::SeqCst);
     }
 }
-
-// TODO: try remove wrapper
-// pub struct HealthcheckerHTTPService {
-//     healthchecker: HealthcheckerServer,
-// }
 
 impl Service<Request<Body>> for HealthcheckerServer {
     type Response = Response<Body>;

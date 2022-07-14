@@ -2,9 +2,7 @@ use proc_macro::TokenStream;
 use quote::quote;
 use syn::{self, ItemStruct};
 
-
 pub fn impl_alivable(item: TokenStream) -> TokenStream {
-
     let object = syn::parse::<ItemStruct>(item).unwrap();
     let name = object.ident; // Get name of derived structure
     let hc_info = name.to_string();
