@@ -55,7 +55,7 @@ impl HealthcheckerServer {
     async fn http_init(self, host: String) {
         let addr = host.parse().unwrap();
 
-        let server = Server::bind(&addr).serve(HealthcheckerHTTPBuilder {
+        let server = Server::bind(&addr).serve(HealthcheckerHTTPService {
             healthchecker: self,
         });
 
@@ -148,22 +148,22 @@ impl Service<Request<Body>> for HealthcheckerHTTPService {
 }
 
 /// Dispatch HTTP request to service
-pub struct HealthcheckerHTTPBuilder {
-    healthchecker: HealthcheckerServer,
-}
-
-impl<T> Service<T> for HealthcheckerHTTPBuilder {
-    type Response = HealthcheckerHTTPService;
-    type Error = std::io::Error;
-    type Future = future::Ready<Result<Self::Response, Self::Error>>;
-
-    fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
-        Ok(()).into()
-    }
-
-    fn call(&mut self, _: T) -> Self::Future {
-        future::ok(HealthcheckerHTTPService {
-            healthchecker: self.healthchecker.clone(),
-        })
-    }
-}
+// pub struct HealthcheckerHTTPBuilder {
+//     healthchecker: HealthcheckerServer,
+// }
+//
+// impl<T> Service<T> for HealthcheckerHTTPBuilder {
+//     type Response = HealthcheckerServer;
+//     type Error = std::io::Error;
+//     type Future = future::Ready<Result<Self::Response, Self::Error>>;
+//
+//     fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
+//         Ok(()).into()
+//     }
+//
+//     fn call(&mut self, _: T) -> Self::Future {
+//         future::ok(HealthcheckerHTTPService {
+//             healthchecker: self.healthchecker.clone(),
+//         })
+//     }
+// }
