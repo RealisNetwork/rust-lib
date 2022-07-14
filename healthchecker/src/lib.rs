@@ -13,12 +13,19 @@ use std::task::{Context, Poll};
 use tokio::sync::Mutex;
 use tokio::time::{sleep, Duration};
 
+
+/// Implement this trait on your service structure or any service that can loose connection or etc.
+/// Object of this trait can be passed as servisec to healthchecker in oreder to check em all.
 #[async_trait]
 pub trait Alivable: Sync + Send {
     async fn is_alive(&self) -> bool;
     async fn info(&self) -> &'static str;
 }
 
+/// Base of healthchecker, should be made one time, in case you have to control state of
+/// other services, lightweight instances of healthchecker can be obtained using get_health_cheker()
+/// In case state of healthchecker is sick or any service in service vector is sick
+/// http request to healthchecker will return 500 code, if everything is fine, it will return 200
 #[derive(Clone)]
 pub struct HealthcheckerServer {
     /// Determine status of program
@@ -55,7 +62,7 @@ impl HealthcheckerServer {
     async fn http_init(self, host: String) {
         let addr = host.parse().unwrap();
 
-        let server = Server::bind(&addr).serve(HealthcheckerHTTPService {
+        let server = Server::bind(&addr).serve(HealthcheckerHTTPBuilder {
             healthchecker: self,
         });
 
@@ -148,22 +155,22 @@ impl Service<Request<Body>> for HealthcheckerHTTPService {
 }
 
 /// Dispatch HTTP request to service
-// pub struct HealthcheckerHTTPBuilder {
-//     healthchecker: HealthcheckerServer,
-// }
-//
-// impl<T> Service<T> for HealthcheckerHTTPBuilder {
-//     type Response = HealthcheckerServer;
-//     type Error = std::io::Error;
-//     type Future = future::Ready<Result<Self::Response, Self::Error>>;
-//
-//     fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
-//         Ok(()).into()
-//     }
-//
-//     fn call(&mut self, _: T) -> Self::Future {
-//         future::ok(HealthcheckerHTTPService {
-//             healthchecker: self.healthchecker.clone(),
-//         })
-//     }
-// }
+pub struct HealthcheckerHTTPBuilder {
+    healthchecker: HealthcheckerServer,
+}
+
+impl<T> Service<T> for HealthcheckerHTTPBuilder {
+    type Response = HealthcheckerHTTPService;
+    type Error = std::io::Error;
+    type Future = future::Ready<Result<Self::Response, Self::Error>>;
+
+    fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
+        Ok(()).into()
+    }
+
+    fn call(&mut self, _: T) -> Self::Future {
+        future::ok(HealthcheckerHTTPService {
+            healthchecker: self.healthchecker.clone(),
+        })
+    }
+}
