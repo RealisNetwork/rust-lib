@@ -1,6 +1,8 @@
+pub mod jet;
 pub mod stan;
 
 use crate::common::TransportResult;
+use crate::message::jet::JetMessage;
 use crate::message::stan::StanMessage;
 use ::stan::Message;
 use async_trait::async_trait;
@@ -20,10 +22,17 @@ pub trait ReceivedMessage {
 #[derive(Debug)]
 pub enum VReceivedMessage {
     Stan(StanMessage),
+    Jet(JetMessage),
 }
 
 impl From<Message> for VReceivedMessage {
     fn from(message: Message) -> Self {
         VReceivedMessage::Stan(StanMessage { message })
+    }
+}
+
+impl From<jet_stream::Message> for VReceivedMessage {
+    fn from(message: jet_stream::Message) -> Self {
+        VReceivedMessage::Jet(JetMessage { message })
     }
 }

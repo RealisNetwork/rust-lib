@@ -1,11 +1,14 @@
+pub mod jet;
 pub mod stan;
 
 use crate::common::TransportResult;
 use crate::message::VReceivedMessage;
+use crate::subscription::jet::JetSubscription;
 use crate::subscription::stan::StanSubscription;
 use ::stan::Subscription as LibStanSubscription;
 use async_trait::async_trait;
 use enum_dispatch::enum_dispatch;
+use jet_stream::jetstream::PushSubscription;
 use std::time::Duration;
 
 #[async_trait]
@@ -21,10 +24,17 @@ pub trait Subscription {
 #[enum_dispatch(Subscription)]
 pub enum VSubscription {
     Stan(StanSubscription),
+    Jet(JetSubscription),
 }
 
 impl From<LibStanSubscription> for VSubscription {
     fn from(subscription: LibStanSubscription) -> Self {
         VSubscription::Stan(StanSubscription { subscription })
+    }
+}
+
+impl From<PushSubscription> for VSubscription {
+    fn from(subscription: PushSubscription) -> Self {
+        VSubscription::Jet(JetSubscription { subscription })
     }
 }

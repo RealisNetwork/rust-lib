@@ -31,6 +31,7 @@ pub fn get_env_meta_items(attr: &syn::Attribute) -> Vec<syn::NestedMeta> {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 pub fn get_lit_str<'a>(lit: &'a syn::Lit) -> &'a syn::LitStr {
     match lit {
         syn::Lit::Str(lit) => lit,
@@ -57,7 +58,10 @@ fn spanned_tokens(s: &syn::LitStr) -> parse::Result<TokenStream> {
 }
 
 fn respan(stream: TokenStream, span: Span) -> TokenStream {
-    stream.into_iter().map(|token| respan_token(token, span)).collect()
+    stream
+        .into_iter()
+        .map(|token| respan_token(token, span))
+        .collect()
 }
 
 fn respan_token(mut token: TokenTree, span: Span) -> TokenTree {
