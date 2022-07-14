@@ -1,8 +1,8 @@
 use async_trait::async_trait;
 use error_registry::BaseError;
 use futures::future;
-use log::error;
-use std::fmt::Debug;
+use log::{error, info};
+use std::fmt::{Debug, format};
 use std::io;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
@@ -16,22 +16,6 @@ pub trait Alivable: Sync + Send {
     async fn is_alive(&self) -> bool;
     async fn info(&self) -> &'static str;
 }
-
-//
-// impl Aliveable for Transport {
-//     async fn is_alive(&self) -> bool {
-//         todo!()
-//     }
-//
-//     async fn info(&self) -> &'static str {
-//         todo!()
-//     }
-// }
-
-//
-// impl Aliveable for Database {
-// ...
-// }
 
 #[derive(Clone)]
 pub struct HealthcheckerServer {
@@ -56,13 +40,32 @@ impl HealthcheckerServer {
             services: Arc::new(services.unwrap_or_default()),
         };
 
-        let addr = host.parse()?;
-
+        let health_checker_replica = health_checker.clone();
+        let host_str = String::from(host);
         tokio::spawn({
-            let health_checker = health_checker.clone();
-            async move { TcpServer::new(Http, addr).serve(move || Ok(health_checker.clone())) }
+            async move { health_checker_replica.http_loop(host_str).await }
         });
         Ok(health_checker)
+    }
+
+    pub async fn http_loop(&self, host: String) {
+        use tiny_http::{Server, Response};
+
+        let server = Server::http(host).unwrap();
+
+        loop {
+            info!("Loop");
+            for request in server.incoming_requests() {
+                let is_ok = self.is_ok().await;
+                let response = if is_ok {
+                    Response::from_string("DEBUG_OK").with_status_code(200u16)
+                } else {
+                    Response::from_string("DEBUG_ERROR").with_status_code(500u16)
+                };
+                info!("Healthchecker request responding: {:?}", request.respond(response));
+            }
+            tokio::time::sleep(Duration::from_millis(500));
+        }
     }
 
     pub fn get_health_cheker(&self) -> HealthChecker {
@@ -100,27 +103,5 @@ impl HealthChecker {
     pub fn make_sick<D: Debug>(&self, log: Option<D>) {
         error!("Made sick on: {:#?}", log);
         self.health.store(false, Ordering::SeqCst);
-    }
-}
-
-impl Service for HealthcheckerServer {
-    type Error = io::Error;
-    type Future = future::Ok<Response, io::Error>;
-    type Request = Request;
-    type Response = Response;
-
-    /// WARNING! Use ONLY in context of tokio runtime, in other case it will cause panic
-    fn call(&self, _request: Request) -> Self::Future {
-        let mut resp = Response::new();
-
-        let is_alive = tokio::runtime::Handle::current().block_on(self.is_ok());
-        if is_alive {
-            resp.status_code(200, "OK");
-            resp.body("DEBUG_OK");
-        } else {
-            resp.status_code(500, "Internal Server Error");
-            resp.body("DEBUG_ERROR");
-        }
-        future::ok(resp)
     }
 }

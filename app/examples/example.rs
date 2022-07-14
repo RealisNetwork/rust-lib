@@ -6,10 +6,11 @@ use healthchecker::Alivable;
 use healthchecker::HealthcheckerServer;
 use nats;
 use realis_macros::Alivable;
-use schemas::{Agent, Request, Schema};
+use schemas::{Agent, AuthInfo, Request, Schema};
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::sync::Arc;
+use log::LevelFilter;
 use tokio::sync::Mutex;
 use transport::{Response, VResponse};
 use transport::{StanTransport, Transport, VTransport};
@@ -19,7 +20,7 @@ const TOPIC_2: &str = "test-topic-2";
 const CLIENT_ID_1: &str = "test-client-1";
 const CLIENT_ID_2: &str = "test-client-2";
 const CLUSTER_ID: &str = "test-cluster";
-const NATS_URL: &str = "127.0.0.1:4222";
+const NATS_URL: &str = "localhost:4222";
 
 #[tokio::main]
 async fn main() {
@@ -32,7 +33,7 @@ async fn main() {
         a: 1,
         transport: transport_1.clone(),
     };
-    let health_checker = HealthcheckerServer::new(&"127.0.0.1:4444".to_owned(), 1_000, None)
+    let health_checker = HealthcheckerServer::new(&"127.0.0.1:8080".to_owned(), 1_000, None)
         .await
         .expect("Fail to init health_checker");
 
@@ -45,7 +46,7 @@ async fn main() {
         transport: transport_2.into(),
     };
 
-    App::default().push(service_app).push(sender).run().await;
+    App::default().init_logger_with_level(LevelFilter::Info).push(service_app).push(sender).run().await;
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -80,6 +81,7 @@ impl Schema for ResponseSchema {}
 struct ExampleService {
     #[AliveAttr(skip)]
     a: i32,
+    #[AliveAttr(skip)]
     transport: Arc<VTransport>,
 }
 
@@ -104,8 +106,20 @@ pub struct Sender {
 impl Runnable for Sender {
     async fn run(&mut self) {
         for i in 0..10 {
-            let schema = ResponseSchema {
-                msg: format!("{}", i),
+            let schema = Request::<ResponseSchema> {
+                id: "".to_string(),
+                topic_res: TOPIC_2.to_string(),
+                agent: None,
+                method: None,
+                params: ResponseSchema {
+                    msg: format!("{}", i),
+                },
+                auth: None,
+                auth_info: AuthInfo {
+                    user_id: "".to_string(),
+                    address: None,
+                    continent: None
+                }
             };
 
             let response = VResponse::Response(Response {
