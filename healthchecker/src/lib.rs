@@ -3,7 +3,7 @@ use error_registry::BaseError;
 use futures_util::future;
 use hyper::service::Service;
 use hyper::{http, Body, Request, Response, Server};
-use log::error;
+use log::{error, info};
 use std::fmt::Debug;
 use std::future::Future;
 use std::pin::Pin;
@@ -23,6 +23,7 @@ pub trait Alivable: Sync + Send {
 #[async_trait]
 impl<T: Alivable> Alivable for Arc<T> {
     async fn is_alive(&self) -> bool {
+        info!("is_alive?");
         (*self).is_alive().await
     }
 
