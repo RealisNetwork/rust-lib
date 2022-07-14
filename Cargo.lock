@@ -251,6 +251,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "config"
+version = "0.1.0"
+dependencies = [
+ "dotenv",
+ "error_registry",
+ "healthchecker",
+ "hex",
+ "log 0.4.17",
+ "ratsio",
+ "realis-macros",
+]
+
+[[package]]
 name = "convert_case"
 version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
