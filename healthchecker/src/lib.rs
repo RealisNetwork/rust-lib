@@ -7,7 +7,7 @@ use std::io;
 use std::pin::Pin;
 use std::process::Output;
 use std::sync::atomic::{AtomicBool, Ordering};
-use std::sync::Arc;
+use std::sync::{Arc, Mutex};
 use std::task::{Context, Poll};
 use hyper::{Body, Server, Response, Request, StatusCode, http};
 use hyper::service::Service;
@@ -28,7 +28,7 @@ pub struct HealthcheckerServer {
     /// true - all okay
     /// false - something goes wrong, need restart
     health: Arc<AtomicBool>,
-    services: Arc<Vec<Box<dyn Alivable>>>,
+    services: Arc<Mutex<Vec<Box<dyn Alivable>>>>,
     /// Timeout between checks, in millis
     pub timeout: u64,
 }
@@ -43,7 +43,7 @@ impl HealthcheckerServer {
         let health_checker = Self {
             health: Arc::new(AtomicBool::new(true)),
             timeout,
-            services: Arc::new(services.unwrap_or_default()),
+            services: Arc::new(Mutex::new(services.unwrap_or_default())),
         };
 
         let health_checker_replica = health_checker.clone();
@@ -52,6 +52,10 @@ impl HealthcheckerServer {
             async move { health_checker_replica.http_init(host_str).await }
         });
         Ok(health_checker)
+    }
+    
+    pub fn push(&mut self, s: Box<dyn Alivable>) {
+        self.services.lock().unwrap().push(s);
     }
 
     pub async fn http_init(self, host: String) {
@@ -128,7 +132,7 @@ impl Service<Request<Body>> for Svc {
             } else {
                 rsp.status(500).body(Body::from(Vec::from(format!("DEBUG_ERROR")))).unwrap()
             };
-            
+
             Ok(rsp)
         };
 
