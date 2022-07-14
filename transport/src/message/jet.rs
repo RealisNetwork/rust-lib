@@ -1,12 +1,11 @@
 use std::fmt::Debug;
 
+use async_trait::async_trait;
+use error_registry::custom_errors::{CustomErrorType, Nats as CustomNats};
+use error_registry::generated_errors::{Common, GeneratedError};
+use error_registry::BaseError;
 use jet_stream::Message;
 use serde::de::DeserializeOwned;
-use async_trait::async_trait;
-use error_registry::BaseError;
-use error_registry::generated_errors::{Common, GeneratedError};
-use error_registry::custom_errors::{CustomErrorType, Nats as CustomNats};
-
 
 use crate::common::TransportResult;
 use crate::ReceivedMessage;
@@ -30,7 +29,6 @@ impl ReceivedMessage for JetMessage {
         log::debug!("Deserialized: {:#?}", &deserialized);
         deserialized
     }
-
 
     async fn ok(self) -> TransportResult<()> {
         log::debug!("Okaying: {:#?}", &self);

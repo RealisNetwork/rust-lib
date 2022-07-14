@@ -1,14 +1,14 @@
-pub mod stan;
 pub mod jet;
+pub mod stan;
 
 use crate::common::TransportResult;
+use crate::message::jet::JetMessage;
 use crate::message::stan::StanMessage;
 use ::stan::Message;
 use async_trait::async_trait;
 use enum_dispatch::enum_dispatch;
 use serde::de::DeserializeOwned;
 use std::fmt::Debug;
-use crate::message::jet::JetMessage;
 
 #[async_trait]
 #[enum_dispatch]
@@ -22,7 +22,7 @@ pub trait ReceivedMessage {
 #[derive(Debug)]
 pub enum VReceivedMessage {
     Stan(StanMessage),
-    Jet(JetMessage)
+    Jet(JetMessage),
 }
 
 impl From<Message> for VReceivedMessage {

@@ -1,9 +1,10 @@
-pub mod stan;
 pub mod jet_stream;
+pub mod stan;
 
 use crate::common::TransportResult;
 use crate::response::VResponse;
 use crate::subscription::VSubscription;
+use crate::transport::jet_stream::JetTransport;
 use crate::transport::stan::StanTransport;
 use crate::VReceivedMessage;
 use async_trait::async_trait;
@@ -30,4 +31,5 @@ pub trait Transport {
 #[enum_dispatch(Transport)]
 pub enum VTransport {
     Stan(StanTransport),
+    Jet(JetTransport),
 }
