@@ -1,4 +1,5 @@
 pub mod stan;
+pub mod jet_stream;
 
 use crate::common::TransportResult;
 use crate::response::VResponse;
