@@ -20,19 +20,6 @@ pub trait Alivable: Sync + Send {
     async fn info(&self) -> &'static str;
 }
 
-#[async_trait]
-impl<T: Alivable + Clone> Alivable for Arc<T> {
-    async fn is_alive(&self) -> bool {
-        info!("is_alive?");
-        let other: Arc<T> = (*self).clone();
-        other.is_alive().await
-    }
-
-    async fn info(&self) -> &'static str {
-        self.info().await
-    }
-}
-
 /// Base of healthchecker, should be made one time, in case you have to control state of
 /// other services, lightweight instances of healthchecker can be obtained using get_health_cheker()
 /// In case state of healthchecker is sick or any service in service vector is sick
