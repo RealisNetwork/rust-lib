@@ -1,0 +1,9 @@
+pub mod balancer_endpoints_add_bots;
+pub mod coefficient_endpoints_get;
+pub mod coefficient_endpoints_update;
+pub mod game_balancer_add_player_in_search;
+pub mod game_balancer_check_in_notification;
+pub mod game_balancer_delete_players;
+pub mod game_balancer_disconnect_player;
+pub mod game_balancer_game_started_notification;
+pub mod game_balancer_stop_searching;

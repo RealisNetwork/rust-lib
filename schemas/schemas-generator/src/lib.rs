@@ -1,13 +1,12 @@
-pub mod agents;
-pub mod agents_generator;
+pub mod agent;
+pub mod agent_params;
 pub mod env_loader;
-pub mod traits;
+pub mod schema_declaration;
 pub mod types;
 
-use crate::agents::Agent;
+use crate::agent::Agent;
 use crate::env_loader::{GitLoader, Loader};
 use ::config::env::EnvLoaded;
-use agents_generator::AgentsGenerator;
 use quote::__private::Ident;
 use quote::{quote, ToTokens};
 use std::collections::HashSet;
@@ -93,14 +92,13 @@ fn main() {
         let agent = schema.create_directory_name();
         let method = schema.create_file_name();
 
-        let schema_generator = AgentsGenerator { agents: schema };
-        let code = schema_generator.into_token_stream();
+        let code = schema.into_token_stream();
 
         let out = &mut PathBuf::from(format!("{}{}", PATH, agent));
         out.push(format!("{}.rs", method));
         let content = format!("{}\n\n{}", header, code.to_string());
 
-        std::fs::write(out, content).map_err(|error| format!("{}", error));
+        std::fs::write(out, content).unwrap();
     }
 }
 

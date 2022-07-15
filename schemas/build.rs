@@ -1,6 +1,6 @@
 use config::env::env::EnvLoaded;
 use schemas_generator::{
-    agents::Agent,
+    agent::Agent,
     env_loader::{GitLoader, Loader},
 };
 

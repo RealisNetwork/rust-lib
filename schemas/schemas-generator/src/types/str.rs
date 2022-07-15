@@ -1,4 +1,8 @@
+use crate::schema_declaration::SchemaDeclaration;
+use quote::__private::{Ident, TokenStream};
+use quote::quote;
 use serde::{Deserialize, Serialize};
+use syn::__private::Span;
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq)]
 pub struct StringParams {
@@ -14,4 +18,24 @@ pub enum StringFormat {
     Email,
     #[serde(rename = "date")]
     Date,
+}
+
+impl StringParams {
+    pub fn get_declaration(&self, name: &str) -> (TokenStream, TokenStream) {
+        let ident = Ident::new(name, Span::call_site());
+        (quote! {}, quote! {pub type #ident = String;})
+    }
+
+    pub fn get_type(&self, _name: &str) -> TokenStream {
+        quote! { String }
+    }
+
+    pub fn get_schema_declaration(&self, name: &str) -> SchemaDeclaration {
+        let (prefix, declaration) = self.get_declaration(name);
+        SchemaDeclaration {
+            declaration,
+            prefix,
+            ..Default::default()
+        }
+    }
 }
