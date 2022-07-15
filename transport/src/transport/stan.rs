@@ -11,6 +11,7 @@ use serde_json::Value;
 use stan::{Client, SubscriptionConfig, SubscriptionStart};
 use std::time::Duration;
 
+
 pub struct StanTransport {
     pub client_id: String,
     pub client: Client,

@@ -12,8 +12,35 @@ use std::sync::Arc;
 use std::task::{Context, Poll};
 use tokio::sync::Mutex;
 
+
+/// Wrap services in this wrapper in order to conveniently add them to healthchecker
+pub struct Wrapper<T: Alivable>(Arc<T>);
+
+#[async_trait]
+impl<T: Alivable> Alivable for Wrapper<T> {
+    async fn is_alive(&self) -> bool {
+        self.0.is_alive().await
+    }
+
+    async fn info(&self) -> &'static str {
+        self.0.info().await
+    }
+}
+
+impl<T: Alivable> From<T> for Wrapper<T> {
+    fn from(other: T) -> Wrapper<T> {
+        Wrapper(Arc::new(other))
+    }
+}
+
+impl<T: Alivable> From<Arc<T>> for Wrapper<T> {
+    fn from(other: Arc<T>) -> Wrapper<T> {
+        Wrapper(other)
+    }
+}
+
 /// Implement this trait on your service structure or any service that can loose connection or etc.
-/// Object of this trait can be passed as servisec to healthchecker in oreder to check em all.
+/// Object of this trait can be passed as services to healthchecker in oreder to check em all.
 #[async_trait]
 pub trait Alivable: Sync + Send {
     async fn is_alive(&self) -> bool;
@@ -54,6 +81,14 @@ impl HealthcheckerServer {
     /// will be checked when is_ok() method is executed)
     pub async fn push(&mut self, s: Box<dyn Alivable>) {
         self.services.lock().await.push(s);
+    }
+
+    /// Add any struct that implements Alivable to vector of checkable services (all the services
+    /// will be checked when is_ok() method is executed)
+    pub async fn add<T: 'static + Alivable>(self, s: Wrapper<T>) -> Self
+    {
+        self.services.lock().await.push(Box::new(s));
+        self
     }
 
     /// Starts the healthchecker web service
