@@ -22,7 +22,7 @@ pub struct App<T: GetTransport<N> + GetHealthchecker, N: Transport + Sync + Send
 }
 
 pub trait GetTransport<N: Transport + Sync + Send> {
-   fn get_transport(&self) -> N;
+   fn get_transport(&self) -> Arc<N>;
 }
 
 pub trait GetHealthchecker{
