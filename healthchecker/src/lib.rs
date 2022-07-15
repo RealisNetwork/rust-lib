@@ -3,7 +3,7 @@ use error_registry::BaseError;
 use futures_util::future;
 use hyper::service::Service;
 use hyper::{http, Body, Request, Response, Server};
-use log::{error, info};
+use log::error;
 use std::fmt::Debug;
 use std::future::Future;
 use std::pin::Pin;
@@ -13,6 +13,7 @@ use std::task::{Context, Poll};
 use tokio::sync::Mutex;
 
 
+/// Wrap services in this wrapper in order to conveniently add them to healthchecker
 pub struct Wrapper<T: Alivable>(Arc<T>);
 
 #[async_trait]
