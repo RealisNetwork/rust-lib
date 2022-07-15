@@ -91,12 +91,6 @@ impl HealthcheckerServer {
         self
     }
 
-    // pub async fn add<T: 'static + Into<Wrapper<T>> + Alivable>(mut self, s: T) -> Self
-    // {
-    //     self.services.lock().await.push(Box::new(Wrapper::from(s)));
-    //     self
-    // }
-
     /// Starts the healthchecker web service
     async fn http_init(self, host: String) {
         let addr = host.parse().unwrap();
