@@ -22,9 +22,7 @@ pub trait AsyncTryFrom<T>: Sized {
     async fn async_try_from(_: T) -> Result<Self, Self::Error>;
 }
 
-pub trait AbstractService<P: Agent, G: Schema>: Send + Sync {
-
-}
+pub trait AbstractService<P: Agent, G: Schema>: Send + Sync {}
 
 pub struct App<T: GetTransport<N> + GetHealthchecker, N: Transport + Sync + Send> {
     services: Vec<Box<Mutex<dyn Runnable>>>,
@@ -40,11 +38,11 @@ pub trait GetHealthchecker {
     fn get_healthchecker(&self) -> HealthChecker;
 }
 
-impl<
-        T: 'static + Clone + Send + Sync + GetTransport<N> + GetHealthchecker,
-        N: 'static + Transport + Sync + Send,
-    > App<T, N>
+impl< T, N > App<T, N>
+    where  T: 'static + Clone + Send + Sync + GetTransport<N> + GetHealthchecker,
+           N: 'static + Transport + Sync + Send,
 {
+
     pub fn new(dependency_container: Arc<T>) -> Self {
         Self {
             services: vec![],
@@ -58,18 +56,21 @@ impl<
         self
     }
 
-    pub async fn push_with_dependency<
+    pub async fn push_with_dependency<AbstractApp, ServiceInner, P, G>(
+        mut self,
+    ) -> Result<Self, BaseError<Value>>
+    where
         AbstractApp: 'static + Runnable + AsyncTryFrom<Arc<T>>,
         ServiceInner: 'static + From<Arc<T>> + AbstractService<P, G>,
         P: 'static + Agent,
         G: 'static + Schema,
-    >(
-        mut self,
-    ) -> Result<Self, BaseError<Value>> {
+    {
         self.services.push(Box::new(Mutex::new(
-            AbstractApp::async_try_from(self.dependency_container.clone()).await.map_err(|_| {
-                BaseError::<Value>::from(CustomErrorType::Nats(Nats::FailedToSubscribe))
-            })?,
+            AbstractApp::async_try_from(self.dependency_container.clone())
+                .await
+                .map_err(|_| {
+                    BaseError::<Value>::from(CustomErrorType::Nats(Nats::FailedToSubscribe))
+                })?,
         )));
         Ok(self)
     }

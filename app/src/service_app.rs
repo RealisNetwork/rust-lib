@@ -14,7 +14,7 @@ use transport::{
     ReceivedMessage, Subscription, Transport, VReceivedMessage, VResponse, VSubscription,
 };
 
-// TODO: ServiceAppBuilder|ServiceAppContainer?
+//TODO: ServiceAppBuilder|ServiceAppContainer?
 pub struct ServiceApp<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> {
     service: S,
     transport: Arc<N>,
@@ -37,13 +37,13 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> Runnable
 }
 
 #[async_trait]
-impl<
-        T: 'static + Clone + Send + Sync + GetTransport<N> + GetHealthchecker,
-        P: Agent,
-        G: Schema,
-        ServiceInner: 'static + From<Arc<T>> + Service<P, G>,
-        N: 'static + Transport + Sync + Send,
-    > AsyncTryFrom<Arc<T>> for ServiceApp<P, G, ServiceInner, N>
+impl<T, P, G, ServiceInner, N> AsyncTryFrom<Arc<T>> for ServiceApp<P, G, ServiceInner, N>
+where
+    T: 'static + Clone + Send + Sync + GetTransport<N> + GetHealthchecker,
+    P: Agent,
+    G: Schema,
+    ServiceInner: 'static + From<Arc<T>> + Service<P, G>,
+    N: 'static + Transport + Sync + Send,
 {
     type Error = BaseError<Value>;
 
@@ -54,7 +54,6 @@ impl<
             dependency_container.get_healthchecker(),
         )
         .await
-
     }
 }
 
