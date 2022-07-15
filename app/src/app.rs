@@ -55,7 +55,7 @@ impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: 'static + T
     // TODO: Remove unwrap
     pub async fn push_with_dependency<
         P: 'static +  Agent, G: 'static + Schema,
-        ServiceInner: 'static + Runnable + From<T> + Service<P, G>,
+        ServiceInner: 'static + Runnable + From<Arc<T>> + Service<P, G>,
     >
     (
         mut self,
