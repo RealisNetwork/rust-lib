@@ -69,7 +69,6 @@ impl<
         )));
         Ok(self)
     }
-    
 
     pub fn init_logger_with_level(self, logger_level: LevelFilter) -> Self {
         env_logger::Builder::new().filter_level(logger_level).init();
