@@ -2,7 +2,6 @@ use std::time::Duration;
 
 use async_trait::async_trait;
 use serde_json::Value;
-use tokio::io::AsyncWriteExt;
 
 use error_registry::custom_errors::{CustomErrorType, Nats as CustomNats};
 use error_registry::generated_errors::{GeneratedError, Nats as GeneratedNats};

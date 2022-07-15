@@ -6,7 +6,6 @@ use healthchecker::HealthChecker;
 use log::LevelFilter;
 use schemas::{Agent, Schema};
 use serde_json::Value;
-use std::ops::Deref;
 use std::sync::Arc;
 use tokio::sync::Mutex;
 use transport::Transport;
