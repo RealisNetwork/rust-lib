@@ -1,6 +1,7 @@
 use crate::{Service, ServiceApp};
 use async_trait::async_trait;
 use error_registry::custom_errors::{CustomErrorType, Nats};
+use error_registry::generated_errors::{Common, GeneratedError};
 use error_registry::BaseError;
 use healthchecker::HealthChecker;
 use log::LevelFilter;
@@ -8,12 +9,18 @@ use schemas::{Agent, Schema};
 use serde_json::Value;
 use std::sync::Arc;
 use tokio::sync::Mutex;
-use error_registry::generated_errors::{Common, GeneratedError};
 use transport::Transport;
 
 #[async_trait]
 pub trait Runnable: Send + Sync {
     async fn run(&mut self);
+}
+
+#[async_trait]
+pub trait AsyncTryFrom<T>: Sized {
+    type Error;
+
+    async fn async_try_from(_: T) -> Result<Self, Self::Error>;
 }
 
 pub struct App<T: GetTransport<N> + GetHealthchecker, N: Transport + Sync + Send> {
@@ -31,7 +38,7 @@ pub trait GetHealthchecker {
 }
 
 impl<
-        T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker,
+        T: 'static + Clone + Send + Sync + GetTransport<N> + GetHealthchecker,
         N: 'static + Transport + Sync + Send,
     > App<T, N>
 {
@@ -56,15 +63,7 @@ impl<
         mut self,
     ) -> Result<Self, BaseError<Value>> {
         self.services.push(Box::new(Mutex::new(
-            ServiceApp::new(
-                ServiceInner::from(self.dependency_container.clone()),
-                self.dependency_container.get_transport(),
-                self.dependency_container.get_healthchecker(),
-            )
-            .await
-            .map_err(|_| {
-                BaseError::<Value>::from(CustomErrorType::Nats(Nats::FailedToSubscribe))
-            })?,
+            ServiceApp::<P, G, ServiceInner, N>::async_try_from(self.dependency_container.clone()).await?,
         )));
         Ok(self)
     }
@@ -78,15 +77,16 @@ impl<
     ) -> Result<Self, BaseError<Value>> {
         self.services.push(Box::new(Mutex::new(
             ServiceApp::new(
-                ServiceInner::try_from(self.dependency_container.clone())
-                    .map_err(|_| BaseError::<Value>::from(GeneratedError::Common(Common::InternalServerError)))?,
+                ServiceInner::try_from(self.dependency_container.clone()).map_err(|_| {
+                    BaseError::<Value>::from(GeneratedError::Common(Common::InternalServerError))
+                })?,
                 self.dependency_container.get_transport(),
                 self.dependency_container.get_healthchecker(),
             )
-                .await
-                .map_err(|_| {
-                    BaseError::<Value>::from(CustomErrorType::Nats(Nats::FailedToSubscribe))
-                })?,
+            .await
+            .map_err(|_| {
+                BaseError::<Value>::from(CustomErrorType::Nats(Nats::FailedToSubscribe))
+            })?,
         )));
         Ok(self)
     }

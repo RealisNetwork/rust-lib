@@ -1,6 +1,7 @@
-use crate::app::Runnable;
+use crate::app::{AsyncTryFrom, GetHealthchecker, GetTransport, Runnable};
 use crate::service::Service;
 use async_trait::async_trait;
+use error_registry::custom_errors::{CustomErrorType, Nats};
 use error_registry::generated_errors::{Common, GeneratedError};
 use error_registry::BaseError;
 use healthchecker::HealthChecker;
@@ -32,6 +33,30 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> Runnable
             log::error!("{:?}", error);
             health_checker.make_sick::<String>(None);
         }
+    }
+}
+
+#[async_trait]
+impl<
+        T: 'static + Clone + Send + Sync + GetTransport<N> + GetHealthchecker,
+        P: Agent,
+        G: Schema,
+        ServiceInner: 'static + From<Arc<T>> + Service<P, G>,
+        N: 'static + Transport + Sync + Send,
+    > AsyncTryFrom<Arc<T>> for ServiceApp<P, G, ServiceInner, N>
+{
+    type Error = BaseError<Value>;
+
+    async fn async_try_from(dependency_container: Arc<T>) -> Result<Self, BaseError<Value>> {
+        Ok(ServiceApp::new(
+            ServiceInner::from(dependency_container.clone()),
+            dependency_container.get_transport(),
+            dependency_container.get_healthchecker(),
+        )
+        .await
+        .map_err(|_| {
+            BaseError::<Value>::from(CustomErrorType::Nats(Nats::FailedToSubscribe))
+        })?)
     }
 }
 
