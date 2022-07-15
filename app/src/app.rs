@@ -1,18 +1,34 @@
+use std::ops::Deref;
+use std::sync::Arc;
+use crate::{Service, ServiceApp};
 use async_trait::async_trait;
+use healthchecker::HealthChecker;
 use log::LevelFilter;
+use schemas::{Agent, Schema};
+use serde_json::Value;
 use tokio::sync::Mutex;
+use transport::Transport;
 
-// pub trait DependencyContainable{};
 
 #[async_trait]
 pub trait Runnable: Send + Sync {
     async fn run(&mut self);
 }
 
-pub struct App<T> {
+pub struct App<T: GetTransport<N> + GetHealthchecker, N: Transport + Sync + Send + Clone> {
     services: Vec<Box<Mutex<dyn Runnable>>>,
     dependency_container: T,
+    _marker: std::marker::PhantomData<N>,
 }
+
+pub trait GetTransport<N: Transport + Sync + Send + Clone> {
+   fn get_transport(&self) -> N;
+}
+
+pub trait GetHealthchecker{
+    fn get_healthchecker(&self) -> HealthChecker;
+}
+
 
 // #[allow(clippy::derivable_impls)]
 // impl<T> Default for App<T> {
@@ -21,13 +37,13 @@ pub struct App<T> {
 //     }
 // }
 
-
-
-impl<T: Clone + Send + Sync> App <T>{
+impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: 'static + Transport + Sync + Send + Clone> App<T, N> {
     pub fn new(dependency_container: T) -> Self {
-        Self {
+        Self
+        {
             services: vec![],
             dependency_container,
+            _marker: Default::default(),
         }
     }
 
@@ -36,8 +52,23 @@ impl<T: Clone + Send + Sync> App <T>{
         self
     }
 
-    pub fn push_with_dependency<Service: 'static + Runnable + From<T>>(mut self) -> Self {
-        self.services.push(Box::new(Mutex::new(Service::from(self.dependency_container.clone()))));
+    // TODO: Remove unwrap
+    pub async fn push_with_dependency<
+        P: 'static +  Agent, G: 'static + Schema,
+        ServiceInner: 'static + Runnable + From<T> + Service<P, G>,
+    >
+    (
+        mut self,
+    ) -> Self {
+        self.services.push(Box::new(Mutex::new(
+            ServiceApp::new(
+                ServiceInner::from(self.dependency_container.clone()),
+                Arc::new(self.dependency_container.get_transport()),
+                self.dependency_container.get_healthchecker(),
+            )
+            .await
+            .unwrap(),
+        )));
         self
     }
 
@@ -51,11 +82,10 @@ impl<T: Clone + Send + Sync> App <T>{
             .init();
         self
     }
-
 }
 
 #[async_trait]
-impl<T: Clone + Send + Sync> Runnable for App<T> {
+impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: Transport + Sync + Send + Clone> Runnable for App<T, N> {
     async fn run(&mut self) {
         let services = self.services.drain(..);
         futures::future::join_all(services.into_iter().map(|service| {

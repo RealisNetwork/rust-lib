@@ -11,7 +11,6 @@ use serde_json::Value;
 use stan::{Client, SubscriptionConfig, SubscriptionStart};
 use std::time::Duration;
 
-
 pub struct StanTransport {
     pub client_id: String,
     pub client: Client,
@@ -54,7 +53,7 @@ impl Alivable for StanTransport {
         }
     }
 
-     async fn info(&self) -> &'static str {
+    async fn info(&self) -> &'static str {
         "StanTransport"
     }
 }
