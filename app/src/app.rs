@@ -22,10 +22,7 @@ pub trait AsyncTryFrom<T>: Sized {
     async fn async_try_from(_: T) -> Result<Self, Self::Error>;
 }
 
-pub trait AbstractService<P: Agent, G: Schema>: Send + Sync {
-    type P: 'static + Agent;
-    type G: 'static + Schema;
-}
+pub trait AbstractService<P: Agent, G: Schema>: Send + Sync {}
 
 pub struct App<T: GetTransport<N> + GetHealthchecker, N: Transport + Sync + Send> {
     services: Vec<Box<Mutex<dyn Runnable>>>,
@@ -65,11 +62,9 @@ impl< T, N > App<T, N>
     where
         AbstractApp: 'static + Runnable + AsyncTryFrom<Arc<T>>,
         ServiceInner: 'static + From<Arc<T>> + AbstractService<P, G>,
-        //P: 'static + Agent,
-        //G: 'static + Schema,
+        P: 'static + Agent,
+        G: 'static + Schema,
     {
-        type P = Agent;
-        type G = Schema;
         self.services.push(Box::new(Mutex::new(
             AbstractApp::async_try_from(self.dependency_container.clone())
                 .await
