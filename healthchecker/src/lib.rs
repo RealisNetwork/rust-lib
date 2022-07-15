@@ -12,6 +12,32 @@ use std::sync::Arc;
 use std::task::{Context, Poll};
 use tokio::sync::Mutex;
 
+
+pub struct Wrapper<T: Alivable>(Arc<T>);
+
+#[async_trait]
+impl<T: Alivable> Alivable for Wrapper<T> {
+    async fn is_alive(&self) -> bool {
+        self.0.is_alive().await
+    }
+
+    async fn info(&self) -> &'static str {
+        self.0.info().await
+    }
+}
+
+impl<T: Alivable> From<T> for Wrapper<T> {
+    fn from(other: T) -> Wrapper<T> {
+        Wrapper(Arc::new(other))
+    }
+}
+
+impl<T: Alivable> From<Arc<T>> for Wrapper<T> {
+    fn from(other: Arc<T>) -> Wrapper<T> {
+        Wrapper(other)
+    }
+}
+
 /// Implement this trait on your service structure or any service that can loose connection or etc.
 /// Object of this trait can be passed as services to healthchecker in oreder to check em all.
 #[async_trait]
