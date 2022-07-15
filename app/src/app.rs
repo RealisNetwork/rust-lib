@@ -63,7 +63,7 @@ impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: 'static + T
         self.services.push(Box::new(Mutex::new(
             ServiceApp::new(
                 ServiceInner::from(self.dependency_container.clone()),
-                Arc::new(self.dependency_container.get_transport()),
+                Arc::new(self.dependency_container.get_transport().as_ref()),
                 self.dependency_container.get_healthchecker(),
             )
             .await
