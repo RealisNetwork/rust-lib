@@ -8,6 +8,7 @@ use schemas::{Agent, Schema};
 use serde_json::Value;
 use std::sync::Arc;
 use tokio::sync::Mutex;
+use error_registry::generated_errors::{Common, GeneratedError};
 use transport::Transport;
 
 #[async_trait]
@@ -64,6 +65,28 @@ impl<
             .map_err(|_| {
                 BaseError::<Value>::from(CustomErrorType::Nats(Nats::FailedToSubscribe))
             })?,
+        )));
+        Ok(self)
+    }
+
+    pub async fn try_push_with_dependency<
+        ServiceInner: 'static + TryFrom<Arc<T>> + Service<P, G>,
+        P: 'static + Agent,
+        G: 'static + Schema,
+    >(
+        mut self,
+    ) -> Result<Self, BaseError<Value>> {
+        self.services.push(Box::new(Mutex::new(
+            ServiceApp::new(
+                ServiceInner::try_from(self.dependency_container.clone())
+                    .map_err(|_| BaseError::<Value>::from(GeneratedError::Common(Common::InternalServerError)))?,
+                self.dependency_container.get_transport(),
+                self.dependency_container.get_healthchecker(),
+            )
+                .await
+                .map_err(|_| {
+                    BaseError::<Value>::from(CustomErrorType::Nats(Nats::FailedToSubscribe))
+                })?,
         )));
         Ok(self)
     }
