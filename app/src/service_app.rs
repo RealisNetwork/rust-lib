@@ -48,15 +48,13 @@ impl<
     type Error = BaseError<Value>;
 
     async fn async_try_from(dependency_container: Arc<T>) -> Result<Self, BaseError<Value>> {
-        Ok(ServiceApp::new(
+        ServiceApp::new(
             ServiceInner::from(dependency_container.clone()),
             dependency_container.get_transport(),
             dependency_container.get_healthchecker(),
         )
         .await
-        .map_err(|_| {
-            BaseError::<Value>::from(CustomErrorType::Nats(Nats::FailedToSubscribe))
-        })?)
+
     }
 }
 

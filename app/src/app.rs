@@ -19,7 +19,6 @@ pub trait Runnable: Send + Sync {
 #[async_trait]
 pub trait AsyncTryFrom<T>: Sized {
     type Error;
-
     async fn async_try_from(_: T) -> Result<Self, Self::Error>;
 }
 
@@ -56,6 +55,7 @@ impl<
     }
 
     pub async fn push_with_dependency<
+        AbstractApp: 'static + Runnable + AsyncTryFrom<Arc<T>>,
         ServiceInner: 'static + From<Arc<T>> + Service<P, G>,
         P: 'static + Agent,
         G: 'static + Schema,
@@ -63,33 +63,13 @@ impl<
         mut self,
     ) -> Result<Self, BaseError<Value>> {
         self.services.push(Box::new(Mutex::new(
-            ServiceApp::<P, G, ServiceInner, N>::async_try_from(self.dependency_container.clone()).await?,
-        )));
-        Ok(self)
-    }
-
-    pub async fn try_push_with_dependency<
-        ServiceInner: 'static + TryFrom<Arc<T>> + Service<P, G>,
-        P: 'static + Agent,
-        G: 'static + Schema,
-    >(
-        mut self,
-    ) -> Result<Self, BaseError<Value>> {
-        self.services.push(Box::new(Mutex::new(
-            ServiceApp::new(
-                ServiceInner::try_from(self.dependency_container.clone()).map_err(|_| {
-                    BaseError::<Value>::from(GeneratedError::Common(Common::InternalServerError))
-                })?,
-                self.dependency_container.get_transport(),
-                self.dependency_container.get_healthchecker(),
-            )
-            .await
-            .map_err(|_| {
+            AbstractApp::async_try_from(self.dependency_container.clone()).await.map_err(|_| {
                 BaseError::<Value>::from(CustomErrorType::Nats(Nats::FailedToSubscribe))
             })?,
         )));
         Ok(self)
     }
+    
 
     pub fn init_logger_with_level(self, logger_level: LevelFilter) -> Self {
         env_logger::Builder::new().filter_level(logger_level).init();
