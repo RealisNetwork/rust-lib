@@ -38,7 +38,7 @@ pub trait GetHealthchecker{
 // }
 
 impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: 'static + Transport + Sync + Send + Clone> App<T, N> {
-    pub fn new(dependency_container: T) -> Self {
+    pub fn new(dependency_container: Arc<T>) -> Self {
         Self
         {
             services: vec![],
