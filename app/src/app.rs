@@ -17,12 +17,12 @@ pub trait Runnable: Send + Sync {
 
 pub struct App<T: GetTransport<N> + GetHealthchecker, N: Transport + Sync + Send + Clone> {
     services: Vec<Box<Mutex<dyn Runnable>>>,
-    dependency_container: T,
+    dependency_container: Arc<T>,
     _marker: std::marker::PhantomData<N>,
 }
 
 pub trait GetTransport<N: Transport + Sync + Send + Clone> {
-   fn get_transport(&self) -> Arc<N>;
+   fn get_transport(&self) -> N;
 }
 
 pub trait GetHealthchecker{
