@@ -1,16 +1,15 @@
-use std::ops::Deref;
-use std::sync::Arc;
 use crate::{Service, ServiceApp};
 use async_trait::async_trait;
+use error_registry::custom_errors::{CustomErrorType, Nats};
+use error_registry::BaseError;
 use healthchecker::HealthChecker;
 use log::LevelFilter;
 use schemas::{Agent, Schema};
 use serde_json::Value;
+use std::ops::Deref;
+use std::sync::Arc;
 use tokio::sync::Mutex;
-use error_registry::BaseError;
-use error_registry::custom_errors::{CustomErrorType, Nats};
 use transport::Transport;
-
 
 #[async_trait]
 pub trait Runnable: Send + Sync {
@@ -24,18 +23,20 @@ pub struct App<T: GetTransport<N> + GetHealthchecker, N: Transport + Sync + Send
 }
 
 pub trait GetTransport<N: Transport + Sync + Send> {
-   fn get_transport(&self) -> Arc<N>;
+    fn get_transport(&self) -> Arc<N>;
 }
 
-pub trait GetHealthchecker{
+pub trait GetHealthchecker {
     fn get_healthchecker(&self) -> HealthChecker;
 }
 
-
-impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: 'static + Transport + Sync + Send> App<T, N> {
+impl<
+        T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker,
+        N: 'static + Transport + Sync + Send,
+    > App<T, N>
+{
     pub fn new(dependency_container: Arc<T>) -> Self {
-        Self
-        {
+        Self {
             services: vec![],
             dependency_container,
             _marker: Default::default(),
@@ -49,9 +50,9 @@ impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: 'static + T
 
     pub async fn push_with_dependency<
         ServiceInner: 'static + From<Arc<T>> + Service<P, G>,
-        P: 'static + Agent, G: 'static + Schema,
-    >
-    (
+        P: 'static + Agent,
+        G: 'static + Schema,
+    >(
         mut self,
     ) -> Result<Self, BaseError<Value>> {
         self.services.push(Box::new(Mutex::new(
@@ -61,7 +62,9 @@ impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: 'static + T
                 self.dependency_container.get_healthchecker(),
             )
             .await
-            .map_err(|_| BaseError::<Value>::from(CustomErrorType::Nats(Nats::FailedToSubscribe)))?,
+            .map_err(|_| {
+                BaseError::<Value>::from(CustomErrorType::Nats(Nats::FailedToSubscribe))
+            })?,
         )));
         Ok(self)
     }
@@ -79,7 +82,9 @@ impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: 'static + T
 }
 
 #[async_trait]
-impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: Transport + Sync + Send> Runnable for App<T, N> {
+impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: Transport + Sync + Send>
+    Runnable for App<T, N>
+{
     async fn run(&mut self) {
         let services = self.services.drain(..);
         futures::future::join_all(services.into_iter().map(|service| {
