@@ -85,11 +85,17 @@ impl HealthcheckerServer {
 
     /// Add any struct that implements Alivable to vector of checkable services (all the services
     /// will be checked when is_ok() method is executed)
-    pub async fn add<T: 'static + Into<Wrapper<T>> + Alivable>(mut self, s: T) -> Self
+    pub async fn add<T: 'static + Alivable>(&mut self, s: Wrapper<T>) -> &Self
     {
-        self.services.lock().await.push(Box::new(Wrapper::from(s)));
+        self.services.lock().await.push(Box::new(s));
         self
     }
+
+    // pub async fn add<T: 'static + Into<Wrapper<T>> + Alivable>(mut self, s: T) -> Self
+    // {
+    //     self.services.lock().await.push(Box::new(Wrapper::from(s)));
+    //     self
+    // }
 
     /// Starts the healthchecker web service
     async fn http_init(self, host: String) {
