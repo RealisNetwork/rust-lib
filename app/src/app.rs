@@ -7,6 +7,8 @@ use log::LevelFilter;
 use schemas::{Agent, Schema};
 use serde_json::Value;
 use tokio::sync::Mutex;
+use error_registry::BaseError;
+use error_registry::custom_errors::{CustomErrorType, Nats};
 use transport::Transport;
 
 
@@ -30,13 +32,6 @@ pub trait GetHealthchecker{
 }
 
 
-// #[allow(clippy::derivable_impls)]
-// impl<T> Default for App<T> {
-//     fn default() -> Self {
-//         Self { services: vec![] }
-//     }
-// }
-
 impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: 'static + Transport + Sync + Send> App<T, N> {
     pub fn new(dependency_container: Arc<T>) -> Self {
         Self
@@ -52,15 +47,13 @@ impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: 'static + T
         self
     }
 
-    // TODO: Remove unwrap
     pub async fn push_with_dependency<
-        P: 'static + Agent, G: 'static + Schema,
         ServiceInner: 'static + From<Arc<T>> + Service<P, G>,
-        // ServiceInner: 'static + Runnable + From<Arc<T>> + Service<P, G>,
+        P: 'static + Agent, G: 'static + Schema,
     >
     (
         mut self,
-    ) -> Self {
+    ) -> Result<Self, BaseError<Value>> {
         self.services.push(Box::new(Mutex::new(
             ServiceApp::new(
                 ServiceInner::from(self.dependency_container.clone()),
@@ -68,9 +61,9 @@ impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: 'static + T
                 self.dependency_container.get_healthchecker(),
             )
             .await
-            .unwrap(),
+            .map_err(|_| BaseError::<Value>::from(CustomErrorType::Nats(Nats::FailedToSubscribe)))?,
         )));
-        self
+        Ok(self)
     }
 
     pub fn init_logger_with_level(self, logger_level: LevelFilter) -> Self {
