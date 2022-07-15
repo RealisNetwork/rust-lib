@@ -15,13 +15,13 @@ pub trait Runnable: Send + Sync {
     async fn run(&mut self);
 }
 
-pub struct App<T: GetTransport<N> + GetHealthchecker, N: Transport + Sync + Send + Clone> {
+pub struct App<T: GetTransport<N> + GetHealthchecker, N: Transport + Sync + Send> {
     services: Vec<Box<Mutex<dyn Runnable>>>,
     dependency_container: Arc<T>,
     _marker: std::marker::PhantomData<N>,
 }
 
-pub trait GetTransport<N: Transport + Sync + Send + Clone> {
+pub trait GetTransport<N: Transport + Sync + Send> {
    fn get_transport(&self) -> N;
 }
 
@@ -37,7 +37,7 @@ pub trait GetHealthchecker{
 //     }
 // }
 
-impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: 'static + Transport + Sync + Send + Clone> App<T, N> {
+impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: 'static + Transport + Sync + Send> App<T, N> {
     pub fn new(dependency_container: Arc<T>) -> Self {
         Self
         {
@@ -85,7 +85,7 @@ impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: 'static + T
 }
 
 #[async_trait]
-impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: Transport + Sync + Send + Clone> Runnable for App<T, N> {
+impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: Transport + Sync + Send> Runnable for App<T, N> {
     async fn run(&mut self) {
         let services = self.services.drain(..);
         futures::future::join_all(services.into_iter().map(|service| {
