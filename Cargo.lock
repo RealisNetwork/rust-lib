@@ -4405,6 +4405,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "realis-lib"
+version = "0.1.0"
+
+[[package]]
 name = "realis-macros"
 version = "0.1.0"
 dependencies = [
