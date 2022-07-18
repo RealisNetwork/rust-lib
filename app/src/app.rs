@@ -11,6 +11,13 @@ use std::sync::Arc;
 use tokio::sync::Mutex;
 use transport::Transport;
 
+/// app = push_service!(app, ServiceApp, SetMailingSubscriptionStatusService)?;
+macro_rules! push_service{
+    ($app:expr,$serviceApp:ident,$service:ident)=>{
+        $app.push_with_dependency::<$serviceApp<_, _, $service, _>, $service, _, _>().await
+    }
+}
+
 #[async_trait]
 pub trait Runnable: Send + Sync {
     async fn run(&mut self);
