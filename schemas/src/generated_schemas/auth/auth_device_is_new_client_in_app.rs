@@ -2,12 +2,20 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceIsNewClientInAppParams {
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "appId")]
     pub app_id: i32,
+}
+impl Schema for AuthAuthDeviceIsNewClientInAppParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type AuthAuthDeviceIsNewClientInAppReturns = bool;

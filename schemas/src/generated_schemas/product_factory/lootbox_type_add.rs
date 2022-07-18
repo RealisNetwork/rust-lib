@@ -2,16 +2,24 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryLootboxTypeAddParams {
+    #[serde(rename = "lootboxId")]
+    pub lootbox_id: i32,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "dropChanceMultiplier")]
     pub drop_chance_multiplier: i32,
     #[serde(rename = "type")]
     pub r#type: String,
-    #[serde(rename = "lootboxId")]
-    pub lootbox_id: i32,
+}
+impl Schema for ProductFactoryLootboxTypeAddParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type ProductFactoryLootboxTypeAddReturns = bool;

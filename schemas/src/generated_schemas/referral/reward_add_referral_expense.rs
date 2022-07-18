@@ -2,14 +2,22 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralRewardAddReferralExpenseParams {
     #[serde(rename = "txId")]
     pub tx_id: String,
-    #[serde(rename = "amount")]
-    pub amount: String,
     #[serde(rename = "referralId")]
     pub referral_id: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
+}
+impl Schema for ReferralRewardAddReferralExpenseParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type ReferralRewardAddReferralExpenseReturns = bool;

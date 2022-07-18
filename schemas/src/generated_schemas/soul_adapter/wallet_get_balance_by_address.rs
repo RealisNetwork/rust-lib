@@ -2,10 +2,19 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SoulAdapterWalletGetBalanceByAddressParams {
     #[serde(rename = "address")]
     pub address: String,
 }
-pub type SoulAdapterWalletGetBalanceByAddressReturns = String;
+impl Schema for SoulAdapterWalletGetBalanceByAddressParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct SoulAdapterWalletGetBalanceByAddressReturns(String);

@@ -2,24 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CronCronGetParams {
     #[serde(rename = "id")]
     pub id: i64,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for CronCronGetParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CronCronGetReturns {
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "id")]
-    pub id: i64,
     #[serde(rename = "key")]
     pub key: String,
-    #[serde(rename = "howOften")]
-    pub how_often: i64,
+    #[serde(rename = "id")]
+    pub id: i64,
     #[serde(rename = "startsAt")]
     pub starts_at: String,
+    #[serde(rename = "howOften")]
+    pub how_often: i64,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
 }

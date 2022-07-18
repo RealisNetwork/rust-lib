@@ -2,5 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type ReferralRewardMakeRewardRequestParams = ();
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for ReferralRewardMakeRewardRequestParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(ReferralRewardMakeRewardRequestParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct ReferralRewardMakeRewardRequestParams;
+impl Schema for ReferralRewardMakeRewardRequestParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
 pub type ReferralRewardMakeRewardRequestReturns = bool;

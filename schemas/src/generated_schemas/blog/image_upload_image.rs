@@ -2,12 +2,21 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogImageUploadImageParams {
-    #[serde(rename = "binary")]
-    pub binary: String,
     #[serde(rename = "extension")]
     pub extension: String,
+    #[serde(rename = "binary")]
+    pub binary: String,
 }
-pub type BlogImageUploadImageReturns = String;
+impl Schema for BlogImageUploadImageParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct BlogImageUploadImageReturns(String);

@@ -2,11 +2,19 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeGetAttributeListByPersonalTypeParams {
     #[serde(rename = "personalType")]
     pub personal_type: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for ProductFactoryProductTypeGetAttributeListByPersonalTypeParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeGetAttributeListByPersonalTypeReturns {}

@@ -2,20 +2,28 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NotificationsNotificationsCreateNewParams {
+    #[serde(rename = "description")]
+    pub description: String,
+    #[serde(rename = "title")]
+    pub title: String,
     #[serde(rename = "category")]
     pub category: String,
     #[serde(rename = "senderUserId")]
     pub sender_user_id: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "title")]
-    pub title: String,
     #[serde(rename = "notificationType")]
     pub notification_type: (),
-    #[serde(rename = "description")]
-    pub description: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+}
+impl Schema for NotificationsNotificationsCreateNewParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type NotificationsNotificationsCreateNewReturns = bool;

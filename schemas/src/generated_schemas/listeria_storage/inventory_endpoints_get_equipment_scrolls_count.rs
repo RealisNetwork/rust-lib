@@ -2,5 +2,24 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type ListeriaStorageInventoryEndpointsGetEquipmentScrollsCountParams = ();
-pub type ListeriaStorageInventoryEndpointsGetEquipmentScrollsCountReturns = i32;
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for ListeriaStorageInventoryEndpointsGetEquipmentScrollsCountParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(ListeriaStorageInventoryEndpointsGetEquipmentScrollsCountParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct ListeriaStorageInventoryEndpointsGetEquipmentScrollsCountParams;
+impl Schema for ListeriaStorageInventoryEndpointsGetEquipmentScrollsCountParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ListeriaStorageInventoryEndpointsGetEquipmentScrollsCountReturns(i32);

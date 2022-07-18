@@ -2,81 +2,89 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyHeroesEndpointsGetHeroDtoAttributesParams {
     #[serde(rename = "heroId")]
     pub hero_id: i32,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for LobbyHeroesEndpointsGetHeroDtoAttributesParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct LobbyHeroesEndpointsGetHeroDtoAttributesReturnsAttributesParams {
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: String,
+    #[serde(rename = "attackDamage")]
+    pub attack_damage: String,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: String,
+    #[serde(rename = "skillEffectPower")]
+    pub skill_effect_power: String,
+    #[serde(rename = "ultPower")]
+    pub ult_power: String,
+    #[serde(rename = "agility")]
+    pub agility: String,
+    #[serde(rename = "intelligence")]
+    pub intelligence: String,
+    #[serde(rename = "healthRegenPercent")]
+    pub health_regen_percent: String,
+    #[serde(rename = "strength")]
+    pub strength: String,
+    #[serde(rename = "armor")]
+    pub armor: String,
+    #[serde(rename = "skillPower")]
+    pub skill_power: String,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: String,
+    #[serde(rename = "moveSpeed")]
+    pub move_speed: String,
+    #[serde(rename = "health")]
+    pub health: String,
+    #[serde(rename = "mainCharacteristic")]
+    pub main_characteristic: i8,
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyHeroesEndpointsGetHeroDtoAttributesReturnsEquipmentAttributesParams {
     #[serde(rename = "strength")]
     pub strength: String,
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: String,
     #[serde(rename = "intelligence")]
     pub intelligence: String,
-    #[serde(rename = "health")]
-    pub health: String,
-    #[serde(rename = "moveSpeed")]
-    pub move_speed: String,
-    #[serde(rename = "armor")]
-    pub armor: String,
-    #[serde(rename = "skillPower")]
-    pub skill_power: String,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: String,
+    #[serde(rename = "agility")]
+    pub agility: String,
     #[serde(rename = "healthRegenPercent")]
     pub health_regen_percent: String,
+    #[serde(rename = "health")]
+    pub health: String,
+    #[serde(rename = "skillPower")]
+    pub skill_power: String,
     #[serde(rename = "attackDamage")]
     pub attack_damage: String,
     #[serde(rename = "skillEffectPower")]
     pub skill_effect_power: String,
-    #[serde(rename = "vampirismPower")]
-    pub vampirism_power: String,
-    #[serde(rename = "agility")]
-    pub agility: String,
-    #[serde(rename = "ultPower")]
-    pub ult_power: String,
-}
-#[derive(Debug, Serialize, Deserialize)]
-pub struct LobbyHeroesEndpointsGetHeroDtoAttributesReturnsAttributesParams {
     #[serde(rename = "armor")]
     pub armor: String,
-    #[serde(rename = "agility")]
-    pub agility: String,
-    #[serde(rename = "intelligence")]
-    pub intelligence: String,
-    #[serde(rename = "health")]
-    pub health: String,
-    #[serde(rename = "healthRegenPercent")]
-    pub health_regen_percent: String,
-    #[serde(rename = "attackDamage")]
-    pub attack_damage: String,
-    #[serde(rename = "moveSpeed")]
-    pub move_speed: String,
-    #[serde(rename = "strength")]
-    pub strength: String,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: String,
-    #[serde(rename = "vampirismPower")]
-    pub vampirism_power: String,
-    #[serde(rename = "ultPower")]
-    pub ult_power: String,
-    #[serde(rename = "skillEffectPower")]
-    pub skill_effect_power: String,
-    #[serde(rename = "mainCharacteristic")]
-    pub main_characteristic: i8,
-    #[serde(rename = "skillPower")]
-    pub skill_power: String,
     #[serde(rename = "ultEffectPower")]
     pub ult_effect_power: String,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: String,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: String,
+    #[serde(rename = "ultPower")]
+    pub ult_power: String,
+    #[serde(rename = "moveSpeed")]
+    pub move_speed: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyHeroesEndpointsGetHeroDtoAttributesReturns {
+    #[serde(rename = "attributes")]
+    pub attributes: LobbyHeroesEndpointsGetHeroDtoAttributesReturnsAttributesParams,
     #[serde(rename = "equipmentAttributes")]
     pub equipment_attributes:
         LobbyHeroesEndpointsGetHeroDtoAttributesReturnsEquipmentAttributesParams,
-    #[serde(rename = "attributes")]
-    pub attributes: LobbyHeroesEndpointsGetHeroDtoAttributesReturnsAttributesParams,
 }

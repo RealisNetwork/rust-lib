@@ -2,15 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsEquipUnitParams {
-    #[serde(rename = "slotId")]
-    pub slot_id: i32,
     #[serde(rename = "unitId")]
     pub unit_id: i32,
+    #[serde(rename = "slotId")]
+    pub slot_id: i32,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for DragocatsStorageInventoryEndpointsEquipUnitParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsEquipUnitReturns {
     #[serde(rename = "slotId")]
     pub slot_id: i32,

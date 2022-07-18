@@ -2,23 +2,31 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionUpdateParamsExtraDetailsParams {
-    #[serde(rename = "tab")]
-    pub tab: String,
     #[serde(rename = "type")]
     pub r#type: String,
+    #[serde(rename = "tab")]
+    pub tab: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionUpdateParams {
-    #[serde(rename = "description")]
-    pub description: Option<String>,
-    #[serde(rename = "value")]
-    pub value: Option<String>,
-    #[serde(rename = "clientKey")]
-    pub client_key: String,
     #[serde(rename = "extraDetails")]
     pub extra_details: Option<AdminOptionUpdateParamsExtraDetailsParams>,
+    #[serde(rename = "clientKey")]
+    pub client_key: String,
+    #[serde(rename = "value")]
+    pub value: Option<String>,
+    #[serde(rename = "description")]
+    pub description: Option<String>,
+}
+impl Schema for AdminOptionUpdateParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type AdminOptionUpdateReturns = bool;

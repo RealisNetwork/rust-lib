@@ -2,5 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type CatsLobbyKeepAliveParams = ();
-pub type CatsLobbyKeepAliveReturns = ();
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for CatsLobbyKeepAliveParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(CatsLobbyKeepAliveParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct CatsLobbyKeepAliveParams;
+impl Schema for CatsLobbyKeepAliveParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for CatsLobbyKeepAliveReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(CatsLobbyKeepAliveReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct CatsLobbyKeepAliveReturns;

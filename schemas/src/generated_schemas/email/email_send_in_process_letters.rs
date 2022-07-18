@@ -2,5 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type EmailEmailSendInProcessLettersParams = ();
-pub type EmailEmailSendInProcessLettersReturns = ();
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for EmailEmailSendInProcessLettersParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(EmailEmailSendInProcessLettersParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct EmailEmailSendInProcessLettersParams;
+impl Schema for EmailEmailSendInProcessLettersParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for EmailEmailSendInProcessLettersReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(EmailEmailSendInProcessLettersReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct EmailEmailSendInProcessLettersReturns;

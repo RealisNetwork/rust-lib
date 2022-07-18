@@ -2,18 +2,35 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbySettingsSetParams {
     #[serde(rename = "HFREffects")]
     pub hfr_effects: i8,
-    #[serde(rename = "quality")]
-    pub quality: i8,
     #[serde(rename = "language")]
     pub language: i8,
     #[serde(rename = "music")]
     pub music: bool,
     #[serde(rename = "sounds")]
     pub sounds: bool,
+    #[serde(rename = "quality")]
+    pub quality: i8,
 }
-pub type LobbySettingsSetReturns = ();
+impl Schema for LobbySettingsSetParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for LobbySettingsSetReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(LobbySettingsSetReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct LobbySettingsSetReturns;

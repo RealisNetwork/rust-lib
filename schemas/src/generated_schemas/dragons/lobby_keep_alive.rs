@@ -2,5 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type DragonsLobbyKeepAliveParams = ();
-pub type DragonsLobbyKeepAliveReturns = ();
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for DragonsLobbyKeepAliveParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(DragonsLobbyKeepAliveParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct DragonsLobbyKeepAliveParams;
+impl Schema for DragonsLobbyKeepAliveParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for DragonsLobbyKeepAliveReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(DragonsLobbyKeepAliveReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct DragonsLobbyKeepAliveReturns;

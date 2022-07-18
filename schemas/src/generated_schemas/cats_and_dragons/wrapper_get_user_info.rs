@@ -2,28 +2,36 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetUserInfoParams {
-    #[serde(rename = "appId")]
-    pub app_id: i64,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "appId")]
+    pub app_id: i64,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for CatsAndDragonsWrapperGetUserInfoParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetUserInfoReturns {
-    #[serde(rename = "email")]
-    pub email: String,
-    #[serde(rename = "isAuthorized")]
-    pub is_authorized: bool,
-    #[serde(rename = "refCode")]
-    pub ref_code: String,
-    #[serde(rename = "refLink")]
-    pub ref_link: String,
-    #[serde(rename = "hasReferrer")]
-    pub has_referrer: bool,
     #[serde(rename = "nickname")]
     pub nickname: String,
     #[serde(rename = "isNewProfile")]
     pub is_new_profile: bool,
+    #[serde(rename = "refLink")]
+    pub ref_link: String,
+    #[serde(rename = "hasReferrer")]
+    pub has_referrer: bool,
+    #[serde(rename = "isAuthorized")]
+    pub is_authorized: bool,
+    #[serde(rename = "email")]
+    pub email: String,
+    #[serde(rename = "refCode")]
+    pub ref_code: String,
 }

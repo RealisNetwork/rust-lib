@@ -2,5 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type CatsLobbyGetServerTimeParams = ();
-pub type CatsLobbyGetServerTimeReturns = ();
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for CatsLobbyGetServerTimeParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(CatsLobbyGetServerTimeParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct CatsLobbyGetServerTimeParams;
+impl Schema for CatsLobbyGetServerTimeParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for CatsLobbyGetServerTimeReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(CatsLobbyGetServerTimeReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct CatsLobbyGetServerTimeReturns;

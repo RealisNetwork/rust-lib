@@ -2,14 +2,22 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceIsAuthorizedParams {
+    #[serde(rename = "appId")]
+    pub app_id: i64,
     #[serde(rename = "providerId")]
     pub provider_id: String,
     #[serde(rename = "internalUserId")]
     pub internal_user_id: String,
-    #[serde(rename = "appId")]
-    pub app_id: i64,
+}
+impl Schema for AuthAuthDeviceIsAuthorizedParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type AuthAuthDeviceIsAuthorizedReturns = bool;

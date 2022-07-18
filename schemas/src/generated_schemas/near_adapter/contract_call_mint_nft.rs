@@ -2,15 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterContractCallMintNftParams {
     #[serde(rename = "recipientUserId")]
     pub recipient_user_id: String,
     #[serde(rename = "nftMetadata")]
     pub nft_metadata: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for NearAdapterContractCallMintNftParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterContractCallMintNftReturns {
     #[serde(rename = "nftId")]
     pub nft_id: String,

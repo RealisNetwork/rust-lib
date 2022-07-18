@@ -2,9 +2,26 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type AdminUserRoleIsAdminParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for AdminUserRoleIsAdminParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(AdminUserRoleIsAdminParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct AdminUserRoleIsAdminParams;
+impl Schema for AdminUserRoleIsAdminParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleIsAdminReturns {
     #[serde(rename = "isAdmin")]
     pub is_admin: bool,

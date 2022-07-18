@@ -2,21 +2,29 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesUseCodeParams {
     #[serde(rename = "code")]
     pub code: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for PromoCodesUseCodeParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesUseCodeReturnsParams {
-    #[serde(rename = "heroId")]
-    pub hero_id: i8,
     #[serde(rename = "rewardType")]
     pub reward_type: String,
-    #[serde(rename = "currencyAmount")]
-    pub currency_amount: String,
     #[serde(rename = "currencyKey")]
     pub currency_key: String,
+    #[serde(rename = "heroId")]
+    pub hero_id: i8,
+    #[serde(rename = "currencyAmount")]
+    pub currency_amount: String,
 }
 pub type PromoCodesUseCodeReturns = Vec<PromoCodesUseCodeReturnsParams>;

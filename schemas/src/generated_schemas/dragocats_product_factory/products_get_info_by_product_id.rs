@@ -2,22 +2,30 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsProductFactoryProductsGetInfoByProductIdParams {
     #[serde(rename = "productId")]
     pub product_id: i64,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for DragocatsProductFactoryProductsGetInfoByProductIdParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsProductFactoryProductsGetInfoByProductIdReturns {
-    #[serde(rename = "isNft")]
-    pub is_nft: bool,
     #[serde(rename = "personalType")]
     pub personal_type: String,
     #[serde(rename = "productType")]
     pub product_type: String,
-    #[serde(rename = "subType")]
-    pub sub_type: String,
+    #[serde(rename = "isNft")]
+    pub is_nft: bool,
     #[serde(rename = "name")]
     pub name: String,
+    #[serde(rename = "subType")]
+    pub sub_type: String,
 }

@@ -2,12 +2,20 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileSetNoticeParams {
     #[serde(rename = "notice")]
     pub notice: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+}
+impl Schema for UserProfileSetNoticeParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type UserProfileSetNoticeReturns = bool;

@@ -2,41 +2,49 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipGetAllActiveParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for StatusMembershipGetAllActiveParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipGetAllActiveReturnsParamsMembershipParams {}
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipGetAllActiveReturnsParams {
-    #[serde(rename = "subscriptionTokenHash")]
-    pub subscription_token_hash: String,
-    #[serde(rename = "id")]
-    pub id: i64,
-    #[serde(rename = "subscriptionOrderId")]
-    pub subscription_order_id: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "membership")]
-    pub membership: StatusMembershipGetAllActiveReturnsParamsMembershipParams,
     #[serde(rename = "userId")]
     pub user_id: i64,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: String,
-    #[serde(rename = "appId")]
-    pub app_id: i64,
-    #[serde(rename = "isActive")]
-    pub is_active: bool,
-    #[serde(rename = "duration")]
-    pub duration: String,
     #[serde(rename = "endDate")]
     pub end_date: String,
+    #[serde(rename = "subscriptionOrderId")]
+    pub subscription_order_id: String,
     #[serde(rename = "subscriptionProductId")]
     pub subscription_product_id: String,
     #[serde(rename = "subscriptionToken")]
     pub subscription_token: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "id")]
+    pub id: i64,
+    #[serde(rename = "isActive")]
+    pub is_active: bool,
+    #[serde(rename = "subscriptionTokenHash")]
+    pub subscription_token_hash: String,
+    #[serde(rename = "membership")]
+    pub membership: StatusMembershipGetAllActiveReturnsParamsMembershipParams,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
+    #[serde(rename = "appId")]
+    pub app_id: i64,
+    #[serde(rename = "duration")]
+    pub duration: String,
 }
 pub type StatusMembershipGetAllActiveReturns = Vec<StatusMembershipGetAllActiveReturnsParams>;

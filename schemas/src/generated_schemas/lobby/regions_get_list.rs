@@ -2,18 +2,35 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type LobbyRegionsGetListParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for LobbyRegionsGetListParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(LobbyRegionsGetListParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct LobbyRegionsGetListParams;
+impl Schema for LobbyRegionsGetListParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyRegionsGetListReturnsListParamsParams {
-    #[serde(rename = "host")]
-    pub host: String,
-    #[serde(rename = "name")]
-    pub name: String,
     #[serde(rename = "code")]
     pub code: String,
+    #[serde(rename = "name")]
+    pub name: String,
+    #[serde(rename = "host")]
+    pub host: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyRegionsGetListReturns {
     #[serde(rename = "list")]
     pub list: Vec<LobbyRegionsGetListReturnsListParamsParams>,

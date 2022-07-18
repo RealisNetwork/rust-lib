@@ -2,9 +2,26 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type StatusConfigGetAllParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for StatusConfigGetAllParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(StatusConfigGetAllParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct StatusConfigGetAllParams;
+impl Schema for StatusConfigGetAllParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigGetAllReturnsParams {
     #[serde(rename = "priceInLis")]
     pub price_in_lis: String,
@@ -12,17 +29,17 @@ pub struct StatusConfigGetAllReturnsParams {
     pub is_available: bool,
     #[serde(rename = "price")]
     pub price: String,
+    #[serde(rename = "multiplier")]
+    pub multiplier: String,
+    #[serde(rename = "membershipId")]
+    pub membership_id: i64,
+    #[serde(rename = "priorityIndex")]
+    pub priority_index: i64,
     #[serde(rename = "membership")]
     pub membership: String,
     #[serde(rename = "maxCount")]
     pub max_count: String,
-    #[serde(rename = "membershipId")]
-    pub membership_id: i64,
-    #[serde(rename = "multiplier")]
-    pub multiplier: String,
     #[serde(rename = "id")]
     pub id: i64,
-    #[serde(rename = "priorityIndex")]
-    pub priority_index: i64,
 }
 pub type StatusConfigGetAllReturns = Vec<StatusConfigGetAllReturnsParams>;

@@ -2,22 +2,30 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetListWithPaginationParams {
     #[serde(rename = "page")]
     pub page: i16,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for TransactionsBalanceGetListWithPaginationParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetListWithPaginationReturnsListParamsParams {
+    #[serde(rename = "blockId")]
+    pub block_id: String,
     #[serde(rename = "dateTime")]
     pub date_time: String,
     #[serde(rename = "balanceChange")]
     pub balance_change: String,
-    #[serde(rename = "blockId")]
-    pub block_id: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetListWithPaginationReturns {
     #[serde(rename = "pages")]
     pub pages: i16,

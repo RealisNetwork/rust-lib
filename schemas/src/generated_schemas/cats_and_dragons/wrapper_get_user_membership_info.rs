@@ -2,24 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetUserMembershipInfoParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "appId")]
     pub app_id: i64,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for CatsAndDragonsWrapperGetUserMembershipInfoParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetUserMembershipInfoReturns {
     #[serde(rename = "isAuthorized")]
     pub is_authorized: bool,
-    #[serde(rename = "multiplier")]
-    pub multiplier: i64,
     #[serde(rename = "membershipId")]
     pub membership_id: i64,
-    #[serde(rename = "statusPurchaseAppId")]
-    pub status_purchase_app_id: i64,
     #[serde(rename = "balance")]
     pub balance: String,
+    #[serde(rename = "multiplier")]
+    pub multiplier: i64,
+    #[serde(rename = "statusPurchaseAppId")]
+    pub status_purchase_app_id: i64,
 }

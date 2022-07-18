@@ -2,5 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type DragonsLobbyGetLootboxJackpotPoolParams = ();
-pub type DragonsLobbyGetLootboxJackpotPoolReturns = ();
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for DragonsLobbyGetLootboxJackpotPoolParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(DragonsLobbyGetLootboxJackpotPoolParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct DragonsLobbyGetLootboxJackpotPoolParams;
+impl Schema for DragonsLobbyGetLootboxJackpotPoolParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for DragonsLobbyGetLootboxJackpotPoolReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(DragonsLobbyGetLootboxJackpotPoolReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct DragonsLobbyGetLootboxJackpotPoolReturns;

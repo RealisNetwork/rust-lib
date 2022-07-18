@@ -2,21 +2,36 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type AchievementsAchievementGetAllAchievementsParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for AchievementsAchievementGetAllAchievementsParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(AchievementsAchievementGetAllAchievementsParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct AchievementsAchievementGetAllAchievementsParams;
+impl Schema for AchievementsAchievementGetAllAchievementsParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AchievementsAchievementGetAllAchievementsReturnsParamsGameEventParams {
-    #[serde(rename = "eventLifeType")]
-    pub event_life_type: i32,
     #[serde(rename = "eventKey")]
     pub event_key: String,
+    #[serde(rename = "eventLifeType")]
+    pub event_life_type: i32,
     #[serde(rename = "count")]
     pub count: i64,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AchievementsAchievementGetAllAchievementsReturnsParams {
-    #[serde(rename = "achievementKey")]
-    pub achievement_key: String,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "reward")]
@@ -25,6 +40,8 @@ pub struct AchievementsAchievementGetAllAchievementsReturnsParams {
     pub reward_type: i32,
     #[serde(rename = "gameEvent")]
     pub game_event: AchievementsAchievementGetAllAchievementsReturnsParamsGameEventParams,
+    #[serde(rename = "achievementKey")]
+    pub achievement_key: String,
 }
 pub type AchievementsAchievementGetAllAchievementsReturns =
     Vec<AchievementsAchievementGetAllAchievementsReturnsParams>;

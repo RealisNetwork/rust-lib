@@ -2,22 +2,39 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type MarketItemsGetLootboxesListParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for MarketItemsGetLootboxesListParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(MarketItemsGetLootboxesListParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct MarketItemsGetLootboxesListParams;
+impl Schema for MarketItemsGetLootboxesListParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketItemsGetLootboxesListReturnsProductParamsParams {
-    #[serde(rename = "type")]
-    pub r#type: i32,
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "currencyType")]
-    pub currency_type: String,
     #[serde(rename = "productType")]
     pub product_type: String,
+    #[serde(rename = "currencyType")]
+    pub currency_type: String,
+    #[serde(rename = "type")]
+    pub r#type: i32,
     #[serde(rename = "price")]
     pub price: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketItemsGetLootboxesListReturns {
     #[serde(rename = "product")]
     pub product: Vec<MarketItemsGetLootboxesListReturnsProductParamsParams>,

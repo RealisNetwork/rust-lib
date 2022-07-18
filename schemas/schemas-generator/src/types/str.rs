@@ -23,7 +23,13 @@ pub enum StringFormat {
 impl StringParams {
     pub fn get_declaration(&self, name: &str) -> (TokenStream, TokenStream) {
         let ident = Ident::new(name, Span::call_site());
-        (quote! {}, quote! {pub type #ident = String;})
+        (
+            quote! {},
+            quote! {
+                #[derive(Debug, Clone, Serialize, Deserialize)]
+                pub struct #ident(String);
+            },
+        )
     }
 
     pub fn get_type(&self, _name: &str) -> TokenStream {
@@ -35,7 +41,7 @@ impl StringParams {
         SchemaDeclaration {
             declaration,
             prefix,
-            ..Default::default()
+            contains_struct: true,
         }
     }
 }

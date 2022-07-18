@@ -2,25 +2,33 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for RefundBalancesGetAllParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllReturnsParams {
+    #[serde(rename = "currency")]
+    pub currency: (),
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "lockedUntil")]
     pub locked_until: String,
     #[serde(rename = "lockedFunds")]
     pub locked_funds: String,
     #[serde(rename = "createdAt")]
     pub created_at: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
-    #[serde(rename = "currency")]
-    pub currency: (),
 }
 pub type RefundBalancesGetAllReturns = Vec<RefundBalancesGetAllReturnsParams>;

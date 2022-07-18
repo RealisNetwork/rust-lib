@@ -2,12 +2,20 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesDeleteParams {
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "lockedFunds")]
     pub locked_funds: String,
+}
+impl Schema for RefundBalancesDeleteParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type RefundBalancesDeleteReturns = bool;

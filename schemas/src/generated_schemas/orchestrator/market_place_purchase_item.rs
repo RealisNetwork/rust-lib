@@ -2,16 +2,33 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorMarketPlacePurchaseItemParams {
+    #[serde(rename = "creator")]
+    pub creator: String,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
-    #[serde(rename = "creator")]
-    pub creator: String,
     #[serde(rename = "productId")]
     pub product_id: i32,
 }
-pub type OrchestratorMarketPlacePurchaseItemReturns = ();
+impl Schema for OrchestratorMarketPlacePurchaseItemParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for OrchestratorMarketPlacePurchaseItemReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(OrchestratorMarketPlacePurchaseItemReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct OrchestratorMarketPlacePurchaseItemReturns;

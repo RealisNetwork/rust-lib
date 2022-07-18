@@ -2,5 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type EmailEmailSendNotSentLettersParams = ();
-pub type EmailEmailSendNotSentLettersReturns = ();
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for EmailEmailSendNotSentLettersParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(EmailEmailSendNotSentLettersParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct EmailEmailSendNotSentLettersParams;
+impl Schema for EmailEmailSendNotSentLettersParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for EmailEmailSendNotSentLettersReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(EmailEmailSendNotSentLettersReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct EmailEmailSendNotSentLettersReturns;

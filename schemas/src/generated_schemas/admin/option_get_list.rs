@@ -2,9 +2,26 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type AdminOptionGetListParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for AdminOptionGetListParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(AdminOptionGetListParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct AdminOptionGetListParams;
+impl Schema for AdminOptionGetListParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetListReturnsParams {
     #[serde(rename = "scope")]
     pub scope: String,

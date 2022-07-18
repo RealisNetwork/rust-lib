@@ -2,22 +2,30 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigUpdateParams {
-    #[serde(rename = "price")]
-    pub price: String,
-    #[serde(rename = "multiplier")]
-    pub multiplier: String,
-    #[serde(rename = "maxCount")]
-    pub max_count: String,
-    #[serde(rename = "isAvailable")]
-    pub is_available: bool,
     #[serde(rename = "id")]
     pub id: i64,
-    #[serde(rename = "priceInLis")]
-    pub price_in_lis: String,
+    #[serde(rename = "maxCount")]
+    pub max_count: String,
+    #[serde(rename = "price")]
+    pub price: String,
+    #[serde(rename = "isAvailable")]
+    pub is_available: bool,
+    #[serde(rename = "multiplier")]
+    pub multiplier: String,
     #[serde(rename = "membership")]
     pub membership: String,
+    #[serde(rename = "priceInLis")]
+    pub price_in_lis: String,
+}
+impl Schema for StatusConfigUpdateParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type StatusConfigUpdateReturns = bool;

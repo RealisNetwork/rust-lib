@@ -2,9 +2,26 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type BalancesBalancesFreeExperienceAddedNotificationParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for BalancesBalancesFreeExperienceAddedNotificationParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(BalancesBalancesFreeExperienceAddedNotificationParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct BalancesBalancesFreeExperienceAddedNotificationParams;
+impl Schema for BalancesBalancesFreeExperienceAddedNotificationParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BalancesBalancesFreeExperienceAddedNotificationReturns {
     #[serde(rename = "balance")]
     pub balance: i32,

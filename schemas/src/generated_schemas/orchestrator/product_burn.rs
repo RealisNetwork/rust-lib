@@ -2,10 +2,18 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorProductBurnParams {
     #[serde(rename = "productIds")]
     pub product_ids: Vec<i64>,
+}
+impl Schema for OrchestratorProductBurnParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type OrchestratorProductBurnReturns = bool;

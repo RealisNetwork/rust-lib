@@ -76,7 +76,7 @@ impl Object {
         (
             quote! {#(#prefix)*},
             quote! {
-                #[derive(Debug, Serialize, Deserialize)]
+                #[derive(Debug, Clone, Serialize, Deserialize)]
                 pub struct #ident { #(#fields),*}
             },
         )

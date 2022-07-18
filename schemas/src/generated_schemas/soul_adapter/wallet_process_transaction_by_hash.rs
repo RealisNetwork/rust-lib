@@ -2,14 +2,22 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SoulAdapterWalletProcessTransactionByHashParams {
     #[serde(rename = "blockNumber")]
     pub block_number: i64,
-    #[serde(rename = "hash")]
-    pub hash: String,
     #[serde(rename = "currency")]
     pub currency: String,
+    #[serde(rename = "hash")]
+    pub hash: String,
+}
+impl Schema for SoulAdapterWalletProcessTransactionByHashParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type SoulAdapterWalletProcessTransactionByHashReturns = bool;

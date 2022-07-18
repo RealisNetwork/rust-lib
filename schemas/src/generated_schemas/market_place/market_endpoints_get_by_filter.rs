@@ -2,60 +2,68 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
-pub struct MarketPlaceMarketEndpointsGetByFilterParamsFiltersParamsParams {
-    #[serde(rename = "value")]
-    pub value: (),
-    #[serde(rename = "column")]
-    pub column: String,
-}
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetByFilterParamsOrderByParams {
     #[serde(rename = "column")]
     pub column: String,
     #[serde(rename = "desc")]
     pub desc: bool,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct MarketPlaceMarketEndpointsGetByFilterParamsFiltersParamsParams {
+    #[serde(rename = "column")]
+    pub column: String,
+    #[serde(rename = "value")]
+    pub value: (),
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetByFilterParams {
-    #[serde(rename = "perPage")]
-    pub per_page: i32,
-    #[serde(rename = "category")]
-    pub category: String,
-    #[serde(rename = "filters")]
-    pub filters: Option<Vec<MarketPlaceMarketEndpointsGetByFilterParamsFiltersParamsParams>>,
     #[serde(rename = "orderBy")]
     pub order_by: Option<MarketPlaceMarketEndpointsGetByFilterParamsOrderByParams>,
+    #[serde(rename = "filters")]
+    pub filters: Option<Vec<MarketPlaceMarketEndpointsGetByFilterParamsFiltersParamsParams>>,
     #[serde(rename = "page")]
     pub page: i32,
+    #[serde(rename = "category")]
+    pub category: String,
+    #[serde(rename = "perPage")]
+    pub per_page: i32,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for MarketPlaceMarketEndpointsGetByFilterParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetByFilterReturnsParamsAdditionalParamsParams {}
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetByFilterReturnsParams {
     #[serde(rename = "personalType")]
     pub personal_type: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: i32,
-    #[serde(rename = "category")]
-    pub category: i32,
-    #[serde(rename = "productId")]
-    pub product_id: i32,
+    #[serde(rename = "price")]
+    pub price: i32,
     #[serde(rename = "additionalParams")]
     pub additional_params: MarketPlaceMarketEndpointsGetByFilterReturnsParamsAdditionalParamsParams,
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "isLocked")]
-    pub is_locked: bool,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "type")]
     pub r#type: String,
-    #[serde(rename = "price")]
-    pub price: i32,
     #[serde(rename = "subType")]
     pub sub_type: String,
+    #[serde(rename = "category")]
+    pub category: i32,
+    #[serde(rename = "productId")]
+    pub product_id: i32,
+    #[serde(rename = "createdAt")]
+    pub created_at: i32,
+    #[serde(rename = "isLocked")]
+    pub is_locked: bool,
 }
 pub type MarketPlaceMarketEndpointsGetByFilterReturns =
     Vec<MarketPlaceMarketEndpointsGetByFilterReturnsParams>;

@@ -2,5 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type CatsLobbyGetSoulPriceParams = ();
-pub type CatsLobbyGetSoulPriceReturns = ();
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for CatsLobbyGetSoulPriceParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(CatsLobbyGetSoulPriceParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct CatsLobbyGetSoulPriceParams;
+impl Schema for CatsLobbyGetSoulPriceParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for CatsLobbyGetSoulPriceReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(CatsLobbyGetSoulPriceReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct CatsLobbyGetSoulPriceReturns;

@@ -2,10 +2,18 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PurchaseProductPurchaseLootboxParams {
     #[serde(rename = "lootboxType")]
     pub lootbox_type: String,
+}
+impl Schema for PurchaseProductPurchaseLootboxParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type PurchaseProductPurchaseLootboxReturns = bool;

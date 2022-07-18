@@ -2,17 +2,25 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassSeasonInfoParams {}
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for BattlePassBattlePassEndpointsGetBattlePassSeasonInfoParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassSeasonInfoReturns {
-    #[serde(rename = "hasNotReceivedOldRewards")]
-    pub has_not_received_old_rewards: bool,
+    #[serde(rename = "seasonId")]
+    pub season_id: i32,
     #[serde(rename = "stateUpdateDate")]
     pub state_update_date: String,
     #[serde(rename = "seasonState")]
     pub season_state: i32,
-    #[serde(rename = "seasonId")]
-    pub season_id: i32,
+    #[serde(rename = "hasNotReceivedOldRewards")]
+    pub has_not_received_old_rewards: bool,
 }

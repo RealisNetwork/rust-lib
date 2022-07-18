@@ -2,56 +2,64 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionGetAllByFilterListParams {
+    #[serde(rename = "lastDate")]
+    pub last_date: String,
     #[serde(rename = "nickname")]
     pub nickname: String,
+    #[serde(rename = "isCancelable")]
+    pub is_cancelable: bool,
     #[serde(rename = "type")]
     pub r#type: String,
-    #[serde(rename = "firstDate")]
-    pub first_date: String,
     #[serde(rename = "perPage")]
     pub per_page: i64,
+    #[serde(rename = "agent")]
+    pub agent: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "page")]
     pub page: i64,
     #[serde(rename = "method")]
     pub method: String,
-    #[serde(rename = "agent")]
-    pub agent: String,
-    #[serde(rename = "lastDate")]
-    pub last_date: String,
-    #[serde(rename = "isCancelable")]
-    pub is_cancelable: bool,
-    #[serde(rename = "userId")]
-    pub user_id: String,
+    #[serde(rename = "firstDate")]
+    pub first_date: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for AdminActionGetAllByFilterListParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionGetAllByFilterListReturnsDataParamsParamsParamsParams {}
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionGetAllByFilterListReturnsDataParamsParams {
-    #[serde(rename = "params")]
-    pub params: AdminActionGetAllByFilterListReturnsDataParamsParamsParamsParams,
-    #[serde(rename = "isCancelable")]
-    pub is_cancelable: bool,
-    #[serde(rename = "method")]
-    pub method: String,
-    #[serde(rename = "type")]
-    pub r#type: String,
     #[serde(rename = "createdAt")]
     pub created_at: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
+    #[serde(rename = "isCancelable")]
+    pub is_cancelable: bool,
     #[serde(rename = "id")]
     pub id: i64,
     #[serde(rename = "actionId")]
     pub action_id: String,
-    #[serde(rename = "agent")]
-    pub agent: String,
+    #[serde(rename = "type")]
+    pub r#type: String,
     #[serde(rename = "nickname")]
     pub nickname: String,
+    #[serde(rename = "method")]
+    pub method: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "params")]
+    pub params: AdminActionGetAllByFilterListReturnsDataParamsParamsParamsParams,
+    #[serde(rename = "agent")]
+    pub agent: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionGetAllByFilterListReturns {
     #[serde(rename = "data")]
     pub data: Vec<AdminActionGetAllByFilterListReturnsDataParamsParams>,

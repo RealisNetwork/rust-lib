@@ -2,12 +2,29 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyShareScoreParams {
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "score")]
     pub score: String,
 }
-pub type CatsLobbyShareScoreReturns = ();
+impl Schema for CatsLobbyShareScoreParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for CatsLobbyShareScoreReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(CatsLobbyShareScoreReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct CatsLobbyShareScoreReturns;

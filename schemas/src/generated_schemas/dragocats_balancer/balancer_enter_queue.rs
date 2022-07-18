@@ -2,42 +2,50 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsUnitPartsParamsParams {
-    #[serde(rename = "slot")]
-    pub slot: String,
     #[serde(rename = "element")]
     pub element: String,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "slot")]
+    pub slot: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsAttributesParams {
-    #[serde(rename = "defence")]
-    pub defence: i64,
     #[serde(rename = "speed")]
     pub speed: i64,
     #[serde(rename = "power")]
     pub power: i64,
+    #[serde(rename = "defence")]
+    pub defence: i64,
     #[serde(rename = "health")]
     pub health: i64,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParams {
+    #[serde(rename = "level")]
+    pub level: i64,
+    #[serde(rename = "unitId")]
+    pub unit_id: i64,
     #[serde(rename = "unitParts")]
     pub unit_parts:
         Vec<DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsUnitPartsParamsParams>,
-    #[serde(rename = "unitId")]
-    pub unit_id: i64,
     #[serde(rename = "attributes")]
     pub attributes: DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsAttributesParams,
-    #[serde(rename = "level")]
-    pub level: i64,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsBalancerBalancerEnterQueueParams {
     #[serde(rename = "units")]
     pub units: Vec<DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParams>,
+}
+impl Schema for DragocatsBalancerBalancerEnterQueueParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type DragocatsBalancerBalancerEnterQueueReturns = bool;

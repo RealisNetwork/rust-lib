@@ -2,27 +2,35 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserGetLeaderBoardParams {
     #[serde(rename = "page")]
     pub page: i16,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for LobbyUserGetLeaderBoardParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserGetLeaderBoardReturnsLeaderboardParamsParams {
+    #[serde(rename = "place")]
+    pub place: i32,
     #[serde(rename = "username")]
     pub username: String,
     #[serde(rename = "rating")]
     pub rating: i32,
-    #[serde(rename = "place")]
-    pub place: i32,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserGetLeaderBoardReturns {
-    #[serde(rename = "page")]
-    pub page: i16,
     #[serde(rename = "pages")]
     pub pages: i16,
+    #[serde(rename = "page")]
+    pub page: i16,
     #[serde(rename = "leaderboard")]
     pub leaderboard: Vec<LobbyUserGetLeaderBoardReturnsLeaderboardParamsParams>,
 }

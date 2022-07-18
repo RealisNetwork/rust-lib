@@ -50,15 +50,27 @@ impl Agent {
 
 impl ToTokens for Agent {
     fn to_tokens(&self, tokens: &mut TokenStream) {
-        let params_declaration = self
-            .params
-            .get_schema_declaration(&self.create_name_params());
-        let returns_declaration = self
-            .returns
-            .get_schema_declaration(&self.create_name_returns());
+        let name_params = &self.create_name_params();
+        let name_returns = &self.create_name_returns();
+
+        let params_declaration = self.params.get_schema_declaration(name_params);
+        let returns_declaration = self.returns.get_schema_declaration(name_returns);
+
+        let ident_name_params = Ident::new(name_params, Span::call_site());
+        let ident_name_returns = Ident::new(name_returns, Span::call_site());
+
+        let impl_schema_params = quote! {
+            impl Schema for #ident_name_params {
+                fn schema() -> Value {
+                    todo!()
+                }
+            }
+        };
 
         let imports = if params_declaration.contains_struct || returns_declaration.contains_struct {
-            quote! { use serde::{Serialize, Deserialize}; }
+            quote! {
+                use serde::{Serialize, Deserialize};
+            }
         } else {
             quote! {}
         };
@@ -66,9 +78,14 @@ impl ToTokens for Agent {
         let declaration = quote! {
             #![allow(unknown_lints)]
             #![allow(clippy::all)]
+            use serde_json::Value;
+            use crate::Schema;
+            use serde::de::Deserializer;
             #imports
 
             #params_declaration
+            #impl_schema_params
+
             #returns_declaration
         };
 

@@ -2,14 +2,31 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeGetAllByTypeParams {
-    #[serde(rename = "type")]
-    pub r#type: String,
     #[serde(rename = "perPage")]
     pub per_page: Option<i64>,
+    #[serde(rename = "type")]
+    pub r#type: String,
     #[serde(rename = "page")]
     pub page: Option<i64>,
 }
-pub type ProductFactoryProductTypeGetAllByTypeReturns = ();
+impl Schema for ProductFactoryProductTypeGetAllByTypeParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for ProductFactoryProductTypeGetAllByTypeReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(ProductFactoryProductTypeGetAllByTypeReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct ProductFactoryProductTypeGetAllByTypeReturns;

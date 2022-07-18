@@ -2,5 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type DragonsLobbyGetAllAchievementsParams = ();
-pub type DragonsLobbyGetAllAchievementsReturns = ();
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for DragonsLobbyGetAllAchievementsParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(DragonsLobbyGetAllAchievementsParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct DragonsLobbyGetAllAchievementsParams;
+impl Schema for DragonsLobbyGetAllAchievementsParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for DragonsLobbyGetAllAchievementsReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(DragonsLobbyGetAllAchievementsReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct DragonsLobbyGetAllAchievementsReturns;

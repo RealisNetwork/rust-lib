@@ -2,10 +2,19 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BinanceWalletWalletGetAddressByUserIdParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
-pub type BinanceWalletWalletGetAddressByUserIdReturns = String;
+impl Schema for BinanceWalletWalletGetAddressByUserIdParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct BinanceWalletWalletGetAddressByUserIdReturns(String);

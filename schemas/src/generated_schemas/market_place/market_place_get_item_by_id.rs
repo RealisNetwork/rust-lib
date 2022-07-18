@@ -2,38 +2,46 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemByIdParams {
     #[serde(rename = "productId")]
     pub product_id: i32,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for MarketPlaceMarketPlaceGetItemByIdParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemByIdReturnsAdditionalParamsParams {}
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemByIdReturns {
-    #[serde(rename = "additionalParams")]
-    pub additional_params: MarketPlaceMarketPlaceGetItemByIdReturnsAdditionalParamsParams,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: i32,
+    #[serde(rename = "price")]
+    pub price: i32,
     #[serde(rename = "category")]
     pub category: i32,
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
-    #[serde(rename = "isLocked")]
-    pub is_locked: bool,
-    #[serde(rename = "productId")]
-    pub product_id: i32,
-    #[serde(rename = "subType")]
-    pub sub_type: String,
     #[serde(rename = "createdAt")]
     pub created_at: i32,
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "userId")]
-    pub user_id: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: i32,
+    #[serde(rename = "subType")]
+    pub sub_type: String,
+    #[serde(rename = "additionalParams")]
+    pub additional_params: MarketPlaceMarketPlaceGetItemByIdReturnsAdditionalParamsParams,
     #[serde(rename = "type")]
     pub r#type: String,
-    #[serde(rename = "price")]
-    pub price: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "isLocked")]
+    pub is_locked: bool,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
+    #[serde(rename = "productId")]
+    pub product_id: i32,
 }

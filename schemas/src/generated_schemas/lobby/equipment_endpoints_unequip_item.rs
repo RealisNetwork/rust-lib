@@ -2,15 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyEquipmentEndpointsUnequipItemParams {
     #[serde(rename = "bindingId")]
     pub binding_id: i32,
     #[serde(rename = "heroBindingId")]
     pub hero_binding_id: i32,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for LobbyEquipmentEndpointsUnequipItemParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyEquipmentEndpointsUnequipItemReturns {
     #[serde(rename = "slotId")]
     pub slot_id: i32,

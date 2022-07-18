@@ -2,9 +2,26 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type TransactionsBalanceGetAllCreditTransactionListParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for TransactionsBalanceGetAllCreditTransactionListParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(TransactionsBalanceGetAllCreditTransactionListParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct TransactionsBalanceGetAllCreditTransactionListParams;
+impl Schema for TransactionsBalanceGetAllCreditTransactionListParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetAllCreditTransactionListReturns {
     #[serde(rename = "date")]
     pub date: String,

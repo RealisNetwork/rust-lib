@@ -2,21 +2,29 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassPricesParams {}
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for BattlePassBattlePassEndpointsGetBattlePassPricesParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassPricesReturnsBattlePassPriceParamsParams {
     #[serde(rename = "price")]
     pub price: String,
     #[serde(rename = "battlePassType")]
     pub battle_pass_type: i32,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassPricesReturns {
-    #[serde(rename = "experiencePrice")]
-    pub experience_price: String,
     #[serde(rename = "battlePassPrice")]
     pub battle_pass_price:
         Vec<BattlePassBattlePassEndpointsGetBattlePassPricesReturnsBattlePassPriceParamsParams>,
+    #[serde(rename = "experiencePrice")]
+    pub experience_price: String,
 }

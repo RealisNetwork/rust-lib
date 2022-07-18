@@ -2,52 +2,69 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type PurchaseProductGetHeroListParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for PurchaseProductGetHeroListParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(PurchaseProductGetHeroListParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct PurchaseProductGetHeroListParams;
+impl Schema for PurchaseProductGetHeroListParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PurchaseProductGetHeroListReturnsParamsStatsParams {
-    #[serde(rename = "intelligence")]
-    pub intelligence: i32,
-    #[serde(rename = "strength")]
-    pub strength: i32,
-    #[serde(rename = "ultPower")]
-    pub ult_power: i32,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: String,
-    #[serde(rename = "vampirismPower")]
-    pub vampirism_power: String,
-    #[serde(rename = "skillEffectPower")]
-    pub skill_effect_power: i32,
-    #[serde(rename = "armor")]
-    pub armor: String,
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: i32,
-    #[serde(rename = "agility")]
-    pub agility: i32,
-    #[serde(rename = "mainCharacteristic")]
-    pub main_characteristic: i8,
-    #[serde(rename = "moveSpeed")]
-    pub move_speed: String,
-    #[serde(rename = "health")]
-    pub health: i32,
-    #[serde(rename = "skillPower")]
-    pub skill_power: i32,
     #[serde(rename = "healthRegenPercent")]
     pub health_regen_percent: String,
+    #[serde(rename = "armor")]
+    pub armor: String,
+    #[serde(rename = "skillPower")]
+    pub skill_power: i32,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: String,
     #[serde(rename = "attackDamage")]
     pub attack_damage: i32,
+    #[serde(rename = "strength")]
+    pub strength: i32,
+    #[serde(rename = "health")]
+    pub health: i32,
+    #[serde(rename = "intelligence")]
+    pub intelligence: i32,
+    #[serde(rename = "moveSpeed")]
+    pub move_speed: String,
+    #[serde(rename = "agility")]
+    pub agility: i32,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: String,
+    #[serde(rename = "skillEffectPower")]
+    pub skill_effect_power: i32,
+    #[serde(rename = "mainCharacteristic")]
+    pub main_characteristic: i8,
+    #[serde(rename = "ultPower")]
+    pub ult_power: i32,
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: i32,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PurchaseProductGetHeroListReturnsParams {
     #[serde(rename = "heroId")]
     pub hero_id: i8,
     #[serde(rename = "productType")]
     pub product_type: String,
+    #[serde(rename = "currency")]
+    pub currency: String,
     #[serde(rename = "price")]
     pub price: String,
     #[serde(rename = "stats")]
     pub stats: PurchaseProductGetHeroListReturnsParamsStatsParams,
-    #[serde(rename = "currency")]
-    pub currency: String,
 }
 pub type PurchaseProductGetHeroListReturns = Vec<PurchaseProductGetHeroListReturnsParams>;

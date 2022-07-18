@@ -2,33 +2,41 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BingoBingoGetBingoDataParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for BingoBingoGetBingoDataParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BingoBingoGetBingoDataReturnsBingoItemsParamsParams {
     #[serde(rename = "amount")]
     pub amount: String,
     #[serde(rename = "itemId")]
     pub item_id: i32,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BingoBingoGetBingoDataReturnsBingoSeasonInfoParams {
-    #[serde(rename = "lastUpdateTimeMs")]
-    pub last_update_time_ms: String,
-    #[serde(rename = "seasonDurationMs")]
-    pub season_duration_ms: String,
     #[serde(rename = "seasonStartDelayMs")]
     pub season_start_delay_ms: String,
-    #[serde(rename = "seasonId")]
-    pub season_id: i32,
+    #[serde(rename = "lastUpdateTimeMs")]
+    pub last_update_time_ms: String,
     #[serde(rename = "seasonState")]
     pub season_state: i32,
+    #[serde(rename = "seasonDurationMs")]
+    pub season_duration_ms: String,
+    #[serde(rename = "seasonId")]
+    pub season_id: i32,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BingoBingoGetBingoDataReturns {
     #[serde(rename = "bingoItems")]
     pub bingo_items: Vec<BingoBingoGetBingoDataReturnsBingoItemsParamsParams>,

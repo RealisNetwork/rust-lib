@@ -2,31 +2,39 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralGetReferralInfoListParams {
-    #[serde(rename = "page")]
-    pub page: i64,
     #[serde(rename = "perPage")]
     pub per_page: i64,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "page")]
+    pub page: i64,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for ReferralReferralGetReferralInfoListParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralGetReferralInfoListReturnsDataParamsParams {
-    #[serde(rename = "registryDate")]
-    pub registry_date: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "isBanned")]
     pub is_banned: bool,
+    #[serde(rename = "registryDate")]
+    pub registry_date: String,
     #[serde(rename = "nickname")]
     pub nickname: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralGetReferralInfoListReturns {
-    #[serde(rename = "data")]
-    pub data: Vec<ReferralReferralGetReferralInfoListReturnsDataParamsParams>,
     #[serde(rename = "totalCount")]
     pub total_count: i64,
+    #[serde(rename = "data")]
+    pub data: Vec<ReferralReferralGetReferralInfoListReturnsDataParamsParams>,
 }

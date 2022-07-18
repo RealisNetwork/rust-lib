@@ -2,5 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type CatsLobbyGetAvailableMembershipAmountParams = ();
-pub type CatsLobbyGetAvailableMembershipAmountReturns = ();
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for CatsLobbyGetAvailableMembershipAmountParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(CatsLobbyGetAvailableMembershipAmountParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct CatsLobbyGetAvailableMembershipAmountParams;
+impl Schema for CatsLobbyGetAvailableMembershipAmountParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for CatsLobbyGetAvailableMembershipAmountReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(CatsLobbyGetAvailableMembershipAmountReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct CatsLobbyGetAvailableMembershipAmountReturns;

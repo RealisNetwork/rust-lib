@@ -2,35 +2,43 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetReferralsParams {
-    #[serde(rename = "appId")]
-    pub app_id: i64,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "appId")]
+    pub app_id: i64,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for CatsAndDragonsWrapperGetReferralsParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct CatsAndDragonsWrapperGetReferralsReturnsReferralsParamsParams {
+    #[serde(rename = "nickname")]
+    pub nickname: String,
+    #[serde(rename = "appId")]
+    pub app_id: i64,
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetReferralsReturnsReferralTransactionsParamsParams {
-    #[serde(rename = "amount")]
-    pub amount: String,
     #[serde(rename = "date")]
     pub date: String,
     #[serde(rename = "nickname")]
     pub nickname: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
-pub struct CatsAndDragonsWrapperGetReferralsReturnsReferralsParamsParams {
-    #[serde(rename = "appId")]
-    pub app_id: i64,
-    #[serde(rename = "nickname")]
-    pub nickname: String,
-}
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetReferralsReturns {
+    #[serde(rename = "referrals")]
+    pub referrals: Vec<CatsAndDragonsWrapperGetReferralsReturnsReferralsParamsParams>,
     #[serde(rename = "referralTransactions")]
     pub referral_transactions:
         Vec<CatsAndDragonsWrapperGetReferralsReturnsReferralTransactionsParamsParams>,
-    #[serde(rename = "referrals")]
-    pub referrals: Vec<CatsAndDragonsWrapperGetReferralsReturnsReferralsParamsParams>,
 }

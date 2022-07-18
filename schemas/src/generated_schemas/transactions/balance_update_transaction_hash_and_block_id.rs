@@ -2,14 +2,22 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceUpdateTransactionHashAndBlockIdParams {
+    #[serde(rename = "newTxId")]
+    pub new_tx_id: String,
     #[serde(rename = "newBlockId")]
     pub new_block_id: String,
     #[serde(rename = "oldTxId")]
     pub old_tx_id: String,
-    #[serde(rename = "newTxId")]
-    pub new_tx_id: String,
+}
+impl Schema for TransactionsBalanceUpdateTransactionHashAndBlockIdParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type TransactionsBalanceUpdateTransactionHashAndBlockIdReturns = bool;

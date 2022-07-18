@@ -2,12 +2,29 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbySetUserAppMetricaDeviceIdParams {
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "appMetricaDeviceId")]
     pub app_metrica_device_id: String,
 }
-pub type DragonsLobbySetUserAppMetricaDeviceIdReturns = ();
+impl Schema for DragonsLobbySetUserAppMetricaDeviceIdParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for DragonsLobbySetUserAppMetricaDeviceIdReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(DragonsLobbySetUserAppMetricaDeviceIdReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct DragonsLobbySetUserAppMetricaDeviceIdReturns;

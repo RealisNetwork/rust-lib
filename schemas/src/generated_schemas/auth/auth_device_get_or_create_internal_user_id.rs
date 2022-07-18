@@ -2,8 +2,11 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceGetOrCreateInternalUserIdParams {
     #[serde(rename = "email")]
     pub email: Option<String>,
@@ -14,4 +17,10 @@ pub struct AuthAuthDeviceGetOrCreateInternalUserIdParams {
     #[serde(rename = "appId")]
     pub app_id: Option<i32>,
 }
-pub type AuthAuthDeviceGetOrCreateInternalUserIdReturns = String;
+impl Schema for AuthAuthDeviceGetOrCreateInternalUserIdParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AuthAuthDeviceGetOrCreateInternalUserIdReturns(String);

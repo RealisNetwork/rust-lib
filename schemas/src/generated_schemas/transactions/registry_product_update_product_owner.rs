@@ -2,12 +2,20 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsRegistryProductUpdateProductOwnerParams {
     #[serde(rename = "productId")]
     pub product_id: String,
     #[serde(rename = "ownerId")]
     pub owner_id: String,
+}
+impl Schema for TransactionsRegistryProductUpdateProductOwnerParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type TransactionsRegistryProductUpdateProductOwnerReturns = bool;

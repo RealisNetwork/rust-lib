@@ -2,15 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperNicknameChangeParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "newNickname")]
     pub new_nickname: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for CatsAndDragonsWrapperNicknameChangeParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperNicknameChangeReturns {
     #[serde(rename = "isNicknameChanged")]
     pub is_nickname_changed: bool,

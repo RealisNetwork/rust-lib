@@ -1,5 +1,6 @@
 use crate::schema_declaration::SchemaDeclaration;
 use crate::types::array::Array;
+use crate::types::empty::Empty;
 use crate::types::integer::{AdditionalAttribute, Integer};
 use crate::types::object::Object;
 use crate::types::str::StringParams;
@@ -30,7 +31,7 @@ impl AgentParams {
             AgentParams::String(string) => string.get_declaration(name),
             AgentParams::Integer(integer) => integer.get_declaration(name),
             AgentParams::Bool => (quote! {}, quote! {pub type #ident = bool;}),
-            AgentParams::Empty => (quote! {}, quote! {pub type #ident = ();}),
+            AgentParams::Empty => Empty::get_declaration(name),
         }
     }
 
@@ -41,7 +42,7 @@ impl AgentParams {
             AgentParams::String(string) => string.get_type(name),
             AgentParams::Integer(integer) => integer.get_type(),
             AgentParams::Bool => quote! { bool },
-            AgentParams::Empty => quote! { () },
+            AgentParams::Empty => Empty::get_type(),
         }
     }
 
@@ -59,14 +60,7 @@ impl AgentParams {
                     ..Default::default()
                 }
             }
-            AgentParams::Empty => {
-                let (prefix, declaration) = self.get_declaration(name);
-                SchemaDeclaration {
-                    declaration,
-                    prefix,
-                    ..Default::default()
-                }
-            }
+            AgentParams::Empty => Empty::get_schema_declaration(name),
         }
     }
 }

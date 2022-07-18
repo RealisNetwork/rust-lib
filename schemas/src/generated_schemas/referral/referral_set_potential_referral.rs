@@ -2,12 +2,20 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralSetPotentialReferralParams {
-    #[serde(rename = "referrerId")]
-    pub referrer_id: String,
     #[serde(rename = "referralId")]
     pub referral_id: String,
+    #[serde(rename = "referrerId")]
+    pub referrer_id: String,
+}
+impl Schema for ReferralReferralSetPotentialReferralParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type ReferralReferralSetPotentialReferralReturns = bool;

@@ -2,25 +2,33 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceDecreaseBalanceByUserIdParamsExtraDetailsParams {}
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceDecreaseBalanceByUserIdParams {
+    #[serde(rename = "extraDetails")]
+    pub extra_details: Option<TransactionsBalanceDecreaseBalanceByUserIdParamsExtraDetailsParams>,
     #[serde(rename = "amount")]
     pub amount: String,
-    #[serde(rename = "reason")]
-    pub reason: String,
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
     #[serde(rename = "currency")]
     pub currency: String,
     #[serde(rename = "creator")]
     pub creator: String,
-    #[serde(rename = "extraDetails")]
-    pub extra_details: Option<TransactionsBalanceDecreaseBalanceByUserIdParamsExtraDetailsParams>,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
+    #[serde(rename = "reason")]
+    pub reason: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for TransactionsBalanceDecreaseBalanceByUserIdParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceDecreaseBalanceByUserIdReturns {}

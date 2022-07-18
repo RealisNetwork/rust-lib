@@ -2,13 +2,21 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminRoleGetRoleByNameParams {
     #[serde(rename = "roleName")]
     pub role_name: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for AdminRoleGetRoleByNameParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminRoleGetRoleByNameReturns {
     #[serde(rename = "name")]
     pub name: String,

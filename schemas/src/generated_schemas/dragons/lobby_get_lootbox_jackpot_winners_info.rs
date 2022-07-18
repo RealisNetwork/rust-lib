@@ -2,10 +2,27 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbyGetLootboxJackpotWinnersInfoParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
-pub type DragonsLobbyGetLootboxJackpotWinnersInfoReturns = ();
+impl Schema for DragonsLobbyGetLootboxJackpotWinnersInfoParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for DragonsLobbyGetLootboxJackpotWinnersInfoReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(DragonsLobbyGetLootboxJackpotWinnersInfoReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct DragonsLobbyGetLootboxJackpotWinnersInfoReturns;

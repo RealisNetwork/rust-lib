@@ -2,34 +2,42 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetAllByFilterParams {
     #[serde(rename = "type")]
     pub r#type: String,
     #[serde(rename = "tab")]
     pub tab: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for AdminOptionGetAllByFilterParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetAllByFilterReturnsParamsExtraDetailsParams {
     #[serde(rename = "tab")]
     pub tab: String,
     #[serde(rename = "type")]
     pub r#type: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetAllByFilterReturnsParams {
-    #[serde(rename = "extraDetails")]
-    pub extra_details: AdminOptionGetAllByFilterReturnsParamsExtraDetailsParams,
-    #[serde(rename = "key")]
-    pub key: String,
-    #[serde(rename = "description")]
-    pub description: String,
-    #[serde(rename = "value")]
-    pub value: String,
     #[serde(rename = "previousValue")]
     pub previous_value: String,
     #[serde(rename = "scope")]
     pub scope: String,
+    #[serde(rename = "key")]
+    pub key: String,
+    #[serde(rename = "value")]
+    pub value: String,
+    #[serde(rename = "description")]
+    pub description: String,
+    #[serde(rename = "extraDetails")]
+    pub extra_details: AdminOptionGetAllByFilterReturnsParamsExtraDetailsParams,
 }
 pub type AdminOptionGetAllByFilterReturns = Vec<AdminOptionGetAllByFilterReturnsParams>;

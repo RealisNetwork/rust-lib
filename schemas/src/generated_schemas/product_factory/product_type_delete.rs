@@ -2,10 +2,27 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeDeleteParams {
     #[serde(rename = "id")]
     pub id: i64,
 }
-pub type ProductFactoryProductTypeDeleteReturns = ();
+impl Schema for ProductFactoryProductTypeDeleteParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for ProductFactoryProductTypeDeleteReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(ProductFactoryProductTypeDeleteReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct ProductFactoryProductTypeDeleteReturns;

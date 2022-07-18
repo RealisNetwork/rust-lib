@@ -2,15 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type BlogCategoryGetAllParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for BlogCategoryGetAllParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(BlogCategoryGetAllParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct BlogCategoryGetAllParams;
+impl Schema for BlogCategoryGetAllParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogCategoryGetAllReturnsParams {
-    #[serde(rename = "isAvailable")]
-    pub is_available: bool,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "isAvailable")]
+    pub is_available: bool,
 }
 pub type BlogCategoryGetAllReturns = Vec<BlogCategoryGetAllReturnsParams>;

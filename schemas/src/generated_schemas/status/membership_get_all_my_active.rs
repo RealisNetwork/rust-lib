@@ -2,36 +2,53 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type StatusMembershipGetAllMyActiveParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for StatusMembershipGetAllMyActiveParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(StatusMembershipGetAllMyActiveParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct StatusMembershipGetAllMyActiveParams;
+impl Schema for StatusMembershipGetAllMyActiveParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipGetAllMyActiveReturnsParamsMembershipParams {}
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipGetAllMyActiveReturnsParams {
-    #[serde(rename = "isActive")]
-    pub is_active: bool,
-    #[serde(rename = "subscriptionProductId")]
-    pub subscription_product_id: String,
-    #[serde(rename = "subscriptionOrderId")]
-    pub subscription_order_id: String,
-    #[serde(rename = "subscriptionToken")]
-    pub subscription_token: String,
-    #[serde(rename = "userId")]
-    pub user_id: i64,
-    #[serde(rename = "appId")]
-    pub app_id: i64,
     #[serde(rename = "membership")]
     pub membership: StatusMembershipGetAllMyActiveReturnsParamsMembershipParams,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "appId")]
+    pub app_id: i64,
+    #[serde(rename = "subscriptionOrderId")]
+    pub subscription_order_id: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "isActive")]
+    pub is_active: bool,
+    #[serde(rename = "userId")]
+    pub user_id: i64,
     #[serde(rename = "endDate")]
     pub end_date: String,
     #[serde(rename = "duration")]
     pub duration: String,
+    #[serde(rename = "subscriptionProductId")]
+    pub subscription_product_id: String,
+    #[serde(rename = "subscriptionToken")]
+    pub subscription_token: String,
     #[serde(rename = "subscriptionTokenHash")]
     pub subscription_token_hash: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
 }

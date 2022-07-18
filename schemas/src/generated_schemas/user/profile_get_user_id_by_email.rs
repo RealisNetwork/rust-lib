@@ -2,10 +2,19 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetUserIdByEmailParams {
     #[serde(rename = "email")]
     pub email: String,
 }
-pub type UserProfileGetUserIdByEmailReturns = String;
+impl Schema for UserProfileGetUserIdByEmailParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct UserProfileGetUserIdByEmailReturns(String);

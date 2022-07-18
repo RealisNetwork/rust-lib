@@ -2,14 +2,22 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogCategoryUpdateParams {
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "id")]
-    pub id: i64,
     #[serde(rename = "isAvailable")]
     pub is_available: Option<bool>,
+    #[serde(rename = "id")]
+    pub id: i64,
+}
+impl Schema for BlogCategoryUpdateParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type BlogCategoryUpdateReturns = bool;

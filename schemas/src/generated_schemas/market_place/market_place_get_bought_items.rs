@@ -2,20 +2,37 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type MarketPlaceMarketPlaceGetBoughtItemsParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for MarketPlaceMarketPlaceGetBoughtItemsParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(MarketPlaceMarketPlaceGetBoughtItemsParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct MarketPlaceMarketPlaceGetBoughtItemsParams;
+impl Schema for MarketPlaceMarketPlaceGetBoughtItemsParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetBoughtItemsReturnsParams {
-    #[serde(rename = "status")]
-    pub status: String,
-    #[serde(rename = "productId")]
-    pub product_id: i32,
     #[serde(rename = "createdAt")]
     pub created_at: i32,
-    #[serde(rename = "id")]
-    pub id: i32,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "productId")]
+    pub product_id: i32,
+    #[serde(rename = "status")]
+    pub status: String,
+    #[serde(rename = "id")]
+    pub id: i32,
 }
 pub type MarketPlaceMarketPlaceGetBoughtItemsReturns =
     Vec<MarketPlaceMarketPlaceGetBoughtItemsReturnsParams>;

@@ -2,20 +2,28 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BingoBingoCraftBingoRecipeParams {
     #[serde(rename = "recipeId")]
     pub recipe_id: i32,
     #[serde(rename = "userId")]
     pub user_id: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for BingoBingoCraftBingoRecipeParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BingoBingoCraftBingoRecipeReturns {
-    #[serde(rename = "jackpotRewardAmount")]
-    pub jackpot_reward_amount: String,
     #[serde(rename = "bingoReceiptId")]
     pub bingo_receipt_id: i32,
     #[serde(rename = "hardRewardAmount")]
     pub hard_reward_amount: String,
+    #[serde(rename = "jackpotRewardAmount")]
+    pub jackpot_reward_amount: String,
 }

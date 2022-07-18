@@ -2,14 +2,31 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type AdminUserRoleGetMyRoleParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for AdminUserRoleGetMyRoleParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(AdminUserRoleGetMyRoleParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct AdminUserRoleGetMyRoleParams;
+impl Schema for AdminUserRoleGetMyRoleParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleGetMyRoleReturns {
-    #[serde(rename = "id")]
-    pub id: i64,
     #[serde(rename = "methods")]
     pub methods: Vec<String>,
+    #[serde(rename = "id")]
+    pub id: i64,
     #[serde(rename = "name")]
     pub name: String,
 }

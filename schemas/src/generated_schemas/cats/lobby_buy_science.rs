@@ -2,12 +2,29 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyBuyScienceParams {
-    #[serde(rename = "sciencePurchaseKey")]
-    pub science_purchase_key: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "sciencePurchaseKey")]
+    pub science_purchase_key: String,
 }
-pub type CatsLobbyBuyScienceReturns = ();
+impl Schema for CatsLobbyBuyScienceParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for CatsLobbyBuyScienceReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(CatsLobbyBuyScienceReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct CatsLobbyBuyScienceReturns;

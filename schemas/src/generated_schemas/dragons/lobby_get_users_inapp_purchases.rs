@@ -2,14 +2,31 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbyGetUsersInappPurchasesParams {
+    #[serde(rename = "startDate")]
+    pub start_date: i64,
     #[serde(rename = "endDate")]
     pub end_date: i64,
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "startDate")]
-    pub start_date: i64,
 }
-pub type DragonsLobbyGetUsersInappPurchasesReturns = ();
+impl Schema for DragonsLobbyGetUsersInappPurchasesParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for DragonsLobbyGetUsersInappPurchasesReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(DragonsLobbyGetUsersInappPurchasesReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct DragonsLobbyGetUsersInappPurchasesReturns;

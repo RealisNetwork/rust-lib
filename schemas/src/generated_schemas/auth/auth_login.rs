@@ -2,28 +2,36 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthLoginParams {
+    #[serde(rename = "password")]
+    pub password: String,
     #[serde(rename = "username")]
     pub username: String,
     #[serde(rename = "deviceId")]
     pub device_id: Option<String>,
     #[serde(rename = "appId")]
     pub app_id: Option<i32>,
-    #[serde(rename = "password")]
-    pub password: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for AuthAuthLoginParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthLoginReturns {
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "access_token")]
     pub access_token: String,
+    #[serde(rename = "expires_in")]
+    pub expires_in: i32,
     #[serde(rename = "refresh_expires_in")]
     pub refresh_expires_in: i32,
     #[serde(rename = "refresh_token")]
     pub refresh_token: String,
-    #[serde(rename = "expires_in")]
-    pub expires_in: i32,
 }

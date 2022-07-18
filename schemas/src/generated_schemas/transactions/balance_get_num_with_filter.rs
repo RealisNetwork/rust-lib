@@ -2,14 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetNumWithFilterParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "debit")]
-    pub debit: String,
     #[serde(rename = "credit")]
     pub credit: String,
+    #[serde(rename = "debit")]
+    pub debit: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
-pub type TransactionsBalanceGetNumWithFilterReturns = i64;
+impl Schema for TransactionsBalanceGetNumWithFilterParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TransactionsBalanceGetNumWithFilterReturns(i64);

@@ -2,18 +2,35 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type BlogBlogGetPinnedParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for BlogBlogGetPinnedParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(BlogBlogGetPinnedParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct BlogBlogGetPinnedParams;
+impl Schema for BlogBlogGetPinnedParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetPinnedReturns {
-    #[serde(rename = "shortDescription")]
-    pub short_description: String,
     #[serde(rename = "url")]
     pub url: String,
     #[serde(rename = "createdAt")]
     pub created_at: String,
-    #[serde(rename = "title")]
-    pub title: String,
     #[serde(rename = "image")]
     pub image: String,
+    #[serde(rename = "shortDescription")]
+    pub short_description: String,
+    #[serde(rename = "title")]
+    pub title: String,
 }

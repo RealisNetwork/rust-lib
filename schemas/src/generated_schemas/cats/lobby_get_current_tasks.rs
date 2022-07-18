@@ -2,5 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type CatsLobbyGetCurrentTasksParams = ();
-pub type CatsLobbyGetCurrentTasksReturns = ();
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for CatsLobbyGetCurrentTasksParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(CatsLobbyGetCurrentTasksParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct CatsLobbyGetCurrentTasksParams;
+impl Schema for CatsLobbyGetCurrentTasksParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for CatsLobbyGetCurrentTasksReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(CatsLobbyGetCurrentTasksReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct CatsLobbyGetCurrentTasksReturns;

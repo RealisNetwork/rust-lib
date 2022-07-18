@@ -2,9 +2,26 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type LobbyStatsOptionsEndpointsGetPersonalTypesListParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for LobbyStatsOptionsEndpointsGetPersonalTypesListParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(LobbyStatsOptionsEndpointsGetPersonalTypesListParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct LobbyStatsOptionsEndpointsGetPersonalTypesListParams;
+impl Schema for LobbyStatsOptionsEndpointsGetPersonalTypesListParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyStatsOptionsEndpointsGetPersonalTypesListReturns {
     #[serde(rename = "personalTypes")]
     pub personal_types: Vec<String>,

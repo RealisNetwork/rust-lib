@@ -2,5 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type CatsLobbyGetBingoJackpotPoolParams = ();
-pub type CatsLobbyGetBingoJackpotPoolReturns = ();
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for CatsLobbyGetBingoJackpotPoolParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(CatsLobbyGetBingoJackpotPoolParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct CatsLobbyGetBingoJackpotPoolParams;
+impl Schema for CatsLobbyGetBingoJackpotPoolParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for CatsLobbyGetBingoJackpotPoolReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(CatsLobbyGetBingoJackpotPoolReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct CatsLobbyGetBingoJackpotPoolReturns;

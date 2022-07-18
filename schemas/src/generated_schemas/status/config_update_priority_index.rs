@@ -2,17 +2,25 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigUpdatePriorityIndexParamsConfigParamsParamsParams {
-    #[serde(rename = "priorityIndex")]
-    pub priority_index: i64,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "priorityIndex")]
+    pub priority_index: i64,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigUpdatePriorityIndexParams {
     #[serde(rename = "configParams")]
     pub config_params: Vec<StatusConfigUpdatePriorityIndexParamsConfigParamsParamsParams>,
+}
+impl Schema for StatusConfigUpdatePriorityIndexParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type StatusConfigUpdatePriorityIndexReturns = bool;

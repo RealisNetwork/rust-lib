@@ -2,15 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BalancesBalancesAddFreeExperienceParams {
     #[serde(rename = "amount")]
     pub amount: i16,
     #[serde(rename = "txId")]
     pub tx_id: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for BalancesBalancesAddFreeExperienceParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BalancesBalancesAddFreeExperienceReturns {
     #[serde(rename = "balance")]
     pub balance: i32,

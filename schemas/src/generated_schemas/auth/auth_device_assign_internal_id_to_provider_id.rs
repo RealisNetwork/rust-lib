@@ -2,14 +2,22 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceAssignInternalIdToProviderIdParams {
-    #[serde(rename = "deviceId")]
-    pub device_id: String,
-    #[serde(rename = "providerId")]
-    pub provider_id: String,
     #[serde(rename = "provider")]
     pub provider: (),
+    #[serde(rename = "providerId")]
+    pub provider_id: String,
+    #[serde(rename = "deviceId")]
+    pub device_id: String,
+}
+impl Schema for AuthAuthDeviceAssignInternalIdToProviderIdParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type AuthAuthDeviceAssignInternalIdToProviderIdReturns = bool;

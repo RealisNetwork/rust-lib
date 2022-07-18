@@ -2,23 +2,31 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralLinkGetAllParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for ReferralLinkGetAllParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralLinkGetAllReturnsReferralLinksParamsParams {
-    #[serde(rename = "link")]
-    pub link: String,
     #[serde(rename = "appId")]
     pub app_id: i64,
+    #[serde(rename = "link")]
+    pub link: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralLinkGetAllReturns {
-    #[serde(rename = "referralCode")]
-    pub referral_code: String,
     #[serde(rename = "referralLinks")]
     pub referral_links: Vec<ReferralLinkGetAllReturnsReferralLinksParamsParams>,
+    #[serde(rename = "referralCode")]
+    pub referral_code: String,
 }

@@ -2,12 +2,20 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminMailTemplateChangeParams {
     #[serde(rename = "key")]
     pub key: String,
     #[serde(rename = "mailTemplate")]
     pub mail_template: String,
+}
+impl Schema for AdminMailTemplateChangeParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type AdminMailTemplateChangeReturns = bool;

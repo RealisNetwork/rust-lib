@@ -2,26 +2,34 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeUpdateParamsParamsParams {}
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeUpdateParams {
-    #[serde(rename = "params")]
-    pub params: Option<ProductFactoryProductTypeUpdateParamsParamsParams>,
-    #[serde(rename = "isNFT")]
-    pub is_nft: Option<bool>,
-    #[serde(rename = "rarity")]
-    pub rarity: Option<i64>,
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
+    #[serde(rename = "dropChance")]
+    pub drop_chance: Option<i64>,
     #[serde(rename = "type")]
     pub r#type: Option<String>,
+    #[serde(rename = "params")]
+    pub params: Option<ProductFactoryProductTypeUpdateParamsParamsParams>,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
     #[serde(rename = "name")]
     pub name: Option<String>,
     #[serde(rename = "underType")]
     pub under_type: Option<String>,
-    #[serde(rename = "dropChance")]
-    pub drop_chance: Option<i64>,
+    #[serde(rename = "rarity")]
+    pub rarity: Option<i64>,
+    #[serde(rename = "isNFT")]
+    pub is_nft: Option<bool>,
+}
+impl Schema for ProductFactoryProductTypeUpdateParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type ProductFactoryProductTypeUpdateReturns = bool;

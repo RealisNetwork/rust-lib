@@ -2,10 +2,18 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesDeleteCodeParams {
     #[serde(rename = "code")]
     pub code: String,
+}
+impl Schema for PromoCodesDeleteCodeParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type PromoCodesDeleteCodeReturns = bool;

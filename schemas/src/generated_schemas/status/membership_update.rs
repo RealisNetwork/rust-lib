@@ -2,12 +2,20 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipUpdateParams {
     #[serde(rename = "isActive")]
     pub is_active: bool,
     #[serde(rename = "purchaseToken")]
     pub purchase_token: String,
+}
+impl Schema for StatusMembershipUpdateParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type StatusMembershipUpdateReturns = bool;

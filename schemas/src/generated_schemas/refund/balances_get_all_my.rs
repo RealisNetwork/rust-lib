@@ -2,12 +2,29 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type RefundBalancesGetAllMyParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for RefundBalancesGetAllMyParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(RefundBalancesGetAllMyParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct RefundBalancesGetAllMyParams;
+impl Schema for RefundBalancesGetAllMyParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllMyReturns {
-    #[serde(rename = "ETH")]
-    pub eth: String,
     #[serde(rename = "LIS")]
     pub lis: String,
+    #[serde(rename = "ETH")]
+    pub eth: String,
 }

@@ -2,51 +2,59 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetParams {
     #[serde(rename = "id")]
     pub id: i64,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for BlogBlogGetParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetReturnsCategoryParams {
-    #[serde(rename = "name")]
-    pub name: String,
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "name")]
+    pub name: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetReturns {
+    #[serde(rename = "url")]
+    pub url: String,
+    #[serde(rename = "metaTitle")]
+    pub meta_title: String,
     #[serde(rename = "image")]
     pub image: String,
-    #[serde(rename = "views")]
-    pub views: i64,
     #[serde(rename = "id")]
     pub id: i64,
-    #[serde(rename = "content")]
-    pub content: String,
     #[serde(rename = "isPinned")]
     pub is_pinned: bool,
-    #[serde(rename = "lang")]
-    pub lang: String,
+    #[serde(rename = "isAvailable")]
+    pub is_available: bool,
+    #[serde(rename = "content")]
+    pub content: String,
     #[serde(rename = "metaDescription")]
     pub meta_description: String,
+    #[serde(rename = "views")]
+    pub views: i64,
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
     #[serde(rename = "title")]
     pub title: String,
-    #[serde(rename = "metaTitle")]
-    pub meta_title: String,
-    #[serde(rename = "url")]
-    pub url: String,
     #[serde(rename = "shortDescription")]
     pub short_description: String,
     #[serde(rename = "createdAt")]
     pub created_at: String,
     #[serde(rename = "category")]
     pub category: BlogBlogGetReturnsCategoryParams,
-    #[serde(rename = "isAvailable")]
-    pub is_available: bool,
+    #[serde(rename = "lang")]
+    pub lang: String,
 }

@@ -2,22 +2,30 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsParams {}
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsReturnsBattlePassRewardParamsParamsItemParams
 {
-    #[serde(rename = "itemId")]
-    pub item_id: i32,
-    #[serde(rename = "rewardType")]
-    pub reward_type: i32,
     #[serde(rename = "amount")]
     pub amount: i32,
+    #[serde(rename = "rewardType")]
+    pub reward_type: i32,
+    #[serde(rename = "itemId")]
+    pub item_id: i32,
 }
-#[derive(Debug, Serialize, Deserialize)]
-pub struct BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsReturnsBattlePassRewardParamsParams { # [serde (rename = "item")] pub item : BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsReturnsBattlePassRewardParamsParamsItemParams , # [serde (rename = "rewardId")] pub reward_id : i32 , # [serde (rename = "battlePassType")] pub battle_pass_type : i32 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsReturnsBattlePassRewardParamsParams { # [serde (rename = "rewardId")] pub reward_id : i32 , # [serde (rename = "item")] pub item : BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsReturnsBattlePassRewardParamsParamsItemParams , # [serde (rename = "battlePassType")] pub battle_pass_type : i32 }
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsReturns {
     #[serde(rename = "battlePassReward")]
     pub battle_pass_reward: Vec<

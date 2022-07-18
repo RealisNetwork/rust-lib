@@ -2,15 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AchievementsAchievementAchievementCompleteParams {
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "achievementKey")]
     pub achievement_key: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for AchievementsAchievementAchievementCompleteParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AchievementsAchievementAchievementCompleteReturns {
     #[serde(rename = "achievementKey")]
     pub achievement_key: String,

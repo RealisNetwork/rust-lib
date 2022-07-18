@@ -2,12 +2,20 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthCreateRequestToChangeEmailParams {
     #[serde(rename = "newEmail")]
     pub new_email: String,
     #[serde(rename = "password")]
     pub password: String,
+}
+impl Schema for AuthAuthCreateRequestToChangeEmailParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type AuthAuthCreateRequestToChangeEmailReturns = bool;

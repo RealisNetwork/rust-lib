@@ -2,20 +2,28 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PurchaseBalanceDecreaseUserBalanceParams {
-    #[serde(rename = "topicToSuccessResponse")]
-    pub topic_to_success_response: String,
-    #[serde(rename = "amount")]
-    pub amount: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "currency")]
     pub currency: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
-    #[serde(rename = "creator")]
-    pub creator: String,
+    #[serde(rename = "topicToSuccessResponse")]
+    pub topic_to_success_response: String,
+}
+impl Schema for PurchaseBalanceDecreaseUserBalanceParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type PurchaseBalanceDecreaseUserBalanceReturns = bool;

@@ -2,12 +2,20 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsRegistryProductAddProductHashParams {
     #[serde(rename = "hashId")]
     pub hash_id: String,
     #[serde(rename = "productId")]
     pub product_id: String,
+}
+impl Schema for TransactionsRegistryProductAddProductHashParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type TransactionsRegistryProductAddProductHashReturns = bool;

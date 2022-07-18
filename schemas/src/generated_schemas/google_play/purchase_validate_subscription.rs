@@ -2,8 +2,11 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GooglePlayPurchaseValidateSubscriptionParams {
     #[serde(rename = "subscriptionToken")]
     pub subscription_token: String,
@@ -12,10 +15,15 @@ pub struct GooglePlayPurchaseValidateSubscriptionParams {
     #[serde(rename = "packageName")]
     pub package_name: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for GooglePlayPurchaseValidateSubscriptionParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GooglePlayPurchaseValidateSubscriptionReturns {
-    #[serde(rename = "isValid")]
-    pub is_valid: bool,
     #[serde(rename = "expiryTimeMillis")]
     pub expiry_time_millis: Option<String>,
+    #[serde(rename = "isValid")]
+    pub is_valid: bool,
 }

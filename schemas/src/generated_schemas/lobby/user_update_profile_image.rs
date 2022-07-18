@@ -2,13 +2,21 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserUpdateProfileImageParams {
     #[serde(rename = "image")]
     pub image: i8,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for LobbyUserUpdateProfileImageParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserUpdateProfileImageReturns {
     #[serde(rename = "imageId")]
     pub image_id: i8,

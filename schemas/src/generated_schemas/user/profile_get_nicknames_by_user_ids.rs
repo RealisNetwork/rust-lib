@@ -2,10 +2,18 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetNicknamesByUserIdsParams {
     #[serde(rename = "userIds")]
     pub user_ids: Vec<String>,
+}
+impl Schema for UserProfileGetNicknamesByUserIdsParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type UserProfileGetNicknamesByUserIdsReturns = Vec<String>;

@@ -2,5 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type AuthAuthEmptyMethodParams = ();
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for AuthAuthEmptyMethodParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(AuthAuthEmptyMethodParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct AuthAuthEmptyMethodParams;
+impl Schema for AuthAuthEmptyMethodParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
 pub type AuthAuthEmptyMethodReturns = bool;

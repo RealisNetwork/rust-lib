@@ -2,28 +2,36 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllParams {
     #[serde(rename = "page")]
     pub page: i64,
     #[serde(rename = "perPage")]
     pub per_page: i64,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for BlogBlogGetAllParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllReturnsDataParamsParams {
-    #[serde(rename = "url")]
-    pub url: String,
-    #[serde(rename = "isPinned")]
-    pub is_pinned: bool,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "isPinned")]
+    pub is_pinned: bool,
     #[serde(rename = "title")]
     pub title: String,
+    #[serde(rename = "url")]
+    pub url: String,
     #[serde(rename = "views")]
     pub views: i64,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllReturns {
     #[serde(rename = "totalCount")]
     pub total_count: i64,

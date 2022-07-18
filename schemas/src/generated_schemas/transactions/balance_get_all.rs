@@ -2,47 +2,55 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetAllParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "page")]
     pub page: i64,
     #[serde(rename = "perPage")]
     pub per_page: i64,
-}
-#[derive(Debug, Serialize, Deserialize)]
-pub struct TransactionsBalanceGetAllReturnsDataParamsParamsExtraDetailsParams {}
-#[derive(Debug, Serialize, Deserialize)]
-pub struct TransactionsBalanceGetAllReturnsDataParamsParams {
     #[serde(rename = "userId")]
     pub user_id: String,
+}
+impl Schema for TransactionsBalanceGetAllParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TransactionsBalanceGetAllReturnsDataParamsParamsExtraDetailsParams {}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TransactionsBalanceGetAllReturnsDataParamsParams {
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
     #[serde(rename = "creator")]
     pub creator: String,
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
-    #[serde(rename = "id")]
-    pub id: i64,
     #[serde(rename = "debit")]
     pub debit: String,
+    #[serde(rename = "extraDetails")]
+    pub extra_details: Option<TransactionsBalanceGetAllReturnsDataParamsParamsExtraDetailsParams>,
     #[serde(rename = "credit")]
     pub credit: String,
+    #[serde(rename = "id")]
+    pub id: i64,
     #[serde(rename = "reason")]
     pub reason: String,
     #[serde(rename = "currency")]
     pub currency: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
-    #[serde(rename = "extraDetails")]
-    pub extra_details: Option<TransactionsBalanceGetAllReturnsDataParamsParamsExtraDetailsParams>,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetAllReturns {
-    #[serde(rename = "totalCount")]
-    pub total_count: i64,
     #[serde(rename = "data")]
     pub data: Vec<TransactionsBalanceGetAllReturnsDataParamsParams>,
+    #[serde(rename = "totalCount")]
+    pub total_count: i64,
 }

@@ -2,51 +2,59 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetByUrlParams {
     #[serde(rename = "url")]
     pub url: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for BlogBlogGetByUrlParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetByUrlReturnsCategoryParams {
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
-    #[serde(rename = "id")]
-    pub id: i64,
     #[serde(rename = "name")]
     pub name: String,
-}
-#[derive(Debug, Serialize, Deserialize)]
-pub struct BlogBlogGetByUrlReturns {
-    #[serde(rename = "isAvailable")]
-    pub is_available: bool,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: String,
-    #[serde(rename = "metaTitle")]
-    pub meta_title: String,
-    #[serde(rename = "shortDescription")]
-    pub short_description: String,
     #[serde(rename = "id")]
     pub id: i64,
-    #[serde(rename = "isPinned")]
-    pub is_pinned: bool,
-    #[serde(rename = "views")]
-    pub views: i64,
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct BlogBlogGetByUrlReturns {
+    #[serde(rename = "id")]
+    pub id: i64,
+    #[serde(rename = "shortDescription")]
+    pub short_description: String,
+    #[serde(rename = "isAvailable")]
+    pub is_available: bool,
+    #[serde(rename = "metaTitle")]
+    pub meta_title: String,
     #[serde(rename = "metaDescription")]
     pub meta_description: String,
-    #[serde(rename = "category")]
-    pub category: BlogBlogGetByUrlReturnsCategoryParams,
     #[serde(rename = "title")]
     pub title: String,
     #[serde(rename = "image")]
     pub image: String,
     #[serde(rename = "url")]
     pub url: String,
-    #[serde(rename = "content")]
-    pub content: String,
     #[serde(rename = "lang")]
     pub lang: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
+    #[serde(rename = "category")]
+    pub category: BlogBlogGetByUrlReturnsCategoryParams,
+    #[serde(rename = "content")]
+    pub content: String,
+    #[serde(rename = "views")]
+    pub views: i64,
     #[serde(rename = "createdAt")]
     pub created_at: String,
+    #[serde(rename = "isPinned")]
+    pub is_pinned: bool,
 }

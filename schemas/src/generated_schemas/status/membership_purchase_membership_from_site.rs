@@ -2,12 +2,20 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipPurchaseMembershipFromSiteParams {
     #[serde(rename = "appId")]
     pub app_id: i64,
     #[serde(rename = "membershipId")]
     pub membership_id: i64,
+}
+impl Schema for StatusMembershipPurchaseMembershipFromSiteParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type StatusMembershipPurchaseMembershipFromSiteReturns = bool;

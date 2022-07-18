@@ -2,70 +2,78 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ListeriaStorageHeroesEndpointsGetByIdParams {
     #[serde(rename = "heroId")]
     pub hero_id: i32,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for ListeriaStorageHeroesEndpointsGetByIdParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ListeriaStorageHeroesEndpointsGetByIdReturnsAttributesCoefficientsParams {
-    #[serde(rename = "strength")]
-    pub strength: i64,
-    #[serde(rename = "attackDamage")]
-    pub attack_damage: i64,
-    #[serde(rename = "armor")]
-    pub armor: i64,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: i64,
-    #[serde(rename = "ultPower")]
-    pub ult_power: i64,
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: i64,
-    #[serde(rename = "vampirismPower")]
-    pub vampirism_power: i64,
-    #[serde(rename = "healthRegenPercent")]
-    pub health_regen_percent: i64,
     #[serde(rename = "skillEffectPower")]
     pub skill_effect_power: i64,
+    #[serde(rename = "attackDamage")]
+    pub attack_damage: i64,
     #[serde(rename = "agility")]
     pub agility: i64,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: i64,
+    #[serde(rename = "strength")]
+    pub strength: i64,
+    #[serde(rename = "healthRegenPercent")]
+    pub health_regen_percent: i64,
     #[serde(rename = "intelligence")]
     pub intelligence: i64,
-    #[serde(rename = "health")]
-    pub health: i64,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: i64,
     #[serde(rename = "moveSpeed")]
     pub move_speed: i64,
     #[serde(rename = "skillPower")]
     pub skill_power: i64,
+    #[serde(rename = "health")]
+    pub health: i64,
+    #[serde(rename = "armor")]
+    pub armor: i64,
+    #[serde(rename = "ultPower")]
+    pub ult_power: i64,
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: i64,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ListeriaStorageHeroesEndpointsGetByIdReturns {
-    #[serde(rename = "blockId")]
-    pub block_id: String,
-    #[serde(rename = "status")]
-    pub status: String,
-    #[serde(rename = "name")]
-    pub name: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "type")]
-    pub r#type: String,
+    #[serde(rename = "id")]
+    pub id: i32,
     #[serde(rename = "attributesCoefficients")]
     pub attributes_coefficients:
         ListeriaStorageHeroesEndpointsGetByIdReturnsAttributesCoefficientsParams,
-    #[serde(rename = "level")]
-    pub level: i16,
+    #[serde(rename = "name")]
+    pub name: String,
+    #[serde(rename = "status")]
+    pub status: String,
     #[serde(rename = "experience")]
     pub experience: i32,
-    #[serde(rename = "heroHashId")]
-    pub hero_hash_id: String,
-    #[serde(rename = "maxLevel")]
-    pub max_level: i16,
-    #[serde(rename = "toNextLevelExperience")]
-    pub to_next_level_experience: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "toNextLevelScrolls")]
     pub to_next_level_scrolls: i16,
-    #[serde(rename = "id")]
-    pub id: i32,
+    #[serde(rename = "heroHashId")]
+    pub hero_hash_id: String,
+    #[serde(rename = "blockId")]
+    pub block_id: String,
+    #[serde(rename = "type")]
+    pub r#type: String,
+    #[serde(rename = "level")]
+    pub level: i16,
+    #[serde(rename = "toNextLevelExperience")]
+    pub to_next_level_experience: i32,
+    #[serde(rename = "maxLevel")]
+    pub max_level: i16,
 }

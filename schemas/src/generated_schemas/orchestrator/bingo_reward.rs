@@ -2,14 +2,22 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorBingoRewardParams {
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "productIds")]
-    pub product_ids: Vec<i64>,
     #[serde(rename = "amount")]
     pub amount: String,
+    #[serde(rename = "productIds")]
+    pub product_ids: Vec<i64>,
+}
+impl Schema for OrchestratorBingoRewardParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type OrchestratorBingoRewardReturns = bool;

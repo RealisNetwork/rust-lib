@@ -2,5 +2,24 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type TransactionsBalanceGetBalancesInUsdParams = ();
-pub type TransactionsBalanceGetBalancesInUsdReturns = i64;
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for TransactionsBalanceGetBalancesInUsdParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(TransactionsBalanceGetBalancesInUsdParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct TransactionsBalanceGetBalancesInUsdParams;
+impl Schema for TransactionsBalanceGetBalancesInUsdParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TransactionsBalanceGetBalancesInUsdReturns(i64);

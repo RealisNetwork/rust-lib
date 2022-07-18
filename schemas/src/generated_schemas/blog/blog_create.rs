@@ -2,31 +2,39 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogCreateParamsPropsParams {
-    #[serde(rename = "shortDescription")]
-    pub short_description: String,
-    #[serde(rename = "metaDescription")]
-    pub meta_description: String,
-    #[serde(rename = "title")]
-    pub title: String,
-    #[serde(rename = "image")]
-    pub image: String,
-    #[serde(rename = "metaTitle")]
-    pub meta_title: String,
     #[serde(rename = "content")]
     pub content: String,
-    #[serde(rename = "url")]
-    pub url: String,
     #[serde(rename = "lang")]
     pub lang: Option<String>,
+    #[serde(rename = "image")]
+    pub image: String,
+    #[serde(rename = "title")]
+    pub title: String,
+    #[serde(rename = "shortDescription")]
+    pub short_description: String,
+    #[serde(rename = "url")]
+    pub url: String,
+    #[serde(rename = "metaDescription")]
+    pub meta_description: String,
+    #[serde(rename = "metaTitle")]
+    pub meta_title: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogCreateParams {
-    #[serde(rename = "props")]
-    pub props: BlogBlogCreateParamsPropsParams,
     #[serde(rename = "categoryId")]
     pub category_id: i64,
+    #[serde(rename = "props")]
+    pub props: BlogBlogCreateParamsPropsParams,
+}
+impl Schema for BlogBlogCreateParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type BlogBlogCreateReturns = bool;

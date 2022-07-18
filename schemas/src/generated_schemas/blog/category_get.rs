@@ -2,16 +2,24 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogCategoryGetParams {
     #[serde(rename = "id")]
     pub id: i64,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for BlogCategoryGetParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogCategoryGetReturns {
-    #[serde(rename = "name")]
-    pub name: String,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "name")]
+    pub name: String,
 }

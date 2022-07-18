@@ -2,10 +2,18 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GameBalancerGameBalancerDeletePlayersParams {
     #[serde(rename = "userIds")]
     pub user_ids: Vec<String>,
+}
+impl Schema for GameBalancerGameBalancerDeletePlayersParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type GameBalancerGameBalancerDeletePlayersReturns = bool;

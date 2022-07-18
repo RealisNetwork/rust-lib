@@ -2,18 +2,26 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorBalanceUserBlockchainDepositParams {
-    #[serde(rename = "currency")]
-    pub currency: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
+    #[serde(rename = "currency")]
+    pub currency: String,
     #[serde(rename = "creator")]
     pub creator: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "amount")]
     pub amount: String,
+}
+impl Schema for OrchestratorBalanceUserBlockchainDepositParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type OrchestratorBalanceUserBlockchainDepositReturns = bool;

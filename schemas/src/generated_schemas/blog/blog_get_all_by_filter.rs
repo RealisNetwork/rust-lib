@@ -2,26 +2,34 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllByFilterParams {
+    #[serde(rename = "perPage")]
+    pub per_page: i64,
+    #[serde(rename = "limit")]
+    pub limit: i64,
     #[serde(rename = "articleId")]
     pub article_id: i64,
     #[serde(rename = "page")]
     pub page: i64,
-    #[serde(rename = "perPage")]
-    pub per_page: i64,
     #[serde(rename = "categoryId")]
     pub category_id: i64,
-    #[serde(rename = "limit")]
-    pub limit: i64,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for BlogBlogGetAllByFilterParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllByFilterReturnsDataParamsParams {
-    #[serde(rename = "url")]
-    pub url: String,
     #[serde(rename = "shortDescription")]
     pub short_description: String,
+    #[serde(rename = "url")]
+    pub url: String,
     #[serde(rename = "title")]
     pub title: String,
     #[serde(rename = "image")]
@@ -29,7 +37,7 @@ pub struct BlogBlogGetAllByFilterReturnsDataParamsParams {
     #[serde(rename = "createdAt")]
     pub created_at: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllByFilterReturns {
     #[serde(rename = "data")]
     pub data: Vec<BlogBlogGetAllByFilterReturnsDataParamsParams>,

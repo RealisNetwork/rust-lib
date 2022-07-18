@@ -2,12 +2,20 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceUpdateInternalIdByDeviceIdParams {
     #[serde(rename = "token")]
     pub token: String,
     #[serde(rename = "deviceId")]
     pub device_id: String,
+}
+impl Schema for AuthAuthDeviceUpdateInternalIdByDeviceIdParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type AuthAuthDeviceUpdateInternalIdByDeviceIdReturns = bool;

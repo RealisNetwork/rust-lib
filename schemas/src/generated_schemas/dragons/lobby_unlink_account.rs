@@ -2,14 +2,31 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbyUnlinkAccountParams {
-    #[serde(rename = "password")]
-    pub password: String,
-    #[serde(rename = "email")]
-    pub email: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "email")]
+    pub email: String,
+    #[serde(rename = "password")]
+    pub password: String,
 }
-pub type DragonsLobbyUnlinkAccountReturns = ();
+impl Schema for DragonsLobbyUnlinkAccountParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for DragonsLobbyUnlinkAccountReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(DragonsLobbyUnlinkAccountReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct DragonsLobbyUnlinkAccountReturns;

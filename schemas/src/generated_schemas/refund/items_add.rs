@@ -2,12 +2,20 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundItemsAddParams {
     #[serde(rename = "hashItemId")]
     pub hash_item_id: i64,
     #[serde(rename = "userId")]
     pub user_id: String,
+}
+impl Schema for RefundItemsAddParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type RefundItemsAddReturns = bool;

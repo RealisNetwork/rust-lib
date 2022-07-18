@@ -2,24 +2,41 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type AdminUserRoleGetAllParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for AdminUserRoleGetAllParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(AdminUserRoleGetAllParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct AdminUserRoleGetAllParams;
+impl Schema for AdminUserRoleGetAllParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleGetAllReturnsParamsRoleParams {
-    #[serde(rename = "id")]
-    pub id: i64,
     #[serde(rename = "name")]
     pub name: String,
+    #[serde(rename = "id")]
+    pub id: i64,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleGetAllReturnsParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
+    #[serde(rename = "role")]
+    pub role: AdminUserRoleGetAllReturnsParamsRoleParams,
     #[serde(rename = "isActive")]
     pub is_active: bool,
     #[serde(rename = "id")]
     pub id: i64,
-    #[serde(rename = "role")]
-    pub role: AdminUserRoleGetAllReturnsParamsRoleParams,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 pub type AdminUserRoleGetAllReturns = Vec<AdminUserRoleGetAllReturnsParams>;

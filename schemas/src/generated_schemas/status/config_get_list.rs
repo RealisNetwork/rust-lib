@@ -2,5 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type StatusConfigGetListParams = ();
-pub type StatusConfigGetListReturns = ();
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for StatusConfigGetListParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(StatusConfigGetListParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct StatusConfigGetListParams;
+impl Schema for StatusConfigGetListParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for StatusConfigGetListReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(StatusConfigGetListReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct StatusConfigGetListReturns;

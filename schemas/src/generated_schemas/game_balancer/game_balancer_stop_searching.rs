@@ -2,5 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type GameBalancerGameBalancerStopSearchingParams = ();
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for GameBalancerGameBalancerStopSearchingParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(GameBalancerGameBalancerStopSearchingParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct GameBalancerGameBalancerStopSearchingParams;
+impl Schema for GameBalancerGameBalancerStopSearchingParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
 pub type GameBalancerGameBalancerStopSearchingReturns = bool;

@@ -2,12 +2,20 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminRoleAddParams {
-    #[serde(rename = "roleName")]
-    pub role_name: String,
     #[serde(rename = "permissions")]
     pub permissions: Option<Vec<String>>,
+    #[serde(rename = "roleName")]
+    pub role_name: String,
+}
+impl Schema for AdminRoleAddParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type AdminRoleAddReturns = bool;

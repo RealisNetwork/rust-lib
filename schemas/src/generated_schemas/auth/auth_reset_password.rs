@@ -2,12 +2,20 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthResetPasswordParams {
-    #[serde(rename = "newPassword")]
-    pub new_password: String,
     #[serde(rename = "hash")]
     pub hash: String,
+    #[serde(rename = "newPassword")]
+    pub new_password: String,
+}
+impl Schema for AuthAuthResetPasswordParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type AuthAuthResetPasswordReturns = bool;

@@ -2,15 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type AdminMailTemplateGetAllParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for AdminMailTemplateGetAllParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(AdminMailTemplateGetAllParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct AdminMailTemplateGetAllParams;
+impl Schema for AdminMailTemplateGetAllParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminMailTemplateGetAllReturnsParams {
     #[serde(rename = "mailTemplate")]
     pub mail_template: String,
-    #[serde(rename = "key")]
-    pub key: String,
     #[serde(rename = "name")]
     pub name: String,
+    #[serde(rename = "key")]
+    pub key: String,
 }
 pub type AdminMailTemplateGetAllReturns = Vec<AdminMailTemplateGetAllReturnsParams>;

@@ -2,26 +2,34 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigGetMembershipInfoParams {
     #[serde(rename = "id")]
     pub id: i64,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for StatusConfigGetMembershipInfoParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigGetMembershipInfoReturns {
-    #[serde(rename = "priceInLis")]
-    pub price_in_lis: String,
-    #[serde(rename = "membership")]
-    pub membership: String,
-    #[serde(rename = "multiplier")]
-    pub multiplier: String,
     #[serde(rename = "price")]
     pub price: String,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "priceInLis")]
+    pub price_in_lis: String,
     #[serde(rename = "maxCount")]
     pub max_count: String,
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
+    #[serde(rename = "multiplier")]
+    pub multiplier: String,
+    #[serde(rename = "membership")]
+    pub membership: String,
 }

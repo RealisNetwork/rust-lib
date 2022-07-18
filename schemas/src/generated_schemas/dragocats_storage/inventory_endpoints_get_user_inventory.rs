@@ -2,18 +2,34 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type DragocatsStorageInventoryEndpointsGetUserInventoryParams = ();
-#[derive(Debug, Serialize, Deserialize)]
-pub struct DragocatsStorageInventoryEndpointsGetUserInventoryReturnsLootboxesParamsParams {
-    #[serde(rename = "bindingId")]
-    pub binding_id: i32,
-    #[serde(rename = "lootboxId")]
-    pub lootbox_id: i32,
-    #[serde(rename = "status")]
-    pub status: i32,
+use serde_json::Value;
+impl<'de> Deserialize<'de> for DragocatsStorageInventoryEndpointsGetUserInventoryParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(DragocatsStorageInventoryEndpointsGetUserInventoryParams)
+    }
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize)]
+pub struct DragocatsStorageInventoryEndpointsGetUserInventoryParams;
+impl Schema for DragocatsStorageInventoryEndpointsGetUserInventoryParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsParamsUnitCharacteristicDtoParamsParams
+{
+    #[serde(rename = "value")]
+    pub value: i32,
+    #[serde(rename = "unitStat")]
+    pub unit_stat: i32,
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsParamsPartsParams {
     #[serde(rename = "body")]
     pub body: i32,
@@ -22,21 +38,22 @@ pub struct DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsP
     #[serde(rename = "tail")]
     pub tail: i32,
 }
-#[derive(Debug, Serialize, Deserialize)]
-pub struct DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsParamsUnitCharacteristicDtoParamsParams
-{
-    #[serde(rename = "value")]
-    pub value: i32,
-    #[serde(rename = "unitStat")]
-    pub unit_stat: i32,
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsParams { # [serde (rename = "level")] pub level : i32 , # [serde (rename = "isNft")] pub is_nft : bool , # [serde (rename = "experienceForLevelup")] pub experience_for_levelup : i32 , # [serde (rename = "status")] pub status : i32 , # [serde (rename = "bindingId")] pub binding_id : i32 , # [serde (rename = "unitCharacteristicDto")] pub unit_characteristic_dto : Vec < DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsParamsUnitCharacteristicDtoParamsParams > , # [serde (rename = "maxLevel")] pub max_level : i32 , # [serde (rename = "rarity")] pub rarity : i32 , # [serde (rename = "unitType")] pub unit_type : String , # [serde (rename = "parts")] pub parts : DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsParamsPartsParams , # [serde (rename = "combatPower")] pub combat_power : i32 , # [serde (rename = "experience")] pub experience : i32 }
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct DragocatsStorageInventoryEndpointsGetUserInventoryReturnsLootboxesParamsParams {
+    #[serde(rename = "status")]
+    pub status: i32,
+    #[serde(rename = "bindingId")]
+    pub binding_id: i32,
+    #[serde(rename = "lootboxId")]
+    pub lootbox_id: i32,
 }
-#[derive(Debug, Serialize, Deserialize)]
-pub struct DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsParams { # [serde (rename = "unitType")] pub unit_type : String , # [serde (rename = "rarity")] pub rarity : i32 , # [serde (rename = "bindingId")] pub binding_id : i32 , # [serde (rename = "experienceForLevelup")] pub experience_for_levelup : i32 , # [serde (rename = "status")] pub status : i32 , # [serde (rename = "isNft")] pub is_nft : bool , # [serde (rename = "combatPower")] pub combat_power : i32 , # [serde (rename = "maxLevel")] pub max_level : i32 , # [serde (rename = "parts")] pub parts : DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsParamsPartsParams , # [serde (rename = "unitCharacteristicDto")] pub unit_characteristic_dto : Vec < DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsParamsUnitCharacteristicDtoParamsParams > , # [serde (rename = "level")] pub level : i32 , # [serde (rename = "experience")] pub experience : i32 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsGetUserInventoryReturns {
+    #[serde(rename = "units")]
+    pub units: Vec<DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsParams>,
     #[serde(rename = "lootboxes")]
     pub lootboxes:
         Vec<DragocatsStorageInventoryEndpointsGetUserInventoryReturnsLootboxesParamsParams>,
-    #[serde(rename = "units")]
-    pub units: Vec<DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsParams>,
 }

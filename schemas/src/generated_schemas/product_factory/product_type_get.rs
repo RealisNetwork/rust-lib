@@ -2,10 +2,27 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeGetParams {
     #[serde(rename = "id")]
     pub id: i64,
 }
-pub type ProductFactoryProductTypeGetReturns = ();
+impl Schema for ProductFactoryProductTypeGetParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for ProductFactoryProductTypeGetReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(ProductFactoryProductTypeGetReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct ProductFactoryProductTypeGetReturns;

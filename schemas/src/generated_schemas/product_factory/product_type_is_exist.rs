@@ -2,10 +2,18 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeIsExistParams {
     #[serde(rename = "personalType")]
     pub personal_type: String,
+}
+impl Schema for ProductFactoryProductTypeIsExistParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type ProductFactoryProductTypeIsExistReturns = bool;

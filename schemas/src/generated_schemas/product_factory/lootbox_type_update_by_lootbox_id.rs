@@ -2,16 +2,24 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryLootboxTypeUpdateByLootboxIdParams {
-    #[serde(rename = "type")]
-    pub r#type: Option<String>,
     #[serde(rename = "name")]
     pub name: Option<String>,
-    #[serde(rename = "lootboxId")]
-    pub lootbox_id: i32,
     #[serde(rename = "dropChanceMultiplier")]
     pub drop_chance_multiplier: Option<i32>,
+    #[serde(rename = "lootboxId")]
+    pub lootbox_id: i32,
+    #[serde(rename = "type")]
+    pub r#type: Option<String>,
+}
+impl Schema for ProductFactoryLootboxTypeUpdateByLootboxIdParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type ProductFactoryLootboxTypeUpdateByLootboxIdReturns = bool;

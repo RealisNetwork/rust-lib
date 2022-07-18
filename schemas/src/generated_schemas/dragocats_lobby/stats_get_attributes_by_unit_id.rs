@@ -2,24 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsLobbyStatsGetAttributesByUnitIdParams {
     #[serde(rename = "unitId")]
     pub unit_id: i32,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for DragocatsLobbyStatsGetAttributesByUnitIdParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsLobbyStatsGetAttributesByUnitIdReturns {
-    #[serde(rename = "health")]
-    pub health: i32,
-    #[serde(rename = "id")]
-    pub id: i32,
     #[serde(rename = "speed")]
     pub speed: i32,
     #[serde(rename = "power")]
     pub power: i32,
     #[serde(rename = "defence")]
     pub defence: i32,
+    #[serde(rename = "id")]
+    pub id: i32,
     #[serde(rename = "combatPower")]
     pub combat_power: i64,
+    #[serde(rename = "health")]
+    pub health: i32,
 }

@@ -2,13 +2,21 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetUserIdByDeviceIdParams {
     #[serde(rename = "appId")]
     pub app_id: i32,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for CatsAndDragonsWrapperGetUserIdByDeviceIdParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetUserIdByDeviceIdReturns {
     #[serde(rename = "userId")]
     pub user_id: String,

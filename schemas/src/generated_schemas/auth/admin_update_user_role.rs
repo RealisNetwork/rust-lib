@@ -2,12 +2,20 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAdminUpdateUserRoleParams {
-    #[serde(rename = "role")]
-    pub role: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "role")]
+    pub role: String,
+}
+impl Schema for AuthAdminUpdateUserRoleParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type AuthAdminUpdateUserRoleReturns = bool;

@@ -2,71 +2,88 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type GameBalancerGameBalancerCheckInNotificationParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for GameBalancerGameBalancerCheckInNotificationParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(GameBalancerGameBalancerCheckInNotificationParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct GameBalancerGameBalancerCheckInNotificationParams;
+impl Schema for GameBalancerGameBalancerCheckInNotificationParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GameBalancerGameBalancerCheckInNotificationReturnsPlayersParamsParamsAttributesParams {
-    #[serde(rename = "ultPower")]
-    pub ult_power: String,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: String,
-    #[serde(rename = "agility")]
-    pub agility: String,
-    #[serde(rename = "intelligence")]
-    pub intelligence: String,
-    #[serde(rename = "armor")]
-    pub armor: String,
-    #[serde(rename = "moveSpeed")]
-    pub move_speed: String,
-    #[serde(rename = "attackDamage")]
-    pub attack_damage: String,
-    #[serde(rename = "strength")]
-    pub strength: String,
     #[serde(rename = "healthRegenPercent")]
     pub health_regen_percent: String,
-    #[serde(rename = "skillPower")]
-    pub skill_power: String,
+    #[serde(rename = "moveSpeed")]
+    pub move_speed: String,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: String,
+    #[serde(rename = "armor")]
+    pub armor: String,
     #[serde(rename = "mainCharacteristic")]
     pub main_characteristic: i8,
     #[serde(rename = "skillEffectPower")]
     pub skill_effect_power: String,
-    #[serde(rename = "vampirismPower")]
-    pub vampirism_power: String,
+    #[serde(rename = "ultPower")]
+    pub ult_power: String,
+    #[serde(rename = "intelligence")]
+    pub intelligence: String,
+    #[serde(rename = "agility")]
+    pub agility: String,
     #[serde(rename = "health")]
     pub health: String,
+    #[serde(rename = "strength")]
+    pub strength: String,
+    #[serde(rename = "attackDamage")]
+    pub attack_damage: String,
+    #[serde(rename = "skillPower")]
+    pub skill_power: String,
     #[serde(rename = "ultEffectPower")]
     pub ult_effect_power: String,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GameBalancerGameBalancerCheckInNotificationReturnsPlayersParamsParams {
-    #[serde(rename = "heroId")]
-    pub hero_id: i8,
     #[serde(rename = "nickname")]
     pub nickname: String,
+    #[serde(rename = "heroId")]
+    pub hero_id: i8,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "attributes")]
     pub attributes:
         GameBalancerGameBalancerCheckInNotificationReturnsPlayersParamsParamsAttributesParams,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GameBalancerGameBalancerCheckInNotificationReturns {
+    #[serde(rename = "roomId")]
+    pub room_id: i32,
+    #[serde(rename = "teamId")]
+    pub team_id: i8,
+    #[serde(rename = "apiVersion")]
+    pub api_version: String,
+    #[serde(rename = "players")]
+    pub players: Vec<GameBalancerGameBalancerCheckInNotificationReturnsPlayersParamsParams>,
+    #[serde(rename = "roomUdpPort")]
+    pub room_udp_port: i32,
+    #[serde(rename = "success")]
+    pub success: bool,
+    #[serde(rename = "authToken")]
+    pub auth_token: String,
     #[serde(rename = "roomHost")]
     pub room_host: String,
     #[serde(rename = "roomTcpPort")]
     pub room_tcp_port: i32,
-    #[serde(rename = "roomUdpPort")]
-    pub room_udp_port: i32,
-    #[serde(rename = "teamId")]
-    pub team_id: i8,
-    #[serde(rename = "success")]
-    pub success: bool,
-    #[serde(rename = "roomId")]
-    pub room_id: i32,
-    #[serde(rename = "players")]
-    pub players: Vec<GameBalancerGameBalancerCheckInNotificationReturnsPlayersParamsParams>,
-    #[serde(rename = "apiVersion")]
-    pub api_version: String,
-    #[serde(rename = "authToken")]
-    pub auth_token: String,
 }

@@ -2,26 +2,34 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeAddParamsParamsParams {}
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeAddParams {
-    #[serde(rename = "params")]
-    pub params: ProductFactoryProductTypeAddParamsParamsParams,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
     #[serde(rename = "isNFT")]
     pub is_nft: bool,
     #[serde(rename = "dropChance")]
     pub drop_chance: i64,
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
-    #[serde(rename = "underType")]
-    pub under_type: String,
-    #[serde(rename = "rarity")]
-    pub rarity: i64,
-    #[serde(rename = "name")]
-    pub name: String,
     #[serde(rename = "type")]
     pub r#type: String,
+    #[serde(rename = "rarity")]
+    pub rarity: i64,
+    #[serde(rename = "params")]
+    pub params: ProductFactoryProductTypeAddParamsParamsParams,
+    #[serde(rename = "name")]
+    pub name: String,
+    #[serde(rename = "underType")]
+    pub under_type: String,
+}
+impl Schema for ProductFactoryProductTypeAddParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type ProductFactoryProductTypeAddReturns = bool;

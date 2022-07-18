@@ -2,5 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type AuthTwoFactorGenerateSecretParams = ();
-pub type AuthTwoFactorGenerateSecretReturns = ();
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for AuthTwoFactorGenerateSecretParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(AuthTwoFactorGenerateSecretParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct AuthTwoFactorGenerateSecretParams;
+impl Schema for AuthTwoFactorGenerateSecretParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for AuthTwoFactorGenerateSecretReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(AuthTwoFactorGenerateSecretReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct AuthTwoFactorGenerateSecretReturns;

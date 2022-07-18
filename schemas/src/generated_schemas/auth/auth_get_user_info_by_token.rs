@@ -2,24 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthGetUserInfoByTokenParams {
     #[serde(rename = "token")]
     pub token: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for AuthAuthGetUserInfoByTokenParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthGetUserInfoByTokenReturns {
-    #[serde(rename = "id")]
-    pub id: String,
-    #[serde(rename = "roles")]
-    pub roles: Vec<String>,
-    #[serde(rename = "isBanned")]
-    pub is_banned: bool,
     #[serde(rename = "username")]
     pub username: String,
     #[serde(rename = "emailVerified")]
     pub email_verified: bool,
     #[serde(rename = "email")]
     pub email: String,
+    #[serde(rename = "roles")]
+    pub roles: Vec<String>,
+    #[serde(rename = "isBanned")]
+    pub is_banned: bool,
+    #[serde(rename = "id")]
+    pub id: String,
 }

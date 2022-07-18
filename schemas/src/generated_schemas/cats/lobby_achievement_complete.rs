@@ -2,12 +2,29 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyAchievementCompleteParams {
-    #[serde(rename = "achievementKey")]
-    pub achievement_key: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "achievementKey")]
+    pub achievement_key: String,
 }
-pub type CatsLobbyAchievementCompleteReturns = ();
+impl Schema for CatsLobbyAchievementCompleteParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for CatsLobbyAchievementCompleteReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(CatsLobbyAchievementCompleteReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct CatsLobbyAchievementCompleteReturns;

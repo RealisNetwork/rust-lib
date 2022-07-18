@@ -2,59 +2,67 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsProductFactoryGeneratorGenerateParams {
     #[serde(rename = "personalType")]
     pub personal_type: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for DragocatsProductFactoryGeneratorGenerateParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsProductFactoryGeneratorGenerateReturnsAttributesParams {
-    #[serde(rename = "vampirismPower")]
-    pub vampirism_power: String,
-    #[serde(rename = "mainCharacteristic")]
-    pub main_characteristic: String,
-    #[serde(rename = "ultPower")]
-    pub ult_power: String,
-    #[serde(rename = "moveSpeed")]
-    pub move_speed: String,
+    #[serde(rename = "healthRegenPercent")]
+    pub health_regen_percent: String,
+    #[serde(rename = "agility")]
+    pub agility: String,
     #[serde(rename = "attackReloadSpeed")]
     pub attack_reload_speed: String,
-    #[serde(rename = "intelligence")]
-    pub intelligence: String,
     #[serde(rename = "skillEffectPower")]
     pub skill_effect_power: String,
-    #[serde(rename = "strength")]
-    pub strength: String,
+    #[serde(rename = "moveSpeed")]
+    pub move_speed: String,
     #[serde(rename = "ultEffectPower")]
     pub ult_effect_power: String,
+    #[serde(rename = "skillPower")]
+    pub skill_power: String,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: String,
+    #[serde(rename = "ultPower")]
+    pub ult_power: String,
     #[serde(rename = "armor")]
     pub armor: String,
     #[serde(rename = "attackDamage")]
     pub attack_damage: String,
-    #[serde(rename = "skillPower")]
-    pub skill_power: String,
-    #[serde(rename = "agility")]
-    pub agility: String,
-    #[serde(rename = "healthRegenPercent")]
-    pub health_regen_percent: String,
+    #[serde(rename = "intelligence")]
+    pub intelligence: String,
+    #[serde(rename = "mainCharacteristic")]
+    pub main_characteristic: String,
+    #[serde(rename = "strength")]
+    pub strength: String,
     #[serde(rename = "health")]
     pub health: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsProductFactoryGeneratorGenerateReturns {
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "mintId")]
-    pub mint_id: i64,
-    #[serde(rename = "attributes")]
-    pub attributes: DragocatsProductFactoryGeneratorGenerateReturnsAttributesParams,
     #[serde(rename = "personalType")]
     pub personal_type: String,
-    #[serde(rename = "isNft")]
-    pub is_nft: bool,
-    #[serde(rename = "productId")]
-    pub product_id: i64,
     #[serde(rename = "productType")]
     pub product_type: String,
+    #[serde(rename = "attributes")]
+    pub attributes: DragocatsProductFactoryGeneratorGenerateReturnsAttributesParams,
+    #[serde(rename = "mintId")]
+    pub mint_id: i64,
+    #[serde(rename = "productId")]
+    pub product_id: i64,
+    #[serde(rename = "isNft")]
+    pub is_nft: bool,
 }

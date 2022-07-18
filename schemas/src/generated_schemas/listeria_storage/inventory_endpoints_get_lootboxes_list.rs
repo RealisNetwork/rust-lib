@@ -2,18 +2,35 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type ListeriaStorageInventoryEndpointsGetLootboxesListParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for ListeriaStorageInventoryEndpointsGetLootboxesListParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(ListeriaStorageInventoryEndpointsGetLootboxesListParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct ListeriaStorageInventoryEndpointsGetLootboxesListParams;
+impl Schema for ListeriaStorageInventoryEndpointsGetLootboxesListParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ListeriaStorageInventoryEndpointsGetLootboxesListReturnsLootboxesParamsParams {
+    #[serde(rename = "bindingId")]
+    pub binding_id: i32,
     #[serde(rename = "status")]
     pub status: i32,
     #[serde(rename = "lootboxId")]
     pub lootbox_id: i32,
-    #[serde(rename = "bindingId")]
-    pub binding_id: i32,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ListeriaStorageInventoryEndpointsGetLootboxesListReturns {
     #[serde(rename = "lootboxes")]
     pub lootboxes:

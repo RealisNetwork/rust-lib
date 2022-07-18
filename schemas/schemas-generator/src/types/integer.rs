@@ -32,7 +32,13 @@ impl Integer {
     pub fn get_declaration(&self, name: &str) -> (TokenStream, TokenStream) {
         let integer_type = self.get_type();
         let ident = Ident::new(name, Span::call_site());
-        (quote! {}, quote! { pub type #ident = #integer_type; })
+        (
+            quote! {},
+            quote! {
+                #[derive(Debug, Clone, Serialize, Deserialize)]
+                pub struct #ident(#integer_type);
+            },
+        )
     }
 
     pub fn get_type(&self) -> TokenStream {
@@ -49,7 +55,7 @@ impl Integer {
         SchemaDeclaration {
             declaration,
             prefix,
-            contains_struct: false,
+            contains_struct: true,
         }
     }
 }

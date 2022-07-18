@@ -2,14 +2,31 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type DragocatsStorageInventoryEndpointsAddLootboxNotificationParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for DragocatsStorageInventoryEndpointsAddLootboxNotificationParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(DragocatsStorageInventoryEndpointsAddLootboxNotificationParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct DragocatsStorageInventoryEndpointsAddLootboxNotificationParams;
+impl Schema for DragocatsStorageInventoryEndpointsAddLootboxNotificationParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsAddLootboxNotificationReturns {
+    #[serde(rename = "bindingId")]
+    pub binding_id: i32,
     #[serde(rename = "lootboxId")]
     pub lootbox_id: i32,
     #[serde(rename = "status")]
     pub status: i32,
-    #[serde(rename = "bindingId")]
-    pub binding_id: i32,
 }

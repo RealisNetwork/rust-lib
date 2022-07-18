@@ -2,15 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterContractCallTransferParams {
-    #[serde(rename = "recipientUserId")]
-    pub recipient_user_id: String,
     #[serde(rename = "amount")]
     pub amount: String,
+    #[serde(rename = "recipientUserId")]
+    pub recipient_user_id: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for NearAdapterContractCallTransferParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterContractCallTransferReturns {
     #[serde(rename = "balance")]
     pub balance: String,

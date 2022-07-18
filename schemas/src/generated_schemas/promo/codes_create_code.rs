@@ -2,17 +2,20 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesCreateCodeParamsGivesItemsParams {}
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesCreateCodeParamsGivesCurrenciesParams {
     #[serde(rename = "LIS")]
     pub lis: i64,
     #[serde(rename = "ETH")]
     pub eth: i64,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesCreateCodeParams {
     #[serde(rename = "numberOfAttempts")]
     pub number_of_attempts: i64,
@@ -20,9 +23,14 @@ pub struct PromoCodesCreateCodeParams {
     pub expires_in: String,
     #[serde(rename = "givesItems")]
     pub gives_items: PromoCodesCreateCodeParamsGivesItemsParams,
-    #[serde(rename = "code")]
-    pub code: String,
     #[serde(rename = "givesCurrencies")]
     pub gives_currencies: PromoCodesCreateCodeParamsGivesCurrenciesParams,
+    #[serde(rename = "code")]
+    pub code: String,
+}
+impl Schema for PromoCodesCreateCodeParams {
+    fn schema() -> Value {
+        todo!()
+    }
 }
 pub type PromoCodesCreateCodeReturns = bool;

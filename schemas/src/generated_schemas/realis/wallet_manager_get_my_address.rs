@@ -2,5 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type RealisWalletManagerGetMyAddressParams = ();
-pub type RealisWalletManagerGetMyAddressReturns = ();
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for RealisWalletManagerGetMyAddressParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(RealisWalletManagerGetMyAddressParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct RealisWalletManagerGetMyAddressParams;
+impl Schema for RealisWalletManagerGetMyAddressParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for RealisWalletManagerGetMyAddressReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(RealisWalletManagerGetMyAddressReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct RealisWalletManagerGetMyAddressReturns;

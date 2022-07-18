@@ -2,5 +2,24 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-pub type UserProfileGetNumParams = ();
-pub type UserProfileGetNumReturns = i64;
+use crate::Schema;
+use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+impl<'de> Deserialize<'de> for UserProfileGetNumParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(UserProfileGetNumParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct UserProfileGetNumParams;
+impl Schema for UserProfileGetNumParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct UserProfileGetNumReturns(i64);

@@ -2,17 +2,34 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type ProductFactoryLootboxTypeGetAllParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for ProductFactoryLootboxTypeGetAllParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(ProductFactoryLootboxTypeGetAllParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct ProductFactoryLootboxTypeGetAllParams;
+impl Schema for ProductFactoryLootboxTypeGetAllParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryLootboxTypeGetAllReturnsParams {
-    #[serde(rename = "name")]
-    pub name: String,
-    #[serde(rename = "lootboxId")]
-    pub lootbox_id: i32,
-    #[serde(rename = "id")]
-    pub id: i64,
     #[serde(rename = "dropChanceMultiplier")]
     pub drop_chance_multiplier: i32,
+    #[serde(rename = "id")]
+    pub id: i64,
+    #[serde(rename = "lootboxId")]
+    pub lootbox_id: i32,
+    #[serde(rename = "name")]
+    pub name: String,
 }
 pub type ProductFactoryLootboxTypeGetAllReturns = Vec<ProductFactoryLootboxTypeGetAllReturnsParams>;

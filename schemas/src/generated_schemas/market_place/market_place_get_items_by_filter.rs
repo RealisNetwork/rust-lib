@@ -2,69 +2,77 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemsByFilterParamsPriceParams {
     #[serde(rename = "min")]
     pub min: i32,
     #[serde(rename = "max")]
     pub max: i32,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemsByFilterParamsOrderParams {
     #[serde(rename = "desc")]
     pub desc: bool,
     #[serde(rename = "name")]
     pub name: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemsByFilterParams {
-    #[serde(rename = "price")]
-    pub price: Option<MarketPlaceMarketPlaceGetItemsByFilterParamsPriceParams>,
-    #[serde(rename = "additionalParam")]
-    pub additional_param: Option<String>,
-    #[serde(rename = "order")]
-    pub order: Option<MarketPlaceMarketPlaceGetItemsByFilterParamsOrderParams>,
     #[serde(rename = "perPage")]
     pub per_page: i32,
-    #[serde(rename = "category")]
-    pub category: Option<i32>,
-    #[serde(rename = "page")]
-    pub page: i32,
     #[serde(rename = "personalType")]
     pub personal_type: Option<String>,
+    #[serde(rename = "page")]
+    pub page: i32,
     #[serde(rename = "additionalValue")]
     pub additional_value: Option<String>,
+    #[serde(rename = "additionalParam")]
+    pub additional_param: Option<String>,
+    #[serde(rename = "price")]
+    pub price: Option<MarketPlaceMarketPlaceGetItemsByFilterParamsPriceParams>,
+    #[serde(rename = "order")]
+    pub order: Option<MarketPlaceMarketPlaceGetItemsByFilterParamsOrderParams>,
+    #[serde(rename = "category")]
+    pub category: Option<i32>,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for MarketPlaceMarketPlaceGetItemsByFilterParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemsByFilterReturnsParamsAdditionalParamsParams {}
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemsByFilterReturnsParams {
     #[serde(rename = "category")]
     pub category: i32,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "productId")]
     pub product_id: i32,
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
-    #[serde(rename = "price")]
-    pub price: i32,
-    #[serde(rename = "isLocked")]
-    pub is_locked: bool,
-    #[serde(rename = "id")]
-    pub id: i32,
     #[serde(rename = "subType")]
     pub sub_type: String,
     #[serde(rename = "type")]
     pub r#type: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: i32,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: i32,
+    #[serde(rename = "price")]
+    pub price: i32,
     #[serde(rename = "additionalParams")]
     pub additional_params:
         MarketPlaceMarketPlaceGetItemsByFilterReturnsParamsAdditionalParamsParams,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: i32,
+    #[serde(rename = "isLocked")]
+    pub is_locked: bool,
+    #[serde(rename = "createdAt")]
+    pub created_at: i32,
 }
 pub type MarketPlaceMarketPlaceGetItemsByFilterReturns =
     Vec<MarketPlaceMarketPlaceGetItemsByFilterReturnsParams>;

@@ -2,10 +2,27 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbyGetUserIdByTransactionIdParams {
     #[serde(rename = "transactionId")]
     pub transaction_id: String,
 }
-pub type DragonsLobbyGetUserIdByTransactionIdReturns = ();
+impl Schema for DragonsLobbyGetUserIdByTransactionIdParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+impl<'de> Deserialize<'de> for DragonsLobbyGetUserIdByTransactionIdReturns {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(DragonsLobbyGetUserIdByTransactionIdReturns)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct DragonsLobbyGetUserIdByTransactionIdReturns;

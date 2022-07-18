@@ -2,24 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthSocialNetworkAuthParams {
-    #[serde(rename = "credential")]
-    pub credential: String,
     #[serde(rename = "provider")]
     pub provider: String,
+    #[serde(rename = "credential")]
+    pub credential: String,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for AuthAuthSocialNetworkAuthParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthSocialNetworkAuthReturns {
-    #[serde(rename = "expires_in")]
-    pub expires_in: i32,
-    #[serde(rename = "userId")]
-    pub user_id: String,
+    #[serde(rename = "refresh_token")]
+    pub refresh_token: Option<String>,
     #[serde(rename = "access_token")]
     pub access_token: String,
     #[serde(rename = "refresh_expires_in")]
     pub refresh_expires_in: Option<i32>,
-    #[serde(rename = "refresh_token")]
-    pub refresh_token: Option<String>,
+    #[serde(rename = "expires_in")]
+    pub expires_in: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }

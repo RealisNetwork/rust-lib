@@ -2,14 +2,31 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-pub type AdminUserRoleGetAllWithNicknameParams = ();
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+impl<'de> Deserialize<'de> for AdminUserRoleGetAllWithNicknameParams {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        Ok(AdminUserRoleGetAllWithNicknameParams)
+    }
+}
+#[derive(Debug, Clone, Serialize)]
+pub struct AdminUserRoleGetAllWithNicknameParams;
+impl Schema for AdminUserRoleGetAllWithNicknameParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleGetAllWithNicknameReturnsParams {
-    #[serde(rename = "nickname")]
-    pub nickname: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "nickname")]
+    pub nickname: String,
     #[serde(rename = "role")]
     pub role: String,
 }

@@ -2,42 +2,50 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+use crate::Schema;
+use serde::de::Deserializer;
 use serde::{Deserialize, Serialize};
-#[derive(Debug, Serialize, Deserialize)]
+use serde_json::Value;
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsStorageUnitEndpointsGetByUnitIdParams {
     #[serde(rename = "unitId")]
     pub unit_id: i32,
 }
-#[derive(Debug, Serialize, Deserialize)]
+impl Schema for DragocatsStorageUnitEndpointsGetByUnitIdParams {
+    fn schema() -> Value {
+        todo!()
+    }
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParamsAttributesCoefficientsParams
 {
-    #[serde(rename = "power")]
-    pub power: (),
-    #[serde(rename = "speed")]
-    pub speed: (),
-    #[serde(rename = "defence")]
-    pub defence: (),
     #[serde(rename = "stamina")]
     pub stamina: (),
+    #[serde(rename = "speed")]
+    pub speed: (),
+    #[serde(rename = "power")]
+    pub power: (),
+    #[serde(rename = "defence")]
+    pub defence: (),
 }
-#[derive(Debug, Serialize, Deserialize)]
-pub struct DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParams { # [serde (rename = "attributesCoefficients")] pub attributes_coefficients : DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParamsAttributesCoefficientsParams , # [serde (rename = "slotId")] pub slot_id : i32 , # [serde (rename = "element")] pub element : String , # [serde (rename = "typeId")] pub type_id : i32 }
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParams { # [serde (rename = "attributesCoefficients")] pub attributes_coefficients : DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParamsAttributesCoefficientsParams , # [serde (rename = "element")] pub element : String , # [serde (rename = "typeId")] pub type_id : i32 , # [serde (rename = "slotId")] pub slot_id : i32 }
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsStorageUnitEndpointsGetByUnitIdReturns {
-    #[serde(rename = "maxLevel")]
-    pub max_level: i32,
-    #[serde(rename = "rarity")]
-    pub rarity: i32,
+    #[serde(rename = "experienceForLevelup")]
+    pub experience_for_levelup: i32,
     #[serde(rename = "parts")]
     pub parts: Vec<DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParams>,
-    #[serde(rename = "userId")]
-    pub user_id: String,
+    #[serde(rename = "rarity")]
+    pub rarity: i32,
     #[serde(rename = "unitId")]
     pub unit_id: i32,
     #[serde(rename = "status")]
     pub status: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "maxLevel")]
+    pub max_level: i32,
     #[serde(rename = "level")]
     pub level: i32,
-    #[serde(rename = "experienceForLevelup")]
-    pub experience_for_levelup: i32,
 }
