@@ -17,7 +17,8 @@ pub struct Request<P> {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub auth: Option<Auth>,
     #[serde(rename = "authInfo")]
-    pub auth_info: AuthInfo,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub auth_info: Option<AuthInfo>,
 }
 
 /// M
