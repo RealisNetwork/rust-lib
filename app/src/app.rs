@@ -1,4 +1,4 @@
-use crate::{Service, ServiceApp};
+
 use async_trait::async_trait;
 use error_registry::custom_errors::{CustomErrorType, Nats};
 use error_registry::generated_errors::{Common, GeneratedError};
@@ -13,10 +13,10 @@ use transport::Transport;
 
 /// app = push_service!(app, ServiceApp, SetMailingSubscriptionStatusService)?;
 #[macro_export]
-macro_rules! push_service{
-    ($app:expr,$serviceApp:ident,$service:ident)=>{
-        $app.push_with_dependency::<$serviceApp<_, _, $service, _>, $service, _, _>()
-    }
+macro_rules! push_service {
+    ($app:expr,$serviceApp:ident,$service:ident) => {
+        $app.push_with_dependency::<$serviceApp<_, _, $service, _>, $service, _, _>().await
+    };
 }
 
 #[async_trait]
@@ -46,11 +46,11 @@ pub trait GetHealthchecker {
     fn get_healthchecker(&self) -> HealthChecker;
 }
 
-impl< T, N > App<T, N>
-    where  T: 'static + Clone + Send + Sync + GetTransport<N> + GetHealthchecker,
-           N: 'static + Transport + Sync + Send,
+impl<T, N> App<T, N>
+where
+    T: 'static + Clone + Send + Sync + GetTransport<N> + GetHealthchecker,
+    N: 'static + Transport + Sync + Send,
 {
-
     pub fn new(dependency_container: Arc<T>) -> Self {
         Self {
             services: vec![],
