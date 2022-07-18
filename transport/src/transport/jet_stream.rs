@@ -2,19 +2,19 @@ use std::time::Duration;
 
 use async_trait::async_trait;
 use serde_json::Value;
-use tokio::io::AsyncWriteExt;
 
-use error_registry::{BaseError, ErrorType};
 use error_registry::custom_errors::{CustomErrorType, Nats as CustomNats};
 use error_registry::generated_errors::{GeneratedError, Nats as GeneratedNats};
+use error_registry::{BaseError, ErrorType};
 use healthchecker::Alivable;
-use jet_stream::{self, jetstream::{self,StreamConfig, SubscribeOptions,JetStream}};
+use jet_stream::{
+    self,
+    jetstream::{self, JetStream, StreamConfig, SubscribeOptions},
+};
 
-
-use crate::{Transport, VReceivedMessage, VResponse, VSubscription};
 use crate::common::TransportResult;
 use crate::subscription::Subscription;
-
+use crate::{Transport, VReceivedMessage, VResponse, VSubscription};
 
 pub struct JetTransport {
     pub stream: JetStream,
@@ -36,17 +36,17 @@ impl JetTransport {
 
     #[allow(dead_code)]
     pub fn add_subject(&self, topic: &str) -> Result<(), BaseError<Value>> {
-        let streams = self.stream
-            .list_streams()
-            .next();
+        let streams = self.stream.list_streams().next();
 
         let mut config = match streams {
             Some(stream) => {
-                let stream = stream.map_err(|error| BaseError::<Value>::new(
-                    format!("{:?}", error),
-                    CustomErrorType::Nats(CustomNats::Send).into(),
-                    None,
-                ))?;
+                let stream = stream.map_err(|error| {
+                    BaseError::<Value>::new(
+                        format!("{:?}", error),
+                        CustomErrorType::Nats(CustomNats::Send).into(),
+                        None,
+                    )
+                })?;
                 if stream.config.subjects.contains(&topic.to_owned()) {
                     return Ok(());
                 }

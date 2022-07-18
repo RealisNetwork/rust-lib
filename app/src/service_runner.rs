@@ -7,7 +7,6 @@ use error_registry::BaseError;
 pub struct ServiceRunner {
     blocking_treads: usize,
     workers_number: usize,
-
 }
 
 impl ServiceRunner {
@@ -19,7 +18,9 @@ impl ServiceRunner {
     }
 
     pub fn run<Fut, T: Sized>(self, run: impl FnOnce(T) -> Fut, env_config: T)
-        where Fut: Future<Output=Result<(), BaseError<Value>>> {
+    where
+        Fut: Future<Output = Result<(), BaseError<Value>>>,
+    {
         let rt = tokio::runtime::Builder::new_multi_thread()
             .worker_threads(self.workers_number)
             .max_blocking_threads(self.blocking_treads)
@@ -31,21 +32,16 @@ impl ServiceRunner {
         let (sx, rx) = tokio::sync::oneshot::channel();
 
         rt.block_on(async move {
-            if let Err(error) = run(env_config).await
-            {
-
-                    log::error!("Service critical error! Error msg: {}", error);
-                    sx.send(0).expect("Sender failed...");
-
-                }
-            });
-
+            if let Err(error) = run(env_config).await {
+                log::error!("Service critical error! Error msg: {}", error);
+                sx.send(0).expect("Sender failed...");
+            }
+        });
 
         handle.spawn(async move {
             // error listener
 
             let result = rx.await.unwrap();
-
 
             if result == 0 {
                 log::info!("Service shutdown...");
@@ -54,7 +50,6 @@ impl ServiceRunner {
         });
     }
 }
-
 
 impl Default for ServiceRunner {
     fn default() -> Self {

@@ -12,7 +12,6 @@ use std::sync::Arc;
 use std::task::{Context, Poll};
 use tokio::sync::Mutex;
 
-
 /// Wrap services in this wrapper in order to conveniently add them to healthchecker
 pub struct Wrapper<T: Alivable>(Arc<T>);
 
@@ -85,8 +84,7 @@ impl HealthcheckerServer {
 
     /// Add any struct that implements Alivable to vector of checkable services (all the services
     /// will be checked when is_ok() method is executed)
-    pub async fn add<T: 'static + Alivable>(self, s: Wrapper<T>) -> Self
-    {
+    pub async fn add<T: 'static + Alivable>(self, s: Wrapper<T>) -> Self {
         self.services.lock().await.push(Box::new(s));
         self
     }

@@ -120,5 +120,4 @@ mod jet_stream_test {
 
         assert_eq!(reply.deserialize::<String>().unwrap(), MESSAGE_2);
     }
-
 }
