@@ -8,3 +8,4 @@ pub struct ProductFactoryProductTypeDeleteParams {
     #[serde(rename = "id")]
     pub id: i64,
 }
+pub type ProductFactoryProductTypeDeleteReturns = ();

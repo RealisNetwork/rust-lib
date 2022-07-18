@@ -5,10 +5,11 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CatsLobbyUnlinkAccountParams {
-    #[serde(rename = "password")]
-    pub password: String,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "email")]
     pub email: String,
+    #[serde(rename = "password")]
+    pub password: String,
 }
+pub type CatsLobbyUnlinkAccountReturns = ();

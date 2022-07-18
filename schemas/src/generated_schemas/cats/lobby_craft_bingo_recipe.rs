@@ -5,8 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CatsLobbyCraftBingoRecipeParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "recipeId")]
     pub recipe_id: i64,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
+pub type CatsLobbyCraftBingoRecipeReturns = ();

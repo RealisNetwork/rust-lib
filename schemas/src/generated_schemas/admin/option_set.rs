@@ -5,21 +5,21 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AdminOptionSetParamsExtraDetailsParams {
-    #[serde(rename = "type")]
-    r#type: String,
     #[serde(rename = "tab")]
     pub tab: String,
+    #[serde(rename = "type")]
+    pub r#type: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AdminOptionSetParams {
     #[serde(rename = "extraDetails")]
-    pub extra_details: AdminOptionSetParamsExtraDetailsParams,
-    #[serde(rename = "clientKey")]
-    pub client_key: String,
+    pub extra_details: Option<AdminOptionSetParamsExtraDetailsParams>,
     #[serde(rename = "value")]
     pub value: String,
+    #[serde(rename = "clientKey")]
+    pub client_key: String,
     #[serde(rename = "description")]
-    pub description: String,
+    pub description: Option<String>,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AdminOptionSetReturns {

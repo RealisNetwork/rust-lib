@@ -12,8 +12,8 @@ pub struct DragocatsLobbyUnitEndpointsEquipUnitParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DragocatsLobbyUnitEndpointsEquipUnitReturns {
-    #[serde(rename = "slotId")]
-    pub slot_id: i32,
     #[serde(rename = "unitId")]
     pub unit_id: i32,
+    #[serde(rename = "slotId")]
+    pub slot_id: i32,
 }

@@ -8,3 +8,4 @@ pub struct CatsLobbyApplicationInitializationParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type CatsLobbyApplicationInitializationReturns = ();

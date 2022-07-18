@@ -10,6 +10,13 @@ async-trait = "0.1.56"
 enum_dispatch = "0.3.8"
 serde_json = "1.0.81"
 serde = "1.0.137"
+#tokio = { version = "1.12.0", features = ["rt", "rt-multi-thread"] }
 tokio = "1.19.2"
 stan = "0.0.16"
 nats = "0.9.18"
+log = "0.4.17"
+env_logger = "0.8.4"
+
+[dev-dependencies]
+app = { path = "./../app" }
+healthchecker = { path = "./../healthchecker" }

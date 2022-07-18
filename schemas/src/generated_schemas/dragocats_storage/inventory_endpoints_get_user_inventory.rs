@@ -3,6 +3,7 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type DragocatsStorageInventoryEndpointsGetUserInventoryParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsGetUserInventoryReturnsLootboxesParamsParams {
     #[serde(rename = "bindingId")]
@@ -14,12 +15,12 @@ pub struct DragocatsStorageInventoryEndpointsGetUserInventoryReturnsLootboxesPar
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsParamsPartsParams {
+    #[serde(rename = "body")]
+    pub body: i32,
     #[serde(rename = "head")]
     pub head: i32,
     #[serde(rename = "tail")]
     pub tail: i32,
-    #[serde(rename = "body")]
-    pub body: i32,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsParamsUnitCharacteristicDtoParamsParams
@@ -30,7 +31,7 @@ pub struct DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsP
     pub unit_stat: i32,
 }
 #[derive(Debug, Serialize, Deserialize)]
-pub struct DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsParams { # [serde (rename = "bindingId")] pub binding_id : i32 , # [serde (rename = "isNft")] pub is_nft : bool , # [serde (rename = "rarity")] pub rarity : i32 , # [serde (rename = "parts")] pub parts : DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsParamsPartsParams , # [serde (rename = "unitCharacteristicDto")] pub unit_characteristic_dto : Vec < DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsParamsUnitCharacteristicDtoParamsParams > , # [serde (rename = "combatPower")] pub combat_power : i32 , # [serde (rename = "maxLevel")] pub max_level : i32 , # [serde (rename = "status")] pub status : i32 , # [serde (rename = "experienceForLevelup")] pub experience_for_levelup : i32 , # [serde (rename = "experience")] pub experience : i32 , # [serde (rename = "level")] pub level : i32 , # [serde (rename = "unitType")] pub unit_type : String }
+pub struct DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsParams { # [serde (rename = "unitType")] pub unit_type : String , # [serde (rename = "rarity")] pub rarity : i32 , # [serde (rename = "bindingId")] pub binding_id : i32 , # [serde (rename = "experienceForLevelup")] pub experience_for_levelup : i32 , # [serde (rename = "status")] pub status : i32 , # [serde (rename = "isNft")] pub is_nft : bool , # [serde (rename = "combatPower")] pub combat_power : i32 , # [serde (rename = "maxLevel")] pub max_level : i32 , # [serde (rename = "parts")] pub parts : DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsParamsPartsParams , # [serde (rename = "unitCharacteristicDto")] pub unit_characteristic_dto : Vec < DragocatsStorageInventoryEndpointsGetUserInventoryReturnsUnitsParamsParamsUnitCharacteristicDtoParamsParams > , # [serde (rename = "level")] pub level : i32 , # [serde (rename = "experience")] pub experience : i32 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsGetUserInventoryReturns {
     #[serde(rename = "lootboxes")]

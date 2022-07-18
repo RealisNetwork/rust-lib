@@ -2,3 +2,5 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+pub type CatsLobbyGetBadTransactionsParams = ();
+pub type CatsLobbyGetBadTransactionsReturns = ();

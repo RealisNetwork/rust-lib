@@ -5,10 +5,10 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AuthAuthDeviceGetClientInfoParams {
-    #[serde(rename = "provider")]
-    pub provider: (),
     #[serde(rename = "providerId")]
     pub provider_id: String,
+    #[serde(rename = "provider")]
+    pub provider: (),
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AuthAuthDeviceGetClientInfoReturns {

@@ -10,10 +10,10 @@ pub struct BlogBlogGetAllWithCategoryListParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BlogBlogGetAllWithCategoryListReturnsParamsArticlesParamsParams {
-    #[serde(rename = "shortDescription")]
-    pub short_description: String,
     #[serde(rename = "title")]
     pub title: String,
+    #[serde(rename = "shortDescription")]
+    pub short_description: String,
     #[serde(rename = "image")]
     pub image: String,
     #[serde(rename = "url")]
@@ -23,10 +23,10 @@ pub struct BlogBlogGetAllWithCategoryListReturnsParamsArticlesParamsParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BlogBlogGetAllWithCategoryListReturnsParams {
-    #[serde(rename = "articles")]
-    pub articles: Vec<BlogBlogGetAllWithCategoryListReturnsParamsArticlesParamsParams>,
     #[serde(rename = "categoryId")]
     pub category_id: i64,
+    #[serde(rename = "articles")]
+    pub articles: Vec<BlogBlogGetAllWithCategoryListReturnsParamsArticlesParamsParams>,
     #[serde(rename = "categoryName")]
     pub category_name: String,
 }

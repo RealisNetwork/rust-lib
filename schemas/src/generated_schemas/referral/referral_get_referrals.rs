@@ -5,32 +5,32 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ReferralReferralGetReferralsParams {
+    #[serde(rename = "appId")]
+    pub app_id: i64,
     #[serde(rename = "userId")]
     pub user_id: String,
+}
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ReferralReferralGetReferralsReturnsReferralsParamsParams {
+    #[serde(rename = "nickname")]
+    pub nickname: String,
     #[serde(rename = "appId")]
     pub app_id: i64,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ReferralReferralGetReferralsReturnsReferralTransactionsParamsParams {
+    #[serde(rename = "date")]
+    pub date: String,
     #[serde(rename = "nickname")]
     pub nickname: String,
     #[serde(rename = "amount")]
     pub amount: String,
-    #[serde(rename = "date")]
-    pub date: String,
-}
-#[derive(Debug, Serialize, Deserialize)]
-pub struct ReferralReferralGetReferralsReturnsReferralsParamsParams {
-    #[serde(rename = "appId")]
-    pub app_id: i64,
-    #[serde(rename = "nickname")]
-    pub nickname: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ReferralReferralGetReferralsReturns {
+    #[serde(rename = "referrals")]
+    pub referrals: Vec<ReferralReferralGetReferralsReturnsReferralsParamsParams>,
     #[serde(rename = "referralTransactions")]
     pub referral_transactions:
         Vec<ReferralReferralGetReferralsReturnsReferralTransactionsParamsParams>,
-    #[serde(rename = "referrals")]
-    pub referrals: Vec<ReferralReferralGetReferralsReturnsReferralsParamsParams>,
 }

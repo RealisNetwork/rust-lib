@@ -10,18 +10,18 @@ pub struct AuthAuthGetAllMyActiveSessionsParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AuthAuthGetAllMyActiveSessionsReturns {
-    #[serde(rename = "username")]
-    pub username: String,
-    #[serde(rename = "ipAddress")]
-    pub ip_address: String,
-    #[serde(rename = "clients")]
-    pub clients: String,
     #[serde(rename = "start")]
     pub start: i64,
-    #[serde(rename = "userId")]
-    pub user_id: String,
+    #[serde(rename = "clients")]
+    pub clients: String,
     #[serde(rename = "lastAccess")]
     pub last_access: i64,
+    #[serde(rename = "ipAddress")]
+    pub ip_address: String,
     #[serde(rename = "id")]
     pub id: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "username")]
+    pub username: String,
 }

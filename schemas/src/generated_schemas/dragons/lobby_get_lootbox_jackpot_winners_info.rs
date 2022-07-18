@@ -8,3 +8,4 @@ pub struct DragonsLobbyGetLootboxJackpotWinnersInfoParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type DragonsLobbyGetLootboxJackpotWinnersInfoReturns = ();

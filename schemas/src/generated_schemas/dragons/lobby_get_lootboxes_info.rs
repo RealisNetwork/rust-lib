@@ -8,3 +8,4 @@ pub struct DragonsLobbyGetLootboxesInfoParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type DragonsLobbyGetLootboxesInfoReturns = ();

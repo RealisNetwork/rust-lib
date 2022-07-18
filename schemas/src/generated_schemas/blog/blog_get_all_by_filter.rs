@@ -5,34 +5,34 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BlogBlogGetAllByFilterParams {
-    #[serde(rename = "categoryId")]
-    pub category_id: i64,
-    #[serde(rename = "limit")]
-    pub limit: i64,
     #[serde(rename = "articleId")]
     pub article_id: i64,
     #[serde(rename = "page")]
     pub page: i64,
     #[serde(rename = "perPage")]
     pub per_page: i64,
+    #[serde(rename = "categoryId")]
+    pub category_id: i64,
+    #[serde(rename = "limit")]
+    pub limit: i64,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BlogBlogGetAllByFilterReturnsDataParamsParams {
-    #[serde(rename = "image")]
-    pub image: String,
     #[serde(rename = "url")]
     pub url: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
     #[serde(rename = "shortDescription")]
     pub short_description: String,
     #[serde(rename = "title")]
     pub title: String,
+    #[serde(rename = "image")]
+    pub image: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BlogBlogGetAllByFilterReturns {
-    #[serde(rename = "totalCount")]
-    pub total_count: i64,
     #[serde(rename = "data")]
     pub data: Vec<BlogBlogGetAllByFilterReturnsDataParamsParams>,
+    #[serde(rename = "totalCount")]
+    pub total_count: i64,
 }

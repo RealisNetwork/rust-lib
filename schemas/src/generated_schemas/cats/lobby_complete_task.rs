@@ -5,8 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CatsLobbyCompleteTaskParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "taskId")]
     pub task_id: i64,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
+pub type CatsLobbyCompleteTaskReturns = ();

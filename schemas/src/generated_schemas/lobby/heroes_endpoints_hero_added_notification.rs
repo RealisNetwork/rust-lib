@@ -3,112 +3,113 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type LobbyHeroesEndpointsHeroAddedNotificationParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LobbyHeroesEndpointsHeroAddedNotificationReturnsSlotsParamsParams {
-    #[serde(rename = "itemUid")]
-    pub item_uid: i32,
     #[serde(rename = "equipment")]
     pub equipment: i8,
-}
-#[derive(Debug, Serialize, Deserialize)]
-pub struct LobbyHeroesEndpointsHeroAddedNotificationReturnsEquipmentAttributesParams {
-    #[serde(rename = "moveSpeed")]
-    pub move_speed: String,
-    #[serde(rename = "skillEffectPower")]
-    pub skill_effect_power: String,
-    #[serde(rename = "strength")]
-    pub strength: String,
-    #[serde(rename = "intelligence")]
-    pub intelligence: String,
-    #[serde(rename = "healthRegenPercent")]
-    pub health_regen_percent: String,
-    #[serde(rename = "armor")]
-    pub armor: String,
-    #[serde(rename = "attackDamage")]
-    pub attack_damage: String,
-    #[serde(rename = "skillPower")]
-    pub skill_power: String,
-    #[serde(rename = "health")]
-    pub health: String,
-    #[serde(rename = "vampirismPower")]
-    pub vampirism_power: String,
-    #[serde(rename = "ultPower")]
-    pub ult_power: String,
-    #[serde(rename = "agility")]
-    pub agility: String,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: String,
-    #[serde(rename = "mainCharacteristic")]
-    pub main_characteristic: i8,
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: String,
+    #[serde(rename = "itemUid")]
+    pub item_uid: Option<i32>,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LobbyHeroesEndpointsHeroAddedNotificationReturnsAttributesParams {
-    #[serde(rename = "armor")]
-    pub armor: String,
-    #[serde(rename = "skillPower")]
-    pub skill_power: String,
-    #[serde(rename = "attackDamage")]
-    pub attack_damage: String,
-    #[serde(rename = "ultPower")]
-    pub ult_power: String,
     #[serde(rename = "intelligence")]
     pub intelligence: String,
-    #[serde(rename = "mainCharacteristic")]
-    pub main_characteristic: i8,
-    #[serde(rename = "vampirismPower")]
-    pub vampirism_power: String,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: String,
-    #[serde(rename = "skillEffectPower")]
-    pub skill_effect_power: String,
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: String,
-    #[serde(rename = "healthRegenPercent")]
-    pub health_regen_percent: String,
-    #[serde(rename = "health")]
-    pub health: String,
-    #[serde(rename = "strength")]
-    pub strength: String,
-    #[serde(rename = "moveSpeed")]
-    pub move_speed: String,
+    #[serde(rename = "attackDamage")]
+    pub attack_damage: String,
     #[serde(rename = "agility")]
     pub agility: String,
+    #[serde(rename = "skillEffectPower")]
+    pub skill_effect_power: String,
+    #[serde(rename = "skillPower")]
+    pub skill_power: String,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: String,
+    #[serde(rename = "strength")]
+    pub strength: String,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: String,
+    #[serde(rename = "healthRegenPercent")]
+    pub health_regen_percent: String,
+    #[serde(rename = "ultPower")]
+    pub ult_power: String,
+    #[serde(rename = "health")]
+    pub health: String,
+    #[serde(rename = "moveSpeed")]
+    pub move_speed: String,
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: String,
+    #[serde(rename = "armor")]
+    pub armor: String,
+    #[serde(rename = "mainCharacteristic")]
+    pub main_characteristic: i8,
+}
+#[derive(Debug, Serialize, Deserialize)]
+pub struct LobbyHeroesEndpointsHeroAddedNotificationReturnsEquipmentAttributesParams {
+    #[serde(rename = "strength")]
+    pub strength: String,
+    #[serde(rename = "mainCharacteristic")]
+    pub main_characteristic: i8,
+    #[serde(rename = "moveSpeed")]
+    pub move_speed: String,
+    #[serde(rename = "ultPower")]
+    pub ult_power: String,
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: String,
+    #[serde(rename = "skillPower")]
+    pub skill_power: String,
+    #[serde(rename = "health")]
+    pub health: String,
+    #[serde(rename = "healthRegenPercent")]
+    pub health_regen_percent: String,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: String,
+    #[serde(rename = "agility")]
+    pub agility: String,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: String,
+    #[serde(rename = "armor")]
+    pub armor: String,
+    #[serde(rename = "skillEffectPower")]
+    pub skill_effect_power: String,
+    #[serde(rename = "intelligence")]
+    pub intelligence: String,
+    #[serde(rename = "attackDamage")]
+    pub attack_damage: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LobbyHeroesEndpointsHeroAddedNotificationReturns {
-    #[serde(rename = "status")]
-    pub status: i32,
     #[serde(rename = "level")]
     pub level: i16,
-    #[serde(rename = "experience")]
-    pub experience: i32,
-    #[serde(rename = "bindingId")]
-    pub binding_id: i32,
     #[serde(rename = "active")]
     pub active: bool,
+    #[serde(rename = "transactionHash")]
+    pub transaction_hash: Option<String>,
     #[serde(rename = "slots")]
     pub slots: Vec<LobbyHeroesEndpointsHeroAddedNotificationReturnsSlotsParamsParams>,
-    #[serde(rename = "heroId")]
-    pub hero_id: i8,
-    #[serde(rename = "blockId")]
-    pub block_id: String,
-    #[serde(rename = "equipmentAttributes")]
-    pub equipment_attributes:
-        LobbyHeroesEndpointsHeroAddedNotificationReturnsEquipmentAttributesParams,
-    #[serde(rename = "transactionHash")]
-    pub transaction_hash: String,
-    #[serde(rename = "attributes")]
-    pub attributes: LobbyHeroesEndpointsHeroAddedNotificationReturnsAttributesParams,
-    #[serde(rename = "linkToExplorer")]
-    pub link_to_explorer: String,
+    #[serde(rename = "isPending")]
+    pub is_pending: bool,
     #[serde(rename = "toNextLevelExperience")]
     pub to_next_level_experience: i32,
     #[serde(rename = "toNextLevelScrolls")]
     pub to_next_level_scrolls: i32,
-    #[serde(rename = "isPending")]
-    pub is_pending: bool,
+    #[serde(rename = "bindingId")]
+    pub binding_id: i32,
+    #[serde(rename = "status")]
+    pub status: i32,
+    #[serde(rename = "heroId")]
+    pub hero_id: i8,
+    #[serde(rename = "experience")]
+    pub experience: i32,
     #[serde(rename = "maxLevel")]
     pub max_level: i16,
+    #[serde(rename = "attributes")]
+    pub attributes: LobbyHeroesEndpointsHeroAddedNotificationReturnsAttributesParams,
+    #[serde(rename = "equipmentAttributes")]
+    pub equipment_attributes:
+        LobbyHeroesEndpointsHeroAddedNotificationReturnsEquipmentAttributesParams,
+    #[serde(rename = "linkToExplorer")]
+    pub link_to_explorer: String,
+    #[serde(rename = "blockId")]
+    pub block_id: Option<String>,
 }

@@ -8,3 +8,4 @@ pub struct CatsLobbyGetBingoDataParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type CatsLobbyGetBingoDataReturns = ();

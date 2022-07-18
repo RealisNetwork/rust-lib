@@ -5,9 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AdminMailTemplateChangeParams {
-    #[serde(rename = "mailTemplate")]
-    pub mail_template: String,
     #[serde(rename = "key")]
     pub key: String,
+    #[serde(rename = "mailTemplate")]
+    pub mail_template: String,
 }
 pub type AdminMailTemplateChangeReturns = bool;

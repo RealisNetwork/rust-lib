@@ -10,23 +10,23 @@ pub struct BingoBingoGetBingoDataParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BingoBingoGetBingoDataReturnsBingoItemsParamsParams {
-    #[serde(rename = "itemId")]
-    pub item_id: i32,
     #[serde(rename = "amount")]
     pub amount: String,
+    #[serde(rename = "itemId")]
+    pub item_id: i32,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BingoBingoGetBingoDataReturnsBingoSeasonInfoParams {
-    #[serde(rename = "seasonId")]
-    pub season_id: i32,
-    #[serde(rename = "seasonState")]
-    pub season_state: i32,
     #[serde(rename = "lastUpdateTimeMs")]
     pub last_update_time_ms: String,
     #[serde(rename = "seasonDurationMs")]
     pub season_duration_ms: String,
     #[serde(rename = "seasonStartDelayMs")]
     pub season_start_delay_ms: String,
+    #[serde(rename = "seasonId")]
+    pub season_id: i32,
+    #[serde(rename = "seasonState")]
+    pub season_state: i32,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BingoBingoGetBingoDataReturns {

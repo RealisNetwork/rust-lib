@@ -10,3 +10,4 @@ pub struct DragonsLobbyOpenLootboxParams {
     #[serde(rename = "lootboxId")]
     pub lootbox_id: i64,
 }
+pub type DragonsLobbyOpenLootboxReturns = ();

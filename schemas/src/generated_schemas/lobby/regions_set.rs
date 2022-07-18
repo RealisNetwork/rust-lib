@@ -5,8 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LobbyRegionsSetParams {
-    #[serde(rename = "regionName")]
-    pub region_name: String,
     #[serde(rename = "isFixed")]
     pub is_fixed: bool,
+    #[serde(rename = "regionName")]
+    pub region_name: String,
 }
+pub type LobbyRegionsSetReturns = ();

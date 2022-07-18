@@ -3,15 +3,16 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type ProductFactoryLootboxTypeGetAllParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ProductFactoryLootboxTypeGetAllReturnsParams {
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "lootboxId")]
     pub lootbox_id: i32,
-    #[serde(rename = "dropChanceMultiplier")]
-    pub drop_chance_multiplier: i32,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "dropChanceMultiplier")]
+    pub drop_chance_multiplier: i32,
 }
 pub type ProductFactoryLootboxTypeGetAllReturns = Vec<ProductFactoryLootboxTypeGetAllReturnsParams>;

@@ -10,14 +10,14 @@ pub struct DragocatsProductFactoryProductsGetInfoByProductIdParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DragocatsProductFactoryProductsGetInfoByProductIdReturns {
-    #[serde(rename = "name")]
-    pub name: String,
     #[serde(rename = "isNft")]
     pub is_nft: bool,
-    #[serde(rename = "subType")]
-    pub sub_type: String,
     #[serde(rename = "personalType")]
     pub personal_type: String,
     #[serde(rename = "productType")]
     pub product_type: String,
+    #[serde(rename = "subType")]
+    pub sub_type: String,
+    #[serde(rename = "name")]
+    pub name: String,
 }

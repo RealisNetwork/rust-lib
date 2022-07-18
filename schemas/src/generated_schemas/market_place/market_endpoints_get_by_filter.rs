@@ -19,43 +19,43 @@ pub struct MarketPlaceMarketEndpointsGetByFilterParamsOrderByParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetByFilterParams {
-    #[serde(rename = "category")]
-    pub category: String,
-    #[serde(rename = "page")]
-    pub page: i32,
-    #[serde(rename = "filters")]
-    pub filters: Vec<MarketPlaceMarketEndpointsGetByFilterParamsFiltersParamsParams>,
-    #[serde(rename = "orderBy")]
-    pub order_by: MarketPlaceMarketEndpointsGetByFilterParamsOrderByParams,
     #[serde(rename = "perPage")]
     pub per_page: i32,
+    #[serde(rename = "category")]
+    pub category: String,
+    #[serde(rename = "filters")]
+    pub filters: Option<Vec<MarketPlaceMarketEndpointsGetByFilterParamsFiltersParamsParams>>,
+    #[serde(rename = "orderBy")]
+    pub order_by: Option<MarketPlaceMarketEndpointsGetByFilterParamsOrderByParams>,
+    #[serde(rename = "page")]
+    pub page: i32,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetByFilterReturnsParamsAdditionalParamsParams {}
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetByFilterReturnsParams {
-    #[serde(rename = "subType")]
-    pub sub_type: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "price")]
-    pub price: i32,
-    #[serde(rename = "isLocked")]
-    pub is_locked: bool,
-    #[serde(rename = "category")]
-    pub category: i32,
-    #[serde(rename = "id")]
-    pub id: i32,
-    #[serde(rename = "createdAt")]
-    pub created_at: i32,
-    #[serde(rename = "type")]
-    r#type: String,
     #[serde(rename = "personalType")]
     pub personal_type: String,
-    #[serde(rename = "additionalParams")]
-    pub additional_params: MarketPlaceMarketEndpointsGetByFilterReturnsParamsAdditionalParamsParams,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: i32,
+    #[serde(rename = "category")]
+    pub category: i32,
     #[serde(rename = "productId")]
     pub product_id: i32,
+    #[serde(rename = "additionalParams")]
+    pub additional_params: MarketPlaceMarketEndpointsGetByFilterReturnsParamsAdditionalParamsParams,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "isLocked")]
+    pub is_locked: bool,
+    #[serde(rename = "type")]
+    pub r#type: String,
+    #[serde(rename = "price")]
+    pub price: i32,
+    #[serde(rename = "subType")]
+    pub sub_type: String,
 }
 pub type MarketPlaceMarketEndpointsGetByFilterReturns =
     Vec<MarketPlaceMarketEndpointsGetByFilterReturnsParams>;

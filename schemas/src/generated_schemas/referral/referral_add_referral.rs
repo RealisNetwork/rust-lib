@@ -5,9 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ReferralReferralAddReferralParams {
-    #[serde(rename = "referrerId")]
-    pub referrer_id: String,
     #[serde(rename = "referralId")]
     pub referral_id: String,
+    #[serde(rename = "referrerId")]
+    pub referrer_id: String,
 }
 pub type ReferralReferralAddReferralReturns = bool;

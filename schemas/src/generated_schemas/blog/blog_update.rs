@@ -5,32 +5,32 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BlogBlogUpdateParamsPropsParams {
-    #[serde(rename = "lang")]
-    pub lang: String,
     #[serde(rename = "url")]
-    pub url: String,
-    #[serde(rename = "metaTitle")]
-    pub meta_title: String,
-    #[serde(rename = "isPinned")]
-    pub is_pinned: bool,
+    pub url: Option<String>,
     #[serde(rename = "shortDescription")]
-    pub short_description: String,
-    #[serde(rename = "image")]
-    pub image: String,
-    #[serde(rename = "title")]
-    pub title: String,
-    #[serde(rename = "content")]
-    pub content: String,
+    pub short_description: Option<String>,
     #[serde(rename = "metaDescription")]
-    pub meta_description: String,
+    pub meta_description: Option<String>,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "metaTitle")]
+    pub meta_title: Option<String>,
+    #[serde(rename = "title")]
+    pub title: Option<String>,
+    #[serde(rename = "image")]
+    pub image: Option<String>,
+    #[serde(rename = "isPinned")]
+    pub is_pinned: Option<bool>,
+    #[serde(rename = "lang")]
+    pub lang: Option<String>,
+    #[serde(rename = "content")]
+    pub content: Option<String>,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BlogBlogUpdateParams {
-    #[serde(rename = "categoryId")]
-    pub category_id: i64,
     #[serde(rename = "props")]
     pub props: BlogBlogUpdateParamsPropsParams,
+    #[serde(rename = "categoryId")]
+    pub category_id: Option<i64>,
 }
 pub type BlogBlogUpdateReturns = bool;

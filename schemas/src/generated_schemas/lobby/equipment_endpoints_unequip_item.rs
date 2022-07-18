@@ -12,10 +12,10 @@ pub struct LobbyEquipmentEndpointsUnequipItemParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LobbyEquipmentEndpointsUnequipItemReturns {
-    #[serde(rename = "heroBindingId")]
-    pub hero_binding_id: i32,
-    #[serde(rename = "bindingId")]
-    pub binding_id: i32,
     #[serde(rename = "slotId")]
     pub slot_id: i32,
+    #[serde(rename = "bindingId")]
+    pub binding_id: i32,
+    #[serde(rename = "heroBindingId")]
+    pub hero_binding_id: i32,
 }

@@ -5,9 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BlogImageUploadImageParams {
-    #[serde(rename = "extension")]
-    pub extension: String,
     #[serde(rename = "binary")]
     pub binary: String,
+    #[serde(rename = "extension")]
+    pub extension: String,
 }
 pub type BlogImageUploadImageReturns = String;

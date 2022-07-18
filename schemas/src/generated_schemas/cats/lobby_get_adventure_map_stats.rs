@@ -8,3 +8,4 @@ pub struct CatsLobbyGetAdventureMapStatsParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type CatsLobbyGetAdventureMapStatsReturns = ();

@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CdUserSpinEndpointsSpinParams {
     #[serde(rename = "Type")]
-    r#type: String,
+    pub r#type: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CdUserSpinEndpointsSpinReturns {

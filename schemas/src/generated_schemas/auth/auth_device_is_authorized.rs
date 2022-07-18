@@ -5,11 +5,11 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AuthAuthDeviceIsAuthorizedParams {
+    #[serde(rename = "providerId")]
+    pub provider_id: String,
     #[serde(rename = "internalUserId")]
     pub internal_user_id: String,
     #[serde(rename = "appId")]
     pub app_id: i64,
-    #[serde(rename = "providerId")]
-    pub provider_id: String,
 }
 pub type AuthAuthDeviceIsAuthorizedReturns = bool;

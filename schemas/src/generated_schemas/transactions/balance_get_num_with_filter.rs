@@ -7,9 +7,9 @@ use serde::{Deserialize, Serialize};
 pub struct TransactionsBalanceGetNumWithFilterParams {
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "credit")]
-    pub credit: String,
     #[serde(rename = "debit")]
     pub debit: String,
+    #[serde(rename = "credit")]
+    pub credit: String,
 }
 pub type TransactionsBalanceGetNumWithFilterReturns = i64;

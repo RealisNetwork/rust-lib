@@ -3,27 +3,28 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type AchievementsAchievementGetAllAchievementsParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AchievementsAchievementGetAllAchievementsReturnsParamsGameEventParams {
-    #[serde(rename = "count")]
-    pub count: i64,
-    #[serde(rename = "eventKey")]
-    pub event_key: String,
     #[serde(rename = "eventLifeType")]
     pub event_life_type: i32,
+    #[serde(rename = "eventKey")]
+    pub event_key: String,
+    #[serde(rename = "count")]
+    pub count: i64,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AchievementsAchievementGetAllAchievementsReturnsParams {
-    #[serde(rename = "gameEvent")]
-    pub game_event: AchievementsAchievementGetAllAchievementsReturnsParamsGameEventParams,
-    #[serde(rename = "rewardType")]
-    pub reward_type: i32,
     #[serde(rename = "achievementKey")]
     pub achievement_key: String,
-    #[serde(rename = "reward")]
-    pub reward: i64,
     #[serde(rename = "description")]
     pub description: String,
+    #[serde(rename = "reward")]
+    pub reward: i64,
+    #[serde(rename = "rewardType")]
+    pub reward_type: i32,
+    #[serde(rename = "gameEvent")]
+    pub game_event: AchievementsAchievementGetAllAchievementsReturnsParamsGameEventParams,
 }
 pub type AchievementsAchievementGetAllAchievementsReturns =
     Vec<AchievementsAchievementGetAllAchievementsReturnsParams>;

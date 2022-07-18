@@ -10,51 +10,51 @@ pub struct ProductFactoryGeneratorGenerateParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ProductFactoryGeneratorGenerateReturnsAttributesParams {
-    #[serde(rename = "vampirismPower")]
-    pub vampirism_power: String,
+    #[serde(rename = "agility")]
+    pub agility: String,
     #[serde(rename = "mainCharacteristic")]
     pub main_characteristic: String,
     #[serde(rename = "armor")]
     pub armor: String,
     #[serde(rename = "skillEffectPower")]
     pub skill_effect_power: String,
-    #[serde(rename = "attackDamage")]
-    pub attack_damage: String,
-    #[serde(rename = "moveSpeed")]
-    pub move_speed: String,
-    #[serde(rename = "intelligence")]
-    pub intelligence: String,
     #[serde(rename = "strength")]
     pub strength: String,
     #[serde(rename = "skillPower")]
     pub skill_power: String,
-    #[serde(rename = "health")]
-    pub health: String,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: String,
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: String,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: String,
     #[serde(rename = "ultPower")]
     pub ult_power: String,
-    #[serde(rename = "agility")]
-    pub agility: String,
+    #[serde(rename = "moveSpeed")]
+    pub move_speed: String,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: String,
+    #[serde(rename = "intelligence")]
+    pub intelligence: String,
     #[serde(rename = "healthRegenPercent")]
     pub health_regen_percent: String,
+    #[serde(rename = "attackDamage")]
+    pub attack_damage: String,
+    #[serde(rename = "health")]
+    pub health: String,
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ProductFactoryGeneratorGenerateReturns {
-    #[serde(rename = "mintId")]
-    pub mint_id: i64,
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
     #[serde(rename = "productType")]
     pub product_type: String,
-    #[serde(rename = "isNft")]
-    pub is_nft: bool,
-    #[serde(rename = "productId")]
-    pub product_id: i64,
-    #[serde(rename = "name")]
-    pub name: String,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
     #[serde(rename = "attributes")]
     pub attributes: ProductFactoryGeneratorGenerateReturnsAttributesParams,
+    #[serde(rename = "mintId")]
+    pub mint_id: i64,
+    #[serde(rename = "productId")]
+    pub product_id: i64,
+    #[serde(rename = "isNft")]
+    pub is_nft: bool,
+    #[serde(rename = "name")]
+    pub name: String,
 }

@@ -5,9 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AuthAuthCreateRequestToChangeEmailParams {
-    #[serde(rename = "password")]
-    pub password: String,
     #[serde(rename = "newEmail")]
     pub new_email: String,
+    #[serde(rename = "password")]
+    pub password: String,
 }
 pub type AuthAuthCreateRequestToChangeEmailReturns = bool;

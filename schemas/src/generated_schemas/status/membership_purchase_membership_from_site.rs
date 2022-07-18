@@ -5,9 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct StatusMembershipPurchaseMembershipFromSiteParams {
-    #[serde(rename = "membershipId")]
-    pub membership_id: i64,
     #[serde(rename = "appId")]
     pub app_id: i64,
+    #[serde(rename = "membershipId")]
+    pub membership_id: i64,
 }
 pub type StatusMembershipPurchaseMembershipFromSiteReturns = bool;

@@ -10,43 +10,43 @@ pub struct BlogBlogGetByUrlParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BlogBlogGetByUrlReturnsCategoryParams {
+    #[serde(rename = "isAvailable")]
+    pub is_available: bool,
     #[serde(rename = "id")]
     pub id: i64,
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "isAvailable")]
-    pub is_available: bool,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BlogBlogGetByUrlReturns {
-    #[serde(rename = "isPinned")]
-    pub is_pinned: bool,
-    #[serde(rename = "url")]
-    pub url: String,
-    #[serde(rename = "metaTitle")]
-    pub meta_title: String,
-    #[serde(rename = "shortDescription")]
-    pub short_description: String,
-    #[serde(rename = "content")]
-    pub content: String,
-    #[serde(rename = "metaDescription")]
-    pub meta_description: String,
-    #[serde(rename = "image")]
-    pub image: String,
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
-    #[serde(rename = "lang")]
-    pub lang: String,
-    #[serde(rename = "views")]
-    pub views: i64,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "title")]
-    pub title: String,
-    #[serde(rename = "category")]
-    pub category: BlogBlogGetByUrlReturnsCategoryParams,
+    #[serde(rename = "metaTitle")]
+    pub meta_title: String,
+    #[serde(rename = "shortDescription")]
+    pub short_description: String,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "isPinned")]
+    pub is_pinned: bool,
+    #[serde(rename = "views")]
+    pub views: i64,
+    #[serde(rename = "metaDescription")]
+    pub meta_description: String,
+    #[serde(rename = "category")]
+    pub category: BlogBlogGetByUrlReturnsCategoryParams,
+    #[serde(rename = "title")]
+    pub title: String,
+    #[serde(rename = "image")]
+    pub image: String,
+    #[serde(rename = "url")]
+    pub url: String,
+    #[serde(rename = "content")]
+    pub content: String,
+    #[serde(rename = "lang")]
+    pub lang: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
 }

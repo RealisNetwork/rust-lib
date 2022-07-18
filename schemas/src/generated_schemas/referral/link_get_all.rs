@@ -10,10 +10,10 @@ pub struct ReferralLinkGetAllParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ReferralLinkGetAllReturnsReferralLinksParamsParams {
-    #[serde(rename = "appId")]
-    pub app_id: i64,
     #[serde(rename = "link")]
     pub link: String,
+    #[serde(rename = "appId")]
+    pub app_id: i64,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ReferralLinkGetAllReturns {

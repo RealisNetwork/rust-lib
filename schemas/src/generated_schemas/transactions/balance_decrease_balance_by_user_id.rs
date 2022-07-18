@@ -7,20 +7,20 @@ use serde::{Deserialize, Serialize};
 pub struct TransactionsBalanceDecreaseBalanceByUserIdParamsExtraDetailsParams {}
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TransactionsBalanceDecreaseBalanceByUserIdParams {
-    #[serde(rename = "extraDetails")]
-    pub extra_details: TransactionsBalanceDecreaseBalanceByUserIdParamsExtraDetailsParams,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "creator")]
-    pub creator: String,
-    #[serde(rename = "currency")]
-    pub currency: String,
     #[serde(rename = "amount")]
     pub amount: String,
     #[serde(rename = "reason")]
     pub reason: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
+    #[serde(rename = "currency")]
+    pub currency: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
+    #[serde(rename = "extraDetails")]
+    pub extra_details: Option<TransactionsBalanceDecreaseBalanceByUserIdParamsExtraDetailsParams>,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TransactionsBalanceDecreaseBalanceByUserIdReturns {}

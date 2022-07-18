@@ -10,16 +10,16 @@ pub struct AuthAuthGetUserInfoByTokenParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AuthAuthGetUserInfoByTokenReturns {
-    #[serde(rename = "isBanned")]
-    pub is_banned: bool,
-    #[serde(rename = "emailVerified")]
-    pub email_verified: bool,
-    #[serde(rename = "email")]
-    pub email: String,
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "roles")]
     pub roles: Vec<String>,
+    #[serde(rename = "isBanned")]
+    pub is_banned: bool,
     #[serde(rename = "username")]
     pub username: String,
+    #[serde(rename = "emailVerified")]
+    pub email_verified: bool,
+    #[serde(rename = "email")]
+    pub email: String,
 }

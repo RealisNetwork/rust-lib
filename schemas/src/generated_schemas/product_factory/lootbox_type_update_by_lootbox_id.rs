@@ -5,13 +5,13 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ProductFactoryLootboxTypeUpdateByLootboxIdParams {
-    #[serde(rename = "dropChanceMultiplier")]
-    pub drop_chance_multiplier: i32,
+    #[serde(rename = "type")]
+    pub r#type: Option<String>,
+    #[serde(rename = "name")]
+    pub name: Option<String>,
     #[serde(rename = "lootboxId")]
     pub lootbox_id: i32,
-    #[serde(rename = "name")]
-    pub name: String,
-    #[serde(rename = "type")]
-    r#type: String,
+    #[serde(rename = "dropChanceMultiplier")]
+    pub drop_chance_multiplier: Option<i32>,
 }
 pub type ProductFactoryLootboxTypeUpdateByLootboxIdReturns = bool;

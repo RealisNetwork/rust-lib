@@ -10,47 +10,47 @@ pub struct UserProfileGetProfileParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct UserProfileGetProfileReturnsBanParams {
-    #[serde(rename = "reason")]
-    pub reason: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "whoBanned")]
-    pub who_banned: String,
-    #[serde(rename = "id")]
-    pub id: i64,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: String,
     #[serde(rename = "bannedUntil")]
     pub banned_until: String,
+    #[serde(rename = "id")]
+    pub id: i64,
+    #[serde(rename = "reason")]
+    pub reason: String,
+    #[serde(rename = "whoBanned")]
+    pub who_banned: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct UserProfileGetProfileReturns {
-    #[serde(rename = "ban")]
-    pub ban: UserProfileGetProfileReturnsBanParams,
-    #[serde(rename = "registeredAt")]
-    pub registered_at: String,
+    #[serde(rename = "nickname")]
+    pub nickname: String,
+    #[serde(rename = "isBanned")]
+    pub is_banned: bool,
+    #[serde(rename = "isNicknameChanged")]
+    pub is_nickname_changed: bool,
+    #[serde(rename = "isDeleted")]
+    pub is_deleted: bool,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "email")]
     pub email: String,
-    #[serde(rename = "isNicknameChanged")]
-    pub is_nickname_changed: bool,
-    #[serde(rename = "nickname")]
-    pub nickname: String,
-    #[serde(rename = "verified")]
-    pub verified: bool,
-    #[serde(rename = "isSubscribedToMailing")]
-    pub is_subscribed_to_mailing: bool,
-    #[serde(rename = "suspicious")]
-    pub suspicious: bool,
-    #[serde(rename = "isDeleted")]
-    pub is_deleted: bool,
-    #[serde(rename = "isBanned")]
-    pub is_banned: bool,
     #[serde(rename = "id")]
     pub id: i64,
-    #[serde(rename = "isConfirmed")]
-    pub is_confirmed: bool,
+    #[serde(rename = "verified")]
+    pub verified: bool,
     #[serde(rename = "notice")]
     pub notice: String,
+    #[serde(rename = "ban")]
+    pub ban: UserProfileGetProfileReturnsBanParams,
+    #[serde(rename = "registeredAt")]
+    pub registered_at: String,
+    #[serde(rename = "suspicious")]
+    pub suspicious: bool,
+    #[serde(rename = "isSubscribedToMailing")]
+    pub is_subscribed_to_mailing: bool,
+    #[serde(rename = "isConfirmed")]
+    pub is_confirmed: bool,
 }

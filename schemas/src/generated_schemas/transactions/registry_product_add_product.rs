@@ -7,9 +7,9 @@ use serde::{Deserialize, Serialize};
 pub struct TransactionsRegistryProductAddProductParams {
     #[serde(rename = "personalType")]
     pub personal_type: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "productId")]
     pub product_id: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 pub type TransactionsRegistryProductAddProductReturns = bool;

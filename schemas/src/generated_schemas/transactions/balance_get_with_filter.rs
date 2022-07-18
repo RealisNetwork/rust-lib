@@ -5,22 +5,22 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetWithFilterParamsFilterListParams {
-    #[serde(rename = "lastDate")]
-    pub last_date: String,
+    #[serde(rename = "perPage")]
+    pub per_page: i64,
     #[serde(rename = "reason")]
     pub reason: String,
     #[serde(rename = "firstDate")]
     pub first_date: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
+    #[serde(rename = "lastDate")]
+    pub last_date: String,
+    #[serde(rename = "TypeTransaction")]
+    pub type_transaction: String,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "page")]
     pub page: i64,
-    #[serde(rename = "TypeTransaction")]
-    pub type_transaction: String,
-    #[serde(rename = "perPage")]
-    pub per_page: i64,
-    #[serde(rename = "creator")]
-    pub creator: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetWithFilterParams {
@@ -31,33 +31,34 @@ pub struct TransactionsBalanceGetWithFilterParams {
 pub struct TransactionsBalanceGetWithFilterReturnsDataParamsParamsExtraDetailsParams {}
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetWithFilterReturnsDataParamsParams {
-    #[serde(rename = "txId")]
-    pub tx_id: String,
-    #[serde(rename = "currency")]
-    pub currency: String,
-    #[serde(rename = "extraDetails")]
-    pub extra_details: TransactionsBalanceGetWithFilterReturnsDataParamsParamsExtraDetailsParams,
-    #[serde(rename = "creator")]
-    pub creator: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "id")]
-    pub id: i64,
-    #[serde(rename = "credit")]
-    pub credit: String,
     #[serde(rename = "debit")]
     pub debit: String,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: String,
+    #[serde(rename = "credit")]
+    pub credit: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "reason")]
     pub reason: String,
+    #[serde(rename = "extraDetails")]
+    pub extra_details:
+        Option<TransactionsBalanceGetWithFilterReturnsDataParamsParamsExtraDetailsParams>,
+    #[serde(rename = "id")]
+    pub id: i64,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
+    #[serde(rename = "currency")]
+    pub currency: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetWithFilterReturns {
-    #[serde(rename = "totalCount")]
-    pub total_count: i64,
     #[serde(rename = "data")]
     pub data: Vec<TransactionsBalanceGetWithFilterReturnsDataParamsParams>,
+    #[serde(rename = "totalCount")]
+    pub total_count: i64,
 }

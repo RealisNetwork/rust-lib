@@ -2,4 +2,5 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+pub type TransactionsBalanceGetMyNumOfTransactionsParams = ();
 pub type TransactionsBalanceGetMyNumOfTransactionsReturns = i64;

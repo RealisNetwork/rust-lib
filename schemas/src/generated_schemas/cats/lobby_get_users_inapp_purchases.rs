@@ -5,10 +5,11 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CatsLobbyGetUsersInappPurchasesParams {
-    #[serde(rename = "startDate")]
-    pub start_date: i64,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "endDate")]
     pub end_date: i64,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "startDate")]
+    pub start_date: i64,
 }
+pub type CatsLobbyGetUsersInappPurchasesReturns = ();

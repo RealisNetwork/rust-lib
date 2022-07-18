@@ -7,9 +7,9 @@ use serde::{Deserialize, Serialize};
 pub struct ReferralRewardAddReferralExpenseParams {
     #[serde(rename = "txId")]
     pub tx_id: String,
-    #[serde(rename = "referralId")]
-    pub referral_id: String,
     #[serde(rename = "amount")]
     pub amount: String,
+    #[serde(rename = "referralId")]
+    pub referral_id: String,
 }
 pub type ReferralRewardAddReferralExpenseReturns = bool;

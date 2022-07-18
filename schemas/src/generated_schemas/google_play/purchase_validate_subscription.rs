@@ -5,17 +5,17 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GooglePlayPurchaseValidateSubscriptionParams {
-    #[serde(rename = "packageName")]
-    pub package_name: String,
     #[serde(rename = "subscriptionToken")]
     pub subscription_token: String,
     #[serde(rename = "subscriptionProductId")]
     pub subscription_product_id: String,
+    #[serde(rename = "packageName")]
+    pub package_name: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GooglePlayPurchaseValidateSubscriptionReturns {
     #[serde(rename = "isValid")]
     pub is_valid: bool,
     #[serde(rename = "expiryTimeMillis")]
-    pub expiry_time_millis: String,
+    pub expiry_time_millis: Option<String>,
 }

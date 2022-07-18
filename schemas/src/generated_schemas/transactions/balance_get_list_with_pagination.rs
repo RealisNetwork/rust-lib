@@ -10,19 +10,19 @@ pub struct TransactionsBalanceGetListWithPaginationParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetListWithPaginationReturnsListParamsParams {
-    #[serde(rename = "balanceChange")]
-    pub balance_change: String,
     #[serde(rename = "dateTime")]
     pub date_time: String,
+    #[serde(rename = "balanceChange")]
+    pub balance_change: String,
     #[serde(rename = "blockId")]
     pub block_id: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetListWithPaginationReturns {
-    #[serde(rename = "list")]
-    pub list: Vec<TransactionsBalanceGetListWithPaginationReturnsListParamsParams>,
     #[serde(rename = "pages")]
     pub pages: i16,
+    #[serde(rename = "list")]
+    pub list: Vec<TransactionsBalanceGetListWithPaginationReturnsListParamsParams>,
     #[serde(rename = "page")]
     pub page: i16,
 }

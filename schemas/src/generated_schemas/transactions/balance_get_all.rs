@@ -16,33 +16,33 @@ pub struct TransactionsBalanceGetAllParams {
 pub struct TransactionsBalanceGetAllReturnsDataParamsParamsExtraDetailsParams {}
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetAllReturnsDataParamsParams {
-    #[serde(rename = "creator")]
-    pub creator: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
-    #[serde(rename = "id")]
-    pub id: i64,
-    #[serde(rename = "credit")]
-    pub credit: String,
-    #[serde(rename = "currency")]
-    pub currency: String,
-    #[serde(rename = "debit")]
-    pub debit: String,
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "extraDetails")]
-    pub extra_details: TransactionsBalanceGetAllReturnsDataParamsParamsExtraDetailsParams,
+    #[serde(rename = "creator")]
+    pub creator: String,
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
+    #[serde(rename = "id")]
+    pub id: i64,
+    #[serde(rename = "debit")]
+    pub debit: String,
+    #[serde(rename = "credit")]
+    pub credit: String,
     #[serde(rename = "reason")]
     pub reason: String,
+    #[serde(rename = "currency")]
+    pub currency: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
+    #[serde(rename = "extraDetails")]
+    pub extra_details: Option<TransactionsBalanceGetAllReturnsDataParamsParamsExtraDetailsParams>,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetAllReturns {
-    #[serde(rename = "data")]
-    pub data: Vec<TransactionsBalanceGetAllReturnsDataParamsParams>,
     #[serde(rename = "totalCount")]
     pub total_count: i64,
+    #[serde(rename = "data")]
+    pub data: Vec<TransactionsBalanceGetAllReturnsDataParamsParams>,
 }

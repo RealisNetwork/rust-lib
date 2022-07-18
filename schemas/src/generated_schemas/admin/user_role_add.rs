@@ -5,9 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AdminUserRoleAddParams {
-    #[serde(rename = "roleName")]
-    pub role_name: String,
     #[serde(rename = "internalUserId")]
     pub internal_user_id: String,
+    #[serde(rename = "roleName")]
+    pub role_name: String,
 }
 pub type AdminUserRoleAddReturns = bool;

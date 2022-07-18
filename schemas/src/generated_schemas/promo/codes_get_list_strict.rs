@@ -3,6 +3,7 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type PromoCodesGetListStrictParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct PromoCodesGetListStrictReturnsParams {}
 pub type PromoCodesGetListStrictReturns = Vec<PromoCodesGetListStrictReturnsParams>;

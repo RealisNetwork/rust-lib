@@ -10,34 +10,34 @@ pub struct LobbyStatsEndpointsGetLevelUpOptionsByPersonalTypeParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LobbyStatsEndpointsGetLevelUpOptionsByPersonalTypeReturnsAttributesPerLevelParams {
-    #[serde(rename = "skillPower")]
-    pub skill_power: i64,
-    #[serde(rename = "healthRegenPercent")]
-    pub health_regen_percent: i64,
-    #[serde(rename = "moveSpeed")]
-    pub move_speed: i64,
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: i64,
     #[serde(rename = "strength")]
     pub strength: i64,
+    #[serde(rename = "ultPower")]
+    pub ult_power: i64,
     #[serde(rename = "agility")]
     pub agility: i64,
     #[serde(rename = "health")]
     pub health: i64,
-    #[serde(rename = "armor")]
-    pub armor: i64,
-    #[serde(rename = "skillEffectPower")]
-    pub skill_effect_power: i64,
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: i64,
     #[serde(rename = "vampirismPower")]
     pub vampirism_power: i64,
-    #[serde(rename = "ultPower")]
-    pub ult_power: i64,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: i64,
+    #[serde(rename = "skillEffectPower")]
+    pub skill_effect_power: i64,
     #[serde(rename = "intelligence")]
     pub intelligence: i64,
     #[serde(rename = "attackDamage")]
     pub attack_damage: i64,
+    #[serde(rename = "healthRegenPercent")]
+    pub health_regen_percent: i64,
+    #[serde(rename = "armor")]
+    pub armor: i64,
+    #[serde(rename = "moveSpeed")]
+    pub move_speed: i64,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: i64,
+    #[serde(rename = "skillPower")]
+    pub skill_power: i64,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LobbyStatsEndpointsGetLevelUpOptionsByPersonalTypeReturnsExperienceCoefficientsParamsParams
@@ -56,28 +56,28 @@ pub struct LobbyStatsEndpointsGetLevelUpOptionsByPersonalTypeReturnsScrollsByLev
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LobbyStatsEndpointsGetLevelUpOptionsByPersonalTypeReturns {
-    #[serde(rename = "strength")]
-    pub strength: String,
     #[serde(rename = "attributesPerLevel")]
     pub attributes_per_level:
         LobbyStatsEndpointsGetLevelUpOptionsByPersonalTypeReturnsAttributesPerLevelParams,
+    #[serde(rename = "experience")]
+    pub experience: i32,
     #[serde(rename = "maxLevel")]
     pub max_level: i32,
-    #[serde(rename = "agility")]
-    pub agility: String,
     #[serde(rename = "baseExperience")]
     pub base_experience: i32,
     #[serde(rename = "intelligence")]
     pub intelligence: String,
+    #[serde(rename = "baseScrollsCount")]
+    pub base_scrolls_count: i32,
+    #[serde(rename = "agility")]
+    pub agility: String,
     #[serde(rename = "experienceCoefficients")]
     pub experience_coefficients: Vec<
         LobbyStatsEndpointsGetLevelUpOptionsByPersonalTypeReturnsExperienceCoefficientsParamsParams,
     >,
-    #[serde(rename = "baseScrollsCount")]
-    pub base_scrolls_count: i32,
     #[serde(rename = "scrollsByLevels")]
     pub scrolls_by_levels:
         Vec<LobbyStatsEndpointsGetLevelUpOptionsByPersonalTypeReturnsScrollsByLevelsParamsParams>,
-    #[serde(rename = "experience")]
-    pub experience: i32,
+    #[serde(rename = "strength")]
+    pub strength: String,
 }

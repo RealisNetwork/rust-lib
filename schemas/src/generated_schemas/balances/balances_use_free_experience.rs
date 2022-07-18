@@ -5,9 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BalancesBalancesUseFreeExperienceParams {
-    #[serde(rename = "amount")]
-    pub amount: i32,
     #[serde(rename = "txId")]
     pub tx_id: String,
+    #[serde(rename = "amount")]
+    pub amount: i32,
 }
 pub type BalancesBalancesUseFreeExperienceReturns = bool;

@@ -8,3 +8,4 @@ pub struct CatsLobbyGetProfileParams {
     #[serde(rename = "deviceId")]
     pub device_id: i64,
 }
+pub type CatsLobbyGetProfileReturns = ();

@@ -3,6 +3,7 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type OrchestratorWalletGetMyParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct OrchestratorWalletGetMyReturns {
     #[serde(rename = "address")]

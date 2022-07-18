@@ -5,9 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AuthAuthDeviceGetLoginDeviceByUserIdParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "appId")]
     pub app_id: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 pub type AuthAuthDeviceGetLoginDeviceByUserIdReturns = String;

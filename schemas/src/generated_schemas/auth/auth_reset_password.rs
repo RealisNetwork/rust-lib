@@ -5,9 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AuthAuthResetPasswordParams {
-    #[serde(rename = "hash")]
-    pub hash: String,
     #[serde(rename = "newPassword")]
     pub new_password: String,
+    #[serde(rename = "hash")]
+    pub hash: String,
 }
 pub type AuthAuthResetPasswordReturns = bool;

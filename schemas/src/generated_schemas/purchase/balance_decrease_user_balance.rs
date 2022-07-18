@@ -5,17 +5,17 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct PurchaseBalanceDecreaseUserBalanceParams {
+    #[serde(rename = "topicToSuccessResponse")]
+    pub topic_to_success_response: String,
     #[serde(rename = "amount")]
     pub amount: String,
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "creator")]
-    pub creator: String,
     #[serde(rename = "currency")]
     pub currency: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
-    #[serde(rename = "topicToSuccessResponse")]
-    pub topic_to_success_response: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
 }
 pub type PurchaseBalanceDecreaseUserBalanceReturns = bool;

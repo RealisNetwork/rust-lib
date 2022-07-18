@@ -3,6 +3,7 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type BlogCategoryGetAllParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BlogCategoryGetAllReturnsParams {
     #[serde(rename = "isAvailable")]

@@ -5,9 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct UserProfileChangeEmailParams {
-    #[serde(rename = "newEmail")]
-    pub new_email: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "newEmail")]
+    pub new_email: String,
 }
 pub type UserProfileChangeEmailReturns = bool;

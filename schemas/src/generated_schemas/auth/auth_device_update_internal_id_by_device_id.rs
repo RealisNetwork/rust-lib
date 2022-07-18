@@ -5,9 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AuthAuthDeviceUpdateInternalIdByDeviceIdParams {
-    #[serde(rename = "deviceId")]
-    pub device_id: String,
     #[serde(rename = "token")]
     pub token: String,
+    #[serde(rename = "deviceId")]
+    pub device_id: String,
 }
 pub type AuthAuthDeviceUpdateInternalIdByDeviceIdReturns = bool;

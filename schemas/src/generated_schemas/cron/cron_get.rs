@@ -10,16 +10,16 @@ pub struct CronCronGetParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CronCronGetReturns {
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
     #[serde(rename = "id")]
     pub id: i64,
     #[serde(rename = "key")]
     pub key: String,
-    #[serde(rename = "startsAt")]
-    pub starts_at: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
     #[serde(rename = "howOften")]
     pub how_often: i64,
+    #[serde(rename = "startsAt")]
+    pub starts_at: String,
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
 }

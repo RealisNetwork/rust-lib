@@ -7,13 +7,12 @@ use healthchecker::HealthChecker;
 use schemas::{Agent, Response, ResponseMessage, ResponseResult, Schema};
 use serde_json::Value;
 use std::sync::Arc;
-use transport::Response as TransportResponse;
-use transport::{
-    ReceivedMessage, Subscription, Transport, VReceivedMessage, VResponse, VSubscription,
-};
+use transport::{ReceivedMessage, Subscription, Transport, VReceivedMessage, VSubscription};
 
 // TODO: ServiceAppBuilder|ServiceAppContainer?
 pub struct ServiceApp<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> {
+    name: String,
+    client_id: String,
     service: S,
     transport: Arc<N>,
     subscription: VSubscription,
@@ -31,19 +30,24 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> Runnable
             log::error!("{:?}", error);
             health_checker.make_sick();
         }
+        let _result = self.after_run().await;
     }
 }
 
 impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceApp<P, G, S, N> {
     pub async fn new(
+        name: String,
+        client_id: String,
         service: S,
         transport: Arc<N>,
         health_checker: HealthChecker,
     ) -> Result<Self, BaseError<Value>> {
         transport
-            .subscribe(&service.topic_to_subscribe())
+            .subscribe(service.topic_to_subscribe())
             .await
             .map(|subscription| Self {
+                name,
+                client_id,
                 service,
                 transport,
                 subscription,
@@ -52,18 +56,87 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
             })
     }
 
+    async fn before_run(&mut self) -> Result<(), BaseError<Value>> {
+        // Logs
+        log::info!(
+            "Run service: \nagent: \t{:?},\nmethod:\t{:?},\ntopic: \t{:?},",
+            P::agent(),
+            P::method(),
+            P::topic(),
+        );
+        // Notification gateway
+        self.run_notification().await?;
+
+        Ok(())
+    }
+
+    async fn after_run(&mut self) -> Result<(), BaseError<Value>> {
+        // Logs
+        log::warn!(
+            "Stop service: \nagent: \t{:?},\nmethod:\t{:?},\ntopic: \t{:?},",
+            P::agent(),
+            P::method(),
+            P::topic(),
+        );
+
+        Ok(())
+    }
+
+    /// Send notification to gateway in JSON format:
+    /// {
+    ///   "name": "string",
+    ///   "client_id": "string",
+    ///   "schemas": {
+    ///     "topic": "string"
+    ///     "paramsSchema": {}
+    ///     "responseSchema": {}
+    ///   }
+    /// }
+    async fn run_notification(&mut self) -> Result<(), BaseError<Value>> {
+        const TOPIC: &str = "pasha_help_plz";
+        let notification = serde_json::json!({
+            "name": self.name,
+            "client_id": self.client_id,
+            "schemas": {
+                "topic": P::topic(),
+                "paramsSchema": P::schema(),
+                "responseSchema": G::schema(),
+            }
+        });
+
+        self.transport
+            .raw_publish(TOPIC.to_owned(), &notification)
+            .await?;
+
+        Ok(())
+    }
+
     async fn run_internal(&mut self) -> Result<(), BaseError<Value>> {
+        self.before_run().await?;
+        let topic = P::topic();
+
         loop {
             let message = self.subscription.next().await?;
             match message.deserialize() {
-                Ok(request) => match self.service.process(request).await {
-                    Ok(response_schema) => {
-                        self.on_process_success(message, response_schema).await?
+                Ok(request) => {
+                    log::info!("By topic: {:?} | Got request: {:#?}", topic, request);
+                    match self.service.process(request).await {
+                        Ok(response_schema) => {
+                            log::debug!("got response schema{:#?}", response_schema);
+                            self.on_process_success(message, response_schema).await?
+                        }
+                        Err(error) if error.is_critical() => {
+                            log::debug!("Got response error critical: {:#?}", error);
+                            return Err(error);
+                        }
+                        Err(error) => {
+                            log::debug!("Got response left: {:#?}", error);
+                            self.on_process_error(message, error).await?
+                        }
                     }
-                    Err(error) if error.is_critical() => return Err(error),
-                    Err(error) => self.on_process_error(message, error).await?,
-                },
+                }
                 Err(error) => {
+                    log::debug!("got error{:#?}", error);
                     self.on_process_error(message, error.clone()).await?;
                     return Err(error);
                 }
@@ -108,29 +181,37 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
                 response,
             },
         };
-        let payload = serde_json::to_vec(&response).map_err(|error| {
-            BaseError::new(
-                format!("{:?}", error),
-                GeneratedError::Common(Common::InternalServerError).into(),
-                serde_json::to_value(&raw_request).ok(),
-            )
-        })?;
+        log::debug!(
+            "Preparing schema: {:#?} for publish by topic: {}",
+            response,
+            topic
+        );
 
-        self.transport
-            .publish(VResponse::Response(TransportResponse {
-                topic_res: topic,
-                response: payload,
-            }))
-            .await
+        self.transport.raw_publish(topic.clone(), &response).await?;
+
+        log::info!("By topic: {:?} | Publish {:#?}", topic, response);
+        Ok(())
     }
 
     /// Try get topic to response from raw request
     /// return `OK` if find topic in one of such fields "topicResponse"
     /// otherwise return `Err`
     fn get_topic_response(request: &Value) -> Result<String, BaseError<Value>> {
-        match request.get("topicResponse") {
+        let result = match request.get("topicResponse") {
             None => Err(GeneratedError::Common(Common::InternalServerError).into()),
-            Some(topic) => Ok(topic.to_string()),
-        }
+
+            Some(topic) => Ok(topic
+                .as_str()
+                .ok_or_else(|| {
+                    BaseError::<Value>::new(
+                        "Unexpected type".to_string(),
+                        GeneratedError::Common(Common::Unknown).into(),
+                        None,
+                    )
+                })?
+                .to_string()),
+        };
+        log::debug!("request {:#?} : ", request);
+        result
     }
 }

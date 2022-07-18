@@ -8,3 +8,4 @@ pub struct ListeriaStorageHeroesEndpointsGiveFreeExperienceToHeroParams {
     #[serde(rename = "heroId")]
     pub hero_id: i32,
 }
+pub type ListeriaStorageHeroesEndpointsGiveFreeExperienceToHeroReturns = ();

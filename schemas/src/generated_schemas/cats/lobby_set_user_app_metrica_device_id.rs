@@ -10,3 +10,4 @@ pub struct CatsLobbySetUserAppMetricaDeviceIdParams {
     #[serde(rename = "appMetricaDeviceId")]
     pub app_metrica_device_id: String,
 }
+pub type CatsLobbySetUserAppMetricaDeviceIdReturns = ();

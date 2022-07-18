@@ -8,3 +8,4 @@ pub struct CatsLobbyUserValidationParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type CatsLobbyUserValidationReturns = ();

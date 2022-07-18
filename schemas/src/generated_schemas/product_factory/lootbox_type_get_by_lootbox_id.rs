@@ -10,12 +10,12 @@ pub struct ProductFactoryLootboxTypeGetByLootboxIdParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ProductFactoryLootboxTypeGetByLootboxIdReturns {
-    #[serde(rename = "lootboxId")]
-    pub lootbox_id: String,
-    #[serde(rename = "dropChanceMultiplier")]
-    pub drop_chance_multiplier: i32,
-    #[serde(rename = "name")]
-    pub name: String,
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "name")]
+    pub name: String,
+    #[serde(rename = "dropChanceMultiplier")]
+    pub drop_chance_multiplier: i32,
+    #[serde(rename = "lootboxId")]
+    pub lootbox_id: String,
 }

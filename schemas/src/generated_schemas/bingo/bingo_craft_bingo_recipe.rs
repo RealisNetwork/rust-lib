@@ -12,10 +12,10 @@ pub struct BingoBingoCraftBingoRecipeParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BingoBingoCraftBingoRecipeReturns {
-    #[serde(rename = "hardRewardAmount")]
-    pub hard_reward_amount: String,
     #[serde(rename = "jackpotRewardAmount")]
     pub jackpot_reward_amount: String,
     #[serde(rename = "bingoReceiptId")]
     pub bingo_receipt_id: i32,
+    #[serde(rename = "hardRewardAmount")]
+    pub hard_reward_amount: String,
 }

@@ -10,16 +10,16 @@ pub struct DragocatsLobbyStatsGetAttributesByUnitIdParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DragocatsLobbyStatsGetAttributesByUnitIdReturns {
-    #[serde(rename = "id")]
-    pub id: i32,
-    #[serde(rename = "power")]
-    pub power: i32,
     #[serde(rename = "health")]
     pub health: i32,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "speed")]
+    pub speed: i32,
+    #[serde(rename = "power")]
+    pub power: i32,
     #[serde(rename = "defence")]
     pub defence: i32,
     #[serde(rename = "combatPower")]
     pub combat_power: i64,
-    #[serde(rename = "speed")]
-    pub speed: i32,
 }

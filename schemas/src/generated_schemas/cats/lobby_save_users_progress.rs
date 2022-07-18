@@ -10,3 +10,4 @@ pub struct CatsLobbySaveUsersProgressParams {
     #[serde(rename = "dataObject")]
     pub data_object: String,
 }
+pub type CatsLobbySaveUsersProgressReturns = ();

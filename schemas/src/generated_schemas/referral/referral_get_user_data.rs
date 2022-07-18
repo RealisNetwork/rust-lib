@@ -5,17 +5,17 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ReferralReferralGetUserDataParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "appId")]
     pub app_id: i64,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ReferralReferralGetUserDataReturns {
     #[serde(rename = "refLink")]
     pub ref_link: String,
-    #[serde(rename = "refCode")]
-    pub ref_code: String,
     #[serde(rename = "hasReferrer")]
     pub has_referrer: bool,
+    #[serde(rename = "refCode")]
+    pub ref_code: String,
 }

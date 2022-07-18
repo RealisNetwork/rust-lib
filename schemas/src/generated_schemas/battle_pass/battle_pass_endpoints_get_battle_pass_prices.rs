@@ -7,10 +7,10 @@ use serde::{Deserialize, Serialize};
 pub struct BattlePassBattlePassEndpointsGetBattlePassPricesParams {}
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassPricesReturnsBattlePassPriceParamsParams {
-    #[serde(rename = "battlePassType")]
-    pub battle_pass_type: i32,
     #[serde(rename = "price")]
     pub price: String,
+    #[serde(rename = "battlePassType")]
+    pub battle_pass_type: i32,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassPricesReturns {

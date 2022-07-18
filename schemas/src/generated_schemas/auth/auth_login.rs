@@ -5,25 +5,25 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AuthAuthLoginParams {
-    #[serde(rename = "deviceId")]
-    pub device_id: String,
     #[serde(rename = "username")]
     pub username: String,
+    #[serde(rename = "deviceId")]
+    pub device_id: Option<String>,
+    #[serde(rename = "appId")]
+    pub app_id: Option<i32>,
     #[serde(rename = "password")]
     pub password: String,
-    #[serde(rename = "appId")]
-    pub app_id: i32,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AuthAuthLoginReturns {
-    #[serde(rename = "expires_in")]
-    pub expires_in: i32,
-    #[serde(rename = "access_token")]
-    pub access_token: String,
-    #[serde(rename = "refresh_token")]
-    pub refresh_token: String,
-    #[serde(rename = "refresh_expires_in")]
-    pub refresh_expires_in: i32,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "access_token")]
+    pub access_token: String,
+    #[serde(rename = "refresh_expires_in")]
+    pub refresh_expires_in: i32,
+    #[serde(rename = "refresh_token")]
+    pub refresh_token: String,
+    #[serde(rename = "expires_in")]
+    pub expires_in: i32,
 }

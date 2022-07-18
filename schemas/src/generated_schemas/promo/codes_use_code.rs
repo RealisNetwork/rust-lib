@@ -10,13 +10,13 @@ pub struct PromoCodesUseCodeParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct PromoCodesUseCodeReturnsParams {
-    #[serde(rename = "currencyKey")]
-    pub currency_key: String,
     #[serde(rename = "heroId")]
     pub hero_id: i8,
     #[serde(rename = "rewardType")]
     pub reward_type: String,
     #[serde(rename = "currencyAmount")]
     pub currency_amount: String,
+    #[serde(rename = "currencyKey")]
+    pub currency_key: String,
 }
 pub type PromoCodesUseCodeReturns = Vec<PromoCodesUseCodeReturnsParams>;

@@ -8,3 +8,4 @@ pub struct UserStatusGetParams {
     #[serde(rename = "id")]
     pub id: i64,
 }
+pub type UserStatusGetReturns = ();

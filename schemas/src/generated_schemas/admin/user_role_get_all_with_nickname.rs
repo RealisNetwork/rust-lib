@@ -3,12 +3,13 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type AdminUserRoleGetAllWithNicknameParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AdminUserRoleGetAllWithNicknameReturnsParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "nickname")]
     pub nickname: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "role")]
     pub role: String,
 }

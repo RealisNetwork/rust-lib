@@ -8,3 +8,4 @@ pub struct CatsLobbyGetConfigByIdParams {
     #[serde(rename = "configKey")]
     pub config_key: String,
 }
+pub type CatsLobbyGetConfigByIdReturns = ();

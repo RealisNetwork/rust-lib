@@ -8,3 +8,4 @@ pub struct DragonsLobbyGetBingoDataParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type DragonsLobbyGetBingoDataReturns = ();

@@ -8,3 +8,4 @@ pub struct DragonsLobbyRetrieveUsersProgressParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type DragonsLobbyRetrieveUsersProgressReturns = ();

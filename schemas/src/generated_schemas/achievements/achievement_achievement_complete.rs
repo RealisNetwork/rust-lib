@@ -5,10 +5,10 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AchievementsAchievementAchievementCompleteParams {
-    #[serde(rename = "achievementKey")]
-    pub achievement_key: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "achievementKey")]
+    pub achievement_key: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AchievementsAchievementAchievementCompleteReturns {

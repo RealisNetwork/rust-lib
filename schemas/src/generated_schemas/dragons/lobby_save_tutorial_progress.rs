@@ -5,8 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DragonsLobbySaveTutorialProgressParams {
-    #[serde(rename = "dataObject")]
-    pub data_object: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "dataObject")]
+    pub data_object: String,
 }
+pub type DragonsLobbySaveTutorialProgressReturns = ();

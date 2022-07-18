@@ -3,16 +3,17 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type PurchaseBalanceUserBalanceChangedNotificationParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct PurchaseBalanceUserBalanceChangedNotificationReturns {
-    #[serde(rename = "amount")]
-    pub amount: String,
-    #[serde(rename = "transactionHash")]
-    pub transaction_hash: String,
     #[serde(rename = "balance")]
     pub balance: String,
     #[serde(rename = "currency")]
     pub currency: String,
+    #[serde(rename = "transactionHash")]
+    pub transaction_hash: String,
     #[serde(rename = "blockId")]
     pub block_id: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
 }

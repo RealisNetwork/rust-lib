@@ -8,3 +8,4 @@ pub struct DragonsLobbyGetUsersReferralsParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type DragonsLobbyGetUsersReferralsReturns = ();

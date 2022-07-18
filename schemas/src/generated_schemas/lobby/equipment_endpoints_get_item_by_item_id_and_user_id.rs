@@ -9,64 +9,64 @@ pub struct LobbyEquipmentEndpointsGetItemByItemIdAndUserIdParams {
     pub item_id: i32,
 }
 #[derive(Debug, Serialize, Deserialize)]
-pub struct LobbyEquipmentEndpointsGetItemByItemIdAndUserIdReturnsMultipliersParams {
-    #[serde(rename = "moveSpeed")]
-    pub move_speed: String,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: String,
-    #[serde(rename = "skillPower")]
-    pub skill_power: String,
-    #[serde(rename = "intelligence")]
-    pub intelligence: String,
-    #[serde(rename = "skillEffectPower")]
-    pub skill_effect_power: String,
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: String,
-    #[serde(rename = "vampirismPower")]
-    pub vampirism_power: String,
-    #[serde(rename = "health")]
-    pub health: String,
-    #[serde(rename = "ultPower")]
-    pub ult_power: String,
-    #[serde(rename = "attackDamage")]
-    pub attack_damage: String,
-    #[serde(rename = "agility")]
-    pub agility: String,
-    #[serde(rename = "strength")]
-    pub strength: String,
-    #[serde(rename = "healthRegenPercent")]
-    pub health_regen_percent: String,
-    #[serde(rename = "armor")]
-    pub armor: String,
-}
-#[derive(Debug, Serialize, Deserialize)]
 pub struct LobbyEquipmentEndpointsGetItemByItemIdAndUserIdReturnsAttributesParams {
     #[serde(rename = "skillPower")]
     pub skill_power: String,
+    #[serde(rename = "skillEffectPower")]
+    pub skill_effect_power: String,
     #[serde(rename = "ultPower")]
     pub ult_power: String,
     #[serde(rename = "healthRegenPercent")]
     pub health_regen_percent: String,
-    #[serde(rename = "armor")]
-    pub armor: String,
-    #[serde(rename = "health")]
-    pub health: String,
-    #[serde(rename = "attackDamage")]
-    pub attack_damage: String,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: String,
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: String,
-    #[serde(rename = "vampirismPower")]
-    pub vampirism_power: String,
     #[serde(rename = "strength")]
     pub strength: String,
-    #[serde(rename = "skillEffectPower")]
-    pub skill_effect_power: String,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: String,
     #[serde(rename = "agility")]
     pub agility: String,
     #[serde(rename = "intelligence")]
     pub intelligence: String,
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: String,
+    #[serde(rename = "attackDamage")]
+    pub attack_damage: String,
+    #[serde(rename = "armor")]
+    pub armor: String,
+    #[serde(rename = "health")]
+    pub health: String,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: String,
+    #[serde(rename = "moveSpeed")]
+    pub move_speed: String,
+}
+#[derive(Debug, Serialize, Deserialize)]
+pub struct LobbyEquipmentEndpointsGetItemByItemIdAndUserIdReturnsMultipliersParams {
+    #[serde(rename = "intelligence")]
+    pub intelligence: String,
+    #[serde(rename = "agility")]
+    pub agility: String,
+    #[serde(rename = "attackDamage")]
+    pub attack_damage: String,
+    #[serde(rename = "skillPower")]
+    pub skill_power: String,
+    #[serde(rename = "skillEffectPower")]
+    pub skill_effect_power: String,
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: String,
+    #[serde(rename = "healthRegenPercent")]
+    pub health_regen_percent: String,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: String,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: String,
+    #[serde(rename = "health")]
+    pub health: String,
+    #[serde(rename = "strength")]
+    pub strength: String,
+    #[serde(rename = "armor")]
+    pub armor: String,
+    #[serde(rename = "ultPower")]
+    pub ult_power: String,
     #[serde(rename = "moveSpeed")]
     pub move_speed: String,
 }
@@ -76,14 +76,14 @@ pub struct LobbyEquipmentEndpointsGetItemByItemIdAndUserIdReturns {
     pub user_id: String,
     #[serde(rename = "level")]
     pub level: i32,
-    #[serde(rename = "itemId")]
-    pub item_id: i32,
-    #[serde(rename = "multipliers")]
-    pub multipliers: LobbyEquipmentEndpointsGetItemByItemIdAndUserIdReturnsMultipliersParams,
     #[serde(rename = "attributes")]
     pub attributes: LobbyEquipmentEndpointsGetItemByItemIdAndUserIdReturnsAttributesParams,
-    #[serde(rename = "type")]
-    r#type: String,
+    #[serde(rename = "multipliers")]
+    pub multipliers: LobbyEquipmentEndpointsGetItemByItemIdAndUserIdReturnsMultipliersParams,
+    #[serde(rename = "itemId")]
+    pub item_id: i32,
     #[serde(rename = "slotId")]
     pub slot_id: i32,
+    #[serde(rename = "type")]
+    pub r#type: String,
 }

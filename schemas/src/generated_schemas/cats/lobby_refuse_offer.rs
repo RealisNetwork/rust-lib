@@ -5,8 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CatsLobbyRefuseOfferParams {
-    #[serde(rename = "offerKey")]
-    pub offer_key: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "offerKey")]
+    pub offer_key: String,
 }
+pub type CatsLobbyRefuseOfferReturns = ();

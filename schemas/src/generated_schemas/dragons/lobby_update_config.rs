@@ -5,8 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DragonsLobbyUpdateConfigParams {
-    #[serde(rename = "configKey")]
-    pub config_key: String,
     #[serde(rename = "configJson")]
     pub config_json: String,
+    #[serde(rename = "configKey")]
+    pub config_key: String,
 }
+pub type DragonsLobbyUpdateConfigReturns = ();

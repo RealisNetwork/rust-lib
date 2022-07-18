@@ -10,3 +10,4 @@ pub struct DragonsLobbyAchievementCompleteParams {
     #[serde(rename = "achievementKey")]
     pub achievement_key: String,
 }
+pub type DragonsLobbyAchievementCompleteReturns = ();

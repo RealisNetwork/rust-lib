@@ -5,10 +5,10 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsEquipUnitParams {
-    #[serde(rename = "unitId")]
-    pub unit_id: i32,
     #[serde(rename = "slotId")]
     pub slot_id: i32,
+    #[serde(rename = "unitId")]
+    pub unit_id: i32,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsEquipUnitReturns {

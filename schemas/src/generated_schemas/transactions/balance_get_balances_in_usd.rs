@@ -2,4 +2,5 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+pub type TransactionsBalanceGetBalancesInUsdParams = ();
 pub type TransactionsBalanceGetBalancesInUsdReturns = i64;

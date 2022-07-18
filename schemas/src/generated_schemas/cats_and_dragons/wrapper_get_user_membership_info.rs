@@ -12,14 +12,14 @@ pub struct CatsAndDragonsWrapperGetUserMembershipInfoParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetUserMembershipInfoReturns {
-    #[serde(rename = "multiplier")]
-    pub multiplier: i64,
-    #[serde(rename = "balance")]
-    pub balance: String,
     #[serde(rename = "isAuthorized")]
     pub is_authorized: bool,
-    #[serde(rename = "statusPurchaseAppId")]
-    pub status_purchase_app_id: i64,
+    #[serde(rename = "multiplier")]
+    pub multiplier: i64,
     #[serde(rename = "membershipId")]
     pub membership_id: i64,
+    #[serde(rename = "statusPurchaseAppId")]
+    pub status_purchase_app_id: i64,
+    #[serde(rename = "balance")]
+    pub balance: String,
 }

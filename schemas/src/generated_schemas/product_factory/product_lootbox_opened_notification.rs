@@ -3,19 +3,20 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type ProductFactoryProductLootboxOpenedNotificationParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ProductFactoryProductLootboxOpenedNotificationReturnsRewardsParamsParams {
+    #[serde(rename = "type")]
+    pub r#type: i32,
     #[serde(rename = "amount")]
     pub amount: i32,
-    #[serde(rename = "type")]
-    r#type: i32,
     #[serde(rename = "itemId")]
     pub item_id: i32,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ProductFactoryProductLootboxOpenedNotificationReturns {
-    #[serde(rename = "bindingId")]
-    pub binding_id: i32,
     #[serde(rename = "rewards")]
     pub rewards: Vec<ProductFactoryProductLootboxOpenedNotificationReturnsRewardsParamsParams>,
+    #[serde(rename = "bindingId")]
+    pub binding_id: i32,
 }

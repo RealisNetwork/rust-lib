@@ -3,6 +3,7 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type AdminUserRoleGetAllParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AdminUserRoleGetAllReturnsParamsRoleParams {
     #[serde(rename = "id")]
@@ -12,13 +13,13 @@ pub struct AdminUserRoleGetAllReturnsParamsRoleParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AdminUserRoleGetAllReturnsParams {
-    #[serde(rename = "isActive")]
-    pub is_active: bool,
-    #[serde(rename = "role")]
-    pub role: AdminUserRoleGetAllReturnsParamsRoleParams,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "isActive")]
+    pub is_active: bool,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "role")]
+    pub role: AdminUserRoleGetAllReturnsParamsRoleParams,
 }
 pub type AdminUserRoleGetAllReturns = Vec<AdminUserRoleGetAllReturnsParams>;

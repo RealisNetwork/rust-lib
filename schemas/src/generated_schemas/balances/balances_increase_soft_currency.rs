@@ -5,10 +5,10 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BalancesBalancesIncreaseSoftCurrencyParams {
-    #[serde(rename = "txId")]
-    pub tx_id: String,
     #[serde(rename = "amount")]
     pub amount: i32,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BalancesBalancesIncreaseSoftCurrencyReturns {

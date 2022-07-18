@@ -10,3 +10,4 @@ pub struct DragonsLobbyRefuseOfferParams {
     #[serde(rename = "offerKey")]
     pub offer_key: String,
 }
+pub type DragonsLobbyRefuseOfferReturns = ();

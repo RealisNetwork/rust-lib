@@ -5,8 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CatsLobbySetReferrerParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "siteReferrerId")]
     pub site_referrer_id: i64,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
+pub type CatsLobbySetReferrerReturns = ();

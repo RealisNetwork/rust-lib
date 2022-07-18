@@ -6,9 +6,10 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeGetAllByTypeParams {
     #[serde(rename = "type")]
-    r#type: String,
-    #[serde(rename = "page")]
-    pub page: i64,
+    pub r#type: String,
     #[serde(rename = "perPage")]
-    pub per_page: i64,
+    pub per_page: Option<i64>,
+    #[serde(rename = "page")]
+    pub page: Option<i64>,
 }
+pub type ProductFactoryProductTypeGetAllByTypeReturns = ();

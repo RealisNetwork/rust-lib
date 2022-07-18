@@ -5,19 +5,19 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LobbyEquipmentEndpointsEquipItemParams {
+    #[serde(rename = "heroId")]
+    pub hero_id: i32,
     #[serde(rename = "slotId")]
     pub slot_id: i32,
     #[serde(rename = "itemId")]
     pub item_id: i32,
-    #[serde(rename = "heroId")]
-    pub hero_id: i32,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LobbyEquipmentEndpointsEquipItemReturns {
-    #[serde(rename = "itemId")]
-    pub item_id: i32,
     #[serde(rename = "heroId")]
     pub hero_id: i32,
+    #[serde(rename = "itemId")]
+    pub item_id: i32,
     #[serde(rename = "slotId")]
     pub slot_id: i32,
 }

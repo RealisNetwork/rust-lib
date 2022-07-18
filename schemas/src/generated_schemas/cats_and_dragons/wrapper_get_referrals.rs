@@ -5,10 +5,19 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetReferralsParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "appId")]
     pub app_id: i64,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+}
+#[derive(Debug, Serialize, Deserialize)]
+pub struct CatsAndDragonsWrapperGetReferralsReturnsReferralTransactionsParamsParams {
+    #[serde(rename = "amount")]
+    pub amount: String,
+    #[serde(rename = "date")]
+    pub date: String,
+    #[serde(rename = "nickname")]
+    pub nickname: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetReferralsReturnsReferralsParamsParams {
@@ -18,19 +27,10 @@ pub struct CatsAndDragonsWrapperGetReferralsReturnsReferralsParamsParams {
     pub nickname: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
-pub struct CatsAndDragonsWrapperGetReferralsReturnsReferralTransactionsParamsParams {
-    #[serde(rename = "amount")]
-    pub amount: String,
-    #[serde(rename = "nickname")]
-    pub nickname: String,
-    #[serde(rename = "date")]
-    pub date: String,
-}
-#[derive(Debug, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetReferralsReturns {
-    #[serde(rename = "referrals")]
-    pub referrals: Vec<CatsAndDragonsWrapperGetReferralsReturnsReferralsParamsParams>,
     #[serde(rename = "referralTransactions")]
     pub referral_transactions:
         Vec<CatsAndDragonsWrapperGetReferralsReturnsReferralTransactionsParamsParams>,
+    #[serde(rename = "referrals")]
+    pub referrals: Vec<CatsAndDragonsWrapperGetReferralsReturnsReferralsParamsParams>,
 }

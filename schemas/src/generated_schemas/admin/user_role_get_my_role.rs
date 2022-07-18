@@ -3,6 +3,7 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type AdminUserRoleGetMyRoleParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AdminUserRoleGetMyRoleReturns {
     #[serde(rename = "id")]

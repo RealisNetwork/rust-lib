@@ -8,12 +8,12 @@ pub struct BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsParams {}
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsReturnsBattlePassRewardParamsParamsItemParams
 {
-    #[serde(rename = "amount")]
-    pub amount: i32,
-    #[serde(rename = "rewardType")]
-    pub reward_type: i32,
     #[serde(rename = "itemId")]
     pub item_id: i32,
+    #[serde(rename = "rewardType")]
+    pub reward_type: i32,
+    #[serde(rename = "amount")]
+    pub amount: i32,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsReturnsBattlePassRewardParamsParams { # [serde (rename = "item")] pub item : BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsReturnsBattlePassRewardParamsParamsItemParams , # [serde (rename = "rewardId")] pub reward_id : i32 , # [serde (rename = "battlePassType")] pub battle_pass_type : i32 }

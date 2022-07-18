@@ -8,3 +8,4 @@ pub struct UserProfileGetBanInfoParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type UserProfileGetBanInfoReturns = ();

@@ -10,18 +10,18 @@ pub struct StatusConfigGetMembershipInfoParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct StatusConfigGetMembershipInfoReturns {
-    #[serde(rename = "id")]
-    pub id: i64,
     #[serde(rename = "priceInLis")]
     pub price_in_lis: String,
     #[serde(rename = "membership")]
     pub membership: String,
-    #[serde(rename = "maxCount")]
-    pub max_count: String,
-    #[serde(rename = "price")]
-    pub price: String,
-    #[serde(rename = "isAvailable")]
-    pub is_available: bool,
     #[serde(rename = "multiplier")]
     pub multiplier: String,
+    #[serde(rename = "price")]
+    pub price: String,
+    #[serde(rename = "id")]
+    pub id: i64,
+    #[serde(rename = "maxCount")]
+    pub max_count: String,
+    #[serde(rename = "isAvailable")]
+    pub is_available: bool,
 }

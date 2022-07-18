@@ -3,12 +3,13 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type LobbyRegionsGetListParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LobbyRegionsGetListReturnsListParamsParams {
-    #[serde(rename = "name")]
-    pub name: String,
     #[serde(rename = "host")]
     pub host: String,
+    #[serde(rename = "name")]
+    pub name: String,
     #[serde(rename = "code")]
     pub code: String,
 }

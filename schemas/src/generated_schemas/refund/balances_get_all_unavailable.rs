@@ -10,8 +10,8 @@ pub struct RefundBalancesGetAllUnavailableParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllUnavailableReturns {
-    #[serde(rename = "LIS")]
-    pub lis: String,
     #[serde(rename = "ETH")]
     pub eth: String,
+    #[serde(rename = "LIS")]
+    pub lis: String,
 }

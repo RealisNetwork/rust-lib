@@ -5,8 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeGetHashParams {
-    #[serde(rename = "type")]
-    r#type: String,
     #[serde(rename = "orchestratorId")]
     pub orchestrator_id: i64,
+    #[serde(rename = "type")]
+    pub r#type: String,
 }
+pub type ProductFactoryProductTypeGetHashReturns = ();

@@ -3,36 +3,37 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type GameBalancerCoefficientEndpointsGetParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GameBalancerCoefficientEndpointsGetReturns {
-    #[serde(rename = "ultPower")]
-    pub ult_power: i64,
     #[serde(rename = "skillPower")]
     pub skill_power: i64,
-    #[serde(rename = "vampirismPower")]
-    pub vampirism_power: i64,
-    #[serde(rename = "health")]
-    pub health: i64,
-    #[serde(rename = "intelligence")]
-    pub intelligence: i64,
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: i64,
     #[serde(rename = "strength")]
     pub strength: i64,
+    #[serde(rename = "intelligence")]
+    pub intelligence: i64,
     #[serde(rename = "agility")]
     pub agility: i64,
-    #[serde(rename = "id")]
-    pub id: i64,
     #[serde(rename = "attackReloadSpeed")]
     pub attack_reload_speed: i64,
-    #[serde(rename = "armor")]
-    pub armor: i64,
-    #[serde(rename = "attackDamage")]
-    pub attack_damage: i64,
+    #[serde(rename = "id")]
+    pub id: i64,
+    #[serde(rename = "health")]
+    pub health: i64,
     #[serde(rename = "moveSpeed")]
     pub move_speed: i64,
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: i64,
     #[serde(rename = "healthRegenPercent")]
     pub health_regen_percent: i64,
+    #[serde(rename = "armor")]
+    pub armor: i64,
     #[serde(rename = "skillEffectPower")]
     pub skill_effect_power: i64,
+    #[serde(rename = "ultPower")]
+    pub ult_power: i64,
+    #[serde(rename = "attackDamage")]
+    pub attack_damage: i64,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: i64,
 }

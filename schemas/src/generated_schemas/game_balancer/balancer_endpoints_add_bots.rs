@@ -8,3 +8,4 @@ pub struct GameBalancerBalancerEndpointsAddBotsParams {
     #[serde(rename = "region")]
     pub region: String,
 }
+pub type GameBalancerBalancerEndpointsAddBotsReturns = ();

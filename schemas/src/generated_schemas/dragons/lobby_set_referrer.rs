@@ -10,3 +10,4 @@ pub struct DragonsLobbySetReferrerParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type DragonsLobbySetReferrerReturns = ();

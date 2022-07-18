@@ -8,3 +8,4 @@ pub struct DragonsLobbyApplicationInitializationParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type DragonsLobbyApplicationInitializationReturns = ();

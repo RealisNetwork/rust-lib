@@ -5,11 +5,11 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AuthAuthDeviceUpdateProviderStatusByInternalUserIdParams {
+    #[serde(rename = "status")]
+    pub status: (),
     #[serde(rename = "provider")]
     pub provider: (),
     #[serde(rename = "internalUserId")]
     pub internal_user_id: String,
-    #[serde(rename = "status")]
-    pub status: (),
 }
 pub type AuthAuthDeviceUpdateProviderStatusByInternalUserIdReturns = bool;

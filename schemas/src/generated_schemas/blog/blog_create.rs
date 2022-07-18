@@ -5,22 +5,22 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BlogBlogCreateParamsPropsParams {
-    #[serde(rename = "metaDescription")]
-    pub meta_description: String,
-    #[serde(rename = "lang")]
-    pub lang: String,
-    #[serde(rename = "title")]
-    pub title: String,
-    #[serde(rename = "metaTitle")]
-    pub meta_title: String,
-    #[serde(rename = "image")]
-    pub image: String,
     #[serde(rename = "shortDescription")]
     pub short_description: String,
-    #[serde(rename = "url")]
-    pub url: String,
+    #[serde(rename = "metaDescription")]
+    pub meta_description: String,
+    #[serde(rename = "title")]
+    pub title: String,
+    #[serde(rename = "image")]
+    pub image: String,
+    #[serde(rename = "metaTitle")]
+    pub meta_title: String,
     #[serde(rename = "content")]
     pub content: String,
+    #[serde(rename = "url")]
+    pub url: String,
+    #[serde(rename = "lang")]
+    pub lang: Option<String>,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BlogBlogCreateParams {

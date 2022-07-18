@@ -7,10 +7,11 @@ use serde::{Deserialize, Serialize};
 pub struct OrchestratorBattlePassPurchaseExperienceParams {
     #[serde(rename = "creator")]
     pub creator: String,
+    #[serde(rename = "amount")]
+    pub amount: i64,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
-    #[serde(rename = "amount")]
-    pub amount: i64,
 }
+pub type OrchestratorBattlePassPurchaseExperienceReturns = ();

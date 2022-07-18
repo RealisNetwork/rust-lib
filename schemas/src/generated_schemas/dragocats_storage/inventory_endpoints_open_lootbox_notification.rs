@@ -3,5 +3,6 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type DragocatsStorageInventoryEndpointsOpenLootboxNotificationParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsOpenLootboxNotificationReturns {}

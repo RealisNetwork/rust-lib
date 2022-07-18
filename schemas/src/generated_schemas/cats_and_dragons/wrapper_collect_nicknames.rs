@@ -5,8 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperCollectNicknamesParams {
-    #[serde(rename = "appId")]
-    pub app_id: i64,
     #[serde(rename = "userIds")]
     pub user_ids: Vec<String>,
+    #[serde(rename = "appId")]
+    pub app_id: i64,
 }
+pub type CatsAndDragonsWrapperCollectNicknamesReturns = ();

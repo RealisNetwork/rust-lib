@@ -5,22 +5,22 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct OrchestratorLootboxOpenParamsProductsParamsParams {
-    #[serde(rename = "isNft")]
-    pub is_nft: bool,
     #[serde(rename = "personalType")]
     pub personal_type: String,
+    #[serde(rename = "isNft")]
+    pub is_nft: bool,
     #[serde(rename = "clientType")]
     pub client_type: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct OrchestratorLootboxOpenParams {
-    #[serde(rename = "products")]
-    pub products: Vec<OrchestratorLootboxOpenParamsProductsParamsParams>,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "lootboxBindingId")]
     pub lootbox_binding_id: i64,
+    #[serde(rename = "products")]
+    pub products: Vec<OrchestratorLootboxOpenParamsProductsParamsParams>,
     #[serde(rename = "lootboxIdentifier")]
     pub lootbox_identifier: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 pub type OrchestratorLootboxOpenReturns = bool;

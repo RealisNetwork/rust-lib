@@ -8,3 +8,4 @@ pub struct LobbyEquipmentEndpointsUnEquipItemFromAllHeroesParams {
     #[serde(rename = "itemId")]
     pub item_id: i32,
 }
+pub type LobbyEquipmentEndpointsUnEquipItemFromAllHeroesReturns = ();

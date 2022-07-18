@@ -7,10 +7,10 @@ use serde::{Deserialize, Serialize};
 pub struct StatusMembershipAddAwardMembershipParams {
     #[serde(rename = "membershipId")]
     pub membership_id: i64,
-    #[serde(rename = "appId")]
-    pub app_id: i64,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "appId")]
+    pub app_id: i64,
     #[serde(rename = "days")]
     pub days: i64,
 }

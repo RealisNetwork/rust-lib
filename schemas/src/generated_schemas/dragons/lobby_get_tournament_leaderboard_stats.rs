@@ -8,3 +8,4 @@ pub struct DragonsLobbyGetTournamentLeaderboardStatsParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type DragonsLobbyGetTournamentLeaderboardStatsReturns = ();

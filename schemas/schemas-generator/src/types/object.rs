@@ -15,25 +15,25 @@ pub struct Object {
 
 impl Object {
     fn processed_field_name(
+        &self,
         name: &str,
         field_name: &str,
         field_type: AgentParams,
     ) -> (TokenStream, TokenStream) {
+        let field_type_stream = self.get_field_type(name, field_name, &field_type);
         let field_declaration = match field_name.to_lowercase().as_str() {
             "type" => {
                 let ident = Ident::new_raw(&field_name.to_lowercase(), Span::call_site());
-                let field_type = field_type.get_type(name);
                 quote! {
                     #[serde(rename = #field_name)]
-                    #ident: #field_type
+                    pub #ident: #field_type_stream
                 }
             }
             _ => {
                 let name_ident = Ident::new(&field_name.to_case(Case::Snake), Span::call_site());
-                let field_type = field_type.get_type(name);
                 quote! {
                     #[serde(rename = #field_name)]
-                    pub #name_ident: #field_type
+                    pub #name_ident: #field_type_stream
                 }
             }
         };
@@ -61,7 +61,7 @@ impl Object {
             .clone()
             .into_iter()
             .map(|(native_field_name, field_type)| {
-                Self::processed_field_name(
+                self.processed_field_name(
                     &format!("{}_{}Params", name, native_field_name).to_case(Case::Pascal),
                     &native_field_name,
                     field_type,
@@ -93,6 +93,27 @@ impl Object {
             declaration,
             prefix,
             contains_struct: true,
+        }
+    }
+
+    fn get_field_type(
+        &self,
+        name: &str,
+        field_name: &str,
+        field_type: &AgentParams,
+    ) -> TokenStream {
+        match self
+            .required
+            .as_ref()
+            .map(|fields| fields.contains(&field_name.to_owned()))
+        {
+            Some(true) | None => field_type.get_type(name),
+            Some(false) => {
+                let field_type = field_type.get_type(name);
+                quote! {
+                    Option<#field_type>
+                }
+            }
         }
     }
 }

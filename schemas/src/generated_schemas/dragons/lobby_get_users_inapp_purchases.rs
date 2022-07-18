@@ -7,8 +7,9 @@ use serde::{Deserialize, Serialize};
 pub struct DragonsLobbyGetUsersInappPurchasesParams {
     #[serde(rename = "endDate")]
     pub end_date: i64,
-    #[serde(rename = "startDate")]
-    pub start_date: i64,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "startDate")]
+    pub start_date: i64,
 }
+pub type DragonsLobbyGetUsersInappPurchasesReturns = ();

@@ -12,8 +12,6 @@ pub struct AuthAuthSocialNetworkAuthParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AuthAuthSocialNetworkAuthReturns {
-    #[serde(rename = "refresh_token")]
-    pub refresh_token: String,
     #[serde(rename = "expires_in")]
     pub expires_in: i32,
     #[serde(rename = "userId")]
@@ -21,5 +19,7 @@ pub struct AuthAuthSocialNetworkAuthReturns {
     #[serde(rename = "access_token")]
     pub access_token: String,
     #[serde(rename = "refresh_expires_in")]
-    pub refresh_expires_in: i32,
+    pub refresh_expires_in: Option<i32>,
+    #[serde(rename = "refresh_token")]
+    pub refresh_token: Option<String>,
 }

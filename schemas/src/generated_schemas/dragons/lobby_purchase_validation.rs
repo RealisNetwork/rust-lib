@@ -5,12 +5,13 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DragonsLobbyPurchaseValidationParams {
-    #[serde(rename = "purchaseToken")]
-    pub purchase_token: String,
-    #[serde(rename = "storeId")]
-    pub store_id: i64,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "productId")]
     pub product_id: String,
+    #[serde(rename = "storeId")]
+    pub store_id: i64,
+    #[serde(rename = "purchaseToken")]
+    pub purchase_token: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
+pub type DragonsLobbyPurchaseValidationReturns = ();

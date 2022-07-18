@@ -10,43 +10,43 @@ pub struct BlogBlogGetParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BlogBlogGetReturnsCategoryParams {
+    #[serde(rename = "name")]
+    pub name: String,
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
     #[serde(rename = "id")]
     pub id: i64,
-    #[serde(rename = "name")]
-    pub name: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BlogBlogGetReturns {
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "url")]
-    pub url: String,
+    #[serde(rename = "image")]
+    pub image: String,
+    #[serde(rename = "views")]
+    pub views: i64,
+    #[serde(rename = "id")]
+    pub id: i64,
     #[serde(rename = "content")]
     pub content: String,
     #[serde(rename = "isPinned")]
     pub is_pinned: bool,
-    #[serde(rename = "id")]
-    pub id: i64,
-    #[serde(rename = "category")]
-    pub category: BlogBlogGetReturnsCategoryParams,
-    #[serde(rename = "metaDescription")]
-    pub meta_description: String,
-    #[serde(rename = "isAvailable")]
-    pub is_available: bool,
-    #[serde(rename = "image")]
-    pub image: String,
     #[serde(rename = "lang")]
     pub lang: String,
-    #[serde(rename = "metaTitle")]
-    pub meta_title: String,
-    #[serde(rename = "views")]
-    pub views: i64,
+    #[serde(rename = "metaDescription")]
+    pub meta_description: String,
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
-    #[serde(rename = "shortDescription")]
-    pub short_description: String,
     #[serde(rename = "title")]
     pub title: String,
+    #[serde(rename = "metaTitle")]
+    pub meta_title: String,
+    #[serde(rename = "url")]
+    pub url: String,
+    #[serde(rename = "shortDescription")]
+    pub short_description: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "category")]
+    pub category: BlogBlogGetReturnsCategoryParams,
+    #[serde(rename = "isAvailable")]
+    pub is_available: bool,
 }

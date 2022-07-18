@@ -22,6 +22,7 @@ pub mod listeria_storage;
 pub mod lobby;
 pub mod market;
 pub mod market_place;
+pub mod near_adapter;
 pub mod notifications;
 pub mod orchestrator;
 pub mod product_factory;

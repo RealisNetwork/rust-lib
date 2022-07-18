@@ -8,3 +8,4 @@ pub struct DragonsLobbyGetUserIdByTransactionIdParams {
     #[serde(rename = "transactionId")]
     pub transaction_id: String,
 }
+pub type DragonsLobbyGetUserIdByTransactionIdReturns = ();

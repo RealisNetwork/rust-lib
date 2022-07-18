@@ -5,13 +5,13 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AuthAuthDeviceGetOrCreateInternalUserIdParams {
-    #[serde(rename = "appId")]
-    pub app_id: i32,
+    #[serde(rename = "email")]
+    pub email: Option<String>,
     #[serde(rename = "providerId")]
     pub provider_id: String,
     #[serde(rename = "provider")]
     pub provider: (),
-    #[serde(rename = "email")]
-    pub email: String,
+    #[serde(rename = "appId")]
+    pub app_id: Option<i32>,
 }
 pub type AuthAuthDeviceGetOrCreateInternalUserIdReturns = String;

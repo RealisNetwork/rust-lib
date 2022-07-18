@@ -59,7 +59,14 @@ impl AgentParams {
                     ..Default::default()
                 }
             }
-            AgentParams::Empty => SchemaDeclaration::default(),
+            AgentParams::Empty => {
+                let (prefix, declaration) = self.get_declaration(name);
+                SchemaDeclaration {
+                    declaration,
+                    prefix,
+                    ..Default::default()
+                }
+            }
         }
     }
 }

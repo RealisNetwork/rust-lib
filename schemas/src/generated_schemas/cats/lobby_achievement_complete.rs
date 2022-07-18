@@ -5,8 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CatsLobbyAchievementCompleteParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "achievementKey")]
     pub achievement_key: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
+pub type CatsLobbyAchievementCompleteReturns = ();

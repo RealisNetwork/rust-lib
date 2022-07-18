@@ -5,9 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RefundBalancesDeleteParams {
-    #[serde(rename = "lockedFunds")]
-    pub locked_funds: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "lockedFunds")]
+    pub locked_funds: String,
 }
 pub type RefundBalancesDeleteReturns = bool;

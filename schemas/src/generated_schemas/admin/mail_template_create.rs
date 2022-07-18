@@ -5,11 +5,11 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AdminMailTemplateCreateParams {
-    #[serde(rename = "key")]
-    pub key: String,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "mailTemplate")]
     pub mail_template: String,
+    #[serde(rename = "key")]
+    pub key: String,
 }
 pub type AdminMailTemplateCreateReturns = bool;

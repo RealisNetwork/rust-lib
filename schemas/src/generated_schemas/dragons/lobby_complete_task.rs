@@ -10,3 +10,4 @@ pub struct DragonsLobbyCompleteTaskParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type DragonsLobbyCompleteTaskReturns = ();

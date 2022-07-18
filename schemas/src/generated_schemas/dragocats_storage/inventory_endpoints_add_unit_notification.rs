@@ -3,6 +3,7 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type DragocatsStorageInventoryEndpointsAddUnitNotificationParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsAddUnitNotificationReturnsPartsParams {
     #[serde(rename = "head")]
@@ -21,4 +22,4 @@ pub struct DragocatsStorageInventoryEndpointsAddUnitNotificationReturnsUnitChara
     pub value: i32,
 }
 #[derive(Debug, Serialize, Deserialize)]
-pub struct DragocatsStorageInventoryEndpointsAddUnitNotificationReturns { # [serde (rename = "level")] pub level : i32 , # [serde (rename = "maxLevel")] pub max_level : i32 , # [serde (rename = "unitType")] pub unit_type : String , # [serde (rename = "isNft")] pub is_nft : bool , # [serde (rename = "experienceForLevelup")] pub experience_for_levelup : i32 , # [serde (rename = "status")] pub status : i32 , # [serde (rename = "parts")] pub parts : DragocatsStorageInventoryEndpointsAddUnitNotificationReturnsPartsParams , # [serde (rename = "experience")] pub experience : i32 , # [serde (rename = "bindingId")] pub binding_id : i32 , # [serde (rename = "combatPower")] pub combat_power : i32 , # [serde (rename = "unitCharacteristicDto")] pub unit_characteristic_dto : Vec < DragocatsStorageInventoryEndpointsAddUnitNotificationReturnsUnitCharacteristicDtoParamsParams > , # [serde (rename = "rarity")] pub rarity : i32 }
+pub struct DragocatsStorageInventoryEndpointsAddUnitNotificationReturns { # [serde (rename = "experience")] pub experience : i32 , # [serde (rename = "isNft")] pub is_nft : bool , # [serde (rename = "rarity")] pub rarity : i32 , # [serde (rename = "combatPower")] pub combat_power : i32 , # [serde (rename = "unitType")] pub unit_type : String , # [serde (rename = "maxLevel")] pub max_level : i32 , # [serde (rename = "experienceForLevelup")] pub experience_for_levelup : i32 , # [serde (rename = "status")] pub status : i32 , # [serde (rename = "parts")] pub parts : DragocatsStorageInventoryEndpointsAddUnitNotificationReturnsPartsParams , # [serde (rename = "unitCharacteristicDto")] pub unit_characteristic_dto : Vec < DragocatsStorageInventoryEndpointsAddUnitNotificationReturnsUnitCharacteristicDtoParamsParams > , # [serde (rename = "bindingId")] pub binding_id : i32 , # [serde (rename = "level")] pub level : i32 }

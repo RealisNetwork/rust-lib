@@ -2,4 +2,5 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+pub type UserProfileGetMyNicknameParams = ();
 pub type UserProfileGetMyNicknameReturns = String;

@@ -5,12 +5,13 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct EmailEmailCreateAndSendParams {
-    #[serde(rename = "receivers")]
-    pub receivers: Vec<String>,
-    #[serde(rename = "subject")]
-    pub subject: String,
     #[serde(rename = "body")]
     pub body: String,
+    #[serde(rename = "receivers")]
+    pub receivers: Vec<String>,
     #[serde(rename = "timeToSend")]
     pub time_to_send: i64,
+    #[serde(rename = "subject")]
+    pub subject: String,
 }
+pub type EmailEmailCreateAndSendReturns = ();

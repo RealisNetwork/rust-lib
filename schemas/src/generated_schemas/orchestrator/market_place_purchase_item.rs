@@ -5,12 +5,13 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct OrchestratorMarketPlacePurchaseItemParams {
-    #[serde(rename = "txId")]
-    pub tx_id: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
     #[serde(rename = "creator")]
     pub creator: String,
     #[serde(rename = "productId")]
     pub product_id: i32,
 }
+pub type OrchestratorMarketPlacePurchaseItemReturns = ();

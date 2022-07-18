@@ -3,18 +3,19 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type MarketItemsGetLootboxesListParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MarketItemsGetLootboxesListReturnsProductParamsParams {
+    #[serde(rename = "type")]
+    pub r#type: i32,
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "type")]
-    r#type: i32,
-    #[serde(rename = "price")]
-    pub price: String,
-    #[serde(rename = "productType")]
-    pub product_type: String,
     #[serde(rename = "currencyType")]
     pub currency_type: String,
+    #[serde(rename = "productType")]
+    pub product_type: String,
+    #[serde(rename = "price")]
+    pub price: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MarketItemsGetLootboxesListReturns {

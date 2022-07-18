@@ -10,8 +10,8 @@ pub struct AdminRoleGetRoleByNameParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AdminRoleGetRoleByNameReturns {
-    #[serde(rename = "id")]
-    pub id: i64,
     #[serde(rename = "name")]
     pub name: String,
+    #[serde(rename = "id")]
+    pub id: i64,
 }

@@ -7,21 +7,21 @@ use serde::{Deserialize, Serialize};
 pub struct ProductFactoryProductTypeAddParamsParamsParams {}
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeAddParams {
+    #[serde(rename = "params")]
+    pub params: ProductFactoryProductTypeAddParamsParamsParams,
     #[serde(rename = "isNFT")]
     pub is_nft: bool,
-    #[serde(rename = "underType")]
-    pub under_type: String,
+    #[serde(rename = "dropChance")]
+    pub drop_chance: i64,
     #[serde(rename = "personalType")]
     pub personal_type: String,
-    #[serde(rename = "type")]
-    r#type: String,
+    #[serde(rename = "underType")]
+    pub under_type: String,
     #[serde(rename = "rarity")]
     pub rarity: i64,
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "dropChance")]
-    pub drop_chance: i64,
-    #[serde(rename = "params")]
-    pub params: ProductFactoryProductTypeAddParamsParamsParams,
+    #[serde(rename = "type")]
+    pub r#type: String,
 }
 pub type ProductFactoryProductTypeAddReturns = bool;

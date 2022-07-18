@@ -5,8 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CatsLobbyOpenLootboxParams {
-    #[serde(rename = "lootboxId")]
-    pub lootbox_id: i64,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "lootboxId")]
+    pub lootbox_id: i64,
 }
+pub type CatsLobbyOpenLootboxReturns = ();

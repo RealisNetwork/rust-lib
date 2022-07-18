@@ -5,13 +5,13 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DragocatsProductFactoryLootboxOpenParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "lootboxBindingId")]
-    pub lootbox_binding_id: i64,
     #[serde(rename = "excludedPersonalTypes")]
     pub excluded_personal_types: Vec<String>,
+    #[serde(rename = "lootboxBindingId")]
+    pub lootbox_binding_id: i64,
     #[serde(rename = "productId")]
     pub product_id: i64,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 pub type DragocatsProductFactoryLootboxOpenReturns = bool;

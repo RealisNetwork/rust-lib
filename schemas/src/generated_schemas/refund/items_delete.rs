@@ -5,9 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RefundItemsDeleteParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "hashItemId")]
     pub hash_item_id: i64,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 pub type RefundItemsDeleteReturns = bool;

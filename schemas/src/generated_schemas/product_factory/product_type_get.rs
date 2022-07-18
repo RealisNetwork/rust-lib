@@ -8,3 +8,4 @@ pub struct ProductFactoryProductTypeGetParams {
     #[serde(rename = "id")]
     pub id: i64,
 }
+pub type ProductFactoryProductTypeGetReturns = ();

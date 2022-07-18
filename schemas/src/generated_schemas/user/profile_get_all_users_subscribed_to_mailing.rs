@@ -2,4 +2,5 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+pub type UserProfileGetAllUsersSubscribedToMailingParams = ();
 pub type UserProfileGetAllUsersSubscribedToMailingReturns = Vec<String>;

@@ -5,17 +5,17 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct NotificationsNotificationsCreateNewParams {
-    #[serde(rename = "notificationType")]
-    pub notification_type: (),
-    #[serde(rename = "title")]
-    pub title: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "category")]
     pub category: String,
-    #[serde(rename = "description")]
-    pub description: String,
     #[serde(rename = "senderUserId")]
     pub sender_user_id: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "title")]
+    pub title: String,
+    #[serde(rename = "notificationType")]
+    pub notification_type: (),
+    #[serde(rename = "description")]
+    pub description: String,
 }
 pub type NotificationsNotificationsCreateNewReturns = bool;

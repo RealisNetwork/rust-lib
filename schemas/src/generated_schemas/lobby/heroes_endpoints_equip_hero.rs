@@ -8,3 +8,4 @@ pub struct LobbyHeroesEndpointsEquipHeroParams {
     #[serde(rename = "bindingId")]
     pub binding_id: i32,
 }
+pub type LobbyHeroesEndpointsEquipHeroReturns = ();

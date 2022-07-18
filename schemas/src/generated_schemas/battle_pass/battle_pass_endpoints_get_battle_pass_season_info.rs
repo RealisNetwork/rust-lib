@@ -7,12 +7,12 @@ use serde::{Deserialize, Serialize};
 pub struct BattlePassBattlePassEndpointsGetBattlePassSeasonInfoParams {}
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassSeasonInfoReturns {
+    #[serde(rename = "hasNotReceivedOldRewards")]
+    pub has_not_received_old_rewards: bool,
+    #[serde(rename = "stateUpdateDate")]
+    pub state_update_date: String,
     #[serde(rename = "seasonState")]
     pub season_state: i32,
     #[serde(rename = "seasonId")]
     pub season_id: i32,
-    #[serde(rename = "stateUpdateDate")]
-    pub state_update_date: String,
-    #[serde(rename = "hasNotReceivedOldRewards")]
-    pub has_not_received_old_rewards: bool,
 }

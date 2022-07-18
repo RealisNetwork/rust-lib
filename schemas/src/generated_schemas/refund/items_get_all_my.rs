@@ -3,19 +3,20 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type RefundItemsGetAllMyParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RefundItemsGetAllMyReturnsParams {
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
     #[serde(rename = "lockedUntil")]
     pub locked_until: i64,
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "hashItemId")]
-    pub hash_item_id: i64,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "hashItemId")]
+    pub hash_item_id: i64,
 }
 pub type RefundItemsGetAllMyReturns = Vec<RefundItemsGetAllMyReturnsParams>;

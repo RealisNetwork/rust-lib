@@ -5,9 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct OrchestratorPurchasePurchaseProductParams {
-    #[serde(rename = "productType")]
-    pub product_type: String,
     #[serde(rename = "creator")]
     pub creator: String,
+    #[serde(rename = "productType")]
+    pub product_type: String,
 }
 pub type OrchestratorPurchasePurchaseProductReturns = bool;

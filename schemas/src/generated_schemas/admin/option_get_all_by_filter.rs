@@ -6,30 +6,30 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AdminOptionGetAllByFilterParams {
     #[serde(rename = "type")]
-    r#type: String,
+    pub r#type: String,
     #[serde(rename = "tab")]
     pub tab: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AdminOptionGetAllByFilterReturnsParamsExtraDetailsParams {
-    #[serde(rename = "type")]
-    r#type: String,
     #[serde(rename = "tab")]
     pub tab: String,
+    #[serde(rename = "type")]
+    pub r#type: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AdminOptionGetAllByFilterReturnsParams {
-    #[serde(rename = "scope")]
-    pub scope: String,
+    #[serde(rename = "extraDetails")]
+    pub extra_details: AdminOptionGetAllByFilterReturnsParamsExtraDetailsParams,
     #[serde(rename = "key")]
     pub key: String,
+    #[serde(rename = "description")]
+    pub description: String,
     #[serde(rename = "value")]
     pub value: String,
     #[serde(rename = "previousValue")]
     pub previous_value: String,
-    #[serde(rename = "description")]
-    pub description: String,
-    #[serde(rename = "extraDetails")]
-    pub extra_details: AdminOptionGetAllByFilterReturnsParamsExtraDetailsParams,
+    #[serde(rename = "scope")]
+    pub scope: String,
 }
 pub type AdminOptionGetAllByFilterReturns = Vec<AdminOptionGetAllByFilterReturnsParams>;

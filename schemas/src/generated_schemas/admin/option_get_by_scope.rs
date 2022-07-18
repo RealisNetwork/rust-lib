@@ -10,11 +10,11 @@ pub struct AdminOptionGetByScopeParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AdminOptionGetByScopeReturnsParams {
-    #[serde(rename = "value")]
-    pub value: String,
-    #[serde(rename = "key")]
-    pub key: String,
     #[serde(rename = "scope")]
     pub scope: String,
+    #[serde(rename = "key")]
+    pub key: String,
+    #[serde(rename = "value")]
+    pub value: String,
 }
 pub type AdminOptionGetByScopeReturns = Vec<AdminOptionGetByScopeReturnsParams>;

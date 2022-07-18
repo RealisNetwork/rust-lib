@@ -3,12 +3,13 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type TransactionsBalanceGetBalancesByUserIdAsArrayParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetBalancesByUserIdAsArrayReturnsParams {
-    #[serde(rename = "amount")]
-    pub amount: String,
     #[serde(rename = "currency")]
     pub currency: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
 }
 pub type TransactionsBalanceGetBalancesByUserIdAsArrayReturns =
     Vec<TransactionsBalanceGetBalancesByUserIdAsArrayReturnsParams>;

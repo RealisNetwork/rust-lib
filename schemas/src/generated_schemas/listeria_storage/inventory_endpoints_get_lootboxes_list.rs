@@ -3,14 +3,15 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type ListeriaStorageInventoryEndpointsGetLootboxesListParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ListeriaStorageInventoryEndpointsGetLootboxesListReturnsLootboxesParamsParams {
-    #[serde(rename = "bindingId")]
-    pub binding_id: i32,
     #[serde(rename = "status")]
     pub status: i32,
     #[serde(rename = "lootboxId")]
     pub lootbox_id: i32,
+    #[serde(rename = "bindingId")]
+    pub binding_id: i32,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ListeriaStorageInventoryEndpointsGetLootboxesListReturns {

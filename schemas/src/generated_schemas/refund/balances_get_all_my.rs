@@ -3,10 +3,11 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type RefundBalancesGetAllMyParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllMyReturns {
-    #[serde(rename = "LIS")]
-    pub lis: String,
     #[serde(rename = "ETH")]
     pub eth: String,
+    #[serde(rename = "LIS")]
+    pub lis: String,
 }

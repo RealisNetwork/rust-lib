@@ -8,3 +8,4 @@ pub struct ListeriaStorageInventoryEndpointsOpenLootboxParams {
     #[serde(rename = "bindingId")]
     pub binding_id: i32,
 }
+pub type ListeriaStorageInventoryEndpointsOpenLootboxReturns = ();

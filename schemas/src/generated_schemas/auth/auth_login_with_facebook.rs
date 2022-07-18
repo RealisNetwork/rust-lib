@@ -5,3 +5,4 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AuthAuthLoginWithFacebookParams {}
+pub type AuthAuthLoginWithFacebookReturns = ();

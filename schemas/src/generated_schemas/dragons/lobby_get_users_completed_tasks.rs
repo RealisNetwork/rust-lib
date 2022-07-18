@@ -8,3 +8,4 @@ pub struct DragonsLobbyGetUsersCompletedTasksParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type DragonsLobbyGetUsersCompletedTasksReturns = ();

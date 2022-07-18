@@ -5,8 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct DragonsLobbySetUserAppMetricaDeviceIdParams {
-    #[serde(rename = "appMetricaDeviceId")]
-    pub app_metrica_device_id: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "appMetricaDeviceId")]
+    pub app_metrica_device_id: String,
 }
+pub type DragonsLobbySetUserAppMetricaDeviceIdReturns = ();

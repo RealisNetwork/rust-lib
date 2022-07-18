@@ -5,8 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceBuyItemParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "productId")]
     pub product_id: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
+pub type MarketPlaceMarketPlaceBuyItemReturns = ();

@@ -3,17 +3,18 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type CatsAndDragonsWrapperGetMembershipsAndPricesAmountParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetMembershipsAndPricesAmountReturnsMembershipsInfoParamsMembershipsParams
 {
-    #[serde(rename = "gold")]
-    pub gold: i64,
     #[serde(rename = "standard")]
     pub standard: i64,
     #[serde(rename = "platinum")]
     pub platinum: i64,
     #[serde(rename = "silver")]
     pub silver: i64,
+    #[serde(rename = "gold")]
+    pub gold: i64,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetMembershipsAndPricesAmountReturnsMembershipsInfoParamsPriceParams

@@ -10,3 +10,4 @@ pub struct CatsLobbySaveTutorialProgressParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type CatsLobbySaveTutorialProgressReturns = ();

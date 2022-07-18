@@ -8,3 +8,4 @@ pub struct DragonsLobbyGetSpinRewardsParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type DragonsLobbyGetSpinRewardsReturns = ();

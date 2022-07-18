@@ -10,8 +10,8 @@ pub struct BinanceWalletWalletCreateWalletParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BinanceWalletWalletCreateWalletReturns {
-    #[serde(rename = "address")]
-    pub address: String,
     #[serde(rename = "privateKey")]
     pub private_key: String,
+    #[serde(rename = "address")]
+    pub address: String,
 }

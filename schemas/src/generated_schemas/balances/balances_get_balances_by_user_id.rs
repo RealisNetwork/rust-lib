@@ -3,10 +3,11 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type BalancesBalancesGetBalancesByUserIdParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BalancesBalancesGetBalancesByUserIdReturns {
-    #[serde(rename = "softCurrency")]
-    pub soft_currency: i32,
     #[serde(rename = "freeExperience")]
     pub free_experience: i32,
+    #[serde(rename = "softCurrency")]
+    pub soft_currency: i32,
 }

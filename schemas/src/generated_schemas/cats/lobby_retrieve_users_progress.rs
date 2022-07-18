@@ -8,3 +8,4 @@ pub struct CatsLobbyRetrieveUsersProgressParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type CatsLobbyRetrieveUsersProgressReturns = ();

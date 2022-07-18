@@ -3,6 +3,7 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type AdminOptionGetListParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AdminOptionGetListReturnsParams {
     #[serde(rename = "scope")]

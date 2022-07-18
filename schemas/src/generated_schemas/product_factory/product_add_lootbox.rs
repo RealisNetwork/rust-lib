@@ -5,9 +5,9 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ProductFactoryProductAddLootboxParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "personalType")]
     pub personal_type: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 pub type ProductFactoryProductAddLootboxReturns = bool;

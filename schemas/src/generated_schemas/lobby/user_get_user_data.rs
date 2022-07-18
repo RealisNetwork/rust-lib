@@ -3,24 +3,25 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type LobbyUserGetUserDataParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LobbyUserGetUserDataReturns {
-    #[serde(rename = "decreaseBy")]
-    pub decrease_by: i8,
-    #[serde(rename = "username")]
-    pub username: String,
-    #[serde(rename = "increaseBy")]
-    pub increase_by: i8,
-    #[serde(rename = "placeInLeaderBoard")]
-    pub place_in_leader_board: i32,
     #[serde(rename = "draw")]
     pub draw: i8,
+    #[serde(rename = "decreaseBy")]
+    pub decrease_by: i8,
     #[serde(rename = "rating")]
     pub rating: i32,
-    #[serde(rename = "image")]
-    pub image: i8,
     #[serde(rename = "email")]
     pub email: String,
+    #[serde(rename = "placeInLeaderBoard")]
+    pub place_in_leader_board: i32,
     #[serde(rename = "tokensIncreaseBy")]
     pub tokens_increase_by: String,
+    #[serde(rename = "username")]
+    pub username: String,
+    #[serde(rename = "image")]
+    pub image: i8,
+    #[serde(rename = "increaseBy")]
+    pub increase_by: i8,
 }

@@ -10,8 +10,8 @@ pub struct TransactionsRegistryProductBurnProductParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TransactionsRegistryProductBurnProductReturns {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "personalType")]
     pub personal_type: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }

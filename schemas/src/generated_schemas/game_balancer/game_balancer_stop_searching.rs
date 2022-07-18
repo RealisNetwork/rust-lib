@@ -2,4 +2,5 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
+pub type GameBalancerGameBalancerStopSearchingParams = ();
 pub type GameBalancerGameBalancerStopSearchingReturns = bool;

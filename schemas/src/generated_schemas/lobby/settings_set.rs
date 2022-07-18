@@ -7,12 +7,13 @@ use serde::{Deserialize, Serialize};
 pub struct LobbySettingsSetParams {
     #[serde(rename = "HFREffects")]
     pub hfr_effects: i8,
-    #[serde(rename = "music")]
-    pub music: bool,
-    #[serde(rename = "sounds")]
-    pub sounds: bool,
     #[serde(rename = "quality")]
     pub quality: i8,
     #[serde(rename = "language")]
     pub language: i8,
+    #[serde(rename = "music")]
+    pub music: bool,
+    #[serde(rename = "sounds")]
+    pub sounds: bool,
 }
+pub type LobbySettingsSetReturns = ();

@@ -10,17 +10,17 @@ pub struct RefundBalancesGetAllParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllReturnsParams {
+    #[serde(rename = "lockedUntil")]
+    pub locked_until: String,
+    #[serde(rename = "lockedFunds")]
+    pub locked_funds: String,
     #[serde(rename = "createdAt")]
     pub created_at: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
     #[serde(rename = "currency")]
     pub currency: (),
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "lockedFunds")]
-    pub locked_funds: String,
-    #[serde(rename = "lockedUntil")]
-    pub locked_until: String,
 }
 pub type RefundBalancesGetAllReturns = Vec<RefundBalancesGetAllReturnsParams>;

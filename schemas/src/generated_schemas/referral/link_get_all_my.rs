@@ -3,17 +3,18 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type ReferralLinkGetAllMyParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ReferralLinkGetAllMyReturnsReferralLinksParamsParams {
-    #[serde(rename = "link")]
-    pub link: String,
     #[serde(rename = "appId")]
     pub app_id: i64,
+    #[serde(rename = "link")]
+    pub link: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ReferralLinkGetAllMyReturns {
-    #[serde(rename = "referralLinks")]
-    pub referral_links: Vec<ReferralLinkGetAllMyReturnsReferralLinksParamsParams>,
     #[serde(rename = "referralCode")]
     pub referral_code: String,
+    #[serde(rename = "referralLinks")]
+    pub referral_links: Vec<ReferralLinkGetAllMyReturnsReferralLinksParamsParams>,
 }

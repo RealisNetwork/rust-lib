@@ -4,25 +4,25 @@
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
-pub struct PromoCodesCreateCodeParamsGivesCurrenciesParams {
-    #[serde(rename = "ETH")]
-    pub eth: i64,
-    #[serde(rename = "LIS")]
-    pub lis: i64,
-}
-#[derive(Debug, Serialize, Deserialize)]
 pub struct PromoCodesCreateCodeParamsGivesItemsParams {}
 #[derive(Debug, Serialize, Deserialize)]
+pub struct PromoCodesCreateCodeParamsGivesCurrenciesParams {
+    #[serde(rename = "LIS")]
+    pub lis: i64,
+    #[serde(rename = "ETH")]
+    pub eth: i64,
+}
+#[derive(Debug, Serialize, Deserialize)]
 pub struct PromoCodesCreateCodeParams {
-    #[serde(rename = "givesCurrencies")]
-    pub gives_currencies: PromoCodesCreateCodeParamsGivesCurrenciesParams,
-    #[serde(rename = "expiresIn")]
-    pub expires_in: String,
     #[serde(rename = "numberOfAttempts")]
     pub number_of_attempts: i64,
+    #[serde(rename = "expiresIn")]
+    pub expires_in: String,
     #[serde(rename = "givesItems")]
     pub gives_items: PromoCodesCreateCodeParamsGivesItemsParams,
     #[serde(rename = "code")]
     pub code: String,
+    #[serde(rename = "givesCurrencies")]
+    pub gives_currencies: PromoCodesCreateCodeParamsGivesCurrenciesParams,
 }
 pub type PromoCodesCreateCodeReturns = bool;

@@ -8,3 +8,4 @@ pub struct CatsLobbyGetUsersAchievementsParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type CatsLobbyGetUsersAchievementsReturns = ();

@@ -3,6 +3,7 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type LobbyRegionsGetParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LobbyRegionsGetReturnsListParamsParams {
     #[serde(rename = "host")]
@@ -12,10 +13,10 @@ pub struct LobbyRegionsGetReturnsListParamsParams {
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LobbyRegionsGetReturns {
+    #[serde(rename = "list")]
+    pub list: Vec<LobbyRegionsGetReturnsListParamsParams>,
     #[serde(rename = "active")]
     pub active: String,
     #[serde(rename = "isFixed")]
     pub is_fixed: bool,
-    #[serde(rename = "list")]
-    pub list: Vec<LobbyRegionsGetReturnsListParamsParams>,
 }

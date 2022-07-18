@@ -8,3 +8,4 @@ pub struct DragonsLobbyGetProfileParams {
     #[serde(rename = "deviceId")]
     pub device_id: i64,
 }
+pub type DragonsLobbyGetProfileReturns = ();

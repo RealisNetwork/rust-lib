@@ -3,45 +3,46 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type LobbyHeroesEndpointsGetHeroesListParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LobbyHeroesEndpointsGetHeroesListReturnsParamsStatsRangesParams {
-    #[serde(rename = "armor")]
-    pub armor: Vec<String>,
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: Vec<String>,
-    #[serde(rename = "skillPower")]
-    pub skill_power: Vec<String>,
-    #[serde(rename = "strength")]
-    pub strength: Vec<String>,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: Vec<String>,
     #[serde(rename = "healthRegenPercent")]
     pub health_regen_percent: Vec<String>,
     #[serde(rename = "moveSpeed")]
     pub move_speed: Vec<String>,
+    #[serde(rename = "ultPower")]
+    pub ult_power: Vec<String>,
+    #[serde(rename = "skillPower")]
+    pub skill_power: Vec<String>,
+    #[serde(rename = "skillEffectPower")]
+    pub skill_effect_power: Vec<String>,
+    #[serde(rename = "mainCharacteristic")]
+    pub main_characteristic: i8,
+    #[serde(rename = "health")]
+    pub health: Vec<String>,
+    #[serde(rename = "armor")]
+    pub armor: Vec<String>,
+    #[serde(rename = "intelligence")]
+    pub intelligence: Vec<String>,
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: Vec<String>,
+    #[serde(rename = "strength")]
+    pub strength: Vec<String>,
     #[serde(rename = "attackDamage")]
     pub attack_damage: Vec<String>,
     #[serde(rename = "vampirismPower")]
     pub vampirism_power: Vec<String>,
-    #[serde(rename = "mainCharacteristic")]
-    pub main_characteristic: i8,
-    #[serde(rename = "skillEffectPower")]
-    pub skill_effect_power: Vec<String>,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: Vec<String>,
     #[serde(rename = "agility")]
     pub agility: Vec<String>,
-    #[serde(rename = "intelligence")]
-    pub intelligence: Vec<String>,
-    #[serde(rename = "ultPower")]
-    pub ult_power: Vec<String>,
-    #[serde(rename = "health")]
-    pub health: Vec<String>,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LobbyHeroesEndpointsGetHeroesListReturnsParams {
-    #[serde(rename = "heroId")]
-    pub hero_id: i8,
     #[serde(rename = "statsRanges")]
     pub stats_ranges: LobbyHeroesEndpointsGetHeroesListReturnsParamsStatsRangesParams,
+    #[serde(rename = "heroId")]
+    pub hero_id: i8,
 }
 pub type LobbyHeroesEndpointsGetHeroesListReturns =
     Vec<LobbyHeroesEndpointsGetHeroesListReturnsParams>;

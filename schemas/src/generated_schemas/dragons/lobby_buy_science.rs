@@ -10,3 +10,4 @@ pub struct DragonsLobbyBuyScienceParams {
     #[serde(rename = "sciencePurchaseKey")]
     pub science_purchase_key: String,
 }
+pub type DragonsLobbyBuyScienceReturns = ();

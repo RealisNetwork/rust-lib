@@ -5,19 +5,19 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct StatusMembershipGetInfoParams {
-    #[serde(rename = "appId")]
-    pub app_id: i64,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "appId")]
+    pub app_id: i64,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct StatusMembershipGetInfoReturns {
+    #[serde(rename = "multiplier")]
+    pub multiplier: i64,
     #[serde(rename = "membership")]
     pub membership: String,
     #[serde(rename = "price")]
     pub price: i64,
-    #[serde(rename = "multiplier")]
-    pub multiplier: i64,
     #[serde(rename = "priceInLis")]
     pub price_in_lis: i64,
 }

@@ -3,18 +3,19 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type MarketPlaceMarketPlaceGetCanceledItemsParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetCanceledItemsReturnsParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "productId")]
     pub product_id: i32,
-    #[serde(rename = "id")]
-    pub id: i32,
     #[serde(rename = "status")]
     pub status: String,
     #[serde(rename = "createdAt")]
     pub created_at: i32,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 pub type MarketPlaceMarketPlaceGetCanceledItemsReturns =
     Vec<MarketPlaceMarketPlaceGetCanceledItemsReturnsParams>;

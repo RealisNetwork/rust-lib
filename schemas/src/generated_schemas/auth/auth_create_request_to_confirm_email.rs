@@ -5,11 +5,11 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AuthAuthCreateRequestToConfirmEmailParams {
+    #[serde(rename = "deviceId")]
+    pub device_id: Option<String>,
+    #[serde(rename = "referralCode")]
+    pub referral_code: Option<String>,
     #[serde(rename = "email")]
     pub email: String,
-    #[serde(rename = "deviceId")]
-    pub device_id: String,
-    #[serde(rename = "referralCode")]
-    pub referral_code: String,
 }
 pub type AuthAuthCreateRequestToConfirmEmailReturns = String;

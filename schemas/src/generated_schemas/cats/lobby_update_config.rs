@@ -10,3 +10,4 @@ pub struct CatsLobbyUpdateConfigParams {
     #[serde(rename = "configJson")]
     pub config_json: String,
 }
+pub type CatsLobbyUpdateConfigReturns = ();

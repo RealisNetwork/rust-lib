@@ -3,19 +3,20 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type StatusConfigGetAllForPurchaseParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct StatusConfigGetAllForPurchaseReturnsParams {
-    #[serde(rename = "maxCount")]
-    pub max_count: String,
-    #[serde(rename = "membership")]
-    pub membership: String,
-    #[serde(rename = "price")]
-    pub price: String,
-    #[serde(rename = "priceInLis")]
-    pub price_in_lis: String,
     #[serde(rename = "membershipId")]
     pub membership_id: i64,
+    #[serde(rename = "priceInLis")]
+    pub price_in_lis: String,
+    #[serde(rename = "price")]
+    pub price: String,
     #[serde(rename = "priorityIndex")]
     pub priority_index: i64,
+    #[serde(rename = "membership")]
+    pub membership: String,
+    #[serde(rename = "maxCount")]
+    pub max_count: String,
 }
 pub type StatusConfigGetAllForPurchaseReturns = Vec<StatusConfigGetAllForPurchaseReturnsParams>;

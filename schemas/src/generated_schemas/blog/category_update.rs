@@ -7,9 +7,9 @@ use serde::{Deserialize, Serialize};
 pub struct BlogCategoryUpdateParams {
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "isAvailable")]
-    pub is_available: bool,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "isAvailable")]
+    pub is_available: Option<bool>,
 }
 pub type BlogCategoryUpdateReturns = bool;

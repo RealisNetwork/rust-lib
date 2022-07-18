@@ -10,3 +10,4 @@ pub struct DragonsLobbyCraftBingoRecipeParams {
     #[serde(rename = "recipeId")]
     pub recipe_id: i64,
 }
+pub type DragonsLobbyCraftBingoRecipeReturns = ();

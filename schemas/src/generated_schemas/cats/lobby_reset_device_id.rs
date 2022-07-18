@@ -8,3 +8,4 @@ pub struct CatsLobbyResetDeviceIdParams {
     #[serde(rename = "userId")]
     pub user_id: String,
 }
+pub type CatsLobbyResetDeviceIdReturns = ();

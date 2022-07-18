@@ -10,3 +10,4 @@ pub struct ProductFactoryProductTypeGetAllParams {
     #[serde(rename = "perPage")]
     pub per_page: i64,
 }
+pub type ProductFactoryProductTypeGetAllReturns = ();

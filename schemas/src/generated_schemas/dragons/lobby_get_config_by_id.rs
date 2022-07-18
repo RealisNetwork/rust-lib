@@ -8,3 +8,4 @@ pub struct DragonsLobbyGetConfigByIdParams {
     #[serde(rename = "configKey")]
     pub config_key: String,
 }
+pub type DragonsLobbyGetConfigByIdReturns = ();

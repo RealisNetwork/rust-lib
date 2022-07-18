@@ -7,13 +7,13 @@ use serde::{Deserialize, Serialize};
 pub struct OrchestratorBalanceUserBlockchainDepositParams {
     #[serde(rename = "currency")]
     pub currency: String,
-    #[serde(rename = "amount")]
-    pub amount: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "creator")]
     pub creator: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
 }
 pub type OrchestratorBalanceUserBlockchainDepositReturns = bool;

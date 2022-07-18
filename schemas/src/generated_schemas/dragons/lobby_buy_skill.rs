@@ -10,3 +10,4 @@ pub struct DragonsLobbyBuySkillParams {
     #[serde(rename = "skillPurchaseKey")]
     pub skill_purchase_key: String,
 }
+pub type DragonsLobbyBuySkillReturns = ();

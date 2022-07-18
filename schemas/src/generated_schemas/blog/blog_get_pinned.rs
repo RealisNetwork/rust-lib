@@ -3,16 +3,17 @@
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
 use serde::{Deserialize, Serialize};
+pub type BlogBlogGetPinnedParams = ();
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BlogBlogGetPinnedReturns {
     #[serde(rename = "shortDescription")]
     pub short_description: String,
-    #[serde(rename = "image")]
-    pub image: String,
     #[serde(rename = "url")]
     pub url: String,
     #[serde(rename = "createdAt")]
     pub created_at: String,
     #[serde(rename = "title")]
     pub title: String,
+    #[serde(rename = "image")]
+    pub image: String,
 }
