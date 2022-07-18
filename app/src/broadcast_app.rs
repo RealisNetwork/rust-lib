@@ -7,7 +7,6 @@ use schemas::{Agent, Schema};
 use serde_json::Value;
 use std::sync::Arc;
 use transport::{ReceivedMessage, Subscription, Transport, VSubscription};
-use crate::Service;
 
 #[async_trait]
 pub trait BroadcastService<P: Agent, G: Schema>: Send + Sync {
@@ -19,7 +18,8 @@ pub trait BroadcastService<P: Agent, G: Schema>: Send + Sync {
 }
 
 // TODO: ServiceAppBuilder|ServiceAppContainer?
-pub struct BroadcastApp<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Transport + Sync + Send> {
+pub struct BroadcastApp<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Transport + Sync + Send>
+{
     service: S,
     subscription: VSubscription,
     health_checker: HealthChecker,
@@ -27,13 +27,13 @@ pub struct BroadcastApp<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Trans
 }
 
 #[async_trait]
-impl<
+impl<T, P, G, ServiceInner, N> AsyncTryFrom<Arc<T>> for BroadcastApp<P, G, ServiceInner, N>
+where
     T: 'static + Clone + Send + Sync + GetTransport<N> + GetHealthchecker,
     P: Agent,
     G: Schema,
     ServiceInner: 'static + From<Arc<T>> + BroadcastService<P, G>,
     N: 'static + Transport + Sync + Send,
-> AsyncTryFrom<Arc<T>> for BroadcastApp<P, G, ServiceInner, N>
 {
     type Error = BaseError<Value>;
 
@@ -43,13 +43,14 @@ impl<
             dependency_container.get_transport(),
             dependency_container.get_healthchecker(),
         )
-            .await
-
+        .await
     }
 }
 
 #[async_trait]
-impl<P: Agent, G: Schema, S: BroadcastService<P, G>,N: Transport + Sync + Send> Runnable for BroadcastApp<P, G, S, N> {
+impl<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Transport + Sync + Send> Runnable
+    for BroadcastApp<P, G, S, N>
+{
     async fn run(&mut self) {
         let health_checker = self.health_checker.clone();
         if let Err(error) = self.run_internal().await {
@@ -59,13 +60,14 @@ impl<P: Agent, G: Schema, S: BroadcastService<P, G>,N: Transport + Sync + Send> 
     }
 }
 
-impl<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Transport + Sync + Send> BroadcastApp<P, G, S, N> {
+impl<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Transport + Sync + Send>
+    BroadcastApp<P, G, S, N>
+{
     pub async fn new(
         service: S,
         transport: Arc<N>,
         health_checker: HealthChecker,
-    ) -> Result<Self, BaseError<Value>>
-    {
+    ) -> Result<Self, BaseError<Value>> {
         transport
             .subscribe(service.topic_to_subscribe())
             .await
