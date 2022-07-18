@@ -17,7 +17,7 @@ members = [
 ]
 
 [package]
-name = "realis-lib"
+name = "rust-lib"
 version = "0.1.0"
 edition = "2021"
 authors = [""]
