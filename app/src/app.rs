@@ -1,7 +1,5 @@
-
 use async_trait::async_trait;
 use error_registry::custom_errors::{CustomErrorType, Nats};
-use error_registry::generated_errors::{Common, GeneratedError};
 use error_registry::BaseError;
 use healthchecker::HealthChecker;
 use log::LevelFilter;
@@ -15,7 +13,8 @@ use transport::Transport;
 #[macro_export]
 macro_rules! push_service {
     ($app:expr,$serviceApp:ident,$service:ident) => {
-        $app.push_with_dependency::<$serviceApp<_, _, $service, _>, $service, _, _>().await
+        $app.push_with_dependency::<$serviceApp<_, _, $service, _>, $service, _, _>()
+            .await
     };
 }
 

@@ -1,7 +1,6 @@
 use crate::app::{AsyncTryFrom, GetHealthchecker, GetTransport, Runnable};
 use crate::service::Service;
 use async_trait::async_trait;
-use error_registry::custom_errors::{CustomErrorType, Nats};
 use error_registry::generated_errors::{Common, GeneratedError};
 use error_registry::BaseError;
 use healthchecker::HealthChecker;

@@ -1,5 +1,4 @@
 use crate::app::{AsyncTryFrom, GetHealthchecker, GetTransport, Runnable};
-use crate::Service;
 use async_trait::async_trait;
 use error_registry::BaseError;
 use healthchecker::HealthChecker;
