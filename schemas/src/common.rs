@@ -40,22 +40,11 @@ pub enum ResponseMessage<Y, D: Debug> {
     Right { value: Y },
 }
 
-// TODO: Remove this and consider more accurate way to deserialize
-fn null_to_default<'de, D, T>(d: D) -> Result<T, D::Error>
-    where
-        D: Deserializer<'de>,
-        T: Default + Deserialize<'de>,
-{
-    let opt = Option::deserialize(d)?;
-    let val = opt.unwrap_or_else(T::default);
-    Ok(val)
-}
-
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct AuthInfo {
     #[serde(rename = "userId")]
-    #[serde(deserialize_with = "null_to_default")]
-    pub user_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub user_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub address: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
