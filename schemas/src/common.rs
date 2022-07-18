@@ -1,5 +1,5 @@
 use error_registry::BaseError;
-use serde::{Deserialize, Deserializer, Serialize};
+use serde::{Deserialize, Serialize};
 use std::fmt::{Debug, Formatter};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
