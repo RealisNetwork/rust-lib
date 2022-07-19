@@ -1,22 +1,22 @@
-use config::env::env::EnvLoaded;
-use quote::__private::Ident;
-use quote::{quote, ToTokens};
-use schemas_generator::{
-    agent::Agent,
-    env_loader::{GitLoader, Loader},
-};
-use std::collections::HashSet;
-use std::{
-    io::Write,
-    path::{Path, PathBuf},
-};
-use syn::__private::Span;
-
-const PATH: &str = "src/generated_schemas/";
-const MOD_RS: &str = "mod.rs";
-
 #[cfg(feature = "rebuild")]
 fn main() {
+    use config::env::env::EnvLoaded;
+    use quote::__private::Ident;
+    use quote::{quote, ToTokens};
+    use schemas_generator::{
+        agent::Agent,
+        env_loader::{GitLoader, Loader},
+    };
+    use std::collections::HashSet;
+    use std::{
+        io::Write,
+        path::{Path, PathBuf},
+    };
+    use syn::__private::Span;
+
+    const PATH: &str = "src/generated_schemas/";
+    const MOD_RS: &str = "mod.rs";
+
     let git_loader = GitLoader::load(None).expect("Fail to load env");
 
     let agents: Vec<Agent> = git_loader.start().expect("Fail to load from Git");

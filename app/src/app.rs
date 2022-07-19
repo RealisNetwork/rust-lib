@@ -1,8 +1,7 @@
 use async_trait::async_trait;
 use error_registry::custom_errors::{CustomErrorType, Nats};
 use error_registry::BaseError;
-use healthchecker::HealthChecker;
-use log::LevelFilter;
+use healthchecker::{HealthChecker, HealthcheckerServer};
 use schemas::{Agent, Schema};
 use serde_json::Value;
 use std::sync::Arc;
@@ -33,7 +32,8 @@ pub trait AbstractService<P: Agent, G: Schema>: Send + Sync {}
 
 pub struct App<T: GetTransport<N> + GetHealthchecker, N: Transport + Sync + Send> {
     services: Vec<Box<Mutex<dyn Runnable>>>,
-    dependency_container: Arc<T>,
+    dependency_container: Option<Arc<T>>,
+    pub health_checker: HealthcheckerServer,
     _marker: std::marker::PhantomData<N>,
 }
 
@@ -50,22 +50,44 @@ where
     T: 'static + Clone + Send + Sync + GetTransport<N> + GetHealthchecker,
     N: 'static + Transport + Sync + Send,
 {
-    pub fn new(dependency_container: Arc<T>) -> Self {
+    pub async fn new(dependency_container: Option<Arc<T>>, host: &str) -> Self {
         Self {
             services: vec![],
             dependency_container,
+            health_checker: HealthcheckerServer::new(host, None)
+                .await
+                .expect("Fail to create HealthcheckerServer"),
             _marker: Default::default(),
         }
     }
 
-    pub fn push(mut self, service: impl Runnable + 'static) -> Self {
+    /// Init `env_logger` from env_key variable
+    /// if env_key not specified use `LOGGER_LEVEL`
+    /// if such variable not found try to load it from .env
+    pub fn init_logger(&self, env_key: Option<&str>) -> &Self {
+        const LOGGER_ENV: &str = "LOGGER_LEVEL";
+        // Setting env variable from .env file
+        // because of env_logger cannot use .env
+        if std::env::var(env_key.unwrap_or(LOGGER_ENV)).is_err() {
+            if let Ok(value) = dotenv::var(env_key.unwrap_or(LOGGER_ENV)) {
+                std::env::set_var(env_key.unwrap_or(LOGGER_ENV), value);
+            }
+        }
+        // Init logger
+        env_logger::init_from_env(
+            env_logger::Env::new().filter_or(env_key.unwrap_or(LOGGER_ENV), "info"),
+        );
+        self
+    }
+
+    pub fn push(&mut self, service: impl Runnable + 'static) -> &Self {
         self.services.push(Box::new(Mutex::new(service)));
         self
     }
 
     pub async fn push_with_dependency<AbstractApp, ServiceInner, P, G>(
-        mut self,
-    ) -> Result<Self, BaseError<Value>>
+        &mut self,
+    ) -> Result<&Self, BaseError<Value>>
     where
         AbstractApp: 'static + Runnable + AsyncTryFrom<Arc<T>>,
         ServiceInner: 'static + From<Arc<T>> + AbstractService<P, G>,
@@ -73,24 +95,13 @@ where
         G: 'static + Schema,
     {
         self.services.push(Box::new(Mutex::new(
-            AbstractApp::async_try_from(self.dependency_container.clone())
+            AbstractApp::async_try_from(self.dependency_container.as_ref().unwrap().clone())
                 .await
                 .map_err(|_| {
                     BaseError::<Value>::from(CustomErrorType::Nats(Nats::FailedToSubscribe))
                 })?,
         )));
         Ok(self)
-    }
-
-    pub fn init_logger_with_level(self, logger_level: LevelFilter) -> Self {
-        env_logger::Builder::new().filter_level(logger_level).init();
-        self
-    }
-
-    pub fn init_logger(self) -> Self {
-        env_logger::Builder::from_env(env_logger::Env::new().filter_or("LOGGER_LEVEL", "debug"))
-            .init();
-        self
     }
 }
 
