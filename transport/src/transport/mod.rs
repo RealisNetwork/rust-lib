@@ -12,8 +12,8 @@ use async_trait::async_trait;
 use enum_dispatch::enum_dispatch;
 use error_registry::generated_errors::{Common, GeneratedError};
 use error_registry::BaseError;
-use serde::Serialize;
 use healthchecker::Alivable;
+use serde::Serialize;
 use std::time::Duration;
 
 #[async_trait]

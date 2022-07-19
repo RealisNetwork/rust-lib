@@ -11,8 +11,6 @@ use transport::{ReceivedMessage, Subscription, Transport, VReceivedMessage, VSub
 
 //TODO: ServiceAppBuilder|ServiceAppContainer?
 pub struct ServiceApp<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> {
-    name: String,
-    client_id: String,
     service: S,
     transport: Arc<N>,
     subscription: VSubscription,
@@ -57,8 +55,6 @@ where
 
 impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceApp<P, G, S, N> {
     pub async fn new(
-        name: String,
-        client_id: String,
         service: S,
         transport: Arc<N>,
         health_checker: HealthChecker,
@@ -67,8 +63,6 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
             .subscribe(service.topic_to_subscribe())
             .await
             .map(|subscription| Self {
-                name,
-                client_id,
                 service,
                 transport,
                 subscription,
@@ -116,8 +110,6 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
     async fn run_notification(&mut self) -> Result<(), BaseError<Value>> {
         const TOPIC: &str = "pasha_help_plz";
         let notification = serde_json::json!({
-            "name": self.name,
-            "client_id": self.client_id,
             "schemas": {
                 "topic": P::topic(),
                 "paramsSchema": P::schema(),

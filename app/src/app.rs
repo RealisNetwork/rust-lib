@@ -1,5 +1,3 @@
-pub use log::LevelFilter;
-
 use async_trait::async_trait;
 use error_registry::custom_errors::{CustomErrorType, Nats};
 use error_registry::BaseError;

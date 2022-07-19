@@ -1,4 +1,4 @@
-pub mod env;
+pub mod env_loaded;
 pub mod healthchecker;
 
-pub use env::{Env, EnvLoaded};
+pub use env_loaded::{Env, EnvLoaded};

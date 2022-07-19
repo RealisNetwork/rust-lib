@@ -12,7 +12,7 @@ use std::{
 };
 use syn::__private::Span;
 
-const PATH: &str = "./schemas/src/generated_schemas/";
+const PATH: &str = "src/generated_schemas/";
 const MOD_RS: &str = "mod.rs";
 
 fn main() {
