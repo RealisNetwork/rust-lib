@@ -2,22 +2,25 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CronCronCreateParams {
     #[serde(rename = "startsAt")]
     pub starts_at: i64,
-    #[serde(rename = "howOften")]
-    pub how_often: i64,
     #[serde(rename = "key")]
     pub key: String,
+    #[serde(rename = "howOften")]
+    pub how_often: i64,
 }
 impl Schema for CronCronCreateParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"startsAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"key\":{\"type\":\"string\"},\"howOften\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"howOften\",\"startsAt\",\"key\"]}")
     }
 }
-pub type CronCronCreateReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct CronCronCreateReturns(bool);
+impl Schema for CronCronCreateReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

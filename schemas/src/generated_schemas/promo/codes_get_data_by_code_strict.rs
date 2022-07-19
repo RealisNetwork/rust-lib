@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesGetDataByCodeStrictParams {
     #[serde(rename = "code")]
@@ -13,8 +10,13 @@ pub struct PromoCodesGetDataByCodeStrictParams {
 }
 impl Schema for PromoCodesGetDataByCodeStrictParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesGetDataByCodeStrictReturns {}
+impl Schema for PromoCodesGetDataByCodeStrictReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
+    }
+}

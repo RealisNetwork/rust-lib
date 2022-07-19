@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryGeneratorGenerateParams {
     #[serde(rename = "personalType")]
@@ -13,56 +10,61 @@ pub struct ProductFactoryGeneratorGenerateParams {
 }
 impl Schema for ProductFactoryGeneratorGenerateParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"}},\"required\":[\"personalType\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryGeneratorGenerateReturnsAttributesParams {
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: String,
-    #[serde(rename = "mainCharacteristic")]
-    pub main_characteristic: String,
-    #[serde(rename = "armor")]
-    pub armor: String,
-    #[serde(rename = "health")]
-    pub health: String,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: String,
     #[serde(rename = "skillPower")]
     pub skill_power: String,
-    #[serde(rename = "ultPower")]
-    pub ult_power: String,
-    #[serde(rename = "attackDamage")]
-    pub attack_damage: String,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: String,
+    #[serde(rename = "health")]
+    pub health: String,
+    #[serde(rename = "agility")]
+    pub agility: String,
     #[serde(rename = "intelligence")]
     pub intelligence: String,
+    #[serde(rename = "strength")]
+    pub strength: String,
+    #[serde(rename = "moveSpeed")]
+    pub move_speed: String,
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: String,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: String,
+    #[serde(rename = "armor")]
+    pub armor: String,
+    #[serde(rename = "attackDamage")]
+    pub attack_damage: String,
+    #[serde(rename = "mainCharacteristic")]
+    pub main_characteristic: String,
     #[serde(rename = "healthRegenPercent")]
     pub health_regen_percent: String,
     #[serde(rename = "skillEffectPower")]
     pub skill_effect_power: String,
-    #[serde(rename = "moveSpeed")]
-    pub move_speed: String,
-    #[serde(rename = "vampirismPower")]
-    pub vampirism_power: String,
-    #[serde(rename = "strength")]
-    pub strength: String,
-    #[serde(rename = "agility")]
-    pub agility: String,
+    #[serde(rename = "ultPower")]
+    pub ult_power: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryGeneratorGenerateReturns {
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
-    #[serde(rename = "productId")]
-    pub product_id: i64,
     #[serde(rename = "name")]
     pub name: String,
+    #[serde(rename = "productType")]
+    pub product_type: String,
+    #[serde(rename = "productId")]
+    pub product_id: i64,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
+    #[serde(rename = "isNft")]
+    pub is_nft: bool,
     #[serde(rename = "attributes")]
     pub attributes: ProductFactoryGeneratorGenerateReturnsAttributesParams,
     #[serde(rename = "mintId")]
     pub mint_id: i64,
-    #[serde(rename = "productType")]
-    pub product_type: String,
-    #[serde(rename = "isNft")]
-    pub is_nft: bool,
+}
+impl Schema for ProductFactoryGeneratorGenerateReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"productType\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"personalType\":{\"type\":\"string\"},\"isNft\":{\"type\":\"boolean\"},\"attributes\":{\"type\":\"object\",\"properties\":{\"skillPower\":{\"type\":\"string\"},\"attackReloadSpeed\":{\"type\":\"string\"},\"health\":{\"type\":\"string\"},\"agility\":{\"type\":\"string\"},\"intelligence\":{\"type\":\"string\"},\"strength\":{\"type\":\"string\"},\"moveSpeed\":{\"type\":\"string\"},\"ultEffectPower\":{\"type\":\"string\"},\"vampirismPower\":{\"type\":\"string\"},\"armor\":{\"type\":\"string\"},\"attackDamage\":{\"type\":\"string\"},\"mainCharacteristic\":{\"type\":\"string\",\"pattern\":\"^(strength)|(agility)|(intelligence)$\"},\"healthRegenPercent\":{\"type\":\"string\"},\"skillEffectPower\":{\"type\":\"string\"},\"ultPower\":{\"type\":\"string\"}},\"required\":[\"strength\",\"agility\",\"intelligence\",\"health\",\"healthRegenPercent\",\"armor\",\"moveSpeed\",\"attackDamage\",\"attackReloadSpeed\",\"skillPower\",\"skillEffectPower\",\"ultPower\",\"ultEffectPower\",\"vampirismPower\",\"mainCharacteristic\"]},\"mintId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"personalType\",\"productId\",\"productType\",\"name\",\"attributes\",\"mintId\",\"isNft\"]}")
+    }
 }

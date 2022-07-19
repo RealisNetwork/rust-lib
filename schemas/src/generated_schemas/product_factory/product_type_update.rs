@@ -2,34 +2,37 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeUpdateParamsParamsParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeUpdateParams {
-    #[serde(rename = "dropChance")]
-    pub drop_chance: Option<i64>,
+    #[serde(rename = "name")]
+    pub name: Option<String>,
     #[serde(rename = "type")]
     pub r#type: Option<String>,
     #[serde(rename = "params")]
     pub params: Option<ProductFactoryProductTypeUpdateParamsParamsParams>,
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
-    #[serde(rename = "name")]
-    pub name: Option<String>,
-    #[serde(rename = "underType")]
-    pub under_type: Option<String>,
-    #[serde(rename = "rarity")]
-    pub rarity: Option<i64>,
+    #[serde(rename = "dropChance")]
+    pub drop_chance: Option<i64>,
     #[serde(rename = "isNFT")]
     pub is_nft: Option<bool>,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
+    #[serde(rename = "rarity")]
+    pub rarity: Option<i64>,
+    #[serde(rename = "underType")]
+    pub under_type: Option<String>,
 }
 impl Schema for ProductFactoryProductTypeUpdateParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"params\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"dropChance\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isNFT\":{\"type\":\"boolean\"},\"personalType\":{\"type\":\"string\"},\"rarity\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"underType\":{\"type\":\"string\"}},\"required\":[\"personalType\"]}")
     }
 }
-pub type ProductFactoryProductTypeUpdateReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ProductFactoryProductTypeUpdateReturns(bool);
+impl Schema for ProductFactoryProductTypeUpdateReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

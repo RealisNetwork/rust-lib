@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralAddReferralParams {
     #[serde(rename = "referralId")]
@@ -15,7 +12,13 @@ pub struct ReferralReferralAddReferralParams {
 }
 impl Schema for ReferralReferralAddReferralParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"referralId\":{\"type\":\"string\"},\"referrerId\":{\"type\":\"string\"}},\"required\":[\"referralId\",\"referrerId\"]}")
     }
 }
-pub type ReferralReferralAddReferralReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ReferralReferralAddReferralReturns(bool);
+impl Schema for ReferralReferralAddReferralReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

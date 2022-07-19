@@ -2,12 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for StatusConfigGetAllForPurchaseParams {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -18,22 +15,28 @@ impl<'de> Deserialize<'de> for StatusConfigGetAllForPurchaseParams {
 pub struct StatusConfigGetAllForPurchaseParams;
 impl Schema for StatusConfigGetAllForPurchaseParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigGetAllForPurchaseReturnsParams {
-    #[serde(rename = "membership")]
-    pub membership: String,
     #[serde(rename = "price")]
     pub price: String,
-    #[serde(rename = "priceInLis")]
-    pub price_in_lis: String,
     #[serde(rename = "priorityIndex")]
     pub priority_index: i64,
-    #[serde(rename = "maxCount")]
-    pub max_count: String,
+    #[serde(rename = "membership")]
+    pub membership: String,
+    #[serde(rename = "priceInLis")]
+    pub price_in_lis: String,
     #[serde(rename = "membershipId")]
     pub membership_id: i64,
+    #[serde(rename = "maxCount")]
+    pub max_count: String,
 }
-pub type StatusConfigGetAllForPurchaseReturns = Vec<StatusConfigGetAllForPurchaseReturnsParams>;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct StatusConfigGetAllForPurchaseReturns(Vec<StatusConfigGetAllForPurchaseReturnsParams>);
+impl Schema for StatusConfigGetAllForPurchaseReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"price\":{\"type\":\"string\"},\"priorityIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"membership\":{\"type\":\"string\"},\"priceInLis\":{\"type\":\"string\"},\"membershipId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"maxCount\":{\"type\":\"string\"}},\"required\":[\"membershipId\",\"priorityIndex\",\"membership\",\"maxCount\",\"priceInLis\",\"price\"]}}")
+    }
+}

@@ -2,30 +2,32 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipGetInfoParams {
-    #[serde(rename = "appId")]
-    pub app_id: i64,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "appId")]
+    pub app_id: i64,
 }
 impl Schema for StatusMembershipGetInfoParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"appId\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipGetInfoReturns {
-    #[serde(rename = "price")]
-    pub price: i64,
     #[serde(rename = "multiplier")]
     pub multiplier: i64,
-    #[serde(rename = "membership")]
-    pub membership: String,
     #[serde(rename = "priceInLis")]
     pub price_in_lis: i64,
+    #[serde(rename = "price")]
+    pub price: i64,
+    #[serde(rename = "membership")]
+    pub membership: String,
+}
+impl Schema for StatusMembershipGetInfoReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"multiplier\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"priceInLis\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"price\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"membership\":{\"type\":\"string\"}},\"required\":[\"membership\",\"multiplier\",\"price\",\"priceInLis\"]}")
+    }
 }

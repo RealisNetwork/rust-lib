@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllWithCategoryListParams {
     #[serde(rename = "limit")]
@@ -13,29 +10,35 @@ pub struct BlogBlogGetAllWithCategoryListParams {
 }
 impl Schema for BlogBlogGetAllWithCategoryListParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"limit\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":null}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllWithCategoryListReturnsParamsArticlesParamsParams {
-    #[serde(rename = "shortDescription")]
-    pub short_description: String,
-    #[serde(rename = "url")]
-    pub url: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
     #[serde(rename = "image")]
     pub image: String,
+    #[serde(rename = "url")]
+    pub url: String,
+    #[serde(rename = "shortDescription")]
+    pub short_description: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
     #[serde(rename = "title")]
     pub title: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllWithCategoryListReturnsParams {
-    #[serde(rename = "categoryName")]
-    pub category_name: String,
-    #[serde(rename = "articles")]
-    pub articles: Vec<BlogBlogGetAllWithCategoryListReturnsParamsArticlesParamsParams>,
     #[serde(rename = "categoryId")]
     pub category_id: i64,
+    #[serde(rename = "articles")]
+    pub articles: Vec<BlogBlogGetAllWithCategoryListReturnsParamsArticlesParamsParams>,
+    #[serde(rename = "categoryName")]
+    pub category_name: String,
 }
-pub type BlogBlogGetAllWithCategoryListReturns = Vec<BlogBlogGetAllWithCategoryListReturnsParams>;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct BlogBlogGetAllWithCategoryListReturns(Vec<BlogBlogGetAllWithCategoryListReturnsParams>);
+impl Schema for BlogBlogGetAllWithCategoryListReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"articles\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"image\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"}},\"required\":[\"title\",\"image\",\"url\",\"createdAt\",\"shortDescription\"]}},\"categoryName\":{\"type\":\"string\"}},\"required\":[\"categoryName\",\"categoryId\",\"articles\"]}}")
+    }
+}

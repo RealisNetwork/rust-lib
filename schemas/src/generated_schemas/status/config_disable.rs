@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigDisableParams {
     #[serde(rename = "id")]
@@ -13,7 +10,13 @@ pub struct StatusConfigDisableParams {
 }
 impl Schema for StatusConfigDisableParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\"]}")
     }
 }
-pub type StatusConfigDisableReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct StatusConfigDisableReturns(bool);
+impl Schema for StatusConfigDisableReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

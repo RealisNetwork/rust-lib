@@ -2,20 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminPermissionUpdatePermissionsParams {
-    #[serde(rename = "permissions")]
-    pub permissions: Vec<String>,
     #[serde(rename = "roleName")]
     pub role_name: String,
+    #[serde(rename = "permissions")]
+    pub permissions: Vec<String>,
 }
 impl Schema for AdminPermissionUpdatePermissionsParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"roleName\":{\"type\":\"string\"},\"permissions\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"roleName\",\"permissions\"]}")
     }
 }
-pub type AdminPermissionUpdatePermissionsReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AdminPermissionUpdatePermissionsReturns(bool);
+impl Schema for AdminPermissionUpdatePermissionsReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

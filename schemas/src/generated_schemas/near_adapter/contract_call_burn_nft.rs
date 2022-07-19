@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterContractCallBurnNftParams {
     #[serde(rename = "nftId")]
@@ -13,11 +10,16 @@ pub struct NearAdapterContractCallBurnNftParams {
 }
 impl Schema for NearAdapterContractCallBurnNftParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"nftId\":{\"type\":\"string\"}},\"required\":[\"nftId\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterContractCallBurnNftReturns {
     #[serde(rename = "balance")]
     pub balance: String,
+}
+impl Schema for NearAdapterContractCallBurnNftReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"balance\":{\"type\":\"string\"}},\"required\":[\"balance\"]}")
+    }
 }

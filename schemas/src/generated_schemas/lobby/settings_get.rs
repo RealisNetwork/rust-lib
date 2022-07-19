@@ -2,12 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for LobbySettingsGetParams {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -18,21 +15,26 @@ impl<'de> Deserialize<'de> for LobbySettingsGetParams {
 pub struct LobbySettingsGetParams;
 impl Schema for LobbySettingsGetParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbySettingsGetReturns {
-    #[serde(rename = "isChanged")]
-    pub is_changed: bool,
-    #[serde(rename = "language")]
-    pub language: i8,
     #[serde(rename = "sounds")]
     pub sounds: bool,
-    #[serde(rename = "quality")]
-    pub quality: i8,
     #[serde(rename = "HFREffects")]
     pub hfr_effects: i8,
+    #[serde(rename = "isChanged")]
+    pub is_changed: bool,
     #[serde(rename = "music")]
     pub music: bool,
+    #[serde(rename = "language")]
+    pub language: i8,
+    #[serde(rename = "quality")]
+    pub quality: i8,
+}
+impl Schema for LobbySettingsGetReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"sounds\":{\"type\":\"boolean\"},\"HFREffects\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"isChanged\":{\"type\":\"boolean\"},\"music\":{\"type\":\"boolean\"},\"language\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"quality\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"music\",\"sounds\",\"language\",\"quality\",\"HFREffects\",\"isChanged\"]}")
+    }
 }

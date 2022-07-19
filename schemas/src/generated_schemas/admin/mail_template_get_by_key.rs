@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminMailTemplateGetByKeyParams {
     #[serde(rename = "key")]
@@ -13,8 +10,13 @@ pub struct AdminMailTemplateGetByKeyParams {
 }
 impl Schema for AdminMailTemplateGetByKeyParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"}},\"required\":[\"key\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminMailTemplateGetByKeyReturns(String);
+impl Schema for AdminMailTemplateGetByKeyReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"string\"}")
+    }
+}

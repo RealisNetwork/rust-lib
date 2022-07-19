@@ -2,15 +2,18 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsBalancerBalancerLeaveQueueParams {}
 impl Schema for DragocatsBalancerBalancerLeaveQueueParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
     }
 }
-pub type DragocatsBalancerBalancerLeaveQueueReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct DragocatsBalancerBalancerLeaveQueueReturns(bool);
+impl Schema for DragocatsBalancerBalancerLeaveQueueReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

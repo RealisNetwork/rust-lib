@@ -2,36 +2,33 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsUnitPartsParamsParams {
-    #[serde(rename = "element")]
-    pub element: String,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "element")]
+    pub element: String,
     #[serde(rename = "slot")]
     pub slot: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsAttributesParams {
-    #[serde(rename = "speed")]
-    pub speed: i64,
     #[serde(rename = "power")]
     pub power: i64,
     #[serde(rename = "defence")]
     pub defence: i64,
     #[serde(rename = "health")]
     pub health: i64,
+    #[serde(rename = "speed")]
+    pub speed: i64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParams {
-    #[serde(rename = "level")]
-    pub level: i64,
     #[serde(rename = "unitId")]
     pub unit_id: i64,
+    #[serde(rename = "level")]
+    pub level: i64,
     #[serde(rename = "unitParts")]
     pub unit_parts:
         Vec<DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsUnitPartsParamsParams>,
@@ -45,7 +42,13 @@ pub struct DragocatsBalancerBalancerEnterQueueParams {
 }
 impl Schema for DragocatsBalancerBalancerEnterQueueParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"units\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"unitId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"level\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"unitParts\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"element\":{\"type\":\"string\",\"pattern\":\"^(fire)|(water)|(earth)|(air)|(light)|(dark)|(crystal)|(iron)|(energy)$\"},\"slot\":{\"type\":\"string\",\"pattern\":\"^(head)|(tail)|(body)$\"}},\"required\":[\"id\",\"element\",\"slot\"]}},\"attributes\":{\"type\":\"object\",\"properties\":{\"power\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"defence\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"health\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"speed\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"health\",\"power\",\"defence\",\"speed\"]}},\"required\":[\"unitId\",\"attributes\",\"level\",\"unitParts\"]}}},\"required\":[\"units\"]}")
     }
 }
-pub type DragocatsBalancerBalancerEnterQueueReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct DragocatsBalancerBalancerEnterQueueReturns(bool);
+impl Schema for DragocatsBalancerBalancerEnterQueueReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

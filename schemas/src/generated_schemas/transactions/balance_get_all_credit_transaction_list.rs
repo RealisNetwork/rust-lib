@@ -2,12 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for TransactionsBalanceGetAllCreditTransactionListParams {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -18,13 +15,18 @@ impl<'de> Deserialize<'de> for TransactionsBalanceGetAllCreditTransactionListPar
 pub struct TransactionsBalanceGetAllCreditTransactionListParams;
 impl Schema for TransactionsBalanceGetAllCreditTransactionListParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetAllCreditTransactionListReturns {
-    #[serde(rename = "date")]
-    pub date: String,
     #[serde(rename = "amount")]
     pub amount: String,
+    #[serde(rename = "date")]
+    pub date: String,
+}
+impl Schema for TransactionsBalanceGetAllCreditTransactionListReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"date\":{\"type\":\"string\"}},\"required\":[\"amount\",\"date\"]}")
+    }
 }

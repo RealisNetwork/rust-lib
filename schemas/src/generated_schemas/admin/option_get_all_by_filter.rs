@@ -2,42 +2,45 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetAllByFilterParams {
-    #[serde(rename = "type")]
-    pub r#type: String,
     #[serde(rename = "tab")]
     pub tab: String,
+    #[serde(rename = "type")]
+    pub r#type: String,
 }
 impl Schema for AdminOptionGetAllByFilterParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"tab\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":null}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetAllByFilterReturnsParamsExtraDetailsParams {
-    #[serde(rename = "tab")]
-    pub tab: String,
     #[serde(rename = "type")]
     pub r#type: String,
+    #[serde(rename = "tab")]
+    pub tab: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetAllByFilterReturnsParams {
-    #[serde(rename = "previousValue")]
-    pub previous_value: String,
     #[serde(rename = "scope")]
     pub scope: String,
-    #[serde(rename = "key")]
-    pub key: String,
     #[serde(rename = "value")]
     pub value: String,
+    #[serde(rename = "key")]
+    pub key: String,
+    #[serde(rename = "previousValue")]
+    pub previous_value: String,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "extraDetails")]
     pub extra_details: AdminOptionGetAllByFilterReturnsParamsExtraDetailsParams,
 }
-pub type AdminOptionGetAllByFilterReturns = Vec<AdminOptionGetAllByFilterReturnsParams>;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AdminOptionGetAllByFilterReturns(Vec<AdminOptionGetAllByFilterReturnsParams>);
+impl Schema for AdminOptionGetAllByFilterReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"scope\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"previousValue\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"}},\"required\":null}},\"required\":[\"scope\",\"key\",\"value\",\"previousValue\",\"description\",\"extraDetails\"]}}")
+    }
+}

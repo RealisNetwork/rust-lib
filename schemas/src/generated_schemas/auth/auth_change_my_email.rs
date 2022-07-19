@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthChangeMyEmailParams {
     #[serde(rename = "hash")]
@@ -13,7 +10,13 @@ pub struct AuthAuthChangeMyEmailParams {
 }
 impl Schema for AuthAuthChangeMyEmailParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"hash\":{\"type\":\"string\"}},\"required\":[\"hash\"]}")
     }
 }
-pub type AuthAuthChangeMyEmailReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AuthAuthChangeMyEmailReturns(bool);
+impl Schema for AuthAuthChangeMyEmailReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

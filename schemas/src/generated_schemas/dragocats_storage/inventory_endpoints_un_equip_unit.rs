@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsUnEquipUnitParams {
     #[serde(rename = "unitId")]
@@ -13,11 +10,16 @@ pub struct DragocatsStorageInventoryEndpointsUnEquipUnitParams {
 }
 impl Schema for DragocatsStorageInventoryEndpointsUnEquipUnitParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"unitId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"unitId\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsUnEquipUnitReturns {
     #[serde(rename = "unitId")]
     pub unit_id: i32,
+}
+impl Schema for DragocatsStorageInventoryEndpointsUnEquipUnitReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"unitId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"unitId\"]}")
+    }
 }

@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorProductBurnParams {
     #[serde(rename = "productIds")]
@@ -13,7 +10,13 @@ pub struct OrchestratorProductBurnParams {
 }
 impl Schema for OrchestratorProductBurnParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productIds\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}}},\"required\":[\"productIds\"]}")
     }
 }
-pub type OrchestratorProductBurnReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct OrchestratorProductBurnReturns(bool);
+impl Schema for OrchestratorProductBurnReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

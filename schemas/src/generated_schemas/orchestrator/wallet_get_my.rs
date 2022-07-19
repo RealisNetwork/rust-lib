@@ -2,12 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for OrchestratorWalletGetMyParams {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -18,11 +15,16 @@ impl<'de> Deserialize<'de> for OrchestratorWalletGetMyParams {
 pub struct OrchestratorWalletGetMyParams;
 impl Schema for OrchestratorWalletGetMyParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorWalletGetMyReturns {
     #[serde(rename = "address")]
     pub address: String,
+}
+impl Schema for OrchestratorWalletGetMyReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"address\":{\"type\":\"string\"}},\"required\":[\"address\"]}")
+    }
 }

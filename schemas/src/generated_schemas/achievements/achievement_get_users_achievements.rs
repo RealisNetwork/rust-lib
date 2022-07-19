@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AchievementsAchievementGetUsersAchievementsParams {
     #[serde(rename = "userId")]
@@ -13,15 +10,15 @@ pub struct AchievementsAchievementGetUsersAchievementsParams {
 }
 impl Schema for AchievementsAchievementGetUsersAchievementsParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AchievementsAchievementGetUsersAchievementsReturnsParamsGameEventParams {
-    #[serde(rename = "eventLifeType")]
-    pub event_life_type: i32,
     #[serde(rename = "count")]
     pub count: i64,
+    #[serde(rename = "eventLifeType")]
+    pub event_life_type: i32,
     #[serde(rename = "eventKey")]
     pub event_key: String,
 }
@@ -29,14 +26,21 @@ pub struct AchievementsAchievementGetUsersAchievementsReturnsParamsGameEventPara
 pub struct AchievementsAchievementGetUsersAchievementsReturnsParams {
     #[serde(rename = "gameEvent")]
     pub game_event: AchievementsAchievementGetUsersAchievementsReturnsParamsGameEventParams,
-    #[serde(rename = "achievementKey")]
-    pub achievement_key: String,
     #[serde(rename = "description")]
     pub description: String,
+    #[serde(rename = "achievementKey")]
+    pub achievement_key: String,
     #[serde(rename = "rewardType")]
     pub reward_type: i32,
     #[serde(rename = "reward")]
     pub reward: i64,
 }
-pub type AchievementsAchievementGetUsersAchievementsReturns =
-    Vec<AchievementsAchievementGetUsersAchievementsReturnsParams>;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AchievementsAchievementGetUsersAchievementsReturns(
+    Vec<AchievementsAchievementGetUsersAchievementsReturnsParams>,
+);
+impl Schema for AchievementsAchievementGetUsersAchievementsReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"gameEvent\":{\"type\":\"object\",\"properties\":{\"count\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"eventLifeType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"eventKey\":{\"type\":\"string\"}},\"required\":[\"eventKey\",\"eventLifeType\",\"count\"]},\"description\":{\"type\":\"string\"},\"achievementKey\":{\"type\":\"string\"},\"rewardType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"reward\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"achievementKey\",\"rewardType\",\"reward\",\"description\",\"gameEvent\"]}}")
+    }
+}

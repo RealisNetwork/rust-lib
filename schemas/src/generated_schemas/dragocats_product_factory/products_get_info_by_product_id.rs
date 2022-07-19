@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsProductFactoryProductsGetInfoByProductIdParams {
     #[serde(rename = "productId")]
@@ -13,19 +10,24 @@ pub struct DragocatsProductFactoryProductsGetInfoByProductIdParams {
 }
 impl Schema for DragocatsProductFactoryProductsGetInfoByProductIdParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"productId\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsProductFactoryProductsGetInfoByProductIdReturns {
     #[serde(rename = "personalType")]
     pub personal_type: String,
-    #[serde(rename = "productType")]
-    pub product_type: String,
-    #[serde(rename = "isNft")]
-    pub is_nft: bool,
-    #[serde(rename = "name")]
-    pub name: String,
     #[serde(rename = "subType")]
     pub sub_type: String,
+    #[serde(rename = "isNft")]
+    pub is_nft: bool,
+    #[serde(rename = "productType")]
+    pub product_type: String,
+    #[serde(rename = "name")]
+    pub name: String,
+}
+impl Schema for DragocatsProductFactoryProductsGetInfoByProductIdReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"},\"isNft\":{\"type\":\"boolean\"},\"productType\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}},\"required\":[\"personalType\",\"productType\",\"subType\",\"name\",\"isNft\"]}")
+    }
 }

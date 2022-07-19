@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetUserIdByEmailParams {
     #[serde(rename = "email")]
@@ -13,8 +10,13 @@ pub struct UserProfileGetUserIdByEmailParams {
 }
 impl Schema for UserProfileGetUserIdByEmailParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\"}},\"required\":[\"email\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetUserIdByEmailReturns(String);
+impl Schema for UserProfileGetUserIdByEmailReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"string\"}")
+    }
+}

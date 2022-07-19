@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BalancesBalancesUseFreeExperienceParams {
     #[serde(rename = "txId")]
@@ -15,7 +12,13 @@ pub struct BalancesBalancesUseFreeExperienceParams {
 }
 impl Schema for BalancesBalancesUseFreeExperienceParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"txId\":{\"type\":\"string\"},\"amount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"amount\",\"txId\"]}")
     }
 }
-pub type BalancesBalancesUseFreeExperienceReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct BalancesBalancesUseFreeExperienceReturns(bool);
+impl Schema for BalancesBalancesUseFreeExperienceReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

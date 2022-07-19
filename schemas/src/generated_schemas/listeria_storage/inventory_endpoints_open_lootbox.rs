@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ListeriaStorageInventoryEndpointsOpenLootboxParams {
     #[serde(rename = "bindingId")]
@@ -13,11 +10,11 @@ pub struct ListeriaStorageInventoryEndpointsOpenLootboxParams {
 }
 impl Schema for ListeriaStorageInventoryEndpointsOpenLootboxParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"bindingId\"]}")
     }
 }
 impl<'de> Deserialize<'de> for ListeriaStorageInventoryEndpointsOpenLootboxReturns {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -26,3 +23,8 @@ impl<'de> Deserialize<'de> for ListeriaStorageInventoryEndpointsOpenLootboxRetur
 }
 #[derive(Debug, Clone, Serialize)]
 pub struct ListeriaStorageInventoryEndpointsOpenLootboxReturns;
+impl Schema for ListeriaStorageInventoryEndpointsOpenLootboxReturns {
+    fn schema() -> Value {
+        serde_json::json!("{}")
+    }
+}

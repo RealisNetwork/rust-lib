@@ -2,49 +2,69 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct LobbyStatsOptionsEndpointsCreateOrUpdateParamsAttributesRangesParams {
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: Vec<i64>,
+    #[serde(rename = "health")]
+    pub health: Vec<i64>,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: Vec<i64>,
+    #[serde(rename = "intelligence")]
+    pub intelligence: Vec<i64>,
+    #[serde(rename = "healthRegenPercent")]
+    pub health_regen_percent: Vec<i64>,
+    #[serde(rename = "agility")]
+    pub agility: Vec<i64>,
+    #[serde(rename = "skillPower")]
+    pub skill_power: Vec<i64>,
+    #[serde(rename = "ultPower")]
+    pub ult_power: Vec<i64>,
+    #[serde(rename = "skillEffectPower")]
+    pub skill_effect_power: Vec<i64>,
+    #[serde(rename = "strength")]
+    pub strength: Vec<i64>,
+    #[serde(rename = "armor")]
+    pub armor: Vec<i64>,
+    #[serde(rename = "attackDamage")]
+    pub attack_damage: Vec<i64>,
+    #[serde(rename = "moveSpeed")]
+    pub move_speed: Vec<i64>,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: Vec<i64>,
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyStatsOptionsEndpointsCreateOrUpdateParamsLevelUpOptionsParamsAttributesPerLevelParams
 {
-    #[serde(rename = "agility")]
-    pub agility: i64,
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: i64,
     #[serde(rename = "vampirismPower")]
     pub vampirism_power: i64,
-    #[serde(rename = "strength")]
-    pub strength: i64,
-    #[serde(rename = "health")]
-    pub health: i64,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: i64,
+    #[serde(rename = "healthRegenPercent")]
+    pub health_regen_percent: i64,
+    #[serde(rename = "skillPower")]
+    pub skill_power: i64,
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: i64,
+    #[serde(rename = "intelligence")]
+    pub intelligence: i64,
+    #[serde(rename = "skillEffectPower")]
+    pub skill_effect_power: i64,
+    #[serde(rename = "moveSpeed")]
+    pub move_speed: i64,
     #[serde(rename = "armor")]
     pub armor: i64,
     #[serde(rename = "attackDamage")]
     pub attack_damage: i64,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: i64,
-    #[serde(rename = "skillPower")]
-    pub skill_power: i64,
-    #[serde(rename = "healthRegenPercent")]
-    pub health_regen_percent: i64,
-    #[serde(rename = "intelligence")]
-    pub intelligence: i64,
-    #[serde(rename = "moveSpeed")]
-    pub move_speed: i64,
-    #[serde(rename = "skillEffectPower")]
-    pub skill_effect_power: i64,
+    #[serde(rename = "health")]
+    pub health: i64,
     #[serde(rename = "ultPower")]
     pub ult_power: i64,
-}
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct LobbyStatsOptionsEndpointsCreateOrUpdateParamsLevelUpOptionsParamsScrollsByLevelsParamsParams
-{
-    #[serde(rename = "level")]
-    pub level: i64,
-    #[serde(rename = "scrollsCount")]
-    pub scrolls_count: i64,
+    #[serde(rename = "strength")]
+    pub strength: i64,
+    #[serde(rename = "agility")]
+    pub agility: i64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyStatsOptionsEndpointsCreateOrUpdateParamsLevelUpOptionsParamsExperienceCoefficientsParamsParams
@@ -55,88 +75,71 @@ pub struct LobbyStatsOptionsEndpointsCreateOrUpdateParamsLevelUpOptionsParamsExp
     pub coefficient: i64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct LobbyStatsOptionsEndpointsCreateOrUpdateParamsLevelUpOptionsParams { # [serde (rename = "experience")] pub experience : i64 , # [serde (rename = "baseScrollsCount")] pub base_scrolls_count : i64 , # [serde (rename = "baseExperience")] pub base_experience : i64 , # [serde (rename = "attributesPerLevel")] pub attributes_per_level : LobbyStatsOptionsEndpointsCreateOrUpdateParamsLevelUpOptionsParamsAttributesPerLevelParams , # [serde (rename = "maxLevel")] pub max_level : i64 , # [serde (rename = "scrollsByLevels")] pub scrolls_by_levels : Vec < LobbyStatsOptionsEndpointsCreateOrUpdateParamsLevelUpOptionsParamsScrollsByLevelsParamsParams > , # [serde (rename = "experienceCoefficients")] pub experience_coefficients : Vec < LobbyStatsOptionsEndpointsCreateOrUpdateParamsLevelUpOptionsParamsExperienceCoefficientsParamsParams > , # [serde (rename = "strength")] pub strength : i64 , # [serde (rename = "intelligence")] pub intelligence : i64 , # [serde (rename = "agility")] pub agility : i64 }
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct LobbyStatsOptionsEndpointsCreateOrUpdateParamsAttributesRangesParams {
-    #[serde(rename = "moveSpeed")]
-    pub move_speed: Vec<i64>,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: Vec<i64>,
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: Vec<i64>,
-    #[serde(rename = "ultPower")]
-    pub ult_power: Vec<i64>,
-    #[serde(rename = "health")]
-    pub health: Vec<i64>,
-    #[serde(rename = "attackDamage")]
-    pub attack_damage: Vec<i64>,
-    #[serde(rename = "skillEffectPower")]
-    pub skill_effect_power: Vec<i64>,
-    #[serde(rename = "healthRegenPercent")]
-    pub health_regen_percent: Vec<i64>,
-    #[serde(rename = "vampirismPower")]
-    pub vampirism_power: Vec<i64>,
-    #[serde(rename = "skillPower")]
-    pub skill_power: Vec<i64>,
-    #[serde(rename = "strength")]
-    pub strength: Vec<i64>,
-    #[serde(rename = "agility")]
-    pub agility: Vec<i64>,
-    #[serde(rename = "intelligence")]
-    pub intelligence: Vec<i64>,
-    #[serde(rename = "armor")]
-    pub armor: Vec<i64>,
+pub struct LobbyStatsOptionsEndpointsCreateOrUpdateParamsLevelUpOptionsParamsScrollsByLevelsParamsParams
+{
+    #[serde(rename = "level")]
+    pub level: i64,
+    #[serde(rename = "scrollsCount")]
+    pub scrolls_count: i64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct LobbyStatsOptionsEndpointsCreateOrUpdateParamsLevelUpOptionsParams { # [serde (rename = "baseExperience")] pub base_experience : i64 , # [serde (rename = "attributesPerLevel")] pub attributes_per_level : LobbyStatsOptionsEndpointsCreateOrUpdateParamsLevelUpOptionsParamsAttributesPerLevelParams , # [serde (rename = "experience")] pub experience : i64 , # [serde (rename = "intelligence")] pub intelligence : i64 , # [serde (rename = "experienceCoefficients")] pub experience_coefficients : Vec < LobbyStatsOptionsEndpointsCreateOrUpdateParamsLevelUpOptionsParamsExperienceCoefficientsParamsParams > , # [serde (rename = "maxLevel")] pub max_level : i64 , # [serde (rename = "strength")] pub strength : i64 , # [serde (rename = "scrollsByLevels")] pub scrolls_by_levels : Vec < LobbyStatsOptionsEndpointsCreateOrUpdateParamsLevelUpOptionsParamsScrollsByLevelsParamsParams > , # [serde (rename = "agility")] pub agility : i64 , # [serde (rename = "baseScrollsCount")] pub base_scrolls_count : i64 }
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyStatsOptionsEndpointsCreateOrUpdateParamsMultipliersRangesParams {
-    #[serde(rename = "agility")]
-    pub agility: Vec<i64>,
-    #[serde(rename = "strength")]
-    pub strength: Vec<i64>,
-    #[serde(rename = "intelligence")]
-    pub intelligence: Vec<i64>,
-    #[serde(rename = "armor")]
-    pub armor: Vec<i64>,
-    #[serde(rename = "moveSpeed")]
-    pub move_speed: Vec<i64>,
-    #[serde(rename = "health")]
-    pub health: Vec<i64>,
-    #[serde(rename = "skillPower")]
-    pub skill_power: Vec<i64>,
-    #[serde(rename = "healthRegenPercent")]
-    pub health_regen_percent: Vec<i64>,
     #[serde(rename = "attackDamage")]
     pub attack_damage: Vec<i64>,
+    #[serde(rename = "skillPower")]
+    pub skill_power: Vec<i64>,
     #[serde(rename = "skillEffectPower")]
     pub skill_effect_power: Vec<i64>,
+    #[serde(rename = "health")]
+    pub health: Vec<i64>,
     #[serde(rename = "ultPower")]
     pub ult_power: Vec<i64>,
     #[serde(rename = "ultEffectPower")]
     pub ult_effect_power: Vec<i64>,
     #[serde(rename = "vampirismPower")]
     pub vampirism_power: Vec<i64>,
+    #[serde(rename = "agility")]
+    pub agility: Vec<i64>,
+    #[serde(rename = "intelligence")]
+    pub intelligence: Vec<i64>,
+    #[serde(rename = "moveSpeed")]
+    pub move_speed: Vec<i64>,
+    #[serde(rename = "armor")]
+    pub armor: Vec<i64>,
     #[serde(rename = "attackReloadSpeed")]
     pub attack_reload_speed: Vec<i64>,
+    #[serde(rename = "strength")]
+    pub strength: Vec<i64>,
+    #[serde(rename = "healthRegenPercent")]
+    pub health_regen_percent: Vec<i64>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyStatsOptionsEndpointsCreateOrUpdateParams {
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
-    #[serde(rename = "mainCharacteristic")]
-    pub main_characteristic: Option<String>,
-    #[serde(rename = "levelUpOptions")]
-    pub level_up_options:
-        Option<LobbyStatsOptionsEndpointsCreateOrUpdateParamsLevelUpOptionsParams>,
     #[serde(rename = "attributesRanges")]
     pub attributes_ranges:
         Option<LobbyStatsOptionsEndpointsCreateOrUpdateParamsAttributesRangesParams>,
+    #[serde(rename = "levelUpOptions")]
+    pub level_up_options:
+        Option<LobbyStatsOptionsEndpointsCreateOrUpdateParamsLevelUpOptionsParams>,
+    #[serde(rename = "mainCharacteristic")]
+    pub main_characteristic: Option<String>,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
     #[serde(rename = "multipliersRanges")]
     pub multipliers_ranges:
         Option<LobbyStatsOptionsEndpointsCreateOrUpdateParamsMultipliersRangesParams>,
 }
 impl Schema for LobbyStatsOptionsEndpointsCreateOrUpdateParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"attributesRanges\":{\"type\":\"object\",\"properties\":{\"ultEffectPower\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"health\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"vampirismPower\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"intelligence\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"healthRegenPercent\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"agility\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"skillPower\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"ultPower\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"skillEffectPower\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"strength\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"armor\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"attackDamage\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"moveSpeed\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"attackReloadSpeed\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}}},\"required\":[\"strength\",\"agility\",\"intelligence\",\"health\",\"healthRegenPercent\",\"armor\",\"moveSpeed\",\"attackDamage\",\"attackReloadSpeed\",\"skillPower\",\"skillEffectPower\",\"ultPower\",\"ultEffectPower\",\"vampirismPower\"]},\"levelUpOptions\":{\"type\":\"object\",\"properties\":{\"baseExperience\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"attributesPerLevel\":{\"type\":\"object\",\"properties\":{\"vampirismPower\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"attackReloadSpeed\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"healthRegenPercent\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"skillPower\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"ultEffectPower\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"intelligence\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"skillEffectPower\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"moveSpeed\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"armor\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"attackDamage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"health\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"ultPower\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"strength\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"agility\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"strength\",\"agility\",\"intelligence\",\"health\",\"healthRegenPercent\",\"armor\",\"moveSpeed\",\"attackDamage\",\"attackReloadSpeed\",\"skillPower\",\"skillEffectPower\",\"ultPower\",\"ultEffectPower\",\"vampirismPower\"]},\"experience\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"intelligence\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"experienceCoefficients\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"level\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"coefficient\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"coefficient\",\"level\"]}},\"maxLevel\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"strength\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"scrollsByLevels\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"level\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"scrollsCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"scrollsCount\",\"level\"]}},\"agility\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"baseScrollsCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"strength\",\"agility\",\"intelligence\",\"attributesPerLevel\",\"experience\",\"experienceCoefficients\",\"baseExperience\",\"baseScrollsCount\",\"scrollsByLevels\",\"maxLevel\"]},\"mainCharacteristic\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"multipliersRanges\":{\"type\":\"object\",\"properties\":{\"attackDamage\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"skillPower\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"skillEffectPower\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"health\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"ultPower\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"ultEffectPower\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"vampirismPower\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"agility\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"intelligence\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"moveSpeed\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"armor\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"attackReloadSpeed\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"strength\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"healthRegenPercent\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}}},\"required\":[\"strength\",\"agility\",\"intelligence\",\"health\",\"healthRegenPercent\",\"armor\",\"moveSpeed\",\"attackDamage\",\"attackReloadSpeed\",\"skillPower\",\"skillEffectPower\",\"ultPower\",\"ultEffectPower\",\"vampirismPower\"]}},\"required\":[\"personalType\"]}")
     }
 }
-pub type LobbyStatsOptionsEndpointsCreateOrUpdateReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct LobbyStatsOptionsEndpointsCreateOrUpdateReturns(bool);
+impl Schema for LobbyStatsOptionsEndpointsCreateOrUpdateReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

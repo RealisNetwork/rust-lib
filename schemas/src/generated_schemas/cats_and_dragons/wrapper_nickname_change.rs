@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperNicknameChangeParams {
     #[serde(rename = "newNickname")]
@@ -15,11 +12,16 @@ pub struct CatsAndDragonsWrapperNicknameChangeParams {
 }
 impl Schema for CatsAndDragonsWrapperNicknameChangeParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newNickname\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"newNickname\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperNicknameChangeReturns {
     #[serde(rename = "isNicknameChanged")]
     pub is_nickname_changed: bool,
+}
+impl Schema for CatsAndDragonsWrapperNicknameChangeReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isNicknameChanged\":{\"type\":\"boolean\"}},\"required\":[\"isNicknameChanged\"]}")
+    }
 }

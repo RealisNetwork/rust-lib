@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileChangeNicknameParams {
     #[serde(rename = "newNickname")]
@@ -13,7 +10,13 @@ pub struct UserProfileChangeNicknameParams {
 }
 impl Schema for UserProfileChangeNicknameParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newNickname\":{\"type\":\"string\"}},\"required\":[\"newNickname\"]}")
     }
 }
-pub type UserProfileChangeNicknameReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct UserProfileChangeNicknameReturns(bool);
+impl Schema for UserProfileChangeNicknameReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

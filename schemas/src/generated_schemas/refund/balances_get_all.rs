@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllParams {
     #[serde(rename = "userId")]
@@ -13,22 +10,28 @@ pub struct RefundBalancesGetAllParams {
 }
 impl Schema for RefundBalancesGetAllParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllReturnsParams {
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
     #[serde(rename = "currency")]
     pub currency: (),
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "lockedUntil")]
     pub locked_until: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "lockedFunds")]
     pub locked_funds: String,
     #[serde(rename = "createdAt")]
     pub created_at: String,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: String,
 }
-pub type RefundBalancesGetAllReturns = Vec<RefundBalancesGetAllReturnsParams>;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct RefundBalancesGetAllReturns(Vec<RefundBalancesGetAllReturnsParams>);
+impl Schema for RefundBalancesGetAllReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"updatedAt\":{\"type\":\"string\",\"format\":\"date\"},\"currency\":{},\"lockedUntil\":{\"type\":\"string\",\"format\":\"date\"},\"userId\":{\"type\":\"string\"},\"lockedFunds\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\",\"format\":\"date\"}},\"required\":[\"userId\",\"lockedFunds\",\"currency\",\"lockedUntil\",\"createdAt\",\"updatedAt\"]}}")
+    }
+}

@@ -2,20 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipChangeMembershipGameParams {
-    #[serde(rename = "id")]
-    pub id: i64,
     #[serde(rename = "newAppId")]
     pub new_app_id: i64,
+    #[serde(rename = "id")]
+    pub id: i64,
 }
 impl Schema for StatusMembershipChangeMembershipGameParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newAppId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"newAppId\"]}")
     }
 }
-pub type StatusMembershipChangeMembershipGameReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct StatusMembershipChangeMembershipGameReturns(bool);
+impl Schema for StatusMembershipChangeMembershipGameReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

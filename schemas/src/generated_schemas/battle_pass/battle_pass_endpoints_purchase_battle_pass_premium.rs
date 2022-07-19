@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsPurchaseBattlePassPremiumParams {
     #[serde(rename = "battlePassType")]
@@ -13,11 +10,16 @@ pub struct BattlePassBattlePassEndpointsPurchaseBattlePassPremiumParams {
 }
 impl Schema for BattlePassBattlePassEndpointsPurchaseBattlePassPremiumParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"battlePassType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"battlePassType\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsPurchaseBattlePassPremiumReturns {
     #[serde(rename = "battlePassType")]
     pub battle_pass_type: i32,
+}
+impl Schema for BattlePassBattlePassEndpointsPurchaseBattlePassPremiumReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"battlePassType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"battlePassType\"]}")
+    }
 }

@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeIsExistParams {
     #[serde(rename = "personalType")]
@@ -13,7 +10,13 @@ pub struct ProductFactoryProductTypeIsExistParams {
 }
 impl Schema for ProductFactoryProductTypeIsExistParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"}},\"required\":[\"personalType\"]}")
     }
 }
-pub type ProductFactoryProductTypeIsExistReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ProductFactoryProductTypeIsExistReturns(bool);
+impl Schema for ProductFactoryProductTypeIsExistReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

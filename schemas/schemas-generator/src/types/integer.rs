@@ -55,7 +55,6 @@ impl Integer {
         SchemaDeclaration {
             declaration,
             prefix,
-            contains_struct: true,
         }
     }
 }

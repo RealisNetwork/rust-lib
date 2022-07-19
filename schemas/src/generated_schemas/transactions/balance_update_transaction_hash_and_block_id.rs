@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceUpdateTransactionHashAndBlockIdParams {
     #[serde(rename = "newTxId")]
@@ -17,7 +14,13 @@ pub struct TransactionsBalanceUpdateTransactionHashAndBlockIdParams {
 }
 impl Schema for TransactionsBalanceUpdateTransactionHashAndBlockIdParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newTxId\":{\"type\":\"string\"},\"newBlockId\":{\"type\":\"string\"},\"oldTxId\":{\"type\":\"string\"}},\"required\":[\"oldTxId\",\"newTxId\",\"newBlockId\"]}")
     }
 }
-pub type TransactionsBalanceUpdateTransactionHashAndBlockIdReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TransactionsBalanceUpdateTransactionHashAndBlockIdReturns(bool);
+impl Schema for TransactionsBalanceUpdateTransactionHashAndBlockIdReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

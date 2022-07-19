@@ -2,20 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceUpdateProviderStatusByProviderIdParams {
-    #[serde(rename = "status")]
-    pub status: (),
     #[serde(rename = "providerId")]
     pub provider_id: String,
+    #[serde(rename = "status")]
+    pub status: (),
 }
 impl Schema for AuthAuthDeviceUpdateProviderStatusByProviderIdParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"providerId\":{\"type\":\"string\"},\"status\":{}},\"required\":[\"providerId\",\"status\"]}")
     }
 }
-pub type AuthAuthDeviceUpdateProviderStatusByProviderIdReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AuthAuthDeviceUpdateProviderStatusByProviderIdReturns(bool);
+impl Schema for AuthAuthDeviceUpdateProviderStatusByProviderIdReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

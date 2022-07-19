@@ -2,22 +2,25 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceIsAuthorizedParams {
+    #[serde(rename = "internalUserId")]
+    pub internal_user_id: String,
     #[serde(rename = "appId")]
     pub app_id: i64,
     #[serde(rename = "providerId")]
     pub provider_id: String,
-    #[serde(rename = "internalUserId")]
-    pub internal_user_id: String,
 }
 impl Schema for AuthAuthDeviceIsAuthorizedParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"internalUserId\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"providerId\":{\"type\":\"string\"}},\"required\":[\"internalUserId\",\"appId\",\"providerId\"]}")
     }
 }
-pub type AuthAuthDeviceIsAuthorizedReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AuthAuthDeviceIsAuthorizedReturns(bool);
+impl Schema for AuthAuthDeviceIsAuthorizedReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

@@ -2,12 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for AdminUserRoleGetMyRoleParams {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -18,15 +15,20 @@ impl<'de> Deserialize<'de> for AdminUserRoleGetMyRoleParams {
 pub struct AdminUserRoleGetMyRoleParams;
 impl Schema for AdminUserRoleGetMyRoleParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleGetMyRoleReturns {
+    #[serde(rename = "name")]
+    pub name: String,
     #[serde(rename = "methods")]
     pub methods: Vec<String>,
     #[serde(rename = "id")]
     pub id: i64,
-    #[serde(rename = "name")]
-    pub name: String,
+}
+impl Schema for AdminUserRoleGetMyRoleReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"methods\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"name\",\"methods\"]}")
+    }
 }

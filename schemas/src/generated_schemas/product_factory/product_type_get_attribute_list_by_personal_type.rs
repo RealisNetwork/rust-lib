@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeGetAttributeListByPersonalTypeParams {
     #[serde(rename = "personalType")]
@@ -13,8 +10,13 @@ pub struct ProductFactoryProductTypeGetAttributeListByPersonalTypeParams {
 }
 impl Schema for ProductFactoryProductTypeGetAttributeListByPersonalTypeParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"}},\"required\":[\"personalType\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeGetAttributeListByPersonalTypeReturns {}
+impl Schema for ProductFactoryProductTypeGetAttributeListByPersonalTypeReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
+    }
+}

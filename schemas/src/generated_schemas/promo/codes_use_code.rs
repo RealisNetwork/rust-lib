@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesUseCodeParams {
     #[serde(rename = "code")]
@@ -13,18 +10,24 @@ pub struct PromoCodesUseCodeParams {
 }
 impl Schema for PromoCodesUseCodeParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesUseCodeReturnsParams {
-    #[serde(rename = "rewardType")]
-    pub reward_type: String,
     #[serde(rename = "currencyKey")]
     pub currency_key: String,
     #[serde(rename = "heroId")]
     pub hero_id: i8,
+    #[serde(rename = "rewardType")]
+    pub reward_type: String,
     #[serde(rename = "currencyAmount")]
     pub currency_amount: String,
 }
-pub type PromoCodesUseCodeReturns = Vec<PromoCodesUseCodeReturnsParams>;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct PromoCodesUseCodeReturns(Vec<PromoCodesUseCodeReturnsParams>);
+impl Schema for PromoCodesUseCodeReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"currencyKey\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"},\"heroId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"rewardType\":{\"type\":\"string\"},\"currencyAmount\":{\"type\":\"string\"}},\"required\":[\"rewardType\",\"currencyKey\",\"currencyAmount\",\"heroId\"]}}")
+    }
+}

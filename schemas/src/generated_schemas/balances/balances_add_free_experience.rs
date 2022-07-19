@@ -2,24 +2,26 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BalancesBalancesAddFreeExperienceParams {
-    #[serde(rename = "amount")]
-    pub amount: i16,
     #[serde(rename = "txId")]
     pub tx_id: String,
+    #[serde(rename = "amount")]
+    pub amount: i16,
 }
 impl Schema for BalancesBalancesAddFreeExperienceParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"txId\":{\"type\":\"string\"},\"amount\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}}},\"required\":[\"amount\",\"txId\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BalancesBalancesAddFreeExperienceReturns {
     #[serde(rename = "balance")]
     pub balance: i32,
+}
+impl Schema for BalancesBalancesAddFreeExperienceReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"balance\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"balance\"]}")
+    }
 }

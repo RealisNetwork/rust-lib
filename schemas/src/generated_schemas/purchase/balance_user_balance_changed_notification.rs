@@ -2,12 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for PurchaseBalanceUserBalanceChangedNotificationParams {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -18,7 +15,7 @@ impl<'de> Deserialize<'de> for PurchaseBalanceUserBalanceChangedNotificationPara
 pub struct PurchaseBalanceUserBalanceChangedNotificationParams;
 impl Schema for PurchaseBalanceUserBalanceChangedNotificationParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -27,10 +24,15 @@ pub struct PurchaseBalanceUserBalanceChangedNotificationReturns {
     pub transaction_hash: String,
     #[serde(rename = "balance")]
     pub balance: String,
+    #[serde(rename = "blockId")]
+    pub block_id: String,
     #[serde(rename = "amount")]
     pub amount: String,
     #[serde(rename = "currency")]
     pub currency: String,
-    #[serde(rename = "blockId")]
-    pub block_id: String,
+}
+impl Schema for PurchaseBalanceUserBalanceChangedNotificationReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"transactionHash\":{\"type\":\"string\"},\"balance\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"}},\"required\":[\"currency\",\"amount\",\"transactionHash\",\"balance\",\"blockId\"]}")
+    }
 }

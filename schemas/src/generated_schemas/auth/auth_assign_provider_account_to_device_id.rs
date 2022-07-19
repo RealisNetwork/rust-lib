@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthAssignProviderAccountToDeviceIdParams {
     #[serde(rename = "token")]
@@ -13,7 +10,13 @@ pub struct AuthAuthAssignProviderAccountToDeviceIdParams {
 }
 impl Schema for AuthAuthAssignProviderAccountToDeviceIdParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"token\":{\"type\":\"string\"}},\"required\":[\"token\"]}")
     }
 }
-pub type AuthAuthAssignProviderAccountToDeviceIdReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AuthAuthAssignProviderAccountToDeviceIdReturns(bool);
+impl Schema for AuthAuthAssignProviderAccountToDeviceIdReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

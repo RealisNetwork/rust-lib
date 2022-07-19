@@ -4,7 +4,6 @@ use quote::{quote, ToTokens};
 pub struct SchemaDeclaration {
     pub declaration: TokenStream,
     pub prefix: TokenStream,
-    pub contains_struct: bool,
 }
 
 impl Default for SchemaDeclaration {
@@ -12,7 +11,6 @@ impl Default for SchemaDeclaration {
         SchemaDeclaration {
             declaration: quote! {},
             prefix: quote! {},
-            contains_struct: false,
         }
     }
 }

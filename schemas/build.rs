@@ -6,9 +6,6 @@ use schemas_generator::{
 
 fn main() {
     let git_loader = GitLoader::load(None).expect("Fail to load env");
-    println!("{:?}", git_loader);
 
-    let json: Vec<Agent> = git_loader.start().expect("Fail to load from Git");
-
-    println!("{:#?}", json);
+    let _json: Vec<Agent> = git_loader.start().expect("Fail to load from Git");
 }

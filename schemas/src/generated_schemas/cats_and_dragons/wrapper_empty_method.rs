@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperEmptyMethodParams {
     #[serde(rename = "accessToken")]
@@ -13,8 +10,13 @@ pub struct CatsAndDragonsWrapperEmptyMethodParams {
 }
 impl Schema for CatsAndDragonsWrapperEmptyMethodParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"accessToken\":{\"type\":\"string\"}},\"required\":[\"accessToken\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperEmptyMethodReturns {}
+impl Schema for CatsAndDragonsWrapperEmptyMethodReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
+    }
+}

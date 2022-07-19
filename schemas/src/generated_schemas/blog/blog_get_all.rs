@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllParams {
     #[serde(rename = "page")]
@@ -15,26 +12,31 @@ pub struct BlogBlogGetAllParams {
 }
 impl Schema for BlogBlogGetAllParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"page\",\"perPage\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllReturnsDataParamsParams {
+    #[serde(rename = "views")]
+    pub views: i64,
+    #[serde(rename = "title")]
+    pub title: String,
     #[serde(rename = "id")]
     pub id: i64,
     #[serde(rename = "isPinned")]
     pub is_pinned: bool,
-    #[serde(rename = "title")]
-    pub title: String,
     #[serde(rename = "url")]
     pub url: String,
-    #[serde(rename = "views")]
-    pub views: i64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllReturns {
-    #[serde(rename = "totalCount")]
-    pub total_count: i64,
     #[serde(rename = "data")]
     pub data: Vec<BlogBlogGetAllReturnsDataParamsParams>,
+    #[serde(rename = "totalCount")]
+    pub total_count: i64,
+}
+impl Schema for BlogBlogGetAllReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"views\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"title\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isPinned\":{\"type\":\"boolean\"},\"url\":{\"type\":\"string\"}},\"required\":[\"id\",\"url\",\"title\",\"isPinned\",\"views\"]}},\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"totalCount\",\"data\"]}")
+    }
 }

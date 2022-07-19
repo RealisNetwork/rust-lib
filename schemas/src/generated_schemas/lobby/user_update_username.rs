@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserUpdateUsernameParams {
     #[serde(rename = "newUsername")]
@@ -13,11 +10,16 @@ pub struct LobbyUserUpdateUsernameParams {
 }
 impl Schema for LobbyUserUpdateUsernameParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newUsername\":{\"type\":\"string\"}},\"required\":[\"newUsername\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserUpdateUsernameReturns {
     #[serde(rename = "newUsername")]
     pub new_username: String,
+}
+impl Schema for LobbyUserUpdateUsernameReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newUsername\":{\"type\":\"string\"}},\"required\":[\"newUsername\"]}")
+    }
 }

@@ -2,20 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileChangeEmailParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "newEmail")]
     pub new_email: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for UserProfileChangeEmailParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newEmail\":{\"type\":\"string\",\"format\":\"email\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"newEmail\"]}")
     }
 }
-pub type UserProfileChangeEmailReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct UserProfileChangeEmailReturns(bool);
+impl Schema for UserProfileChangeEmailReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

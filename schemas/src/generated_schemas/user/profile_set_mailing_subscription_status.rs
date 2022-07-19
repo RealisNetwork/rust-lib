@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileSetMailingSubscriptionStatusParams {
     #[serde(rename = "status")]
@@ -13,7 +10,13 @@ pub struct UserProfileSetMailingSubscriptionStatusParams {
 }
 impl Schema for UserProfileSetMailingSubscriptionStatusParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"boolean\"}},\"required\":[\"status\"]}")
     }
 }
-pub type UserProfileSetMailingSubscriptionStatusReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct UserProfileSetMailingSubscriptionStatusReturns(bool);
+impl Schema for UserProfileSetMailingSubscriptionStatusReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

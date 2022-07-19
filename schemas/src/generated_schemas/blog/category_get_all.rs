@@ -2,12 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for BlogCategoryGetAllParams {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -18,16 +15,22 @@ impl<'de> Deserialize<'de> for BlogCategoryGetAllParams {
 pub struct BlogCategoryGetAllParams;
 impl Schema for BlogCategoryGetAllParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogCategoryGetAllReturnsParams {
-    #[serde(rename = "name")]
-    pub name: String,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "name")]
+    pub name: String,
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
 }
-pub type BlogCategoryGetAllReturns = Vec<BlogCategoryGetAllReturnsParams>;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct BlogCategoryGetAllReturns(Vec<BlogCategoryGetAllReturnsParams>);
+impl Schema for BlogCategoryGetAllReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"name\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"name\",\"isAvailable\"]}}")
+    }
+}

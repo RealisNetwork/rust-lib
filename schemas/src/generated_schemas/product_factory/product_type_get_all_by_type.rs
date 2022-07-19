@@ -2,26 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeGetAllByTypeParams {
+    #[serde(rename = "page")]
+    pub page: Option<i64>,
     #[serde(rename = "perPage")]
     pub per_page: Option<i64>,
     #[serde(rename = "type")]
     pub r#type: String,
-    #[serde(rename = "page")]
-    pub page: Option<i64>,
 }
 impl Schema for ProductFactoryProductTypeGetAllByTypeParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"type\":{\"type\":\"string\"}},\"required\":[\"type\"]}")
     }
 }
 impl<'de> Deserialize<'de> for ProductFactoryProductTypeGetAllByTypeReturns {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -30,3 +27,8 @@ impl<'de> Deserialize<'de> for ProductFactoryProductTypeGetAllByTypeReturns {
 }
 #[derive(Debug, Clone, Serialize)]
 pub struct ProductFactoryProductTypeGetAllByTypeReturns;
+impl Schema for ProductFactoryProductTypeGetAllByTypeReturns {
+    fn schema() -> Value {
+        serde_json::json!("{}")
+    }
+}

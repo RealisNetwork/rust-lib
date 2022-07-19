@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileUnsetNoticeParams {
     #[serde(rename = "userId")]
@@ -13,7 +10,13 @@ pub struct UserProfileUnsetNoticeParams {
 }
 impl Schema for UserProfileUnsetNoticeParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
-pub type UserProfileUnsetNoticeReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct UserProfileUnsetNoticeReturns(bool);
+impl Schema for UserProfileUnsetNoticeReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceIsNewClientInAppParams {
     #[serde(rename = "userId")]
@@ -15,7 +12,13 @@ pub struct AuthAuthDeviceIsNewClientInAppParams {
 }
 impl Schema for AuthAuthDeviceIsNewClientInAppParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"userId\",\"appId\"]}")
     }
 }
-pub type AuthAuthDeviceIsNewClientInAppReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AuthAuthDeviceIsNewClientInAppReturns(bool);
+impl Schema for AuthAuthDeviceIsNewClientInAppReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

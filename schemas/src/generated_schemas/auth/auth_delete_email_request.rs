@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeleteEmailRequestParams {
     #[serde(rename = "emailHash")]
@@ -13,7 +10,13 @@ pub struct AuthAuthDeleteEmailRequestParams {
 }
 impl Schema for AuthAuthDeleteEmailRequestParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"emailHash\":{\"type\":\"string\"}},\"required\":[\"emailHash\"]}")
     }
 }
-pub type AuthAuthDeleteEmailRequestReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AuthAuthDeleteEmailRequestReturns(bool);
+impl Schema for AuthAuthDeleteEmailRequestReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

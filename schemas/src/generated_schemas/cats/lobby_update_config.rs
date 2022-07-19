@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyUpdateConfigParams {
     #[serde(rename = "configKey")]
@@ -15,11 +12,11 @@ pub struct CatsLobbyUpdateConfigParams {
 }
 impl Schema for CatsLobbyUpdateConfigParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"configKey\":{\"type\":\"string\"},\"configJson\":{\"type\":\"string\"}},\"required\":[\"configKey\",\"configJson\"]}")
     }
 }
 impl<'de> Deserialize<'de> for CatsLobbyUpdateConfigReturns {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -28,3 +25,8 @@ impl<'de> Deserialize<'de> for CatsLobbyUpdateConfigReturns {
 }
 #[derive(Debug, Clone, Serialize)]
 pub struct CatsLobbyUpdateConfigReturns;
+impl Schema for CatsLobbyUpdateConfigReturns {
+    fn schema() -> Value {
+        serde_json::json!("{}")
+    }
+}

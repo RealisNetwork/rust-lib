@@ -2,12 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for PromoCodesGetListStrictParams {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -18,9 +15,15 @@ impl<'de> Deserialize<'de> for PromoCodesGetListStrictParams {
 pub struct PromoCodesGetListStrictParams;
 impl Schema for PromoCodesGetListStrictParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesGetListStrictReturnsParams {}
-pub type PromoCodesGetListStrictReturns = Vec<PromoCodesGetListStrictReturnsParams>;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct PromoCodesGetListStrictReturns(Vec<PromoCodesGetListStrictReturnsParams>);
+impl Schema for PromoCodesGetListStrictReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{},\"required\":null}}")
+    }
+}

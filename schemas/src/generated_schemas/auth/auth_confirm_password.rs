@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthConfirmPasswordParams {
     #[serde(rename = "password")]
@@ -13,7 +10,13 @@ pub struct AuthAuthConfirmPasswordParams {
 }
 impl Schema for AuthAuthConfirmPasswordParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"password\":{\"type\":\"string\"}},\"required\":[\"password\"]}")
     }
 }
-pub type AuthAuthConfirmPasswordReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AuthAuthConfirmPasswordReturns(bool);
+impl Schema for AuthAuthConfirmPasswordReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

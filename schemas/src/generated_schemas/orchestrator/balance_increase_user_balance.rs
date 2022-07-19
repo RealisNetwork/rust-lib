@@ -2,28 +2,31 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorBalanceIncreaseUserBalanceParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "topicToSuccessResponse")]
-    pub topic_to_success_response: String,
     #[serde(rename = "creator")]
     pub creator: String,
     #[serde(rename = "currency")]
     pub currency: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "topicToSuccessResponse")]
+    pub topic_to_success_response: String,
     #[serde(rename = "amount")]
     pub amount: String,
 }
 impl Schema for OrchestratorBalanceIncreaseUserBalanceParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"creator\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"},\"txId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"topicToSuccessResponse\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\",\"topicToSuccessResponse\"]}")
     }
 }
-pub type OrchestratorBalanceIncreaseUserBalanceReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct OrchestratorBalanceIncreaseUserBalanceReturns(bool);
+impl Schema for OrchestratorBalanceIncreaseUserBalanceReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

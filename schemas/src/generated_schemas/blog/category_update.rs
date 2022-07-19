@@ -2,22 +2,25 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogCategoryUpdateParams {
-    #[serde(rename = "name")]
-    pub name: String,
-    #[serde(rename = "isAvailable")]
-    pub is_available: Option<bool>,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "isAvailable")]
+    pub is_available: Option<bool>,
+    #[serde(rename = "name")]
+    pub name: String,
 }
 impl Schema for BlogCategoryUpdateParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isAvailable\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\"]}")
     }
 }
-pub type BlogCategoryUpdateReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct BlogCategoryUpdateReturns(bool);
+impl Schema for BlogCategoryUpdateReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundItemsGetAllUnavailableParams {
     #[serde(rename = "userId")]
@@ -13,22 +10,28 @@ pub struct RefundItemsGetAllUnavailableParams {
 }
 impl Schema for RefundItemsGetAllUnavailableParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundItemsGetAllUnavailableReturnsParams {
-    #[serde(rename = "updatedAt")]
-    pub updated_at: String,
-    #[serde(rename = "hashItemId")]
-    pub hash_item_id: i64,
     #[serde(rename = "lockedUntil")]
     pub locked_until: i64,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "createdAt")]
     pub created_at: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "hashItemId")]
+    pub hash_item_id: i64,
 }
-pub type RefundItemsGetAllUnavailableReturns = Vec<RefundItemsGetAllUnavailableReturnsParams>;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct RefundItemsGetAllUnavailableReturns(Vec<RefundItemsGetAllUnavailableReturnsParams>);
+impl Schema for RefundItemsGetAllUnavailableReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"lockedUntil\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"hashItemId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"userId\",\"hashItemId\",\"lockedUntil\",\"createdAt\",\"updatedAt\"]}}")
+    }
+}

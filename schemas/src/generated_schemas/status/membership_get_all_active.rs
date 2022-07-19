@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipGetAllActiveParams {
     #[serde(rename = "userId")]
@@ -13,38 +10,44 @@ pub struct StatusMembershipGetAllActiveParams {
 }
 impl Schema for StatusMembershipGetAllActiveParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipGetAllActiveReturnsParamsMembershipParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipGetAllActiveReturnsParams {
-    #[serde(rename = "userId")]
-    pub user_id: i64,
-    #[serde(rename = "endDate")]
-    pub end_date: String,
     #[serde(rename = "subscriptionOrderId")]
     pub subscription_order_id: String,
-    #[serde(rename = "subscriptionProductId")]
-    pub subscription_product_id: String,
-    #[serde(rename = "subscriptionToken")]
-    pub subscription_token: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "id")]
-    pub id: i64,
-    #[serde(rename = "isActive")]
-    pub is_active: bool,
     #[serde(rename = "subscriptionTokenHash")]
     pub subscription_token_hash: String,
     #[serde(rename = "membership")]
     pub membership: StatusMembershipGetAllActiveReturnsParamsMembershipParams,
+    #[serde(rename = "subscriptionToken")]
+    pub subscription_token: String,
+    #[serde(rename = "subscriptionProductId")]
+    pub subscription_product_id: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "endDate")]
+    pub end_date: String,
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
-    #[serde(rename = "appId")]
-    pub app_id: i64,
     #[serde(rename = "duration")]
     pub duration: String,
+    #[serde(rename = "appId")]
+    pub app_id: i64,
+    #[serde(rename = "id")]
+    pub id: i64,
+    #[serde(rename = "userId")]
+    pub user_id: i64,
+    #[serde(rename = "isActive")]
+    pub is_active: bool,
 }
-pub type StatusMembershipGetAllActiveReturns = Vec<StatusMembershipGetAllActiveReturnsParams>;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct StatusMembershipGetAllActiveReturns(Vec<StatusMembershipGetAllActiveReturnsParams>);
+impl Schema for StatusMembershipGetAllActiveReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"subscriptionOrderId\":{\"type\":\"string\"},\"subscriptionTokenHash\":{\"type\":\"string\"},\"membership\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"subscriptionToken\":{\"type\":\"string\"},\"subscriptionProductId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"endDate\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"duration\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isActive\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"userId\",\"appId\",\"isActive\",\"endDate\",\"duration\",\"subscriptionProductId\",\"subscriptionOrderId\",\"subscriptionToken\",\"subscriptionTokenHash\",\"createdAt\",\"updatedAt\",\"membership\"]}}")
+    }
+}

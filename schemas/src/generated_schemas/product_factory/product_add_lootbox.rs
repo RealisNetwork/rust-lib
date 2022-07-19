@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductAddLootboxParams {
     #[serde(rename = "userId")]
@@ -15,7 +12,13 @@ pub struct ProductFactoryProductAddLootboxParams {
 }
 impl Schema for ProductFactoryProductAddLootboxParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"}},\"required\":[\"userId\",\"personalType\"]}")
     }
 }
-pub type ProductFactoryProductAddLootboxReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ProductFactoryProductAddLootboxReturns(bool);
+impl Schema for ProductFactoryProductAddLootboxReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

@@ -2,24 +2,27 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryLootboxTypeAddParams {
     #[serde(rename = "lootboxId")]
     pub lootbox_id: i32,
-    #[serde(rename = "name")]
-    pub name: String,
-    #[serde(rename = "dropChanceMultiplier")]
-    pub drop_chance_multiplier: i32,
     #[serde(rename = "type")]
     pub r#type: String,
+    #[serde(rename = "dropChanceMultiplier")]
+    pub drop_chance_multiplier: i32,
+    #[serde(rename = "name")]
+    pub name: String,
 }
 impl Schema for ProductFactoryLootboxTypeAddParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"lootboxId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"type\":{\"type\":\"string\"},\"dropChanceMultiplier\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"name\":{\"type\":\"string\"}},\"required\":[\"name\",\"type\",\"lootboxId\",\"dropChanceMultiplier\"]}")
     }
 }
-pub type ProductFactoryLootboxTypeAddReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ProductFactoryLootboxTypeAddReturns(bool);
+impl Schema for ProductFactoryLootboxTypeAddReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

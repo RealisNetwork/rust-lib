@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthGetAccessTokenByRefreshParams {
     #[serde(rename = "refreshToken")]
@@ -13,13 +10,18 @@ pub struct AuthAuthGetAccessTokenByRefreshParams {
 }
 impl Schema for AuthAuthGetAccessTokenByRefreshParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"refreshToken\":{\"type\":\"string\"}},\"required\":[\"refreshToken\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthGetAccessTokenByRefreshReturns {
-    #[serde(rename = "access_token")]
-    pub access_token: String,
     #[serde(rename = "expires_in")]
     pub expires_in: i64,
+    #[serde(rename = "access_token")]
+    pub access_token: String,
+}
+impl Schema for AuthAuthGetAccessTokenByRefreshReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"expires_in\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"access_token\":{\"type\":\"string\"}},\"required\":[\"access_token\",\"expires_in\"]}")
+    }
 }

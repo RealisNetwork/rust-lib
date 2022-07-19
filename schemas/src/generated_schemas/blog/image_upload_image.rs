@@ -2,21 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogImageUploadImageParams {
-    #[serde(rename = "extension")]
-    pub extension: String,
     #[serde(rename = "binary")]
     pub binary: String,
+    #[serde(rename = "extension")]
+    pub extension: String,
 }
 impl Schema for BlogImageUploadImageParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"binary\":{\"type\":\"string\"},\"extension\":{\"type\":\"string\"}},\"required\":[\"binary\",\"extension\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogImageUploadImageReturns(String);
+impl Schema for BlogImageUploadImageReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"string\"}")
+    }
+}

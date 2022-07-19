@@ -2,12 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for AdminOptionGetListParams {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -18,7 +15,7 @@ impl<'de> Deserialize<'de> for AdminOptionGetListParams {
 pub struct AdminOptionGetListParams;
 impl Schema for AdminOptionGetListParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -30,4 +27,10 @@ pub struct AdminOptionGetListReturnsParams {
     #[serde(rename = "value")]
     pub value: String,
 }
-pub type AdminOptionGetListReturns = Vec<AdminOptionGetListReturnsParams>;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AdminOptionGetListReturns(Vec<AdminOptionGetListReturnsParams>);
+impl Schema for AdminOptionGetListReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"scope\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\"]}}")
+    }
+}

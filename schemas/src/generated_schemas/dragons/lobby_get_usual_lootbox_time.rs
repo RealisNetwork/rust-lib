@@ -2,19 +2,16 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbyGetUsualLootboxTimeParams {}
 impl Schema for DragonsLobbyGetUsualLootboxTimeParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
     }
 }
 impl<'de> Deserialize<'de> for DragonsLobbyGetUsualLootboxTimeReturns {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -23,3 +20,8 @@ impl<'de> Deserialize<'de> for DragonsLobbyGetUsualLootboxTimeReturns {
 }
 #[derive(Debug, Clone, Serialize)]
 pub struct DragonsLobbyGetUsualLootboxTimeReturns;
+impl Schema for DragonsLobbyGetUsualLootboxTimeReturns {
+    fn schema() -> Value {
+        serde_json::json!("{}")
+    }
+}

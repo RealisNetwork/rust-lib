@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsStorageUnitEndpointsGetByUnitIdParams {
     #[serde(rename = "unitId")]
@@ -13,7 +10,7 @@ pub struct DragocatsStorageUnitEndpointsGetByUnitIdParams {
 }
 impl Schema for DragocatsStorageUnitEndpointsGetByUnitIdParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"unitId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"unitId\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -21,31 +18,36 @@ pub struct DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParamsAttri
 {
     #[serde(rename = "stamina")]
     pub stamina: (),
-    #[serde(rename = "speed")]
-    pub speed: (),
     #[serde(rename = "power")]
     pub power: (),
+    #[serde(rename = "speed")]
+    pub speed: (),
     #[serde(rename = "defence")]
     pub defence: (),
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParams { # [serde (rename = "attributesCoefficients")] pub attributes_coefficients : DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParamsAttributesCoefficientsParams , # [serde (rename = "element")] pub element : String , # [serde (rename = "typeId")] pub type_id : i32 , # [serde (rename = "slotId")] pub slot_id : i32 }
+pub struct DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParams { # [serde (rename = "typeId")] pub type_id : i32 , # [serde (rename = "slotId")] pub slot_id : i32 , # [serde (rename = "attributesCoefficients")] pub attributes_coefficients : DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParamsAttributesCoefficientsParams , # [serde (rename = "element")] pub element : String }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsStorageUnitEndpointsGetByUnitIdReturns {
-    #[serde(rename = "experienceForLevelup")]
-    pub experience_for_levelup: i32,
-    #[serde(rename = "parts")]
-    pub parts: Vec<DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParams>,
-    #[serde(rename = "rarity")]
-    pub rarity: i32,
-    #[serde(rename = "unitId")]
-    pub unit_id: i32,
-    #[serde(rename = "status")]
-    pub status: i32,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "unitId")]
+    pub unit_id: i32,
+    #[serde(rename = "experienceForLevelup")]
+    pub experience_for_levelup: i32,
+    #[serde(rename = "status")]
+    pub status: i32,
+    #[serde(rename = "rarity")]
+    pub rarity: i32,
+    #[serde(rename = "parts")]
+    pub parts: Vec<DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParams>,
     #[serde(rename = "maxLevel")]
     pub max_level: i32,
     #[serde(rename = "level")]
     pub level: i32,
+}
+impl Schema for DragocatsStorageUnitEndpointsGetByUnitIdReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"unitId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"experienceForLevelup\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"rarity\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"parts\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"typeId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"slotId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"attributesCoefficients\":{\"type\":\"object\",\"properties\":{\"stamina\":{},\"power\":{},\"speed\":{},\"defence\":{}},\"required\":[\"stamina\",\"power\",\"speed\",\"defence\"]},\"element\":{\"type\":\"string\"}},\"required\":[\"slotId\",\"element\",\"typeId\",\"attributesCoefficients\"]}},\"maxLevel\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"level\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"userId\",\"unitId\",\"level\",\"status\",\"rarity\",\"maxLevel\",\"experienceForLevelup\",\"parts\"]}")
+    }
 }

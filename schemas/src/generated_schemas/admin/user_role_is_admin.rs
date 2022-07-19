@@ -2,12 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for AdminUserRoleIsAdminParams {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -18,11 +15,16 @@ impl<'de> Deserialize<'de> for AdminUserRoleIsAdminParams {
 pub struct AdminUserRoleIsAdminParams;
 impl Schema for AdminUserRoleIsAdminParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleIsAdminReturns {
     #[serde(rename = "isAdmin")]
     pub is_admin: bool,
+}
+impl Schema for AdminUserRoleIsAdminReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isAdmin\":{\"type\":\"boolean\"}},\"required\":[\"isAdmin\"]}")
+    }
 }

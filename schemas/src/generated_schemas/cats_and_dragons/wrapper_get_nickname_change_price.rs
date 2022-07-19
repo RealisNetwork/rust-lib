@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetNicknameChangePriceParams {
     #[serde(rename = "userId")]
@@ -13,11 +10,16 @@ pub struct CatsAndDragonsWrapperGetNicknameChangePriceParams {
 }
 impl Schema for CatsAndDragonsWrapperGetNicknameChangePriceParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetNicknameChangePriceReturns {
     #[serde(rename = "nicknameChangePrice")]
     pub nickname_change_price: String,
+}
+impl Schema for CatsAndDragonsWrapperGetNicknameChangePriceReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"nicknameChangePrice\":{\"type\":\"string\"}},\"required\":[\"nicknameChangePrice\"]}")
+    }
 }

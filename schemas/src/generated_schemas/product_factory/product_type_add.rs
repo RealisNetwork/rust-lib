@@ -2,34 +2,37 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeAddParamsParamsParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeAddParams {
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
-    #[serde(rename = "isNFT")]
-    pub is_nft: bool,
-    #[serde(rename = "dropChance")]
-    pub drop_chance: i64,
-    #[serde(rename = "type")]
-    pub r#type: String,
-    #[serde(rename = "rarity")]
-    pub rarity: i64,
-    #[serde(rename = "params")]
-    pub params: ProductFactoryProductTypeAddParamsParamsParams,
     #[serde(rename = "name")]
     pub name: String,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
+    #[serde(rename = "rarity")]
+    pub rarity: i64,
+    #[serde(rename = "isNFT")]
+    pub is_nft: bool,
     #[serde(rename = "underType")]
     pub under_type: String,
+    #[serde(rename = "params")]
+    pub params: ProductFactoryProductTypeAddParamsParamsParams,
+    #[serde(rename = "type")]
+    pub r#type: String,
+    #[serde(rename = "dropChance")]
+    pub drop_chance: i64,
 }
 impl Schema for ProductFactoryProductTypeAddParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"rarity\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isNFT\":{\"type\":\"boolean\"},\"underType\":{\"type\":\"string\"},\"params\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"type\":{\"type\":\"string\"},\"dropChance\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"isNFT\",\"name\",\"type\",\"underType\",\"personalType\",\"params\",\"rarity\",\"dropChance\"]}")
     }
 }
-pub type ProductFactoryProductTypeAddReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ProductFactoryProductTypeAddReturns(bool);
+impl Schema for ProductFactoryProductTypeAddReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

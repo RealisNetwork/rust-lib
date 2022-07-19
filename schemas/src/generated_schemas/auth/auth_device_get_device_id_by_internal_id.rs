@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceGetDeviceIdByInternalIdParams {
     #[serde(rename = "internalUserId")]
@@ -13,8 +10,13 @@ pub struct AuthAuthDeviceGetDeviceIdByInternalIdParams {
 }
 impl Schema for AuthAuthDeviceGetDeviceIdByInternalIdParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"internalUserId\":{\"type\":\"string\"}},\"required\":[\"internalUserId\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceGetDeviceIdByInternalIdReturns(String);
+impl Schema for AuthAuthDeviceGetDeviceIdByInternalIdReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"string\"}")
+    }
+}

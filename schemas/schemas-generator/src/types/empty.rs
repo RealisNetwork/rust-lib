@@ -36,7 +36,6 @@ impl Empty {
         SchemaDeclaration {
             declaration,
             prefix,
-            contains_struct: true,
         }
     }
 }

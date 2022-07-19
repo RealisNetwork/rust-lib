@@ -25,6 +25,7 @@ pub mod market_place;
 pub mod near_adapter;
 pub mod notifications;
 pub mod orchestrator;
+pub mod prelude;
 pub mod product_factory;
 pub mod promo;
 pub mod purchase;

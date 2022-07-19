@@ -2,35 +2,38 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesCreateCodeParamsGivesItemsParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesCreateCodeParamsGivesCurrenciesParams {
-    #[serde(rename = "LIS")]
-    pub lis: i64,
     #[serde(rename = "ETH")]
     pub eth: i64,
+    #[serde(rename = "LIS")]
+    pub lis: i64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesCreateCodeParams {
-    #[serde(rename = "numberOfAttempts")]
-    pub number_of_attempts: i64,
     #[serde(rename = "expiresIn")]
     pub expires_in: String,
-    #[serde(rename = "givesItems")]
-    pub gives_items: PromoCodesCreateCodeParamsGivesItemsParams,
-    #[serde(rename = "givesCurrencies")]
-    pub gives_currencies: PromoCodesCreateCodeParamsGivesCurrenciesParams,
     #[serde(rename = "code")]
     pub code: String,
+    #[serde(rename = "givesItems")]
+    pub gives_items: PromoCodesCreateCodeParamsGivesItemsParams,
+    #[serde(rename = "numberOfAttempts")]
+    pub number_of_attempts: i64,
+    #[serde(rename = "givesCurrencies")]
+    pub gives_currencies: PromoCodesCreateCodeParamsGivesCurrenciesParams,
 }
 impl Schema for PromoCodesCreateCodeParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"expiresIn\":{\"type\":\"string\"},\"code\":{\"type\":\"string\"},\"givesItems\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"numberOfAttempts\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"givesCurrencies\":{\"type\":\"object\",\"properties\":{\"ETH\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"LIS\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"ETH\",\"LIS\"]}},\"required\":[\"code\",\"numberOfAttempts\",\"expiresIn\",\"givesCurrencies\",\"givesItems\"]}")
     }
 }
-pub type PromoCodesCreateCodeReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct PromoCodesCreateCodeReturns(bool);
+impl Schema for PromoCodesCreateCodeReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserGetLeaderBoardParams {
     #[serde(rename = "page")]
@@ -13,17 +10,17 @@ pub struct LobbyUserGetLeaderBoardParams {
 }
 impl Schema for LobbyUserGetLeaderBoardParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}}},\"required\":[\"page\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserGetLeaderBoardReturnsLeaderboardParamsParams {
-    #[serde(rename = "place")]
-    pub place: i32,
     #[serde(rename = "username")]
     pub username: String,
     #[serde(rename = "rating")]
     pub rating: i32,
+    #[serde(rename = "place")]
+    pub place: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserGetLeaderBoardReturns {
@@ -33,4 +30,9 @@ pub struct LobbyUserGetLeaderBoardReturns {
     pub page: i16,
     #[serde(rename = "leaderboard")]
     pub leaderboard: Vec<LobbyUserGetLeaderBoardReturnsLeaderboardParamsParams>,
+}
+impl Schema for LobbyUserGetLeaderBoardReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"pages\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"page\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"leaderboard\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"username\":{\"type\":\"string\"},\"rating\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"place\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"place\",\"username\",\"rating\"]}}},\"required\":[\"page\",\"pages\",\"leaderboard\"]}")
+    }
 }

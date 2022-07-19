@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminRoleGetRoleByNameParams {
     #[serde(rename = "roleName")]
@@ -13,7 +10,7 @@ pub struct AdminRoleGetRoleByNameParams {
 }
 impl Schema for AdminRoleGetRoleByNameParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"roleName\":{\"type\":\"string\"}},\"required\":[\"roleName\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -22,4 +19,9 @@ pub struct AdminRoleGetRoleByNameReturns {
     pub name: String,
     #[serde(rename = "id")]
     pub id: i64,
+}
+impl Schema for AdminRoleGetRoleByNameReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"name\"]}")
+    }
 }

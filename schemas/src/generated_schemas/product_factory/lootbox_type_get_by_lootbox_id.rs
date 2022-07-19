@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryLootboxTypeGetByLootboxIdParams {
     #[serde(rename = "lootboxId")]
@@ -13,17 +10,22 @@ pub struct ProductFactoryLootboxTypeGetByLootboxIdParams {
 }
 impl Schema for ProductFactoryLootboxTypeGetByLootboxIdParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"lootboxId\":{\"type\":\"string\"}},\"required\":[\"lootboxId\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryLootboxTypeGetByLootboxIdReturns {
     #[serde(rename = "lootboxId")]
     pub lootbox_id: String,
-    #[serde(rename = "name")]
-    pub name: String,
-    #[serde(rename = "id")]
-    pub id: i32,
     #[serde(rename = "dropChanceMultiplier")]
     pub drop_chance_multiplier: i32,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "name")]
+    pub name: String,
+}
+impl Schema for ProductFactoryLootboxTypeGetByLootboxIdReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"lootboxId\":{\"type\":\"string\"},\"dropChanceMultiplier\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\",\"lootboxId\",\"dropChanceMultiplier\"]}")
+    }
 }

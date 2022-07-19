@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsProductFactoryLootboxOpenParams {
     #[serde(rename = "productId")]
@@ -19,7 +16,13 @@ pub struct DragocatsProductFactoryLootboxOpenParams {
 }
 impl Schema for DragocatsProductFactoryLootboxOpenParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"excludedPersonalTypes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"lootboxBindingId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"productId\",\"userId\",\"lootboxBindingId\",\"excludedPersonalTypes\"]}")
     }
 }
-pub type DragocatsProductFactoryLootboxOpenReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct DragocatsProductFactoryLootboxOpenReturns(bool);
+impl Schema for DragocatsProductFactoryLootboxOpenReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceDeleteBalanceByUserIdParams {
     #[serde(rename = "userId")]
@@ -13,7 +10,13 @@ pub struct TransactionsBalanceDeleteBalanceByUserIdParams {
 }
 impl Schema for TransactionsBalanceDeleteBalanceByUserIdParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
-pub type TransactionsBalanceDeleteBalanceByUserIdReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TransactionsBalanceDeleteBalanceByUserIdReturns(bool);
+impl Schema for TransactionsBalanceDeleteBalanceByUserIdReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

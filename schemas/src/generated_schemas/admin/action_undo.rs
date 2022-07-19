@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionUndoParams {
     #[serde(rename = "actionId")]
@@ -13,7 +10,13 @@ pub struct AdminActionUndoParams {
 }
 impl Schema for AdminActionUndoParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"actionId\":{\"type\":\"string\"}},\"required\":[\"actionId\"]}")
     }
 }
-pub type AdminActionUndoReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AdminActionUndoReturns(bool);
+impl Schema for AdminActionUndoReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

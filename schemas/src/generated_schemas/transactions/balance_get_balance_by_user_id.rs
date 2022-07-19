@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetBalanceByUserIdParams {
     #[serde(rename = "currency")]
@@ -13,11 +10,16 @@ pub struct TransactionsBalanceGetBalanceByUserIdParams {
 }
 impl Schema for TransactionsBalanceGetBalanceByUserIdParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"}},\"required\":[\"currency\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetBalanceByUserIdReturns {
     #[serde(rename = "amount")]
     pub amount: String,
+}
+impl Schema for TransactionsBalanceGetBalanceByUserIdReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"}},\"required\":[\"amount\"]}")
+    }
 }

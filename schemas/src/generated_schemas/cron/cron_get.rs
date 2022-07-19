@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CronCronGetParams {
     #[serde(rename = "id")]
@@ -13,21 +10,26 @@ pub struct CronCronGetParams {
 }
 impl Schema for CronCronGetParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CronCronGetReturns {
-    #[serde(rename = "key")]
-    pub key: String,
     #[serde(rename = "id")]
     pub id: i64,
     #[serde(rename = "startsAt")]
     pub starts_at: String,
     #[serde(rename = "howOften")]
     pub how_often: i64,
+    #[serde(rename = "key")]
+    pub key: String,
     #[serde(rename = "createdAt")]
     pub created_at: String,
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
+}
+impl Schema for CronCronGetReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"startsAt\":{\"type\":\"string\"},\"howOften\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"key\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"key\",\"howOften\",\"startsAt\",\"createdAt\",\"updatedAt\"]}")
+    }
 }

@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAdminUpdateUserRoleParams {
     #[serde(rename = "userId")]
@@ -15,7 +12,13 @@ pub struct AuthAdminUpdateUserRoleParams {
 }
 impl Schema for AuthAdminUpdateUserRoleParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"role\":{\"type\":\"string\"}},\"required\":[\"userId\",\"role\"]}")
     }
 }
-pub type AuthAdminUpdateUserRoleReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AuthAdminUpdateUserRoleReturns(bool);
+impl Schema for AuthAdminUpdateUserRoleReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

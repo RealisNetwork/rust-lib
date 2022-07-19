@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthGetUserInfoByTokenParams {
     #[serde(rename = "token")]
@@ -13,21 +10,26 @@ pub struct AuthAuthGetUserInfoByTokenParams {
 }
 impl Schema for AuthAuthGetUserInfoByTokenParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"token\":{\"type\":\"string\"}},\"required\":[\"token\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthGetUserInfoByTokenReturns {
-    #[serde(rename = "username")]
-    pub username: String,
-    #[serde(rename = "emailVerified")]
-    pub email_verified: bool,
-    #[serde(rename = "email")]
-    pub email: String,
-    #[serde(rename = "roles")]
-    pub roles: Vec<String>,
     #[serde(rename = "isBanned")]
     pub is_banned: bool,
     #[serde(rename = "id")]
     pub id: String,
+    #[serde(rename = "roles")]
+    pub roles: Vec<String>,
+    #[serde(rename = "email")]
+    pub email: String,
+    #[serde(rename = "emailVerified")]
+    pub email_verified: bool,
+    #[serde(rename = "username")]
+    pub username: String,
+}
+impl Schema for AuthAuthGetUserInfoByTokenReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isBanned\":{\"type\":\"boolean\"},\"id\":{\"type\":\"string\"},\"roles\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"email\":{\"type\":\"string\"},\"emailVerified\":{\"type\":\"boolean\"},\"username\":{\"type\":\"string\"}},\"required\":[\"id\",\"username\",\"emailVerified\",\"email\",\"roles\",\"isBanned\"]}")
+    }
 }

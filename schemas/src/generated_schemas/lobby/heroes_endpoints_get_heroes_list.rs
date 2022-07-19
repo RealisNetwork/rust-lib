@@ -2,12 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for LobbyHeroesEndpointsGetHeroesListParams {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -18,41 +15,41 @@ impl<'de> Deserialize<'de> for LobbyHeroesEndpointsGetHeroesListParams {
 pub struct LobbyHeroesEndpointsGetHeroesListParams;
 impl Schema for LobbyHeroesEndpointsGetHeroesListParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyHeroesEndpointsGetHeroesListReturnsParamsStatsRangesParams {
-    #[serde(rename = "mainCharacteristic")]
-    pub main_characteristic: i8,
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: Vec<String>,
-    #[serde(rename = "health")]
-    pub health: Vec<String>,
-    #[serde(rename = "ultPower")]
-    pub ult_power: Vec<String>,
-    #[serde(rename = "vampirismPower")]
-    pub vampirism_power: Vec<String>,
-    #[serde(rename = "armor")]
-    pub armor: Vec<String>,
-    #[serde(rename = "strength")]
-    pub strength: Vec<String>,
-    #[serde(rename = "skillPower")]
-    pub skill_power: Vec<String>,
-    #[serde(rename = "skillEffectPower")]
-    pub skill_effect_power: Vec<String>,
-    #[serde(rename = "attackDamage")]
-    pub attack_damage: Vec<String>,
     #[serde(rename = "attackReloadSpeed")]
     pub attack_reload_speed: Vec<String>,
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: Vec<String>,
+    #[serde(rename = "armor")]
+    pub armor: Vec<String>,
     #[serde(rename = "agility")]
     pub agility: Vec<String>,
-    #[serde(rename = "intelligence")]
-    pub intelligence: Vec<String>,
+    #[serde(rename = "skillPower")]
+    pub skill_power: Vec<String>,
+    #[serde(rename = "mainCharacteristic")]
+    pub main_characteristic: i8,
     #[serde(rename = "healthRegenPercent")]
     pub health_regen_percent: Vec<String>,
     #[serde(rename = "moveSpeed")]
     pub move_speed: Vec<String>,
+    #[serde(rename = "skillEffectPower")]
+    pub skill_effect_power: Vec<String>,
+    #[serde(rename = "ultPower")]
+    pub ult_power: Vec<String>,
+    #[serde(rename = "attackDamage")]
+    pub attack_damage: Vec<String>,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: Vec<String>,
+    #[serde(rename = "health")]
+    pub health: Vec<String>,
+    #[serde(rename = "intelligence")]
+    pub intelligence: Vec<String>,
+    #[serde(rename = "strength")]
+    pub strength: Vec<String>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyHeroesEndpointsGetHeroesListReturnsParams {
@@ -61,5 +58,12 @@ pub struct LobbyHeroesEndpointsGetHeroesListReturnsParams {
     #[serde(rename = "statsRanges")]
     pub stats_ranges: LobbyHeroesEndpointsGetHeroesListReturnsParamsStatsRangesParams,
 }
-pub type LobbyHeroesEndpointsGetHeroesListReturns =
-    Vec<LobbyHeroesEndpointsGetHeroesListReturnsParams>;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct LobbyHeroesEndpointsGetHeroesListReturns(
+    Vec<LobbyHeroesEndpointsGetHeroesListReturnsParams>,
+);
+impl Schema for LobbyHeroesEndpointsGetHeroesListReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"heroId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"statsRanges\":{\"type\":\"object\",\"properties\":{\"attackReloadSpeed\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"ultEffectPower\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"armor\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"agility\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"skillPower\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"mainCharacteristic\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"healthRegenPercent\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"moveSpeed\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"skillEffectPower\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"ultPower\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"attackDamage\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"vampirismPower\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"health\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"intelligence\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"strength\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"mainCharacteristic\",\"strength\",\"agility\",\"intelligence\",\"health\",\"healthRegenPercent\",\"armor\",\"moveSpeed\",\"attackDamage\",\"attackReloadSpeed\",\"skillPower\",\"skillEffectPower\",\"ultPower\",\"ultEffectPower\",\"vampirismPower\"]}},\"required\":[\"heroId\",\"statsRanges\"]}}")
+    }
+}

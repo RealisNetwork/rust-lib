@@ -2,23 +2,25 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthCreateRequestToConfirmEmailParams {
-    #[serde(rename = "email")]
-    pub email: String,
     #[serde(rename = "deviceId")]
     pub device_id: Option<String>,
+    #[serde(rename = "email")]
+    pub email: String,
     #[serde(rename = "referralCode")]
     pub referral_code: Option<String>,
 }
 impl Schema for AuthAuthCreateRequestToConfirmEmailParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"deviceId\":{\"type\":\"string\"},\"email\":{\"type\":\"string\",\"pattern\":\"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\\\.[a-zA-Z0-9-.]+$\"},\"referralCode\":{\"type\":\"string\"}},\"required\":[\"email\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthCreateRequestToConfirmEmailReturns(String);
+impl Schema for AuthAuthCreateRequestToConfirmEmailReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"string\"}")
+    }
+}

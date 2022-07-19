@@ -2,22 +2,25 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SoulAdapterWalletProcessTransactionByHashParams {
-    #[serde(rename = "blockNumber")]
-    pub block_number: i64,
     #[serde(rename = "currency")]
     pub currency: String,
     #[serde(rename = "hash")]
     pub hash: String,
+    #[serde(rename = "blockNumber")]
+    pub block_number: i64,
 }
 impl Schema for SoulAdapterWalletProcessTransactionByHashParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"},\"hash\":{\"type\":\"string\"},\"blockNumber\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"hash\",\"blockNumber\",\"currency\"]}")
     }
 }
-pub type SoulAdapterWalletProcessTransactionByHashReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct SoulAdapterWalletProcessTransactionByHashReturns(bool);
+impl Schema for SoulAdapterWalletProcessTransactionByHashReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

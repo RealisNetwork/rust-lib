@@ -2,26 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeGetAllByRarityParams {
-    #[serde(rename = "perPage")]
-    pub per_page: Option<i64>,
-    #[serde(rename = "rarity")]
-    pub rarity: String,
     #[serde(rename = "page")]
     pub page: Option<i64>,
+    #[serde(rename = "rarity")]
+    pub rarity: String,
+    #[serde(rename = "perPage")]
+    pub per_page: Option<i64>,
 }
 impl Schema for ProductFactoryProductTypeGetAllByRarityParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"rarity\":{\"type\":\"string\"},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"rarity\"]}")
     }
 }
 impl<'de> Deserialize<'de> for ProductFactoryProductTypeGetAllByRarityReturns {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -30,3 +27,8 @@ impl<'de> Deserialize<'de> for ProductFactoryProductTypeGetAllByRarityReturns {
 }
 #[derive(Debug, Clone, Serialize)]
 pub struct ProductFactoryProductTypeGetAllByRarityReturns;
+impl Schema for ProductFactoryProductTypeGetAllByRarityReturns {
+    fn schema() -> Value {
+        serde_json::json!("{}")
+    }
+}

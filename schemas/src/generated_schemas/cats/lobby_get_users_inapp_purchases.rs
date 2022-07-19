@@ -2,26 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyGetUsersInappPurchasesParams {
-    #[serde(rename = "endDate")]
-    pub end_date: i64,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "endDate")]
+    pub end_date: i64,
     #[serde(rename = "startDate")]
     pub start_date: i64,
 }
 impl Schema for CatsLobbyGetUsersInappPurchasesParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"endDate\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"startDate\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"startDate\",\"endDate\"]}")
     }
 }
 impl<'de> Deserialize<'de> for CatsLobbyGetUsersInappPurchasesReturns {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -30,3 +27,8 @@ impl<'de> Deserialize<'de> for CatsLobbyGetUsersInappPurchasesReturns {
 }
 #[derive(Debug, Clone, Serialize)]
 pub struct CatsLobbyGetUsersInappPurchasesReturns;
+impl Schema for CatsLobbyGetUsersInappPurchasesReturns {
+    fn schema() -> Value {
+        serde_json::json!("{}")
+    }
+}

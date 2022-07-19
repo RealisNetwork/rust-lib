@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetParams {
     #[serde(rename = "clientKey")]
@@ -13,15 +10,20 @@ pub struct AdminOptionGetParams {
 }
 impl Schema for AdminOptionGetParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"clientKey\":{\"type\":\"string\"}},\"required\":[\"clientKey\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetReturns {
     #[serde(rename = "scope")]
     pub scope: String,
-    #[serde(rename = "key")]
-    pub key: String,
     #[serde(rename = "value")]
     pub value: String,
+    #[serde(rename = "key")]
+    pub key: String,
+}
+impl Schema for AdminOptionGetReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"scope\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\"]}")
+    }
 }

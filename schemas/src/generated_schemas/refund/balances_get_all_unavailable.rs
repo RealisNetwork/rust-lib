@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllUnavailableParams {
     #[serde(rename = "userId")]
@@ -13,7 +10,7 @@ pub struct RefundBalancesGetAllUnavailableParams {
 }
 impl Schema for RefundBalancesGetAllUnavailableParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -22,4 +19,9 @@ pub struct RefundBalancesGetAllUnavailableReturns {
     pub lis: String,
     #[serde(rename = "ETH")]
     pub eth: String,
+}
+impl Schema for RefundBalancesGetAllUnavailableReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"LIS\":{\"type\":\"string\"},\"ETH\":{\"type\":\"string\"}},\"required\":null}")
+    }
 }

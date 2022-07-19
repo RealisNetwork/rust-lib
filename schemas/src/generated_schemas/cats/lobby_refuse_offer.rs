@@ -2,24 +2,21 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyRefuseOfferParams {
-    #[serde(rename = "offerKey")]
-    pub offer_key: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "offerKey")]
+    pub offer_key: String,
 }
 impl Schema for CatsLobbyRefuseOfferParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"offerKey\":{\"type\":\"string\"}},\"required\":[\"userId\",\"offerKey\"]}")
     }
 }
 impl<'de> Deserialize<'de> for CatsLobbyRefuseOfferReturns {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -28,3 +25,8 @@ impl<'de> Deserialize<'de> for CatsLobbyRefuseOfferReturns {
 }
 #[derive(Debug, Clone, Serialize)]
 pub struct CatsLobbyRefuseOfferReturns;
+impl Schema for CatsLobbyRefuseOfferReturns {
+    fn schema() -> Value {
+        serde_json::json!("{}")
+    }
+}

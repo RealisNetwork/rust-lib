@@ -12,6 +12,7 @@ use syn::__private::Span;
 
 #[derive(Deserialize, Serialize, Debug, Clone, PartialEq, Eq)]
 #[serde(from = "MaybeTaggedAgentsParams")]
+#[serde(into = "MaybeTaggedAgentsParams")]
 pub enum AgentParams {
     Array(Array),
     Object(Object),
@@ -30,7 +31,13 @@ impl AgentParams {
             AgentParams::Object(object) => object.get_declaration(name),
             AgentParams::String(string) => string.get_declaration(name),
             AgentParams::Integer(integer) => integer.get_declaration(name),
-            AgentParams::Bool => (quote! {}, quote! {pub type #ident = bool;}),
+            AgentParams::Bool => (
+                quote! {},
+                quote! {
+                    #[derive(Debug, Clone, Serialize, Deserialize)]
+                    pub struct #ident(bool);
+                },
+            ),
             AgentParams::Empty => Empty::get_declaration(name),
         }
     }
@@ -57,7 +64,6 @@ impl AgentParams {
                 SchemaDeclaration {
                     declaration,
                     prefix,
-                    ..Default::default()
                 }
             }
             AgentParams::Empty => Empty::get_schema_declaration(name),
@@ -70,6 +76,25 @@ impl AgentParams {
 enum MaybeTaggedAgentsParams {
     Tagged(TaggedParams),
     Empty {},
+}
+
+impl From<AgentParams> for MaybeTaggedAgentsParams {
+    fn from(agent: AgentParams) -> Self {
+        match agent {
+            AgentParams::Array(array) => Self::Tagged(TaggedParams::Array {
+                items: *array.parameter.to_owned(),
+            }),
+            AgentParams::Object(object) => Self::Tagged(TaggedParams::Object(object)),
+            AgentParams::String(string) => Self::Tagged(TaggedParams::String(string)),
+            AgentParams::Integer(integer) => Self::Tagged(TaggedParams::Integer {
+                minimum: Some(integer.minimum),
+                maximum: Some(integer.maximum),
+                additional_attributes: Some(integer.additional_attributes),
+            }),
+            AgentParams::Bool => Self::Tagged(TaggedParams::Bool),
+            AgentParams::Empty => Self::Empty {},
+        }
+    }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

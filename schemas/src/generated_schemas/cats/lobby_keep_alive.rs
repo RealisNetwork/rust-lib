@@ -2,12 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for CatsLobbyKeepAliveParams {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -18,11 +15,11 @@ impl<'de> Deserialize<'de> for CatsLobbyKeepAliveParams {
 pub struct CatsLobbyKeepAliveParams;
 impl Schema for CatsLobbyKeepAliveParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{}")
     }
 }
 impl<'de> Deserialize<'de> for CatsLobbyKeepAliveReturns {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -31,3 +28,8 @@ impl<'de> Deserialize<'de> for CatsLobbyKeepAliveReturns {
 }
 #[derive(Debug, Clone, Serialize)]
 pub struct CatsLobbyKeepAliveReturns;
+impl Schema for CatsLobbyKeepAliveReturns {
+    fn schema() -> Value {
+        serde_json::json!("{}")
+    }
+}

@@ -2,15 +2,18 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminRoleGetAllRolesParams {}
 impl Schema for AdminRoleGetAllRolesParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
     }
 }
-pub type AdminRoleGetAllRolesReturns = Vec<String>;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AdminRoleGetAllRolesReturns(Vec<String>);
+impl Schema for AdminRoleGetAllRolesReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"array\",\"items\":{\"type\":\"string\"}}")
+    }
+}

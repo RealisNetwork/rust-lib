@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserUpdateProfileImageParams {
     #[serde(rename = "image")]
@@ -13,11 +10,16 @@ pub struct LobbyUserUpdateProfileImageParams {
 }
 impl Schema for LobbyUserUpdateProfileImageParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"image\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"image\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserUpdateProfileImageReturns {
     #[serde(rename = "imageId")]
     pub image_id: i8,
+}
+impl Schema for LobbyUserUpdateProfileImageReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"imageId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"imageId\"]}")
+    }
 }

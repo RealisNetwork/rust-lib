@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetNumOfTransactionsParams {
     #[serde(rename = "userId")]
@@ -13,8 +10,13 @@ pub struct TransactionsBalanceGetNumOfTransactionsParams {
 }
 impl Schema for TransactionsBalanceGetNumOfTransactionsParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetNumOfTransactionsReturns(i64);
+impl Schema for TransactionsBalanceGetNumOfTransactionsReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}")
+    }
+}

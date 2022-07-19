@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogCategoryCreateParams {
     #[serde(rename = "name")]
@@ -13,7 +10,13 @@ pub struct BlogCategoryCreateParams {
 }
 impl Schema for BlogCategoryCreateParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"}},\"required\":[\"name\"]}")
     }
 }
-pub type BlogCategoryCreateReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct BlogCategoryCreateReturns(bool);
+impl Schema for BlogCategoryCreateReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

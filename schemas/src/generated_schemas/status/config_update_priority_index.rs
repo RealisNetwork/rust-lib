@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigUpdatePriorityIndexParamsConfigParamsParamsParams {
     #[serde(rename = "id")]
@@ -20,7 +17,13 @@ pub struct StatusConfigUpdatePriorityIndexParams {
 }
 impl Schema for StatusConfigUpdatePriorityIndexParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"configParams\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"priorityIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"priorityIndex\"]}}},\"required\":[\"configParams\"]}")
     }
 }
-pub type StatusConfigUpdatePriorityIndexReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct StatusConfigUpdatePriorityIndexReturns(bool);
+impl Schema for StatusConfigUpdatePriorityIndexReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

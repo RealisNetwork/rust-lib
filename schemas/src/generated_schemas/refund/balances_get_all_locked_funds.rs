@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllLockedFundsParams {
     #[serde(rename = "userId")]
@@ -13,7 +10,13 @@ pub struct RefundBalancesGetAllLockedFundsParams {
 }
 impl Schema for RefundBalancesGetAllLockedFundsParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
-pub type RefundBalancesGetAllLockedFundsReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct RefundBalancesGetAllLockedFundsReturns(bool);
+impl Schema for RefundBalancesGetAllLockedFundsReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

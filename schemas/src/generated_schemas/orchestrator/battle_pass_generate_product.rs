@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorBattlePassGenerateProductParams {
     #[serde(rename = "userId")]
@@ -15,7 +12,13 @@ pub struct OrchestratorBattlePassGenerateProductParams {
 }
 impl Schema for OrchestratorBattlePassGenerateProductParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"personalTypes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"userId\",\"personalTypes\"]}")
     }
 }
-pub type OrchestratorBattlePassGenerateProductReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct OrchestratorBattlePassGenerateProductReturns(bool);
+impl Schema for OrchestratorBattlePassGenerateProductReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

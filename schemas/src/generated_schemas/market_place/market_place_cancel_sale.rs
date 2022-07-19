@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceCancelSaleParams {
     #[serde(rename = "productId")]
@@ -15,7 +12,13 @@ pub struct MarketPlaceMarketPlaceCancelSaleParams {
 }
 impl Schema for MarketPlaceMarketPlaceCancelSaleParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"productId\",\"userId\"]}")
     }
 }
-pub type MarketPlaceMarketPlaceCancelSaleReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct MarketPlaceMarketPlaceCancelSaleReturns(bool);
+impl Schema for MarketPlaceMarketPlaceCancelSaleReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

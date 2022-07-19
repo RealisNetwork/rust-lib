@@ -2,77 +2,81 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct MarketPlaceMarketPlaceGetItemsByFilterParamsPriceParams {
-    #[serde(rename = "min")]
-    pub min: i32,
-    #[serde(rename = "max")]
-    pub max: i32,
-}
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemsByFilterParamsOrderParams {
-    #[serde(rename = "desc")]
-    pub desc: bool,
     #[serde(rename = "name")]
     pub name: String,
+    #[serde(rename = "desc")]
+    pub desc: bool,
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct MarketPlaceMarketPlaceGetItemsByFilterParamsPriceParams {
+    #[serde(rename = "max")]
+    pub max: i32,
+    #[serde(rename = "min")]
+    pub min: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemsByFilterParams {
+    #[serde(rename = "category")]
+    pub category: Option<i32>,
     #[serde(rename = "perPage")]
     pub per_page: i32,
+    #[serde(rename = "order")]
+    pub order: Option<MarketPlaceMarketPlaceGetItemsByFilterParamsOrderParams>,
     #[serde(rename = "personalType")]
     pub personal_type: Option<String>,
-    #[serde(rename = "page")]
-    pub page: i32,
+    #[serde(rename = "price")]
+    pub price: Option<MarketPlaceMarketPlaceGetItemsByFilterParamsPriceParams>,
     #[serde(rename = "additionalValue")]
     pub additional_value: Option<String>,
     #[serde(rename = "additionalParam")]
     pub additional_param: Option<String>,
-    #[serde(rename = "price")]
-    pub price: Option<MarketPlaceMarketPlaceGetItemsByFilterParamsPriceParams>,
-    #[serde(rename = "order")]
-    pub order: Option<MarketPlaceMarketPlaceGetItemsByFilterParamsOrderParams>,
-    #[serde(rename = "category")]
-    pub category: Option<i32>,
+    #[serde(rename = "page")]
+    pub page: i32,
 }
 impl Schema for MarketPlaceMarketPlaceGetItemsByFilterParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"order\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"desc\":{\"type\":\"boolean\"}},\"required\":[\"name\",\"desc\"]},\"personalType\":{\"type\":\"string\"},\"price\":{\"type\":\"object\",\"properties\":{\"max\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"min\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"min\",\"max\"]},\"additionalValue\":{\"type\":\"string\"},\"additionalParam\":{\"type\":\"string\"},\"page\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"perPage\",\"page\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemsByFilterReturnsParamsAdditionalParamsParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemsByFilterReturnsParams {
-    #[serde(rename = "category")]
-    pub category: i32,
     #[serde(rename = "productId")]
     pub product_id: i32,
-    #[serde(rename = "subType")]
-    pub sub_type: String,
-    #[serde(rename = "type")]
-    pub r#type: String,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "isLocked")]
+    pub is_locked: bool,
+    #[serde(rename = "category")]
+    pub category: i32,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
     #[serde(rename = "price")]
     pub price: i32,
     #[serde(rename = "additionalParams")]
     pub additional_params:
         MarketPlaceMarketPlaceGetItemsByFilterReturnsParamsAdditionalParamsParams,
-    #[serde(rename = "id")]
-    pub id: i32,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: i32,
-    #[serde(rename = "isLocked")]
-    pub is_locked: bool,
+    #[serde(rename = "subType")]
+    pub sub_type: String,
     #[serde(rename = "createdAt")]
     pub created_at: i32,
+    #[serde(rename = "type")]
+    pub r#type: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: i32,
 }
-pub type MarketPlaceMarketPlaceGetItemsByFilterReturns =
-    Vec<MarketPlaceMarketPlaceGetItemsByFilterReturnsParams>;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct MarketPlaceMarketPlaceGetItemsByFilterReturns(
+    Vec<MarketPlaceMarketPlaceGetItemsByFilterReturnsParams>,
+);
+impl Schema for MarketPlaceMarketPlaceGetItemsByFilterReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"isLocked\":{\"type\":\"boolean\"},\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"personalType\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"additionalParams\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"subType\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"type\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"productId\",\"userId\",\"personalType\",\"type\",\"subType\",\"price\",\"additionalParams\",\"isLocked\",\"category\",\"createdAt\",\"updatedAt\"]}}")
+    }
+}

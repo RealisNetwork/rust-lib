@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyGetUsersReferralsParams {
     #[serde(rename = "userId")]
@@ -13,11 +10,11 @@ pub struct CatsLobbyGetUsersReferralsParams {
 }
 impl Schema for CatsLobbyGetUsersReferralsParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
 impl<'de> Deserialize<'de> for CatsLobbyGetUsersReferralsReturns {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -26,3 +23,8 @@ impl<'de> Deserialize<'de> for CatsLobbyGetUsersReferralsReturns {
 }
 #[derive(Debug, Clone, Serialize)]
 pub struct CatsLobbyGetUsersReferralsReturns;
+impl Schema for CatsLobbyGetUsersReferralsReturns {
+    fn schema() -> Value {
+        serde_json::json!("{}")
+    }
+}

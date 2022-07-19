@@ -59,34 +59,34 @@ impl ToTokens for Agent {
         let ident_name_params = Ident::new(name_params, Span::call_site());
         let ident_name_returns = Ident::new(name_returns, Span::call_site());
 
+        let params_schema = serde_json::to_string(&self.params).unwrap();
+        let returns_schema = serde_json::to_string(&self.returns).unwrap();
+
         let impl_schema_params = quote! {
             impl Schema for #ident_name_params {
                 fn schema() -> Value {
-                    todo!()
+                    serde_json::json!(#params_schema)
                 }
             }
         };
-
-        let imports = if params_declaration.contains_struct || returns_declaration.contains_struct {
-            quote! {
-                use serde::{Serialize, Deserialize};
+        let impl_schema_returns = quote! {
+            impl Schema for #ident_name_returns {
+                fn schema() -> Value {
+                    serde_json::json!(#returns_schema)
+                }
             }
-        } else {
-            quote! {}
         };
 
         let declaration = quote! {
             #![allow(unknown_lints)]
             #![allow(clippy::all)]
-            use serde_json::Value;
-            use crate::Schema;
-            use serde::de::Deserializer;
-            #imports
+            use crate::generated_schemas::prelude::*;
 
             #params_declaration
             #impl_schema_params
 
             #returns_declaration
+            #impl_schema_returns
         };
 
         tokens.extend(declaration);

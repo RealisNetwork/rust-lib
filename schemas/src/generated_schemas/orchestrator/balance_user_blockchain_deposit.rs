@@ -2,26 +2,29 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorBalanceUserBlockchainDepositParams {
-    #[serde(rename = "txId")]
-    pub tx_id: String,
     #[serde(rename = "currency")]
     pub currency: String,
-    #[serde(rename = "creator")]
-    pub creator: String,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "amount")]
     pub amount: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
 }
 impl Schema for OrchestratorBalanceUserBlockchainDepositParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"},\"userId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\"]}")
     }
 }
-pub type OrchestratorBalanceUserBlockchainDepositReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct OrchestratorBalanceUserBlockchainDepositReturns(bool);
+impl Schema for OrchestratorBalanceUserBlockchainDepositReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

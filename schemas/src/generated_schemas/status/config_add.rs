@@ -2,28 +2,31 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigAddParams {
-    #[serde(rename = "price")]
-    pub price: String,
-    #[serde(rename = "priceInLis")]
-    pub price_in_lis: String,
     #[serde(rename = "maxCount")]
     pub max_count: String,
-    #[serde(rename = "isAvailable")]
-    pub is_available: bool,
     #[serde(rename = "multiplier")]
     pub multiplier: String,
     #[serde(rename = "membership")]
     pub membership: String,
+    #[serde(rename = "price")]
+    pub price: String,
+    #[serde(rename = "priceInLis")]
+    pub price_in_lis: String,
+    #[serde(rename = "isAvailable")]
+    pub is_available: bool,
 }
 impl Schema for StatusConfigAddParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"maxCount\":{\"type\":\"string\"},\"multiplier\":{\"type\":\"string\"},\"membership\":{\"type\":\"string\"},\"price\":{\"type\":\"string\"},\"priceInLis\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"}},\"required\":[\"membership\",\"price\",\"multiplier\",\"priceInLis\",\"maxCount\",\"isAvailable\"]}")
     }
 }
-pub type StatusConfigAddReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct StatusConfigAddReturns(bool);
+impl Schema for StatusConfigAddReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthTwoFactorVerifyTokenParams {
     #[serde(rename = "token")]
@@ -13,7 +10,13 @@ pub struct AuthTwoFactorVerifyTokenParams {
 }
 impl Schema for AuthTwoFactorVerifyTokenParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"token\":{\"type\":\"string\"}},\"required\":[\"token\"]}")
     }
 }
-pub type AuthTwoFactorVerifyTokenReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AuthTwoFactorVerifyTokenReturns(bool);
+impl Schema for AuthTwoFactorVerifyTokenReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

@@ -2,36 +2,33 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionGetAllByFilterListParams {
-    #[serde(rename = "lastDate")]
-    pub last_date: String,
+    #[serde(rename = "page")]
+    pub page: i64,
     #[serde(rename = "nickname")]
     pub nickname: String,
-    #[serde(rename = "isCancelable")]
-    pub is_cancelable: bool,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "method")]
+    pub method: String,
+    #[serde(rename = "agent")]
+    pub agent: String,
     #[serde(rename = "type")]
     pub r#type: String,
     #[serde(rename = "perPage")]
     pub per_page: i64,
-    #[serde(rename = "agent")]
-    pub agent: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "page")]
-    pub page: i64,
-    #[serde(rename = "method")]
-    pub method: String,
+    #[serde(rename = "isCancelable")]
+    pub is_cancelable: bool,
+    #[serde(rename = "lastDate")]
+    pub last_date: String,
     #[serde(rename = "firstDate")]
     pub first_date: String,
 }
 impl Schema for AdminActionGetAllByFilterListParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"nickname\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"method\":{\"type\":\"string\"},\"agent\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isCancelable\":{\"type\":\"boolean\"},\"lastDate\":{\"type\":\"string\"},\"firstDate\":{\"type\":\"string\"}},\"required\":null}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -40,24 +37,24 @@ pub struct AdminActionGetAllByFilterListReturnsDataParamsParamsParamsParams {}
 pub struct AdminActionGetAllByFilterListReturnsDataParamsParams {
     #[serde(rename = "createdAt")]
     pub created_at: String,
-    #[serde(rename = "isCancelable")]
-    pub is_cancelable: bool,
     #[serde(rename = "id")]
     pub id: i64,
-    #[serde(rename = "actionId")]
-    pub action_id: String,
-    #[serde(rename = "type")]
-    pub r#type: String,
     #[serde(rename = "nickname")]
     pub nickname: String,
+    #[serde(rename = "type")]
+    pub r#type: String,
     #[serde(rename = "method")]
     pub method: String,
+    #[serde(rename = "isCancelable")]
+    pub is_cancelable: bool,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "params")]
     pub params: AdminActionGetAllByFilterListReturnsDataParamsParamsParamsParams,
     #[serde(rename = "agent")]
     pub agent: String,
+    #[serde(rename = "actionId")]
+    pub action_id: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionGetAllByFilterListReturns {
@@ -65,4 +62,9 @@ pub struct AdminActionGetAllByFilterListReturns {
     pub data: Vec<AdminActionGetAllByFilterListReturnsDataParamsParams>,
     #[serde(rename = "totalCount")]
     pub total_count: i64,
+}
+impl Schema for AdminActionGetAllByFilterListReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"createdAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"nickname\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"method\":{\"type\":\"string\"},\"isCancelable\":{\"type\":\"boolean\"},\"userId\":{\"type\":\"string\"},\"params\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"agent\":{\"type\":\"string\"},\"actionId\":{\"type\":\"string\"}},\"required\":[\"id\",\"actionId\",\"nickname\",\"userId\",\"method\",\"isCancelable\",\"params\",\"agent\",\"type\",\"createdAt\"]}},\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"data\",\"totalCount\"]}")
+    }
 }

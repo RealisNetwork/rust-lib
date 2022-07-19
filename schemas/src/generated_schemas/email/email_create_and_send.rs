@@ -2,28 +2,25 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct EmailEmailCreateAndSendParams {
     #[serde(rename = "body")]
     pub body: String,
     #[serde(rename = "timeToSend")]
     pub time_to_send: i64,
-    #[serde(rename = "receivers")]
-    pub receivers: Vec<String>,
     #[serde(rename = "subject")]
     pub subject: String,
+    #[serde(rename = "receivers")]
+    pub receivers: Vec<String>,
 }
 impl Schema for EmailEmailCreateAndSendParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"body\":{\"type\":\"string\"},\"timeToSend\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"subject\":{\"type\":\"string\"},\"receivers\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"body\",\"receivers\",\"timeToSend\",\"subject\"]}")
     }
 }
 impl<'de> Deserialize<'de> for EmailEmailCreateAndSendReturns {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -32,3 +29,8 @@ impl<'de> Deserialize<'de> for EmailEmailCreateAndSendReturns {
 }
 #[derive(Debug, Clone, Serialize)]
 pub struct EmailEmailCreateAndSendReturns;
+impl Schema for EmailEmailCreateAndSendReturns {
+    fn schema() -> Value {
+        serde_json::json!("{}")
+    }
+}

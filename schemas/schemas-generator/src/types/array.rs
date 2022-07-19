@@ -24,7 +24,10 @@ impl Array {
 
         let parameter_type = self.get_type(name);
         let name_ident = Ident::new(name, Span::call_site());
-        let declaration = quote! { pub type #name_ident = #parameter_type; };
+        let declaration = quote! {
+            #[derive(Debug, Clone, Serialize, Deserialize)]
+            pub struct #name_ident(#parameter_type);
+        };
         (prefix, declaration)
     }
 
@@ -33,20 +36,11 @@ impl Array {
         quote! { Vec<#parameter_type> }
     }
 
-    pub fn contains_struct(&self) -> bool {
-        match &*self.parameter {
-            AgentParams::Array(array) => array.contains_struct(),
-            AgentParams::Object(_) => true,
-            _ => false,
-        }
-    }
-
     pub fn get_schema_declaration(&self, name: &str) -> SchemaDeclaration {
         let (prefix, declaration) = self.get_declaration(name);
         SchemaDeclaration {
             declaration,
             prefix,
-            contains_struct: self.contains_struct(),
         }
     }
 }

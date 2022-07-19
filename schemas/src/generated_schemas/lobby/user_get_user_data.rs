@@ -2,12 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for LobbyUserGetUserDataParams {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -18,27 +15,32 @@ impl<'de> Deserialize<'de> for LobbyUserGetUserDataParams {
 pub struct LobbyUserGetUserDataParams;
 impl Schema for LobbyUserGetUserDataParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserGetUserDataReturns {
-    #[serde(rename = "image")]
-    pub image: i8,
-    #[serde(rename = "rating")]
-    pub rating: i32,
-    #[serde(rename = "tokensIncreaseBy")]
-    pub tokens_increase_by: String,
-    #[serde(rename = "draw")]
-    pub draw: i8,
     #[serde(rename = "increaseBy")]
     pub increase_by: i8,
-    #[serde(rename = "placeInLeaderBoard")]
-    pub place_in_leader_board: i32,
-    #[serde(rename = "email")]
-    pub email: String,
+    #[serde(rename = "rating")]
+    pub rating: i32,
     #[serde(rename = "decreaseBy")]
     pub decrease_by: i8,
+    #[serde(rename = "draw")]
+    pub draw: i8,
     #[serde(rename = "username")]
     pub username: String,
+    #[serde(rename = "image")]
+    pub image: i8,
+    #[serde(rename = "email")]
+    pub email: String,
+    #[serde(rename = "tokensIncreaseBy")]
+    pub tokens_increase_by: String,
+    #[serde(rename = "placeInLeaderBoard")]
+    pub place_in_leader_board: i32,
+}
+impl Schema for LobbyUserGetUserDataReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"increaseBy\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"rating\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"decreaseBy\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"draw\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"username\":{\"type\":\"string\"},\"image\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"email\":{\"type\":\"string\"},\"tokensIncreaseBy\":{\"type\":\"string\"},\"placeInLeaderBoard\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"username\",\"rating\",\"increaseBy\",\"decreaseBy\",\"draw\",\"placeInLeaderBoard\",\"image\",\"email\",\"tokensIncreaseBy\"]}")
+    }
 }

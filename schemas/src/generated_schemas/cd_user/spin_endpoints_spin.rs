@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CdUserSpinEndpointsSpinParams {
     #[serde(rename = "Type")]
@@ -13,11 +10,16 @@ pub struct CdUserSpinEndpointsSpinParams {
 }
 impl Schema for CdUserSpinEndpointsSpinParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"Type\":{\"type\":\"string\"}},\"required\":[\"Type\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CdUserSpinEndpointsSpinReturns {
     #[serde(rename = "Key")]
     pub key: String,
+}
+impl Schema for CdUserSpinEndpointsSpinReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"Key\":{\"type\":\"string\"}},\"required\":[\"Key\"]}")
+    }
 }

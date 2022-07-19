@@ -2,12 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for ReferralRewardMakeRewardRequestParams {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -18,7 +15,13 @@ impl<'de> Deserialize<'de> for ReferralRewardMakeRewardRequestParams {
 pub struct ReferralRewardMakeRewardRequestParams;
 impl Schema for ReferralRewardMakeRewardRequestParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{}")
     }
 }
-pub type ReferralRewardMakeRewardRequestReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ReferralRewardMakeRewardRequestReturns(bool);
+impl Schema for ReferralRewardMakeRewardRequestReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

@@ -2,12 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for LobbyRegionsGetParams {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -18,7 +15,7 @@ impl<'de> Deserialize<'de> for LobbyRegionsGetParams {
 pub struct LobbyRegionsGetParams;
 impl Schema for LobbyRegionsGetParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -30,10 +27,15 @@ pub struct LobbyRegionsGetReturnsListParamsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyRegionsGetReturns {
-    #[serde(rename = "isFixed")]
-    pub is_fixed: bool,
-    #[serde(rename = "list")]
-    pub list: Vec<LobbyRegionsGetReturnsListParamsParams>,
     #[serde(rename = "active")]
     pub active: String,
+    #[serde(rename = "list")]
+    pub list: Vec<LobbyRegionsGetReturnsListParamsParams>,
+    #[serde(rename = "isFixed")]
+    pub is_fixed: bool,
+}
+impl Schema for LobbyRegionsGetReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"active\":{\"type\":\"string\"},\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"host\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}},\"required\":[\"name\",\"host\"]}},\"isFixed\":{\"type\":\"boolean\"}},\"required\":[\"active\",\"isFixed\",\"list\"]}")
+    }
 }

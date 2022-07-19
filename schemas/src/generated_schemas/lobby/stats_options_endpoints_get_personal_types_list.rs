@@ -2,12 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for LobbyStatsOptionsEndpointsGetPersonalTypesListParams {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -18,11 +15,16 @@ impl<'de> Deserialize<'de> for LobbyStatsOptionsEndpointsGetPersonalTypesListPar
 pub struct LobbyStatsOptionsEndpointsGetPersonalTypesListParams;
 impl Schema for LobbyStatsOptionsEndpointsGetPersonalTypesListParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyStatsOptionsEndpointsGetPersonalTypesListReturns {
     #[serde(rename = "personalTypes")]
     pub personal_types: Vec<String>,
+}
+impl Schema for LobbyStatsOptionsEndpointsGetPersonalTypesListReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalTypes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"personalTypes\"]}")
+    }
 }

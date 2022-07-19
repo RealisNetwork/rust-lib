@@ -2,39 +2,42 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogCreateParamsPropsParams {
+    #[serde(rename = "url")]
+    pub url: String,
+    #[serde(rename = "image")]
+    pub image: String,
+    #[serde(rename = "metaDescription")]
+    pub meta_description: String,
+    #[serde(rename = "title")]
+    pub title: String,
+    #[serde(rename = "metaTitle")]
+    pub meta_title: String,
+    #[serde(rename = "shortDescription")]
+    pub short_description: String,
     #[serde(rename = "content")]
     pub content: String,
     #[serde(rename = "lang")]
     pub lang: Option<String>,
-    #[serde(rename = "image")]
-    pub image: String,
-    #[serde(rename = "title")]
-    pub title: String,
-    #[serde(rename = "shortDescription")]
-    pub short_description: String,
-    #[serde(rename = "url")]
-    pub url: String,
-    #[serde(rename = "metaDescription")]
-    pub meta_description: String,
-    #[serde(rename = "metaTitle")]
-    pub meta_title: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogCreateParams {
-    #[serde(rename = "categoryId")]
-    pub category_id: i64,
     #[serde(rename = "props")]
     pub props: BlogBlogCreateParamsPropsParams,
+    #[serde(rename = "categoryId")]
+    pub category_id: i64,
 }
 impl Schema for BlogBlogCreateParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"props\":{\"type\":\"object\",\"properties\":{\"url\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"}},\"required\":[\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\"]},\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"props\",\"categoryId\"]}")
     }
 }
-pub type BlogBlogCreateReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct BlogBlogCreateReturns(bool);
+impl Schema for BlogBlogCreateReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

@@ -2,22 +2,25 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthChangePasswordParams {
-    #[serde(rename = "password")]
-    pub password: String,
     #[serde(rename = "username")]
     pub username: String,
     #[serde(rename = "newPassword")]
     pub new_password: String,
+    #[serde(rename = "password")]
+    pub password: String,
 }
 impl Schema for AuthAuthChangePasswordParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"username\":{\"type\":\"string\"},\"newPassword\":{\"type\":\"string\"},\"password\":{\"type\":\"string\"}},\"required\":[\"password\",\"username\",\"newPassword\"]}")
     }
 }
-pub type AuthAuthChangePasswordReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AuthAuthChangePasswordReturns(bool);
+impl Schema for AuthAuthChangePasswordReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

@@ -19,11 +19,8 @@ const MOD_RS: &str = "mod.rs";
 
 fn main() {
     let git_loader = GitLoader::load(None).expect("Fail to load env");
-    println!("{:?}", git_loader);
 
     let agents: Vec<Agent> = git_loader.start().expect("Fail to load from Git");
-
-    println!("{:#?}", agents.first());
 
     // TODO: Check this
     let header =
@@ -50,7 +47,6 @@ fn main() {
         let pub_mods = quote! {
           #( pub mod #agent_methods; )*
         };
-        println!("{:?}", agent_methods);
         mod_file
             .write(pub_mods.to_string().as_bytes())
             .expect("Fail to write to \"mod.rs\"");
@@ -70,7 +66,7 @@ fn main() {
             .expect("Fail to write to \"mod.rs\"");
     }
 
-    // Creating mod.rs in generated schemas
+    // Creating src/generated_schemas/mod.rs in
     let mut mod_file = std::fs::File::create(&Path::new(&format!("{}{}", PATH, MOD_RS)))
         .expect("Fail to create \"mod.rs\" file");
     let values = agents
@@ -83,10 +79,24 @@ fn main() {
 
     let pub_mod = quote! {
       #( pub mod #values; )*
+      pub mod prelude;
     };
     mod_file
         .write(pub_mod.to_string().as_bytes())
         .expect("Fail to write to \"mod.rs\"");
+
+    // Creating src/generated_schemas/prelude.rs
+    let mut prelude_file = std::fs::File::create(&Path::new(&format!("{}prelude.rs", PATH)))
+        .expect("Fail to create \"prelude.rs\" file");
+    let pub_prelude = quote! {
+      pub use serde::{Serialize, Deserialize};
+      pub use serde_json::Value;
+      pub use crate::Schema;
+      pub use serde::de::Deserializer;
+    };
+    prelude_file
+        .write(pub_prelude.to_string().as_bytes())
+        .expect("Fail to write to \"prelude.rs\"");
 
     for schema in agents {
         let agent = schema.create_directory_name();

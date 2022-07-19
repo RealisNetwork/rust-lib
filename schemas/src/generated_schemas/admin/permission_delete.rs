@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminPermissionDeleteParams {
     #[serde(rename = "permissionName")]
@@ -15,7 +12,13 @@ pub struct AdminPermissionDeleteParams {
 }
 impl Schema for AdminPermissionDeleteParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"permissionName\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"roleName\":{\"type\":\"string\"}},\"required\":[\"permissionName\",\"roleName\"]}")
     }
 }
-pub type AdminPermissionDeleteReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AdminPermissionDeleteReturns(bool);
+impl Schema for AdminPermissionDeleteReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

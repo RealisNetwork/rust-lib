@@ -2,20 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralSetPotentialReferralParams {
-    #[serde(rename = "referralId")]
-    pub referral_id: String,
     #[serde(rename = "referrerId")]
     pub referrer_id: String,
+    #[serde(rename = "referralId")]
+    pub referral_id: String,
 }
 impl Schema for ReferralReferralSetPotentialReferralParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"referrerId\":{\"type\":\"string\"},\"referralId\":{\"type\":\"string\"}},\"required\":[\"referralId\",\"referrerId\"]}")
     }
 }
-pub type ReferralReferralSetPotentialReferralReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ReferralReferralSetPotentialReferralReturns(bool);
+impl Schema for ReferralReferralSetPotentialReferralReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

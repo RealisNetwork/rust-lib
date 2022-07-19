@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsRegistryProductBurnProductParams {
     #[serde(rename = "productId")]
@@ -13,7 +10,7 @@ pub struct TransactionsRegistryProductBurnProductParams {
 }
 impl Schema for TransactionsRegistryProductBurnProductParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"string\"}},\"required\":[\"productId\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -22,4 +19,9 @@ pub struct TransactionsRegistryProductBurnProductReturns {
     pub personal_type: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+}
+impl Schema for TransactionsRegistryProductBurnProductReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"personalType\"]}")
+    }
 }

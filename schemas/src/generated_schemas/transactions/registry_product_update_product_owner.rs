@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsRegistryProductUpdateProductOwnerParams {
     #[serde(rename = "productId")]
@@ -15,7 +12,13 @@ pub struct TransactionsRegistryProductUpdateProductOwnerParams {
 }
 impl Schema for TransactionsRegistryProductUpdateProductOwnerParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"}},\"required\":[\"productId\",\"ownerId\"]}")
     }
 }
-pub type TransactionsRegistryProductUpdateProductOwnerReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TransactionsRegistryProductUpdateProductOwnerReturns(bool);
+impl Schema for TransactionsRegistryProductUpdateProductOwnerReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

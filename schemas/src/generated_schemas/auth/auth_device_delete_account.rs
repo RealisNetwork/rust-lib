@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceDeleteAccountParams {
     #[serde(rename = "appId")]
@@ -13,7 +10,13 @@ pub struct AuthAuthDeviceDeleteAccountParams {
 }
 impl Schema for AuthAuthDeviceDeleteAccountParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"appId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"appId\"]}")
     }
 }
-pub type AuthAuthDeviceDeleteAccountReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AuthAuthDeviceDeleteAccountReturns(bool);
+impl Schema for AuthAuthDeviceDeleteAccountReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

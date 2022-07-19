@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionUpdateParamsExtraDetailsParams {
     #[serde(rename = "type")]
@@ -15,18 +12,24 @@ pub struct AdminOptionUpdateParamsExtraDetailsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionUpdateParams {
+    #[serde(rename = "description")]
+    pub description: Option<String>,
     #[serde(rename = "extraDetails")]
     pub extra_details: Option<AdminOptionUpdateParamsExtraDetailsParams>,
     #[serde(rename = "clientKey")]
     pub client_key: String,
     #[serde(rename = "value")]
     pub value: Option<String>,
-    #[serde(rename = "description")]
-    pub description: Option<String>,
 }
 impl Schema for AdminOptionUpdateParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"description\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"}},\"required\":null},\"clientKey\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"required\":[\"clientKey\"]}")
     }
 }
-pub type AdminOptionUpdateReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AdminOptionUpdateReturns(bool);
+impl Schema for AdminOptionUpdateReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

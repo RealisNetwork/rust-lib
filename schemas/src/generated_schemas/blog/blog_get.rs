@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetParams {
     #[serde(rename = "id")]
@@ -13,7 +10,7 @@ pub struct BlogBlogGetParams {
 }
 impl Schema for BlogBlogGetParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -27,34 +24,39 @@ pub struct BlogBlogGetReturnsCategoryParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetReturns {
-    #[serde(rename = "url")]
-    pub url: String,
-    #[serde(rename = "metaTitle")]
-    pub meta_title: String,
     #[serde(rename = "image")]
     pub image: String,
-    #[serde(rename = "id")]
-    pub id: i64,
-    #[serde(rename = "isPinned")]
-    pub is_pinned: bool,
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
-    #[serde(rename = "content")]
-    pub content: String,
-    #[serde(rename = "metaDescription")]
-    pub meta_description: String,
     #[serde(rename = "views")]
     pub views: i64,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: String,
-    #[serde(rename = "title")]
-    pub title: String,
-    #[serde(rename = "shortDescription")]
-    pub short_description: String,
+    #[serde(rename = "isPinned")]
+    pub is_pinned: bool,
     #[serde(rename = "createdAt")]
     pub created_at: String,
-    #[serde(rename = "category")]
-    pub category: BlogBlogGetReturnsCategoryParams,
+    #[serde(rename = "shortDescription")]
+    pub short_description: String,
+    #[serde(rename = "id")]
+    pub id: i64,
+    #[serde(rename = "metaTitle")]
+    pub meta_title: String,
+    #[serde(rename = "url")]
+    pub url: String,
     #[serde(rename = "lang")]
     pub lang: String,
+    #[serde(rename = "category")]
+    pub category: BlogBlogGetReturnsCategoryParams,
+    #[serde(rename = "metaDescription")]
+    pub meta_description: String,
+    #[serde(rename = "title")]
+    pub title: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
+    #[serde(rename = "content")]
+    pub content: String,
+}
+impl Schema for BlogBlogGetReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"image\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"},\"views\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isPinned\":{\"type\":\"boolean\"},\"createdAt\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"metaTitle\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"},\"category\":{\"type\":\"object\",\"properties\":{\"isAvailable\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\",\"isAvailable\"]},\"metaDescription\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"}},\"required\":[\"id\",\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\",\"isPinned\",\"views\",\"isAvailable\",\"lang\",\"createdAt\",\"updatedAt\",\"category\"]}")
+    }
 }

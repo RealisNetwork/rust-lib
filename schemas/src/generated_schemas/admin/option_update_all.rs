@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionUpdateAllParamsClientKeysParamsParamsExtraDetailsParams {
     #[serde(rename = "tab")]
@@ -15,14 +12,14 @@ pub struct AdminOptionUpdateAllParamsClientKeysParamsParamsExtraDetailsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionUpdateAllParamsClientKeysParamsParams {
-    #[serde(rename = "value")]
-    pub value: String,
     #[serde(rename = "key")]
     pub key: String,
-    #[serde(rename = "description")]
-    pub description: Option<String>,
     #[serde(rename = "extraDetails")]
     pub extra_details: Option<AdminOptionUpdateAllParamsClientKeysParamsParamsExtraDetailsParams>,
+    #[serde(rename = "value")]
+    pub value: String,
+    #[serde(rename = "description")]
+    pub description: Option<String>,
     #[serde(rename = "scope")]
     pub scope: String,
 }
@@ -33,7 +30,13 @@ pub struct AdminOptionUpdateAllParams {
 }
 impl Schema for AdminOptionUpdateAllParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"clientKeys\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"tab\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":null},\"value\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"scope\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\"]}}},\"required\":[\"clientKeys\"]}")
     }
 }
-pub type AdminOptionUpdateAllReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AdminOptionUpdateAllReturns(bool);
+impl Schema for AdminOptionUpdateAllReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

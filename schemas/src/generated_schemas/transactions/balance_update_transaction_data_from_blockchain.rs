@@ -2,22 +2,25 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceUpdateTransactionDataFromBlockchainParams {
-    #[serde(rename = "oldTxId")]
-    pub old_tx_id: String,
     #[serde(rename = "newTxId")]
     pub new_tx_id: String,
     #[serde(rename = "blockId")]
     pub block_id: String,
+    #[serde(rename = "oldTxId")]
+    pub old_tx_id: String,
 }
 impl Schema for TransactionsBalanceUpdateTransactionDataFromBlockchainParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newTxId\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"},\"oldTxId\":{\"type\":\"string\"}},\"required\":[\"oldTxId\",\"newTxId\",\"blockId\"]}")
     }
 }
-pub type TransactionsBalanceUpdateTransactionDataFromBlockchainReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TransactionsBalanceUpdateTransactionDataFromBlockchainReturns(bool);
+impl Schema for TransactionsBalanceUpdateTransactionDataFromBlockchainReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

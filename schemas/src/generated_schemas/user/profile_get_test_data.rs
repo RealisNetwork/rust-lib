@@ -2,12 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for UserProfileGetTestDataParams {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -18,11 +15,16 @@ impl<'de> Deserialize<'de> for UserProfileGetTestDataParams {
 pub struct UserProfileGetTestDataParams;
 impl Schema for UserProfileGetTestDataParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetTestDataReturns {
     #[serde(rename = "hello")]
     pub hello: String,
+}
+impl Schema for UserProfileGetTestDataReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"hello\":{\"type\":\"string\"}},\"required\":[\"hello\"]}")
+    }
 }

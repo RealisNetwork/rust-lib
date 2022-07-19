@@ -2,25 +2,27 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceGetOrCreateInternalUserIdParams {
-    #[serde(rename = "email")]
-    pub email: Option<String>,
     #[serde(rename = "providerId")]
     pub provider_id: String,
-    #[serde(rename = "provider")]
-    pub provider: (),
+    #[serde(rename = "email")]
+    pub email: Option<String>,
     #[serde(rename = "appId")]
     pub app_id: Option<i32>,
+    #[serde(rename = "provider")]
+    pub provider: (),
 }
 impl Schema for AuthAuthDeviceGetOrCreateInternalUserIdParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"providerId\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"provider\":{}},\"required\":[\"providerId\",\"provider\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceGetOrCreateInternalUserIdReturns(String);
+impl Schema for AuthAuthDeviceGetOrCreateInternalUserIdReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"string\"}")
+    }
+}

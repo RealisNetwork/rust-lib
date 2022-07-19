@@ -2,20 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleAddParams {
-    #[serde(rename = "roleName")]
-    pub role_name: String,
     #[serde(rename = "internalUserId")]
     pub internal_user_id: String,
+    #[serde(rename = "roleName")]
+    pub role_name: String,
 }
 impl Schema for AdminUserRoleAddParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"internalUserId\":{\"type\":\"string\"},\"roleName\":{\"type\":\"string\"}},\"required\":[\"roleName\",\"internalUserId\"]}")
     }
 }
-pub type AdminUserRoleAddReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AdminUserRoleAddReturns(bool);
+impl Schema for AdminUserRoleAddReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

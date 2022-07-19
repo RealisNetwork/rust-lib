@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetByScopeParams {
     #[serde(rename = "scope")]
@@ -13,16 +10,22 @@ pub struct AdminOptionGetByScopeParams {
 }
 impl Schema for AdminOptionGetByScopeParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"scope\":{\"type\":\"string\"}},\"required\":[\"scope\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetByScopeReturnsParams {
-    #[serde(rename = "scope")]
-    pub scope: String,
     #[serde(rename = "value")]
     pub value: String,
+    #[serde(rename = "scope")]
+    pub scope: String,
     #[serde(rename = "key")]
     pub key: String,
 }
-pub type AdminOptionGetByScopeReturns = Vec<AdminOptionGetByScopeReturnsParams>;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AdminOptionGetByScopeReturns(Vec<AdminOptionGetByScopeReturnsParams>);
+impl Schema for AdminOptionGetByScopeReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"value\":{\"type\":\"string\"},\"scope\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\"]}}")
+    }
+}

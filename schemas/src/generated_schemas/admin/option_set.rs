@@ -2,37 +2,39 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionSetParamsExtraDetailsParams {
-    #[serde(rename = "tab")]
-    pub tab: String,
     #[serde(rename = "type")]
     pub r#type: String,
+    #[serde(rename = "tab")]
+    pub tab: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionSetParams {
-    #[serde(rename = "value")]
-    pub value: String,
-    #[serde(rename = "extraDetails")]
-    pub extra_details: Option<AdminOptionSetParamsExtraDetailsParams>,
-    #[serde(rename = "description")]
-    pub description: Option<String>,
     #[serde(rename = "clientKey")]
     pub client_key: String,
+    #[serde(rename = "description")]
+    pub description: Option<String>,
+    #[serde(rename = "extraDetails")]
+    pub extra_details: Option<AdminOptionSetParamsExtraDetailsParams>,
+    #[serde(rename = "value")]
+    pub value: String,
 }
 impl Schema for AdminOptionSetParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"clientKey\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"}},\"required\":null},\"value\":{\"type\":\"string\"}},\"required\":[\"clientKey\",\"value\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionSetReturns {
-    #[serde(rename = "key")]
-    pub key: String,
     #[serde(rename = "value")]
     pub value: String,
+    #[serde(rename = "key")]
+    pub key: String,
+}
+impl Schema for AdminOptionSetReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"value\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"}},\"required\":[\"key\",\"value\"]}")
+    }
 }

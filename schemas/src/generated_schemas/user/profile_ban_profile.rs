@@ -2,20 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileBanProfileParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "reason")]
     pub reason: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for UserProfileBanProfileParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"reason\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"reason\"]}")
     }
 }
-pub type UserProfileBanProfileReturns = bool;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct UserProfileBanProfileReturns(bool);
+impl Schema for UserProfileBanProfileReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}

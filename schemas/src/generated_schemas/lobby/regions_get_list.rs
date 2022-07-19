@@ -2,12 +2,9 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for LobbyRegionsGetListParams {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -18,7 +15,7 @@ impl<'de> Deserialize<'de> for LobbyRegionsGetListParams {
 pub struct LobbyRegionsGetListParams;
 impl Schema for LobbyRegionsGetListParams {
     fn schema() -> Value {
-        todo!()
+        serde_json::json!("{}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -34,4 +31,9 @@ pub struct LobbyRegionsGetListReturnsListParamsParams {
 pub struct LobbyRegionsGetListReturns {
     #[serde(rename = "list")]
     pub list: Vec<LobbyRegionsGetListReturnsListParamsParams>,
+}
+impl Schema for LobbyRegionsGetListReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"host\":{\"type\":\"string\"}},\"required\":[\"name\",\"host\",\"code\"]}}},\"required\":[\"list\"]}")
+    }
 }

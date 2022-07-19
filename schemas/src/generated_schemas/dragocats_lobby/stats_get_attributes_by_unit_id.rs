@@ -2,10 +2,7 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsLobbyStatsGetAttributesByUnitIdParams {
     #[serde(rename = "unitId")]
@@ -13,21 +10,26 @@ pub struct DragocatsLobbyStatsGetAttributesByUnitIdParams {
 }
 impl Schema for DragocatsLobbyStatsGetAttributesByUnitIdParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"unitId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"unitId\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsLobbyStatsGetAttributesByUnitIdReturns {
-    #[serde(rename = "speed")]
-    pub speed: i32,
-    #[serde(rename = "power")]
-    pub power: i32,
-    #[serde(rename = "defence")]
-    pub defence: i32,
-    #[serde(rename = "id")]
-    pub id: i32,
     #[serde(rename = "combatPower")]
     pub combat_power: i64,
     #[serde(rename = "health")]
     pub health: i32,
+    #[serde(rename = "defence")]
+    pub defence: i32,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "power")]
+    pub power: i32,
+    #[serde(rename = "speed")]
+    pub speed: i32,
+}
+impl Schema for DragocatsLobbyStatsGetAttributesByUnitIdReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"combatPower\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"health\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"defence\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"power\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"speed\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"health\",\"speed\",\"power\",\"defence\",\"combatPower\"]}")
+    }
 }

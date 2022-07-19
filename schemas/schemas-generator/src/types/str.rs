@@ -6,9 +6,13 @@ use syn::__private::Span;
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq)]
 pub struct StringParams {
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub format: Option<StringFormat>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub pattern: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub min_length: Option<u64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub max_length: Option<u64>,
 }
 
@@ -41,7 +45,6 @@ impl StringParams {
         SchemaDeclaration {
             declaration,
             prefix,
-            contains_struct: true,
         }
     }
 }

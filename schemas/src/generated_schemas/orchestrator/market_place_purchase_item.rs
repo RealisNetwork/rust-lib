@@ -2,28 +2,25 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorMarketPlacePurchaseItemParams {
-    #[serde(rename = "creator")]
-    pub creator: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
     #[serde(rename = "productId")]
     pub product_id: i32,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
 }
 impl Schema for OrchestratorMarketPlacePurchaseItemParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"txId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"}},\"required\":[\"productId\",\"userId\",\"txId\",\"creator\"]}")
     }
 }
 impl<'de> Deserialize<'de> for OrchestratorMarketPlacePurchaseItemReturns {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
@@ -32,3 +29,8 @@ impl<'de> Deserialize<'de> for OrchestratorMarketPlacePurchaseItemReturns {
 }
 #[derive(Debug, Clone, Serialize)]
 pub struct OrchestratorMarketPlacePurchaseItemReturns;
+impl Schema for OrchestratorMarketPlacePurchaseItemReturns {
+    fn schema() -> Value {
+        serde_json::json!("{}")
+    }
+}

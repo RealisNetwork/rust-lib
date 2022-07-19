@@ -2,21 +2,23 @@
 
 #![allow(unknown_lints)]
 #![allow(clippy::all)]
-use crate::Schema;
-use serde::de::Deserializer;
-use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthConfirmEmailByCodeParams {
-    #[serde(rename = "code")]
-    pub code: String,
     #[serde(rename = "emailHash")]
     pub email_hash: String,
+    #[serde(rename = "code")]
+    pub code: String,
 }
 impl Schema for AuthAuthConfirmEmailByCodeParams {
     fn schema() -> Value {
-        todo!()
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"emailHash\":{\"type\":\"string\"},\"code\":{\"type\":\"string\"}},\"required\":[\"code\",\"emailHash\"]}")
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthConfirmEmailByCodeReturns(String);
+impl Schema for AuthAuthConfirmEmailByCodeReturns {
+    fn schema() -> Value {
+        serde_json::json!("{\"type\":\"string\"}")
+    }
+}
