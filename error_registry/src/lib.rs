@@ -15,7 +15,7 @@ use std::{
     fmt,
     fmt::{Debug, Display, Formatter},
 };
-
+use std::default::Default as StdDefault;
 pub mod custom_errors;
 pub mod generated_errors;
 
@@ -29,6 +29,30 @@ pub struct BaseError<D: Debug> {
     pub data: Option<D>,
     /// Numeric id of `error_type`
     pub status: u32,
+}
+
+// T - is the Ok() value
+// E - is the Err() value
+// D - is the data inside BaseError
+// ET - is Custom or Generated error
+pub trait ProcessError<T, E, D, ET>
+    where
+        E: Debug,
+        D: Debug,
+        ET: Into<ErrorType>
+{
+    fn process_err(self, error: ET) -> Result<T, BaseError<D>>;
+}
+
+impl<T, E, D, ET> ProcessError<T, E, D, ET> for Result<T, E>
+where
+    E: Debug,
+    D: Debug,
+    ET: Into<ErrorType>
+{
+    fn process_err(self, error: ET) -> Result<T, BaseError<D>> {
+       self.map_err(|err| BaseError::new(format!("{:?}", err), error.into(), None))
+    }
 }
 
 impl<D: Debug> BaseError<D> {
@@ -291,7 +315,7 @@ impl<D: Debug> From<deadpool_postgres::CreatePoolError> for BaseError<D> {
     }
 }
 
-impl<D: Debug> Default for BaseError<D> {
+impl<D: Debug> StdDefault for BaseError<D> {
     /// Default BaseError.
     ///
     /// Use only if you explicitly want to get a default error!
@@ -390,7 +414,7 @@ impl From<ErrorType> for u32 {
     }
 }
 
-impl Default for ErrorType {
+impl StdDefault for ErrorType {
     fn default() -> Self {
         ErrorType::Custom(CustomErrorType::Default)
     }
@@ -542,10 +566,10 @@ impl From<GeneratedError> for ErrorType {
 
 mod tests {
     use super::*;
-    use crate::{custom_errors::Db, CustomErrorType, ErrorType};
+    use crate::{CustomErrorType, ErrorType};
+    use crate::custom_errors::Db;
     use serde::{Deserialize, Serialize};
     use serde_json::json;
-
     use crate::generated_errors::{Db as GeneratedDb, GeneratedError, Geo, Utils};
 
     #[test]
@@ -595,5 +619,12 @@ mod tests {
             custom_code
         );
         assert_eq!(777005004u32, custom_code);
+    }
+
+    #[test]
+    fn process_error_test(){
+        let sample = Result::<(), BaseError<()>>::from(Err(BaseError::from(CustomErrorType::Db(Db::UserIdNotFound))));
+        let result: Result<(), BaseError<()>> = sample.process_err(GeneratedError::Common(Common::InternalServerError));
+        println!("Error: {:#?}", result);
     }
 }
