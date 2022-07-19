@@ -13,6 +13,17 @@ impl Schema for UserStatusGetParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\"]}")
     }
 }
+impl Agent for UserStatusGetParams {
+    fn topic() -> &'static str {
+        "user_status_get"
+    }
+    fn method() -> &'static str {
+        "status_get"
+    }
+    fn agent() -> &'static str {
+        "user"
+    }
+}
 impl<'de> Deserialize<'de> for UserStatusGetReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct UserStatusGetReturns;
 impl Schema for UserStatusGetReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for UserStatusGetReturns {
+    fn topic() -> &'static str {
+        "user_status_get"
+    }
+    fn method() -> &'static str {
+        "status_get"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

@@ -13,10 +13,32 @@ impl Schema for AuthAuthResentConfirmationMailParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\",\"pattern\":\"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\\\.[a-zA-Z0-9-.]+$\"}},\"required\":[\"email\"]}")
     }
 }
+impl Agent for AuthAuthResentConfirmationMailParams {
+    fn topic() -> &'static str {
+        "auth_auth_resentConfirmationMail"
+    }
+    fn method() -> &'static str {
+        "auth_resentConfirmationMail"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthResentConfirmationMailReturns(bool);
 impl Schema for AuthAuthResentConfirmationMailReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AuthAuthResentConfirmationMailReturns {
+    fn topic() -> &'static str {
+        "auth_auth_resentConfirmationMail"
+    }
+    fn method() -> &'static str {
+        "auth_resentConfirmationMail"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

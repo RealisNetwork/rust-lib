@@ -10,19 +10,41 @@ impl Schema for BattlePassBattlePassEndpointsGetBattlePassSeasonInfoParams {
         serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
     }
 }
+impl Agent for BattlePassBattlePassEndpointsGetBattlePassSeasonInfoParams {
+    fn topic() -> &'static str {
+        "battle-pass_battlePassEndpoints_getBattlePassSeasonInfo"
+    }
+    fn method() -> &'static str {
+        "battlePassEndpoints_getBattlePassSeasonInfo"
+    }
+    fn agent() -> &'static str {
+        "battle-pass"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassSeasonInfoReturns {
-    #[serde(rename = "hasNotReceivedOldRewards")]
-    pub has_not_received_old_rewards: bool,
     #[serde(rename = "seasonId")]
     pub season_id: i32,
     #[serde(rename = "seasonState")]
     pub season_state: i32,
     #[serde(rename = "stateUpdateDate")]
     pub state_update_date: String,
+    #[serde(rename = "hasNotReceivedOldRewards")]
+    pub has_not_received_old_rewards: bool,
 }
 impl Schema for BattlePassBattlePassEndpointsGetBattlePassSeasonInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"hasNotReceivedOldRewards\":{\"type\":\"boolean\"},\"seasonId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"seasonState\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"stateUpdateDate\":{\"type\":\"string\"}},\"required\":[\"seasonId\",\"seasonState\",\"hasNotReceivedOldRewards\",\"stateUpdateDate\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"seasonId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"seasonState\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"stateUpdateDate\":{\"type\":\"string\"},\"hasNotReceivedOldRewards\":{\"type\":\"boolean\"}},\"required\":[\"seasonId\",\"seasonState\",\"hasNotReceivedOldRewards\",\"stateUpdateDate\"]}")
+    }
+}
+impl Agent for BattlePassBattlePassEndpointsGetBattlePassSeasonInfoReturns {
+    fn topic() -> &'static str {
+        "battle-pass_battlePassEndpoints_getBattlePassSeasonInfo"
+    }
+    fn method() -> &'static str {
+        "battlePassEndpoints_getBattlePassSeasonInfo"
+    }
+    fn agent() -> &'static str {
+        "battle-pass"
     }
 }

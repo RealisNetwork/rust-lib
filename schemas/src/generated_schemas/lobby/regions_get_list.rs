@@ -18,14 +18,25 @@ impl Schema for LobbyRegionsGetListParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for LobbyRegionsGetListParams {
+    fn topic() -> &'static str {
+        "lobby_regions_getList"
+    }
+    fn method() -> &'static str {
+        "regions_getList"
+    }
+    fn agent() -> &'static str {
+        "lobby"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyRegionsGetListReturnsListParamsParams {
     #[serde(rename = "code")]
     pub code: String,
-    #[serde(rename = "name")]
-    pub name: String,
     #[serde(rename = "host")]
     pub host: String,
+    #[serde(rename = "name")]
+    pub name: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyRegionsGetListReturns {
@@ -34,6 +45,17 @@ pub struct LobbyRegionsGetListReturns {
 }
 impl Schema for LobbyRegionsGetListReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"host\":{\"type\":\"string\"}},\"required\":[\"name\",\"host\",\"code\"]}}},\"required\":[\"list\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"},\"host\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}},\"required\":[\"name\",\"host\",\"code\"]}}},\"required\":[\"list\"]}")
+    }
+}
+impl Agent for LobbyRegionsGetListReturns {
+    fn topic() -> &'static str {
+        "lobby_regions_getList"
+    }
+    fn method() -> &'static str {
+        "regions_getList"
+    }
+    fn agent() -> &'static str {
+        "lobby"
     }
 }

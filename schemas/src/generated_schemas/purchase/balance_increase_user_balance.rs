@@ -7,20 +7,31 @@ use crate::generated_schemas::prelude::*;
 pub struct PurchaseBalanceIncreaseUserBalanceParams {
     #[serde(rename = "creator")]
     pub creator: String,
-    #[serde(rename = "currency")]
-    pub currency: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
-    #[serde(rename = "amount")]
-    pub amount: String,
     #[serde(rename = "topicToSuccessResponse")]
     pub topic_to_success_response: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "currency")]
+    pub currency: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
 }
 impl Schema for PurchaseBalanceIncreaseUserBalanceParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"creator\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"},\"userId\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"topicToSuccessResponse\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\",\"topicToSuccessResponse\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"creator\":{\"type\":\"string\"},\"topicToSuccessResponse\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"},\"amount\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\",\"topicToSuccessResponse\"]}")
+    }
+}
+impl Agent for PurchaseBalanceIncreaseUserBalanceParams {
+    fn topic() -> &'static str {
+        "purchase_balance_increaseUserBalance"
+    }
+    fn method() -> &'static str {
+        "balance_increaseUserBalance"
+    }
+    fn agent() -> &'static str {
+        "purchase"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -28,5 +39,16 @@ pub struct PurchaseBalanceIncreaseUserBalanceReturns(bool);
 impl Schema for PurchaseBalanceIncreaseUserBalanceReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for PurchaseBalanceIncreaseUserBalanceReturns {
+    fn topic() -> &'static str {
+        "purchase_balance_increaseUserBalance"
+    }
+    fn method() -> &'static str {
+        "balance_increaseUserBalance"
+    }
+    fn agent() -> &'static str {
+        "purchase"
     }
 }

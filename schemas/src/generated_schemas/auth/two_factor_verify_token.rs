@@ -13,10 +13,32 @@ impl Schema for AuthTwoFactorVerifyTokenParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"token\":{\"type\":\"string\"}},\"required\":[\"token\"]}")
     }
 }
+impl Agent for AuthTwoFactorVerifyTokenParams {
+    fn topic() -> &'static str {
+        "auth_twoFactor_verifyToken"
+    }
+    fn method() -> &'static str {
+        "twoFactor_verifyToken"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthTwoFactorVerifyTokenReturns(bool);
 impl Schema for AuthTwoFactorVerifyTokenReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AuthTwoFactorVerifyTokenReturns {
+    fn topic() -> &'static str {
+        "auth_twoFactor_verifyToken"
+    }
+    fn method() -> &'static str {
+        "twoFactor_verifyToken"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

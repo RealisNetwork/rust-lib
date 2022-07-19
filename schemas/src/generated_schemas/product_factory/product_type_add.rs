@@ -7,26 +7,37 @@ use crate::generated_schemas::prelude::*;
 pub struct ProductFactoryProductTypeAddParamsParamsParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeAddParams {
-    #[serde(rename = "name")]
-    pub name: String,
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
-    #[serde(rename = "rarity")]
-    pub rarity: i64,
-    #[serde(rename = "isNFT")]
-    pub is_nft: bool,
     #[serde(rename = "underType")]
     pub under_type: String,
-    #[serde(rename = "params")]
-    pub params: ProductFactoryProductTypeAddParamsParamsParams,
-    #[serde(rename = "type")]
-    pub r#type: String,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
     #[serde(rename = "dropChance")]
     pub drop_chance: i64,
+    #[serde(rename = "type")]
+    pub r#type: String,
+    #[serde(rename = "rarity")]
+    pub rarity: i64,
+    #[serde(rename = "params")]
+    pub params: ProductFactoryProductTypeAddParamsParamsParams,
+    #[serde(rename = "isNFT")]
+    pub is_nft: bool,
+    #[serde(rename = "name")]
+    pub name: String,
 }
 impl Schema for ProductFactoryProductTypeAddParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"rarity\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isNFT\":{\"type\":\"boolean\"},\"underType\":{\"type\":\"string\"},\"params\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"type\":{\"type\":\"string\"},\"dropChance\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"isNFT\",\"name\",\"type\",\"underType\",\"personalType\",\"params\",\"rarity\",\"dropChance\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"underType\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"dropChance\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"type\":{\"type\":\"string\"},\"rarity\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"params\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"isNFT\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"}},\"required\":[\"isNFT\",\"name\",\"type\",\"underType\",\"personalType\",\"params\",\"rarity\",\"dropChance\"]}")
+    }
+}
+impl Agent for ProductFactoryProductTypeAddParams {
+    fn topic() -> &'static str {
+        "productFactory_productType_add"
+    }
+    fn method() -> &'static str {
+        "productType_add"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -34,5 +45,16 @@ pub struct ProductFactoryProductTypeAddReturns(bool);
 impl Schema for ProductFactoryProductTypeAddReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for ProductFactoryProductTypeAddReturns {
+    fn topic() -> &'static str {
+        "productFactory_productType_add"
+    }
+    fn method() -> &'static str {
+        "productType_add"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
     }
 }

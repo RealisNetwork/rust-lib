@@ -17,10 +17,32 @@ impl Schema for TransactionsBalanceUpdateTransactionDataFromBlockchainParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newTxId\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"},\"oldTxId\":{\"type\":\"string\"}},\"required\":[\"oldTxId\",\"newTxId\",\"blockId\"]}")
     }
 }
+impl Agent for TransactionsBalanceUpdateTransactionDataFromBlockchainParams {
+    fn topic() -> &'static str {
+        "transactions_balance_updateTransactionDataFromBlockchain"
+    }
+    fn method() -> &'static str {
+        "balance_updateTransactionDataFromBlockchain"
+    }
+    fn agent() -> &'static str {
+        "transactions"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceUpdateTransactionDataFromBlockchainReturns(bool);
 impl Schema for TransactionsBalanceUpdateTransactionDataFromBlockchainReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for TransactionsBalanceUpdateTransactionDataFromBlockchainReturns {
+    fn topic() -> &'static str {
+        "transactions_balance_updateTransactionDataFromBlockchain"
+    }
+    fn method() -> &'static str {
+        "balance_updateTransactionDataFromBlockchain"
+    }
+    fn agent() -> &'static str {
+        "transactions"
     }
 }

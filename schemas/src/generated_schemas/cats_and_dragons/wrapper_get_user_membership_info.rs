@@ -15,21 +15,43 @@ impl Schema for CatsAndDragonsWrapperGetUserMembershipInfoParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"appId\"]}")
     }
 }
+impl Agent for CatsAndDragonsWrapperGetUserMembershipInfoParams {
+    fn topic() -> &'static str {
+        "catsAndDragons_wrapper_getUserMembershipInfo"
+    }
+    fn method() -> &'static str {
+        "wrapper_getUserMembershipInfo"
+    }
+    fn agent() -> &'static str {
+        "catsAndDragons"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetUserMembershipInfoReturns {
-    #[serde(rename = "membershipId")]
-    pub membership_id: i64,
-    #[serde(rename = "statusPurchaseAppId")]
-    pub status_purchase_app_id: i64,
-    #[serde(rename = "balance")]
-    pub balance: String,
     #[serde(rename = "isAuthorized")]
     pub is_authorized: bool,
+    #[serde(rename = "balance")]
+    pub balance: String,
+    #[serde(rename = "statusPurchaseAppId")]
+    pub status_purchase_app_id: i64,
+    #[serde(rename = "membershipId")]
+    pub membership_id: i64,
     #[serde(rename = "multiplier")]
     pub multiplier: i64,
 }
 impl Schema for CatsAndDragonsWrapperGetUserMembershipInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"membershipId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"statusPurchaseAppId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"balance\":{\"type\":\"string\"},\"isAuthorized\":{\"type\":\"boolean\"},\"multiplier\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"statusPurchaseAppId\",\"membershipId\",\"multiplier\",\"balance\",\"isAuthorized\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isAuthorized\":{\"type\":\"boolean\"},\"balance\":{\"type\":\"string\"},\"statusPurchaseAppId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"membershipId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"multiplier\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"statusPurchaseAppId\",\"membershipId\",\"multiplier\",\"balance\",\"isAuthorized\"]}")
+    }
+}
+impl Agent for CatsAndDragonsWrapperGetUserMembershipInfoReturns {
+    fn topic() -> &'static str {
+        "catsAndDragons_wrapper_getUserMembershipInfo"
+    }
+    fn method() -> &'static str {
+        "wrapper_getUserMembershipInfo"
+    }
+    fn agent() -> &'static str {
+        "catsAndDragons"
     }
 }

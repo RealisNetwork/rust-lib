@@ -13,15 +13,37 @@ impl Schema for TransactionsRegistryProductBurnProductParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"string\"}},\"required\":[\"productId\"]}")
     }
 }
+impl Agent for TransactionsRegistryProductBurnProductParams {
+    fn topic() -> &'static str {
+        "transactions_registryProduct_burnProduct"
+    }
+    fn method() -> &'static str {
+        "registryProduct_burnProduct"
+    }
+    fn agent() -> &'static str {
+        "transactions"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsRegistryProductBurnProductReturns {
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
 }
 impl Schema for TransactionsRegistryProductBurnProductReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"personalType\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"}},\"required\":[\"userId\",\"personalType\"]}")
+    }
+}
+impl Agent for TransactionsRegistryProductBurnProductReturns {
+    fn topic() -> &'static str {
+        "transactions_registryProduct_burnProduct"
+    }
+    fn method() -> &'static str {
+        "registryProduct_burnProduct"
+    }
+    fn agent() -> &'static str {
+        "transactions"
     }
 }

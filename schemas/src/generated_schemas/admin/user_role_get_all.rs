@@ -18,28 +18,50 @@ impl Schema for AdminUserRoleGetAllParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for AdminUserRoleGetAllParams {
+    fn topic() -> &'static str {
+        "admin_userRole_getAll"
+    }
+    fn method() -> &'static str {
+        "userRole_getAll"
+    }
+    fn agent() -> &'static str {
+        "admin"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleGetAllReturnsParamsRoleParams {
-    #[serde(rename = "name")]
-    pub name: String,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "name")]
+    pub name: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleGetAllReturnsParams {
-    #[serde(rename = "id")]
-    pub id: i64,
-    #[serde(rename = "role")]
-    pub role: AdminUserRoleGetAllReturnsParamsRoleParams,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "isActive")]
     pub is_active: bool,
+    #[serde(rename = "role")]
+    pub role: AdminUserRoleGetAllReturnsParamsRoleParams,
+    #[serde(rename = "id")]
+    pub id: i64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleGetAllReturns(Vec<AdminUserRoleGetAllReturnsParams>);
 impl Schema for AdminUserRoleGetAllReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"role\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"name\"]},\"userId\":{\"type\":\"string\"},\"isActive\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"userId\",\"isActive\",\"role\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"isActive\":{\"type\":\"boolean\"},\"role\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\"]},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"userId\",\"isActive\",\"role\"]}}")
+    }
+}
+impl Agent for AdminUserRoleGetAllReturns {
+    fn topic() -> &'static str {
+        "admin_userRole_getAll"
+    }
+    fn method() -> &'static str {
+        "userRole_getAll"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }

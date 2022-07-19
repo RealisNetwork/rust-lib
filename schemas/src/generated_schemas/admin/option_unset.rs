@@ -13,10 +13,32 @@ impl Schema for AdminOptionUnsetParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"clientKey\":{\"type\":\"string\"}},\"required\":[\"clientKey\"]}")
     }
 }
+impl Agent for AdminOptionUnsetParams {
+    fn topic() -> &'static str {
+        "admin_option_unset"
+    }
+    fn method() -> &'static str {
+        "option_unset"
+    }
+    fn agent() -> &'static str {
+        "admin"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionUnsetReturns(bool);
 impl Schema for AdminOptionUnsetReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AdminOptionUnsetReturns {
+    fn topic() -> &'static str {
+        "admin_option_unset"
+    }
+    fn method() -> &'static str {
+        "option_unset"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }

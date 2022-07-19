@@ -17,6 +17,17 @@ impl Schema for DragonsLobbyBuyCatParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"catId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"catId\",\"price\"]}")
     }
 }
+impl Agent for DragonsLobbyBuyCatParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_buyCat"
+    }
+    fn method() -> &'static str {
+        "lobby_buyCat"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyBuyCatReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -30,5 +41,16 @@ pub struct DragonsLobbyBuyCatReturns;
 impl Schema for DragonsLobbyBuyCatReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyBuyCatReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_buyCat"
+    }
+    fn method() -> &'static str {
+        "lobby_buyCat"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

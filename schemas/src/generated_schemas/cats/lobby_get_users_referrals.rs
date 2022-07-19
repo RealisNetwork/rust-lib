@@ -13,6 +13,17 @@ impl Schema for CatsLobbyGetUsersReferralsParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for CatsLobbyGetUsersReferralsParams {
+    fn topic() -> &'static str {
+        "cats_lobby_getUsersReferrals"
+    }
+    fn method() -> &'static str {
+        "lobby_getUsersReferrals"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyGetUsersReferralsReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct CatsLobbyGetUsersReferralsReturns;
 impl Schema for CatsLobbyGetUsersReferralsReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyGetUsersReferralsReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_getUsersReferrals"
+    }
+    fn method() -> &'static str {
+        "lobby_getUsersReferrals"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

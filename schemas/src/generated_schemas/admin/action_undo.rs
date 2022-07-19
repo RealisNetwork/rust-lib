@@ -13,10 +13,32 @@ impl Schema for AdminActionUndoParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"actionId\":{\"type\":\"string\"}},\"required\":[\"actionId\"]}")
     }
 }
+impl Agent for AdminActionUndoParams {
+    fn topic() -> &'static str {
+        "admin_action_undo"
+    }
+    fn method() -> &'static str {
+        "action_undo"
+    }
+    fn agent() -> &'static str {
+        "admin"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionUndoReturns(bool);
 impl Schema for AdminActionUndoReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AdminActionUndoReturns {
+    fn topic() -> &'static str {
+        "admin_action_undo"
+    }
+    fn method() -> &'static str {
+        "action_undo"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }

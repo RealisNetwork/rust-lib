@@ -18,6 +18,17 @@ impl Schema for AdminUserRoleIsAdminParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for AdminUserRoleIsAdminParams {
+    fn topic() -> &'static str {
+        "admin_userRole_isAdmin"
+    }
+    fn method() -> &'static str {
+        "userRole_isAdmin"
+    }
+    fn agent() -> &'static str {
+        "admin"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleIsAdminReturns {
     #[serde(rename = "isAdmin")]
@@ -26,5 +37,16 @@ pub struct AdminUserRoleIsAdminReturns {
 impl Schema for AdminUserRoleIsAdminReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isAdmin\":{\"type\":\"boolean\"}},\"required\":[\"isAdmin\"]}")
+    }
+}
+impl Agent for AdminUserRoleIsAdminReturns {
+    fn topic() -> &'static str {
+        "admin_userRole_isAdmin"
+    }
+    fn method() -> &'static str {
+        "userRole_isAdmin"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }

@@ -13,6 +13,17 @@ impl Schema for ProductFactoryProductTypeGetParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\"]}")
     }
 }
+impl Agent for ProductFactoryProductTypeGetParams {
+    fn topic() -> &'static str {
+        "productFactory_productType_get"
+    }
+    fn method() -> &'static str {
+        "productType_get"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
+    }
+}
 impl<'de> Deserialize<'de> for ProductFactoryProductTypeGetReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct ProductFactoryProductTypeGetReturns;
 impl Schema for ProductFactoryProductTypeGetReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for ProductFactoryProductTypeGetReturns {
+    fn topic() -> &'static str {
+        "productFactory_productType_get"
+    }
+    fn method() -> &'static str {
+        "productType_get"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
     }
 }

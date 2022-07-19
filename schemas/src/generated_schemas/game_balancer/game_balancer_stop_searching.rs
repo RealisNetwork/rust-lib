@@ -18,10 +18,32 @@ impl Schema for GameBalancerGameBalancerStopSearchingParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for GameBalancerGameBalancerStopSearchingParams {
+    fn topic() -> &'static str {
+        "gameBalancer_gameBalancer_stopSearching"
+    }
+    fn method() -> &'static str {
+        "gameBalancer_stopSearching"
+    }
+    fn agent() -> &'static str {
+        "gameBalancer"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GameBalancerGameBalancerStopSearchingReturns(bool);
 impl Schema for GameBalancerGameBalancerStopSearchingReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for GameBalancerGameBalancerStopSearchingReturns {
+    fn topic() -> &'static str {
+        "gameBalancer_gameBalancer_stopSearching"
+    }
+    fn method() -> &'static str {
+        "gameBalancer_stopSearching"
+    }
+    fn agent() -> &'static str {
+        "gameBalancer"
     }
 }

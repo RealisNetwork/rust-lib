@@ -13,10 +13,32 @@ impl Schema for UserProfileUnsetNoticeParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for UserProfileUnsetNoticeParams {
+    fn topic() -> &'static str {
+        "user_profile_unsetNotice"
+    }
+    fn method() -> &'static str {
+        "profile_unsetNotice"
+    }
+    fn agent() -> &'static str {
+        "user"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileUnsetNoticeReturns(bool);
 impl Schema for UserProfileUnsetNoticeReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for UserProfileUnsetNoticeReturns {
+    fn topic() -> &'static str {
+        "user_profile_unsetNotice"
+    }
+    fn method() -> &'static str {
+        "profile_unsetNotice"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

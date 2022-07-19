@@ -13,10 +13,32 @@ impl Schema for TransactionsBalanceGetNumOfTransactionsParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for TransactionsBalanceGetNumOfTransactionsParams {
+    fn topic() -> &'static str {
+        "transactions_balance_getNumOfTransactions"
+    }
+    fn method() -> &'static str {
+        "balance_getNumOfTransactions"
+    }
+    fn agent() -> &'static str {
+        "transactions"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetNumOfTransactionsReturns(i64);
 impl Schema for TransactionsBalanceGetNumOfTransactionsReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}")
+    }
+}
+impl Agent for TransactionsBalanceGetNumOfTransactionsReturns {
+    fn topic() -> &'static str {
+        "transactions_balance_getNumOfTransactions"
+    }
+    fn method() -> &'static str {
+        "balance_getNumOfTransactions"
+    }
+    fn agent() -> &'static str {
+        "transactions"
     }
 }

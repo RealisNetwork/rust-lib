@@ -18,6 +18,17 @@ impl Schema for CatsLobbyGetServerTimeParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for CatsLobbyGetServerTimeParams {
+    fn topic() -> &'static str {
+        "cats_lobby_getServerTime"
+    }
+    fn method() -> &'static str {
+        "lobby_getServerTime"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyGetServerTimeReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct CatsLobbyGetServerTimeReturns;
 impl Schema for CatsLobbyGetServerTimeReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyGetServerTimeReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_getServerTime"
+    }
+    fn method() -> &'static str {
+        "lobby_getServerTime"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

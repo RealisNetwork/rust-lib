@@ -13,10 +13,32 @@ impl Schema for AuthAuthAssignProviderAccountToDeviceIdParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"token\":{\"type\":\"string\"}},\"required\":[\"token\"]}")
     }
 }
+impl Agent for AuthAuthAssignProviderAccountToDeviceIdParams {
+    fn topic() -> &'static str {
+        "auth_auth_assignProviderAccountToDeviceId"
+    }
+    fn method() -> &'static str {
+        "auth_assignProviderAccountToDeviceId"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthAssignProviderAccountToDeviceIdReturns(bool);
 impl Schema for AuthAuthAssignProviderAccountToDeviceIdReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AuthAuthAssignProviderAccountToDeviceIdReturns {
+    fn topic() -> &'static str {
+        "auth_auth_assignProviderAccountToDeviceId"
+    }
+    fn method() -> &'static str {
+        "auth_assignProviderAccountToDeviceId"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

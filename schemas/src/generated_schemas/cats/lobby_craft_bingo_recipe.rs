@@ -15,6 +15,17 @@ impl Schema for CatsLobbyCraftBingoRecipeParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"recipeId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"recipeId\"]}")
     }
 }
+impl Agent for CatsLobbyCraftBingoRecipeParams {
+    fn topic() -> &'static str {
+        "cats_lobby_craftBingoRecipe"
+    }
+    fn method() -> &'static str {
+        "lobby_craftBingoRecipe"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyCraftBingoRecipeReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -28,5 +39,16 @@ pub struct CatsLobbyCraftBingoRecipeReturns;
 impl Schema for CatsLobbyCraftBingoRecipeReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyCraftBingoRecipeReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_craftBingoRecipe"
+    }
+    fn method() -> &'static str {
+        "lobby_craftBingoRecipe"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

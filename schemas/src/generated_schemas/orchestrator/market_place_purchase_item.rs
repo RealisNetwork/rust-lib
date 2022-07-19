@@ -5,10 +5,10 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorMarketPlacePurchaseItemParams {
-    #[serde(rename = "productId")]
-    pub product_id: i32,
     #[serde(rename = "txId")]
     pub tx_id: String,
+    #[serde(rename = "productId")]
+    pub product_id: i32,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "creator")]
@@ -16,7 +16,18 @@ pub struct OrchestratorMarketPlacePurchaseItemParams {
 }
 impl Schema for OrchestratorMarketPlacePurchaseItemParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"txId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"}},\"required\":[\"productId\",\"userId\",\"txId\",\"creator\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"txId\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"}},\"required\":[\"productId\",\"userId\",\"txId\",\"creator\"]}")
+    }
+}
+impl Agent for OrchestratorMarketPlacePurchaseItemParams {
+    fn topic() -> &'static str {
+        "orchestrator_marketPlace_purchaseItem"
+    }
+    fn method() -> &'static str {
+        "marketPlace_purchaseItem"
+    }
+    fn agent() -> &'static str {
+        "orchestrator"
     }
 }
 impl<'de> Deserialize<'de> for OrchestratorMarketPlacePurchaseItemReturns {
@@ -32,5 +43,16 @@ pub struct OrchestratorMarketPlacePurchaseItemReturns;
 impl Schema for OrchestratorMarketPlacePurchaseItemReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for OrchestratorMarketPlacePurchaseItemReturns {
+    fn topic() -> &'static str {
+        "orchestrator_marketPlace_purchaseItem"
+    }
+    fn method() -> &'static str {
+        "marketPlace_purchaseItem"
+    }
+    fn agent() -> &'static str {
+        "orchestrator"
     }
 }

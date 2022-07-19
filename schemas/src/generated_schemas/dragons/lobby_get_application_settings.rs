@@ -18,6 +18,17 @@ impl Schema for DragonsLobbyGetApplicationSettingsParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for DragonsLobbyGetApplicationSettingsParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_getApplicationSettings"
+    }
+    fn method() -> &'static str {
+        "lobby_getApplicationSettings"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyGetApplicationSettingsReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct DragonsLobbyGetApplicationSettingsReturns;
 impl Schema for DragonsLobbyGetApplicationSettingsReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyGetApplicationSettingsReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_getApplicationSettings"
+    }
+    fn method() -> &'static str {
+        "lobby_getApplicationSettings"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

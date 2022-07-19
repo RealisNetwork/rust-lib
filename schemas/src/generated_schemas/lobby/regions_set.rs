@@ -15,6 +15,17 @@ impl Schema for LobbyRegionsSetParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isFixed\":{\"type\":\"boolean\"},\"regionName\":{\"type\":\"string\"}},\"required\":[\"regionName\",\"isFixed\"]}")
     }
 }
+impl Agent for LobbyRegionsSetParams {
+    fn topic() -> &'static str {
+        "lobby_regions_set"
+    }
+    fn method() -> &'static str {
+        "regions_set"
+    }
+    fn agent() -> &'static str {
+        "lobby"
+    }
+}
 impl<'de> Deserialize<'de> for LobbyRegionsSetReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -28,5 +39,16 @@ pub struct LobbyRegionsSetReturns;
 impl Schema for LobbyRegionsSetReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for LobbyRegionsSetReturns {
+    fn topic() -> &'static str {
+        "lobby_regions_set"
+    }
+    fn method() -> &'static str {
+        "regions_set"
+    }
+    fn agent() -> &'static str {
+        "lobby"
     }
 }

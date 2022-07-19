@@ -18,10 +18,32 @@ impl Schema for ReferralRewardMakeRewardRequestParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for ReferralRewardMakeRewardRequestParams {
+    fn topic() -> &'static str {
+        "referral_reward_makeRewardRequest"
+    }
+    fn method() -> &'static str {
+        "reward_makeRewardRequest"
+    }
+    fn agent() -> &'static str {
+        "referral"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralRewardMakeRewardRequestReturns(bool);
 impl Schema for ReferralRewardMakeRewardRequestReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for ReferralRewardMakeRewardRequestReturns {
+    fn topic() -> &'static str {
+        "referral_reward_makeRewardRequest"
+    }
+    fn method() -> &'static str {
+        "reward_makeRewardRequest"
+    }
+    fn agent() -> &'static str {
+        "referral"
     }
 }

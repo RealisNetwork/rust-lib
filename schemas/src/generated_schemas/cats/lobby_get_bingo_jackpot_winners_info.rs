@@ -13,6 +13,17 @@ impl Schema for CatsLobbyGetBingoJackpotWinnersInfoParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for CatsLobbyGetBingoJackpotWinnersInfoParams {
+    fn topic() -> &'static str {
+        "cats_lobby_getBingoJackpotWinnersInfo"
+    }
+    fn method() -> &'static str {
+        "lobby_getBingoJackpotWinnersInfo"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyGetBingoJackpotWinnersInfoReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct CatsLobbyGetBingoJackpotWinnersInfoReturns;
 impl Schema for CatsLobbyGetBingoJackpotWinnersInfoReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyGetBingoJackpotWinnersInfoReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_getBingoJackpotWinnersInfo"
+    }
+    fn method() -> &'static str {
+        "lobby_getBingoJackpotWinnersInfo"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

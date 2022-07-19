@@ -18,6 +18,17 @@ impl Schema for BalancesBalancesGetSoftCurrencyBalanceParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for BalancesBalancesGetSoftCurrencyBalanceParams {
+    fn topic() -> &'static str {
+        "balances_balances_getSoftCurrencyBalance"
+    }
+    fn method() -> &'static str {
+        "balances_getSoftCurrencyBalance"
+    }
+    fn agent() -> &'static str {
+        "balances"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BalancesBalancesGetSoftCurrencyBalanceReturns {
     #[serde(rename = "balance")]
@@ -26,5 +37,16 @@ pub struct BalancesBalancesGetSoftCurrencyBalanceReturns {
 impl Schema for BalancesBalancesGetSoftCurrencyBalanceReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"balance\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"balance\"]}")
+    }
+}
+impl Agent for BalancesBalancesGetSoftCurrencyBalanceReturns {
+    fn topic() -> &'static str {
+        "balances_balances_getSoftCurrencyBalance"
+    }
+    fn method() -> &'static str {
+        "balances_getSoftCurrencyBalance"
+    }
+    fn agent() -> &'static str {
+        "balances"
     }
 }

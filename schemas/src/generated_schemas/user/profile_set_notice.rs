@@ -5,14 +5,25 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileSetNoticeParams {
-    #[serde(rename = "notice")]
-    pub notice: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "notice")]
+    pub notice: String,
 }
 impl Schema for UserProfileSetNoticeParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"notice\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"notice\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"notice\":{\"type\":\"string\"}},\"required\":[\"userId\",\"notice\"]}")
+    }
+}
+impl Agent for UserProfileSetNoticeParams {
+    fn topic() -> &'static str {
+        "user_profile_setNotice"
+    }
+    fn method() -> &'static str {
+        "profile_setNotice"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -20,5 +31,16 @@ pub struct UserProfileSetNoticeReturns(bool);
 impl Schema for UserProfileSetNoticeReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for UserProfileSetNoticeReturns {
+    fn topic() -> &'static str {
+        "user_profile_setNotice"
+    }
+    fn method() -> &'static str {
+        "profile_setNotice"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

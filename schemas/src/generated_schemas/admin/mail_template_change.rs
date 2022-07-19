@@ -15,10 +15,32 @@ impl Schema for AdminMailTemplateChangeParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"},\"mailTemplate\":{\"type\":\"string\"}},\"required\":[\"key\",\"mailTemplate\"]}")
     }
 }
+impl Agent for AdminMailTemplateChangeParams {
+    fn topic() -> &'static str {
+        "admin_mailTemplate_change"
+    }
+    fn method() -> &'static str {
+        "mailTemplate_change"
+    }
+    fn agent() -> &'static str {
+        "admin"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminMailTemplateChangeReturns(bool);
 impl Schema for AdminMailTemplateChangeReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AdminMailTemplateChangeReturns {
+    fn topic() -> &'static str {
+        "admin_mailTemplate_change"
+    }
+    fn method() -> &'static str {
+        "mailTemplate_change"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }

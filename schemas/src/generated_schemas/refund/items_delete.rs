@@ -15,10 +15,32 @@ impl Schema for RefundItemsDeleteParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"hashItemId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"hashItemId\"]}")
     }
 }
+impl Agent for RefundItemsDeleteParams {
+    fn topic() -> &'static str {
+        "refund_items_delete"
+    }
+    fn method() -> &'static str {
+        "items_delete"
+    }
+    fn agent() -> &'static str {
+        "refund"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundItemsDeleteReturns(bool);
 impl Schema for RefundItemsDeleteReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for RefundItemsDeleteReturns {
+    fn topic() -> &'static str {
+        "refund_items_delete"
+    }
+    fn method() -> &'static str {
+        "items_delete"
+    }
+    fn agent() -> &'static str {
+        "refund"
     }
 }

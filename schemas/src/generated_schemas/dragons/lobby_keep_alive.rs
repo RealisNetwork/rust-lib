@@ -18,6 +18,17 @@ impl Schema for DragonsLobbyKeepAliveParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for DragonsLobbyKeepAliveParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_keepAlive"
+    }
+    fn method() -> &'static str {
+        "lobby_keepAlive"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyKeepAliveReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct DragonsLobbyKeepAliveReturns;
 impl Schema for DragonsLobbyKeepAliveReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyKeepAliveReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_keepAlive"
+    }
+    fn method() -> &'static str {
+        "lobby_keepAlive"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

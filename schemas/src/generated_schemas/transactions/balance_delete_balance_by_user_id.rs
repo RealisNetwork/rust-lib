@@ -13,10 +13,32 @@ impl Schema for TransactionsBalanceDeleteBalanceByUserIdParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for TransactionsBalanceDeleteBalanceByUserIdParams {
+    fn topic() -> &'static str {
+        "transactions_balance_deleteBalanceByUserId"
+    }
+    fn method() -> &'static str {
+        "balance_deleteBalanceByUserId"
+    }
+    fn agent() -> &'static str {
+        "transactions"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceDeleteBalanceByUserIdReturns(bool);
 impl Schema for TransactionsBalanceDeleteBalanceByUserIdReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for TransactionsBalanceDeleteBalanceByUserIdReturns {
+    fn topic() -> &'static str {
+        "transactions_balance_deleteBalanceByUserId"
+    }
+    fn method() -> &'static str {
+        "balance_deleteBalanceByUserId"
+    }
+    fn agent() -> &'static str {
+        "transactions"
     }
 }

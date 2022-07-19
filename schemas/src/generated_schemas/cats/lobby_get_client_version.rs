@@ -18,6 +18,17 @@ impl Schema for CatsLobbyGetClientVersionParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for CatsLobbyGetClientVersionParams {
+    fn topic() -> &'static str {
+        "cats_lobby_getClientVersion"
+    }
+    fn method() -> &'static str {
+        "lobby_getClientVersion"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyGetClientVersionReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct CatsLobbyGetClientVersionReturns;
 impl Schema for CatsLobbyGetClientVersionReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyGetClientVersionReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_getClientVersion"
+    }
+    fn method() -> &'static str {
+        "lobby_getClientVersion"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

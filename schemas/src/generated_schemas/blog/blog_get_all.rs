@@ -15,18 +15,29 @@ impl Schema for BlogBlogGetAllParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"page\",\"perPage\"]}")
     }
 }
+impl Agent for BlogBlogGetAllParams {
+    fn topic() -> &'static str {
+        "blog_blog_getAll"
+    }
+    fn method() -> &'static str {
+        "blog_getAll"
+    }
+    fn agent() -> &'static str {
+        "blog"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllReturnsDataParamsParams {
-    #[serde(rename = "views")]
-    pub views: i64,
-    #[serde(rename = "title")]
-    pub title: String,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "title")]
+    pub title: String,
     #[serde(rename = "isPinned")]
     pub is_pinned: bool,
     #[serde(rename = "url")]
     pub url: String,
+    #[serde(rename = "views")]
+    pub views: i64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllReturns {
@@ -37,6 +48,17 @@ pub struct BlogBlogGetAllReturns {
 }
 impl Schema for BlogBlogGetAllReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"views\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"title\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isPinned\":{\"type\":\"boolean\"},\"url\":{\"type\":\"string\"}},\"required\":[\"id\",\"url\",\"title\",\"isPinned\",\"views\"]}},\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"totalCount\",\"data\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"title\":{\"type\":\"string\"},\"isPinned\":{\"type\":\"boolean\"},\"url\":{\"type\":\"string\"},\"views\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"url\",\"title\",\"isPinned\",\"views\"]}},\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"totalCount\",\"data\"]}")
+    }
+}
+impl Agent for BlogBlogGetAllReturns {
+    fn topic() -> &'static str {
+        "blog_blog_getAll"
+    }
+    fn method() -> &'static str {
+        "blog_getAll"
+    }
+    fn agent() -> &'static str {
+        "blog"
     }
 }

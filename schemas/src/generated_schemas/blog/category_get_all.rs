@@ -18,19 +18,41 @@ impl Schema for BlogCategoryGetAllParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for BlogCategoryGetAllParams {
+    fn topic() -> &'static str {
+        "blog_category_getAll"
+    }
+    fn method() -> &'static str {
+        "category_getAll"
+    }
+    fn agent() -> &'static str {
+        "blog"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogCategoryGetAllReturnsParams {
-    #[serde(rename = "id")]
-    pub id: i64,
-    #[serde(rename = "name")]
-    pub name: String,
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
+    #[serde(rename = "name")]
+    pub name: String,
+    #[serde(rename = "id")]
+    pub id: i64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogCategoryGetAllReturns(Vec<BlogCategoryGetAllReturnsParams>);
 impl Schema for BlogCategoryGetAllReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"name\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"name\",\"isAvailable\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"isAvailable\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"name\",\"isAvailable\"]}}")
+    }
+}
+impl Agent for BlogCategoryGetAllReturns {
+    fn topic() -> &'static str {
+        "blog_category_getAll"
+    }
+    fn method() -> &'static str {
+        "category_getAll"
+    }
+    fn agent() -> &'static str {
+        "blog"
     }
 }

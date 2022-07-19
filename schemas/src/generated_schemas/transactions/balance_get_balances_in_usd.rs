@@ -18,10 +18,32 @@ impl Schema for TransactionsBalanceGetBalancesInUsdParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for TransactionsBalanceGetBalancesInUsdParams {
+    fn topic() -> &'static str {
+        "transactions_balance_getBalancesInUsd"
+    }
+    fn method() -> &'static str {
+        "balance_getBalancesInUsd"
+    }
+    fn agent() -> &'static str {
+        "transactions"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetBalancesInUsdReturns(i64);
 impl Schema for TransactionsBalanceGetBalancesInUsdReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}")
+    }
+}
+impl Agent for TransactionsBalanceGetBalancesInUsdReturns {
+    fn topic() -> &'static str {
+        "transactions_balance_getBalancesInUsd"
+    }
+    fn method() -> &'static str {
+        "balance_getBalancesInUsd"
+    }
+    fn agent() -> &'static str {
+        "transactions"
     }
 }

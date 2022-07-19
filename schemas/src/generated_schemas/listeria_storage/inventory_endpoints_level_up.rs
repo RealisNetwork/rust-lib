@@ -13,6 +13,17 @@ impl Schema for ListeriaStorageInventoryEndpointsLevelUpParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"itemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"itemId\"]}")
     }
 }
+impl Agent for ListeriaStorageInventoryEndpointsLevelUpParams {
+    fn topic() -> &'static str {
+        "listeria-storage_inventoryEndpoints_levelUp"
+    }
+    fn method() -> &'static str {
+        "inventoryEndpoints_levelUp"
+    }
+    fn agent() -> &'static str {
+        "listeria-storage"
+    }
+}
 impl<'de> Deserialize<'de> for ListeriaStorageInventoryEndpointsLevelUpReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct ListeriaStorageInventoryEndpointsLevelUpReturns;
 impl Schema for ListeriaStorageInventoryEndpointsLevelUpReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for ListeriaStorageInventoryEndpointsLevelUpReturns {
+    fn topic() -> &'static str {
+        "listeria-storage_inventoryEndpoints_levelUp"
+    }
+    fn method() -> &'static str {
+        "inventoryEndpoints_levelUp"
+    }
+    fn agent() -> &'static str {
+        "listeria-storage"
     }
 }

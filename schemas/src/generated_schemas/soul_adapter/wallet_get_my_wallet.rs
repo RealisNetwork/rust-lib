@@ -18,10 +18,32 @@ impl Schema for SoulAdapterWalletGetMyWalletParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for SoulAdapterWalletGetMyWalletParams {
+    fn topic() -> &'static str {
+        "soul-adapter_wallet_getMyWallet"
+    }
+    fn method() -> &'static str {
+        "wallet_getMyWallet"
+    }
+    fn agent() -> &'static str {
+        "soul-adapter"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SoulAdapterWalletGetMyWalletReturns(String);
 impl Schema for SoulAdapterWalletGetMyWalletReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")
+    }
+}
+impl Agent for SoulAdapterWalletGetMyWalletReturns {
+    fn topic() -> &'static str {
+        "soul-adapter_wallet_getMyWallet"
+    }
+    fn method() -> &'static str {
+        "wallet_getMyWallet"
+    }
+    fn agent() -> &'static str {
+        "soul-adapter"
     }
 }

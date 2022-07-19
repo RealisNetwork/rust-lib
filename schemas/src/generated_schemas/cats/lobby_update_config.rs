@@ -5,14 +5,25 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyUpdateConfigParams {
-    #[serde(rename = "configKey")]
-    pub config_key: String,
     #[serde(rename = "configJson")]
     pub config_json: String,
+    #[serde(rename = "configKey")]
+    pub config_key: String,
 }
 impl Schema for CatsLobbyUpdateConfigParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"configKey\":{\"type\":\"string\"},\"configJson\":{\"type\":\"string\"}},\"required\":[\"configKey\",\"configJson\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"configJson\":{\"type\":\"string\"},\"configKey\":{\"type\":\"string\"}},\"required\":[\"configKey\",\"configJson\"]}")
+    }
+}
+impl Agent for CatsLobbyUpdateConfigParams {
+    fn topic() -> &'static str {
+        "cats_lobby_updateConfig"
+    }
+    fn method() -> &'static str {
+        "lobby_updateConfig"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }
 impl<'de> Deserialize<'de> for CatsLobbyUpdateConfigReturns {
@@ -28,5 +39,16 @@ pub struct CatsLobbyUpdateConfigReturns;
 impl Schema for CatsLobbyUpdateConfigReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyUpdateConfigReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_updateConfig"
+    }
+    fn method() -> &'static str {
+        "lobby_updateConfig"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

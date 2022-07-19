@@ -15,6 +15,17 @@ impl Schema for DragonsLobbyBuySkillParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"skillPurchaseKey\":{\"type\":\"string\"}},\"required\":[\"userId\",\"skillPurchaseKey\"]}")
     }
 }
+impl Agent for DragonsLobbyBuySkillParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_buySkill"
+    }
+    fn method() -> &'static str {
+        "lobby_buySkill"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyBuySkillReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -28,5 +39,16 @@ pub struct DragonsLobbyBuySkillReturns;
 impl Schema for DragonsLobbyBuySkillReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyBuySkillReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_buySkill"
+    }
+    fn method() -> &'static str {
+        "lobby_buySkill"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

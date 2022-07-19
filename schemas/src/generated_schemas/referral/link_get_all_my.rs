@@ -18,6 +18,17 @@ impl Schema for ReferralLinkGetAllMyParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for ReferralLinkGetAllMyParams {
+    fn topic() -> &'static str {
+        "referral_link_getAllMy"
+    }
+    fn method() -> &'static str {
+        "link_getAllMy"
+    }
+    fn agent() -> &'static str {
+        "referral"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralLinkGetAllMyReturnsReferralLinksParamsParams {
     #[serde(rename = "link")]
@@ -27,13 +38,24 @@ pub struct ReferralLinkGetAllMyReturnsReferralLinksParamsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralLinkGetAllMyReturns {
-    #[serde(rename = "referralCode")]
-    pub referral_code: String,
     #[serde(rename = "referralLinks")]
     pub referral_links: Vec<ReferralLinkGetAllMyReturnsReferralLinksParamsParams>,
+    #[serde(rename = "referralCode")]
+    pub referral_code: String,
 }
 impl Schema for ReferralLinkGetAllMyReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"referralCode\":{\"type\":\"string\"},\"referralLinks\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"link\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"appId\",\"link\"]}}},\"required\":[\"referralCode\",\"referralLinks\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"referralLinks\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"link\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"appId\",\"link\"]}},\"referralCode\":{\"type\":\"string\"}},\"required\":[\"referralCode\",\"referralLinks\"]}")
+    }
+}
+impl Agent for ReferralLinkGetAllMyReturns {
+    fn topic() -> &'static str {
+        "referral_link_getAllMy"
+    }
+    fn method() -> &'static str {
+        "link_getAllMy"
+    }
+    fn agent() -> &'static str {
+        "referral"
     }
 }

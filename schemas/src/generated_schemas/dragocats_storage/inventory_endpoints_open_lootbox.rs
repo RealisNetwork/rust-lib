@@ -13,6 +13,17 @@ impl Schema for DragocatsStorageInventoryEndpointsOpenLootboxParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"bindingId\"]}")
     }
 }
+impl Agent for DragocatsStorageInventoryEndpointsOpenLootboxParams {
+    fn topic() -> &'static str {
+        "dragocats-storage_inventoryEndpoints_openLootbox"
+    }
+    fn method() -> &'static str {
+        "inventoryEndpoints_openLootbox"
+    }
+    fn agent() -> &'static str {
+        "dragocats-storage"
+    }
+}
 impl<'de> Deserialize<'de> for DragocatsStorageInventoryEndpointsOpenLootboxReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct DragocatsStorageInventoryEndpointsOpenLootboxReturns;
 impl Schema for DragocatsStorageInventoryEndpointsOpenLootboxReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragocatsStorageInventoryEndpointsOpenLootboxReturns {
+    fn topic() -> &'static str {
+        "dragocats-storage_inventoryEndpoints_openLootbox"
+    }
+    fn method() -> &'static str {
+        "inventoryEndpoints_openLootbox"
+    }
+    fn agent() -> &'static str {
+        "dragocats-storage"
     }
 }

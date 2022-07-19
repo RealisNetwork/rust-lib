@@ -13,10 +13,32 @@ impl Schema for AdminActionDeleteByActionIdParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"actionId\":{\"type\":\"string\"}},\"required\":[\"actionId\"]}")
     }
 }
+impl Agent for AdminActionDeleteByActionIdParams {
+    fn topic() -> &'static str {
+        "admin_action_deleteByActionId"
+    }
+    fn method() -> &'static str {
+        "action_deleteByActionId"
+    }
+    fn agent() -> &'static str {
+        "admin"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionDeleteByActionIdReturns(bool);
 impl Schema for AdminActionDeleteByActionIdReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AdminActionDeleteByActionIdReturns {
+    fn topic() -> &'static str {
+        "admin_action_deleteByActionId"
+    }
+    fn method() -> &'static str {
+        "action_deleteByActionId"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }

@@ -18,6 +18,17 @@ impl Schema for EmailEmailCreateCronJobParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for EmailEmailCreateCronJobParams {
+    fn topic() -> &'static str {
+        "email_email_createCronJob"
+    }
+    fn method() -> &'static str {
+        "email_createCronJob"
+    }
+    fn agent() -> &'static str {
+        "email"
+    }
+}
 impl<'de> Deserialize<'de> for EmailEmailCreateCronJobReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct EmailEmailCreateCronJobReturns;
 impl Schema for EmailEmailCreateCronJobReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for EmailEmailCreateCronJobReturns {
+    fn topic() -> &'static str {
+        "email_email_createCronJob"
+    }
+    fn method() -> &'static str {
+        "email_createCronJob"
+    }
+    fn agent() -> &'static str {
+        "email"
     }
 }

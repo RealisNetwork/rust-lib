@@ -15,10 +15,32 @@ impl Schema for AuthAuthDeviceIsNewClientParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"internalUserId\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"internalUserId\",\"appId\"]}")
     }
 }
+impl Agent for AuthAuthDeviceIsNewClientParams {
+    fn topic() -> &'static str {
+        "auth_authDevice_isNewClient"
+    }
+    fn method() -> &'static str {
+        "authDevice_isNewClient"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceIsNewClientReturns(bool);
 impl Schema for AuthAuthDeviceIsNewClientReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AuthAuthDeviceIsNewClientReturns {
+    fn topic() -> &'static str {
+        "auth_authDevice_isNewClient"
+    }
+    fn method() -> &'static str {
+        "authDevice_isNewClient"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

@@ -18,10 +18,32 @@ impl Schema for AdminActionGetActionListParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for AdminActionGetActionListParams {
+    fn topic() -> &'static str {
+        "admin_action_getActionList"
+    }
+    fn method() -> &'static str {
+        "action_getActionList"
+    }
+    fn agent() -> &'static str {
+        "admin"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionGetActionListReturns(Vec<String>);
 impl Schema for AdminActionGetActionListReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"array\",\"items\":{\"type\":\"string\"}}")
+    }
+}
+impl Agent for AdminActionGetActionListReturns {
+    fn topic() -> &'static str {
+        "admin_action_getActionList"
+    }
+    fn method() -> &'static str {
+        "action_getActionList"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }

@@ -18,15 +18,37 @@ impl Schema for BalancesBalancesFreeExperienceAddedNotificationParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for BalancesBalancesFreeExperienceAddedNotificationParams {
+    fn topic() -> &'static str {
+        "balances_balances_freeExperienceAddedNotification"
+    }
+    fn method() -> &'static str {
+        "balances_freeExperienceAddedNotification"
+    }
+    fn agent() -> &'static str {
+        "balances"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BalancesBalancesFreeExperienceAddedNotificationReturns {
-    #[serde(rename = "balance")]
-    pub balance: i32,
     #[serde(rename = "amount")]
     pub amount: i32,
+    #[serde(rename = "balance")]
+    pub balance: i32,
 }
 impl Schema for BalancesBalancesFreeExperienceAddedNotificationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"balance\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"amount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"amount\",\"balance\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"balance\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"amount\",\"balance\"]}")
+    }
+}
+impl Agent for BalancesBalancesFreeExperienceAddedNotificationReturns {
+    fn topic() -> &'static str {
+        "balances_balances_freeExperienceAddedNotification"
+    }
+    fn method() -> &'static str {
+        "balances_freeExperienceAddedNotification"
+    }
+    fn agent() -> &'static str {
+        "balances"
     }
 }

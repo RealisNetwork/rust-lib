@@ -13,6 +13,17 @@ impl Schema for DragonsLobbyGetUserIdByTransactionIdParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"transactionId\":{\"type\":\"string\"}},\"required\":[\"transactionId\"]}")
     }
 }
+impl Agent for DragonsLobbyGetUserIdByTransactionIdParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_getUserIdByTransactionId"
+    }
+    fn method() -> &'static str {
+        "lobby_getUserIdByTransactionId"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyGetUserIdByTransactionIdReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct DragonsLobbyGetUserIdByTransactionIdReturns;
 impl Schema for DragonsLobbyGetUserIdByTransactionIdReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyGetUserIdByTransactionIdReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_getUserIdByTransactionId"
+    }
+    fn method() -> &'static str {
+        "lobby_getUserIdByTransactionId"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

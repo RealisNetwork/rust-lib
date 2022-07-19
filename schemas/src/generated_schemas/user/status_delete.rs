@@ -13,6 +13,17 @@ impl Schema for UserStatusDeleteParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\"]}")
     }
 }
+impl Agent for UserStatusDeleteParams {
+    fn topic() -> &'static str {
+        "user_status_delete"
+    }
+    fn method() -> &'static str {
+        "status_delete"
+    }
+    fn agent() -> &'static str {
+        "user"
+    }
+}
 impl<'de> Deserialize<'de> for UserStatusDeleteReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct UserStatusDeleteReturns;
 impl Schema for UserStatusDeleteReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for UserStatusDeleteReturns {
+    fn topic() -> &'static str {
+        "user_status_delete"
+    }
+    fn method() -> &'static str {
+        "status_delete"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

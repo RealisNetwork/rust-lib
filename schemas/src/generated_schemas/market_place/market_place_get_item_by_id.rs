@@ -13,37 +13,59 @@ impl Schema for MarketPlaceMarketPlaceGetItemByIdParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"productId\"]}")
     }
 }
+impl Agent for MarketPlaceMarketPlaceGetItemByIdParams {
+    fn topic() -> &'static str {
+        "market-place_marketPlace_getItemById"
+    }
+    fn method() -> &'static str {
+        "marketPlace_getItemById"
+    }
+    fn agent() -> &'static str {
+        "market-place"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemByIdReturnsAdditionalParamsParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemByIdReturns {
-    #[serde(rename = "category")]
-    pub category: i32,
-    #[serde(rename = "subType")]
-    pub sub_type: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: i32,
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: i32,
     #[serde(rename = "personalType")]
     pub personal_type: String,
     #[serde(rename = "type")]
     pub r#type: String,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: i32,
-    #[serde(rename = "additionalParams")]
-    pub additional_params: MarketPlaceMarketPlaceGetItemByIdReturnsAdditionalParamsParams,
-    #[serde(rename = "productId")]
-    pub product_id: i32,
-    #[serde(rename = "price")]
-    pub price: i32,
-    #[serde(rename = "createdAt")]
-    pub created_at: i32,
+    #[serde(rename = "subType")]
+    pub sub_type: String,
     #[serde(rename = "isLocked")]
     pub is_locked: bool,
+    #[serde(rename = "category")]
+    pub category: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "productId")]
+    pub product_id: i32,
+    #[serde(rename = "additionalParams")]
+    pub additional_params: MarketPlaceMarketPlaceGetItemByIdReturnsAdditionalParamsParams,
+    #[serde(rename = "price")]
+    pub price: i32,
 }
 impl Schema for MarketPlaceMarketPlaceGetItemByIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"subType\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"personalType\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"additionalParams\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"isLocked\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"productId\",\"userId\",\"personalType\",\"type\",\"subType\",\"price\",\"additionalParams\",\"isLocked\",\"category\",\"createdAt\",\"updatedAt\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"personalType\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"},\"isLocked\":{\"type\":\"boolean\"},\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"additionalParams\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"productId\",\"userId\",\"personalType\",\"type\",\"subType\",\"price\",\"additionalParams\",\"isLocked\",\"category\",\"createdAt\",\"updatedAt\"]}")
+    }
+}
+impl Agent for MarketPlaceMarketPlaceGetItemByIdReturns {
+    fn topic() -> &'static str {
+        "market-place_marketPlace_getItemById"
+    }
+    fn method() -> &'static str {
+        "marketPlace_getItemById"
+    }
+    fn agent() -> &'static str {
+        "market-place"
     }
 }

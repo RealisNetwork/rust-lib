@@ -17,10 +17,32 @@ impl Schema for AuthAuthCreateRequestToConfirmEmailParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"deviceId\":{\"type\":\"string\"},\"email\":{\"type\":\"string\",\"pattern\":\"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\\\.[a-zA-Z0-9-.]+$\"},\"referralCode\":{\"type\":\"string\"}},\"required\":[\"email\"]}")
     }
 }
+impl Agent for AuthAuthCreateRequestToConfirmEmailParams {
+    fn topic() -> &'static str {
+        "auth_auth_createRequestToConfirmEmail"
+    }
+    fn method() -> &'static str {
+        "auth_createRequestToConfirmEmail"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthCreateRequestToConfirmEmailReturns(String);
 impl Schema for AuthAuthCreateRequestToConfirmEmailReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")
+    }
+}
+impl Agent for AuthAuthCreateRequestToConfirmEmailReturns {
+    fn topic() -> &'static str {
+        "auth_auth_createRequestToConfirmEmail"
+    }
+    fn method() -> &'static str {
+        "auth_createRequestToConfirmEmail"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

@@ -18,6 +18,17 @@ impl Schema for CatsLobbyGetCurrentTasksParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for CatsLobbyGetCurrentTasksParams {
+    fn topic() -> &'static str {
+        "cats_lobby_getCurrentTasks"
+    }
+    fn method() -> &'static str {
+        "lobby_getCurrentTasks"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyGetCurrentTasksReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct CatsLobbyGetCurrentTasksReturns;
 impl Schema for CatsLobbyGetCurrentTasksReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyGetCurrentTasksReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_getCurrentTasks"
+    }
+    fn method() -> &'static str {
+        "lobby_getCurrentTasks"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

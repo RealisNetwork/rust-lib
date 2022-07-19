@@ -13,10 +13,32 @@ impl Schema for AuthAuthDisableUserParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for AuthAuthDisableUserParams {
+    fn topic() -> &'static str {
+        "auth_auth_disableUser"
+    }
+    fn method() -> &'static str {
+        "auth_disableUser"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDisableUserReturns(bool);
 impl Schema for AuthAuthDisableUserReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AuthAuthDisableUserReturns {
+    fn topic() -> &'static str {
+        "auth_auth_disableUser"
+    }
+    fn method() -> &'static str {
+        "auth_disableUser"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

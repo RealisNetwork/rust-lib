@@ -13,10 +13,32 @@ impl Schema for UserProfileGetUserIdByEmailParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\"}},\"required\":[\"email\"]}")
     }
 }
+impl Agent for UserProfileGetUserIdByEmailParams {
+    fn topic() -> &'static str {
+        "user_profile_getUserIdByEmail"
+    }
+    fn method() -> &'static str {
+        "profile_getUserIdByEmail"
+    }
+    fn agent() -> &'static str {
+        "user"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetUserIdByEmailReturns(String);
 impl Schema for UserProfileGetUserIdByEmailReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")
+    }
+}
+impl Agent for UserProfileGetUserIdByEmailReturns {
+    fn topic() -> &'static str {
+        "user_profile_getUserIdByEmail"
+    }
+    fn method() -> &'static str {
+        "profile_getUserIdByEmail"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

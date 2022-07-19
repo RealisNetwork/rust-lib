@@ -13,6 +13,17 @@ impl Schema for DragonsLobbyGetLootboxJackpotWinnersInfoParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for DragonsLobbyGetLootboxJackpotWinnersInfoParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_getLootboxJackpotWinnersInfo"
+    }
+    fn method() -> &'static str {
+        "lobby_getLootboxJackpotWinnersInfo"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyGetLootboxJackpotWinnersInfoReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct DragonsLobbyGetLootboxJackpotWinnersInfoReturns;
 impl Schema for DragonsLobbyGetLootboxJackpotWinnersInfoReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyGetLootboxJackpotWinnersInfoReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_getLootboxJackpotWinnersInfo"
+    }
+    fn method() -> &'static str {
+        "lobby_getLootboxJackpotWinnersInfo"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

@@ -18,6 +18,17 @@ impl Schema for PromoCodesGetListStrictParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for PromoCodesGetListStrictParams {
+    fn topic() -> &'static str {
+        "promo_codes_getListStrict"
+    }
+    fn method() -> &'static str {
+        "codes_getListStrict"
+    }
+    fn agent() -> &'static str {
+        "promo"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesGetListStrictReturnsParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -25,5 +36,16 @@ pub struct PromoCodesGetListStrictReturns(Vec<PromoCodesGetListStrictReturnsPara
 impl Schema for PromoCodesGetListStrictReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{},\"required\":null}}")
+    }
+}
+impl Agent for PromoCodesGetListStrictReturns {
+    fn topic() -> &'static str {
+        "promo_codes_getListStrict"
+    }
+    fn method() -> &'static str {
+        "codes_getListStrict"
+    }
+    fn agent() -> &'static str {
+        "promo"
     }
 }

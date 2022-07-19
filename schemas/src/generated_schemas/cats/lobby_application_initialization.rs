@@ -13,6 +13,17 @@ impl Schema for CatsLobbyApplicationInitializationParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for CatsLobbyApplicationInitializationParams {
+    fn topic() -> &'static str {
+        "cats_lobby_applicationInitialization"
+    }
+    fn method() -> &'static str {
+        "lobby_applicationInitialization"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyApplicationInitializationReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct CatsLobbyApplicationInitializationReturns;
 impl Schema for CatsLobbyApplicationInitializationReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyApplicationInitializationReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_applicationInitialization"
+    }
+    fn method() -> &'static str {
+        "lobby_applicationInitialization"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

@@ -15,6 +15,17 @@ impl Schema for ProductFactoryProductMarkHeroAsNftParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"productId\",\"userId\"]}")
     }
 }
+impl Agent for ProductFactoryProductMarkHeroAsNftParams {
+    fn topic() -> &'static str {
+        "productFactory_product_markHeroAsNFT"
+    }
+    fn method() -> &'static str {
+        "product_markHeroAsNFT"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
+    }
+}
 impl<'de> Deserialize<'de> for ProductFactoryProductMarkHeroAsNftReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -28,5 +39,16 @@ pub struct ProductFactoryProductMarkHeroAsNftReturns;
 impl Schema for ProductFactoryProductMarkHeroAsNftReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for ProductFactoryProductMarkHeroAsNftReturns {
+    fn topic() -> &'static str {
+        "productFactory_product_markHeroAsNFT"
+    }
+    fn method() -> &'static str {
+        "product_markHeroAsNFT"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
     }
 }

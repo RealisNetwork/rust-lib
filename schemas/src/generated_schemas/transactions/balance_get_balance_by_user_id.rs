@@ -13,6 +13,17 @@ impl Schema for TransactionsBalanceGetBalanceByUserIdParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"}},\"required\":[\"currency\"]}")
     }
 }
+impl Agent for TransactionsBalanceGetBalanceByUserIdParams {
+    fn topic() -> &'static str {
+        "transactions_balance_getBalanceByUserId"
+    }
+    fn method() -> &'static str {
+        "balance_getBalanceByUserId"
+    }
+    fn agent() -> &'static str {
+        "transactions"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetBalanceByUserIdReturns {
     #[serde(rename = "amount")]
@@ -21,5 +32,16 @@ pub struct TransactionsBalanceGetBalanceByUserIdReturns {
 impl Schema for TransactionsBalanceGetBalanceByUserIdReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"}},\"required\":[\"amount\"]}")
+    }
+}
+impl Agent for TransactionsBalanceGetBalanceByUserIdReturns {
+    fn topic() -> &'static str {
+        "transactions_balance_getBalanceByUserId"
+    }
+    fn method() -> &'static str {
+        "balance_getBalanceByUserId"
+    }
+    fn agent() -> &'static str {
+        "transactions"
     }
 }

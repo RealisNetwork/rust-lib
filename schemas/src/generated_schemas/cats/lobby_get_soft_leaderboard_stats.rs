@@ -13,6 +13,17 @@ impl Schema for CatsLobbyGetSoftLeaderboardStatsParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for CatsLobbyGetSoftLeaderboardStatsParams {
+    fn topic() -> &'static str {
+        "cats_lobby_getSoftLeaderboardStats"
+    }
+    fn method() -> &'static str {
+        "lobby_getSoftLeaderboardStats"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyGetSoftLeaderboardStatsReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct CatsLobbyGetSoftLeaderboardStatsReturns;
 impl Schema for CatsLobbyGetSoftLeaderboardStatsReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyGetSoftLeaderboardStatsReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_getSoftLeaderboardStats"
+    }
+    fn method() -> &'static str {
+        "lobby_getSoftLeaderboardStats"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

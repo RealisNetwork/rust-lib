@@ -5,14 +5,25 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbySetUserAppMetricaDeviceIdParams {
-    #[serde(rename = "appMetricaDeviceId")]
-    pub app_metrica_device_id: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "appMetricaDeviceId")]
+    pub app_metrica_device_id: String,
 }
 impl Schema for CatsLobbySetUserAppMetricaDeviceIdParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"appMetricaDeviceId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"appMetricaDeviceId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"appMetricaDeviceId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"appMetricaDeviceId\"]}")
+    }
+}
+impl Agent for CatsLobbySetUserAppMetricaDeviceIdParams {
+    fn topic() -> &'static str {
+        "cats_lobby_setUserAppMetricaDeviceId"
+    }
+    fn method() -> &'static str {
+        "lobby_setUserAppMetricaDeviceId"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }
 impl<'de> Deserialize<'de> for CatsLobbySetUserAppMetricaDeviceIdReturns {
@@ -28,5 +39,16 @@ pub struct CatsLobbySetUserAppMetricaDeviceIdReturns;
 impl Schema for CatsLobbySetUserAppMetricaDeviceIdReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbySetUserAppMetricaDeviceIdReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_setUserAppMetricaDeviceId"
+    }
+    fn method() -> &'static str {
+        "lobby_setUserAppMetricaDeviceId"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

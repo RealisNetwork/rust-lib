@@ -15,10 +15,32 @@ impl Schema for ReferralReferralSetPotentialReferralParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"referrerId\":{\"type\":\"string\"},\"referralId\":{\"type\":\"string\"}},\"required\":[\"referralId\",\"referrerId\"]}")
     }
 }
+impl Agent for ReferralReferralSetPotentialReferralParams {
+    fn topic() -> &'static str {
+        "referral_referral_setPotentialReferral"
+    }
+    fn method() -> &'static str {
+        "referral_setPotentialReferral"
+    }
+    fn agent() -> &'static str {
+        "referral"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralSetPotentialReferralReturns(bool);
 impl Schema for ReferralReferralSetPotentialReferralReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for ReferralReferralSetPotentialReferralReturns {
+    fn topic() -> &'static str {
+        "referral_referral_setPotentialReferral"
+    }
+    fn method() -> &'static str {
+        "referral_setPotentialReferral"
+    }
+    fn agent() -> &'static str {
+        "referral"
     }
 }

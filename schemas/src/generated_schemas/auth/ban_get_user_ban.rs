@@ -13,10 +13,32 @@ impl Schema for AuthBanGetUserBanParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for AuthBanGetUserBanParams {
+    fn topic() -> &'static str {
+        "auth_ban_getUserBan"
+    }
+    fn method() -> &'static str {
+        "ban_getUserBan"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthBanGetUserBanReturns(bool);
 impl Schema for AuthBanGetUserBanReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AuthBanGetUserBanReturns {
+    fn topic() -> &'static str {
+        "auth_ban_getUserBan"
+    }
+    fn method() -> &'static str {
+        "ban_getUserBan"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

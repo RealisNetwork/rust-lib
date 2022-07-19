@@ -13,10 +13,32 @@ impl Schema for AdminUserRoleDeleteUserRoleParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"internalUserId\":{\"type\":\"string\"}},\"required\":[\"internalUserId\"]}")
     }
 }
+impl Agent for AdminUserRoleDeleteUserRoleParams {
+    fn topic() -> &'static str {
+        "admin_userRole_deleteUserRole"
+    }
+    fn method() -> &'static str {
+        "userRole_deleteUserRole"
+    }
+    fn agent() -> &'static str {
+        "admin"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleDeleteUserRoleReturns(bool);
 impl Schema for AdminUserRoleDeleteUserRoleReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AdminUserRoleDeleteUserRoleReturns {
+    fn topic() -> &'static str {
+        "admin_userRole_deleteUserRole"
+    }
+    fn method() -> &'static str {
+        "userRole_deleteUserRole"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }

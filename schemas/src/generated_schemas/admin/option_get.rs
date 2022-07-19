@@ -13,17 +13,39 @@ impl Schema for AdminOptionGetParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"clientKey\":{\"type\":\"string\"}},\"required\":[\"clientKey\"]}")
     }
 }
+impl Agent for AdminOptionGetParams {
+    fn topic() -> &'static str {
+        "admin_option_get"
+    }
+    fn method() -> &'static str {
+        "option_get"
+    }
+    fn agent() -> &'static str {
+        "admin"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetReturns {
-    #[serde(rename = "scope")]
-    pub scope: String,
     #[serde(rename = "value")]
     pub value: String,
+    #[serde(rename = "scope")]
+    pub scope: String,
     #[serde(rename = "key")]
     pub key: String,
 }
 impl Schema for AdminOptionGetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"scope\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"value\":{\"type\":\"string\"},\"scope\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\"]}")
+    }
+}
+impl Agent for AdminOptionGetReturns {
+    fn topic() -> &'static str {
+        "admin_option_get"
+    }
+    fn method() -> &'static str {
+        "option_get"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }

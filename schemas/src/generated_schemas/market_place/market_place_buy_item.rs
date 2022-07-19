@@ -15,6 +15,17 @@ impl Schema for MarketPlaceMarketPlaceBuyItemParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"productId\"]}")
     }
 }
+impl Agent for MarketPlaceMarketPlaceBuyItemParams {
+    fn topic() -> &'static str {
+        "market-place_marketPlace_buyItem"
+    }
+    fn method() -> &'static str {
+        "marketPlace_buyItem"
+    }
+    fn agent() -> &'static str {
+        "market-place"
+    }
+}
 impl<'de> Deserialize<'de> for MarketPlaceMarketPlaceBuyItemReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -28,5 +39,16 @@ pub struct MarketPlaceMarketPlaceBuyItemReturns;
 impl Schema for MarketPlaceMarketPlaceBuyItemReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for MarketPlaceMarketPlaceBuyItemReturns {
+    fn topic() -> &'static str {
+        "market-place_marketPlace_buyItem"
+    }
+    fn method() -> &'static str {
+        "marketPlace_buyItem"
+    }
+    fn agent() -> &'static str {
+        "market-place"
     }
 }

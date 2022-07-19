@@ -18,6 +18,17 @@ impl Schema for AuthTwoFactorGenerateSecretParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for AuthTwoFactorGenerateSecretParams {
+    fn topic() -> &'static str {
+        "auth_twoFactor_generateSecret"
+    }
+    fn method() -> &'static str {
+        "twoFactor_generateSecret"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 impl<'de> Deserialize<'de> for AuthTwoFactorGenerateSecretReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct AuthTwoFactorGenerateSecretReturns;
 impl Schema for AuthTwoFactorGenerateSecretReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for AuthTwoFactorGenerateSecretReturns {
+    fn topic() -> &'static str {
+        "auth_twoFactor_generateSecret"
+    }
+    fn method() -> &'static str {
+        "twoFactor_generateSecret"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

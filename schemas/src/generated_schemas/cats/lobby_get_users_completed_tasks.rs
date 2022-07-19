@@ -13,6 +13,17 @@ impl Schema for CatsLobbyGetUsersCompletedTasksParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for CatsLobbyGetUsersCompletedTasksParams {
+    fn topic() -> &'static str {
+        "cats_lobby_getUsersCompletedTasks"
+    }
+    fn method() -> &'static str {
+        "lobby_getUsersCompletedTasks"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyGetUsersCompletedTasksReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct CatsLobbyGetUsersCompletedTasksReturns;
 impl Schema for CatsLobbyGetUsersCompletedTasksReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyGetUsersCompletedTasksReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_getUsersCompletedTasks"
+    }
+    fn method() -> &'static str {
+        "lobby_getUsersCompletedTasks"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

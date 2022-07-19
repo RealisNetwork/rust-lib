@@ -13,6 +13,17 @@ impl Schema for DragonsLobbyGetConfigByIdParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"configKey\":{\"type\":\"string\"}},\"required\":[\"configKey\"]}")
     }
 }
+impl Agent for DragonsLobbyGetConfigByIdParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_getConfigById"
+    }
+    fn method() -> &'static str {
+        "lobby_getConfigById"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyGetConfigByIdReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct DragonsLobbyGetConfigByIdReturns;
 impl Schema for DragonsLobbyGetConfigByIdReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyGetConfigByIdReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_getConfigById"
+    }
+    fn method() -> &'static str {
+        "lobby_getConfigById"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

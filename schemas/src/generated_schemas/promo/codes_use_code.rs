@@ -13,21 +13,43 @@ impl Schema for PromoCodesUseCodeParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"]}")
     }
 }
+impl Agent for PromoCodesUseCodeParams {
+    fn topic() -> &'static str {
+        "promo_codes_useCode"
+    }
+    fn method() -> &'static str {
+        "codes_useCode"
+    }
+    fn agent() -> &'static str {
+        "promo"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesUseCodeReturnsParams {
-    #[serde(rename = "currencyKey")]
-    pub currency_key: String,
     #[serde(rename = "heroId")]
     pub hero_id: i8,
     #[serde(rename = "rewardType")]
     pub reward_type: String,
     #[serde(rename = "currencyAmount")]
     pub currency_amount: String,
+    #[serde(rename = "currencyKey")]
+    pub currency_key: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesUseCodeReturns(Vec<PromoCodesUseCodeReturnsParams>);
 impl Schema for PromoCodesUseCodeReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"currencyKey\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"},\"heroId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"rewardType\":{\"type\":\"string\"},\"currencyAmount\":{\"type\":\"string\"}},\"required\":[\"rewardType\",\"currencyKey\",\"currencyAmount\",\"heroId\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"heroId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"rewardType\":{\"type\":\"string\"},\"currencyAmount\":{\"type\":\"string\"},\"currencyKey\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"}},\"required\":[\"rewardType\",\"currencyKey\",\"currencyAmount\",\"heroId\"]}}")
+    }
+}
+impl Agent for PromoCodesUseCodeReturns {
+    fn topic() -> &'static str {
+        "promo_codes_useCode"
+    }
+    fn method() -> &'static str {
+        "codes_useCode"
+    }
+    fn agent() -> &'static str {
+        "promo"
     }
 }

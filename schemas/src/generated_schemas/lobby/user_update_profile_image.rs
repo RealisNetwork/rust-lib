@@ -13,6 +13,17 @@ impl Schema for LobbyUserUpdateProfileImageParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"image\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"image\"]}")
     }
 }
+impl Agent for LobbyUserUpdateProfileImageParams {
+    fn topic() -> &'static str {
+        "lobby_user_updateProfileImage"
+    }
+    fn method() -> &'static str {
+        "user_updateProfileImage"
+    }
+    fn agent() -> &'static str {
+        "lobby"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserUpdateProfileImageReturns {
     #[serde(rename = "imageId")]
@@ -21,5 +32,16 @@ pub struct LobbyUserUpdateProfileImageReturns {
 impl Schema for LobbyUserUpdateProfileImageReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"imageId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"imageId\"]}")
+    }
+}
+impl Agent for LobbyUserUpdateProfileImageReturns {
+    fn topic() -> &'static str {
+        "lobby_user_updateProfileImage"
+    }
+    fn method() -> &'static str {
+        "user_updateProfileImage"
+    }
+    fn agent() -> &'static str {
+        "lobby"
     }
 }

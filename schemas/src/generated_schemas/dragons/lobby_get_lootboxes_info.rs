@@ -13,6 +13,17 @@ impl Schema for DragonsLobbyGetLootboxesInfoParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for DragonsLobbyGetLootboxesInfoParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_getLootboxesInfo"
+    }
+    fn method() -> &'static str {
+        "lobby_getLootboxesInfo"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyGetLootboxesInfoReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct DragonsLobbyGetLootboxesInfoReturns;
 impl Schema for DragonsLobbyGetLootboxesInfoReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyGetLootboxesInfoReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_getLootboxesInfo"
+    }
+    fn method() -> &'static str {
+        "lobby_getLootboxesInfo"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

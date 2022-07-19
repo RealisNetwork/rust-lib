@@ -13,10 +13,32 @@ impl Schema for PromoCodesGetDataByCodeStrictParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"]}")
     }
 }
+impl Agent for PromoCodesGetDataByCodeStrictParams {
+    fn topic() -> &'static str {
+        "promo_codes_getDataByCodeStrict"
+    }
+    fn method() -> &'static str {
+        "codes_getDataByCodeStrict"
+    }
+    fn agent() -> &'static str {
+        "promo"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesGetDataByCodeStrictReturns {}
 impl Schema for PromoCodesGetDataByCodeStrictReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
+    }
+}
+impl Agent for PromoCodesGetDataByCodeStrictReturns {
+    fn topic() -> &'static str {
+        "promo_codes_getDataByCodeStrict"
+    }
+    fn method() -> &'static str {
+        "codes_getDataByCodeStrict"
+    }
+    fn agent() -> &'static str {
+        "promo"
     }
 }

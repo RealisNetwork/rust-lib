@@ -13,6 +13,17 @@ impl Schema for NearAdapterContractCallBurnNftParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"nftId\":{\"type\":\"string\"}},\"required\":[\"nftId\"]}")
     }
 }
+impl Agent for NearAdapterContractCallBurnNftParams {
+    fn topic() -> &'static str {
+        "near-adapter_contract_callBurnNft"
+    }
+    fn method() -> &'static str {
+        "contract_callBurnNft"
+    }
+    fn agent() -> &'static str {
+        "near-adapter"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterContractCallBurnNftReturns {
     #[serde(rename = "balance")]
@@ -21,5 +32,16 @@ pub struct NearAdapterContractCallBurnNftReturns {
 impl Schema for NearAdapterContractCallBurnNftReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"balance\":{\"type\":\"string\"}},\"required\":[\"balance\"]}")
+    }
+}
+impl Agent for NearAdapterContractCallBurnNftReturns {
+    fn topic() -> &'static str {
+        "near-adapter_contract_callBurnNft"
+    }
+    fn method() -> &'static str {
+        "contract_callBurnNft"
+    }
+    fn agent() -> &'static str {
+        "near-adapter"
     }
 }

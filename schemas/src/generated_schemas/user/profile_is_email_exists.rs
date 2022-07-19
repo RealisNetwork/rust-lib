@@ -13,10 +13,32 @@ impl Schema for UserProfileIsEmailExistsParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\"}},\"required\":[\"email\"]}")
     }
 }
+impl Agent for UserProfileIsEmailExistsParams {
+    fn topic() -> &'static str {
+        "user_profile_isEmailExists"
+    }
+    fn method() -> &'static str {
+        "profile_isEmailExists"
+    }
+    fn agent() -> &'static str {
+        "user"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileIsEmailExistsReturns(bool);
 impl Schema for UserProfileIsEmailExistsReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for UserProfileIsEmailExistsReturns {
+    fn topic() -> &'static str {
+        "user_profile_isEmailExists"
+    }
+    fn method() -> &'static str {
+        "profile_isEmailExists"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

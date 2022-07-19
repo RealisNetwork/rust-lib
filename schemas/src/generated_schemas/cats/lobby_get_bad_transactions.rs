@@ -18,6 +18,17 @@ impl Schema for CatsLobbyGetBadTransactionsParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for CatsLobbyGetBadTransactionsParams {
+    fn topic() -> &'static str {
+        "cats_lobby_getBadTransactions"
+    }
+    fn method() -> &'static str {
+        "lobby_getBadTransactions"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyGetBadTransactionsReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct CatsLobbyGetBadTransactionsReturns;
 impl Schema for CatsLobbyGetBadTransactionsReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyGetBadTransactionsReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_getBadTransactions"
+    }
+    fn method() -> &'static str {
+        "lobby_getBadTransactions"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

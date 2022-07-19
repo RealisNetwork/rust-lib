@@ -18,10 +18,32 @@ impl Schema for AuthTwoFactorCanGenerateSecretParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for AuthTwoFactorCanGenerateSecretParams {
+    fn topic() -> &'static str {
+        "auth_twoFactor_canGenerateSecret"
+    }
+    fn method() -> &'static str {
+        "twoFactor_canGenerateSecret"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthTwoFactorCanGenerateSecretReturns(bool);
 impl Schema for AuthTwoFactorCanGenerateSecretReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AuthTwoFactorCanGenerateSecretReturns {
+    fn topic() -> &'static str {
+        "auth_twoFactor_canGenerateSecret"
+    }
+    fn method() -> &'static str {
+        "twoFactor_canGenerateSecret"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

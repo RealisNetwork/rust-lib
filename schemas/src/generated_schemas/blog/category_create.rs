@@ -13,10 +13,32 @@ impl Schema for BlogCategoryCreateParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"}},\"required\":[\"name\"]}")
     }
 }
+impl Agent for BlogCategoryCreateParams {
+    fn topic() -> &'static str {
+        "blog_category_create"
+    }
+    fn method() -> &'static str {
+        "category_create"
+    }
+    fn agent() -> &'static str {
+        "blog"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogCategoryCreateReturns(bool);
 impl Schema for BlogCategoryCreateReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for BlogCategoryCreateReturns {
+    fn topic() -> &'static str {
+        "blog_category_create"
+    }
+    fn method() -> &'static str {
+        "category_create"
+    }
+    fn agent() -> &'static str {
+        "blog"
     }
 }

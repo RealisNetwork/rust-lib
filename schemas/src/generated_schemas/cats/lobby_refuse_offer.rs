@@ -15,6 +15,17 @@ impl Schema for CatsLobbyRefuseOfferParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"offerKey\":{\"type\":\"string\"}},\"required\":[\"userId\",\"offerKey\"]}")
     }
 }
+impl Agent for CatsLobbyRefuseOfferParams {
+    fn topic() -> &'static str {
+        "cats_lobby_refuseOffer"
+    }
+    fn method() -> &'static str {
+        "lobby_refuseOffer"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyRefuseOfferReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -28,5 +39,16 @@ pub struct CatsLobbyRefuseOfferReturns;
 impl Schema for CatsLobbyRefuseOfferReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyRefuseOfferReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_refuseOffer"
+    }
+    fn method() -> &'static str {
+        "lobby_refuseOffer"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

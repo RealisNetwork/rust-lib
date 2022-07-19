@@ -13,15 +13,37 @@ impl Schema for BlogCategoryGetParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\"]}")
     }
 }
+impl Agent for BlogCategoryGetParams {
+    fn topic() -> &'static str {
+        "blog_category_get"
+    }
+    fn method() -> &'static str {
+        "category_get"
+    }
+    fn agent() -> &'static str {
+        "blog"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogCategoryGetReturns {
-    #[serde(rename = "id")]
-    pub id: i64,
     #[serde(rename = "name")]
     pub name: String,
+    #[serde(rename = "id")]
+    pub id: i64,
 }
 impl Schema for BlogCategoryGetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"name\"]}")
+    }
+}
+impl Agent for BlogCategoryGetReturns {
+    fn topic() -> &'static str {
+        "blog_category_get"
+    }
+    fn method() -> &'static str {
+        "category_get"
+    }
+    fn agent() -> &'static str {
+        "blog"
     }
 }

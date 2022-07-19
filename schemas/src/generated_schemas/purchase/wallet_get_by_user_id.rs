@@ -18,6 +18,17 @@ impl Schema for PurchaseWalletGetByUserIdParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for PurchaseWalletGetByUserIdParams {
+    fn topic() -> &'static str {
+        "purchase_wallet_getByUserId"
+    }
+    fn method() -> &'static str {
+        "wallet_getByUserId"
+    }
+    fn agent() -> &'static str {
+        "purchase"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PurchaseWalletGetByUserIdReturns {
     #[serde(rename = "address")]
@@ -26,5 +37,16 @@ pub struct PurchaseWalletGetByUserIdReturns {
 impl Schema for PurchaseWalletGetByUserIdReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"address\":{\"type\":\"string\"}},\"required\":[\"address\"]}")
+    }
+}
+impl Agent for PurchaseWalletGetByUserIdReturns {
+    fn topic() -> &'static str {
+        "purchase_wallet_getByUserId"
+    }
+    fn method() -> &'static str {
+        "wallet_getByUserId"
+    }
+    fn agent() -> &'static str {
+        "purchase"
     }
 }

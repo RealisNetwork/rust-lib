@@ -13,10 +13,32 @@ impl Schema for UserProfileDeleteUserRecordParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for UserProfileDeleteUserRecordParams {
+    fn topic() -> &'static str {
+        "user_profile_deleteUserRecord"
+    }
+    fn method() -> &'static str {
+        "profile_deleteUserRecord"
+    }
+    fn agent() -> &'static str {
+        "user"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileDeleteUserRecordReturns(bool);
 impl Schema for UserProfileDeleteUserRecordReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for UserProfileDeleteUserRecordReturns {
+    fn topic() -> &'static str {
+        "user_profile_deleteUserRecord"
+    }
+    fn method() -> &'static str {
+        "profile_deleteUserRecord"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

@@ -13,6 +13,17 @@ impl Schema for DragonsLobbyGetUsersCompletedTasksParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for DragonsLobbyGetUsersCompletedTasksParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_getUsersCompletedTasks"
+    }
+    fn method() -> &'static str {
+        "lobby_getUsersCompletedTasks"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyGetUsersCompletedTasksReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct DragonsLobbyGetUsersCompletedTasksReturns;
 impl Schema for DragonsLobbyGetUsersCompletedTasksReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyGetUsersCompletedTasksReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_getUsersCompletedTasks"
+    }
+    fn method() -> &'static str {
+        "lobby_getUsersCompletedTasks"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

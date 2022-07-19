@@ -15,10 +15,32 @@ impl Schema for StatusMembershipUpdateParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"purchaseToken\":{\"type\":\"string\"},\"isActive\":{\"type\":\"boolean\"}},\"required\":[\"purchaseToken\",\"isActive\"]}")
     }
 }
+impl Agent for StatusMembershipUpdateParams {
+    fn topic() -> &'static str {
+        "status_membership_update"
+    }
+    fn method() -> &'static str {
+        "membership_update"
+    }
+    fn agent() -> &'static str {
+        "status"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipUpdateReturns(bool);
 impl Schema for StatusMembershipUpdateReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for StatusMembershipUpdateReturns {
+    fn topic() -> &'static str {
+        "status_membership_update"
+    }
+    fn method() -> &'static str {
+        "membership_update"
+    }
+    fn agent() -> &'static str {
+        "status"
     }
 }

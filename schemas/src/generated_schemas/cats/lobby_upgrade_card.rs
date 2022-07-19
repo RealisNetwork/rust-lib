@@ -15,6 +15,17 @@ impl Schema for CatsLobbyUpgradeCardParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"cardId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"userId\",\"cardId\"]}")
     }
 }
+impl Agent for CatsLobbyUpgradeCardParams {
+    fn topic() -> &'static str {
+        "cats_lobby_upgradeCard"
+    }
+    fn method() -> &'static str {
+        "lobby_upgradeCard"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyUpgradeCardReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -28,5 +39,16 @@ pub struct CatsLobbyUpgradeCardReturns;
 impl Schema for CatsLobbyUpgradeCardReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyUpgradeCardReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_upgradeCard"
+    }
+    fn method() -> &'static str {
+        "lobby_upgradeCard"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

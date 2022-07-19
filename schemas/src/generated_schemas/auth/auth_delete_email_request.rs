@@ -13,10 +13,32 @@ impl Schema for AuthAuthDeleteEmailRequestParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"emailHash\":{\"type\":\"string\"}},\"required\":[\"emailHash\"]}")
     }
 }
+impl Agent for AuthAuthDeleteEmailRequestParams {
+    fn topic() -> &'static str {
+        "auth_auth_deleteEmailRequest"
+    }
+    fn method() -> &'static str {
+        "auth_deleteEmailRequest"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeleteEmailRequestReturns(bool);
 impl Schema for AuthAuthDeleteEmailRequestReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AuthAuthDeleteEmailRequestReturns {
+    fn topic() -> &'static str {
+        "auth_auth_deleteEmailRequest"
+    }
+    fn method() -> &'static str {
+        "auth_deleteEmailRequest"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

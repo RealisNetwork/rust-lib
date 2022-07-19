@@ -18,41 +18,63 @@ impl Schema for StatusMembershipGetAllMyActiveParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for StatusMembershipGetAllMyActiveParams {
+    fn topic() -> &'static str {
+        "status_membership_getAllMyActive"
+    }
+    fn method() -> &'static str {
+        "membership_getAllMyActive"
+    }
+    fn agent() -> &'static str {
+        "status"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipGetAllMyActiveReturnsParamsMembershipParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipGetAllMyActiveReturnsParams {
-    #[serde(rename = "subscriptionToken")]
-    pub subscription_token: String,
-    #[serde(rename = "subscriptionOrderId")]
-    pub subscription_order_id: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "userId")]
-    pub user_id: i64,
-    #[serde(rename = "appId")]
-    pub app_id: i64,
     #[serde(rename = "endDate")]
     pub end_date: String,
-    #[serde(rename = "isActive")]
-    pub is_active: bool,
     #[serde(rename = "subscriptionTokenHash")]
     pub subscription_token_hash: String,
-    #[serde(rename = "membership")]
-    pub membership: StatusMembershipGetAllMyActiveReturnsParamsMembershipParams,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: String,
-    #[serde(rename = "subscriptionProductId")]
-    pub subscription_product_id: String,
-    #[serde(rename = "id")]
-    pub id: i64,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
     #[serde(rename = "duration")]
     pub duration: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
+    #[serde(rename = "membership")]
+    pub membership: StatusMembershipGetAllMyActiveReturnsParamsMembershipParams,
+    #[serde(rename = "id")]
+    pub id: i64,
+    #[serde(rename = "isActive")]
+    pub is_active: bool,
+    #[serde(rename = "subscriptionProductId")]
+    pub subscription_product_id: String,
+    #[serde(rename = "appId")]
+    pub app_id: i64,
+    #[serde(rename = "subscriptionOrderId")]
+    pub subscription_order_id: String,
+    #[serde(rename = "subscriptionToken")]
+    pub subscription_token: String,
+    #[serde(rename = "userId")]
+    pub user_id: i64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipGetAllMyActiveReturns(Vec<StatusMembershipGetAllMyActiveReturnsParams>);
 impl Schema for StatusMembershipGetAllMyActiveReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"subscriptionToken\":{\"type\":\"string\"},\"subscriptionOrderId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"userId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"endDate\":{\"type\":\"string\"},\"isActive\":{\"type\":\"boolean\"},\"subscriptionTokenHash\":{\"type\":\"string\"},\"membership\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"updatedAt\":{\"type\":\"string\"},\"subscriptionProductId\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"duration\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"appId\",\"isActive\",\"endDate\",\"duration\",\"subscriptionProductId\",\"subscriptionOrderId\",\"subscriptionToken\",\"subscriptionTokenHash\",\"createdAt\",\"updatedAt\",\"membership\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"endDate\":{\"type\":\"string\"},\"subscriptionTokenHash\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"duration\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"membership\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isActive\":{\"type\":\"boolean\"},\"subscriptionProductId\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"subscriptionOrderId\":{\"type\":\"string\"},\"subscriptionToken\":{\"type\":\"string\"},\"userId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"userId\",\"appId\",\"isActive\",\"endDate\",\"duration\",\"subscriptionProductId\",\"subscriptionOrderId\",\"subscriptionToken\",\"subscriptionTokenHash\",\"createdAt\",\"updatedAt\",\"membership\"]}}")
+    }
+}
+impl Agent for StatusMembershipGetAllMyActiveReturns {
+    fn topic() -> &'static str {
+        "status_membership_getAllMyActive"
+    }
+    fn method() -> &'static str {
+        "membership_getAllMyActive"
+    }
+    fn agent() -> &'static str {
+        "status"
     }
 }

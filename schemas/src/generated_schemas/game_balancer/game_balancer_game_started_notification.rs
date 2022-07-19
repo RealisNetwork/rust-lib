@@ -18,6 +18,17 @@ impl Schema for GameBalancerGameBalancerGameStartedNotificationParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for GameBalancerGameBalancerGameStartedNotificationParams {
+    fn topic() -> &'static str {
+        "gameBalancer_gameBalancer_gameStartedNotification"
+    }
+    fn method() -> &'static str {
+        "gameBalancer_gameStartedNotification"
+    }
+    fn agent() -> &'static str {
+        "gameBalancer"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GameBalancerGameBalancerGameStartedNotificationReturns {
     #[serde(rename = "roomStarted")]
@@ -26,5 +37,16 @@ pub struct GameBalancerGameBalancerGameStartedNotificationReturns {
 impl Schema for GameBalancerGameBalancerGameStartedNotificationReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"roomStarted\":{\"type\":\"boolean\"}},\"required\":[\"roomStarted\"]}")
+    }
+}
+impl Agent for GameBalancerGameBalancerGameStartedNotificationReturns {
+    fn topic() -> &'static str {
+        "gameBalancer_gameBalancer_gameStartedNotification"
+    }
+    fn method() -> &'static str {
+        "gameBalancer_gameStartedNotification"
+    }
+    fn agent() -> &'static str {
+        "gameBalancer"
     }
 }

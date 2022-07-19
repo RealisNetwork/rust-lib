@@ -13,6 +13,17 @@ impl Schema for ListeriaStorageInventoryEndpointsOpenLootboxParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"bindingId\"]}")
     }
 }
+impl Agent for ListeriaStorageInventoryEndpointsOpenLootboxParams {
+    fn topic() -> &'static str {
+        "listeria-storage_inventoryEndpoints_openLootbox"
+    }
+    fn method() -> &'static str {
+        "inventoryEndpoints_openLootbox"
+    }
+    fn agent() -> &'static str {
+        "listeria-storage"
+    }
+}
 impl<'de> Deserialize<'de> for ListeriaStorageInventoryEndpointsOpenLootboxReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct ListeriaStorageInventoryEndpointsOpenLootboxReturns;
 impl Schema for ListeriaStorageInventoryEndpointsOpenLootboxReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for ListeriaStorageInventoryEndpointsOpenLootboxReturns {
+    fn topic() -> &'static str {
+        "listeria-storage_inventoryEndpoints_openLootbox"
+    }
+    fn method() -> &'static str {
+        "inventoryEndpoints_openLootbox"
+    }
+    fn agent() -> &'static str {
+        "listeria-storage"
     }
 }

@@ -13,6 +13,17 @@ impl Schema for GameBalancerBalancerEndpointsAddBotsParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"region\":{\"type\":\"string\"}},\"required\":[\"region\"]}")
     }
 }
+impl Agent for GameBalancerBalancerEndpointsAddBotsParams {
+    fn topic() -> &'static str {
+        "gameBalancer_balancerEndpoints_addBots"
+    }
+    fn method() -> &'static str {
+        "balancerEndpoints_addBots"
+    }
+    fn agent() -> &'static str {
+        "gameBalancer"
+    }
+}
 impl<'de> Deserialize<'de> for GameBalancerBalancerEndpointsAddBotsReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct GameBalancerBalancerEndpointsAddBotsReturns;
 impl Schema for GameBalancerBalancerEndpointsAddBotsReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for GameBalancerBalancerEndpointsAddBotsReturns {
+    fn topic() -> &'static str {
+        "gameBalancer_balancerEndpoints_addBots"
+    }
+    fn method() -> &'static str {
+        "balancerEndpoints_addBots"
+    }
+    fn agent() -> &'static str {
+        "gameBalancer"
     }
 }

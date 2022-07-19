@@ -13,6 +13,17 @@ impl Schema for LobbyEquipmentEndpointsUnEquipItemFromAllHeroesParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"itemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"itemId\"]}")
     }
 }
+impl Agent for LobbyEquipmentEndpointsUnEquipItemFromAllHeroesParams {
+    fn topic() -> &'static str {
+        "lobby_equipmentEndpoints_unEquipItemFromAllHeroes"
+    }
+    fn method() -> &'static str {
+        "equipmentEndpoints_unEquipItemFromAllHeroes"
+    }
+    fn agent() -> &'static str {
+        "lobby"
+    }
+}
 impl<'de> Deserialize<'de> for LobbyEquipmentEndpointsUnEquipItemFromAllHeroesReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct LobbyEquipmentEndpointsUnEquipItemFromAllHeroesReturns;
 impl Schema for LobbyEquipmentEndpointsUnEquipItemFromAllHeroesReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for LobbyEquipmentEndpointsUnEquipItemFromAllHeroesReturns {
+    fn topic() -> &'static str {
+        "lobby_equipmentEndpoints_unEquipItemFromAllHeroes"
+    }
+    fn method() -> &'static str {
+        "equipmentEndpoints_unEquipItemFromAllHeroes"
+    }
+    fn agent() -> &'static str {
+        "lobby"
     }
 }

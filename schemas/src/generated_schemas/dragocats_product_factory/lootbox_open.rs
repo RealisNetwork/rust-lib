@@ -5,18 +5,29 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsProductFactoryLootboxOpenParams {
-    #[serde(rename = "productId")]
-    pub product_id: i64,
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "excludedPersonalTypes")]
-    pub excluded_personal_types: Vec<String>,
     #[serde(rename = "lootboxBindingId")]
     pub lootbox_binding_id: i64,
+    #[serde(rename = "excludedPersonalTypes")]
+    pub excluded_personal_types: Vec<String>,
+    #[serde(rename = "productId")]
+    pub product_id: i64,
 }
 impl Schema for DragocatsProductFactoryLootboxOpenParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"excludedPersonalTypes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"lootboxBindingId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"productId\",\"userId\",\"lootboxBindingId\",\"excludedPersonalTypes\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"lootboxBindingId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"excludedPersonalTypes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"productId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"productId\",\"userId\",\"lootboxBindingId\",\"excludedPersonalTypes\"]}")
+    }
+}
+impl Agent for DragocatsProductFactoryLootboxOpenParams {
+    fn topic() -> &'static str {
+        "dragocats-product-factory_lootbox_open"
+    }
+    fn method() -> &'static str {
+        "lootbox_open"
+    }
+    fn agent() -> &'static str {
+        "dragocats-product-factory"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -24,5 +35,16 @@ pub struct DragocatsProductFactoryLootboxOpenReturns(bool);
 impl Schema for DragocatsProductFactoryLootboxOpenReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for DragocatsProductFactoryLootboxOpenReturns {
+    fn topic() -> &'static str {
+        "dragocats-product-factory_lootbox_open"
+    }
+    fn method() -> &'static str {
+        "lootbox_open"
+    }
+    fn agent() -> &'static str {
+        "dragocats-product-factory"
     }
 }

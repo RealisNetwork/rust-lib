@@ -13,6 +13,17 @@ impl Schema for DragonsLobbyGetBingoDataParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for DragonsLobbyGetBingoDataParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_getBingoData"
+    }
+    fn method() -> &'static str {
+        "lobby_getBingoData"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyGetBingoDataReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct DragonsLobbyGetBingoDataReturns;
 impl Schema for DragonsLobbyGetBingoDataReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyGetBingoDataReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_getBingoData"
+    }
+    fn method() -> &'static str {
+        "lobby_getBingoData"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

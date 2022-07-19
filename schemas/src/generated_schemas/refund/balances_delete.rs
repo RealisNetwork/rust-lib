@@ -15,10 +15,32 @@ impl Schema for RefundBalancesDeleteParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"lockedFunds\":{\"type\":\"string\"}},\"required\":[\"userId\",\"lockedFunds\"]}")
     }
 }
+impl Agent for RefundBalancesDeleteParams {
+    fn topic() -> &'static str {
+        "refund_balances_delete"
+    }
+    fn method() -> &'static str {
+        "balances_delete"
+    }
+    fn agent() -> &'static str {
+        "refund"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesDeleteReturns(bool);
 impl Schema for RefundBalancesDeleteReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for RefundBalancesDeleteReturns {
+    fn topic() -> &'static str {
+        "refund_balances_delete"
+    }
+    fn method() -> &'static str {
+        "balances_delete"
+    }
+    fn agent() -> &'static str {
+        "refund"
     }
 }

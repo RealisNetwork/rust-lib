@@ -13,10 +13,32 @@ impl Schema for AdminMailTemplateDeleteParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"}},\"required\":[\"key\"]}")
     }
 }
+impl Agent for AdminMailTemplateDeleteParams {
+    fn topic() -> &'static str {
+        "admin_mailTemplate_delete"
+    }
+    fn method() -> &'static str {
+        "mailTemplate_delete"
+    }
+    fn agent() -> &'static str {
+        "admin"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminMailTemplateDeleteReturns(bool);
 impl Schema for AdminMailTemplateDeleteReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AdminMailTemplateDeleteReturns {
+    fn topic() -> &'static str {
+        "admin_mailTemplate_delete"
+    }
+    fn method() -> &'static str {
+        "mailTemplate_delete"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }

@@ -18,15 +18,37 @@ impl Schema for TransactionsBalanceGetBalancesByUserIdParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for TransactionsBalanceGetBalancesByUserIdParams {
+    fn topic() -> &'static str {
+        "transactions_balance_getBalancesByUserId"
+    }
+    fn method() -> &'static str {
+        "balance_getBalancesByUserId"
+    }
+    fn agent() -> &'static str {
+        "transactions"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetBalancesByUserIdReturns {
-    #[serde(rename = "ETH")]
-    pub eth: String,
     #[serde(rename = "LIS")]
     pub lis: String,
+    #[serde(rename = "ETH")]
+    pub eth: String,
 }
 impl Schema for TransactionsBalanceGetBalancesByUserIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"ETH\":{\"type\":\"string\"},\"LIS\":{\"type\":\"string\"}},\"required\":[\"ETH\",\"LIS\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"LIS\":{\"type\":\"string\"},\"ETH\":{\"type\":\"string\"}},\"required\":[\"ETH\",\"LIS\"]}")
+    }
+}
+impl Agent for TransactionsBalanceGetBalancesByUserIdReturns {
+    fn topic() -> &'static str {
+        "transactions_balance_getBalancesByUserId"
+    }
+    fn method() -> &'static str {
+        "balance_getBalancesByUserId"
+    }
+    fn agent() -> &'static str {
+        "transactions"
     }
 }

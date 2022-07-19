@@ -18,6 +18,17 @@ impl Schema for CatsLobbyGetPreviousTournamentStatsParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for CatsLobbyGetPreviousTournamentStatsParams {
+    fn topic() -> &'static str {
+        "cats_lobby_getPreviousTournamentStats"
+    }
+    fn method() -> &'static str {
+        "lobby_getPreviousTournamentStats"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyGetPreviousTournamentStatsReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct CatsLobbyGetPreviousTournamentStatsReturns;
 impl Schema for CatsLobbyGetPreviousTournamentStatsReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyGetPreviousTournamentStatsReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_getPreviousTournamentStats"
+    }
+    fn method() -> &'static str {
+        "lobby_getPreviousTournamentStats"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

@@ -13,10 +13,32 @@ impl Schema for TransactionsRegistryProductDeleteProductByUserIdParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for TransactionsRegistryProductDeleteProductByUserIdParams {
+    fn topic() -> &'static str {
+        "transactions_registryProduct_deleteProductByUserId"
+    }
+    fn method() -> &'static str {
+        "registryProduct_deleteProductByUserId"
+    }
+    fn agent() -> &'static str {
+        "transactions"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsRegistryProductDeleteProductByUserIdReturns(bool);
 impl Schema for TransactionsRegistryProductDeleteProductByUserIdReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for TransactionsRegistryProductDeleteProductByUserIdReturns {
+    fn topic() -> &'static str {
+        "transactions_registryProduct_deleteProductByUserId"
+    }
+    fn method() -> &'static str {
+        "registryProduct_deleteProductByUserId"
+    }
+    fn agent() -> &'static str {
+        "transactions"
     }
 }

@@ -15,6 +15,17 @@ impl Schema for CatsLobbyShareScoreParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"score\":{\"type\":\"string\"}},\"required\":[\"userId\",\"score\"]}")
     }
 }
+impl Agent for CatsLobbyShareScoreParams {
+    fn topic() -> &'static str {
+        "cats_lobby_shareScore"
+    }
+    fn method() -> &'static str {
+        "lobby_shareScore"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyShareScoreReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -28,5 +39,16 @@ pub struct CatsLobbyShareScoreReturns;
 impl Schema for CatsLobbyShareScoreReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyShareScoreReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_shareScore"
+    }
+    fn method() -> &'static str {
+        "lobby_shareScore"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

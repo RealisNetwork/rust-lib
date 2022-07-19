@@ -18,15 +18,37 @@ impl Schema for CdUserSpinEndpointsGetSpinInfoParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for CdUserSpinEndpointsGetSpinInfoParams {
+    fn topic() -> &'static str {
+        "cd-user_spinEndpoints_getSpinInfo"
+    }
+    fn method() -> &'static str {
+        "spinEndpoints_getSpinInfo"
+    }
+    fn agent() -> &'static str {
+        "cd-user"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CdUserSpinEndpointsGetSpinInfoReturns {
-    #[serde(rename = "AdSpinsAmount")]
-    pub ad_spins_amount: i32,
     #[serde(rename = "LastSpinDate")]
     pub last_spin_date: String,
+    #[serde(rename = "AdSpinsAmount")]
+    pub ad_spins_amount: i32,
 }
 impl Schema for CdUserSpinEndpointsGetSpinInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"AdSpinsAmount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"LastSpinDate\":{\"type\":\"string\"}},\"required\":[\"LastSpinDate\",\"AdSpinsAmount\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"LastSpinDate\":{\"type\":\"string\"},\"AdSpinsAmount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"LastSpinDate\",\"AdSpinsAmount\"]}")
+    }
+}
+impl Agent for CdUserSpinEndpointsGetSpinInfoReturns {
+    fn topic() -> &'static str {
+        "cd-user_spinEndpoints_getSpinInfo"
+    }
+    fn method() -> &'static str {
+        "spinEndpoints_getSpinInfo"
+    }
+    fn agent() -> &'static str {
+        "cd-user"
     }
 }

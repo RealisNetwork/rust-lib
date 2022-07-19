@@ -10,10 +10,32 @@ impl Schema for AdminRoleGetAllRolesParams {
         serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
     }
 }
+impl Agent for AdminRoleGetAllRolesParams {
+    fn topic() -> &'static str {
+        "admin_role_getAllRoles"
+    }
+    fn method() -> &'static str {
+        "role_getAllRoles"
+    }
+    fn agent() -> &'static str {
+        "admin"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminRoleGetAllRolesReturns(Vec<String>);
 impl Schema for AdminRoleGetAllRolesReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"array\",\"items\":{\"type\":\"string\"}}")
+    }
+}
+impl Agent for AdminRoleGetAllRolesReturns {
+    fn topic() -> &'static str {
+        "admin_role_getAllRoles"
+    }
+    fn method() -> &'static str {
+        "role_getAllRoles"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }

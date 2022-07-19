@@ -15,10 +15,32 @@ impl Schema for ReferralReferralAddReferralParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"referralId\":{\"type\":\"string\"},\"referrerId\":{\"type\":\"string\"}},\"required\":[\"referralId\",\"referrerId\"]}")
     }
 }
+impl Agent for ReferralReferralAddReferralParams {
+    fn topic() -> &'static str {
+        "referral_referral_addReferral"
+    }
+    fn method() -> &'static str {
+        "referral_addReferral"
+    }
+    fn agent() -> &'static str {
+        "referral"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralAddReferralReturns(bool);
 impl Schema for ReferralReferralAddReferralReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for ReferralReferralAddReferralReturns {
+    fn topic() -> &'static str {
+        "referral_referral_addReferral"
+    }
+    fn method() -> &'static str {
+        "referral_addReferral"
+    }
+    fn agent() -> &'static str {
+        "referral"
     }
 }

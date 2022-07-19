@@ -13,6 +13,17 @@ impl Schema for DragonsLobbyAdventureMapLevelUpParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for DragonsLobbyAdventureMapLevelUpParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_adventureMapLevelUp"
+    }
+    fn method() -> &'static str {
+        "lobby_adventureMapLevelUp"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyAdventureMapLevelUpReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct DragonsLobbyAdventureMapLevelUpReturns;
 impl Schema for DragonsLobbyAdventureMapLevelUpReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyAdventureMapLevelUpReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_adventureMapLevelUp"
+    }
+    fn method() -> &'static str {
+        "lobby_adventureMapLevelUp"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

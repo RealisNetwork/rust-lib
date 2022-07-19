@@ -18,15 +18,37 @@ impl Schema for BalancesBalancesGetBalancesByUserIdParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for BalancesBalancesGetBalancesByUserIdParams {
+    fn topic() -> &'static str {
+        "balances_balances_getBalancesByUserId"
+    }
+    fn method() -> &'static str {
+        "balances_getBalancesByUserId"
+    }
+    fn agent() -> &'static str {
+        "balances"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BalancesBalancesGetBalancesByUserIdReturns {
-    #[serde(rename = "freeExperience")]
-    pub free_experience: i32,
     #[serde(rename = "softCurrency")]
     pub soft_currency: i32,
+    #[serde(rename = "freeExperience")]
+    pub free_experience: i32,
 }
 impl Schema for BalancesBalancesGetBalancesByUserIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"freeExperience\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"softCurrency\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"softCurrency\",\"freeExperience\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"softCurrency\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"freeExperience\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"softCurrency\",\"freeExperience\"]}")
+    }
+}
+impl Agent for BalancesBalancesGetBalancesByUserIdReturns {
+    fn topic() -> &'static str {
+        "balances_balances_getBalancesByUserId"
+    }
+    fn method() -> &'static str {
+        "balances_getBalancesByUserId"
+    }
+    fn agent() -> &'static str {
+        "balances"
     }
 }

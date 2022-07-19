@@ -13,10 +13,32 @@ impl Schema for ReferralRewardGetAvailableRewardParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"referrerId\":{\"type\":\"string\"}},\"required\":[\"referrerId\"]}")
     }
 }
+impl Agent for ReferralRewardGetAvailableRewardParams {
+    fn topic() -> &'static str {
+        "referral_reward_getAvailableReward"
+    }
+    fn method() -> &'static str {
+        "reward_getAvailableReward"
+    }
+    fn agent() -> &'static str {
+        "referral"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralRewardGetAvailableRewardReturns(String);
 impl Schema for ReferralRewardGetAvailableRewardReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")
+    }
+}
+impl Agent for ReferralRewardGetAvailableRewardReturns {
+    fn topic() -> &'static str {
+        "referral_reward_getAvailableReward"
+    }
+    fn method() -> &'static str {
+        "reward_getAvailableReward"
+    }
+    fn agent() -> &'static str {
+        "referral"
     }
 }

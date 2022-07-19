@@ -5,18 +5,29 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorBattlePassPurchaseExperienceParams {
-    #[serde(rename = "amount")]
-    pub amount: i64,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
     #[serde(rename = "creator")]
     pub creator: String,
+    #[serde(rename = "amount")]
+    pub amount: i64,
 }
 impl Schema for OrchestratorBattlePassPurchaseExperienceParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"}},\"required\":[\"userId\",\"txId\",\"creator\",\"amount\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"amount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"txId\",\"creator\",\"amount\"]}")
+    }
+}
+impl Agent for OrchestratorBattlePassPurchaseExperienceParams {
+    fn topic() -> &'static str {
+        "orchestrator_battlePass_purchaseExperience"
+    }
+    fn method() -> &'static str {
+        "battlePass_purchaseExperience"
+    }
+    fn agent() -> &'static str {
+        "orchestrator"
     }
 }
 impl<'de> Deserialize<'de> for OrchestratorBattlePassPurchaseExperienceReturns {
@@ -32,5 +43,16 @@ pub struct OrchestratorBattlePassPurchaseExperienceReturns;
 impl Schema for OrchestratorBattlePassPurchaseExperienceReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for OrchestratorBattlePassPurchaseExperienceReturns {
+    fn topic() -> &'static str {
+        "orchestrator_battlePass_purchaseExperience"
+    }
+    fn method() -> &'static str {
+        "battlePass_purchaseExperience"
+    }
+    fn agent() -> &'static str {
+        "orchestrator"
     }
 }

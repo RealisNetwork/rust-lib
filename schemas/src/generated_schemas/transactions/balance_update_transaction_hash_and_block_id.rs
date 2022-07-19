@@ -17,10 +17,32 @@ impl Schema for TransactionsBalanceUpdateTransactionHashAndBlockIdParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newTxId\":{\"type\":\"string\"},\"newBlockId\":{\"type\":\"string\"},\"oldTxId\":{\"type\":\"string\"}},\"required\":[\"oldTxId\",\"newTxId\",\"newBlockId\"]}")
     }
 }
+impl Agent for TransactionsBalanceUpdateTransactionHashAndBlockIdParams {
+    fn topic() -> &'static str {
+        "transactions_balance_updateTransactionHashAndBlockId"
+    }
+    fn method() -> &'static str {
+        "balance_updateTransactionHashAndBlockId"
+    }
+    fn agent() -> &'static str {
+        "transactions"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceUpdateTransactionHashAndBlockIdReturns(bool);
 impl Schema for TransactionsBalanceUpdateTransactionHashAndBlockIdReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for TransactionsBalanceUpdateTransactionHashAndBlockIdReturns {
+    fn topic() -> &'static str {
+        "transactions_balance_updateTransactionHashAndBlockId"
+    }
+    fn method() -> &'static str {
+        "balance_updateTransactionHashAndBlockId"
+    }
+    fn agent() -> &'static str {
+        "transactions"
     }
 }

@@ -1,5 +1,4 @@
 use crate::agent_params::AgentParams;
-use crate::schema_declaration::SchemaDeclaration;
 use convert_case::{Case, Casing};
 use quote::__private::{Ident, TokenStream};
 use quote::quote;
@@ -87,12 +86,10 @@ impl Object {
         quote! { #ident }
     }
 
-    pub fn get_schema_declaration(&self, name: &str) -> SchemaDeclaration {
-        let (prefix, declaration) = self.get_declaration(name);
-        SchemaDeclaration {
-            declaration,
-            prefix,
-        }
+    pub fn get_schema_declaration(&self, name: &str) -> TokenStream {
+        let (mut prefix, declaration) = self.get_declaration(name);
+        prefix.extend(declaration);
+        prefix
     }
 
     fn get_field_type(

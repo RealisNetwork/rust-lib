@@ -21,10 +21,32 @@ impl Schema for OrchestratorBalanceUserBlockchainDepositParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"},\"userId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\"]}")
     }
 }
+impl Agent for OrchestratorBalanceUserBlockchainDepositParams {
+    fn topic() -> &'static str {
+        "orchestrator_balance_userBlockchainDeposit"
+    }
+    fn method() -> &'static str {
+        "balance_userBlockchainDeposit"
+    }
+    fn agent() -> &'static str {
+        "orchestrator"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorBalanceUserBlockchainDepositReturns(bool);
 impl Schema for OrchestratorBalanceUserBlockchainDepositReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for OrchestratorBalanceUserBlockchainDepositReturns {
+    fn topic() -> &'static str {
+        "orchestrator_balance_userBlockchainDeposit"
+    }
+    fn method() -> &'static str {
+        "balance_userBlockchainDeposit"
+    }
+    fn agent() -> &'static str {
+        "orchestrator"
     }
 }

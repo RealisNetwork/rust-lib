@@ -18,10 +18,32 @@ impl Schema for UserProfileGetMyNicknameParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for UserProfileGetMyNicknameParams {
+    fn topic() -> &'static str {
+        "user_profile_getMyNickname"
+    }
+    fn method() -> &'static str {
+        "profile_getMyNickname"
+    }
+    fn agent() -> &'static str {
+        "user"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetMyNicknameReturns(String);
 impl Schema for UserProfileGetMyNicknameReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")
+    }
+}
+impl Agent for UserProfileGetMyNicknameReturns {
+    fn topic() -> &'static str {
+        "user_profile_getMyNickname"
+    }
+    fn method() -> &'static str {
+        "profile_getMyNickname"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

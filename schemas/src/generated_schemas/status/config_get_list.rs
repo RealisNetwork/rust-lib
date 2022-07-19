@@ -18,6 +18,17 @@ impl Schema for StatusConfigGetListParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for StatusConfigGetListParams {
+    fn topic() -> &'static str {
+        "status_config_getList"
+    }
+    fn method() -> &'static str {
+        "config_getList"
+    }
+    fn agent() -> &'static str {
+        "status"
+    }
+}
 impl<'de> Deserialize<'de> for StatusConfigGetListReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct StatusConfigGetListReturns;
 impl Schema for StatusConfigGetListReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for StatusConfigGetListReturns {
+    fn topic() -> &'static str {
+        "status_config_getList"
+    }
+    fn method() -> &'static str {
+        "config_getList"
+    }
+    fn agent() -> &'static str {
+        "status"
     }
 }

@@ -18,6 +18,17 @@ impl Schema for RealisWalletManagerGetMyAddressParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for RealisWalletManagerGetMyAddressParams {
+    fn topic() -> &'static str {
+        "realis_walletManager_getMyAddress"
+    }
+    fn method() -> &'static str {
+        "walletManager_getMyAddress"
+    }
+    fn agent() -> &'static str {
+        "realis"
+    }
+}
 impl<'de> Deserialize<'de> for RealisWalletManagerGetMyAddressReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct RealisWalletManagerGetMyAddressReturns;
 impl Schema for RealisWalletManagerGetMyAddressReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for RealisWalletManagerGetMyAddressReturns {
+    fn topic() -> &'static str {
+        "realis_walletManager_getMyAddress"
+    }
+    fn method() -> &'static str {
+        "walletManager_getMyAddress"
+    }
+    fn agent() -> &'static str {
+        "realis"
     }
 }

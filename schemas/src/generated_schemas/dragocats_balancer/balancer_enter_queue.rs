@@ -4,15 +4,6 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsUnitPartsParamsParams {
-    #[serde(rename = "id")]
-    pub id: i64,
-    #[serde(rename = "element")]
-    pub element: String,
-    #[serde(rename = "slot")]
-    pub slot: String,
-}
-#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsAttributesParams {
     #[serde(rename = "power")]
     pub power: i64,
@@ -24,16 +15,25 @@ pub struct DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsAttributesP
     pub speed: i64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsUnitPartsParamsParams {
+    #[serde(rename = "id")]
+    pub id: i64,
+    #[serde(rename = "element")]
+    pub element: String,
+    #[serde(rename = "slot")]
+    pub slot: String,
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParams {
-    #[serde(rename = "unitId")]
-    pub unit_id: i64,
-    #[serde(rename = "level")]
-    pub level: i64,
+    #[serde(rename = "attributes")]
+    pub attributes: DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsAttributesParams,
     #[serde(rename = "unitParts")]
     pub unit_parts:
         Vec<DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsUnitPartsParamsParams>,
-    #[serde(rename = "attributes")]
-    pub attributes: DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsAttributesParams,
+    #[serde(rename = "level")]
+    pub level: i64,
+    #[serde(rename = "unitId")]
+    pub unit_id: i64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsBalancerBalancerEnterQueueParams {
@@ -42,7 +42,18 @@ pub struct DragocatsBalancerBalancerEnterQueueParams {
 }
 impl Schema for DragocatsBalancerBalancerEnterQueueParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"units\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"unitId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"level\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"unitParts\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"element\":{\"type\":\"string\",\"pattern\":\"^(fire)|(water)|(earth)|(air)|(light)|(dark)|(crystal)|(iron)|(energy)$\"},\"slot\":{\"type\":\"string\",\"pattern\":\"^(head)|(tail)|(body)$\"}},\"required\":[\"id\",\"element\",\"slot\"]}},\"attributes\":{\"type\":\"object\",\"properties\":{\"power\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"defence\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"health\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"speed\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"health\",\"power\",\"defence\",\"speed\"]}},\"required\":[\"unitId\",\"attributes\",\"level\",\"unitParts\"]}}},\"required\":[\"units\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"units\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"attributes\":{\"type\":\"object\",\"properties\":{\"power\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"defence\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"health\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"speed\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"health\",\"power\",\"defence\",\"speed\"]},\"unitParts\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"element\":{\"type\":\"string\",\"pattern\":\"^(fire)|(water)|(earth)|(air)|(light)|(dark)|(crystal)|(iron)|(energy)$\"},\"slot\":{\"type\":\"string\",\"pattern\":\"^(head)|(tail)|(body)$\"}},\"required\":[\"id\",\"element\",\"slot\"]}},\"level\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"unitId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"unitId\",\"attributes\",\"level\",\"unitParts\"]}}},\"required\":[\"units\"]}")
+    }
+}
+impl Agent for DragocatsBalancerBalancerEnterQueueParams {
+    fn topic() -> &'static str {
+        "dragocats-balancer_balancer_enterQueue"
+    }
+    fn method() -> &'static str {
+        "balancer_enterQueue"
+    }
+    fn agent() -> &'static str {
+        "dragocats-balancer"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -50,5 +61,16 @@ pub struct DragocatsBalancerBalancerEnterQueueReturns(bool);
 impl Schema for DragocatsBalancerBalancerEnterQueueReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for DragocatsBalancerBalancerEnterQueueReturns {
+    fn topic() -> &'static str {
+        "dragocats-balancer_balancer_enterQueue"
+    }
+    fn method() -> &'static str {
+        "balancer_enterQueue"
+    }
+    fn agent() -> &'static str {
+        "dragocats-balancer"
     }
 }

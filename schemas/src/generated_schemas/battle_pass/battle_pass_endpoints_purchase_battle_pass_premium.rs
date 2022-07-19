@@ -13,6 +13,17 @@ impl Schema for BattlePassBattlePassEndpointsPurchaseBattlePassPremiumParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"battlePassType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"battlePassType\"]}")
     }
 }
+impl Agent for BattlePassBattlePassEndpointsPurchaseBattlePassPremiumParams {
+    fn topic() -> &'static str {
+        "battle-pass_battlePassEndpoints_purchaseBattlePassPremium"
+    }
+    fn method() -> &'static str {
+        "battlePassEndpoints_purchaseBattlePassPremium"
+    }
+    fn agent() -> &'static str {
+        "battle-pass"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsPurchaseBattlePassPremiumReturns {
     #[serde(rename = "battlePassType")]
@@ -21,5 +32,16 @@ pub struct BattlePassBattlePassEndpointsPurchaseBattlePassPremiumReturns {
 impl Schema for BattlePassBattlePassEndpointsPurchaseBattlePassPremiumReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"battlePassType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"battlePassType\"]}")
+    }
+}
+impl Agent for BattlePassBattlePassEndpointsPurchaseBattlePassPremiumReturns {
+    fn topic() -> &'static str {
+        "battle-pass_battlePassEndpoints_purchaseBattlePassPremium"
+    }
+    fn method() -> &'static str {
+        "battlePassEndpoints_purchaseBattlePassPremium"
+    }
+    fn agent() -> &'static str {
+        "battle-pass"
     }
 }

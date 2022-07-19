@@ -15,10 +15,32 @@ impl Schema for AdminPermissionDeleteParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"permissionName\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"roleName\":{\"type\":\"string\"}},\"required\":[\"permissionName\",\"roleName\"]}")
     }
 }
+impl Agent for AdminPermissionDeleteParams {
+    fn topic() -> &'static str {
+        "admin_permission_delete"
+    }
+    fn method() -> &'static str {
+        "permission_delete"
+    }
+    fn agent() -> &'static str {
+        "admin"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminPermissionDeleteReturns(bool);
 impl Schema for AdminPermissionDeleteReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AdminPermissionDeleteReturns {
+    fn topic() -> &'static str {
+        "admin_permission_delete"
+    }
+    fn method() -> &'static str {
+        "permission_delete"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }

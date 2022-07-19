@@ -18,6 +18,17 @@ impl Schema for CatsLobbyKeepAliveParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for CatsLobbyKeepAliveParams {
+    fn topic() -> &'static str {
+        "cats_lobby_keepAlive"
+    }
+    fn method() -> &'static str {
+        "lobby_keepAlive"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyKeepAliveReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct CatsLobbyKeepAliveReturns;
 impl Schema for CatsLobbyKeepAliveReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyKeepAliveReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_keepAlive"
+    }
+    fn method() -> &'static str {
+        "lobby_keepAlive"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

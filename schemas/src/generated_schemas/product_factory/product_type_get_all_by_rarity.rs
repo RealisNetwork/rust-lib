@@ -17,6 +17,17 @@ impl Schema for ProductFactoryProductTypeGetAllByRarityParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"rarity\":{\"type\":\"string\"},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"rarity\"]}")
     }
 }
+impl Agent for ProductFactoryProductTypeGetAllByRarityParams {
+    fn topic() -> &'static str {
+        "productFactory_productType_getAllByRarity"
+    }
+    fn method() -> &'static str {
+        "productType_getAllByRarity"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
+    }
+}
 impl<'de> Deserialize<'de> for ProductFactoryProductTypeGetAllByRarityReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -30,5 +41,16 @@ pub struct ProductFactoryProductTypeGetAllByRarityReturns;
 impl Schema for ProductFactoryProductTypeGetAllByRarityReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for ProductFactoryProductTypeGetAllByRarityReturns {
+    fn topic() -> &'static str {
+        "productFactory_productType_getAllByRarity"
+    }
+    fn method() -> &'static str {
+        "productType_getAllByRarity"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
     }
 }

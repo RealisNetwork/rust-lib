@@ -13,6 +13,17 @@ impl Schema for MarketItemsGetPriceParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"}},\"required\":[\"personalType\"]}")
     }
 }
+impl Agent for MarketItemsGetPriceParams {
+    fn topic() -> &'static str {
+        "market_items_getPrice"
+    }
+    fn method() -> &'static str {
+        "items_getPrice"
+    }
+    fn agent() -> &'static str {
+        "market"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketItemsGetPriceReturns {
     #[serde(rename = "price")]
@@ -21,5 +32,16 @@ pub struct MarketItemsGetPriceReturns {
 impl Schema for MarketItemsGetPriceReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"price\":{\"type\":\"string\"}},\"required\":[\"price\"]}")
+    }
+}
+impl Agent for MarketItemsGetPriceReturns {
+    fn topic() -> &'static str {
+        "market_items_getPrice"
+    }
+    fn method() -> &'static str {
+        "items_getPrice"
+    }
+    fn agent() -> &'static str {
+        "market"
     }
 }

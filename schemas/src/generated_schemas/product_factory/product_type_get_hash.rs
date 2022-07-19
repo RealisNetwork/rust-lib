@@ -15,6 +15,17 @@ impl Schema for ProductFactoryProductTypeGetHashParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"orchestratorId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"type\":{\"type\":\"string\"}},\"required\":[\"type\",\"orchestratorId\"]}")
     }
 }
+impl Agent for ProductFactoryProductTypeGetHashParams {
+    fn topic() -> &'static str {
+        "productFactory_productType_getHash"
+    }
+    fn method() -> &'static str {
+        "productType_getHash"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
+    }
+}
 impl<'de> Deserialize<'de> for ProductFactoryProductTypeGetHashReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -28,5 +39,16 @@ pub struct ProductFactoryProductTypeGetHashReturns;
 impl Schema for ProductFactoryProductTypeGetHashReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for ProductFactoryProductTypeGetHashReturns {
+    fn topic() -> &'static str {
+        "productFactory_productType_getHash"
+    }
+    fn method() -> &'static str {
+        "productType_getHash"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
     }
 }

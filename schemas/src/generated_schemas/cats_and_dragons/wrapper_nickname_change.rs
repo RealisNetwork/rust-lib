@@ -5,14 +5,25 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperNicknameChangeParams {
-    #[serde(rename = "newNickname")]
-    pub new_nickname: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "newNickname")]
+    pub new_nickname: String,
 }
 impl Schema for CatsAndDragonsWrapperNicknameChangeParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newNickname\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"newNickname\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"newNickname\":{\"type\":\"string\"}},\"required\":[\"userId\",\"newNickname\"]}")
+    }
+}
+impl Agent for CatsAndDragonsWrapperNicknameChangeParams {
+    fn topic() -> &'static str {
+        "catsAndDragons_wrapper_nicknameChange"
+    }
+    fn method() -> &'static str {
+        "wrapper_nicknameChange"
+    }
+    fn agent() -> &'static str {
+        "catsAndDragons"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -23,5 +34,16 @@ pub struct CatsAndDragonsWrapperNicknameChangeReturns {
 impl Schema for CatsAndDragonsWrapperNicknameChangeReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isNicknameChanged\":{\"type\":\"boolean\"}},\"required\":[\"isNicknameChanged\"]}")
+    }
+}
+impl Agent for CatsAndDragonsWrapperNicknameChangeReturns {
+    fn topic() -> &'static str {
+        "catsAndDragons_wrapper_nicknameChange"
+    }
+    fn method() -> &'static str {
+        "wrapper_nicknameChange"
+    }
+    fn agent() -> &'static str {
+        "catsAndDragons"
     }
 }

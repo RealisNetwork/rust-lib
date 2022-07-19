@@ -5,16 +5,27 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbyUnlinkAccountParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "email")]
     pub email: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "password")]
     pub password: String,
 }
 impl Schema for DragonsLobbyUnlinkAccountParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"password\":{\"type\":\"string\"}},\"required\":[\"userId\",\"email\",\"password\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"password\":{\"type\":\"string\"}},\"required\":[\"userId\",\"email\",\"password\"]}")
+    }
+}
+impl Agent for DragonsLobbyUnlinkAccountParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_unlinkAccount"
+    }
+    fn method() -> &'static str {
+        "lobby_unlinkAccount"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }
 impl<'de> Deserialize<'de> for DragonsLobbyUnlinkAccountReturns {
@@ -30,5 +41,16 @@ pub struct DragonsLobbyUnlinkAccountReturns;
 impl Schema for DragonsLobbyUnlinkAccountReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyUnlinkAccountReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_unlinkAccount"
+    }
+    fn method() -> &'static str {
+        "lobby_unlinkAccount"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

@@ -15,10 +15,32 @@ impl Schema for AuthAuthCreateRequestToChangeEmailParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newEmail\":{\"type\":\"string\"},\"password\":{\"type\":\"string\"}},\"required\":[\"newEmail\",\"password\"]}")
     }
 }
+impl Agent for AuthAuthCreateRequestToChangeEmailParams {
+    fn topic() -> &'static str {
+        "auth_auth_createRequestToChangeEmail"
+    }
+    fn method() -> &'static str {
+        "auth_createRequestToChangeEmail"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthCreateRequestToChangeEmailReturns(bool);
 impl Schema for AuthAuthCreateRequestToChangeEmailReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AuthAuthCreateRequestToChangeEmailReturns {
+    fn topic() -> &'static str {
+        "auth_auth_createRequestToChangeEmail"
+    }
+    fn method() -> &'static str {
+        "auth_createRequestToChangeEmail"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

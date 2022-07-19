@@ -18,15 +18,37 @@ impl Schema for RefundBalancesGetAllMyParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for RefundBalancesGetAllMyParams {
+    fn topic() -> &'static str {
+        "refund_balances_getAllMy"
+    }
+    fn method() -> &'static str {
+        "balances_getAllMy"
+    }
+    fn agent() -> &'static str {
+        "refund"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllMyReturns {
-    #[serde(rename = "ETH")]
-    pub eth: String,
     #[serde(rename = "LIS")]
     pub lis: String,
+    #[serde(rename = "ETH")]
+    pub eth: String,
 }
 impl Schema for RefundBalancesGetAllMyReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"ETH\":{\"type\":\"string\"},\"LIS\":{\"type\":\"string\"}},\"required\":null}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"LIS\":{\"type\":\"string\"},\"ETH\":{\"type\":\"string\"}},\"required\":null}")
+    }
+}
+impl Agent for RefundBalancesGetAllMyReturns {
+    fn topic() -> &'static str {
+        "refund_balances_getAllMy"
+    }
+    fn method() -> &'static str {
+        "balances_getAllMy"
+    }
+    fn agent() -> &'static str {
+        "refund"
     }
 }

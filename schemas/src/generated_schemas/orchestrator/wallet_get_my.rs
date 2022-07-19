@@ -18,6 +18,17 @@ impl Schema for OrchestratorWalletGetMyParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for OrchestratorWalletGetMyParams {
+    fn topic() -> &'static str {
+        "orchestrator_wallet_getMy"
+    }
+    fn method() -> &'static str {
+        "wallet_getMy"
+    }
+    fn agent() -> &'static str {
+        "orchestrator"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorWalletGetMyReturns {
     #[serde(rename = "address")]
@@ -26,5 +37,16 @@ pub struct OrchestratorWalletGetMyReturns {
 impl Schema for OrchestratorWalletGetMyReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"address\":{\"type\":\"string\"}},\"required\":[\"address\"]}")
+    }
+}
+impl Agent for OrchestratorWalletGetMyReturns {
+    fn topic() -> &'static str {
+        "orchestrator_wallet_getMy"
+    }
+    fn method() -> &'static str {
+        "wallet_getMy"
+    }
+    fn agent() -> &'static str {
+        "orchestrator"
     }
 }

@@ -18,6 +18,17 @@ impl Schema for CatsLobbyGetAvailableMembershipAmountParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for CatsLobbyGetAvailableMembershipAmountParams {
+    fn topic() -> &'static str {
+        "cats_lobby_getAvailableMembershipAmount"
+    }
+    fn method() -> &'static str {
+        "lobby_getAvailableMembershipAmount"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyGetAvailableMembershipAmountReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct CatsLobbyGetAvailableMembershipAmountReturns;
 impl Schema for CatsLobbyGetAvailableMembershipAmountReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyGetAvailableMembershipAmountReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_getAvailableMembershipAmount"
+    }
+    fn method() -> &'static str {
+        "lobby_getAvailableMembershipAmount"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

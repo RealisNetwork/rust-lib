@@ -14,18 +14,29 @@ pub struct OrchestratorLootboxOpenParamsProductsParamsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorLootboxOpenParams {
-    #[serde(rename = "products")]
-    pub products: Vec<OrchestratorLootboxOpenParamsProductsParamsParams>,
     #[serde(rename = "lootboxIdentifier")]
     pub lootbox_identifier: String,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "lootboxBindingId")]
     pub lootbox_binding_id: i64,
+    #[serde(rename = "products")]
+    pub products: Vec<OrchestratorLootboxOpenParamsProductsParamsParams>,
 }
 impl Schema for OrchestratorLootboxOpenParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"products\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"isNft\":{\"type\":\"boolean\"},\"clientType\":{\"type\":\"string\",\"pattern\":\"^(none)|(hero)|(equipment)|(skin)|(lootbox)|(undistributedExperience)|(heroScroll)|(equipmentScroll)$\"},\"personalType\":{\"type\":\"string\"}},\"required\":[\"personalType\",\"isNft\",\"clientType\"]}},\"lootboxIdentifier\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"lootboxBindingId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"lootboxIdentifier\",\"lootboxBindingId\",\"products\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"lootboxIdentifier\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"lootboxBindingId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"products\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"isNft\":{\"type\":\"boolean\"},\"clientType\":{\"type\":\"string\",\"pattern\":\"^(none)|(hero)|(equipment)|(skin)|(lootbox)|(undistributedExperience)|(heroScroll)|(equipmentScroll)$\"},\"personalType\":{\"type\":\"string\"}},\"required\":[\"personalType\",\"isNft\",\"clientType\"]}}},\"required\":[\"userId\",\"lootboxIdentifier\",\"lootboxBindingId\",\"products\"]}")
+    }
+}
+impl Agent for OrchestratorLootboxOpenParams {
+    fn topic() -> &'static str {
+        "orchestrator_lootbox_open"
+    }
+    fn method() -> &'static str {
+        "lootbox_open"
+    }
+    fn agent() -> &'static str {
+        "orchestrator"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -33,5 +44,16 @@ pub struct OrchestratorLootboxOpenReturns(bool);
 impl Schema for OrchestratorLootboxOpenReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for OrchestratorLootboxOpenReturns {
+    fn topic() -> &'static str {
+        "orchestrator_lootbox_open"
+    }
+    fn method() -> &'static str {
+        "lootbox_open"
+    }
+    fn agent() -> &'static str {
+        "orchestrator"
     }
 }

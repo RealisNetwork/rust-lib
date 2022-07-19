@@ -18,6 +18,17 @@ impl Schema for DragonsLobbyGetClientVersionParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for DragonsLobbyGetClientVersionParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_getClientVersion"
+    }
+    fn method() -> &'static str {
+        "lobby_getClientVersion"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyGetClientVersionReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct DragonsLobbyGetClientVersionReturns;
 impl Schema for DragonsLobbyGetClientVersionReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyGetClientVersionReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_getClientVersion"
+    }
+    fn method() -> &'static str {
+        "lobby_getClientVersion"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

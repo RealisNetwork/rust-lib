@@ -13,6 +13,17 @@ impl Schema for DragonsLobbyGetUsersAchievementsParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for DragonsLobbyGetUsersAchievementsParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_getUsersAchievements"
+    }
+    fn method() -> &'static str {
+        "lobby_getUsersAchievements"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyGetUsersAchievementsReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct DragonsLobbyGetUsersAchievementsReturns;
 impl Schema for DragonsLobbyGetUsersAchievementsReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyGetUsersAchievementsReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_getUsersAchievements"
+    }
+    fn method() -> &'static str {
+        "lobby_getUsersAchievements"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

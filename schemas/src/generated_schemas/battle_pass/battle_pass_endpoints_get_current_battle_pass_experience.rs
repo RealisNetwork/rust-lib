@@ -10,6 +10,17 @@ impl Schema for BattlePassBattlePassEndpointsGetCurrentBattlePassExperienceParam
         serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
     }
 }
+impl Agent for BattlePassBattlePassEndpointsGetCurrentBattlePassExperienceParams {
+    fn topic() -> &'static str {
+        "battle-pass_battlePassEndpoints_getCurrentBattlePassExperience"
+    }
+    fn method() -> &'static str {
+        "battlePassEndpoints_getCurrentBattlePassExperience"
+    }
+    fn agent() -> &'static str {
+        "battle-pass"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetCurrentBattlePassExperienceReturns {
     #[serde(rename = "amount")]
@@ -18,5 +29,16 @@ pub struct BattlePassBattlePassEndpointsGetCurrentBattlePassExperienceReturns {
 impl Schema for BattlePassBattlePassEndpointsGetCurrentBattlePassExperienceReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"amount\"]}")
+    }
+}
+impl Agent for BattlePassBattlePassEndpointsGetCurrentBattlePassExperienceReturns {
+    fn topic() -> &'static str {
+        "battle-pass_battlePassEndpoints_getCurrentBattlePassExperience"
+    }
+    fn method() -> &'static str {
+        "battlePassEndpoints_getCurrentBattlePassExperience"
+    }
+    fn agent() -> &'static str {
+        "battle-pass"
     }
 }

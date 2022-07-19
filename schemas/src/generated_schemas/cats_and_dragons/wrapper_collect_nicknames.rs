@@ -15,6 +15,17 @@ impl Schema for CatsAndDragonsWrapperCollectNicknamesParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userIds\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userIds\",\"appId\"]}")
     }
 }
+impl Agent for CatsAndDragonsWrapperCollectNicknamesParams {
+    fn topic() -> &'static str {
+        "catsAndDragons_wrapper_collectNicknames"
+    }
+    fn method() -> &'static str {
+        "wrapper_collectNicknames"
+    }
+    fn agent() -> &'static str {
+        "catsAndDragons"
+    }
+}
 impl<'de> Deserialize<'de> for CatsAndDragonsWrapperCollectNicknamesReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -28,5 +39,16 @@ pub struct CatsAndDragonsWrapperCollectNicknamesReturns;
 impl Schema for CatsAndDragonsWrapperCollectNicknamesReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsAndDragonsWrapperCollectNicknamesReturns {
+    fn topic() -> &'static str {
+        "catsAndDragons_wrapper_collectNicknames"
+    }
+    fn method() -> &'static str {
+        "wrapper_collectNicknames"
+    }
+    fn agent() -> &'static str {
+        "catsAndDragons"
     }
 }

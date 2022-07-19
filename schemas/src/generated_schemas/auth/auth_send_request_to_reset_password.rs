@@ -13,10 +13,32 @@ impl Schema for AuthAuthSendRequestToResetPasswordParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\",\"pattern\":\"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\\\.[a-zA-Z0-9-.]+$\"}},\"required\":[\"email\"]}")
     }
 }
+impl Agent for AuthAuthSendRequestToResetPasswordParams {
+    fn topic() -> &'static str {
+        "auth_auth_sendRequestToResetPassword"
+    }
+    fn method() -> &'static str {
+        "auth_sendRequestToResetPassword"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthSendRequestToResetPasswordReturns(bool);
 impl Schema for AuthAuthSendRequestToResetPasswordReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AuthAuthSendRequestToResetPasswordReturns {
+    fn topic() -> &'static str {
+        "auth_auth_sendRequestToResetPassword"
+    }
+    fn method() -> &'static str {
+        "auth_sendRequestToResetPassword"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

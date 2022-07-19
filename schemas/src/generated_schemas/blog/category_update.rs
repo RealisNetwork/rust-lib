@@ -17,10 +17,32 @@ impl Schema for BlogCategoryUpdateParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isAvailable\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\"]}")
     }
 }
+impl Agent for BlogCategoryUpdateParams {
+    fn topic() -> &'static str {
+        "blog_category_update"
+    }
+    fn method() -> &'static str {
+        "category_update"
+    }
+    fn agent() -> &'static str {
+        "blog"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogCategoryUpdateReturns(bool);
 impl Schema for BlogCategoryUpdateReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for BlogCategoryUpdateReturns {
+    fn topic() -> &'static str {
+        "blog_category_update"
+    }
+    fn method() -> &'static str {
+        "category_update"
+    }
+    fn agent() -> &'static str {
+        "blog"
     }
 }

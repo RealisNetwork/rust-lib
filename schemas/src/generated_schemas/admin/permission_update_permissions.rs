@@ -5,14 +5,25 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminPermissionUpdatePermissionsParams {
-    #[serde(rename = "roleName")]
-    pub role_name: String,
     #[serde(rename = "permissions")]
     pub permissions: Vec<String>,
+    #[serde(rename = "roleName")]
+    pub role_name: String,
 }
 impl Schema for AdminPermissionUpdatePermissionsParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"roleName\":{\"type\":\"string\"},\"permissions\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"roleName\",\"permissions\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"permissions\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"roleName\":{\"type\":\"string\"}},\"required\":[\"roleName\",\"permissions\"]}")
+    }
+}
+impl Agent for AdminPermissionUpdatePermissionsParams {
+    fn topic() -> &'static str {
+        "admin_permission_updatePermissions"
+    }
+    fn method() -> &'static str {
+        "permission_updatePermissions"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -20,5 +31,16 @@ pub struct AdminPermissionUpdatePermissionsReturns(bool);
 impl Schema for AdminPermissionUpdatePermissionsReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AdminPermissionUpdatePermissionsReturns {
+    fn topic() -> &'static str {
+        "admin_permission_updatePermissions"
+    }
+    fn method() -> &'static str {
+        "permission_updatePermissions"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }

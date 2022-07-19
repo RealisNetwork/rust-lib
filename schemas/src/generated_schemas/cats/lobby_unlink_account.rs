@@ -17,6 +17,17 @@ impl Schema for CatsLobbyUnlinkAccountParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"password\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"}},\"required\":[\"userId\",\"email\",\"password\"]}")
     }
 }
+impl Agent for CatsLobbyUnlinkAccountParams {
+    fn topic() -> &'static str {
+        "cats_lobby_unlinkAccount"
+    }
+    fn method() -> &'static str {
+        "lobby_unlinkAccount"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyUnlinkAccountReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -30,5 +41,16 @@ pub struct CatsLobbyUnlinkAccountReturns;
 impl Schema for CatsLobbyUnlinkAccountReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyUnlinkAccountReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_unlinkAccount"
+    }
+    fn method() -> &'static str {
+        "lobby_unlinkAccount"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

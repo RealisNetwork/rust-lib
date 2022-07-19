@@ -15,6 +15,17 @@ impl Schema for DragonsLobbySetUserAppMetricaDeviceIdParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"appMetricaDeviceId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"appMetricaDeviceId\"]}")
     }
 }
+impl Agent for DragonsLobbySetUserAppMetricaDeviceIdParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_setUserAppMetricaDeviceId"
+    }
+    fn method() -> &'static str {
+        "lobby_setUserAppMetricaDeviceId"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbySetUserAppMetricaDeviceIdReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -28,5 +39,16 @@ pub struct DragonsLobbySetUserAppMetricaDeviceIdReturns;
 impl Schema for DragonsLobbySetUserAppMetricaDeviceIdReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbySetUserAppMetricaDeviceIdReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_setUserAppMetricaDeviceId"
+    }
+    fn method() -> &'static str {
+        "lobby_setUserAppMetricaDeviceId"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

@@ -18,6 +18,17 @@ impl Schema for DragocatsLobbyUnitEndpointsStartBattleParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for DragocatsLobbyUnitEndpointsStartBattleParams {
+    fn topic() -> &'static str {
+        "dragocats-lobby_unitEndpoints_startBattle"
+    }
+    fn method() -> &'static str {
+        "unitEndpoints_startBattle"
+    }
+    fn agent() -> &'static str {
+        "dragocats-lobby"
+    }
+}
 impl<'de> Deserialize<'de> for DragocatsLobbyUnitEndpointsStartBattleReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct DragocatsLobbyUnitEndpointsStartBattleReturns;
 impl Schema for DragocatsLobbyUnitEndpointsStartBattleReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragocatsLobbyUnitEndpointsStartBattleReturns {
+    fn topic() -> &'static str {
+        "dragocats-lobby_unitEndpoints_startBattle"
+    }
+    fn method() -> &'static str {
+        "unitEndpoints_startBattle"
+    }
+    fn agent() -> &'static str {
+        "dragocats-lobby"
     }
 }

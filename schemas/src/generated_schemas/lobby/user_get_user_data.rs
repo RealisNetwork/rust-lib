@@ -18,29 +18,51 @@ impl Schema for LobbyUserGetUserDataParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for LobbyUserGetUserDataParams {
+    fn topic() -> &'static str {
+        "lobby_user_getUserData"
+    }
+    fn method() -> &'static str {
+        "user_getUserData"
+    }
+    fn agent() -> &'static str {
+        "lobby"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserGetUserDataReturns {
-    #[serde(rename = "increaseBy")]
-    pub increase_by: i8,
     #[serde(rename = "rating")]
     pub rating: i32,
-    #[serde(rename = "decreaseBy")]
-    pub decrease_by: i8,
-    #[serde(rename = "draw")]
-    pub draw: i8,
-    #[serde(rename = "username")]
-    pub username: String,
-    #[serde(rename = "image")]
-    pub image: i8,
     #[serde(rename = "email")]
     pub email: String,
-    #[serde(rename = "tokensIncreaseBy")]
-    pub tokens_increase_by: String,
     #[serde(rename = "placeInLeaderBoard")]
     pub place_in_leader_board: i32,
+    #[serde(rename = "tokensIncreaseBy")]
+    pub tokens_increase_by: String,
+    #[serde(rename = "decreaseBy")]
+    pub decrease_by: i8,
+    #[serde(rename = "image")]
+    pub image: i8,
+    #[serde(rename = "increaseBy")]
+    pub increase_by: i8,
+    #[serde(rename = "username")]
+    pub username: String,
+    #[serde(rename = "draw")]
+    pub draw: i8,
 }
 impl Schema for LobbyUserGetUserDataReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"increaseBy\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"rating\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"decreaseBy\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"draw\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"username\":{\"type\":\"string\"},\"image\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"email\":{\"type\":\"string\"},\"tokensIncreaseBy\":{\"type\":\"string\"},\"placeInLeaderBoard\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"username\",\"rating\",\"increaseBy\",\"decreaseBy\",\"draw\",\"placeInLeaderBoard\",\"image\",\"email\",\"tokensIncreaseBy\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"rating\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"email\":{\"type\":\"string\"},\"placeInLeaderBoard\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"tokensIncreaseBy\":{\"type\":\"string\"},\"decreaseBy\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"image\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"increaseBy\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"username\":{\"type\":\"string\"},\"draw\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"username\",\"rating\",\"increaseBy\",\"decreaseBy\",\"draw\",\"placeInLeaderBoard\",\"image\",\"email\",\"tokensIncreaseBy\"]}")
+    }
+}
+impl Agent for LobbyUserGetUserDataReturns {
+    fn topic() -> &'static str {
+        "lobby_user_getUserData"
+    }
+    fn method() -> &'static str {
+        "user_getUserData"
+    }
+    fn agent() -> &'static str {
+        "lobby"
     }
 }

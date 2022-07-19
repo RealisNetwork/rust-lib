@@ -13,10 +13,32 @@ impl Schema for AuthAuthConfirmPasswordParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"password\":{\"type\":\"string\"}},\"required\":[\"password\"]}")
     }
 }
+impl Agent for AuthAuthConfirmPasswordParams {
+    fn topic() -> &'static str {
+        "auth_auth_confirmPassword"
+    }
+    fn method() -> &'static str {
+        "auth_confirmPassword"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthConfirmPasswordReturns(bool);
 impl Schema for AuthAuthConfirmPasswordReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AuthAuthConfirmPasswordReturns {
+    fn topic() -> &'static str {
+        "auth_auth_confirmPassword"
+    }
+    fn method() -> &'static str {
+        "auth_confirmPassword"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

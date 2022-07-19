@@ -15,10 +15,32 @@ impl Schema for RefundBalancesAddParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"lockedFunds\":{\"type\":\"string\"}},\"required\":[\"userId\",\"lockedFunds\"]}")
     }
 }
+impl Agent for RefundBalancesAddParams {
+    fn topic() -> &'static str {
+        "refund_balances_add"
+    }
+    fn method() -> &'static str {
+        "balances_add"
+    }
+    fn agent() -> &'static str {
+        "refund"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesAddReturns(bool);
 impl Schema for RefundBalancesAddReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for RefundBalancesAddReturns {
+    fn topic() -> &'static str {
+        "refund_balances_add"
+    }
+    fn method() -> &'static str {
+        "balances_add"
+    }
+    fn agent() -> &'static str {
+        "refund"
     }
 }

@@ -13,25 +13,47 @@ impl Schema for StatusConfigGetMembershipInfoParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\"]}")
     }
 }
+impl Agent for StatusConfigGetMembershipInfoParams {
+    fn topic() -> &'static str {
+        "status_config_getMembershipInfo"
+    }
+    fn method() -> &'static str {
+        "config_getMembershipInfo"
+    }
+    fn agent() -> &'static str {
+        "status"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigGetMembershipInfoReturns {
+    #[serde(rename = "multiplier")]
+    pub multiplier: String,
+    #[serde(rename = "priceInLis")]
+    pub price_in_lis: String,
+    #[serde(rename = "maxCount")]
+    pub max_count: String,
+    #[serde(rename = "isAvailable")]
+    pub is_available: bool,
+    #[serde(rename = "membership")]
+    pub membership: String,
     #[serde(rename = "price")]
     pub price: String,
     #[serde(rename = "id")]
     pub id: i64,
-    #[serde(rename = "membership")]
-    pub membership: String,
-    #[serde(rename = "maxCount")]
-    pub max_count: String,
-    #[serde(rename = "multiplier")]
-    pub multiplier: String,
-    #[serde(rename = "isAvailable")]
-    pub is_available: bool,
-    #[serde(rename = "priceInLis")]
-    pub price_in_lis: String,
 }
 impl Schema for StatusConfigGetMembershipInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"price\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"membership\":{\"type\":\"string\"},\"maxCount\":{\"type\":\"string\"},\"multiplier\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"},\"priceInLis\":{\"type\":\"string\"}},\"required\":[\"id\",\"membership\",\"price\",\"multiplier\",\"priceInLis\",\"maxCount\",\"isAvailable\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"multiplier\":{\"type\":\"string\"},\"priceInLis\":{\"type\":\"string\"},\"maxCount\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"},\"membership\":{\"type\":\"string\"},\"price\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"membership\",\"price\",\"multiplier\",\"priceInLis\",\"maxCount\",\"isAvailable\"]}")
+    }
+}
+impl Agent for StatusConfigGetMembershipInfoReturns {
+    fn topic() -> &'static str {
+        "status_config_getMembershipInfo"
+    }
+    fn method() -> &'static str {
+        "config_getMembershipInfo"
+    }
+    fn agent() -> &'static str {
+        "status"
     }
 }

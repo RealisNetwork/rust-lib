@@ -15,3 +15,5 @@ serde = "1.0.138"
 [build-dependencies]
 schemas-generator = { path = "schemas-generator" }
 config = { git = "https://github.com/RealisNetwork/rust-lib.git" }
+quote = "1.0.20"
+syn = "1.0.98"

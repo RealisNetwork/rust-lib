@@ -18,6 +18,17 @@ impl Schema for LobbyStatsOptionsEndpointsGetPersonalTypesListParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for LobbyStatsOptionsEndpointsGetPersonalTypesListParams {
+    fn topic() -> &'static str {
+        "lobby_statsOptionsEndpoints_getPersonalTypesList"
+    }
+    fn method() -> &'static str {
+        "statsOptionsEndpoints_getPersonalTypesList"
+    }
+    fn agent() -> &'static str {
+        "lobby"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyStatsOptionsEndpointsGetPersonalTypesListReturns {
     #[serde(rename = "personalTypes")]
@@ -26,5 +37,16 @@ pub struct LobbyStatsOptionsEndpointsGetPersonalTypesListReturns {
 impl Schema for LobbyStatsOptionsEndpointsGetPersonalTypesListReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalTypes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"personalTypes\"]}")
+    }
+}
+impl Agent for LobbyStatsOptionsEndpointsGetPersonalTypesListReturns {
+    fn topic() -> &'static str {
+        "lobby_statsOptionsEndpoints_getPersonalTypesList"
+    }
+    fn method() -> &'static str {
+        "statsOptionsEndpoints_getPersonalTypesList"
+    }
+    fn agent() -> &'static str {
+        "lobby"
     }
 }

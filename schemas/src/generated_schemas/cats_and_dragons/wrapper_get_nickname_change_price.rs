@@ -13,6 +13,17 @@ impl Schema for CatsAndDragonsWrapperGetNicknameChangePriceParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for CatsAndDragonsWrapperGetNicknameChangePriceParams {
+    fn topic() -> &'static str {
+        "catsAndDragons_wrapper_getNicknameChangePrice"
+    }
+    fn method() -> &'static str {
+        "wrapper_getNicknameChangePrice"
+    }
+    fn agent() -> &'static str {
+        "catsAndDragons"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetNicknameChangePriceReturns {
     #[serde(rename = "nicknameChangePrice")]
@@ -21,5 +32,16 @@ pub struct CatsAndDragonsWrapperGetNicknameChangePriceReturns {
 impl Schema for CatsAndDragonsWrapperGetNicknameChangePriceReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"nicknameChangePrice\":{\"type\":\"string\"}},\"required\":[\"nicknameChangePrice\"]}")
+    }
+}
+impl Agent for CatsAndDragonsWrapperGetNicknameChangePriceReturns {
+    fn topic() -> &'static str {
+        "catsAndDragons_wrapper_getNicknameChangePrice"
+    }
+    fn method() -> &'static str {
+        "wrapper_getNicknameChangePrice"
+    }
+    fn agent() -> &'static str {
+        "catsAndDragons"
     }
 }

@@ -5,14 +5,25 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceUpdateProviderStatusByProviderIdParams {
-    #[serde(rename = "providerId")]
-    pub provider_id: String,
     #[serde(rename = "status")]
     pub status: (),
+    #[serde(rename = "providerId")]
+    pub provider_id: String,
 }
 impl Schema for AuthAuthDeviceUpdateProviderStatusByProviderIdParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"providerId\":{\"type\":\"string\"},\"status\":{}},\"required\":[\"providerId\",\"status\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"status\":{},\"providerId\":{\"type\":\"string\"}},\"required\":[\"providerId\",\"status\"]}")
+    }
+}
+impl Agent for AuthAuthDeviceUpdateProviderStatusByProviderIdParams {
+    fn topic() -> &'static str {
+        "auth_authDevice_updateProviderStatusByProviderId"
+    }
+    fn method() -> &'static str {
+        "authDevice_updateProviderStatusByProviderId"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -20,5 +31,16 @@ pub struct AuthAuthDeviceUpdateProviderStatusByProviderIdReturns(bool);
 impl Schema for AuthAuthDeviceUpdateProviderStatusByProviderIdReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AuthAuthDeviceUpdateProviderStatusByProviderIdReturns {
+    fn topic() -> &'static str {
+        "auth_authDevice_updateProviderStatusByProviderId"
+    }
+    fn method() -> &'static str {
+        "authDevice_updateProviderStatusByProviderId"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

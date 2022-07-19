@@ -5,14 +5,25 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceIsNewClientInAppParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "appId")]
     pub app_id: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for AuthAuthDeviceIsNewClientInAppParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"userId\",\"appId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"appId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"appId\"]}")
+    }
+}
+impl Agent for AuthAuthDeviceIsNewClientInAppParams {
+    fn topic() -> &'static str {
+        "auth_authDevice_isNewClientInApp"
+    }
+    fn method() -> &'static str {
+        "authDevice_isNewClientInApp"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -20,5 +31,16 @@ pub struct AuthAuthDeviceIsNewClientInAppReturns(bool);
 impl Schema for AuthAuthDeviceIsNewClientInAppReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AuthAuthDeviceIsNewClientInAppReturns {
+    fn topic() -> &'static str {
+        "auth_authDevice_isNewClientInApp"
+    }
+    fn method() -> &'static str {
+        "authDevice_isNewClientInApp"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

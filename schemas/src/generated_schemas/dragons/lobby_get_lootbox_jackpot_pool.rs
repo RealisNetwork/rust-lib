@@ -18,6 +18,17 @@ impl Schema for DragonsLobbyGetLootboxJackpotPoolParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for DragonsLobbyGetLootboxJackpotPoolParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_getLootboxJackpotPool"
+    }
+    fn method() -> &'static str {
+        "lobby_getLootboxJackpotPool"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyGetLootboxJackpotPoolReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct DragonsLobbyGetLootboxJackpotPoolReturns;
 impl Schema for DragonsLobbyGetLootboxJackpotPoolReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyGetLootboxJackpotPoolReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_getLootboxJackpotPool"
+    }
+    fn method() -> &'static str {
+        "lobby_getLootboxJackpotPool"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

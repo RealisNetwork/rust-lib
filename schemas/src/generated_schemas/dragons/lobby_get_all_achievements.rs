@@ -18,6 +18,17 @@ impl Schema for DragonsLobbyGetAllAchievementsParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for DragonsLobbyGetAllAchievementsParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_getAllAchievements"
+    }
+    fn method() -> &'static str {
+        "lobby_getAllAchievements"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyGetAllAchievementsReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct DragonsLobbyGetAllAchievementsReturns;
 impl Schema for DragonsLobbyGetAllAchievementsReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyGetAllAchievementsReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_getAllAchievements"
+    }
+    fn method() -> &'static str {
+        "lobby_getAllAchievements"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

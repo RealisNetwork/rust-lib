@@ -13,10 +13,32 @@ impl Schema for UserProfileSetMailingSubscriptionStatusParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"boolean\"}},\"required\":[\"status\"]}")
     }
 }
+impl Agent for UserProfileSetMailingSubscriptionStatusParams {
+    fn topic() -> &'static str {
+        "user_profile_setMailingSubscriptionStatus"
+    }
+    fn method() -> &'static str {
+        "profile_setMailingSubscriptionStatus"
+    }
+    fn agent() -> &'static str {
+        "user"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileSetMailingSubscriptionStatusReturns(bool);
 impl Schema for UserProfileSetMailingSubscriptionStatusReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for UserProfileSetMailingSubscriptionStatusReturns {
+    fn topic() -> &'static str {
+        "user_profile_setMailingSubscriptionStatus"
+    }
+    fn method() -> &'static str {
+        "profile_setMailingSubscriptionStatus"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

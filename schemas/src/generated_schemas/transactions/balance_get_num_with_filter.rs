@@ -5,16 +5,27 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetNumWithFilterParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "credit")]
-    pub credit: String,
     #[serde(rename = "debit")]
     pub debit: String,
+    #[serde(rename = "credit")]
+    pub credit: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for TransactionsBalanceGetNumWithFilterParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"credit\":{\"type\":\"string\"},\"debit\":{\"type\":\"string\"}},\"required\":null}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"debit\":{\"type\":\"string\"},\"credit\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":null}")
+    }
+}
+impl Agent for TransactionsBalanceGetNumWithFilterParams {
+    fn topic() -> &'static str {
+        "transactions_balance_getNumWithFilter"
+    }
+    fn method() -> &'static str {
+        "balance_getNumWithFilter"
+    }
+    fn agent() -> &'static str {
+        "transactions"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -22,5 +33,16 @@ pub struct TransactionsBalanceGetNumWithFilterReturns(i64);
 impl Schema for TransactionsBalanceGetNumWithFilterReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}")
+    }
+}
+impl Agent for TransactionsBalanceGetNumWithFilterReturns {
+    fn topic() -> &'static str {
+        "transactions_balance_getNumWithFilter"
+    }
+    fn method() -> &'static str {
+        "balance_getNumWithFilter"
+    }
+    fn agent() -> &'static str {
+        "transactions"
     }
 }

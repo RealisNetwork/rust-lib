@@ -18,15 +18,37 @@ impl Schema for TransactionsBalanceGetAllCreditTransactionListParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for TransactionsBalanceGetAllCreditTransactionListParams {
+    fn topic() -> &'static str {
+        "transactions_balance_getAllCreditTransactionList"
+    }
+    fn method() -> &'static str {
+        "balance_getAllCreditTransactionList"
+    }
+    fn agent() -> &'static str {
+        "transactions"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetAllCreditTransactionListReturns {
-    #[serde(rename = "amount")]
-    pub amount: String,
     #[serde(rename = "date")]
     pub date: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
 }
 impl Schema for TransactionsBalanceGetAllCreditTransactionListReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"date\":{\"type\":\"string\"}},\"required\":[\"amount\",\"date\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"date\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"amount\",\"date\"]}")
+    }
+}
+impl Agent for TransactionsBalanceGetAllCreditTransactionListReturns {
+    fn topic() -> &'static str {
+        "transactions_balance_getAllCreditTransactionList"
+    }
+    fn method() -> &'static str {
+        "balance_getAllCreditTransactionList"
+    }
+    fn agent() -> &'static str {
+        "transactions"
     }
 }

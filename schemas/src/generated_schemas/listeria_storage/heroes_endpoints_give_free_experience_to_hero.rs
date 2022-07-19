@@ -13,6 +13,17 @@ impl Schema for ListeriaStorageHeroesEndpointsGiveFreeExperienceToHeroParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"heroId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"heroId\"]}")
     }
 }
+impl Agent for ListeriaStorageHeroesEndpointsGiveFreeExperienceToHeroParams {
+    fn topic() -> &'static str {
+        "listeria-storage_heroesEndpoints_giveFreeExperienceToHero"
+    }
+    fn method() -> &'static str {
+        "heroesEndpoints_giveFreeExperienceToHero"
+    }
+    fn agent() -> &'static str {
+        "listeria-storage"
+    }
+}
 impl<'de> Deserialize<'de> for ListeriaStorageHeroesEndpointsGiveFreeExperienceToHeroReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct ListeriaStorageHeroesEndpointsGiveFreeExperienceToHeroReturns;
 impl Schema for ListeriaStorageHeroesEndpointsGiveFreeExperienceToHeroReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for ListeriaStorageHeroesEndpointsGiveFreeExperienceToHeroReturns {
+    fn topic() -> &'static str {
+        "listeria-storage_heroesEndpoints_giveFreeExperienceToHero"
+    }
+    fn method() -> &'static str {
+        "heroesEndpoints_giveFreeExperienceToHero"
+    }
+    fn agent() -> &'static str {
+        "listeria-storage"
     }
 }

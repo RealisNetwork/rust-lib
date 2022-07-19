@@ -13,10 +13,32 @@ impl Schema for CronCronDeleteParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\"]}")
     }
 }
+impl Agent for CronCronDeleteParams {
+    fn topic() -> &'static str {
+        "cron_cron_delete"
+    }
+    fn method() -> &'static str {
+        "cron_delete"
+    }
+    fn agent() -> &'static str {
+        "cron"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CronCronDeleteReturns(bool);
 impl Schema for CronCronDeleteReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for CronCronDeleteReturns {
+    fn topic() -> &'static str {
+        "cron_cron_delete"
+    }
+    fn method() -> &'static str {
+        "cron_delete"
+    }
+    fn agent() -> &'static str {
+        "cron"
     }
 }

@@ -13,10 +13,32 @@ impl Schema for PromoCodesDeleteCodeParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"]}")
     }
 }
+impl Agent for PromoCodesDeleteCodeParams {
+    fn topic() -> &'static str {
+        "promo_codes_deleteCode"
+    }
+    fn method() -> &'static str {
+        "codes_deleteCode"
+    }
+    fn agent() -> &'static str {
+        "promo"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesDeleteCodeReturns(bool);
 impl Schema for PromoCodesDeleteCodeReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for PromoCodesDeleteCodeReturns {
+    fn topic() -> &'static str {
+        "promo_codes_deleteCode"
+    }
+    fn method() -> &'static str {
+        "codes_deleteCode"
+    }
+    fn agent() -> &'static str {
+        "promo"
     }
 }

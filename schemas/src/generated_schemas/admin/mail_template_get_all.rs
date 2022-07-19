@@ -18,6 +18,17 @@ impl Schema for AdminMailTemplateGetAllParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for AdminMailTemplateGetAllParams {
+    fn topic() -> &'static str {
+        "admin_mailTemplate_getAll"
+    }
+    fn method() -> &'static str {
+        "mailTemplate_getAll"
+    }
+    fn agent() -> &'static str {
+        "admin"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminMailTemplateGetAllReturnsParams {
     #[serde(rename = "mailTemplate")]
@@ -32,5 +43,16 @@ pub struct AdminMailTemplateGetAllReturns(Vec<AdminMailTemplateGetAllReturnsPara
 impl Schema for AdminMailTemplateGetAllReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"mailTemplate\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}},\"required\":[\"key\",\"name\",\"mailTemplate\"]}}")
+    }
+}
+impl Agent for AdminMailTemplateGetAllReturns {
+    fn topic() -> &'static str {
+        "admin_mailTemplate_getAll"
+    }
+    fn method() -> &'static str {
+        "mailTemplate_getAll"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }

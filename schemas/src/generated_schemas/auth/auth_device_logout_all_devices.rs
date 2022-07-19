@@ -13,10 +13,32 @@ impl Schema for AuthAuthDeviceLogoutAllDevicesParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for AuthAuthDeviceLogoutAllDevicesParams {
+    fn topic() -> &'static str {
+        "auth_authDevice_logoutAllDevices"
+    }
+    fn method() -> &'static str {
+        "authDevice_logoutAllDevices"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceLogoutAllDevicesReturns(bool);
 impl Schema for AuthAuthDeviceLogoutAllDevicesReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AuthAuthDeviceLogoutAllDevicesReturns {
+    fn topic() -> &'static str {
+        "auth_authDevice_logoutAllDevices"
+    }
+    fn method() -> &'static str {
+        "authDevice_logoutAllDevices"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

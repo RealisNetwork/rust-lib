@@ -13,6 +13,17 @@ impl Schema for ProductFactoryProductTypeDeleteParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\"]}")
     }
 }
+impl Agent for ProductFactoryProductTypeDeleteParams {
+    fn topic() -> &'static str {
+        "productFactory_productType_delete"
+    }
+    fn method() -> &'static str {
+        "productType_delete"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
+    }
+}
 impl<'de> Deserialize<'de> for ProductFactoryProductTypeDeleteReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct ProductFactoryProductTypeDeleteReturns;
 impl Schema for ProductFactoryProductTypeDeleteReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for ProductFactoryProductTypeDeleteReturns {
+    fn topic() -> &'static str {
+        "productFactory_productType_delete"
+    }
+    fn method() -> &'static str {
+        "productType_delete"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
     }
 }

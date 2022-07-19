@@ -15,10 +15,32 @@ impl Schema for AdminUserRoleAddParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"internalUserId\":{\"type\":\"string\"},\"roleName\":{\"type\":\"string\"}},\"required\":[\"roleName\",\"internalUserId\"]}")
     }
 }
+impl Agent for AdminUserRoleAddParams {
+    fn topic() -> &'static str {
+        "admin_userRole_add"
+    }
+    fn method() -> &'static str {
+        "userRole_add"
+    }
+    fn agent() -> &'static str {
+        "admin"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleAddReturns(bool);
 impl Schema for AdminUserRoleAddReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AdminUserRoleAddReturns {
+    fn topic() -> &'static str {
+        "admin_userRole_add"
+    }
+    fn method() -> &'static str {
+        "userRole_add"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }

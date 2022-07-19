@@ -13,23 +13,45 @@ impl Schema for CronCronGetParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\"]}")
     }
 }
+impl Agent for CronCronGetParams {
+    fn topic() -> &'static str {
+        "cron_cron_get"
+    }
+    fn method() -> &'static str {
+        "cron_get"
+    }
+    fn agent() -> &'static str {
+        "cron"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CronCronGetReturns {
-    #[serde(rename = "id")]
-    pub id: i64,
-    #[serde(rename = "startsAt")]
-    pub starts_at: String,
-    #[serde(rename = "howOften")]
-    pub how_often: i64,
     #[serde(rename = "key")]
     pub key: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
+    #[serde(rename = "startsAt")]
+    pub starts_at: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "id")]
+    pub id: i64,
+    #[serde(rename = "howOften")]
+    pub how_often: i64,
 }
 impl Schema for CronCronGetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"startsAt\":{\"type\":\"string\"},\"howOften\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"key\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"key\",\"howOften\",\"startsAt\",\"createdAt\",\"updatedAt\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"startsAt\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"howOften\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"key\",\"howOften\",\"startsAt\",\"createdAt\",\"updatedAt\"]}")
+    }
+}
+impl Agent for CronCronGetReturns {
+    fn topic() -> &'static str {
+        "cron_cron_get"
+    }
+    fn method() -> &'static str {
+        "cron_get"
+    }
+    fn agent() -> &'static str {
+        "cron"
     }
 }

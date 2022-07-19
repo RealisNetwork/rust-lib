@@ -18,10 +18,32 @@ impl Schema for UserProfileGetNumParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for UserProfileGetNumParams {
+    fn topic() -> &'static str {
+        "user_profile_getNum"
+    }
+    fn method() -> &'static str {
+        "profile_getNum"
+    }
+    fn agent() -> &'static str {
+        "user"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetNumReturns(i64);
 impl Schema for UserProfileGetNumReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}")
+    }
+}
+impl Agent for UserProfileGetNumReturns {
+    fn topic() -> &'static str {
+        "user_profile_getNum"
+    }
+    fn method() -> &'static str {
+        "profile_getNum"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

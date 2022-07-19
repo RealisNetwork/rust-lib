@@ -15,10 +15,32 @@ impl Schema for AuthAuthResetPasswordParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"hash\":{\"type\":\"string\"},\"newPassword\":{\"type\":\"string\"}},\"required\":[\"hash\",\"newPassword\"]}")
     }
 }
+impl Agent for AuthAuthResetPasswordParams {
+    fn topic() -> &'static str {
+        "auth_auth_resetPassword"
+    }
+    fn method() -> &'static str {
+        "auth_resetPassword"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthResetPasswordReturns(bool);
 impl Schema for AuthAuthResetPasswordReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AuthAuthResetPasswordReturns {
+    fn topic() -> &'static str {
+        "auth_auth_resetPassword"
+    }
+    fn method() -> &'static str {
+        "auth_resetPassword"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

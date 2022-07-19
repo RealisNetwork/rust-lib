@@ -13,6 +13,17 @@ impl Schema for AuthAuthGetAccessTokenByRefreshParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"refreshToken\":{\"type\":\"string\"}},\"required\":[\"refreshToken\"]}")
     }
 }
+impl Agent for AuthAuthGetAccessTokenByRefreshParams {
+    fn topic() -> &'static str {
+        "auth_auth_getAccessTokenByRefresh"
+    }
+    fn method() -> &'static str {
+        "auth_getAccessTokenByRefresh"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthGetAccessTokenByRefreshReturns {
     #[serde(rename = "expires_in")]
@@ -23,5 +34,16 @@ pub struct AuthAuthGetAccessTokenByRefreshReturns {
 impl Schema for AuthAuthGetAccessTokenByRefreshReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"expires_in\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"access_token\":{\"type\":\"string\"}},\"required\":[\"access_token\",\"expires_in\"]}")
+    }
+}
+impl Agent for AuthAuthGetAccessTokenByRefreshReturns {
+    fn topic() -> &'static str {
+        "auth_auth_getAccessTokenByRefresh"
+    }
+    fn method() -> &'static str {
+        "auth_getAccessTokenByRefresh"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

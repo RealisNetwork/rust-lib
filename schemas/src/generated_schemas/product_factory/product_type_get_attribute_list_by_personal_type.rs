@@ -13,10 +13,32 @@ impl Schema for ProductFactoryProductTypeGetAttributeListByPersonalTypeParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"}},\"required\":[\"personalType\"]}")
     }
 }
+impl Agent for ProductFactoryProductTypeGetAttributeListByPersonalTypeParams {
+    fn topic() -> &'static str {
+        "productFactory_productType_getAttributeListByPersonalType"
+    }
+    fn method() -> &'static str {
+        "productType_getAttributeListByPersonalType"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeGetAttributeListByPersonalTypeReturns {}
 impl Schema for ProductFactoryProductTypeGetAttributeListByPersonalTypeReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
+    }
+}
+impl Agent for ProductFactoryProductTypeGetAttributeListByPersonalTypeReturns {
+    fn topic() -> &'static str {
+        "productFactory_productType_getAttributeListByPersonalType"
+    }
+    fn method() -> &'static str {
+        "productType_getAttributeListByPersonalType"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
     }
 }

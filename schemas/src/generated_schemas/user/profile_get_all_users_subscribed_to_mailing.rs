@@ -18,10 +18,32 @@ impl Schema for UserProfileGetAllUsersSubscribedToMailingParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for UserProfileGetAllUsersSubscribedToMailingParams {
+    fn topic() -> &'static str {
+        "user_profile_getAllUsersSubscribedToMailing"
+    }
+    fn method() -> &'static str {
+        "profile_getAllUsersSubscribedToMailing"
+    }
+    fn agent() -> &'static str {
+        "user"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetAllUsersSubscribedToMailingReturns(Vec<String>);
 impl Schema for UserProfileGetAllUsersSubscribedToMailingReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"array\",\"items\":{\"type\":\"string\"}}")
+    }
+}
+impl Agent for UserProfileGetAllUsersSubscribedToMailingReturns {
+    fn topic() -> &'static str {
+        "user_profile_getAllUsersSubscribedToMailing"
+    }
+    fn method() -> &'static str {
+        "profile_getAllUsersSubscribedToMailing"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

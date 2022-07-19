@@ -13,10 +13,32 @@ impl Schema for AuthAuthLogoutParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"appId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":null}")
     }
 }
+impl Agent for AuthAuthLogoutParams {
+    fn topic() -> &'static str {
+        "auth_auth_logout"
+    }
+    fn method() -> &'static str {
+        "auth_logout"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthLogoutReturns(bool);
 impl Schema for AuthAuthLogoutReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AuthAuthLogoutReturns {
+    fn topic() -> &'static str {
+        "auth_auth_logout"
+    }
+    fn method() -> &'static str {
+        "auth_logout"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

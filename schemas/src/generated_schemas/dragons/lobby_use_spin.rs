@@ -15,6 +15,17 @@ impl Schema for DragonsLobbyUseSpinParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"spinTypeId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"spinTypeId\"]}")
     }
 }
+impl Agent for DragonsLobbyUseSpinParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_useSpin"
+    }
+    fn method() -> &'static str {
+        "lobby_useSpin"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyUseSpinReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -28,5 +39,16 @@ pub struct DragonsLobbyUseSpinReturns;
 impl Schema for DragonsLobbyUseSpinReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyUseSpinReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_useSpin"
+    }
+    fn method() -> &'static str {
+        "lobby_useSpin"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

@@ -18,6 +18,17 @@ impl Schema for LobbyLobbyStartGameParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for LobbyLobbyStartGameParams {
+    fn topic() -> &'static str {
+        "lobby_lobby_startGame"
+    }
+    fn method() -> &'static str {
+        "lobby_startGame"
+    }
+    fn agent() -> &'static str {
+        "lobby"
+    }
+}
 impl<'de> Deserialize<'de> for LobbyLobbyStartGameReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct LobbyLobbyStartGameReturns;
 impl Schema for LobbyLobbyStartGameReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for LobbyLobbyStartGameReturns {
+    fn topic() -> &'static str {
+        "lobby_lobby_startGame"
+    }
+    fn method() -> &'static str {
+        "lobby_startGame"
+    }
+    fn agent() -> &'static str {
+        "lobby"
     }
 }

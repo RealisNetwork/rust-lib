@@ -18,10 +18,32 @@ impl Schema for AuthAuthEmptyMethodParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for AuthAuthEmptyMethodParams {
+    fn topic() -> &'static str {
+        "auth_auth_emptyMethod"
+    }
+    fn method() -> &'static str {
+        "auth_emptyMethod"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthEmptyMethodReturns(bool);
 impl Schema for AuthAuthEmptyMethodReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AuthAuthEmptyMethodReturns {
+    fn topic() -> &'static str {
+        "auth_auth_emptyMethod"
+    }
+    fn method() -> &'static str {
+        "auth_emptyMethod"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

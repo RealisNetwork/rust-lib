@@ -18,6 +18,17 @@ impl Schema for BalancesBalancesGetFreeExperienceBalanceParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for BalancesBalancesGetFreeExperienceBalanceParams {
+    fn topic() -> &'static str {
+        "balances_balances_getFreeExperienceBalance"
+    }
+    fn method() -> &'static str {
+        "balances_getFreeExperienceBalance"
+    }
+    fn agent() -> &'static str {
+        "balances"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BalancesBalancesGetFreeExperienceBalanceReturns {
     #[serde(rename = "balance")]
@@ -26,5 +37,16 @@ pub struct BalancesBalancesGetFreeExperienceBalanceReturns {
 impl Schema for BalancesBalancesGetFreeExperienceBalanceReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"balance\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"balance\"]}")
+    }
+}
+impl Agent for BalancesBalancesGetFreeExperienceBalanceReturns {
+    fn topic() -> &'static str {
+        "balances_balances_getFreeExperienceBalance"
+    }
+    fn method() -> &'static str {
+        "balances_getFreeExperienceBalance"
+    }
+    fn agent() -> &'static str {
+        "balances"
     }
 }

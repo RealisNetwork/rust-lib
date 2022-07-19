@@ -1,11 +1,9 @@
 use quote::{
-    quote, ToTokens,
     __private::{Ident, TokenStream},
+    quote,
 };
 use serde::{Deserialize, Serialize};
 use syn::__private::Span;
-
-use crate::schema_declaration::SchemaDeclaration;
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(tag = "numberType")]
@@ -50,12 +48,10 @@ impl Integer {
         }
     }
 
-    pub fn get_schema_declaration(&self, name: &str) -> SchemaDeclaration {
-        let (prefix, declaration) = self.get_declaration(name);
-        SchemaDeclaration {
-            declaration,
-            prefix,
-        }
+    pub fn get_schema_declaration(&self, name: &str) -> TokenStream {
+        let (mut prefix, declaration) = self.get_declaration(name);
+        prefix.extend(declaration);
+        prefix
     }
 }
 

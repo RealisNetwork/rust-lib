@@ -15,10 +15,32 @@ impl Schema for AuthAdminAddRoleToUserParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"role\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"role\"]}")
     }
 }
+impl Agent for AuthAdminAddRoleToUserParams {
+    fn topic() -> &'static str {
+        "auth_admin_addRoleToUser"
+    }
+    fn method() -> &'static str {
+        "admin_addRoleToUser"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAdminAddRoleToUserReturns(bool);
 impl Schema for AuthAdminAddRoleToUserReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AuthAdminAddRoleToUserReturns {
+    fn topic() -> &'static str {
+        "auth_admin_addRoleToUser"
+    }
+    fn method() -> &'static str {
+        "admin_addRoleToUser"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

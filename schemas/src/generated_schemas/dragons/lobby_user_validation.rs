@@ -13,6 +13,17 @@ impl Schema for DragonsLobbyUserValidationParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for DragonsLobbyUserValidationParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_userValidation"
+    }
+    fn method() -> &'static str {
+        "lobby_userValidation"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyUserValidationReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct DragonsLobbyUserValidationReturns;
 impl Schema for DragonsLobbyUserValidationReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyUserValidationReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_userValidation"
+    }
+    fn method() -> &'static str {
+        "lobby_userValidation"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

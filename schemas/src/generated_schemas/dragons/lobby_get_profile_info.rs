@@ -13,6 +13,17 @@ impl Schema for DragonsLobbyGetProfileInfoParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for DragonsLobbyGetProfileInfoParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_getProfileInfo"
+    }
+    fn method() -> &'static str {
+        "lobby_getProfileInfo"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyGetProfileInfoReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct DragonsLobbyGetProfileInfoReturns;
 impl Schema for DragonsLobbyGetProfileInfoReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyGetProfileInfoReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_getProfileInfo"
+    }
+    fn method() -> &'static str {
+        "lobby_getProfileInfo"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

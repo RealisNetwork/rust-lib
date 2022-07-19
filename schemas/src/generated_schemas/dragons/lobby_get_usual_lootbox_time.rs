@@ -10,6 +10,17 @@ impl Schema for DragonsLobbyGetUsualLootboxTimeParams {
         serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
     }
 }
+impl Agent for DragonsLobbyGetUsualLootboxTimeParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_getUsualLootboxTime"
+    }
+    fn method() -> &'static str {
+        "lobby_getUsualLootboxTime"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyGetUsualLootboxTimeReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -23,5 +34,16 @@ pub struct DragonsLobbyGetUsualLootboxTimeReturns;
 impl Schema for DragonsLobbyGetUsualLootboxTimeReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyGetUsualLootboxTimeReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_getUsualLootboxTime"
+    }
+    fn method() -> &'static str {
+        "lobby_getUsualLootboxTime"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

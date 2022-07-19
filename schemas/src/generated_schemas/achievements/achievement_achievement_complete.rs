@@ -5,14 +5,25 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AchievementsAchievementAchievementCompleteParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "achievementKey")]
     pub achievement_key: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for AchievementsAchievementAchievementCompleteParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"achievementKey\":{\"type\":\"string\"}},\"required\":[\"achievementKey\",\"userId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"achievementKey\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"achievementKey\",\"userId\"]}")
+    }
+}
+impl Agent for AchievementsAchievementAchievementCompleteParams {
+    fn topic() -> &'static str {
+        "achievements_achievement_achievementComplete"
+    }
+    fn method() -> &'static str {
+        "achievement_achievementComplete"
+    }
+    fn agent() -> &'static str {
+        "achievements"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -23,5 +34,16 @@ pub struct AchievementsAchievementAchievementCompleteReturns {
 impl Schema for AchievementsAchievementAchievementCompleteReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"achievementKey\":{\"type\":\"string\"}},\"required\":[\"achievementKey\"]}")
+    }
+}
+impl Agent for AchievementsAchievementAchievementCompleteReturns {
+    fn topic() -> &'static str {
+        "achievements_achievement_achievementComplete"
+    }
+    fn method() -> &'static str {
+        "achievement_achievementComplete"
+    }
+    fn agent() -> &'static str {
+        "achievements"
     }
 }

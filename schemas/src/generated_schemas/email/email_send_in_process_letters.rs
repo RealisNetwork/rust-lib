@@ -18,6 +18,17 @@ impl Schema for EmailEmailSendInProcessLettersParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for EmailEmailSendInProcessLettersParams {
+    fn topic() -> &'static str {
+        "email_email_sendInProcessLetters"
+    }
+    fn method() -> &'static str {
+        "email_sendInProcessLetters"
+    }
+    fn agent() -> &'static str {
+        "email"
+    }
+}
 impl<'de> Deserialize<'de> for EmailEmailSendInProcessLettersReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct EmailEmailSendInProcessLettersReturns;
 impl Schema for EmailEmailSendInProcessLettersReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for EmailEmailSendInProcessLettersReturns {
+    fn topic() -> &'static str {
+        "email_email_sendInProcessLetters"
+    }
+    fn method() -> &'static str {
+        "email_sendInProcessLetters"
+    }
+    fn agent() -> &'static str {
+        "email"
     }
 }

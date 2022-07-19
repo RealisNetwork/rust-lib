@@ -13,6 +13,17 @@ impl Schema for BattlePassBattlePassEndpointsReceiveRewardParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"bindingId\"]}")
     }
 }
+impl Agent for BattlePassBattlePassEndpointsReceiveRewardParams {
+    fn topic() -> &'static str {
+        "battle-pass_battlePassEndpoints_receiveReward"
+    }
+    fn method() -> &'static str {
+        "battlePassEndpoints_receiveReward"
+    }
+    fn agent() -> &'static str {
+        "battle-pass"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsReceiveRewardReturns {
     #[serde(rename = "bindingId")]
@@ -21,5 +32,16 @@ pub struct BattlePassBattlePassEndpointsReceiveRewardReturns {
 impl Schema for BattlePassBattlePassEndpointsReceiveRewardReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"bindingId\"]}")
+    }
+}
+impl Agent for BattlePassBattlePassEndpointsReceiveRewardReturns {
+    fn topic() -> &'static str {
+        "battle-pass_battlePassEndpoints_receiveReward"
+    }
+    fn method() -> &'static str {
+        "battlePassEndpoints_receiveReward"
+    }
+    fn agent() -> &'static str {
+        "battle-pass"
     }
 }

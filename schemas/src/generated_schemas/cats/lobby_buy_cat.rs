@@ -5,16 +5,27 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyBuyCatParams {
-    #[serde(rename = "catId")]
-    pub cat_id: i64,
     #[serde(rename = "price")]
     pub price: i64,
+    #[serde(rename = "catId")]
+    pub cat_id: i64,
     #[serde(rename = "userId")]
     pub user_id: String,
 }
 impl Schema for CatsLobbyBuyCatParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"catId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"price\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"catId\",\"price\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"price\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"catId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"catId\",\"price\"]}")
+    }
+}
+impl Agent for CatsLobbyBuyCatParams {
+    fn topic() -> &'static str {
+        "cats_lobby_buyCat"
+    }
+    fn method() -> &'static str {
+        "lobby_buyCat"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }
 impl<'de> Deserialize<'de> for CatsLobbyBuyCatReturns {
@@ -30,5 +41,16 @@ pub struct CatsLobbyBuyCatReturns;
 impl Schema for CatsLobbyBuyCatReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyBuyCatReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_buyCat"
+    }
+    fn method() -> &'static str {
+        "lobby_buyCat"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

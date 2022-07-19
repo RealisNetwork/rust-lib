@@ -13,10 +13,32 @@ impl Schema for SoulAdapterWalletGetBalanceByAddressParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"address\":{\"type\":\"string\"}},\"required\":[\"address\"]}")
     }
 }
+impl Agent for SoulAdapterWalletGetBalanceByAddressParams {
+    fn topic() -> &'static str {
+        "soul-adapter_wallet_getBalanceByAddress"
+    }
+    fn method() -> &'static str {
+        "wallet_getBalanceByAddress"
+    }
+    fn agent() -> &'static str {
+        "soul-adapter"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SoulAdapterWalletGetBalanceByAddressReturns(String);
 impl Schema for SoulAdapterWalletGetBalanceByAddressReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")
+    }
+}
+impl Agent for SoulAdapterWalletGetBalanceByAddressReturns {
+    fn topic() -> &'static str {
+        "soul-adapter_wallet_getBalanceByAddress"
+    }
+    fn method() -> &'static str {
+        "wallet_getBalanceByAddress"
+    }
+    fn agent() -> &'static str {
+        "soul-adapter"
     }
 }

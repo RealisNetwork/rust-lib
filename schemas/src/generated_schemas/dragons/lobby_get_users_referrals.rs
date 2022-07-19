@@ -13,6 +13,17 @@ impl Schema for DragonsLobbyGetUsersReferralsParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for DragonsLobbyGetUsersReferralsParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_getUsersReferrals"
+    }
+    fn method() -> &'static str {
+        "lobby_getUsersReferrals"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyGetUsersReferralsReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct DragonsLobbyGetUsersReferralsReturns;
 impl Schema for DragonsLobbyGetUsersReferralsReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyGetUsersReferralsReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_getUsersReferrals"
+    }
+    fn method() -> &'static str {
+        "lobby_getUsersReferrals"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

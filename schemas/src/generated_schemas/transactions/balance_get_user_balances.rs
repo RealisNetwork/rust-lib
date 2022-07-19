@@ -13,10 +13,32 @@ impl Schema for TransactionsBalanceGetUserBalancesParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for TransactionsBalanceGetUserBalancesParams {
+    fn topic() -> &'static str {
+        "transactions_balance_getUserBalances"
+    }
+    fn method() -> &'static str {
+        "balance_getUserBalances"
+    }
+    fn agent() -> &'static str {
+        "transactions"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetUserBalancesReturns {}
 impl Schema for TransactionsBalanceGetUserBalancesReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
+    }
+}
+impl Agent for TransactionsBalanceGetUserBalancesReturns {
+    fn topic() -> &'static str {
+        "transactions_balance_getUserBalances"
+    }
+    fn method() -> &'static str {
+        "balance_getUserBalances"
+    }
+    fn agent() -> &'static str {
+        "transactions"
     }
 }

@@ -13,10 +13,32 @@ impl Schema for ProductFactoryProductTypeIsExistParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"}},\"required\":[\"personalType\"]}")
     }
 }
+impl Agent for ProductFactoryProductTypeIsExistParams {
+    fn topic() -> &'static str {
+        "productFactory_productType_isExist"
+    }
+    fn method() -> &'static str {
+        "productType_isExist"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeIsExistReturns(bool);
 impl Schema for ProductFactoryProductTypeIsExistReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for ProductFactoryProductTypeIsExistReturns {
+    fn topic() -> &'static str {
+        "productFactory_productType_isExist"
+    }
+    fn method() -> &'static str {
+        "productType_isExist"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
     }
 }

@@ -13,6 +13,17 @@ impl Schema for CatsAndDragonsWrapperGetUserIdByDeviceIdParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"appId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":null}")
     }
 }
+impl Agent for CatsAndDragonsWrapperGetUserIdByDeviceIdParams {
+    fn topic() -> &'static str {
+        "catsAndDragons_wrapper_getUserIdByDeviceId"
+    }
+    fn method() -> &'static str {
+        "wrapper_getUserIdByDeviceId"
+    }
+    fn agent() -> &'static str {
+        "catsAndDragons"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetUserIdByDeviceIdReturns {
     #[serde(rename = "userId")]
@@ -21,5 +32,16 @@ pub struct CatsAndDragonsWrapperGetUserIdByDeviceIdReturns {
 impl Schema for CatsAndDragonsWrapperGetUserIdByDeviceIdReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
+    }
+}
+impl Agent for CatsAndDragonsWrapperGetUserIdByDeviceIdReturns {
+    fn topic() -> &'static str {
+        "catsAndDragons_wrapper_getUserIdByDeviceId"
+    }
+    fn method() -> &'static str {
+        "wrapper_getUserIdByDeviceId"
+    }
+    fn agent() -> &'static str {
+        "catsAndDragons"
     }
 }

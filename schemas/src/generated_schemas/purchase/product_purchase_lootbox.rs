@@ -13,10 +13,32 @@ impl Schema for PurchaseProductPurchaseLootboxParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"lootboxType\":{\"type\":\"string\"}},\"required\":[\"lootboxType\"]}")
     }
 }
+impl Agent for PurchaseProductPurchaseLootboxParams {
+    fn topic() -> &'static str {
+        "purchase_product_purchaseLootbox"
+    }
+    fn method() -> &'static str {
+        "product_purchaseLootbox"
+    }
+    fn agent() -> &'static str {
+        "purchase"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PurchaseProductPurchaseLootboxReturns(bool);
 impl Schema for PurchaseProductPurchaseLootboxReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for PurchaseProductPurchaseLootboxReturns {
+    fn topic() -> &'static str {
+        "purchase_product_purchaseLootbox"
+    }
+    fn method() -> &'static str {
+        "product_purchaseLootbox"
+    }
+    fn agent() -> &'static str {
+        "purchase"
     }
 }

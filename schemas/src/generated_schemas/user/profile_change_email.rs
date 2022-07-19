@@ -5,14 +5,25 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileChangeEmailParams {
-    #[serde(rename = "newEmail")]
-    pub new_email: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "newEmail")]
+    pub new_email: String,
 }
 impl Schema for UserProfileChangeEmailParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newEmail\":{\"type\":\"string\",\"format\":\"email\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"newEmail\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"newEmail\":{\"type\":\"string\",\"format\":\"email\"}},\"required\":[\"userId\",\"newEmail\"]}")
+    }
+}
+impl Agent for UserProfileChangeEmailParams {
+    fn topic() -> &'static str {
+        "user_profile_changeEmail"
+    }
+    fn method() -> &'static str {
+        "profile_changeEmail"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -20,5 +31,16 @@ pub struct UserProfileChangeEmailReturns(bool);
 impl Schema for UserProfileChangeEmailReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for UserProfileChangeEmailReturns {
+    fn topic() -> &'static str {
+        "user_profile_changeEmail"
+    }
+    fn method() -> &'static str {
+        "profile_changeEmail"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

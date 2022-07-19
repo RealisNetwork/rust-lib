@@ -18,10 +18,32 @@ impl Schema for DragocatsStorageInventoryEndpointsOpenLootboxNotificationParams 
         serde_json::json!("{}")
     }
 }
+impl Agent for DragocatsStorageInventoryEndpointsOpenLootboxNotificationParams {
+    fn topic() -> &'static str {
+        "dragocats-storage_inventoryEndpoints_openLootboxNotification"
+    }
+    fn method() -> &'static str {
+        "inventoryEndpoints_openLootboxNotification"
+    }
+    fn agent() -> &'static str {
+        "dragocats-storage"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsOpenLootboxNotificationReturns {}
 impl Schema for DragocatsStorageInventoryEndpointsOpenLootboxNotificationReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
+    }
+}
+impl Agent for DragocatsStorageInventoryEndpointsOpenLootboxNotificationReturns {
+    fn topic() -> &'static str {
+        "dragocats-storage_inventoryEndpoints_openLootboxNotification"
+    }
+    fn method() -> &'static str {
+        "inventoryEndpoints_openLootboxNotification"
+    }
+    fn agent() -> &'static str {
+        "dragocats-storage"
     }
 }

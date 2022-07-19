@@ -13,10 +13,32 @@ impl Schema for BinanceWalletWalletGetAddressByUserIdParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for BinanceWalletWalletGetAddressByUserIdParams {
+    fn topic() -> &'static str {
+        "binance-wallet_wallet_getAddressByUserId"
+    }
+    fn method() -> &'static str {
+        "wallet_getAddressByUserId"
+    }
+    fn agent() -> &'static str {
+        "binance-wallet"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BinanceWalletWalletGetAddressByUserIdReturns(String);
 impl Schema for BinanceWalletWalletGetAddressByUserIdReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")
+    }
+}
+impl Agent for BinanceWalletWalletGetAddressByUserIdReturns {
+    fn topic() -> &'static str {
+        "binance-wallet_wallet_getAddressByUserId"
+    }
+    fn method() -> &'static str {
+        "wallet_getAddressByUserId"
+    }
+    fn agent() -> &'static str {
+        "binance-wallet"
     }
 }

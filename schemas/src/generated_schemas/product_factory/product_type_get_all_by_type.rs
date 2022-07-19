@@ -5,16 +5,27 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeGetAllByTypeParams {
-    #[serde(rename = "page")]
-    pub page: Option<i64>,
-    #[serde(rename = "perPage")]
-    pub per_page: Option<i64>,
     #[serde(rename = "type")]
     pub r#type: String,
+    #[serde(rename = "perPage")]
+    pub per_page: Option<i64>,
+    #[serde(rename = "page")]
+    pub page: Option<i64>,
 }
 impl Schema for ProductFactoryProductTypeGetAllByTypeParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"type\":{\"type\":\"string\"}},\"required\":[\"type\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"type\"]}")
+    }
+}
+impl Agent for ProductFactoryProductTypeGetAllByTypeParams {
+    fn topic() -> &'static str {
+        "productFactory_productType_getAllByType"
+    }
+    fn method() -> &'static str {
+        "productType_getAllByType"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
     }
 }
 impl<'de> Deserialize<'de> for ProductFactoryProductTypeGetAllByTypeReturns {
@@ -30,5 +41,16 @@ pub struct ProductFactoryProductTypeGetAllByTypeReturns;
 impl Schema for ProductFactoryProductTypeGetAllByTypeReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for ProductFactoryProductTypeGetAllByTypeReturns {
+    fn topic() -> &'static str {
+        "productFactory_productType_getAllByType"
+    }
+    fn method() -> &'static str {
+        "productType_getAllByType"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
     }
 }

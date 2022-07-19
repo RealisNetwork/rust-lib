@@ -13,10 +13,32 @@ impl Schema for UserProfileChangeNicknameParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newNickname\":{\"type\":\"string\"}},\"required\":[\"newNickname\"]}")
     }
 }
+impl Agent for UserProfileChangeNicknameParams {
+    fn topic() -> &'static str {
+        "user_profile_changeNickname"
+    }
+    fn method() -> &'static str {
+        "profile_changeNickname"
+    }
+    fn agent() -> &'static str {
+        "user"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileChangeNicknameReturns(bool);
 impl Schema for UserProfileChangeNicknameReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for UserProfileChangeNicknameReturns {
+    fn topic() -> &'static str {
+        "user_profile_changeNickname"
+    }
+    fn method() -> &'static str {
+        "profile_changeNickname"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

@@ -18,10 +18,32 @@ impl Schema for UserProfileGetNicknameChangePriceParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for UserProfileGetNicknameChangePriceParams {
+    fn topic() -> &'static str {
+        "user_profile_getNicknameChangePrice"
+    }
+    fn method() -> &'static str {
+        "profile_getNicknameChangePrice"
+    }
+    fn agent() -> &'static str {
+        "user"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetNicknameChangePriceReturns(String);
 impl Schema for UserProfileGetNicknameChangePriceReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")
+    }
+}
+impl Agent for UserProfileGetNicknameChangePriceReturns {
+    fn topic() -> &'static str {
+        "user_profile_getNicknameChangePrice"
+    }
+    fn method() -> &'static str {
+        "profile_getNicknameChangePrice"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

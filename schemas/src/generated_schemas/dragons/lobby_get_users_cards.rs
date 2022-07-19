@@ -13,6 +13,17 @@ impl Schema for DragonsLobbyGetUsersCardsParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for DragonsLobbyGetUsersCardsParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_getUsersCards"
+    }
+    fn method() -> &'static str {
+        "lobby_getUsersCards"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyGetUsersCardsReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct DragonsLobbyGetUsersCardsReturns;
 impl Schema for DragonsLobbyGetUsersCardsReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyGetUsersCardsReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_getUsersCards"
+    }
+    fn method() -> &'static str {
+        "lobby_getUsersCards"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

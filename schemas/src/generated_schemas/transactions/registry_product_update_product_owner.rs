@@ -15,10 +15,32 @@ impl Schema for TransactionsRegistryProductUpdateProductOwnerParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"}},\"required\":[\"productId\",\"ownerId\"]}")
     }
 }
+impl Agent for TransactionsRegistryProductUpdateProductOwnerParams {
+    fn topic() -> &'static str {
+        "transactions_registryProduct_updateProductOwner"
+    }
+    fn method() -> &'static str {
+        "registryProduct_updateProductOwner"
+    }
+    fn agent() -> &'static str {
+        "transactions"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsRegistryProductUpdateProductOwnerReturns(bool);
 impl Schema for TransactionsRegistryProductUpdateProductOwnerReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for TransactionsRegistryProductUpdateProductOwnerReturns {
+    fn topic() -> &'static str {
+        "transactions_registryProduct_updateProductOwner"
+    }
+    fn method() -> &'static str {
+        "registryProduct_updateProductOwner"
+    }
+    fn agent() -> &'static str {
+        "transactions"
     }
 }

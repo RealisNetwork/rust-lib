@@ -13,6 +13,17 @@ impl Schema for LobbyHeroesEndpointsEquipHeroParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"bindingId\"]}")
     }
 }
+impl Agent for LobbyHeroesEndpointsEquipHeroParams {
+    fn topic() -> &'static str {
+        "lobby_heroesEndpoints_equipHero"
+    }
+    fn method() -> &'static str {
+        "heroesEndpoints_equipHero"
+    }
+    fn agent() -> &'static str {
+        "lobby"
+    }
+}
 impl<'de> Deserialize<'de> for LobbyHeroesEndpointsEquipHeroReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct LobbyHeroesEndpointsEquipHeroReturns;
 impl Schema for LobbyHeroesEndpointsEquipHeroReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for LobbyHeroesEndpointsEquipHeroReturns {
+    fn topic() -> &'static str {
+        "lobby_heroesEndpoints_equipHero"
+    }
+    fn method() -> &'static str {
+        "heroesEndpoints_equipHero"
+    }
+    fn agent() -> &'static str {
+        "lobby"
     }
 }

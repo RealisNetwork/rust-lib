@@ -15,6 +15,17 @@ impl Schema for NearAdapterContractCallMintNftParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"recipientUserId\":{\"type\":\"string\"},\"nftMetadata\":{\"type\":\"string\"}},\"required\":[\"recipientUserId\",\"nftMetadata\"]}")
     }
 }
+impl Agent for NearAdapterContractCallMintNftParams {
+    fn topic() -> &'static str {
+        "near-adapter_contract_callMintNft"
+    }
+    fn method() -> &'static str {
+        "contract_callMintNft"
+    }
+    fn agent() -> &'static str {
+        "near-adapter"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterContractCallMintNftReturns {
     #[serde(rename = "nftId")]
@@ -23,5 +34,16 @@ pub struct NearAdapterContractCallMintNftReturns {
 impl Schema for NearAdapterContractCallMintNftReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"nftId\":{\"type\":\"string\"}},\"required\":[\"nftId\"]}")
+    }
+}
+impl Agent for NearAdapterContractCallMintNftReturns {
+    fn topic() -> &'static str {
+        "near-adapter_contract_callMintNft"
+    }
+    fn method() -> &'static str {
+        "contract_callMintNft"
+    }
+    fn agent() -> &'static str {
+        "near-adapter"
     }
 }

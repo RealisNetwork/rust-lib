@@ -18,21 +18,43 @@ impl Schema for PurchaseBalanceUserBalanceChangedNotificationParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for PurchaseBalanceUserBalanceChangedNotificationParams {
+    fn topic() -> &'static str {
+        "purchase_balance_userBalanceChangedNotification"
+    }
+    fn method() -> &'static str {
+        "balance_userBalanceChangedNotification"
+    }
+    fn agent() -> &'static str {
+        "purchase"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PurchaseBalanceUserBalanceChangedNotificationReturns {
-    #[serde(rename = "transactionHash")]
-    pub transaction_hash: String,
+    #[serde(rename = "currency")]
+    pub currency: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
     #[serde(rename = "balance")]
     pub balance: String,
     #[serde(rename = "blockId")]
     pub block_id: String,
-    #[serde(rename = "amount")]
-    pub amount: String,
-    #[serde(rename = "currency")]
-    pub currency: String,
+    #[serde(rename = "transactionHash")]
+    pub transaction_hash: String,
 }
 impl Schema for PurchaseBalanceUserBalanceChangedNotificationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"transactionHash\":{\"type\":\"string\"},\"balance\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"}},\"required\":[\"currency\",\"amount\",\"transactionHash\",\"balance\",\"blockId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"},\"amount\":{\"type\":\"string\"},\"balance\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"},\"transactionHash\":{\"type\":\"string\"}},\"required\":[\"currency\",\"amount\",\"transactionHash\",\"balance\",\"blockId\"]}")
+    }
+}
+impl Agent for PurchaseBalanceUserBalanceChangedNotificationReturns {
+    fn topic() -> &'static str {
+        "purchase_balance_userBalanceChangedNotification"
+    }
+    fn method() -> &'static str {
+        "balance_userBalanceChangedNotification"
+    }
+    fn agent() -> &'static str {
+        "purchase"
     }
 }

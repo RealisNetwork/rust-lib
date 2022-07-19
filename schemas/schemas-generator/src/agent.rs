@@ -20,11 +20,11 @@ impl Agent {
     }
 
     pub fn create_file_name(&self) -> String {
-        format!("{}", self.method).to_case(Case::Snake)
+        self.method.to_string().to_case(Case::Snake)
     }
 
     pub fn create_directory_name(&self) -> String {
-        format!("{}", self.agent).to_case(Case::Snake)
+        self.agent.to_string().to_case(Case::Snake)
     }
 
     pub fn create_name_case_pascal(&self) -> String {
@@ -62,11 +62,20 @@ impl ToTokens for Agent {
         let params_schema = serde_json::to_string(&self.params).unwrap();
         let returns_schema = serde_json::to_string(&self.returns).unwrap();
 
+        let method = self.method.clone();
+        let agent = self.agent.clone();
+        let topic = self.topic.clone();
+
         let impl_schema_params = quote! {
             impl Schema for #ident_name_params {
                 fn schema() -> Value {
                     serde_json::json!(#params_schema)
                 }
+            }
+            impl Agent for #ident_name_params {
+                fn topic() -> &'static str { #topic }
+                fn method() -> &'static str { #method }
+                fn agent() -> &'static str { #agent }
             }
         };
         let impl_schema_returns = quote! {
@@ -74,6 +83,11 @@ impl ToTokens for Agent {
                 fn schema() -> Value {
                     serde_json::json!(#returns_schema)
                 }
+            }
+            impl Agent for #ident_name_returns {
+                fn topic() -> &'static str { #topic }
+                fn method() -> &'static str { #method }
+                fn agent() -> &'static str { #agent }
             }
         };
 

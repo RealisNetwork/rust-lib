@@ -15,6 +15,17 @@ impl Schema for DragonsLobbySaveUsersProgressParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"dataObject\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"dataObject\"]}")
     }
 }
+impl Agent for DragonsLobbySaveUsersProgressParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_saveUsersProgress"
+    }
+    fn method() -> &'static str {
+        "lobby_saveUsersProgress"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbySaveUsersProgressReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -28,5 +39,16 @@ pub struct DragonsLobbySaveUsersProgressReturns;
 impl Schema for DragonsLobbySaveUsersProgressReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbySaveUsersProgressReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_saveUsersProgress"
+    }
+    fn method() -> &'static str {
+        "lobby_saveUsersProgress"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

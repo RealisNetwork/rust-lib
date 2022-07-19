@@ -13,6 +13,17 @@ impl Schema for LobbyUserUpdateUsernameParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newUsername\":{\"type\":\"string\"}},\"required\":[\"newUsername\"]}")
     }
 }
+impl Agent for LobbyUserUpdateUsernameParams {
+    fn topic() -> &'static str {
+        "lobby_user_updateUsername"
+    }
+    fn method() -> &'static str {
+        "user_updateUsername"
+    }
+    fn agent() -> &'static str {
+        "lobby"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserUpdateUsernameReturns {
     #[serde(rename = "newUsername")]
@@ -21,5 +32,16 @@ pub struct LobbyUserUpdateUsernameReturns {
 impl Schema for LobbyUserUpdateUsernameReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newUsername\":{\"type\":\"string\"}},\"required\":[\"newUsername\"]}")
+    }
+}
+impl Agent for LobbyUserUpdateUsernameReturns {
+    fn topic() -> &'static str {
+        "lobby_user_updateUsername"
+    }
+    fn method() -> &'static str {
+        "user_updateUsername"
+    }
+    fn agent() -> &'static str {
+        "lobby"
     }
 }

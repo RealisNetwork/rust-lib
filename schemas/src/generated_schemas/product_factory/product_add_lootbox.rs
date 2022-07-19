@@ -5,14 +5,25 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductAddLootboxParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "personalType")]
     pub personal_type: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for ProductFactoryProductAddLootboxParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"}},\"required\":[\"userId\",\"personalType\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"personalType\"]}")
+    }
+}
+impl Agent for ProductFactoryProductAddLootboxParams {
+    fn topic() -> &'static str {
+        "productFactory_product_addLootbox"
+    }
+    fn method() -> &'static str {
+        "product_addLootbox"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -20,5 +31,16 @@ pub struct ProductFactoryProductAddLootboxReturns(bool);
 impl Schema for ProductFactoryProductAddLootboxReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for ProductFactoryProductAddLootboxReturns {
+    fn topic() -> &'static str {
+        "productFactory_product_addLootbox"
+    }
+    fn method() -> &'static str {
+        "product_addLootbox"
+    }
+    fn agent() -> &'static str {
+        "productFactory"
     }
 }

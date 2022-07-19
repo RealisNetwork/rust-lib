@@ -13,6 +13,17 @@ impl Schema for CdUserSpinEndpointsSpinParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"Type\":{\"type\":\"string\"}},\"required\":[\"Type\"]}")
     }
 }
+impl Agent for CdUserSpinEndpointsSpinParams {
+    fn topic() -> &'static str {
+        "cd-user_spinEndpoints_spin"
+    }
+    fn method() -> &'static str {
+        "spinEndpoints_spin"
+    }
+    fn agent() -> &'static str {
+        "cd-user"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CdUserSpinEndpointsSpinReturns {
     #[serde(rename = "Key")]
@@ -21,5 +32,16 @@ pub struct CdUserSpinEndpointsSpinReturns {
 impl Schema for CdUserSpinEndpointsSpinReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"Key\":{\"type\":\"string\"}},\"required\":[\"Key\"]}")
+    }
+}
+impl Agent for CdUserSpinEndpointsSpinReturns {
+    fn topic() -> &'static str {
+        "cd-user_spinEndpoints_spin"
+    }
+    fn method() -> &'static str {
+        "spinEndpoints_spin"
+    }
+    fn agent() -> &'static str {
+        "cd-user"
     }
 }

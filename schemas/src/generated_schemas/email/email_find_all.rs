@@ -18,6 +18,17 @@ impl Schema for EmailEmailFindAllParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for EmailEmailFindAllParams {
+    fn topic() -> &'static str {
+        "email_email_findAll"
+    }
+    fn method() -> &'static str {
+        "email_findAll"
+    }
+    fn agent() -> &'static str {
+        "email"
+    }
+}
 impl<'de> Deserialize<'de> for EmailEmailFindAllReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct EmailEmailFindAllReturns;
 impl Schema for EmailEmailFindAllReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for EmailEmailFindAllReturns {
+    fn topic() -> &'static str {
+        "email_email_findAll"
+    }
+    fn method() -> &'static str {
+        "email_findAll"
+    }
+    fn agent() -> &'static str {
+        "email"
     }
 }

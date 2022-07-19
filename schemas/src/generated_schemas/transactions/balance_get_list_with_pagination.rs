@@ -13,26 +13,48 @@ impl Schema for TransactionsBalanceGetListWithPaginationParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}}},\"required\":[\"page\"]}")
     }
 }
+impl Agent for TransactionsBalanceGetListWithPaginationParams {
+    fn topic() -> &'static str {
+        "transactions_balance_getListWithPagination"
+    }
+    fn method() -> &'static str {
+        "balance_getListWithPagination"
+    }
+    fn agent() -> &'static str {
+        "transactions"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetListWithPaginationReturnsListParamsParams {
-    #[serde(rename = "dateTime")]
-    pub date_time: String,
-    #[serde(rename = "balanceChange")]
-    pub balance_change: String,
     #[serde(rename = "blockId")]
     pub block_id: String,
+    #[serde(rename = "balanceChange")]
+    pub balance_change: String,
+    #[serde(rename = "dateTime")]
+    pub date_time: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetListWithPaginationReturns {
     #[serde(rename = "pages")]
     pub pages: i16,
-    #[serde(rename = "page")]
-    pub page: i16,
     #[serde(rename = "list")]
     pub list: Vec<TransactionsBalanceGetListWithPaginationReturnsListParamsParams>,
+    #[serde(rename = "page")]
+    pub page: i16,
 }
 impl Schema for TransactionsBalanceGetListWithPaginationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"pages\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"page\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"dateTime\":{\"type\":\"string\"},\"balanceChange\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"}},\"required\":[\"blockId\",\"dateTime\",\"balanceChange\"]}}},\"required\":[\"page\",\"pages\",\"list\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"pages\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"blockId\":{\"type\":\"string\"},\"balanceChange\":{\"type\":\"string\"},\"dateTime\":{\"type\":\"string\"}},\"required\":[\"blockId\",\"dateTime\",\"balanceChange\"]}},\"page\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}}},\"required\":[\"page\",\"pages\",\"list\"]}")
+    }
+}
+impl Agent for TransactionsBalanceGetListWithPaginationReturns {
+    fn topic() -> &'static str {
+        "transactions_balance_getListWithPagination"
+    }
+    fn method() -> &'static str {
+        "balance_getListWithPagination"
+    }
+    fn agent() -> &'static str {
+        "transactions"
     }
 }

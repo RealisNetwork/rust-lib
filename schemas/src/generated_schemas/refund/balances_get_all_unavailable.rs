@@ -13,15 +13,37 @@ impl Schema for RefundBalancesGetAllUnavailableParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for RefundBalancesGetAllUnavailableParams {
+    fn topic() -> &'static str {
+        "refund_balances_getAllUnavailable"
+    }
+    fn method() -> &'static str {
+        "balances_getAllUnavailable"
+    }
+    fn agent() -> &'static str {
+        "refund"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllUnavailableReturns {
-    #[serde(rename = "LIS")]
-    pub lis: String,
     #[serde(rename = "ETH")]
     pub eth: String,
+    #[serde(rename = "LIS")]
+    pub lis: String,
 }
 impl Schema for RefundBalancesGetAllUnavailableReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"LIS\":{\"type\":\"string\"},\"ETH\":{\"type\":\"string\"}},\"required\":null}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"ETH\":{\"type\":\"string\"},\"LIS\":{\"type\":\"string\"}},\"required\":null}")
+    }
+}
+impl Agent for RefundBalancesGetAllUnavailableReturns {
+    fn topic() -> &'static str {
+        "refund_balances_getAllUnavailable"
+    }
+    fn method() -> &'static str {
+        "balances_getAllUnavailable"
+    }
+    fn agent() -> &'static str {
+        "refund"
     }
 }

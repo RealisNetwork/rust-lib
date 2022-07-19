@@ -15,6 +15,17 @@ impl Schema for CatsLobbyAchievementCompleteParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"achievementKey\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"achievementKey\",\"userId\"]}")
     }
 }
+impl Agent for CatsLobbyAchievementCompleteParams {
+    fn topic() -> &'static str {
+        "cats_lobby_achievementComplete"
+    }
+    fn method() -> &'static str {
+        "lobby_achievementComplete"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyAchievementCompleteReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -28,5 +39,16 @@ pub struct CatsLobbyAchievementCompleteReturns;
 impl Schema for CatsLobbyAchievementCompleteReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyAchievementCompleteReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_achievementComplete"
+    }
+    fn method() -> &'static str {
+        "lobby_achievementComplete"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

@@ -5,16 +5,27 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorBattlePassPurchasePremiumParams {
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
     #[serde(rename = "creator")]
     pub creator: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
 }
 impl Schema for OrchestratorBattlePassPurchasePremiumParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"txId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"txId\",\"creator\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"}},\"required\":[\"userId\",\"txId\",\"creator\"]}")
+    }
+}
+impl Agent for OrchestratorBattlePassPurchasePremiumParams {
+    fn topic() -> &'static str {
+        "orchestrator_battlePass_purchasePremium"
+    }
+    fn method() -> &'static str {
+        "battlePass_purchasePremium"
+    }
+    fn agent() -> &'static str {
+        "orchestrator"
     }
 }
 impl<'de> Deserialize<'de> for OrchestratorBattlePassPurchasePremiumReturns {
@@ -30,5 +41,16 @@ pub struct OrchestratorBattlePassPurchasePremiumReturns;
 impl Schema for OrchestratorBattlePassPurchasePremiumReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for OrchestratorBattlePassPurchasePremiumReturns {
+    fn topic() -> &'static str {
+        "orchestrator_battlePass_purchasePremium"
+    }
+    fn method() -> &'static str {
+        "battlePass_purchasePremium"
+    }
+    fn agent() -> &'static str {
+        "orchestrator"
     }
 }

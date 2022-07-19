@@ -13,10 +13,32 @@ impl Schema for GameBalancerGameBalancerDeletePlayersParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userIds\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"userIds\"]}")
     }
 }
+impl Agent for GameBalancerGameBalancerDeletePlayersParams {
+    fn topic() -> &'static str {
+        "gameBalancer_gameBalancer_deletePlayers"
+    }
+    fn method() -> &'static str {
+        "gameBalancer_deletePlayers"
+    }
+    fn agent() -> &'static str {
+        "gameBalancer"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GameBalancerGameBalancerDeletePlayersReturns(bool);
 impl Schema for GameBalancerGameBalancerDeletePlayersReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for GameBalancerGameBalancerDeletePlayersReturns {
+    fn topic() -> &'static str {
+        "gameBalancer_gameBalancer_deletePlayers"
+    }
+    fn method() -> &'static str {
+        "gameBalancer_deletePlayers"
+    }
+    fn agent() -> &'static str {
+        "gameBalancer"
     }
 }

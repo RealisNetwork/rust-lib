@@ -13,10 +13,32 @@ impl Schema for AuthAuthDeviceGetDeviceIdByInternalIdParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"internalUserId\":{\"type\":\"string\"}},\"required\":[\"internalUserId\"]}")
     }
 }
+impl Agent for AuthAuthDeviceGetDeviceIdByInternalIdParams {
+    fn topic() -> &'static str {
+        "auth_authDevice_getDeviceIdByInternalId"
+    }
+    fn method() -> &'static str {
+        "authDevice_getDeviceIdByInternalId"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceGetDeviceIdByInternalIdReturns(String);
 impl Schema for AuthAuthDeviceGetDeviceIdByInternalIdReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")
+    }
+}
+impl Agent for AuthAuthDeviceGetDeviceIdByInternalIdReturns {
+    fn topic() -> &'static str {
+        "auth_authDevice_getDeviceIdByInternalId"
+    }
+    fn method() -> &'static str {
+        "authDevice_getDeviceIdByInternalId"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

@@ -18,6 +18,17 @@ impl Schema for AdminUserRoleGetAllWithNicknameParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for AdminUserRoleGetAllWithNicknameParams {
+    fn topic() -> &'static str {
+        "admin_userRole_getAllWithNickname"
+    }
+    fn method() -> &'static str {
+        "userRole_getAllWithNickname"
+    }
+    fn agent() -> &'static str {
+        "admin"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleGetAllWithNicknameReturnsParams {
     #[serde(rename = "role")]
@@ -34,5 +45,16 @@ pub struct AdminUserRoleGetAllWithNicknameReturns(
 impl Schema for AdminUserRoleGetAllWithNicknameReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"role\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"}},\"required\":[\"userId\",\"nickname\",\"role\"]}}")
+    }
+}
+impl Agent for AdminUserRoleGetAllWithNicknameReturns {
+    fn topic() -> &'static str {
+        "admin_userRole_getAllWithNickname"
+    }
+    fn method() -> &'static str {
+        "userRole_getAllWithNickname"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }

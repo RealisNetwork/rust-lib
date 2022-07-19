@@ -5,14 +5,25 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbySaveTutorialProgressParams {
-    #[serde(rename = "dataObject")]
-    pub data_object: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "dataObject")]
+    pub data_object: String,
 }
 impl Schema for CatsLobbySaveTutorialProgressParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"dataObject\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"dataObject\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"dataObject\":{\"type\":\"string\"}},\"required\":[\"userId\",\"dataObject\"]}")
+    }
+}
+impl Agent for CatsLobbySaveTutorialProgressParams {
+    fn topic() -> &'static str {
+        "cats_lobby_saveTutorialProgress"
+    }
+    fn method() -> &'static str {
+        "lobby_saveTutorialProgress"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }
 impl<'de> Deserialize<'de> for CatsLobbySaveTutorialProgressReturns {
@@ -28,5 +39,16 @@ pub struct CatsLobbySaveTutorialProgressReturns;
 impl Schema for CatsLobbySaveTutorialProgressReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbySaveTutorialProgressReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_saveTutorialProgress"
+    }
+    fn method() -> &'static str {
+        "lobby_saveTutorialProgress"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

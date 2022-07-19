@@ -13,10 +13,32 @@ impl Schema for AuthAuthDeviceLogoutDeviceByKeycloakIdParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"keycloakId\":{\"type\":\"string\"}},\"required\":[\"keycloakId\"]}")
     }
 }
+impl Agent for AuthAuthDeviceLogoutDeviceByKeycloakIdParams {
+    fn topic() -> &'static str {
+        "auth_authDevice_logoutDeviceByKeycloakId"
+    }
+    fn method() -> &'static str {
+        "authDevice_logoutDeviceByKeycloakId"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceLogoutDeviceByKeycloakIdReturns(bool);
 impl Schema for AuthAuthDeviceLogoutDeviceByKeycloakIdReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for AuthAuthDeviceLogoutDeviceByKeycloakIdReturns {
+    fn topic() -> &'static str {
+        "auth_authDevice_logoutDeviceByKeycloakId"
+    }
+    fn method() -> &'static str {
+        "authDevice_logoutDeviceByKeycloakId"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

@@ -18,10 +18,32 @@ impl Schema for ListeriaStorageInventoryEndpointsGetEquipmentScrollsCountParams 
         serde_json::json!("{}")
     }
 }
+impl Agent for ListeriaStorageInventoryEndpointsGetEquipmentScrollsCountParams {
+    fn topic() -> &'static str {
+        "listeria-storage_inventoryEndpoints_getEquipmentScrollsCount"
+    }
+    fn method() -> &'static str {
+        "inventoryEndpoints_getEquipmentScrollsCount"
+    }
+    fn agent() -> &'static str {
+        "listeria-storage"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ListeriaStorageInventoryEndpointsGetEquipmentScrollsCountReturns(i32);
 impl Schema for ListeriaStorageInventoryEndpointsGetEquipmentScrollsCountReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}")
+    }
+}
+impl Agent for ListeriaStorageInventoryEndpointsGetEquipmentScrollsCountReturns {
+    fn topic() -> &'static str {
+        "listeria-storage_inventoryEndpoints_getEquipmentScrollsCount"
+    }
+    fn method() -> &'static str {
+        "inventoryEndpoints_getEquipmentScrollsCount"
+    }
+    fn agent() -> &'static str {
+        "listeria-storage"
     }
 }

@@ -18,18 +18,29 @@ impl Schema for MarketPlaceMarketPlaceGetBoughtItemsParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for MarketPlaceMarketPlaceGetBoughtItemsParams {
+    fn topic() -> &'static str {
+        "market-place_marketPlace_getBoughtItems"
+    }
+    fn method() -> &'static str {
+        "marketPlace_getBoughtItems"
+    }
+    fn agent() -> &'static str {
+        "market-place"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetBoughtItemsReturnsParams {
-    #[serde(rename = "productId")]
-    pub product_id: i32,
-    #[serde(rename = "id")]
-    pub id: i32,
     #[serde(rename = "status")]
     pub status: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "createdAt")]
     pub created_at: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "productId")]
+    pub product_id: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetBoughtItemsReturns(
@@ -37,6 +48,17 @@ pub struct MarketPlaceMarketPlaceGetBoughtItemsReturns(
 );
 impl Schema for MarketPlaceMarketPlaceGetBoughtItemsReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"status\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"userId\",\"productId\",\"status\",\"createdAt\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"userId\",\"productId\",\"status\",\"createdAt\"]}}")
+    }
+}
+impl Agent for MarketPlaceMarketPlaceGetBoughtItemsReturns {
+    fn topic() -> &'static str {
+        "market-place_marketPlace_getBoughtItems"
+    }
+    fn method() -> &'static str {
+        "marketPlace_getBoughtItems"
+    }
+    fn agent() -> &'static str {
+        "market-place"
     }
 }

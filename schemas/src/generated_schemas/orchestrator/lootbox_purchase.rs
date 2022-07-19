@@ -13,10 +13,32 @@ impl Schema for OrchestratorLootboxPurchaseParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"}},\"required\":[\"personalType\"]}")
     }
 }
+impl Agent for OrchestratorLootboxPurchaseParams {
+    fn topic() -> &'static str {
+        "orchestrator_lootbox_purchase"
+    }
+    fn method() -> &'static str {
+        "lootbox_purchase"
+    }
+    fn agent() -> &'static str {
+        "orchestrator"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorLootboxPurchaseReturns(bool);
 impl Schema for OrchestratorLootboxPurchaseReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for OrchestratorLootboxPurchaseReturns {
+    fn topic() -> &'static str {
+        "orchestrator_lootbox_purchase"
+    }
+    fn method() -> &'static str {
+        "lootbox_purchase"
+    }
+    fn agent() -> &'static str {
+        "orchestrator"
     }
 }

@@ -13,10 +13,32 @@ impl Schema for UserProfileGetNicknamesByUserIdsParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userIds\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"userIds\"]}")
     }
 }
+impl Agent for UserProfileGetNicknamesByUserIdsParams {
+    fn topic() -> &'static str {
+        "user_profile_getNicknamesByUserIds"
+    }
+    fn method() -> &'static str {
+        "profile_getNicknamesByUserIds"
+    }
+    fn agent() -> &'static str {
+        "user"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetNicknamesByUserIdsReturns(Vec<String>);
 impl Schema for UserProfileGetNicknamesByUserIdsReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"array\",\"items\":{\"type\":\"string\"}}")
+    }
+}
+impl Agent for UserProfileGetNicknamesByUserIdsReturns {
+    fn topic() -> &'static str {
+        "user_profile_getNicknamesByUserIds"
+    }
+    fn method() -> &'static str {
+        "profile_getNicknamesByUserIds"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

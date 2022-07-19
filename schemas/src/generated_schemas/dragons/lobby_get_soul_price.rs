@@ -18,6 +18,17 @@ impl Schema for DragonsLobbyGetSoulPriceParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for DragonsLobbyGetSoulPriceParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_getSoulPrice"
+    }
+    fn method() -> &'static str {
+        "lobby_getSoulPrice"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyGetSoulPriceReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct DragonsLobbyGetSoulPriceReturns;
 impl Schema for DragonsLobbyGetSoulPriceReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyGetSoulPriceReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_getSoulPrice"
+    }
+    fn method() -> &'static str {
+        "lobby_getSoulPrice"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

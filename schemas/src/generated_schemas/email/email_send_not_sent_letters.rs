@@ -18,6 +18,17 @@ impl Schema for EmailEmailSendNotSentLettersParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for EmailEmailSendNotSentLettersParams {
+    fn topic() -> &'static str {
+        "email_email_sendNotSentLetters"
+    }
+    fn method() -> &'static str {
+        "email_sendNotSentLetters"
+    }
+    fn agent() -> &'static str {
+        "email"
+    }
+}
 impl<'de> Deserialize<'de> for EmailEmailSendNotSentLettersReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -31,5 +42,16 @@ pub struct EmailEmailSendNotSentLettersReturns;
 impl Schema for EmailEmailSendNotSentLettersReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for EmailEmailSendNotSentLettersReturns {
+    fn topic() -> &'static str {
+        "email_email_sendNotSentLetters"
+    }
+    fn method() -> &'static str {
+        "email_sendNotSentLetters"
+    }
+    fn agent() -> &'static str {
+        "email"
     }
 }

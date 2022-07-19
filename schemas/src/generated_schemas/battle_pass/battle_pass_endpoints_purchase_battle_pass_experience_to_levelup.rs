@@ -10,10 +10,32 @@ impl Schema for BattlePassBattlePassEndpointsPurchaseBattlePassExperienceToLevel
         serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
     }
 }
+impl Agent for BattlePassBattlePassEndpointsPurchaseBattlePassExperienceToLevelupParams {
+    fn topic() -> &'static str {
+        "battle-pass_battlePassEndpoints_purchaseBattlePassExperienceToLevelup"
+    }
+    fn method() -> &'static str {
+        "battlePassEndpoints_purchaseBattlePassExperienceToLevelup"
+    }
+    fn agent() -> &'static str {
+        "battle-pass"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsPurchaseBattlePassExperienceToLevelupReturns {}
 impl Schema for BattlePassBattlePassEndpointsPurchaseBattlePassExperienceToLevelupReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
+    }
+}
+impl Agent for BattlePassBattlePassEndpointsPurchaseBattlePassExperienceToLevelupReturns {
+    fn topic() -> &'static str {
+        "battle-pass_battlePassEndpoints_purchaseBattlePassExperienceToLevelup"
+    }
+    fn method() -> &'static str {
+        "battlePassEndpoints_purchaseBattlePassExperienceToLevelup"
+    }
+    fn agent() -> &'static str {
+        "battle-pass"
     }
 }

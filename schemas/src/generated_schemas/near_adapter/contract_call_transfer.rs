@@ -5,14 +5,25 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterContractCallTransferParams {
-    #[serde(rename = "recipientUserId")]
-    pub recipient_user_id: String,
     #[serde(rename = "amount")]
     pub amount: String,
+    #[serde(rename = "recipientUserId")]
+    pub recipient_user_id: String,
 }
 impl Schema for NearAdapterContractCallTransferParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"recipientUserId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"recipientUserId\",\"amount\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"recipientUserId\":{\"type\":\"string\"}},\"required\":[\"recipientUserId\",\"amount\"]}")
+    }
+}
+impl Agent for NearAdapterContractCallTransferParams {
+    fn topic() -> &'static str {
+        "near-adapter_contract_callTransfer"
+    }
+    fn method() -> &'static str {
+        "contract_callTransfer"
+    }
+    fn agent() -> &'static str {
+        "near-adapter"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -23,5 +34,16 @@ pub struct NearAdapterContractCallTransferReturns {
 impl Schema for NearAdapterContractCallTransferReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"balance\":{\"type\":\"string\"}},\"required\":[\"balance\"]}")
+    }
+}
+impl Agent for NearAdapterContractCallTransferReturns {
+    fn topic() -> &'static str {
+        "near-adapter_contract_callTransfer"
+    }
+    fn method() -> &'static str {
+        "contract_callTransfer"
+    }
+    fn agent() -> &'static str {
+        "near-adapter"
     }
 }

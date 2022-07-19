@@ -5,14 +5,25 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceLockItemParams {
-    #[serde(rename = "recipient")]
-    pub recipient: String,
     #[serde(rename = "productId")]
     pub product_id: i32,
+    #[serde(rename = "recipient")]
+    pub recipient: String,
 }
 impl Schema for MarketPlaceMarketPlaceLockItemParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"recipient\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"productId\",\"recipient\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"recipient\":{\"type\":\"string\"}},\"required\":[\"productId\",\"recipient\"]}")
+    }
+}
+impl Agent for MarketPlaceMarketPlaceLockItemParams {
+    fn topic() -> &'static str {
+        "market-place_marketPlace_lockItem"
+    }
+    fn method() -> &'static str {
+        "marketPlace_lockItem"
+    }
+    fn agent() -> &'static str {
+        "market-place"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -20,5 +31,16 @@ pub struct MarketPlaceMarketPlaceLockItemReturns(bool);
 impl Schema for MarketPlaceMarketPlaceLockItemReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for MarketPlaceMarketPlaceLockItemReturns {
+    fn topic() -> &'static str {
+        "market-place_marketPlace_lockItem"
+    }
+    fn method() -> &'static str {
+        "marketPlace_lockItem"
+    }
+    fn agent() -> &'static str {
+        "market-place"
     }
 }

@@ -13,10 +13,32 @@ impl Schema for UserProfileUnsetSuspiciousParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for UserProfileUnsetSuspiciousParams {
+    fn topic() -> &'static str {
+        "user_profile_unsetSuspicious"
+    }
+    fn method() -> &'static str {
+        "profile_unsetSuspicious"
+    }
+    fn agent() -> &'static str {
+        "user"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileUnsetSuspiciousReturns(bool);
 impl Schema for UserProfileUnsetSuspiciousReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for UserProfileUnsetSuspiciousReturns {
+    fn topic() -> &'static str {
+        "user_profile_unsetSuspicious"
+    }
+    fn method() -> &'static str {
+        "profile_unsetSuspicious"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

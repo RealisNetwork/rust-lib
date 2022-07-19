@@ -13,6 +13,17 @@ impl Schema for CatsLobbyAdventureMapLevelUpParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for CatsLobbyAdventureMapLevelUpParams {
+    fn topic() -> &'static str {
+        "cats_lobby_adventureMapLevelUp"
+    }
+    fn method() -> &'static str {
+        "lobby_adventureMapLevelUp"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyAdventureMapLevelUpReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct CatsLobbyAdventureMapLevelUpReturns;
 impl Schema for CatsLobbyAdventureMapLevelUpReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyAdventureMapLevelUpReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_adventureMapLevelUp"
+    }
+    fn method() -> &'static str {
+        "lobby_adventureMapLevelUp"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }

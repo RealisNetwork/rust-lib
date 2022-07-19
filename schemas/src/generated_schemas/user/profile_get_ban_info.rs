@@ -13,6 +13,17 @@ impl Schema for UserProfileGetBanInfoParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for UserProfileGetBanInfoParams {
+    fn topic() -> &'static str {
+        "user_profile_getBanInfo"
+    }
+    fn method() -> &'static str {
+        "profile_getBanInfo"
+    }
+    fn agent() -> &'static str {
+        "user"
+    }
+}
 impl<'de> Deserialize<'de> for UserProfileGetBanInfoReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -26,5 +37,16 @@ pub struct UserProfileGetBanInfoReturns;
 impl Schema for UserProfileGetBanInfoReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for UserProfileGetBanInfoReturns {
+    fn topic() -> &'static str {
+        "user_profile_getBanInfo"
+    }
+    fn method() -> &'static str {
+        "profile_getBanInfo"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

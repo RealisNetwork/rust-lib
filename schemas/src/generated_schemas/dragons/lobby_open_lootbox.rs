@@ -15,6 +15,17 @@ impl Schema for DragonsLobbyOpenLootboxParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"lootboxId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"lootboxId\"]}")
     }
 }
+impl Agent for DragonsLobbyOpenLootboxParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_openLootbox"
+    }
+    fn method() -> &'static str {
+        "lobby_openLootbox"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyOpenLootboxReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -28,5 +39,16 @@ pub struct DragonsLobbyOpenLootboxReturns;
 impl Schema for DragonsLobbyOpenLootboxReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyOpenLootboxReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_openLootbox"
+    }
+    fn method() -> &'static str {
+        "lobby_openLootbox"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

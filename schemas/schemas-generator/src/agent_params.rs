@@ -1,4 +1,3 @@
-use crate::schema_declaration::SchemaDeclaration;
 use crate::types::array::Array;
 use crate::types::empty::Empty;
 use crate::types::integer::{AdditionalAttribute, Integer};
@@ -53,18 +52,16 @@ impl AgentParams {
         }
     }
 
-    pub fn get_schema_declaration(&self, name: &str) -> SchemaDeclaration {
+    pub fn get_schema_declaration(&self, name: &str) -> TokenStream {
         match self {
             AgentParams::Array(array) => array.get_schema_declaration(name),
             AgentParams::Object(object) => object.get_schema_declaration(name),
             AgentParams::String(string) => string.get_schema_declaration(name),
             AgentParams::Integer(integer) => integer.get_schema_declaration(name),
             AgentParams::Bool => {
-                let (prefix, declaration) = self.get_declaration(name);
-                SchemaDeclaration {
-                    declaration,
-                    prefix,
-                }
+                let (mut prefix, declaration) = self.get_declaration(name);
+                prefix.extend(declaration);
+                prefix
             }
             AgentParams::Empty => Empty::get_schema_declaration(name),
         }
@@ -82,7 +79,7 @@ impl From<AgentParams> for MaybeTaggedAgentsParams {
     fn from(agent: AgentParams) -> Self {
         match agent {
             AgentParams::Array(array) => Self::Tagged(TaggedParams::Array {
-                items: *array.parameter.to_owned(),
+                items: *array.parameter,
             }),
             AgentParams::Object(object) => Self::Tagged(TaggedParams::Object(object)),
             AgentParams::String(string) => Self::Tagged(TaggedParams::String(string)),

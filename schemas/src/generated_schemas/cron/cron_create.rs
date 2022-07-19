@@ -7,14 +7,25 @@ use crate::generated_schemas::prelude::*;
 pub struct CronCronCreateParams {
     #[serde(rename = "startsAt")]
     pub starts_at: i64,
-    #[serde(rename = "key")]
-    pub key: String,
     #[serde(rename = "howOften")]
     pub how_often: i64,
+    #[serde(rename = "key")]
+    pub key: String,
 }
 impl Schema for CronCronCreateParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"startsAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"key\":{\"type\":\"string\"},\"howOften\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"howOften\",\"startsAt\",\"key\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"startsAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"howOften\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"key\":{\"type\":\"string\"}},\"required\":[\"howOften\",\"startsAt\",\"key\"]}")
+    }
+}
+impl Agent for CronCronCreateParams {
+    fn topic() -> &'static str {
+        "cron_cron_create"
+    }
+    fn method() -> &'static str {
+        "cron_create"
+    }
+    fn agent() -> &'static str {
+        "cron"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -22,5 +33,16 @@ pub struct CronCronCreateReturns(bool);
 impl Schema for CronCronCreateReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for CronCronCreateReturns {
+    fn topic() -> &'static str {
+        "cron_cron_create"
+    }
+    fn method() -> &'static str {
+        "cron_create"
+    }
+    fn agent() -> &'static str {
+        "cron"
     }
 }

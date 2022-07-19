@@ -18,17 +18,39 @@ impl Schema for AdminUserRoleGetMyRoleParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for AdminUserRoleGetMyRoleParams {
+    fn topic() -> &'static str {
+        "admin_userRole_getMyRole"
+    }
+    fn method() -> &'static str {
+        "userRole_getMyRole"
+    }
+    fn agent() -> &'static str {
+        "admin"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleGetMyRoleReturns {
-    #[serde(rename = "name")]
-    pub name: String,
-    #[serde(rename = "methods")]
-    pub methods: Vec<String>,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "methods")]
+    pub methods: Vec<String>,
+    #[serde(rename = "name")]
+    pub name: String,
 }
 impl Schema for AdminUserRoleGetMyRoleReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"methods\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"name\",\"methods\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"methods\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\",\"methods\"]}")
+    }
+}
+impl Agent for AdminUserRoleGetMyRoleReturns {
+    fn topic() -> &'static str {
+        "admin_userRole_getMyRole"
+    }
+    fn method() -> &'static str {
+        "userRole_getMyRole"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }

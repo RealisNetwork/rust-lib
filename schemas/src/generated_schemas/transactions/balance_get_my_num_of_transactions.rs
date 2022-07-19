@@ -18,10 +18,32 @@ impl Schema for TransactionsBalanceGetMyNumOfTransactionsParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for TransactionsBalanceGetMyNumOfTransactionsParams {
+    fn topic() -> &'static str {
+        "transactions_balance_getMyNumOfTransactions"
+    }
+    fn method() -> &'static str {
+        "balance_getMyNumOfTransactions"
+    }
+    fn agent() -> &'static str {
+        "transactions"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetMyNumOfTransactionsReturns(i64);
 impl Schema for TransactionsBalanceGetMyNumOfTransactionsReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}")
+    }
+}
+impl Agent for TransactionsBalanceGetMyNumOfTransactionsReturns {
+    fn topic() -> &'static str {
+        "transactions_balance_getMyNumOfTransactions"
+    }
+    fn method() -> &'static str {
+        "balance_getMyNumOfTransactions"
+    }
+    fn agent() -> &'static str {
+        "transactions"
     }
 }

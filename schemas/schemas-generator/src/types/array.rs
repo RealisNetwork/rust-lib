@@ -1,5 +1,4 @@
 use crate::agent_params::AgentParams;
-use crate::schema_declaration::SchemaDeclaration;
 use quote::__private::{Ident, TokenStream};
 use quote::quote;
 use serde::{Deserialize, Serialize};
@@ -36,11 +35,9 @@ impl Array {
         quote! { Vec<#parameter_type> }
     }
 
-    pub fn get_schema_declaration(&self, name: &str) -> SchemaDeclaration {
-        let (prefix, declaration) = self.get_declaration(name);
-        SchemaDeclaration {
-            declaration,
-            prefix,
-        }
+    pub fn get_schema_declaration(&self, name: &str) -> TokenStream {
+        let (mut prefix, declaration) = self.get_declaration(name);
+        prefix.extend(declaration);
+        prefix
     }
 }

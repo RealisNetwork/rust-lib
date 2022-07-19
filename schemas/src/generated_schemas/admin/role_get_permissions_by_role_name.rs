@@ -13,10 +13,32 @@ impl Schema for AdminRoleGetPermissionsByRoleNameParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"roleName\":{\"type\":\"string\"}},\"required\":[\"roleName\"]}")
     }
 }
+impl Agent for AdminRoleGetPermissionsByRoleNameParams {
+    fn topic() -> &'static str {
+        "admin_role_getPermissionsByRoleName"
+    }
+    fn method() -> &'static str {
+        "role_getPermissionsByRoleName"
+    }
+    fn agent() -> &'static str {
+        "admin"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminRoleGetPermissionsByRoleNameReturns(Vec<String>);
 impl Schema for AdminRoleGetPermissionsByRoleNameReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"array\",\"items\":{\"type\":\"string\"}}")
+    }
+}
+impl Agent for AdminRoleGetPermissionsByRoleNameReturns {
+    fn topic() -> &'static str {
+        "admin_role_getPermissionsByRoleName"
+    }
+    fn method() -> &'static str {
+        "role_getPermissionsByRoleName"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }

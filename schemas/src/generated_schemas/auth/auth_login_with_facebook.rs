@@ -10,6 +10,17 @@ impl Schema for AuthAuthLoginWithFacebookParams {
         serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
     }
 }
+impl Agent for AuthAuthLoginWithFacebookParams {
+    fn topic() -> &'static str {
+        "auth_auth_loginWithFacebook"
+    }
+    fn method() -> &'static str {
+        "auth_loginWithFacebook"
+    }
+    fn agent() -> &'static str {
+        "auth"
+    }
+}
 impl<'de> Deserialize<'de> for AuthAuthLoginWithFacebookReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -23,5 +34,16 @@ pub struct AuthAuthLoginWithFacebookReturns;
 impl Schema for AuthAuthLoginWithFacebookReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for AuthAuthLoginWithFacebookReturns {
+    fn topic() -> &'static str {
+        "auth_auth_loginWithFacebook"
+    }
+    fn method() -> &'static str {
+        "auth_loginWithFacebook"
+    }
+    fn agent() -> &'static str {
+        "auth"
     }
 }

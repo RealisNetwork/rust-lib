@@ -13,6 +13,17 @@ impl Schema for BinanceWalletWalletCreateWalletParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for BinanceWalletWalletCreateWalletParams {
+    fn topic() -> &'static str {
+        "binance-wallet_wallet_createWallet"
+    }
+    fn method() -> &'static str {
+        "wallet_createWallet"
+    }
+    fn agent() -> &'static str {
+        "binance-wallet"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BinanceWalletWalletCreateWalletReturns {
     #[serde(rename = "privateKey")]
@@ -23,5 +34,16 @@ pub struct BinanceWalletWalletCreateWalletReturns {
 impl Schema for BinanceWalletWalletCreateWalletReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"privateKey\":{\"type\":\"string\"},\"address\":{\"type\":\"string\"}},\"required\":[\"privateKey\",\"address\"]}")
+    }
+}
+impl Agent for BinanceWalletWalletCreateWalletReturns {
+    fn topic() -> &'static str {
+        "binance-wallet_wallet_createWallet"
+    }
+    fn method() -> &'static str {
+        "wallet_createWallet"
+    }
+    fn agent() -> &'static str {
+        "binance-wallet"
     }
 }

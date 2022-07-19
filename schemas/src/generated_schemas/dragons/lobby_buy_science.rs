@@ -15,6 +15,17 @@ impl Schema for DragonsLobbyBuyScienceParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"sciencePurchaseKey\":{\"type\":\"string\"}},\"required\":[\"userId\",\"sciencePurchaseKey\"]}")
     }
 }
+impl Agent for DragonsLobbyBuyScienceParams {
+    fn topic() -> &'static str {
+        "dragons_lobby_buyScience"
+    }
+    fn method() -> &'static str {
+        "lobby_buyScience"
+    }
+    fn agent() -> &'static str {
+        "dragons"
+    }
+}
 impl<'de> Deserialize<'de> for DragonsLobbyBuyScienceReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -28,5 +39,16 @@ pub struct DragonsLobbyBuyScienceReturns;
 impl Schema for DragonsLobbyBuyScienceReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for DragonsLobbyBuyScienceReturns {
+    fn topic() -> &'static str {
+        "dragons_lobby_buyScience"
+    }
+    fn method() -> &'static str {
+        "lobby_buyScience"
+    }
+    fn agent() -> &'static str {
+        "dragons"
     }
 }

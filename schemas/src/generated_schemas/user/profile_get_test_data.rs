@@ -18,6 +18,17 @@ impl Schema for UserProfileGetTestDataParams {
         serde_json::json!("{}")
     }
 }
+impl Agent for UserProfileGetTestDataParams {
+    fn topic() -> &'static str {
+        "user_profile_getTestData"
+    }
+    fn method() -> &'static str {
+        "profile_getTestData"
+    }
+    fn agent() -> &'static str {
+        "user"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetTestDataReturns {
     #[serde(rename = "hello")]
@@ -26,5 +37,16 @@ pub struct UserProfileGetTestDataReturns {
 impl Schema for UserProfileGetTestDataReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"hello\":{\"type\":\"string\"}},\"required\":[\"hello\"]}")
+    }
+}
+impl Agent for UserProfileGetTestDataReturns {
+    fn topic() -> &'static str {
+        "user_profile_getTestData"
+    }
+    fn method() -> &'static str {
+        "profile_getTestData"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

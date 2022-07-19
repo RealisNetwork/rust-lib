@@ -12,29 +12,51 @@ pub struct AdminOptionSetParamsExtraDetailsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionSetParams {
-    #[serde(rename = "clientKey")]
-    pub client_key: String,
     #[serde(rename = "description")]
     pub description: Option<String>,
     #[serde(rename = "extraDetails")]
     pub extra_details: Option<AdminOptionSetParamsExtraDetailsParams>,
+    #[serde(rename = "clientKey")]
+    pub client_key: String,
     #[serde(rename = "value")]
     pub value: String,
 }
 impl Schema for AdminOptionSetParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"clientKey\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"}},\"required\":null},\"value\":{\"type\":\"string\"}},\"required\":[\"clientKey\",\"value\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"description\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"}},\"required\":null},\"clientKey\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"required\":[\"clientKey\",\"value\"]}")
+    }
+}
+impl Agent for AdminOptionSetParams {
+    fn topic() -> &'static str {
+        "admin_option_set"
+    }
+    fn method() -> &'static str {
+        "option_set"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionSetReturns {
-    #[serde(rename = "value")]
-    pub value: String,
     #[serde(rename = "key")]
     pub key: String,
+    #[serde(rename = "value")]
+    pub value: String,
 }
 impl Schema for AdminOptionSetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"value\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"}},\"required\":[\"key\",\"value\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"required\":[\"key\",\"value\"]}")
+    }
+}
+impl Agent for AdminOptionSetReturns {
+    fn topic() -> &'static str {
+        "admin_option_set"
+    }
+    fn method() -> &'static str {
+        "option_set"
+    }
+    fn agent() -> &'static str {
+        "admin"
     }
 }

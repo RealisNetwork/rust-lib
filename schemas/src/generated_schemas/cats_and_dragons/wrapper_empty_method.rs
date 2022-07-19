@@ -13,10 +13,32 @@ impl Schema for CatsAndDragonsWrapperEmptyMethodParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"accessToken\":{\"type\":\"string\"}},\"required\":[\"accessToken\"]}")
     }
 }
+impl Agent for CatsAndDragonsWrapperEmptyMethodParams {
+    fn topic() -> &'static str {
+        "catsAndDragons_wrapper_emptyMethod"
+    }
+    fn method() -> &'static str {
+        "wrapper_emptyMethod"
+    }
+    fn agent() -> &'static str {
+        "catsAndDragons"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperEmptyMethodReturns {}
 impl Schema for CatsAndDragonsWrapperEmptyMethodReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
+    }
+}
+impl Agent for CatsAndDragonsWrapperEmptyMethodReturns {
+    fn topic() -> &'static str {
+        "catsAndDragons_wrapper_emptyMethod"
+    }
+    fn method() -> &'static str {
+        "wrapper_emptyMethod"
+    }
+    fn agent() -> &'static str {
+        "catsAndDragons"
     }
 }

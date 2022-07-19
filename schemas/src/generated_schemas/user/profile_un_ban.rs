@@ -13,10 +13,32 @@ impl Schema for UserProfileUnBanParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for UserProfileUnBanParams {
+    fn topic() -> &'static str {
+        "user_profile_unBan"
+    }
+    fn method() -> &'static str {
+        "profile_unBan"
+    }
+    fn agent() -> &'static str {
+        "user"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileUnBanReturns(bool);
 impl Schema for UserProfileUnBanReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for UserProfileUnBanReturns {
+    fn topic() -> &'static str {
+        "user_profile_unBan"
+    }
+    fn method() -> &'static str {
+        "profile_unBan"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

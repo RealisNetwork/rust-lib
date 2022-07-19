@@ -13,6 +13,17 @@ impl Schema for DragocatsStorageInventoryEndpointsUnEquipUnitParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"unitId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"unitId\"]}")
     }
 }
+impl Agent for DragocatsStorageInventoryEndpointsUnEquipUnitParams {
+    fn topic() -> &'static str {
+        "dragocats-storage_inventoryEndpoints_unEquipUnit"
+    }
+    fn method() -> &'static str {
+        "inventoryEndpoints_unEquipUnit"
+    }
+    fn agent() -> &'static str {
+        "dragocats-storage"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsUnEquipUnitReturns {
     #[serde(rename = "unitId")]
@@ -21,5 +32,16 @@ pub struct DragocatsStorageInventoryEndpointsUnEquipUnitReturns {
 impl Schema for DragocatsStorageInventoryEndpointsUnEquipUnitReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"unitId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"unitId\"]}")
+    }
+}
+impl Agent for DragocatsStorageInventoryEndpointsUnEquipUnitReturns {
+    fn topic() -> &'static str {
+        "dragocats-storage_inventoryEndpoints_unEquipUnit"
+    }
+    fn method() -> &'static str {
+        "inventoryEndpoints_unEquipUnit"
+    }
+    fn agent() -> &'static str {
+        "dragocats-storage"
     }
 }

@@ -5,20 +5,31 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetAllProfilesParams {
-    #[serde(rename = "page")]
-    pub page: i64,
     #[serde(rename = "perPage")]
     pub per_page: i64,
+    #[serde(rename = "page")]
+    pub page: i64,
 }
 impl Schema for UserProfileGetAllProfilesParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"page\",\"perPage\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"page\",\"perPage\"]}")
+    }
+}
+impl Agent for UserProfileGetAllProfilesParams {
+    fn topic() -> &'static str {
+        "user_profile_getAllProfiles"
+    }
+    fn method() -> &'static str {
+        "profile_getAllProfiles"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetAllProfilesReturnsParamsBanParams {
-    #[serde(rename = "reason")]
-    pub reason: String,
+    #[serde(rename = "whoBanned")]
+    pub who_banned: String,
     #[serde(rename = "createdAt")]
     pub created_at: String,
     #[serde(rename = "updatedAt")]
@@ -27,44 +38,55 @@ pub struct UserProfileGetAllProfilesReturnsParamsBanParams {
     pub banned_until: String,
     #[serde(rename = "id")]
     pub id: i64,
-    #[serde(rename = "whoBanned")]
-    pub who_banned: String,
+    #[serde(rename = "reason")]
+    pub reason: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetAllProfilesReturnsParams {
-    #[serde(rename = "isDeleted")]
-    pub is_deleted: bool,
-    #[serde(rename = "isNicknameChanged")]
-    pub is_nickname_changed: bool,
+    #[serde(rename = "registeredAt")]
+    pub registered_at: String,
+    #[serde(rename = "isConfirmed")]
+    pub is_confirmed: bool,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "nickname")]
     pub nickname: String,
-    #[serde(rename = "isSubscribedToMailing")]
-    pub is_subscribed_to_mailing: bool,
     #[serde(rename = "id")]
     pub id: i64,
-    #[serde(rename = "suspicious")]
-    pub suspicious: bool,
     #[serde(rename = "verified")]
     pub verified: bool,
-    #[serde(rename = "notice")]
-    pub notice: String,
-    #[serde(rename = "isConfirmed")]
-    pub is_confirmed: bool,
-    #[serde(rename = "isBanned")]
-    pub is_banned: bool,
-    #[serde(rename = "ban")]
-    pub ban: UserProfileGetAllProfilesReturnsParamsBanParams,
+    #[serde(rename = "suspicious")]
+    pub suspicious: bool,
     #[serde(rename = "email")]
     pub email: String,
-    #[serde(rename = "registeredAt")]
-    pub registered_at: String,
+    #[serde(rename = "isBanned")]
+    pub is_banned: bool,
+    #[serde(rename = "notice")]
+    pub notice: String,
+    #[serde(rename = "isNicknameChanged")]
+    pub is_nickname_changed: bool,
+    #[serde(rename = "isSubscribedToMailing")]
+    pub is_subscribed_to_mailing: bool,
+    #[serde(rename = "isDeleted")]
+    pub is_deleted: bool,
+    #[serde(rename = "ban")]
+    pub ban: UserProfileGetAllProfilesReturnsParamsBanParams,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetAllProfilesReturns(Vec<UserProfileGetAllProfilesReturnsParams>);
 impl Schema for UserProfileGetAllProfilesReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"isDeleted\":{\"type\":\"boolean\"},\"isNicknameChanged\":{\"type\":\"boolean\"},\"userId\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"isSubscribedToMailing\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"suspicious\":{\"type\":\"boolean\"},\"verified\":{\"type\":\"boolean\"},\"notice\":{\"type\":\"string\"},\"isConfirmed\":{\"type\":\"boolean\"},\"isBanned\":{\"type\":\"boolean\"},\"ban\":{\"type\":\"object\",\"properties\":{\"reason\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"bannedUntil\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"whoBanned\":{\"type\":\"string\"}},\"required\":[\"id\",\"reason\",\"whoBanned\",\"createdAt\",\"updatedAt\",\"bannedUntil\"]},\"email\":{\"type\":\"string\"},\"registeredAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"nickname\",\"email\",\"verified\",\"isNicknameChanged\",\"isSubscribedToMailing\",\"suspicious\",\"isConfirmed\",\"notice\",\"isBanned\",\"isDeleted\",\"ban\",\"registeredAt\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"registeredAt\":{\"type\":\"string\"},\"isConfirmed\":{\"type\":\"boolean\"},\"userId\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"verified\":{\"type\":\"boolean\"},\"suspicious\":{\"type\":\"boolean\"},\"email\":{\"type\":\"string\"},\"isBanned\":{\"type\":\"boolean\"},\"notice\":{\"type\":\"string\"},\"isNicknameChanged\":{\"type\":\"boolean\"},\"isSubscribedToMailing\":{\"type\":\"boolean\"},\"isDeleted\":{\"type\":\"boolean\"},\"ban\":{\"type\":\"object\",\"properties\":{\"whoBanned\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"bannedUntil\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"reason\":{\"type\":\"string\"}},\"required\":[\"id\",\"reason\",\"whoBanned\",\"createdAt\",\"updatedAt\",\"bannedUntil\"]}},\"required\":[\"id\",\"userId\",\"nickname\",\"email\",\"verified\",\"isNicknameChanged\",\"isSubscribedToMailing\",\"suspicious\",\"isConfirmed\",\"notice\",\"isBanned\",\"isDeleted\",\"ban\",\"registeredAt\"]}}")
+    }
+}
+impl Agent for UserProfileGetAllProfilesReturns {
+    fn topic() -> &'static str {
+        "user_profile_getAllProfiles"
+    }
+    fn method() -> &'static str {
+        "profile_getAllProfiles"
+    }
+    fn agent() -> &'static str {
+        "user"
     }
 }

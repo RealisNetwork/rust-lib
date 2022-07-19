@@ -13,10 +13,32 @@ impl Schema for TransactionsRegistryProductGetPersonalTypesByUserParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
     }
 }
+impl Agent for TransactionsRegistryProductGetPersonalTypesByUserParams {
+    fn topic() -> &'static str {
+        "transactions_registryProduct_getPersonalTypesByUser"
+    }
+    fn method() -> &'static str {
+        "registryProduct_getPersonalTypesByUser"
+    }
+    fn agent() -> &'static str {
+        "transactions"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsRegistryProductGetPersonalTypesByUserReturns(Vec<String>);
 impl Schema for TransactionsRegistryProductGetPersonalTypesByUserReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"array\",\"items\":{\"type\":\"string\"}}")
+    }
+}
+impl Agent for TransactionsRegistryProductGetPersonalTypesByUserReturns {
+    fn topic() -> &'static str {
+        "transactions_registryProduct_getPersonalTypesByUser"
+    }
+    fn method() -> &'static str {
+        "registryProduct_getPersonalTypesByUser"
+    }
+    fn agent() -> &'static str {
+        "transactions"
     }
 }

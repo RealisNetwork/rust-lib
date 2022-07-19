@@ -15,10 +15,32 @@ impl Schema for MarketPlaceMarketPlaceCancelSaleParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"productId\",\"userId\"]}")
     }
 }
+impl Agent for MarketPlaceMarketPlaceCancelSaleParams {
+    fn topic() -> &'static str {
+        "market-place_marketPlace_cancelSale"
+    }
+    fn method() -> &'static str {
+        "marketPlace_cancelSale"
+    }
+    fn agent() -> &'static str {
+        "market-place"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceCancelSaleReturns(bool);
 impl Schema for MarketPlaceMarketPlaceCancelSaleReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for MarketPlaceMarketPlaceCancelSaleReturns {
+    fn topic() -> &'static str {
+        "market-place_marketPlace_cancelSale"
+    }
+    fn method() -> &'static str {
+        "marketPlace_cancelSale"
+    }
+    fn agent() -> &'static str {
+        "market-place"
     }
 }

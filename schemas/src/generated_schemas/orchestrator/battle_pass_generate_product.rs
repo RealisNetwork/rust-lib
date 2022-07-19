@@ -15,10 +15,32 @@ impl Schema for OrchestratorBattlePassGenerateProductParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"personalTypes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"userId\",\"personalTypes\"]}")
     }
 }
+impl Agent for OrchestratorBattlePassGenerateProductParams {
+    fn topic() -> &'static str {
+        "orchestrator_battlePass_generateProduct"
+    }
+    fn method() -> &'static str {
+        "battlePass_generateProduct"
+    }
+    fn agent() -> &'static str {
+        "orchestrator"
+    }
+}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorBattlePassGenerateProductReturns(bool);
 impl Schema for OrchestratorBattlePassGenerateProductReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
+    }
+}
+impl Agent for OrchestratorBattlePassGenerateProductReturns {
+    fn topic() -> &'static str {
+        "orchestrator_battlePass_generateProduct"
+    }
+    fn method() -> &'static str {
+        "battlePass_generateProduct"
+    }
+    fn agent() -> &'static str {
+        "orchestrator"
     }
 }

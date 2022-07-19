@@ -15,6 +15,17 @@ impl Schema for CatsLobbyBuyUsualLootboxParams {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"lootboxId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"lootboxId\"]}")
     }
 }
+impl Agent for CatsLobbyBuyUsualLootboxParams {
+    fn topic() -> &'static str {
+        "cats_lobby_buyUsualLootbox"
+    }
+    fn method() -> &'static str {
+        "lobby_buyUsualLootbox"
+    }
+    fn agent() -> &'static str {
+        "cats"
+    }
+}
 impl<'de> Deserialize<'de> for CatsLobbyBuyUsualLootboxReturns {
     fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
     where
@@ -28,5 +39,16 @@ pub struct CatsLobbyBuyUsualLootboxReturns;
 impl Schema for CatsLobbyBuyUsualLootboxReturns {
     fn schema() -> Value {
         serde_json::json!("{}")
+    }
+}
+impl Agent for CatsLobbyBuyUsualLootboxReturns {
+    fn topic() -> &'static str {
+        "cats_lobby_buyUsualLootbox"
+    }
+    fn method() -> &'static str {
+        "lobby_buyUsualLootbox"
+    }
+    fn agent() -> &'static str {
+        "cats"
     }
 }
