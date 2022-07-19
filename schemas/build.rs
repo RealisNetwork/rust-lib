@@ -15,6 +15,7 @@ use syn::__private::Span;
 const PATH: &str = "src/generated_schemas/";
 const MOD_RS: &str = "mod.rs";
 
+#[cfg(feature = "rebuild")]
 fn main() {
     let git_loader = GitLoader::load(None).expect("Fail to load env");
 
@@ -109,3 +110,6 @@ fn main() {
         std::fs::write(out, content).unwrap();
     }
 }
+
+#[cfg(not(feature = "rebuild"))]
+fn main() {}
