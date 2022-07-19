@@ -17,7 +17,8 @@ pub struct Request<P> {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub auth: Option<Auth>,
     #[serde(rename = "authInfo")]
-    pub auth_info: AuthInfo,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub auth_info: Option<AuthInfo>,
 }
 
 /// M
@@ -42,7 +43,8 @@ pub enum ResponseMessage<Y, D: Debug> {
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct AuthInfo {
     #[serde(rename = "userId")]
-    pub user_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub user_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub address: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]

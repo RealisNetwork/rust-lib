@@ -6,6 +6,7 @@ use async_trait::async_trait;
 use error_registry::custom_errors::{CustomErrorType, Nats as CustomNats};
 use error_registry::generated_errors::{GeneratedError, Nats as GeneratedNats};
 use error_registry::{BaseError, ErrorType};
+use healthchecker::Alivable;
 use serde_json::Value;
 use stan::{Client, SubscriptionConfig, SubscriptionStart};
 use std::time::Duration;
@@ -36,6 +37,24 @@ impl StanTransport {
             client_id: client_id.to_owned(),
             client: stan,
         })
+    }
+}
+
+#[async_trait]
+impl Alivable for StanTransport {
+    #[allow(unused_must_use)]
+    async fn is_alive(&self) -> bool {
+        // TODO: fixme, try use method like ping for this, current solution works, but it is unappropriated
+        let res = self.subscribe_not_durable("Healthchecker_ping").await;
+        if let Ok(subscription) = res {
+            subscription.unsubscribe().await.is_ok()
+        } else {
+            false
+        }
+    }
+
+    async fn info(&self) -> &'static str {
+        "StanTransport"
     }
 }
 

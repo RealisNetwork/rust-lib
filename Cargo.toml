@@ -5,4 +5,7 @@ members = [
     "schemas",
     "schemas/schemas-generator",
     "transport",
+    "healthchecker",
+    "macros",
+    "config"
 ]

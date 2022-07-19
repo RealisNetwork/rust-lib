@@ -1,8 +1,10 @@
+pub mod jet_stream;
 pub mod stan;
 
 use crate::common::TransportResult;
 use crate::response::VResponse;
 use crate::subscription::VSubscription;
+use crate::transport::jet_stream::JetTransport;
 use crate::transport::stan::StanTransport;
 use crate::Response;
 use crate::VReceivedMessage;
@@ -11,6 +13,7 @@ use enum_dispatch::enum_dispatch;
 use error_registry::generated_errors::{Common, GeneratedError};
 use error_registry::BaseError;
 use serde::Serialize;
+use healthchecker::Alivable;
 use std::time::Duration;
 
 #[async_trait]
@@ -51,6 +54,25 @@ pub trait Transport {
 }
 
 #[enum_dispatch(Transport)]
+#[enum_dispatch(Alivable)]
 pub enum VTransport {
     Stan(StanTransport),
+    Jet(JetTransport),
+}
+
+#[async_trait]
+impl Alivable for VTransport {
+    async fn is_alive(&self) -> bool {
+        match self {
+            VTransport::Stan(stan) => stan.is_alive().await,
+            VTransport::Jet(jet) => jet.is_alive().await,
+        }
+    }
+
+    async fn info(&self) -> &'static str {
+        match self {
+            VTransport::Stan(stan) => stan.info().await,
+            VTransport::Jet(jet) => jet.info().await,
+        }
+    }
 }

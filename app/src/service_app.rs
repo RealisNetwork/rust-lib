@@ -1,4 +1,4 @@
-use crate::app::Runnable;
+use crate::app::{AsyncTryFrom, GetHealthchecker, GetTransport, Runnable};
 use crate::service::Service;
 use async_trait::async_trait;
 use error_registry::generated_errors::{Common, GeneratedError};
@@ -9,7 +9,7 @@ use serde_json::Value;
 use std::sync::Arc;
 use transport::{ReceivedMessage, Subscription, Transport, VReceivedMessage, VSubscription};
 
-// TODO: ServiceAppBuilder|ServiceAppContainer?
+//TODO: ServiceAppBuilder|ServiceAppContainer?
 pub struct ServiceApp<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> {
     name: String,
     client_id: String,
@@ -28,9 +28,30 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> Runnable
         let health_checker = self.health_checker.clone();
         if let Err(error) = self.run_internal().await {
             log::error!("{:?}", error);
-            health_checker.make_sick();
+            health_checker.make_sick::<String>(None);
         }
         let _result = self.after_run().await;
+    }
+}
+
+#[async_trait]
+impl<T, P, G, ServiceInner, N> AsyncTryFrom<Arc<T>> for ServiceApp<P, G, ServiceInner, N>
+where
+    T: 'static + Clone + Send + Sync + GetTransport<N> + GetHealthchecker,
+    P: Agent,
+    G: Schema,
+    ServiceInner: 'static + From<Arc<T>> + Service<P, G>,
+    N: 'static + Transport + Sync + Send,
+{
+    type Error = BaseError<Value>;
+
+    async fn async_try_from(dependency_container: Arc<T>) -> Result<Self, BaseError<Value>> {
+        ServiceApp::new(
+            ServiceInner::from(dependency_container.clone()),
+            dependency_container.get_transport(),
+            dependency_container.get_healthchecker(),
+        )
+        .await
     }
 }
 
