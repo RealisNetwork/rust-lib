@@ -49,5 +49,5 @@ impl EnvLoaded for String {
 }
 
 pub fn default_logger_level() -> String {
-    log::LevelFilter::Trace.to_string()
+    log::LevelFilter::Info.to_string()
 }
