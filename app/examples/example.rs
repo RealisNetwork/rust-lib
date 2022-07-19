@@ -1,7 +1,9 @@
-use app::app::{App, Runnable};
+use app::app::{App, LevelFilter, Runnable};
 use app::{Service, ServiceApp};
 use async_trait::async_trait;
+use error_registry::generated_errors::{Critical, GeneratedError};
 use error_registry::BaseError;
+
 use healthchecker::Alivable;
 use healthchecker::HealthcheckerServer;
 use log::LevelFilter;
@@ -11,15 +13,15 @@ use schemas::{Agent, AuthInfo, Request, Schema};
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::sync::Arc;
-use tokio::sync::Mutex;
 use transport::{Response, VResponse};
 use transport::{StanTransport, Transport, VTransport};
 
+const NAME: &str = "example-0";
 const TOPIC_1: &str = "test-topic";
-const TOPIC_2: &str = "test-topic-2";
 const CLIENT_ID_1: &str = "test-client-1";
 const CLIENT_ID_2: &str = "test-client-2";
 const CLUSTER_ID: &str = "test-cluster";
+
 const NATS_URL: &str = "localhost:4222";
 
 #[tokio::main]
@@ -61,12 +63,37 @@ async fn main() {
         .await;
 }
 
+// --- RequestParamsSchema ---
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
-struct RequestSchema {
+struct RequestParamsSchema {
     msg: String,
 }
 
-impl Schema for RequestSchema {}
+impl Schema for RequestParamsSchema {
+    fn schema() -> Value {
+        serde_json::json!({
+            "msg": {
+                "type": "string"
+            }
+        })
+    }
+}
+
+impl Agent for RequestParamsSchema {
+    fn topic() -> &'static str {
+        TOPIC_1
+    }
+
+    fn method() -> &'static str {
+        "topic"
+    }
+    fn agent() -> &'static str {
+        "test"
+    }
+}
+
+// --- ResponseScheama ---
 
 impl Agent for RequestSchema {
     fn topic() -> &'static str {
@@ -87,7 +114,15 @@ struct ResponseSchema {
     msg: String,
 }
 
-impl Schema for ResponseSchema {}
+impl Schema for ResponseSchema {
+    fn schema() -> Value {
+        serde_json::json!({
+            "msg": {
+                "type": "string"
+            }
+        })
+    }
+}
 
 #[derive(Alivable, Clone)]
 struct ExampleService {
@@ -102,12 +137,23 @@ impl Service<RequestSchema, ResponseSchema> for ExampleService {
         &mut self,
         request: Request<RequestSchema>,
     ) -> Result<ResponseSchema, BaseError<Value>> {
-        println!("{:#?}", request);
+        self.counter += 1;
+
+        if self.counter == MESSAGES_NUMBER {
+            return Err(BaseError::new(
+                "".to_owned(),
+                GeneratedError::Critical(Critical::Db).into(),
+                None,
+            ));
+        }
+
         Ok(ResponseSchema {
             msg: "".to_string(),
         })
     }
 }
+
+// --- Runnable App ---
 
 pub struct Sender {
     pub transport: VTransport,
@@ -135,10 +181,9 @@ impl Runnable for Sender {
 
             let response = VResponse::Response(Response {
                 topic_res: TOPIC_1.to_owned(),
-                response: serde_json::to_vec(&schema).unwrap(),
+                response: serde_json::to_vec(&request).unwrap(),
             });
-            self.transport.publish(response).await;
-            println!("publish");
+            let _result = self.transport.publish(response).await;
 
             tokio::time::sleep(tokio::time::Duration::from_secs(1)).await;
         }

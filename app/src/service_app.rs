@@ -4,14 +4,10 @@ use async_trait::async_trait;
 use error_registry::generated_errors::{Common, GeneratedError};
 use error_registry::BaseError;
 use healthchecker::HealthChecker;
-use log::debug;
 use schemas::{Agent, Response, ResponseMessage, ResponseResult, Schema};
 use serde_json::Value;
 use std::sync::Arc;
-use transport::Response as TransportResponse;
-use transport::{
-    ReceivedMessage, Subscription, Transport, VReceivedMessage, VResponse, VSubscription,
-};
+use transport::{ReceivedMessage, Subscription, Transport, VReceivedMessage, VSubscription};
 
 //TODO: ServiceAppBuilder|ServiceAppContainer?
 pub struct ServiceApp<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> {
@@ -32,6 +28,7 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> Runnable
             log::error!("{:?}", error);
             health_checker.make_sick::<String>(None);
         }
+        let _result = self.after_run().await;
     }
 }
 
@@ -74,26 +71,85 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
             })
     }
 
+    async fn before_run(&mut self) -> Result<(), BaseError<Value>> {
+        // Logs
+        log::info!(
+            "Run service: \nagent: \t{:?},\nmethod:\t{:?},\ntopic: \t{:?},",
+            P::agent(),
+            P::method(),
+            P::topic(),
+        );
+        // Notification gateway
+        self.run_notification().await?;
+
+        Ok(())
+    }
+
+    async fn after_run(&mut self) -> Result<(), BaseError<Value>> {
+        // Logs
+        log::warn!(
+            "Stop service: \nagent: \t{:?},\nmethod:\t{:?},\ntopic: \t{:?},",
+            P::agent(),
+            P::method(),
+            P::topic(),
+        );
+
+        Ok(())
+    }
+
+    /// Send notification to gateway in JSON format:
+    /// {
+    ///   "name": "string",
+    ///   "client_id": "string",
+    ///   "schemas": {
+    ///     "topic": "string"
+    ///     "paramsSchema": {}
+    ///     "responseSchema": {}
+    ///   }
+    /// }
+    async fn run_notification(&mut self) -> Result<(), BaseError<Value>> {
+        const TOPIC: &str = "pasha_help_plz";
+        let notification = serde_json::json!({
+            "schemas": {
+                "topic": P::topic(),
+                "paramsSchema": P::schema(),
+                "responseSchema": G::schema(),
+            }
+        });
+
+        self.transport
+            .raw_publish(TOPIC.to_owned(), &notification)
+            .await?;
+
+        Ok(())
+    }
+
     async fn run_internal(&mut self) -> Result<(), BaseError<Value>> {
+        self.before_run().await?;
+        let topic = P::topic();
+
         loop {
             let message = self.subscription.next().await?;
             match message.deserialize() {
-                Ok(request) => match self.service.process(request).await {
-                    Ok(response_schema) => {
-                        debug!("got response schema{:#?}", response_schema);
-                        self.on_process_success(message, response_schema).await?
+                Ok(request) => {
+                    log::info!("By topic: {:?} | Got request: {:#?}", topic, request);
+                    match self.service.process(request).await {
+                        Ok(response_schema) => {
+                            log::debug!("got response schema{:#?}", response_schema);
+                            self.on_process_success(message, response_schema).await?
+                        }
+                        Err(error) if error.is_critical() => {
+                            log::debug!("Got response error critical: {:#?}", error);
+                            return Err(error);
+                        }
+                        Err(error) => {
+                            log::debug!("Got response left: {:#?}", error);
+                            self.on_process_error(message, error).await?
+                        }
                     }
-                    Err(error) if error.is_critical() => {
-                        log::debug!("Got response error critical: {:#?}", error);
-                        return Err(error);
-                    }
-                    Err(error) => {
-                        log::debug!("Got response left: {:#?}", error);
-                        self.on_process_error(message, error).await?
-                    }
-                },
+                }
                 Err(error) => {
-                    debug!("got error{:#?}", error);
+                    log::debug!("got error{:#?}", error);
                     self.on_process_error(message, error.clone()).await?;
                     return Err(error);
                 }
@@ -144,24 +200,10 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
             topic
         );
 
-        let payload = serde_json::to_vec(&response).map_err(|error| {
-            BaseError::new(
-                format!("{:?}", error),
-                GeneratedError::Common(Common::InternalServerError).into(),
-                serde_json::to_value(&raw_request).ok(),
-            )
-        })?;
+        self.transport.raw_publish(topic.clone(), &response).await?;
 
-        let publish_result = self
-            .transport
-            .publish(VResponse::Response(TransportResponse {
-                topic_res: topic,
-                response: payload,
-            }))
-            .await;
-        log::debug!("publish result {:#?} : ", publish_result);
-
-        publish_result
+        log::info!("By topic: {:?} | Publish {:#?}", topic, response);
+        Ok(())
     }
 
     /// Try get topic to response from raw request
