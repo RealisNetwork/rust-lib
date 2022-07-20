@@ -3,6 +3,7 @@ pub mod service;
 pub mod service_app;
 
 pub mod broadcast_app;
+pub mod prelude;
 pub mod service_runner;
 
 pub use error_registry;
