@@ -3,7 +3,6 @@ members = [
     "app",
     "error_registry",
     "schemas",
-    "schemas/schemas-generator",
     "transport",
     "healthchecker",
     "macros",
