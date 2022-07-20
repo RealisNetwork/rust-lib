@@ -107,8 +107,8 @@ impl HealthcheckerServer {
     }
 
     /// Returns lightweight structure, witch can change inner state of healthchecker
-    pub fn get_health_cheker(&self) -> HealthChecker {
-        HealthChecker {
+    pub fn get_health_cheker(&self) -> Healthchecker {
+        Healthchecker {
             health: self.health.clone(),
         }
     }
@@ -136,11 +136,11 @@ impl HealthcheckerServer {
 
 /// Lightweight simple structure for setting up the state of healthchecker
 #[derive(Clone)]
-pub struct HealthChecker {
+pub struct Healthchecker {
     pub health: Arc<AtomicBool>,
 }
 
-impl HealthChecker {
+impl Healthchecker {
     /// Toggle state of healthchecker
     pub fn make_sick<D: Debug>(&self, log: Option<D>) {
         log::error!("Made sick on: {:#?}", log);
