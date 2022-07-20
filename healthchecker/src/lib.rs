@@ -107,7 +107,7 @@ impl HealthcheckerServer {
     }
 
     /// Returns lightweight structure, witch can change inner state of healthchecker
-    pub fn get_health_cheker(&self) -> Healthchecker {
+    pub fn get_health_checker(&self) -> Healthchecker {
         Healthchecker {
             health: self.health.clone(),
         }

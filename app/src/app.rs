@@ -81,7 +81,7 @@ where
             self.dependency_container.get_transport(),
             self.dependency_container
                 .get_health_checker_server()
-                .get_health_cheker(),
+                .get_health_checker(),
         )
         .await?;
         Ok(self.push(service_app))

@@ -2,7 +2,7 @@ use crate::app::Runnable;
 use async_trait::async_trait;
 use error_registry::generated_errors::{Common, GeneratedError};
 use error_registry::BaseError;
-use healthchecker::HealthChecker;
+use healthchecker::Healthchecker;
 use schemas::{Agent, Request, Response, ResponseMessage, ResponseResult, Schema};
 use serde_json::Value;
 use std::sync::Arc;
@@ -22,7 +22,7 @@ pub struct ServiceApp<Params: Agent, Returns: Schema, S: Service<Params, Returns
     service: S,
     transport: Arc<T>,
     subscription: VSubscription,
-    health_checker: HealthChecker,
+    health_checker: Healthchecker,
     _marker: std::marker::PhantomData<(Params, Returns)>,
 }
 
@@ -45,7 +45,7 @@ impl<Params: Agent, Returns: Schema, S: Service<Params, Returns>, T: Transport>
     pub async fn new(
         service: S,
         transport: Arc<T>,
-        health_checker: HealthChecker,
+        health_checker: Healthchecker,
     ) -> Result<Self, BaseError<Value>> {
         transport
             .subscribe(service.topic_to_subscribe())

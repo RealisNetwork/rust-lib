@@ -1,7 +1,7 @@
 use crate::app::Runnable;
 use async_trait::async_trait;
 use error_registry::BaseError;
-use healthchecker::HealthChecker;
+use healthchecker::Healthchecker;
 use schemas::{Agent, Schema};
 use serde_json::Value;
 use std::sync::Arc;
@@ -25,7 +25,7 @@ pub struct BroadcastApp<
 > {
     service: S,
     subscription: VSubscription,
-    health_checker: HealthChecker,
+    health_checker: Healthchecker,
     _marker: std::marker::PhantomData<(Params, Returns, N)>,
 }
 
@@ -56,7 +56,7 @@ impl<
     pub async fn new(
         service: S,
         transport: Arc<N>,
-        health_checker: HealthChecker,
+        health_checker: Healthchecker,
     ) -> Result<Self, BaseError<Value>> {
         transport
             .subscribe(service.topic_to_subscribe())
