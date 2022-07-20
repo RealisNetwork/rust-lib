@@ -73,9 +73,19 @@ impl HealthcheckerServer {
         Ok(health_checker)
     }
 
-    pub async fn run(self) {
+    pub fn run(self) {
         let health_checker_replica = self.clone();
-        tokio::spawn(async move { health_checker_replica.http_init(self.host.clone()).await });
+        tokio::spawn(async move {
+            let addr = self.host.parse().unwrap();
+
+            let server = Server::bind(&addr).serve(HealthcheckerHTTPBuilder {
+                healthchecker: health_checker_replica,
+            });
+
+            log::info!("Run healthchecker on http://{}", addr);
+
+            server.await.unwrap();
+        });
     }
 
     /// Add any struct that implements Alivable to vector of checkable services (all the services
@@ -89,19 +99,6 @@ impl HealthcheckerServer {
     pub async fn add<T: 'static + Alivable>(self, s: Wrapper<T>) -> Self {
         self.services.lock().await.push(Box::new(s));
         self
-    }
-
-    /// Starts the healthchecker web service
-    async fn http_init(self, host: String) {
-        let addr = host.parse().unwrap();
-
-        let server = Server::bind(&addr).serve(HealthcheckerHTTPBuilder {
-            healthchecker: self,
-        });
-
-        log::info!("Run healthchecker on http://{}", addr);
-
-        server.await.unwrap();
     }
 
     /// Returns lightweight structure, witch can change inner state of healthchecker
