@@ -3,7 +3,6 @@ use error_registry::BaseError;
 use futures_util::future;
 use hyper::service::Service;
 use hyper::{http, Body, Request, Response, Server};
-use log::error;
 use std::fmt::Debug;
 use std::future::Future;
 use std::pin::Pin;
@@ -97,7 +96,7 @@ impl HealthcheckerServer {
             healthchecker: self,
         });
 
-        println!("Listening on http://{}", addr);
+        log::info!("Run healthchecker on http://{}", addr);
 
         server.await.unwrap();
     }
@@ -114,7 +113,7 @@ impl HealthcheckerServer {
         if self.health.load(Ordering::Acquire) {
             for service in self.services.lock().await.iter() {
                 if !service.is_alive().await {
-                    error!("Healthchecker fallen by reason: {}", service.info().await);
+                    log::error!("Healthchecker fallen by reason: {}", service.info().await);
                     return false;
                 }
             }
@@ -139,7 +138,7 @@ pub struct HealthChecker {
 impl HealthChecker {
     /// Toggle state of healthchecker
     pub fn make_sick<D: Debug>(&self, log: Option<D>) {
-        error!("Made sick on: {:#?}", log);
+        log::error!("Made sick on: {:#?}", log);
         self.health.store(false, Ordering::SeqCst);
     }
 }
