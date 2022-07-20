@@ -5,6 +5,7 @@ use hyper::service::Service;
 use hyper::{http, Body, Request, Response, Server};
 use std::fmt::Debug;
 use std::future::Future;
+use std::net::SocketAddr;
 use std::pin::Pin;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
@@ -74,17 +75,21 @@ impl HealthcheckerServer {
     }
 
     pub fn run(self) {
-        let health_checker_replica = self.clone();
         tokio::spawn(async move {
-            let addr = self.host.parse().unwrap();
-
-            let server = Server::bind(&addr).serve(HealthcheckerHTTPBuilder {
-                healthchecker: health_checker_replica,
-            });
-
-            log::info!("Run healthchecker on http://{}", addr);
-
-            server.await.unwrap();
+            match self.host.parse::<SocketAddr>() {
+                Ok(addr) => {
+                    match Server::bind(&addr)
+                        .serve(HealthcheckerHTTPBuilder {
+                            healthchecker: self.clone(),
+                        })
+                        .await
+                    {
+                        Ok(_) => log::info!("Run healthchecker on http://{}", addr),
+                        Err(e) => log::error!("Fail to run http server on `{}` `{:?}`", addr, e),
+                    }
+                }
+                Err(e) => log::error!("Fail to parse addr `{:?}`", e),
+            }
         });
     }
 
