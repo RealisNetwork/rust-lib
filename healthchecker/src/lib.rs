@@ -74,7 +74,7 @@ impl HealthcheckerServer {
         Ok(health_checker)
     }
 
-    pub fn run(self) {
+    pub async fn run(self) {
         tokio::spawn(async move {
             match self.host.parse::<SocketAddr>() {
                 Ok(addr) => {

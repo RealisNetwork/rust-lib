@@ -1,7 +1,7 @@
 use crate::{Service, ServiceApp};
 use async_trait::async_trait;
 use error_registry::BaseError;
-use healthchecker::HealthChecker;
+use healthchecker::HealthcheckerServer;
 use schemas::{Agent, Schema};
 use serde_json::Value;
 use std::sync::Arc;
@@ -16,7 +16,7 @@ pub trait Runnable: Send + Sync {
 pub trait DependencyContainerParameter<T: Transport>: Clone + Sync + Send {
     fn get_transport(&self) -> Arc<T>;
 
-    fn get_health_checker(&self) -> HealthChecker;
+    fn get_health_checker_server(&self) -> HealthcheckerServer;
 }
 
 pub struct App<Dependency: DependencyContainerParameter<T>, T: Transport> {
@@ -79,7 +79,9 @@ where
         let service_app = ServiceApp::new(
             service,
             self.dependency_container.get_transport(),
-            self.dependency_container.get_health_checker(),
+            self.dependency_container
+                .get_health_checker_server()
+                .get_health_cheker(),
         )
         .await?;
         Ok(self.push(service_app))
@@ -89,6 +91,10 @@ where
 #[async_trait]
 impl<Dependency: DependencyContainerParameter<T>, T: Transport> Runnable for App<Dependency, T> {
     async fn run(&mut self) {
+        self.dependency_container
+            .get_health_checker_server()
+            .run()
+            .await;
         let services = self.services.drain(..);
         futures::future::join_all(services.into_iter().map(|service| {
             tokio::spawn(async move {
