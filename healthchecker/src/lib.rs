@@ -55,24 +55,27 @@ pub struct HealthcheckerServer {
     /// true - all okay
     /// false - something goes wrong, need restart
     health: Arc<AtomicBool>,
+    host: String,
     services: Arc<Mutex<Vec<Box<dyn Alivable>>>>,
 }
 
 impl HealthcheckerServer {
     pub async fn new(
-        host: &str,
         services: Option<Vec<Box<dyn Alivable>>>,
+        host: &str,
     ) -> Result<Self, BaseError<()>> {
         let health_checker = Self {
             health: Arc::new(AtomicBool::new(true)),
+            host: host.to_string(),
             services: Arc::new(Mutex::new(services.unwrap_or_default())),
         };
 
-        let health_checker_replica = health_checker.clone();
-        let host_str = String::from(host);
-        tokio::spawn(async move { health_checker_replica.http_init(host_str).await });
-
         Ok(health_checker)
+    }
+
+    pub async fn run(self) {
+        let health_checker_replica = self.clone();
+        tokio::spawn(async move { health_checker_replica.http_init(self.host.clone()).await });
     }
 
     /// Add any struct that implements Alivable to vector of checkable services (all the services

@@ -10,6 +10,6 @@ pub struct Healthchecker {
 
 impl Healthchecker {
     pub async fn build(&self) -> Result<HealthcheckerServer, BaseError<()>> {
-        HealthcheckerServer::new(&self.host, None).await
+        HealthcheckerServer::new(None, &self.host).await
     }
 }
