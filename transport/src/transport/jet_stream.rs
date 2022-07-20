@@ -16,6 +16,7 @@ use crate::common::TransportResult;
 use crate::subscription::Subscription;
 use crate::{Transport, VReceivedMessage, VResponse, VSubscription};
 
+#[derive(Clone)]
 pub struct JetTransport {
     pub stream: JetStream,
 }
