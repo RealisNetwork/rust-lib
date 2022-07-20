@@ -1,62 +1,50 @@
-use crate::app::{AsyncTryFrom, DependencyContainerParameter, Runnable};
-use crate::service::Service;
+use crate::app::Runnable;
 use async_trait::async_trait;
 use error_registry::generated_errors::{Common, GeneratedError};
 use error_registry::BaseError;
 use healthchecker::HealthChecker;
-use schemas::{Agent, Response, ResponseMessage, ResponseResult, Schema};
+use schemas::{Agent, Request, Response, ResponseMessage, ResponseResult, Schema};
 use serde_json::Value;
 use std::sync::Arc;
 use transport::{ReceivedMessage, Subscription, Transport, VReceivedMessage, VSubscription};
 
+#[async_trait]
+pub trait Service<Params: Agent, Returns: Schema>: Send + Sync {
+    fn topic_to_subscribe(&self) -> &'static str {
+        Params::topic()
+    }
+
+    async fn process(&mut self, request: Request<Params>) -> Result<Returns, BaseError<Value>>;
+}
+
 //TODO: ServiceAppBuilder|ServiceAppContainer?
-pub struct ServiceApp<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> {
+pub struct ServiceApp<Params: Agent, Returns: Schema, S: Service<Params, Returns>, T: Transport> {
     service: S,
-    transport: Arc<N>,
+    transport: Arc<T>,
     subscription: VSubscription,
     health_checker: HealthChecker,
-    _marker: std::marker::PhantomData<(P, G)>,
+    _marker: std::marker::PhantomData<(Params, Returns)>,
 }
 
 #[async_trait]
-impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> Runnable
-    for ServiceApp<P, G, S, N>
+impl<Params: Agent, Returns: Schema, S: Service<Params, Returns>, T: Transport> Runnable
+    for ServiceApp<Params, Returns, S, T>
 {
     async fn run(&mut self) {
         let health_checker = self.health_checker.clone();
         if let Err(error) = self.run_internal().await {
-            log::error!("{:?}", error);
-            health_checker.make_sick::<String>(None);
+            health_checker.make_sick(Some(error));
         }
         let _result = self.after_run().await;
     }
 }
 
-#[async_trait]
-impl<T, P, G, ServiceInner, N> AsyncTryFrom<Arc<T>> for ServiceApp<P, G, ServiceInner, N>
-where
-    T: 'static + Clone + Send + Sync + DependencyContainerParameter<N>,
-    P: Agent,
-    G: Schema,
-    ServiceInner: 'static + From<Arc<T>> + Service<P, G>,
-    N: 'static + Transport + Sync + Send,
+impl<Params: Agent, Returns: Schema, S: Service<Params, Returns>, T: Transport>
+    ServiceApp<Params, Returns, S, T>
 {
-    type Error = BaseError<Value>;
-
-    async fn async_try_from(dependency_container: Arc<T>) -> Result<Self, BaseError<Value>> {
-        ServiceApp::new(
-            ServiceInner::from(dependency_container.clone()),
-            dependency_container.get_transport(),
-            dependency_container.get_health_checker(),
-        )
-        .await
-    }
-}
-
-impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceApp<P, G, S, N> {
     pub async fn new(
         service: S,
-        transport: Arc<N>,
+        transport: Arc<T>,
         health_checker: HealthChecker,
     ) -> Result<Self, BaseError<Value>> {
         transport
@@ -75,9 +63,9 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
         // Logs
         log::info!(
             "Run service: \nagent: \t{:?},\nmethod:\t{:?},\ntopic: \t{:?},",
-            P::agent(),
-            P::method(),
-            P::topic(),
+            Params::agent(),
+            Params::method(),
+            Params::topic(),
         );
         // Notification gateway
         self.run_notification().await?;
@@ -89,9 +77,9 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
         // Logs
         log::warn!(
             "Stop service: \nagent: \t{:?},\nmethod:\t{:?},\ntopic: \t{:?},",
-            P::agent(),
-            P::method(),
-            P::topic(),
+            Params::agent(),
+            Params::method(),
+            Params::topic(),
         );
 
         Ok(())
@@ -111,9 +99,9 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
         const TOPIC: &str = "pasha_help_plz";
         let notification = serde_json::json!({
             "schemas": {
-                "topic": P::topic(),
-                "paramsSchema": P::schema(),
-                "responseSchema": G::schema(),
+                "topic": Params::topic(),
+                "paramsSchema": Params::schema(),
+                "responseSchema": Returns::schema(),
             }
         });
 
@@ -126,7 +114,7 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
 
     async fn run_internal(&mut self) -> Result<(), BaseError<Value>> {
         self.before_run().await?;
-        let topic = P::topic();
+        let topic = Params::topic();
 
         loop {
             let message = self.subscription.next().await?;
@@ -160,7 +148,7 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
     async fn on_process_success(
         &self,
         message: VReceivedMessage,
-        response: G,
+        response: Returns,
     ) -> Result<(), BaseError<Value>> {
         let response = ResponseMessage::Right { value: response };
         self.process_response(message, response).await
@@ -183,7 +171,7 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> ServiceA
     async fn process_response(
         &self,
         message: VReceivedMessage,
-        response: ResponseMessage<G, Value>,
+        response: ResponseMessage<Returns, Value>,
     ) -> Result<(), BaseError<Value>> {
         let raw_request: Value = message.deserialize()?;
         message.ok().await?;

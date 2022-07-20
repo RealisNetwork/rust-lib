@@ -1,5 +1,5 @@
+use crate::{Service, ServiceApp};
 use async_trait::async_trait;
-use error_registry::custom_errors::{CustomErrorType, Nats};
 use error_registry::BaseError;
 use healthchecker::HealthChecker;
 use schemas::{Agent, Schema};
@@ -8,46 +8,29 @@ use std::sync::Arc;
 use tokio::sync::Mutex;
 use transport::Transport;
 
-/// app = push_service!(app, ServiceApp, SetMailingSubscriptionStatusService)?;
-#[macro_export]
-macro_rules! push_service {
-    ($app:expr,$serviceApp:ident,$service:ident) => {
-        $app.push_with_dependency::<$serviceApp<_, _, $service, _>, $service, _, _>()
-            .await
-    };
-}
-
 #[async_trait]
 pub trait Runnable: Send + Sync {
     async fn run(&mut self);
 }
 
-#[async_trait]
-pub trait AsyncTryFrom<T>: Sized {
-    type Error;
-    async fn async_try_from(_: T) -> Result<Self, Self::Error>;
-}
-
-pub trait AbstractService<P: Agent, G: Schema>: Send + Sync {}
-
-pub struct App<T: DependencyContainerParameter<N>, N: Transport + Sync + Send> {
-    services: Vec<Box<Mutex<dyn Runnable>>>,
-    dependency_container: Arc<T>,
-    _marker: std::marker::PhantomData<N>,
-}
-
-pub trait DependencyContainerParameter<N: Transport + Sync + Send> {
-    fn get_transport(&self) -> Arc<N>;
+pub trait DependencyContainerParameter<T: Transport>: Clone + Sync + Send {
+    fn get_transport(&self) -> Arc<T>;
 
     fn get_health_checker(&self) -> HealthChecker;
 }
 
-impl<T, N> App<T, N>
+pub struct App<Dependency: DependencyContainerParameter<T>, T: Transport> {
+    services: Vec<Box<Mutex<dyn Runnable>>>,
+    dependency_container: Dependency,
+    _marker: std::marker::PhantomData<T>,
+}
+
+impl<Dependency, T> App<Dependency, T>
 where
-    T: 'static + Clone + Send + Sync + DependencyContainerParameter<N>,
-    N: 'static + Transport + Sync + Send,
+    Dependency: DependencyContainerParameter<T> + 'static,
+    T: Transport + 'static,
 {
-    pub async fn new(dependency_container: Arc<T>) -> Self {
+    pub async fn new(dependency_container: Dependency) -> Self {
         Self {
             services: vec![],
             dependency_container,
@@ -58,7 +41,7 @@ where
     /// Init `env_logger` from env_key variable
     /// if env_key not specified use `LOGGER_LEVEL`
     /// if such variable not found try to load it from .env
-    pub fn init_logger(&self, env_key: Option<&str>) -> &Self {
+    pub fn init_logger(&mut self, env_key: Option<&str>) -> &mut Self {
         const LOGGER_ENV: &str = "LOGGER_LEVEL";
         // Setting env variable from .env file
         // because of env_logger cannot use .env
@@ -74,35 +57,37 @@ where
         self
     }
 
-    pub fn push(&mut self, service: impl Runnable + 'static) -> &Self {
+    pub fn push(&mut self, service: impl Runnable + 'static) -> &mut Self {
         self.services.push(Box::new(Mutex::new(service)));
         self
     }
 
-    pub async fn push_with_dependency<AbstractApp, ServiceInner, P, G>(
-        &mut self,
-    ) -> Result<&Self, BaseError<Value>>
+    // TODO: impl `push_runnable` for `Runnable` same as `push_service`
+
+    /// Construct `Service` from `DependencyContainer` and wrap it into `ServiceApp`
+    /// Require to specify:
+    /// S - service handler struct
+    /// Params - service input params
+    /// Returns - service output
+    pub async fn push_service<S, Params, Returns>(&mut self) -> Result<&mut Self, BaseError<Value>>
     where
-        AbstractApp: 'static + Runnable + AsyncTryFrom<Arc<T>>,
-        ServiceInner: 'static + From<Arc<T>> + AbstractService<P, G>,
-        P: 'static + Agent,
-        G: 'static + Schema,
+        S: 'static + Service<Params, Returns> + From<Dependency>,
+        Params: 'static + Agent,
+        Returns: 'static + Schema,
     {
-        self.services.push(Box::new(Mutex::new(
-            AbstractApp::async_try_from(self.dependency_container.clone())
-                .await
-                .map_err(|_| {
-                    BaseError::<Value>::from(CustomErrorType::Nats(Nats::FailedToSubscribe))
-                })?,
-        )));
-        Ok(self)
+        let service: S = self.dependency_container.clone().into();
+        let service_app = ServiceApp::new(
+            service,
+            self.dependency_container.get_transport(),
+            self.dependency_container.get_health_checker(),
+        )
+        .await?;
+        Ok(self.push(service_app))
     }
 }
 
 #[async_trait]
-impl<T: Clone + Send + Sync + DependencyContainerParameter<N>, N: Transport + Sync + Send> Runnable
-    for App<T, N>
-{
+impl<Dependency: DependencyContainerParameter<T>, T: Transport> Runnable for App<Dependency, T> {
     async fn run(&mut self) {
         let services = self.services.drain(..);
         futures::future::join_all(services.into_iter().map(|service| {

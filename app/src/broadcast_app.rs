@@ -1,55 +1,41 @@
-use crate::app::{AsyncTryFrom, DependencyContainerParameter, Runnable};
+use crate::app::Runnable;
 use async_trait::async_trait;
 use error_registry::BaseError;
 use healthchecker::HealthChecker;
-use log::debug;
 use schemas::{Agent, Schema};
 use serde_json::Value;
 use std::sync::Arc;
 use transport::{ReceivedMessage, Subscription, Transport, VSubscription};
 
 #[async_trait]
-pub trait BroadcastService<P: Agent, G: Schema>: Send + Sync {
+pub trait BroadcastService<Params: Agent, Returns: Schema>: Send + Sync {
     fn topic_to_subscribe(&self) -> &'static str {
-        P::topic()
+        Params::topic()
     }
 
-    async fn process(&mut self, request: P) -> Result<G, BaseError<Value>>;
+    async fn process(&mut self, request: Params) -> Result<Returns, BaseError<Value>>;
 }
 
 // TODO: ServiceAppBuilder|ServiceAppContainer?
-pub struct BroadcastApp<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Transport + Sync + Send>
-{
+pub struct BroadcastApp<
+    Params: Agent,
+    Returns: Schema,
+    S: BroadcastService<Params, Returns>,
+    N: Transport + Sync + Send,
+> {
     service: S,
     subscription: VSubscription,
     health_checker: HealthChecker,
-    _marker: std::marker::PhantomData<(P, G, N)>,
+    _marker: std::marker::PhantomData<(Params, Returns, N)>,
 }
 
 #[async_trait]
-impl<T, P, G, ServiceInner, N> AsyncTryFrom<Arc<T>> for BroadcastApp<P, G, ServiceInner, N>
-where
-    T: 'static + Clone + Send + Sync + DependencyContainerParameter<N>,
-    P: Agent,
-    G: Schema,
-    ServiceInner: 'static + From<Arc<T>> + BroadcastService<P, G>,
-    N: 'static + Transport + Sync + Send,
-{
-    type Error = BaseError<Value>;
-
-    async fn async_try_from(dependency_container: Arc<T>) -> Result<Self, BaseError<Value>> {
-        BroadcastApp::new(
-            ServiceInner::from(dependency_container.clone()),
-            dependency_container.get_transport(),
-            dependency_container.get_health_checker(),
-        )
-        .await
-    }
-}
-
-#[async_trait]
-impl<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Transport + Sync + Send> Runnable
-    for BroadcastApp<P, G, S, N>
+impl<
+        Params: Agent,
+        Returns: Schema,
+        S: BroadcastService<Params, Returns>,
+        N: Transport + Sync + Send,
+    > Runnable for BroadcastApp<Params, Returns, S, N>
 {
     async fn run(&mut self) {
         let health_checker = self.health_checker.clone();
@@ -60,8 +46,12 @@ impl<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Transport + Sync + Send>
     }
 }
 
-impl<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Transport + Sync + Send>
-    BroadcastApp<P, G, S, N>
+impl<
+        Params: Agent,
+        Returns: Schema,
+        S: BroadcastService<Params, Returns>,
+        N: Transport + Sync + Send,
+    > BroadcastApp<Params, Returns, S, N>
 {
     pub async fn new(
         service: S,
@@ -85,7 +75,7 @@ impl<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Transport + Sync + Send>
             let result = match message.deserialize() {
                 Ok(request) => match self.service.process(request).await {
                     Ok(response_schema) => {
-                        debug!("got response schema{:#?}", response_schema);
+                        log::debug!("got response schema{:#?}", response_schema);
                         Ok(())
                     }
                     Err(error) if error.is_critical() => {
@@ -98,7 +88,7 @@ impl<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Transport + Sync + Send>
                     }
                 },
                 Err(error) => {
-                    debug!("got error{:#?}", error);
+                    log::debug!("got error {:#?}", error);
                     Ok(())
                 }
             };

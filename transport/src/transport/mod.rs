@@ -18,7 +18,7 @@ use std::time::Duration;
 
 #[async_trait]
 #[enum_dispatch]
-pub trait Transport {
+pub trait Transport: Send + Sync {
     async fn publish(&self, response: VResponse) -> TransportResult<()>;
 
     async fn raw_publish<M: Serialize + Sync>(
