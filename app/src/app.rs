@@ -1,7 +1,7 @@
 use async_trait::async_trait;
 use error_registry::custom_errors::{CustomErrorType, Nats};
 use error_registry::BaseError;
-use healthchecker::{HealthChecker, HealthcheckerServer};
+use healthchecker::HealthChecker;
 use schemas::{Agent, Schema};
 use serde_json::Value;
 use std::sync::Arc;
@@ -30,33 +30,27 @@ pub trait AsyncTryFrom<T>: Sized {
 
 pub trait AbstractService<P: Agent, G: Schema>: Send + Sync {}
 
-pub struct App<T: GetTransport<N> + GetHealthchecker, N: Transport + Sync + Send> {
+pub struct App<T: DependencyContainerParameter<N>, N: Transport + Sync + Send> {
     services: Vec<Box<Mutex<dyn Runnable>>>,
-    dependency_container: Option<Arc<T>>,
-    pub health_checker: HealthcheckerServer,
+    dependency_container: Arc<T>,
     _marker: std::marker::PhantomData<N>,
 }
 
-pub trait GetTransport<N: Transport + Sync + Send> {
+pub trait DependencyContainerParameter<N: Transport + Sync + Send> {
     fn get_transport(&self) -> Arc<N>;
-}
 
-pub trait GetHealthchecker {
-    fn get_healthchecker(&self) -> HealthChecker;
+    fn get_health_checker(&self) -> HealthChecker;
 }
 
 impl<T, N> App<T, N>
 where
-    T: 'static + Clone + Send + Sync + GetTransport<N> + GetHealthchecker,
+    T: 'static + Clone + Send + Sync + DependencyContainerParameter<N>,
     N: 'static + Transport + Sync + Send,
 {
-    pub async fn new(dependency_container: Option<Arc<T>>, host: &str) -> Self {
+    pub async fn new(dependency_container: Arc<T>) -> Self {
         Self {
             services: vec![],
             dependency_container,
-            health_checker: HealthcheckerServer::new(host, None)
-                .await
-                .expect("Fail to create HealthcheckerServer"),
             _marker: Default::default(),
         }
     }
@@ -95,7 +89,7 @@ where
         G: 'static + Schema,
     {
         self.services.push(Box::new(Mutex::new(
-            AbstractApp::async_try_from(self.dependency_container.as_ref().unwrap().clone())
+            AbstractApp::async_try_from(self.dependency_container.clone())
                 .await
                 .map_err(|_| {
                     BaseError::<Value>::from(CustomErrorType::Nats(Nats::FailedToSubscribe))
@@ -106,8 +100,8 @@ where
 }
 
 #[async_trait]
-impl<T: Clone + Send + Sync + GetTransport<N> + GetHealthchecker, N: Transport + Sync + Send>
-    Runnable for App<T, N>
+impl<T: Clone + Send + Sync + DependencyContainerParameter<N>, N: Transport + Sync + Send> Runnable
+    for App<T, N>
 {
     async fn run(&mut self) {
         let services = self.services.drain(..);

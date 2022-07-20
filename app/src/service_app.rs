@@ -1,4 +1,4 @@
-use crate::app::{AsyncTryFrom, GetHealthchecker, GetTransport, Runnable};
+use crate::app::{AsyncTryFrom, DependencyContainerParameter, Runnable};
 use crate::service::Service;
 use async_trait::async_trait;
 use error_registry::generated_errors::{Common, GeneratedError};
@@ -35,7 +35,7 @@ impl<P: Agent, G: Schema, S: Service<P, G>, N: Transport + Sync + Send> Runnable
 #[async_trait]
 impl<T, P, G, ServiceInner, N> AsyncTryFrom<Arc<T>> for ServiceApp<P, G, ServiceInner, N>
 where
-    T: 'static + Clone + Send + Sync + GetTransport<N> + GetHealthchecker,
+    T: 'static + Clone + Send + Sync + DependencyContainerParameter<N>,
     P: Agent,
     G: Schema,
     ServiceInner: 'static + From<Arc<T>> + Service<P, G>,
@@ -47,7 +47,7 @@ where
         ServiceApp::new(
             ServiceInner::from(dependency_container.clone()),
             dependency_container.get_transport(),
-            dependency_container.get_healthchecker(),
+            dependency_container.get_health_checker(),
         )
         .await
     }

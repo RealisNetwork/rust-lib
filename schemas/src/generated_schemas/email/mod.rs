@@ -1,1 +1,10 @@
-pub mod email_find_all ; pub mod email_create_cron_job ; pub mod email_create_and_send ; pub mod email_send_not_sent_letters ; pub mod email_send_in_process_letters ;pub use email_find_all :: * ; pub use email_create_cron_job :: * ; pub use email_create_and_send :: * ; pub use email_send_not_sent_letters :: * ; pub use email_send_in_process_letters :: * ;
+pub mod email_create_and_send;
+pub mod email_create_cron_job;
+pub mod email_find_all;
+pub mod email_send_in_process_letters;
+pub mod email_send_not_sent_letters;
+pub use email_create_and_send::*;
+pub use email_create_cron_job::*;
+pub use email_find_all::*;
+pub use email_send_in_process_letters::*;
+pub use email_send_not_sent_letters::*;

@@ -1,4 +1,4 @@
-use crate::app::{AsyncTryFrom, GetHealthchecker, GetTransport, Runnable};
+use crate::app::{AsyncTryFrom, DependencyContainerParameter, Runnable};
 use async_trait::async_trait;
 use error_registry::BaseError;
 use healthchecker::HealthChecker;
@@ -29,7 +29,7 @@ pub struct BroadcastApp<P: Agent, G: Schema, S: BroadcastService<P, G>, N: Trans
 #[async_trait]
 impl<T, P, G, ServiceInner, N> AsyncTryFrom<Arc<T>> for BroadcastApp<P, G, ServiceInner, N>
 where
-    T: 'static + Clone + Send + Sync + GetTransport<N> + GetHealthchecker,
+    T: 'static + Clone + Send + Sync + DependencyContainerParameter<N>,
     P: Agent,
     G: Schema,
     ServiceInner: 'static + From<Arc<T>> + BroadcastService<P, G>,
@@ -41,7 +41,7 @@ where
         BroadcastApp::new(
             ServiceInner::from(dependency_container.clone()),
             dependency_container.get_transport(),
-            dependency_container.get_healthchecker(),
+            dependency_container.get_health_checker(),
         )
         .await
     }
