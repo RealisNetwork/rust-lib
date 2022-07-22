@@ -3,7 +3,7 @@ pub use crate::broadcast_app::{BroadcastApp, BroadcastService};
 pub use crate::error_registry::{
     custom_errors::{
         Blockchain as CustomBlockchain, Common as CustomCommon, CustomErrorType, Db as CustomDb,
-        Default, EnvLoadedError, Nats as CustomNats, Rpc, Utils as CustomUtils,
+        EnvLoadedError, Nats as CustomNats, Rpc, Utils as CustomUtils,
     },
     generated_errors::{
         Action, AdminOptions, Auth, Bff, Blockchain, Bytes, BytesFormatter, CatsAndDragons, Common,
