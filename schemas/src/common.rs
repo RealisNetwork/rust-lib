@@ -21,7 +21,6 @@ pub struct Request<P> {
     pub auth_info: Option<AuthInfo>,
 }
 
-/// M
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Response<T, Y, D: Debug> {
     pub result: ResponseResult<T, Y, D>,
@@ -51,9 +50,23 @@ pub struct AuthInfo {
     pub continent: Option<String>,
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub enum StrategyType {
+    #[serde(rename = "mobileApp")]
+    MobileApp,
+    #[serde(rename = "webSite")]
+    WebSite,
+}
+
 #[derive(Clone, Serialize, Deserialize)]
 pub struct Auth {
+    #[serde(rename = "type")]
+    pub r#type: StrategyType,
     pub token: Option<String>,
+    #[serde(rename = "deviceId")]
+    pub device_id: Option<String>,
+    #[serde(rename = "appId")]
+    pub app_id: Option<u64>,
 }
 
 impl Debug for Auth {
@@ -63,7 +76,20 @@ impl Debug for Auth {
             .as_ref()
             .map(|token| "*".to_owned().repeat(token.len()));
         f.debug_struct("Auth")
+            .field("type", &self.r#type as &dyn Debug)
             .field("token", &a as &dyn Debug)
+            .field("deviceId", &self.device_id as &dyn Debug)
+            .field("appId", &self.app_id as &dyn Debug)
             .finish()
     }
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct SocketRequest<T> {
+    pub id: String,
+    pub method: String,
+    pub agent: String,
+    pub params: T,
+    pub auth: Auth,
+    pub lang: String,
 }
