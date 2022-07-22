@@ -8,3 +8,4 @@ pub use crate::transport::{
     ReceivedMessage, Response, StanTransport, Subscription, Transport, VReceivedMessage, VResponse,
     VSubscription, VTransport,
 };
+pub use config::env::env_loaded::{EnvLoaded, Env};
