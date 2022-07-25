@@ -39,6 +39,15 @@ pub enum ResponseMessage<Y, D: Debug> {
     Right { value: Y },
 }
 
+impl<Y, D: Debug> From<ResponseMessage<Y, D>> for Result<Y, BaseError<D>> {
+    fn from(response_message: ResponseMessage<Y, D>) -> Self {
+        match response_message {
+            ResponseMessage::Left { value } => Err(value),
+            ResponseMessage::Right { value } => Ok(value),
+        }
+    }
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct AuthInfo {
     #[serde(rename = "userId")]
