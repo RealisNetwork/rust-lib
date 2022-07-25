@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TaskTaskCompleteTaskParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "taskId")]
     pub task_id: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for TaskTaskCompleteTaskParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"taskId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"userId\",\"taskId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"taskId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"taskId\"]}")
     }
 }
 impl Agent for TaskTaskCompleteTaskParams {
@@ -28,14 +28,14 @@ impl Agent for TaskTaskCompleteTaskParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TaskTaskCompleteTaskReturns {
-    #[serde(rename = "taskId")]
-    pub task_id: i32,
     #[serde(rename = "reward")]
     pub reward: i32,
+    #[serde(rename = "taskId")]
+    pub task_id: i32,
 }
 impl Schema for TaskTaskCompleteTaskReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"taskId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"reward\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"taskId\",\"reward\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"reward\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"taskId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"taskId\",\"reward\"]}")
     }
 }
 impl Agent for TaskTaskCompleteTaskReturns {

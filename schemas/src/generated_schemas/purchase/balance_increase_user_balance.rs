@@ -5,22 +5,22 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PurchaseBalanceIncreaseUserBalanceParams {
-    #[serde(rename = "topicToSuccessResponse")]
-    pub topic_to_success_response: String,
     #[serde(rename = "currency")]
     pub currency: String,
     #[serde(rename = "amount")]
     pub amount: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "creator")]
     pub creator: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
+    #[serde(rename = "topicToSuccessResponse")]
+    pub topic_to_success_response: String,
 }
 impl Schema for PurchaseBalanceIncreaseUserBalanceParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"topicToSuccessResponse\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"},\"amount\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\",\"topicToSuccessResponse\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"},\"amount\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"topicToSuccessResponse\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\",\"topicToSuccessResponse\"]}")
     }
 }
 impl Agent for PurchaseBalanceIncreaseUserBalanceParams {

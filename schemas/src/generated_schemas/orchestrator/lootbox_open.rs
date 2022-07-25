@@ -14,18 +14,18 @@ pub struct OrchestratorLootboxOpenParamsProductsParamsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorLootboxOpenParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "lootboxIdentifier")]
     pub lootbox_identifier: String,
-    #[serde(rename = "products")]
-    pub products: Vec<OrchestratorLootboxOpenParamsProductsParamsParams>,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "lootboxBindingId")]
     pub lootbox_binding_id: i64,
+    #[serde(rename = "products")]
+    pub products: Vec<OrchestratorLootboxOpenParamsProductsParamsParams>,
 }
 impl Schema for OrchestratorLootboxOpenParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"lootboxIdentifier\":{\"type\":\"string\"},\"products\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"isNft\":{\"type\":\"boolean\"},\"personalType\":{\"type\":\"string\"},\"clientType\":{\"type\":\"string\",\"pattern\":\"^(none)|(hero)|(equipment)|(skin)|(lootbox)|(undistributedExperience)|(heroScroll)|(equipmentScroll)$\"}},\"required\":[\"personalType\",\"isNft\",\"clientType\"]}},\"lootboxBindingId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"lootboxIdentifier\",\"lootboxBindingId\",\"products\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"lootboxIdentifier\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"lootboxBindingId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"products\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"isNft\":{\"type\":\"boolean\"},\"personalType\":{\"type\":\"string\"},\"clientType\":{\"type\":\"string\",\"pattern\":\"^(none)|(hero)|(equipment)|(skin)|(lootbox)|(undistributedExperience)|(heroScroll)|(equipmentScroll)$\"}},\"required\":[\"personalType\",\"isNft\",\"clientType\"]}}},\"required\":[\"userId\",\"lootboxIdentifier\",\"lootboxBindingId\",\"products\"]}")
     }
 }
 impl Agent for OrchestratorLootboxOpenParams {

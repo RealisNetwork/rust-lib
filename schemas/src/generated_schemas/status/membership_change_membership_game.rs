@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipChangeMembershipGameParams {
-    #[serde(rename = "newAppId")]
-    pub new_app_id: i64,
     #[serde(rename = "id")]
     pub id: i64,
+    #[serde(rename = "newAppId")]
+    pub new_app_id: i64,
 }
 impl Schema for StatusMembershipChangeMembershipGameParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newAppId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"newAppId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"newAppId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"newAppId\"]}")
     }
 }
 impl Agent for StatusMembershipChangeMembershipGameParams {

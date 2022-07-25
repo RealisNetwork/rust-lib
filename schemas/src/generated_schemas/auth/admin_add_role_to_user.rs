@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAdminAddRoleToUserParams {
-    #[serde(rename = "role")]
-    pub role: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "role")]
+    pub role: String,
 }
 impl Schema for AuthAdminAddRoleToUserParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"role\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"role\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"role\":{\"type\":\"string\"}},\"required\":[\"userId\",\"role\"]}")
     }
 }
 impl Agent for AuthAdminAddRoleToUserParams {

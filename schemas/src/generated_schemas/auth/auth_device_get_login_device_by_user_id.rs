@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceGetLoginDeviceByUserIdParams {
-    #[serde(rename = "appId")]
-    pub app_id: i32,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "appId")]
+    pub app_id: i32,
 }
 impl Schema for AuthAuthDeviceGetLoginDeviceByUserIdParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"appId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"appId\",\"userId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"appId\",\"userId\"]}")
     }
 }
 impl Agent for AuthAuthDeviceGetLoginDeviceByUserIdParams {

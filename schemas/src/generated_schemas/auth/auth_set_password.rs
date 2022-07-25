@@ -32,22 +32,22 @@ impl Agent for AuthAuthSetPasswordParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthSetPasswordReturns {
-    #[serde(rename = "refresh_token")]
-    pub refresh_token: String,
+    #[serde(rename = "refresh_expires_in")]
+    pub refresh_expires_in: i32,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "expires_in")]
     pub expires_in: i32,
     #[serde(rename = "id_token")]
     pub id_token: String,
-    #[serde(rename = "refresh_expires_in")]
-    pub refresh_expires_in: i32,
+    #[serde(rename = "refresh_token")]
+    pub refresh_token: String,
     #[serde(rename = "access_token")]
     pub access_token: String,
 }
 impl Schema for AuthAuthSetPasswordReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"refresh_token\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id_token\":{\"type\":\"string\"},\"refresh_expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"access_token\":{\"type\":\"string\"}},\"required\":[\"access_token\",\"expires_in\",\"id_token\",\"refresh_expires_in\",\"refresh_token\",\"userId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"refresh_expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id_token\":{\"type\":\"string\"},\"refresh_token\":{\"type\":\"string\"},\"access_token\":{\"type\":\"string\"}},\"required\":[\"access_token\",\"expires_in\",\"id_token\",\"refresh_expires_in\",\"refresh_token\",\"userId\"]}")
     }
 }
 impl Agent for AuthAuthSetPasswordReturns {

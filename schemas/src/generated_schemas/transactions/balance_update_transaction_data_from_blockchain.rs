@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct TransactionsBalanceUpdateTransactionDataFromBlockchainParams {
     #[serde(rename = "newTxId")]
     pub new_tx_id: String,
-    #[serde(rename = "oldTxId")]
-    pub old_tx_id: String,
     #[serde(rename = "blockId")]
     pub block_id: String,
+    #[serde(rename = "oldTxId")]
+    pub old_tx_id: String,
 }
 impl Schema for TransactionsBalanceUpdateTransactionDataFromBlockchainParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newTxId\":{\"type\":\"string\"},\"oldTxId\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"}},\"required\":[\"oldTxId\",\"newTxId\",\"blockId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newTxId\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"},\"oldTxId\":{\"type\":\"string\"}},\"required\":[\"oldTxId\",\"newTxId\",\"blockId\"]}")
     }
 }
 impl Agent for TransactionsBalanceUpdateTransactionDataFromBlockchainParams {

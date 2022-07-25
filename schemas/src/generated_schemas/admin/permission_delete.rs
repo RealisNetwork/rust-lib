@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminPermissionDeleteParams {
-    #[serde(rename = "roleName")]
-    pub role_name: String,
     #[serde(rename = "permissionName")]
     pub permission_name: Vec<String>,
+    #[serde(rename = "roleName")]
+    pub role_name: String,
 }
 impl Schema for AdminPermissionDeleteParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"roleName\":{\"type\":\"string\"},\"permissionName\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"permissionName\",\"roleName\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"permissionName\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"roleName\":{\"type\":\"string\"}},\"required\":[\"permissionName\",\"roleName\"]}")
     }
 }
 impl Agent for AdminPermissionDeleteParams {

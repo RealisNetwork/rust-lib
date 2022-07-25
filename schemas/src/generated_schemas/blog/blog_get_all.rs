@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllParams {
-    #[serde(rename = "page")]
-    pub page: i64,
     #[serde(rename = "perPage")]
     pub per_page: i64,
+    #[serde(rename = "page")]
+    pub page: i64,
 }
 impl Schema for BlogBlogGetAllParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"page\",\"perPage\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"page\",\"perPage\"]}")
     }
 }
 impl Agent for BlogBlogGetAllParams {
@@ -32,23 +32,23 @@ pub struct BlogBlogGetAllReturnsDataParamsParams {
     pub views: i64,
     #[serde(rename = "title")]
     pub title: String,
-    #[serde(rename = "id")]
-    pub id: i64,
     #[serde(rename = "isPinned")]
     pub is_pinned: bool,
     #[serde(rename = "url")]
     pub url: String,
+    #[serde(rename = "id")]
+    pub id: i64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllReturns {
-    #[serde(rename = "data")]
-    pub data: Vec<BlogBlogGetAllReturnsDataParamsParams>,
     #[serde(rename = "totalCount")]
     pub total_count: i64,
+    #[serde(rename = "data")]
+    pub data: Vec<BlogBlogGetAllReturnsDataParamsParams>,
 }
 impl Schema for BlogBlogGetAllReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"views\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"title\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isPinned\":{\"type\":\"boolean\"},\"url\":{\"type\":\"string\"}},\"required\":[\"id\",\"url\",\"title\",\"isPinned\",\"views\"]}},\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"totalCount\",\"data\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"views\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"title\":{\"type\":\"string\"},\"isPinned\":{\"type\":\"boolean\"},\"url\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"url\",\"title\",\"isPinned\",\"views\"]}}},\"required\":[\"totalCount\",\"data\"]}")
     }
 }
 impl Agent for BlogBlogGetAllReturns {

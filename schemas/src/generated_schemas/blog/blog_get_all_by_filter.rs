@@ -9,16 +9,16 @@ pub struct BlogBlogGetAllByFilterParams {
     pub category_id: i64,
     #[serde(rename = "page")]
     pub page: i64,
-    #[serde(rename = "limit")]
-    pub limit: i64,
     #[serde(rename = "perPage")]
     pub per_page: i64,
+    #[serde(rename = "limit")]
+    pub limit: i64,
     #[serde(rename = "articleId")]
     pub article_id: i64,
 }
 impl Schema for BlogBlogGetAllByFilterParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"limit\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"articleId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":null}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"limit\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"articleId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":null}")
     }
 }
 impl Agent for BlogBlogGetAllByFilterParams {
@@ -34,16 +34,16 @@ impl Agent for BlogBlogGetAllByFilterParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllByFilterReturnsDataParamsParams {
-    #[serde(rename = "url")]
-    pub url: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "shortDescription")]
-    pub short_description: String,
-    #[serde(rename = "image")]
-    pub image: String,
     #[serde(rename = "title")]
     pub title: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "image")]
+    pub image: String,
+    #[serde(rename = "url")]
+    pub url: String,
+    #[serde(rename = "shortDescription")]
+    pub short_description: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllByFilterReturns {
@@ -54,7 +54,7 @@ pub struct BlogBlogGetAllByFilterReturns {
 }
 impl Schema for BlogBlogGetAllByFilterReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"url\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"}},\"required\":[\"title\",\"image\",\"url\",\"createdAt\",\"shortDescription\"]}}},\"required\":[\"totalCount\",\"data\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"title\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"}},\"required\":[\"title\",\"image\",\"url\",\"createdAt\",\"shortDescription\"]}}},\"required\":[\"totalCount\",\"data\"]}")
     }
 }
 impl Agent for BlogBlogGetAllByFilterReturns {

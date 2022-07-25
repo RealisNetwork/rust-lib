@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct OrchestratorBingoRewardParams {
     #[serde(rename = "productIds")]
     pub product_ids: Vec<i64>,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "amount")]
     pub amount: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for OrchestratorBingoRewardParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productIds\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"userId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"userId\",\"productIds\",\"amount\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productIds\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"amount\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"productIds\",\"amount\"]}")
     }
 }
 impl Agent for OrchestratorBingoRewardParams {

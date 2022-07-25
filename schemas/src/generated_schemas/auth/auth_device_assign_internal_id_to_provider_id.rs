@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceAssignInternalIdToProviderIdParams {
+    #[serde(rename = "provider")]
+    pub provider: (),
     #[serde(rename = "deviceId")]
     pub device_id: String,
     #[serde(rename = "providerId")]
     pub provider_id: String,
-    #[serde(rename = "provider")]
-    pub provider: (),
 }
 impl Schema for AuthAuthDeviceAssignInternalIdToProviderIdParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"deviceId\":{\"type\":\"string\"},\"providerId\":{\"type\":\"string\"},\"provider\":{}},\"required\":[\"deviceId\",\"providerId\",\"provider\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"provider\":{},\"deviceId\":{\"type\":\"string\"},\"providerId\":{\"type\":\"string\"}},\"required\":[\"deviceId\",\"providerId\",\"provider\"]}")
     }
 }
 impl Agent for AuthAuthDeviceAssignInternalIdToProviderIdParams {

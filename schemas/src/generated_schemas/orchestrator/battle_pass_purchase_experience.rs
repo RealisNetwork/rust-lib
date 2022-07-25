@@ -7,16 +7,16 @@ use crate::generated_schemas::prelude::*;
 pub struct OrchestratorBattlePassPurchaseExperienceParams {
     #[serde(rename = "creator")]
     pub creator: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "amount")]
     pub amount: i64,
     #[serde(rename = "txId")]
     pub tx_id: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for OrchestratorBattlePassPurchaseExperienceParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"creator\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"amount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"txId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"txId\",\"creator\",\"amount\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"creator\":{\"type\":\"string\"},\"amount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"txId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"txId\",\"creator\",\"amount\"]}")
     }
 }
 impl Agent for OrchestratorBattlePassPurchaseExperienceParams {

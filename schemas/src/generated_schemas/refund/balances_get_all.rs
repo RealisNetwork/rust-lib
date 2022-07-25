@@ -26,24 +26,24 @@ impl Agent for RefundBalancesGetAllParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllReturnsParams {
-    #[serde(rename = "currency")]
-    pub currency: (),
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
     #[serde(rename = "lockedFunds")]
     pub locked_funds: String,
-    #[serde(rename = "lockedUntil")]
-    pub locked_until: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "currency")]
+    pub currency: (),
+    #[serde(rename = "lockedUntil")]
+    pub locked_until: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllReturns(Vec<RefundBalancesGetAllReturnsParams>);
 impl Schema for RefundBalancesGetAllReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"currency\":{},\"createdAt\":{\"type\":\"string\",\"format\":\"date\"},\"lockedFunds\":{\"type\":\"string\"},\"lockedUntil\":{\"type\":\"string\",\"format\":\"date\"},\"userId\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\",\"format\":\"date\"}},\"required\":[\"userId\",\"lockedFunds\",\"currency\",\"lockedUntil\",\"createdAt\",\"updatedAt\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"lockedFunds\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\",\"format\":\"date\"},\"updatedAt\":{\"type\":\"string\",\"format\":\"date\"},\"userId\":{\"type\":\"string\"},\"currency\":{},\"lockedUntil\":{\"type\":\"string\",\"format\":\"date\"}},\"required\":[\"userId\",\"lockedFunds\",\"currency\",\"lockedUntil\",\"createdAt\",\"updatedAt\"]}}")
     }
 }
 impl Agent for RefundBalancesGetAllReturns {

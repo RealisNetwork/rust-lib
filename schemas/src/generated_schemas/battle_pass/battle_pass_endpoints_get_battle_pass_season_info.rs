@@ -23,18 +23,18 @@ impl Agent for BattlePassBattlePassEndpointsGetBattlePassSeasonInfoParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassSeasonInfoReturns {
-    #[serde(rename = "stateUpdateDate")]
-    pub state_update_date: String,
-    #[serde(rename = "hasNotReceivedOldRewards")]
-    pub has_not_received_old_rewards: bool,
-    #[serde(rename = "seasonState")]
-    pub season_state: i32,
     #[serde(rename = "seasonId")]
     pub season_id: i32,
+    #[serde(rename = "seasonState")]
+    pub season_state: i32,
+    #[serde(rename = "hasNotReceivedOldRewards")]
+    pub has_not_received_old_rewards: bool,
+    #[serde(rename = "stateUpdateDate")]
+    pub state_update_date: String,
 }
 impl Schema for BattlePassBattlePassEndpointsGetBattlePassSeasonInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"stateUpdateDate\":{\"type\":\"string\"},\"hasNotReceivedOldRewards\":{\"type\":\"boolean\"},\"seasonState\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"seasonId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"seasonId\",\"seasonState\",\"hasNotReceivedOldRewards\",\"stateUpdateDate\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"seasonId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"seasonState\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"hasNotReceivedOldRewards\":{\"type\":\"boolean\"},\"stateUpdateDate\":{\"type\":\"string\"}},\"required\":[\"seasonId\",\"seasonState\",\"hasNotReceivedOldRewards\",\"stateUpdateDate\"]}")
     }
 }
 impl Agent for BattlePassBattlePassEndpointsGetBattlePassSeasonInfoReturns {

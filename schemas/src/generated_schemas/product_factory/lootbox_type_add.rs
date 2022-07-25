@@ -5,18 +5,18 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryLootboxTypeAddParams {
-    #[serde(rename = "lootboxId")]
-    pub lootbox_id: i32,
     #[serde(rename = "dropChanceMultiplier")]
     pub drop_chance_multiplier: i32,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "type")]
     pub r#type: String,
+    #[serde(rename = "lootboxId")]
+    pub lootbox_id: i32,
 }
 impl Schema for ProductFactoryLootboxTypeAddParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"lootboxId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"dropChanceMultiplier\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"name\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":[\"name\",\"type\",\"lootboxId\",\"dropChanceMultiplier\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"dropChanceMultiplier\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"name\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"lootboxId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"name\",\"type\",\"lootboxId\",\"dropChanceMultiplier\"]}")
     }
 }
 impl Agent for ProductFactoryLootboxTypeAddParams {

@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperCollectNicknamesParams {
-    #[serde(rename = "appId")]
-    pub app_id: i64,
     #[serde(rename = "userIds")]
     pub user_ids: Vec<String>,
+    #[serde(rename = "appId")]
+    pub app_id: i64,
 }
 impl Schema for CatsAndDragonsWrapperCollectNicknamesParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userIds\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"userIds\",\"appId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userIds\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userIds\",\"appId\"]}")
     }
 }
 impl Agent for CatsAndDragonsWrapperCollectNicknamesParams {

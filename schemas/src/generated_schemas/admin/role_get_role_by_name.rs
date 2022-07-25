@@ -26,14 +26,14 @@ impl Agent for AdminRoleGetRoleByNameParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminRoleGetRoleByNameReturns {
-    #[serde(rename = "id")]
-    pub id: i64,
     #[serde(rename = "name")]
     pub name: String,
+    #[serde(rename = "id")]
+    pub id: i64,
 }
 impl Schema for AdminRoleGetRoleByNameReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"name\"]}")
     }
 }
 impl Agent for AdminRoleGetRoleByNameReturns {
