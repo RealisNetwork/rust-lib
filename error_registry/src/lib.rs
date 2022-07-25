@@ -5,10 +5,11 @@
 use crate::generated_errors::{Critical, Db};
 use crate::{
     custom_errors::{CustomErrorType, EnvLoadedError, Nats as CustomNats},
-    generated_errors::Common,
+    generated_errors::{Common, Redis},
 };
 use backtrace::Backtrace;
 use generated_errors::GeneratedError;
+use redis::RedisError;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::default::Default as StdDefault;
@@ -393,6 +394,22 @@ impl<D: Debug> From<CustomErrorType> for BaseError<D> {
     }
 }
 
+impl<D: Debug> From<RedisError> for BaseError<D> {
+    /// Create a `BaseError` by `RedisError`
+    fn from(error: RedisError) -> Self {
+        let trace = Backtrace::new();
+        let msg = error.to_string();
+        let error_type = ErrorType::from(error);
+        Self {
+            msg,
+            trace: format!("{:?}", trace),
+            data: None,
+            status: error_type.clone().into(),
+            error_type,
+        }
+    }
+}
+
 /// All custom types of errors in Realis.
 ///
 /// Custom enum extends manually.
@@ -559,6 +576,13 @@ impl From<GeneratedError> for ErrorType {
     /// Cast `GeneratedError` to `ErrorType`
     fn from(gen_err: GeneratedError) -> Self {
         ErrorType::Generated(gen_err)
+    }
+}
+
+impl From<RedisError> for ErrorType {
+    /// Case `RedisError` to `ErrorType`
+    fn from(_: RedisError) -> Self {
+        ErrorType::Generated(GeneratedError::Redis(Redis::InternalServerError))
     }
 }
 
