@@ -2,6 +2,7 @@ pub mod jet_stream;
 pub mod stan;
 
 use crate::common::TransportResult;
+use crate::message::ReceivedMessage;
 use crate::response::VResponse;
 use crate::subscription::VSubscription;
 use crate::transport::jet_stream::JetTransport;
@@ -13,7 +14,9 @@ use enum_dispatch::enum_dispatch;
 use error_registry::generated_errors::{Common, GeneratedError};
 use error_registry::BaseError;
 use healthchecker::Alivable;
+use serde::de::DeserializeOwned;
 use serde::Serialize;
+use std::fmt::Debug;
 use std::time::Duration;
 
 #[async_trait]
@@ -51,6 +54,34 @@ pub trait Transport: Send + Sync + Clone {
         msg: VResponse, //SendSchema,
         max_duration: Option<Duration>,
     ) -> TransportResult<VReceivedMessage>; //Schema>;
+
+    async fn message_reply<Request: Serialize + Send, Reply: DeserializeOwned + Debug + Send>(
+        &self,
+        topic: String,
+        topic_response: String,
+        request: Request,
+        max_duration: Option<Duration>,
+    ) -> TransportResult<Reply> {
+        let payload = serde_json::to_vec(&request).map_err(|e| {
+            BaseError::<()>::new(
+                format!("{:?}", e),
+                GeneratedError::Common(Common::InternalServerError).into(),
+                None,
+            )
+        })?;
+
+        let request = VResponse::Response(Response {
+            topic_res: topic,
+            response: payload,
+        });
+
+        let message = self
+            .send_message_and_observe_reply(topic_response, request, max_duration)
+            .await?;
+        let response = message.deserialize()?;
+        message.ok().await?;
+        Ok(response)
+    }
 }
 
 #[derive(Clone)]
