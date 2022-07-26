@@ -67,25 +67,31 @@ pub enum StrategyType {
     WebSite,
 }
 
-#[derive(Clone, Serialize, Deserialize)]
-pub struct Auth {
-    #[serde(rename = "type")]
-    pub r#type: StrategyType,
-    pub token: Option<String>,
-    #[serde(rename = "deviceId")]
-    pub device_id: Option<String>,
-    #[serde(rename = "appId")]
-    pub app_id: Option<u64>,
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(tag = "type")]
+pub enum Auth {
+    #[serde(rename = "mobileApp")]
+    MobileApp(MobileAuth),
+    #[serde(rename = "webSite")]
+    WebSite { token: String },
 }
 
-impl Debug for Auth {
+#[derive(Clone, Serialize, Deserialize)]
+pub struct MobileAuth {
+    pub token: Option<String>,
+    #[serde(rename = "deviceId")]
+    pub device_id: String,
+    #[serde(rename = "appId")]
+    pub app_id: u64,
+}
+
+impl Debug for MobileAuth {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         let a = self
             .token
             .as_ref()
             .map(|token| "*".to_owned().repeat(token.len()));
         f.debug_struct("Auth")
-            .field("type", &self.r#type as &dyn Debug)
             .field("token", &a as &dyn Debug)
             .field("deviceId", &self.device_id as &dyn Debug)
             .field("appId", &self.app_id as &dyn Debug)
