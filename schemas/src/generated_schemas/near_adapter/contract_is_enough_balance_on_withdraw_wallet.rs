@@ -25,7 +25,7 @@ impl Agent for NearAdapterContractIsEnoughBalanceOnWithdrawWalletParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct NearAdapterContractIsEnoughBalanceOnWithdrawWalletReturns(bool);
+pub struct NearAdapterContractIsEnoughBalanceOnWithdrawWalletReturns(pub bool);
 impl Schema for NearAdapterContractIsEnoughBalanceOnWithdrawWalletReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

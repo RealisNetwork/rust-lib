@@ -25,7 +25,7 @@ impl Agent for CronCronDeleteParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct CronCronDeleteReturns(bool);
+pub struct CronCronDeleteReturns(pub bool);
 impl Schema for CronCronDeleteReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

@@ -25,7 +25,7 @@ impl Agent for GameBalancerGameBalancerDeletePlayersParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct GameBalancerGameBalancerDeletePlayersReturns(bool);
+pub struct GameBalancerGameBalancerDeletePlayersReturns(pub bool);
 impl Schema for GameBalancerGameBalancerDeletePlayersReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

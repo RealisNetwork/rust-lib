@@ -5,22 +5,22 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorBalanceIncreaseUserBalanceParams {
-    #[serde(rename = "creator")]
-    pub creator: String,
-    #[serde(rename = "currency")]
-    pub currency: String,
-    #[serde(rename = "topicToSuccessResponse")]
-    pub topic_to_success_response: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
+    #[serde(rename = "currency")]
+    pub currency: String,
     #[serde(rename = "amount")]
     pub amount: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
+    #[serde(rename = "topicToSuccessResponse")]
+    pub topic_to_success_response: String,
 }
 impl Schema for OrchestratorBalanceIncreaseUserBalanceParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"creator\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"},\"topicToSuccessResponse\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\",\"topicToSuccessResponse\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"txId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"},\"amount\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"topicToSuccessResponse\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\",\"topicToSuccessResponse\"]}")
     }
 }
 impl Agent for OrchestratorBalanceIncreaseUserBalanceParams {
@@ -35,7 +35,7 @@ impl Agent for OrchestratorBalanceIncreaseUserBalanceParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct OrchestratorBalanceIncreaseUserBalanceReturns(bool);
+pub struct OrchestratorBalanceIncreaseUserBalanceReturns(pub bool);
 impl Schema for OrchestratorBalanceIncreaseUserBalanceReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

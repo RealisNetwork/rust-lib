@@ -25,7 +25,7 @@ impl Agent for AdminMailTemplateDeleteParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AdminMailTemplateDeleteReturns(bool);
+pub struct AdminMailTemplateDeleteReturns(pub bool);
 impl Schema for AdminMailTemplateDeleteReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

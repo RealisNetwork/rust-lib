@@ -5,22 +5,22 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NotificationsNotificationsCreateNewParams {
-    #[serde(rename = "senderUserId")]
-    pub sender_user_id: String,
+    #[serde(rename = "notificationType")]
+    pub notification_type: (),
+    #[serde(rename = "description")]
+    pub description: String,
+    #[serde(rename = "category")]
+    pub category: String,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "title")]
     pub title: String,
-    #[serde(rename = "description")]
-    pub description: String,
-    #[serde(rename = "notificationType")]
-    pub notification_type: (),
-    #[serde(rename = "category")]
-    pub category: String,
+    #[serde(rename = "senderUserId")]
+    pub sender_user_id: String,
 }
 impl Schema for NotificationsNotificationsCreateNewParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"senderUserId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"notificationType\":{},\"category\":{\"type\":\"string\"}},\"required\":[\"notificationType\",\"userId\",\"category\",\"description\",\"senderUserId\",\"title\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"notificationType\":{},\"description\":{\"type\":\"string\"},\"category\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"senderUserId\":{\"type\":\"string\"}},\"required\":[\"notificationType\",\"userId\",\"category\",\"description\",\"senderUserId\",\"title\"]}")
     }
 }
 impl Agent for NotificationsNotificationsCreateNewParams {
@@ -35,7 +35,7 @@ impl Agent for NotificationsNotificationsCreateNewParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct NotificationsNotificationsCreateNewReturns(bool);
+pub struct NotificationsNotificationsCreateNewReturns(pub bool);
 impl Schema for NotificationsNotificationsCreateNewReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

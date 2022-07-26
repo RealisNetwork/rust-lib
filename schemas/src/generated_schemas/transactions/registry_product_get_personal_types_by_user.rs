@@ -25,7 +25,7 @@ impl Agent for TransactionsRegistryProductGetPersonalTypesByUserParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsRegistryProductGetPersonalTypesByUserReturns(Vec<String>);
+pub struct TransactionsRegistryProductGetPersonalTypesByUserReturns(pub Vec<String>);
 impl Schema for TransactionsRegistryProductGetPersonalTypesByUserReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"array\",\"items\":{\"type\":\"string\"}}")

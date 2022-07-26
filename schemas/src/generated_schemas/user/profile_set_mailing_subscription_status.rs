@@ -25,7 +25,7 @@ impl Agent for UserProfileSetMailingSubscriptionStatusParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UserProfileSetMailingSubscriptionStatusReturns(bool);
+pub struct UserProfileSetMailingSubscriptionStatusReturns(pub bool);
 impl Schema for UserProfileSetMailingSubscriptionStatusReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

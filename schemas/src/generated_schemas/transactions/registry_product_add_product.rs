@@ -29,7 +29,7 @@ impl Agent for TransactionsRegistryProductAddProductParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsRegistryProductAddProductReturns(bool);
+pub struct TransactionsRegistryProductAddProductReturns(pub bool);
 impl Schema for TransactionsRegistryProductAddProductReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

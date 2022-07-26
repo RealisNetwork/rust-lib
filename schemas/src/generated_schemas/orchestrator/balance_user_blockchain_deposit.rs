@@ -11,14 +11,14 @@ pub struct OrchestratorBalanceUserBlockchainDepositParams {
     pub amount: String,
     #[serde(rename = "creator")]
     pub creator: String,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
 }
 impl Schema for OrchestratorBalanceUserBlockchainDepositParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"},\"amount\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"},\"amount\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\"]}")
     }
 }
 impl Agent for OrchestratorBalanceUserBlockchainDepositParams {
@@ -33,7 +33,7 @@ impl Agent for OrchestratorBalanceUserBlockchainDepositParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct OrchestratorBalanceUserBlockchainDepositReturns(bool);
+pub struct OrchestratorBalanceUserBlockchainDepositReturns(pub bool);
 impl Schema for OrchestratorBalanceUserBlockchainDepositReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

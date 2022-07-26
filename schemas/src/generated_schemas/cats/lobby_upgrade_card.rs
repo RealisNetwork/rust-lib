@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyUpgradeCardParams {
-    #[serde(rename = "cardId")]
-    pub card_id: i32,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "cardId")]
+    pub card_id: i32,
 }
 impl Schema for CatsLobbyUpgradeCardParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"cardId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"cardId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"cardId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"userId\",\"cardId\"]}")
     }
 }
 impl Agent for CatsLobbyUpgradeCardParams {

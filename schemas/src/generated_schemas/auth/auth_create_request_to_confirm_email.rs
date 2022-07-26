@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthCreateRequestToConfirmEmailParams {
+    #[serde(rename = "email")]
+    pub email: String,
     #[serde(rename = "referralCode")]
     pub referral_code: Option<String>,
     #[serde(rename = "deviceId")]
     pub device_id: Option<String>,
-    #[serde(rename = "email")]
-    pub email: String,
 }
 impl Schema for AuthAuthCreateRequestToConfirmEmailParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"referralCode\":{\"type\":\"string\"},\"deviceId\":{\"type\":\"string\"},\"email\":{\"type\":\"string\",\"pattern\":\"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\\\.[a-zA-Z0-9-.]+$\"}},\"required\":[\"email\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\",\"pattern\":\"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\\\.[a-zA-Z0-9-.]+$\"},\"referralCode\":{\"type\":\"string\"},\"deviceId\":{\"type\":\"string\"}},\"required\":[\"email\"]}")
     }
 }
 impl Agent for AuthAuthCreateRequestToConfirmEmailParams {
@@ -29,7 +29,7 @@ impl Agent for AuthAuthCreateRequestToConfirmEmailParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthAuthCreateRequestToConfirmEmailReturns(String);
+pub struct AuthAuthCreateRequestToConfirmEmailReturns(pub String);
 impl Schema for AuthAuthCreateRequestToConfirmEmailReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")

@@ -25,7 +25,7 @@ impl Agent for BlogCategoryDeleteParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct BlogCategoryDeleteReturns(bool);
+pub struct BlogCategoryDeleteReturns(pub bool);
 impl Schema for BlogCategoryDeleteReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

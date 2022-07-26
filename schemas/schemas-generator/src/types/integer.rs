@@ -34,7 +34,7 @@ impl Integer {
             quote! {},
             quote! {
                 #[derive(Debug, Clone, Serialize, Deserialize)]
-                pub struct #ident(#integer_type);
+                pub struct #ident(pub #integer_type);
             },
         )
     }

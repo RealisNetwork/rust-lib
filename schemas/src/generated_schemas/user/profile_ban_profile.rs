@@ -27,7 +27,7 @@ impl Agent for UserProfileBanProfileParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UserProfileBanProfileReturns(bool);
+pub struct UserProfileBanProfileReturns(pub bool);
 impl Schema for UserProfileBanProfileReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

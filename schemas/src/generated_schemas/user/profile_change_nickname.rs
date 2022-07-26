@@ -25,7 +25,7 @@ impl Agent for UserProfileChangeNicknameParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UserProfileChangeNicknameReturns(bool);
+pub struct UserProfileChangeNicknameReturns(pub bool);
 impl Schema for UserProfileChangeNicknameReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

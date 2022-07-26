@@ -27,7 +27,7 @@ impl Agent for AuthAuthCreateRequestToChangeEmailParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthAuthCreateRequestToChangeEmailReturns(bool);
+pub struct AuthAuthCreateRequestToChangeEmailReturns(pub bool);
 impl Schema for AuthAuthCreateRequestToChangeEmailReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

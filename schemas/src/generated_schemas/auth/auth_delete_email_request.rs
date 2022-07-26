@@ -25,7 +25,7 @@ impl Agent for AuthAuthDeleteEmailRequestParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthAuthDeleteEmailRequestReturns(bool);
+pub struct AuthAuthDeleteEmailRequestReturns(pub bool);
 impl Schema for AuthAuthDeleteEmailRequestReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

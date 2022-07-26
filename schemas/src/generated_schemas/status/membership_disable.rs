@@ -25,7 +25,7 @@ impl Agent for StatusMembershipDisableParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct StatusMembershipDisableReturns(bool);
+pub struct StatusMembershipDisableReturns(pub bool);
 impl Schema for StatusMembershipDisableReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

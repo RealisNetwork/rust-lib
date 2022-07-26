@@ -25,7 +25,7 @@ impl Agent for BlogCategoryCreateParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct BlogCategoryCreateReturns(bool);
+pub struct BlogCategoryCreateReturns(pub bool);
 impl Schema for BlogCategoryCreateReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

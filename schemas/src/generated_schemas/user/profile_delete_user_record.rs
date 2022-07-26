@@ -25,7 +25,7 @@ impl Agent for UserProfileDeleteUserRecordParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UserProfileDeleteUserRecordReturns(bool);
+pub struct UserProfileDeleteUserRecordReturns(pub bool);
 impl Schema for UserProfileDeleteUserRecordReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

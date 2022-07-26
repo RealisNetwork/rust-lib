@@ -25,7 +25,7 @@ impl Agent for WithdrawApprovalDenyParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct WithdrawApprovalDenyReturns(bool);
+pub struct WithdrawApprovalDenyReturns(pub bool);
 impl Schema for WithdrawApprovalDenyReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

@@ -27,7 +27,7 @@ impl Agent for RefundBalancesDeleteParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct RefundBalancesDeleteReturns(bool);
+pub struct RefundBalancesDeleteReturns(pub bool);
 impl Schema for RefundBalancesDeleteReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

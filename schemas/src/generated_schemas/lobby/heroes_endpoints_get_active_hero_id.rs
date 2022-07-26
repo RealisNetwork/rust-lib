@@ -25,7 +25,7 @@ impl Agent for LobbyHeroesEndpointsGetActiveHeroIdParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct LobbyHeroesEndpointsGetActiveHeroIdReturns(i32);
+pub struct LobbyHeroesEndpointsGetActiveHeroIdReturns(pub i32);
 impl Schema for LobbyHeroesEndpointsGetActiveHeroIdReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}")

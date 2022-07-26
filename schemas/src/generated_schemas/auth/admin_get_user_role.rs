@@ -25,7 +25,7 @@ impl Agent for AuthAdminGetUserRoleParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthAdminGetUserRoleReturns(String);
+pub struct AuthAdminGetUserRoleReturns(pub String);
 impl Schema for AuthAdminGetUserRoleReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")

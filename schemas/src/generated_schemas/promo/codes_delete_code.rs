@@ -25,7 +25,7 @@ impl Agent for PromoCodesDeleteCodeParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct PromoCodesDeleteCodeReturns(bool);
+pub struct PromoCodesDeleteCodeReturns(pub bool);
 impl Schema for PromoCodesDeleteCodeReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

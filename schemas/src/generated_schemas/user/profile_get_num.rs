@@ -30,7 +30,7 @@ impl Agent for UserProfileGetNumParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UserProfileGetNumReturns(i64);
+pub struct UserProfileGetNumReturns(pub i64);
 impl Schema for UserProfileGetNumReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}")

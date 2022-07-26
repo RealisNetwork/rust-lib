@@ -30,7 +30,7 @@ impl Agent for ListeriaStorageInventoryEndpointsGetHeroScrollsCountParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ListeriaStorageInventoryEndpointsGetHeroScrollsCountReturns(i32);
+pub struct ListeriaStorageInventoryEndpointsGetHeroScrollsCountReturns(pub i32);
 impl Schema for ListeriaStorageInventoryEndpointsGetHeroScrollsCountReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}")

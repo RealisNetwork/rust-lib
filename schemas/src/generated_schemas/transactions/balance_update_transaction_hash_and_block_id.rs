@@ -29,7 +29,7 @@ impl Agent for TransactionsBalanceUpdateTransactionHashAndBlockIdParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceUpdateTransactionHashAndBlockIdReturns(bool);
+pub struct TransactionsBalanceUpdateTransactionHashAndBlockIdReturns(pub bool);
 impl Schema for TransactionsBalanceUpdateTransactionHashAndBlockIdReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

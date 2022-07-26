@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GameBalancerGameBalancerDisconnectPlayerParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "roomId")]
     pub room_id: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for GameBalancerGameBalancerDisconnectPlayerParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"roomId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"roomId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"roomId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"roomId\"]}")
     }
 }
 impl Agent for GameBalancerGameBalancerDisconnectPlayerParams {
@@ -27,7 +27,7 @@ impl Agent for GameBalancerGameBalancerDisconnectPlayerParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct GameBalancerGameBalancerDisconnectPlayerReturns(bool);
+pub struct GameBalancerGameBalancerDisconnectPlayerReturns(pub bool);
 impl Schema for GameBalancerGameBalancerDisconnectPlayerReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

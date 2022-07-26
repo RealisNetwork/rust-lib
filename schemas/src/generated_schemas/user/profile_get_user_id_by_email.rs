@@ -25,7 +25,7 @@ impl Agent for UserProfileGetUserIdByEmailParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UserProfileGetUserIdByEmailReturns(String);
+pub struct UserProfileGetUserIdByEmailReturns(pub String);
 impl Schema for UserProfileGetUserIdByEmailReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")

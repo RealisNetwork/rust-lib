@@ -25,7 +25,7 @@ impl Agent for AuthTwoFactorVerifySecretParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthTwoFactorVerifySecretReturns(bool);
+pub struct AuthTwoFactorVerifySecretReturns(pub bool);
 impl Schema for AuthTwoFactorVerifySecretReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

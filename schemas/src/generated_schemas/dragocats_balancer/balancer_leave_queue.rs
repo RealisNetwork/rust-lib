@@ -22,7 +22,7 @@ impl Agent for DragocatsBalancerBalancerLeaveQueueParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct DragocatsBalancerBalancerLeaveQueueReturns(bool);
+pub struct DragocatsBalancerBalancerLeaveQueueReturns(pub bool);
 impl Schema for DragocatsBalancerBalancerLeaveQueueReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

@@ -27,7 +27,7 @@ impl Agent for TransactionsRegistryProductUpdateProductOwnerParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsRegistryProductUpdateProductOwnerReturns(bool);
+pub struct TransactionsRegistryProductUpdateProductOwnerReturns(pub bool);
 impl Schema for TransactionsRegistryProductUpdateProductOwnerReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

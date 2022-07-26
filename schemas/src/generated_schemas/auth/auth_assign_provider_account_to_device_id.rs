@@ -25,7 +25,7 @@ impl Agent for AuthAuthAssignProviderAccountToDeviceIdParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthAuthAssignProviderAccountToDeviceIdReturns(bool);
+pub struct AuthAuthAssignProviderAccountToDeviceIdReturns(pub bool);
 impl Schema for AuthAuthAssignProviderAccountToDeviceIdReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

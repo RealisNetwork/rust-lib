@@ -26,33 +26,35 @@ impl Agent for TaskTaskGetUsersCompletedTasksParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TaskTaskGetUsersCompletedTasksReturnsParamsTaskParams {
-    #[serde(rename = "taskId")]
-    pub task_id: i32,
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
     #[serde(rename = "statusList")]
     pub status_list: Vec<String>,
+    #[serde(rename = "taskTime")]
+    pub task_time: String,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
+    #[serde(rename = "taskId")]
+    pub task_id: i32,
     #[serde(rename = "rewardType")]
     pub reward_type: String,
     #[serde(rename = "rewardAmount")]
     pub reward_amount: i64,
-    #[serde(rename = "taskTime")]
-    pub task_time: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TaskTaskGetUsersCompletedTasksReturnsParams {
-    #[serde(rename = "completeDate")]
-    pub complete_date: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "task")]
     pub task: TaskTaskGetUsersCompletedTasksReturnsParamsTaskParams,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "completeDate")]
+    pub complete_date: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TaskTaskGetUsersCompletedTasksReturns(Vec<TaskTaskGetUsersCompletedTasksReturnsParams>);
+pub struct TaskTaskGetUsersCompletedTasksReturns(
+    pub Vec<TaskTaskGetUsersCompletedTasksReturnsParams>,
+);
 impl Schema for TaskTaskGetUsersCompletedTasksReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"completeDate\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"task\":{\"type\":\"object\",\"properties\":{\"taskId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"personalType\":{\"type\":\"string\"},\"statusList\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"rewardType\":{\"type\":\"string\"},\"rewardAmount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"taskTime\":{\"type\":\"string\"}},\"required\":[\"taskId\",\"personalType\",\"statusList\",\"rewardType\",\"rewardAmount\",\"taskTime\"]}},\"required\":[\"userId\",\"completeDate\",\"task\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"task\":{\"type\":\"object\",\"properties\":{\"statusList\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"taskTime\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"taskId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"rewardType\":{\"type\":\"string\"},\"rewardAmount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"taskId\",\"personalType\",\"statusList\",\"rewardType\",\"rewardAmount\",\"taskTime\"]},\"userId\":{\"type\":\"string\"},\"completeDate\":{\"type\":\"string\"}},\"required\":[\"userId\",\"completeDate\",\"task\"]}}")
     }
 }
 impl Agent for TaskTaskGetUsersCompletedTasksReturns {

@@ -25,7 +25,7 @@ impl Agent for AuthTwoFactorDeleteSecretParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthTwoFactorDeleteSecretReturns(bool);
+pub struct AuthTwoFactorDeleteSecretReturns(pub bool);
 impl Schema for AuthTwoFactorDeleteSecretReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

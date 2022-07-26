@@ -30,73 +30,6 @@ impl Agent for ListeriaStorageHeroesEndpointsGetHeroesListByUserIdParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ListeriaStorageHeroesEndpointsGetHeroesListByUserIdReturnsParamsAttributesParams {
-    #[serde(rename = "attackDamage")]
-    pub attack_damage: String,
-    #[serde(rename = "skillEffectPower")]
-    pub skill_effect_power: String,
-    #[serde(rename = "strength")]
-    pub strength: String,
-    #[serde(rename = "skillPower")]
-    pub skill_power: String,
-    #[serde(rename = "intelligence")]
-    pub intelligence: String,
-    #[serde(rename = "agility")]
-    pub agility: String,
-    #[serde(rename = "healthRegenPercent")]
-    pub health_regen_percent: String,
-    #[serde(rename = "armor")]
-    pub armor: String,
-    #[serde(rename = "vampirismPower")]
-    pub vampirism_power: String,
-    #[serde(rename = "health")]
-    pub health: String,
-    #[serde(rename = "moveSpeed")]
-    pub move_speed: String,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: String,
-    #[serde(rename = "mainCharacteristic")]
-    pub main_characteristic: i8,
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: String,
-    #[serde(rename = "ultPower")]
-    pub ult_power: String,
-}
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ListeriaStorageHeroesEndpointsGetHeroesListByUserIdReturnsParamsEquipmentAttributesParams
-{
-    #[serde(rename = "mainCharacteristic")]
-    pub main_characteristic: i8,
-    #[serde(rename = "attackDamage")]
-    pub attack_damage: String,
-    #[serde(rename = "skillPower")]
-    pub skill_power: String,
-    #[serde(rename = "healthRegenPercent")]
-    pub health_regen_percent: String,
-    #[serde(rename = "intelligence")]
-    pub intelligence: String,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: String,
-    #[serde(rename = "health")]
-    pub health: String,
-    #[serde(rename = "strength")]
-    pub strength: String,
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: String,
-    #[serde(rename = "vampirismPower")]
-    pub vampirism_power: String,
-    #[serde(rename = "ultPower")]
-    pub ult_power: String,
-    #[serde(rename = "moveSpeed")]
-    pub move_speed: String,
-    #[serde(rename = "skillEffectPower")]
-    pub skill_effect_power: String,
-    #[serde(rename = "armor")]
-    pub armor: String,
-    #[serde(rename = "agility")]
-    pub agility: String,
-}
-#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ListeriaStorageHeroesEndpointsGetHeroesListByUserIdReturnsParamsSlotsParamsParams {
     #[serde(rename = "equipment")]
     pub equipment: i8,
@@ -104,50 +37,117 @@ pub struct ListeriaStorageHeroesEndpointsGetHeroesListByUserIdReturnsParamsSlots
     pub item_uid: Option<i32>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ListeriaStorageHeroesEndpointsGetHeroesListByUserIdReturnsParamsAttributesParams {
+    #[serde(rename = "strength")]
+    pub strength: String,
+    #[serde(rename = "skillEffectPower")]
+    pub skill_effect_power: String,
+    #[serde(rename = "skillPower")]
+    pub skill_power: String,
+    #[serde(rename = "intelligence")]
+    pub intelligence: String,
+    #[serde(rename = "mainCharacteristic")]
+    pub main_characteristic: i8,
+    #[serde(rename = "healthRegenPercent")]
+    pub health_regen_percent: String,
+    #[serde(rename = "armor")]
+    pub armor: String,
+    #[serde(rename = "moveSpeed")]
+    pub move_speed: String,
+    #[serde(rename = "health")]
+    pub health: String,
+    #[serde(rename = "attackDamage")]
+    pub attack_damage: String,
+    #[serde(rename = "ultPower")]
+    pub ult_power: String,
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: String,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: String,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: String,
+    #[serde(rename = "agility")]
+    pub agility: String,
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ListeriaStorageHeroesEndpointsGetHeroesListByUserIdReturnsParamsEquipmentAttributesParams
+{
+    #[serde(rename = "intelligence")]
+    pub intelligence: String,
+    #[serde(rename = "mainCharacteristic")]
+    pub main_characteristic: i8,
+    #[serde(rename = "healthRegenPercent")]
+    pub health_regen_percent: String,
+    #[serde(rename = "strength")]
+    pub strength: String,
+    #[serde(rename = "skillEffectPower")]
+    pub skill_effect_power: String,
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: String,
+    #[serde(rename = "skillPower")]
+    pub skill_power: String,
+    #[serde(rename = "armor")]
+    pub armor: String,
+    #[serde(rename = "health")]
+    pub health: String,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: String,
+    #[serde(rename = "agility")]
+    pub agility: String,
+    #[serde(rename = "attackDamage")]
+    pub attack_damage: String,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: String,
+    #[serde(rename = "ultPower")]
+    pub ult_power: String,
+    #[serde(rename = "moveSpeed")]
+    pub move_speed: String,
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ListeriaStorageHeroesEndpointsGetHeroesListByUserIdReturnsParams {
-    #[serde(rename = "attributes")]
-    pub attributes:
-        ListeriaStorageHeroesEndpointsGetHeroesListByUserIdReturnsParamsAttributesParams,
-    #[serde(rename = "equipmentAttributes")]
-    pub equipment_attributes:
-        ListeriaStorageHeroesEndpointsGetHeroesListByUserIdReturnsParamsEquipmentAttributesParams,
-    #[serde(rename = "active")]
-    pub active: bool,
-    #[serde(rename = "maxLevel")]
-    pub max_level: i16,
-    #[serde(rename = "experience")]
-    pub experience: i32,
-    #[serde(rename = "bindingId")]
-    pub binding_id: i32,
-    #[serde(rename = "blockId")]
-    pub block_id: Option<String>,
-    #[serde(rename = "toNextLevelScrolls")]
-    pub to_next_level_scrolls: i32,
-    #[serde(rename = "isPending")]
-    pub is_pending: bool,
-    #[serde(rename = "heroId")]
-    pub hero_id: i8,
-    #[serde(rename = "toNextLevelExperience")]
-    pub to_next_level_experience: i32,
-    #[serde(rename = "level")]
-    pub level: i16,
-    #[serde(rename = "linkToExplorer")]
-    pub link_to_explorer: String,
-    #[serde(rename = "status")]
-    pub status: i32,
-    #[serde(rename = "transactionHash")]
-    pub transaction_hash: Option<String>,
     #[serde(rename = "slots")]
     pub slots:
         Vec<ListeriaStorageHeroesEndpointsGetHeroesListByUserIdReturnsParamsSlotsParamsParams>,
+    #[serde(rename = "toNextLevelExperience")]
+    pub to_next_level_experience: i32,
+    #[serde(rename = "isPending")]
+    pub is_pending: bool,
+    #[serde(rename = "toNextLevelScrolls")]
+    pub to_next_level_scrolls: i32,
+    #[serde(rename = "transactionHash")]
+    pub transaction_hash: Option<String>,
+    #[serde(rename = "status")]
+    pub status: i32,
+    #[serde(rename = "active")]
+    pub active: bool,
+    #[serde(rename = "attributes")]
+    pub attributes:
+        ListeriaStorageHeroesEndpointsGetHeroesListByUserIdReturnsParamsAttributesParams,
+    #[serde(rename = "linkToExplorer")]
+    pub link_to_explorer: String,
+    #[serde(rename = "equipmentAttributes")]
+    pub equipment_attributes:
+        ListeriaStorageHeroesEndpointsGetHeroesListByUserIdReturnsParamsEquipmentAttributesParams,
+    #[serde(rename = "experience")]
+    pub experience: i32,
+    #[serde(rename = "maxLevel")]
+    pub max_level: i16,
+    #[serde(rename = "level")]
+    pub level: i16,
+    #[serde(rename = "blockId")]
+    pub block_id: Option<String>,
+    #[serde(rename = "heroId")]
+    pub hero_id: i8,
+    #[serde(rename = "bindingId")]
+    pub binding_id: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ListeriaStorageHeroesEndpointsGetHeroesListByUserIdReturns(
-    Vec<ListeriaStorageHeroesEndpointsGetHeroesListByUserIdReturnsParams>,
+    pub Vec<ListeriaStorageHeroesEndpointsGetHeroesListByUserIdReturnsParams>,
 );
 impl Schema for ListeriaStorageHeroesEndpointsGetHeroesListByUserIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"attributes\":{\"type\":\"object\",\"properties\":{\"attackDamage\":{\"type\":\"string\"},\"skillEffectPower\":{\"type\":\"string\"},\"strength\":{\"type\":\"string\"},\"skillPower\":{\"type\":\"string\"},\"intelligence\":{\"type\":\"string\"},\"agility\":{\"type\":\"string\"},\"healthRegenPercent\":{\"type\":\"string\"},\"armor\":{\"type\":\"string\"},\"vampirismPower\":{\"type\":\"string\"},\"health\":{\"type\":\"string\"},\"moveSpeed\":{\"type\":\"string\"},\"attackReloadSpeed\":{\"type\":\"string\"},\"mainCharacteristic\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"ultEffectPower\":{\"type\":\"string\"},\"ultPower\":{\"type\":\"string\"}},\"required\":[\"strength\",\"agility\",\"intelligence\",\"mainCharacteristic\",\"health\",\"healthRegenPercent\",\"armor\",\"moveSpeed\",\"attackDamage\",\"attackReloadSpeed\",\"skillPower\",\"skillEffectPower\",\"ultPower\",\"ultEffectPower\",\"vampirismPower\"]},\"equipmentAttributes\":{\"type\":\"object\",\"properties\":{\"mainCharacteristic\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"attackDamage\":{\"type\":\"string\"},\"skillPower\":{\"type\":\"string\"},\"healthRegenPercent\":{\"type\":\"string\"},\"intelligence\":{\"type\":\"string\"},\"attackReloadSpeed\":{\"type\":\"string\"},\"health\":{\"type\":\"string\"},\"strength\":{\"type\":\"string\"},\"ultEffectPower\":{\"type\":\"string\"},\"vampirismPower\":{\"type\":\"string\"},\"ultPower\":{\"type\":\"string\"},\"moveSpeed\":{\"type\":\"string\"},\"skillEffectPower\":{\"type\":\"string\"},\"armor\":{\"type\":\"string\"},\"agility\":{\"type\":\"string\"}},\"required\":[\"strength\",\"agility\",\"intelligence\",\"mainCharacteristic\",\"health\",\"healthRegenPercent\",\"armor\",\"moveSpeed\",\"attackDamage\",\"attackReloadSpeed\",\"skillPower\",\"skillEffectPower\",\"ultPower\",\"ultEffectPower\",\"vampirismPower\"]},\"active\":{\"type\":\"boolean\"},\"maxLevel\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"experience\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"blockId\":{\"type\":\"string\"},\"toNextLevelScrolls\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"isPending\":{\"type\":\"boolean\"},\"heroId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"toNextLevelExperience\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"level\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"linkToExplorer\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"transactionHash\":{\"type\":\"string\"},\"slots\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"equipment\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"itemUid\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"equipment\"]}}},\"required\":[\"heroId\",\"level\",\"experience\",\"active\",\"bindingId\",\"linkToExplorer\",\"attributes\",\"equipmentAttributes\",\"slots\",\"isPending\",\"toNextLevelExperience\",\"toNextLevelScrolls\",\"maxLevel\",\"status\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"slots\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"equipment\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"itemUid\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"equipment\"]}},\"toNextLevelExperience\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"isPending\":{\"type\":\"boolean\"},\"toNextLevelScrolls\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"transactionHash\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"active\":{\"type\":\"boolean\"},\"attributes\":{\"type\":\"object\",\"properties\":{\"strength\":{\"type\":\"string\"},\"skillEffectPower\":{\"type\":\"string\"},\"skillPower\":{\"type\":\"string\"},\"intelligence\":{\"type\":\"string\"},\"mainCharacteristic\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"healthRegenPercent\":{\"type\":\"string\"},\"armor\":{\"type\":\"string\"},\"moveSpeed\":{\"type\":\"string\"},\"health\":{\"type\":\"string\"},\"attackDamage\":{\"type\":\"string\"},\"ultPower\":{\"type\":\"string\"},\"ultEffectPower\":{\"type\":\"string\"},\"vampirismPower\":{\"type\":\"string\"},\"attackReloadSpeed\":{\"type\":\"string\"},\"agility\":{\"type\":\"string\"}},\"required\":[\"strength\",\"agility\",\"intelligence\",\"mainCharacteristic\",\"health\",\"healthRegenPercent\",\"armor\",\"moveSpeed\",\"attackDamage\",\"attackReloadSpeed\",\"skillPower\",\"skillEffectPower\",\"ultPower\",\"ultEffectPower\",\"vampirismPower\"]},\"linkToExplorer\":{\"type\":\"string\"},\"equipmentAttributes\":{\"type\":\"object\",\"properties\":{\"intelligence\":{\"type\":\"string\"},\"mainCharacteristic\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"healthRegenPercent\":{\"type\":\"string\"},\"strength\":{\"type\":\"string\"},\"skillEffectPower\":{\"type\":\"string\"},\"ultEffectPower\":{\"type\":\"string\"},\"skillPower\":{\"type\":\"string\"},\"armor\":{\"type\":\"string\"},\"health\":{\"type\":\"string\"},\"vampirismPower\":{\"type\":\"string\"},\"agility\":{\"type\":\"string\"},\"attackDamage\":{\"type\":\"string\"},\"attackReloadSpeed\":{\"type\":\"string\"},\"ultPower\":{\"type\":\"string\"},\"moveSpeed\":{\"type\":\"string\"}},\"required\":[\"strength\",\"agility\",\"intelligence\",\"mainCharacteristic\",\"health\",\"healthRegenPercent\",\"armor\",\"moveSpeed\",\"attackDamage\",\"attackReloadSpeed\",\"skillPower\",\"skillEffectPower\",\"ultPower\",\"ultEffectPower\",\"vampirismPower\"]},\"experience\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"maxLevel\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"level\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"blockId\":{\"type\":\"string\"},\"heroId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"heroId\",\"level\",\"experience\",\"active\",\"bindingId\",\"linkToExplorer\",\"attributes\",\"equipmentAttributes\",\"slots\",\"isPending\",\"toNextLevelExperience\",\"toNextLevelScrolls\",\"maxLevel\",\"status\"]}}")
     }
 }
 impl Agent for ListeriaStorageHeroesEndpointsGetHeroesListByUserIdReturns {

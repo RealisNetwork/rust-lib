@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawAttemptTryNewParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "receiverAddress")]
     pub receiver_address: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "amount")]
     pub amount: String,
 }
 impl Schema for WithdrawAttemptTryNewParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"receiverAddress\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"receiverAddress\",\"amount\",\"userId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"receiverAddress\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"receiverAddress\",\"amount\",\"userId\"]}")
     }
 }
 impl Agent for WithdrawAttemptTryNewParams {
@@ -29,7 +29,7 @@ impl Agent for WithdrawAttemptTryNewParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct WithdrawAttemptTryNewReturns(bool);
+pub struct WithdrawAttemptTryNewReturns(pub bool);
 impl Schema for WithdrawAttemptTryNewReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

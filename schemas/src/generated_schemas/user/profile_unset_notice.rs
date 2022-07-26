@@ -25,7 +25,7 @@ impl Agent for UserProfileUnsetNoticeParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UserProfileUnsetNoticeReturns(bool);
+pub struct UserProfileUnsetNoticeReturns(pub bool);
 impl Schema for UserProfileUnsetNoticeReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

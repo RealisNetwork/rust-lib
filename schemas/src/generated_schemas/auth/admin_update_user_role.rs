@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAdminUpdateUserRoleParams {
-    #[serde(rename = "role")]
-    pub role: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "role")]
+    pub role: String,
 }
 impl Schema for AuthAdminUpdateUserRoleParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"role\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"role\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"role\":{\"type\":\"string\"}},\"required\":[\"userId\",\"role\"]}")
     }
 }
 impl Agent for AuthAdminUpdateUserRoleParams {
@@ -27,7 +27,7 @@ impl Agent for AuthAdminUpdateUserRoleParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthAdminUpdateUserRoleReturns(bool);
+pub struct AuthAdminUpdateUserRoleReturns(pub bool);
 impl Schema for AuthAdminUpdateUserRoleReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

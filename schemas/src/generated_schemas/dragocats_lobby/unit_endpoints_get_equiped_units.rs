@@ -26,18 +26,18 @@ impl Agent for DragocatsLobbyUnitEndpointsGetEquipedUnitsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsLobbyUnitEndpointsGetEquipedUnitsReturnsParams {
-    #[serde(rename = "slotId")]
-    pub slot_id: i64,
     #[serde(rename = "unitId")]
     pub unit_id: i64,
+    #[serde(rename = "slotId")]
+    pub slot_id: i64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsLobbyUnitEndpointsGetEquipedUnitsReturns(
-    Vec<DragocatsLobbyUnitEndpointsGetEquipedUnitsReturnsParams>,
+    pub Vec<DragocatsLobbyUnitEndpointsGetEquipedUnitsReturnsParams>,
 );
 impl Schema for DragocatsLobbyUnitEndpointsGetEquipedUnitsReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"slotId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"unitId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"unitId\",\"slotId\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"unitId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"slotId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"unitId\",\"slotId\"]}}")
     }
 }
 impl Agent for DragocatsLobbyUnitEndpointsGetEquipedUnitsReturns {

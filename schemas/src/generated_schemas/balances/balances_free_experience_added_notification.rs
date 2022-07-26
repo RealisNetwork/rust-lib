@@ -31,14 +31,14 @@ impl Agent for BalancesBalancesFreeExperienceAddedNotificationParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BalancesBalancesFreeExperienceAddedNotificationReturns {
-    #[serde(rename = "amount")]
-    pub amount: i32,
     #[serde(rename = "balance")]
     pub balance: i32,
+    #[serde(rename = "amount")]
+    pub amount: i32,
 }
 impl Schema for BalancesBalancesFreeExperienceAddedNotificationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"balance\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"amount\",\"balance\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"balance\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"amount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"amount\",\"balance\"]}")
     }
 }
 impl Agent for BalancesBalancesFreeExperienceAddedNotificationReturns {

@@ -27,7 +27,7 @@ impl Agent for AuthAdminAddRoleToUserParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthAdminAddRoleToUserReturns(bool);
+pub struct AuthAdminAddRoleToUserReturns(pub bool);
 impl Schema for AuthAdminAddRoleToUserReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

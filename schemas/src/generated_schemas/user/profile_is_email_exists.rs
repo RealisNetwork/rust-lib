@@ -25,7 +25,7 @@ impl Agent for UserProfileIsEmailExistsParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UserProfileIsEmailExistsReturns(bool);
+pub struct UserProfileIsEmailExistsReturns(pub bool);
 impl Schema for UserProfileIsEmailExistsReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

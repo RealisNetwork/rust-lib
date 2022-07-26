@@ -25,7 +25,7 @@ impl Agent for RefundBalancesGetAllLockedFundsParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct RefundBalancesGetAllLockedFundsReturns(bool);
+pub struct RefundBalancesGetAllLockedFundsReturns(pub bool);
 impl Schema for RefundBalancesGetAllLockedFundsReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

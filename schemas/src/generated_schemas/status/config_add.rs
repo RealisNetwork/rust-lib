@@ -5,22 +5,22 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigAddParams {
-    #[serde(rename = "isAvailable")]
-    pub is_available: bool,
-    #[serde(rename = "priceInLis")]
-    pub price_in_lis: String,
-    #[serde(rename = "membership")]
-    pub membership: String,
-    #[serde(rename = "maxCount")]
-    pub max_count: String,
     #[serde(rename = "price")]
     pub price: String,
+    #[serde(rename = "maxCount")]
+    pub max_count: String,
     #[serde(rename = "multiplier")]
     pub multiplier: String,
+    #[serde(rename = "isAvailable")]
+    pub is_available: bool,
+    #[serde(rename = "membership")]
+    pub membership: String,
+    #[serde(rename = "priceInLis")]
+    pub price_in_lis: String,
 }
 impl Schema for StatusConfigAddParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isAvailable\":{\"type\":\"boolean\"},\"priceInLis\":{\"type\":\"string\"},\"membership\":{\"type\":\"string\"},\"maxCount\":{\"type\":\"string\"},\"price\":{\"type\":\"string\"},\"multiplier\":{\"type\":\"string\"}},\"required\":[\"membership\",\"price\",\"multiplier\",\"priceInLis\",\"maxCount\",\"isAvailable\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"price\":{\"type\":\"string\"},\"maxCount\":{\"type\":\"string\"},\"multiplier\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"},\"membership\":{\"type\":\"string\"},\"priceInLis\":{\"type\":\"string\"}},\"required\":[\"membership\",\"price\",\"multiplier\",\"priceInLis\",\"maxCount\",\"isAvailable\"]}")
     }
 }
 impl Agent for StatusConfigAddParams {
@@ -35,7 +35,7 @@ impl Agent for StatusConfigAddParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct StatusConfigAddReturns(bool);
+pub struct StatusConfigAddReturns(pub bool);
 impl Schema for StatusConfigAddReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

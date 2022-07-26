@@ -25,7 +25,7 @@ impl Agent for AdminMailTemplateGetByKeyParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AdminMailTemplateGetByKeyReturns(String);
+pub struct AdminMailTemplateGetByKeyReturns(pub String);
 impl Schema for AdminMailTemplateGetByKeyReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")

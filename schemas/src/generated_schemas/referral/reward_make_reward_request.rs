@@ -30,7 +30,7 @@ impl Agent for ReferralRewardMakeRewardRequestParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ReferralRewardMakeRewardRequestReturns(bool);
+pub struct ReferralRewardMakeRewardRequestReturns(pub bool);
 impl Schema for ReferralRewardMakeRewardRequestReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

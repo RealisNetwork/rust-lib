@@ -29,7 +29,7 @@ impl Agent for CdConfigConfigAddConfigParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct CdConfigConfigAddConfigReturns(bool);
+pub struct CdConfigConfigAddConfigReturns(pub bool);
 impl Schema for CdConfigConfigAddConfigReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

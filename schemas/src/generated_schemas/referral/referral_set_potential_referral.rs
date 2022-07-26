@@ -27,7 +27,7 @@ impl Agent for ReferralReferralSetPotentialReferralParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ReferralReferralSetPotentialReferralReturns(bool);
+pub struct ReferralReferralSetPotentialReferralReturns(pub bool);
 impl Schema for ReferralReferralSetPotentialReferralReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

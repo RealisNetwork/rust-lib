@@ -25,7 +25,7 @@ impl Agent for BinanceWalletWalletGetAddressByUserIdParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct BinanceWalletWalletGetAddressByUserIdReturns(String);
+pub struct BinanceWalletWalletGetAddressByUserIdReturns(pub String);
 impl Schema for BinanceWalletWalletGetAddressByUserIdReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")

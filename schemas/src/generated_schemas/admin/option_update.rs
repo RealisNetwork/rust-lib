@@ -12,18 +12,18 @@ pub struct AdminOptionUpdateParamsExtraDetailsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionUpdateParams {
-    #[serde(rename = "description")]
-    pub description: Option<String>,
     #[serde(rename = "clientKey")]
     pub client_key: String,
-    #[serde(rename = "value")]
-    pub value: Option<String>,
     #[serde(rename = "extraDetails")]
     pub extra_details: Option<AdminOptionUpdateParamsExtraDetailsParams>,
+    #[serde(rename = "value")]
+    pub value: Option<String>,
+    #[serde(rename = "description")]
+    pub description: Option<String>,
 }
 impl Schema for AdminOptionUpdateParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"description\":{\"type\":\"string\"},\"clientKey\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"tab\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":null}},\"required\":[\"clientKey\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"clientKey\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"tab\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":null},\"value\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"}},\"required\":[\"clientKey\"]}")
     }
 }
 impl Agent for AdminOptionUpdateParams {
@@ -38,7 +38,7 @@ impl Agent for AdminOptionUpdateParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AdminOptionUpdateReturns(bool);
+pub struct AdminOptionUpdateReturns(pub bool);
 impl Schema for AdminOptionUpdateReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

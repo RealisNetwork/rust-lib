@@ -25,7 +25,7 @@ impl Agent for SoulAdapterWalletGetBalanceByAddressParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct SoulAdapterWalletGetBalanceByAddressReturns(String);
+pub struct SoulAdapterWalletGetBalanceByAddressReturns(pub String);
 impl Schema for SoulAdapterWalletGetBalanceByAddressReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")

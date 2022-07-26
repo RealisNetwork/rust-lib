@@ -25,7 +25,7 @@ impl Agent for AdminActionUndoParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AdminActionUndoReturns(bool);
+pub struct AdminActionUndoReturns(pub bool);
 impl Schema for AdminActionUndoReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

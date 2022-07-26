@@ -25,7 +25,7 @@ impl Agent for OrchestratorProductBurnParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct OrchestratorProductBurnReturns(bool);
+pub struct OrchestratorProductBurnReturns(pub bool);
 impl Schema for OrchestratorProductBurnReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

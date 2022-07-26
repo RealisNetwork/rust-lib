@@ -25,7 +25,7 @@ impl Agent for UserProfileUnsetSuspiciousParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UserProfileUnsetSuspiciousReturns(bool);
+pub struct UserProfileUnsetSuspiciousReturns(pub bool);
 impl Schema for UserProfileUnsetSuspiciousReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

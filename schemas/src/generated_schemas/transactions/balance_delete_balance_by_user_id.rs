@@ -25,7 +25,7 @@ impl Agent for TransactionsBalanceDeleteBalanceByUserIdParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceDeleteBalanceByUserIdReturns(bool);
+pub struct TransactionsBalanceDeleteBalanceByUserIdReturns(pub bool);
 impl Schema for TransactionsBalanceDeleteBalanceByUserIdReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

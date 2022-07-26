@@ -25,7 +25,7 @@ impl Agent for ReferralLinkGetMyParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ReferralLinkGetMyReturns(String);
+pub struct ReferralLinkGetMyReturns(pub String);
 impl Schema for ReferralLinkGetMyReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")

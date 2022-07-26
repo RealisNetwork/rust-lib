@@ -27,7 +27,7 @@ impl Agent for TransactionsRegistryProductAddProductHashParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsRegistryProductAddProductHashReturns(bool);
+pub struct TransactionsRegistryProductAddProductHashReturns(pub bool);
 impl Schema for TransactionsRegistryProductAddProductHashReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

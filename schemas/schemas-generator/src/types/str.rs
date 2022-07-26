@@ -30,7 +30,7 @@ impl StringParams {
             quote! {},
             quote! {
                 #[derive(Debug, Clone, Serialize, Deserialize)]
-                pub struct #ident(String);
+                pub struct #ident(pub String);
             },
         )
     }

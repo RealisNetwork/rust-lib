@@ -25,7 +25,7 @@ impl Agent for OrchestratorLootboxPurchaseParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct OrchestratorLootboxPurchaseReturns(bool);
+pub struct OrchestratorLootboxPurchaseReturns(pub bool);
 impl Schema for OrchestratorLootboxPurchaseReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

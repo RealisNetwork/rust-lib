@@ -29,7 +29,7 @@ impl Agent for SoulAdapterWalletProcessTransactionByHashParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct SoulAdapterWalletProcessTransactionByHashReturns(bool);
+pub struct SoulAdapterWalletProcessTransactionByHashReturns(pub bool);
 impl Schema for SoulAdapterWalletProcessTransactionByHashReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

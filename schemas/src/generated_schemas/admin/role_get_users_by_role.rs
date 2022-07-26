@@ -25,7 +25,7 @@ impl Agent for AdminRoleGetUsersByRoleParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AdminRoleGetUsersByRoleReturns(Vec<String>);
+pub struct AdminRoleGetUsersByRoleReturns(pub Vec<String>);
 impl Schema for AdminRoleGetUsersByRoleReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"array\",\"items\":{\"type\":\"string\"}}")

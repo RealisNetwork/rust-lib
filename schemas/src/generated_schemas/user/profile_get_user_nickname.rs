@@ -25,7 +25,7 @@ impl Agent for UserProfileGetUserNicknameParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UserProfileGetUserNicknameReturns(String);
+pub struct UserProfileGetUserNicknameReturns(pub String);
 impl Schema for UserProfileGetUserNicknameReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")

@@ -39,7 +39,7 @@ pub struct AdminOptionGetListReturnsParams {
     pub value: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AdminOptionGetListReturns(Vec<AdminOptionGetListReturnsParams>);
+pub struct AdminOptionGetListReturns(pub Vec<AdminOptionGetListReturnsParams>);
 impl Schema for AdminOptionGetListReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"scope\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\"]}}")

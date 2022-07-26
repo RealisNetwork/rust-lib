@@ -25,7 +25,7 @@ impl Agent for AdminActionDeleteByActionIdParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AdminActionDeleteByActionIdReturns(bool);
+pub struct AdminActionDeleteByActionIdReturns(pub bool);
 impl Schema for AdminActionDeleteByActionIdReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

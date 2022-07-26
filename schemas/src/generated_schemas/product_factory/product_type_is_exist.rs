@@ -25,7 +25,7 @@ impl Agent for ProductFactoryProductTypeIsExistParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ProductFactoryProductTypeIsExistReturns(bool);
+pub struct ProductFactoryProductTypeIsExistReturns(pub bool);
 impl Schema for ProductFactoryProductTypeIsExistReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

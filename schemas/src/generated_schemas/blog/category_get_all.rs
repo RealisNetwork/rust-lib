@@ -39,7 +39,7 @@ pub struct BlogCategoryGetAllReturnsParams {
     pub name: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct BlogCategoryGetAllReturns(Vec<BlogCategoryGetAllReturnsParams>);
+pub struct BlogCategoryGetAllReturns(pub Vec<BlogCategoryGetAllReturnsParams>);
 impl Schema for BlogCategoryGetAllReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isAvailable\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\",\"isAvailable\"]}}")

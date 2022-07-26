@@ -30,7 +30,7 @@ impl Agent for UserProfileGetAllUsersSubscribedToMailingParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UserProfileGetAllUsersSubscribedToMailingReturns(Vec<String>);
+pub struct UserProfileGetAllUsersSubscribedToMailingReturns(pub Vec<String>);
 impl Schema for UserProfileGetAllUsersSubscribedToMailingReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"array\",\"items\":{\"type\":\"string\"}}")

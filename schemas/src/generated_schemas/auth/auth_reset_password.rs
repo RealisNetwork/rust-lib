@@ -27,7 +27,7 @@ impl Agent for AuthAuthResetPasswordParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthAuthResetPasswordReturns(bool);
+pub struct AuthAuthResetPasswordReturns(pub bool);
 impl Schema for AuthAuthResetPasswordReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

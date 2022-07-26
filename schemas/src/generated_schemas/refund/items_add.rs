@@ -27,7 +27,7 @@ impl Agent for RefundItemsAddParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct RefundItemsAddReturns(bool);
+pub struct RefundItemsAddReturns(pub bool);
 impl Schema for RefundItemsAddReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

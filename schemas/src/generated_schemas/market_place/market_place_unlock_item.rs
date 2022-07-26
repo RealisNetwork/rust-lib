@@ -25,7 +25,7 @@ impl Agent for MarketPlaceMarketPlaceUnlockItemParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct MarketPlaceMarketPlaceUnlockItemReturns(bool);
+pub struct MarketPlaceMarketPlaceUnlockItemReturns(pub bool);
 impl Schema for MarketPlaceMarketPlaceUnlockItemReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

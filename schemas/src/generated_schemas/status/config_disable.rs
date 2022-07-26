@@ -25,7 +25,7 @@ impl Agent for StatusConfigDisableParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct StatusConfigDisableReturns(bool);
+pub struct StatusConfigDisableReturns(pub bool);
 impl Schema for StatusConfigDisableReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

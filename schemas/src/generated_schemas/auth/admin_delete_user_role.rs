@@ -25,7 +25,7 @@ impl Agent for AuthAdminDeleteUserRoleParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthAdminDeleteUserRoleReturns(bool);
+pub struct AuthAdminDeleteUserRoleReturns(pub bool);
 impl Schema for AuthAdminDeleteUserRoleReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

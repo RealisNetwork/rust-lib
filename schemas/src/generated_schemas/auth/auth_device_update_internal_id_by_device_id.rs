@@ -27,7 +27,7 @@ impl Agent for AuthAuthDeviceUpdateInternalIdByDeviceIdParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthAuthDeviceUpdateInternalIdByDeviceIdReturns(bool);
+pub struct AuthAuthDeviceUpdateInternalIdByDeviceIdReturns(pub bool);
 impl Schema for AuthAuthDeviceUpdateInternalIdByDeviceIdReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

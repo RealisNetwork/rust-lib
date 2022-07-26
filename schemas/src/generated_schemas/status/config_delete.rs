@@ -25,7 +25,7 @@ impl Agent for StatusConfigDeleteParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct StatusConfigDeleteReturns(bool);
+pub struct StatusConfigDeleteReturns(pub bool);
 impl Schema for StatusConfigDeleteReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

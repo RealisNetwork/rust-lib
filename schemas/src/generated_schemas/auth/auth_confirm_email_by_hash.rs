@@ -25,7 +25,7 @@ impl Agent for AuthAuthConfirmEmailByHashParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthAuthConfirmEmailByHashReturns(String);
+pub struct AuthAuthConfirmEmailByHashReturns(pub String);
 impl Schema for AuthAuthConfirmEmailByHashReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")

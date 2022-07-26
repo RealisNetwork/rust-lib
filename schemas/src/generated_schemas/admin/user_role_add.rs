@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleAddParams {
-    #[serde(rename = "internalUserId")]
-    pub internal_user_id: String,
     #[serde(rename = "roleName")]
     pub role_name: String,
+    #[serde(rename = "internalUserId")]
+    pub internal_user_id: String,
 }
 impl Schema for AdminUserRoleAddParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"internalUserId\":{\"type\":\"string\"},\"roleName\":{\"type\":\"string\"}},\"required\":[\"roleName\",\"internalUserId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"roleName\":{\"type\":\"string\"},\"internalUserId\":{\"type\":\"string\"}},\"required\":[\"roleName\",\"internalUserId\"]}")
     }
 }
 impl Agent for AdminUserRoleAddParams {
@@ -27,7 +27,7 @@ impl Agent for AdminUserRoleAddParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AdminUserRoleAddReturns(bool);
+pub struct AdminUserRoleAddReturns(pub bool);
 impl Schema for AdminUserRoleAddReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

@@ -30,7 +30,7 @@ impl Agent for NearAdapterWalletGetMyParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct NearAdapterWalletGetMyReturns(String);
+pub struct NearAdapterWalletGetMyReturns(pub String);
 impl Schema for NearAdapterWalletGetMyReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")

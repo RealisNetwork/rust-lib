@@ -25,7 +25,7 @@ impl Array {
         let name_ident = Ident::new(name, Span::call_site());
         let declaration = quote! {
             #[derive(Debug, Clone, Serialize, Deserialize)]
-            pub struct #name_ident(#parameter_type);
+            pub struct #name_ident(pub #parameter_type);
         };
         (prefix, declaration)
     }

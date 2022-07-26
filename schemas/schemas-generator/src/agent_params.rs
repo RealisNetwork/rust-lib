@@ -34,7 +34,7 @@ impl AgentParams {
                 quote! {},
                 quote! {
                     #[derive(Debug, Clone, Serialize, Deserialize)]
-                    pub struct #ident(bool);
+                    pub struct #ident(pub bool);
                 },
             ),
             AgentParams::Empty => Empty::get_declaration(name),

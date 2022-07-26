@@ -39,7 +39,7 @@ pub struct AdminMailTemplateGetAllReturnsParams {
     pub mail_template: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AdminMailTemplateGetAllReturns(Vec<AdminMailTemplateGetAllReturnsParams>);
+pub struct AdminMailTemplateGetAllReturns(pub Vec<AdminMailTemplateGetAllReturnsParams>);
 impl Schema for AdminMailTemplateGetAllReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"mailTemplate\":{\"type\":\"string\"}},\"required\":[\"key\",\"name\",\"mailTemplate\"]}}")

@@ -30,7 +30,7 @@ impl Agent for SoulAdapterWalletGetMyWalletParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct SoulAdapterWalletGetMyWalletReturns(String);
+pub struct SoulAdapterWalletGetMyWalletReturns(pub String);
 impl Schema for SoulAdapterWalletGetMyWalletReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")

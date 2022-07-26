@@ -31,33 +31,33 @@ impl Agent for AchievementsAchievementGetAllAchievementsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AchievementsAchievementGetAllAchievementsReturnsParamsGameEventParams {
-    #[serde(rename = "count")]
-    pub count: i64,
     #[serde(rename = "eventKey")]
     pub event_key: String,
+    #[serde(rename = "count")]
+    pub count: i64,
     #[serde(rename = "eventLifeType")]
     pub event_life_type: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AchievementsAchievementGetAllAchievementsReturnsParams {
+    #[serde(rename = "rewardType")]
+    pub reward_type: i32,
+    #[serde(rename = "description")]
+    pub description: String,
+    #[serde(rename = "reward")]
+    pub reward: i64,
     #[serde(rename = "gameEvent")]
     pub game_event: AchievementsAchievementGetAllAchievementsReturnsParamsGameEventParams,
     #[serde(rename = "achievementKey")]
     pub achievement_key: String,
-    #[serde(rename = "rewardType")]
-    pub reward_type: i32,
-    #[serde(rename = "reward")]
-    pub reward: i64,
-    #[serde(rename = "description")]
-    pub description: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AchievementsAchievementGetAllAchievementsReturns(
-    Vec<AchievementsAchievementGetAllAchievementsReturnsParams>,
+    pub Vec<AchievementsAchievementGetAllAchievementsReturnsParams>,
 );
 impl Schema for AchievementsAchievementGetAllAchievementsReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"gameEvent\":{\"type\":\"object\",\"properties\":{\"count\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"eventKey\":{\"type\":\"string\"},\"eventLifeType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"eventKey\",\"eventLifeType\",\"count\"]},\"achievementKey\":{\"type\":\"string\"},\"rewardType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"reward\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"description\":{\"type\":\"string\"}},\"required\":[\"achievementKey\",\"rewardType\",\"reward\",\"description\",\"gameEvent\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"rewardType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"description\":{\"type\":\"string\"},\"reward\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"gameEvent\":{\"type\":\"object\",\"properties\":{\"eventKey\":{\"type\":\"string\"},\"count\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"eventLifeType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"eventKey\",\"eventLifeType\",\"count\"]},\"achievementKey\":{\"type\":\"string\"}},\"required\":[\"achievementKey\",\"rewardType\",\"reward\",\"description\",\"gameEvent\"]}}")
     }
 }
 impl Agent for AchievementsAchievementGetAllAchievementsReturns {

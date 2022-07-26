@@ -27,7 +27,7 @@ impl Agent for UserProfileChangeEmailParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UserProfileChangeEmailReturns(bool);
+pub struct UserProfileChangeEmailReturns(pub bool);
 impl Schema for UserProfileChangeEmailReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

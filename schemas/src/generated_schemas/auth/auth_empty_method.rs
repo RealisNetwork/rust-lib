@@ -30,7 +30,7 @@ impl Agent for AuthAuthEmptyMethodParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthAuthEmptyMethodReturns(bool);
+pub struct AuthAuthEmptyMethodReturns(pub bool);
 impl Schema for AuthAuthEmptyMethodReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

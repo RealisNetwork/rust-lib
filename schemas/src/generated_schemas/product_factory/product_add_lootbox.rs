@@ -27,7 +27,7 @@ impl Agent for ProductFactoryProductAddLootboxParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ProductFactoryProductAddLootboxReturns(bool);
+pub struct ProductFactoryProductAddLootboxReturns(pub bool);
 impl Schema for ProductFactoryProductAddLootboxReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

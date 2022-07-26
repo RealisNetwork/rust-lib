@@ -25,7 +25,7 @@ impl Agent for AuthAuthDeviceGetClientStatusByInternalUserIdParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthAuthDeviceGetClientStatusByInternalUserIdReturns(String);
+pub struct AuthAuthDeviceGetClientStatusByInternalUserIdReturns(pub String);
 impl Schema for AuthAuthDeviceGetClientStatusByInternalUserIdReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")

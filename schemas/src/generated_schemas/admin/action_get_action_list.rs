@@ -30,7 +30,7 @@ impl Agent for AdminActionGetActionListParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AdminActionGetActionListReturns(Vec<String>);
+pub struct AdminActionGetActionListReturns(pub Vec<String>);
 impl Schema for AdminActionGetActionListReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"array\",\"items\":{\"type\":\"string\"}}")

@@ -25,7 +25,7 @@ impl Agent for AuthAuthDeleteMyUserParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthAuthDeleteMyUserReturns(bool);
+pub struct AuthAuthDeleteMyUserReturns(pub bool);
 impl Schema for AuthAuthDeleteMyUserReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

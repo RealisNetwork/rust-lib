@@ -25,7 +25,7 @@ impl Agent for AuthBanUnBanParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthBanUnBanReturns(bool);
+pub struct AuthBanUnBanReturns(pub bool);
 impl Schema for AuthBanUnBanReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

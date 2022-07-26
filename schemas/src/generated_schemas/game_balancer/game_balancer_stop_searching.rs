@@ -30,7 +30,7 @@ impl Agent for GameBalancerGameBalancerStopSearchingParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct GameBalancerGameBalancerStopSearchingReturns(bool);
+pub struct GameBalancerGameBalancerStopSearchingReturns(pub bool);
 impl Schema for GameBalancerGameBalancerStopSearchingReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

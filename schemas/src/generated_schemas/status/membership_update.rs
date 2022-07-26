@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipUpdateParams {
-    #[serde(rename = "isActive")]
-    pub is_active: bool,
     #[serde(rename = "purchaseToken")]
     pub purchase_token: String,
+    #[serde(rename = "isActive")]
+    pub is_active: bool,
 }
 impl Schema for StatusMembershipUpdateParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isActive\":{\"type\":\"boolean\"},\"purchaseToken\":{\"type\":\"string\"}},\"required\":[\"purchaseToken\",\"isActive\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"purchaseToken\":{\"type\":\"string\"},\"isActive\":{\"type\":\"boolean\"}},\"required\":[\"purchaseToken\",\"isActive\"]}")
     }
 }
 impl Agent for StatusMembershipUpdateParams {
@@ -27,7 +27,7 @@ impl Agent for StatusMembershipUpdateParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct StatusMembershipUpdateReturns(bool);
+pub struct StatusMembershipUpdateReturns(pub bool);
 impl Schema for StatusMembershipUpdateReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

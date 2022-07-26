@@ -30,7 +30,7 @@ impl Agent for UserProfileGetNicknameChangePriceParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UserProfileGetNicknameChangePriceReturns(String);
+pub struct UserProfileGetNicknameChangePriceReturns(pub String);
 impl Schema for UserProfileGetNicknameChangePriceReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")

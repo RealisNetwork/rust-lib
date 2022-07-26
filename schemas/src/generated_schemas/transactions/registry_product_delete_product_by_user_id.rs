@@ -25,7 +25,7 @@ impl Agent for TransactionsRegistryProductDeleteProductByUserIdParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsRegistryProductDeleteProductByUserIdReturns(bool);
+pub struct TransactionsRegistryProductDeleteProductByUserIdReturns(pub bool);
 impl Schema for TransactionsRegistryProductDeleteProductByUserIdReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

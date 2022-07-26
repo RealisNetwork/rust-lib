@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogCategoryUpdateParams {
-    #[serde(rename = "id")]
-    pub id: i64,
-    #[serde(rename = "name")]
-    pub name: String,
     #[serde(rename = "isAvailable")]
     pub is_available: Option<bool>,
+    #[serde(rename = "name")]
+    pub name: String,
+    #[serde(rename = "id")]
+    pub id: i64,
 }
 impl Schema for BlogCategoryUpdateParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"name\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"name\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isAvailable\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"name\"]}")
     }
 }
 impl Agent for BlogCategoryUpdateParams {
@@ -29,7 +29,7 @@ impl Agent for BlogCategoryUpdateParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct BlogCategoryUpdateReturns(bool);
+pub struct BlogCategoryUpdateReturns(pub bool);
 impl Schema for BlogCategoryUpdateReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

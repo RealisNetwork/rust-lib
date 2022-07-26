@@ -25,7 +25,7 @@ impl Agent for UserProfileGetNicknamesByUserIdsParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UserProfileGetNicknamesByUserIdsReturns(Vec<String>);
+pub struct UserProfileGetNicknamesByUserIdsReturns(pub Vec<String>);
 impl Schema for UserProfileGetNicknamesByUserIdsReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"array\",\"items\":{\"type\":\"string\"}}")

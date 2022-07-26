@@ -25,7 +25,7 @@ impl Agent for ReferralRewardGetAvailableRewardParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ReferralRewardGetAvailableRewardReturns(String);
+pub struct ReferralRewardGetAvailableRewardReturns(pub String);
 impl Schema for ReferralRewardGetAvailableRewardReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")

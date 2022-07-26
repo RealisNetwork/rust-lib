@@ -27,7 +27,7 @@ impl Agent for AdminPermissionAddParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AdminPermissionAddReturns(bool);
+pub struct AdminPermissionAddReturns(pub bool);
 impl Schema for AdminPermissionAddReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

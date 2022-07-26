@@ -27,7 +27,7 @@ impl Agent for StatusMembershipPurchaseMembershipFromSiteParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct StatusMembershipPurchaseMembershipFromSiteReturns(bool);
+pub struct StatusMembershipPurchaseMembershipFromSiteReturns(pub bool);
 impl Schema for StatusMembershipPurchaseMembershipFromSiteReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

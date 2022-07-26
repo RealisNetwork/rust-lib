@@ -32,7 +32,7 @@ impl Agent for PromoCodesGetListStrictParams {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesGetListStrictReturnsParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct PromoCodesGetListStrictReturns(Vec<PromoCodesGetListStrictReturnsParams>);
+pub struct PromoCodesGetListStrictReturns(pub Vec<PromoCodesGetListStrictReturnsParams>);
 impl Schema for PromoCodesGetListStrictReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{},\"required\":null}}")

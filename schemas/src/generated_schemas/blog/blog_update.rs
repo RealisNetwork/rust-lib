@@ -5,26 +5,26 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogUpdateParamsPropsParams {
-    #[serde(rename = "image")]
-    pub image: Option<String>,
-    #[serde(rename = "url")]
-    pub url: Option<String>,
+    #[serde(rename = "id")]
+    pub id: i64,
+    #[serde(rename = "title")]
+    pub title: Option<String>,
+    #[serde(rename = "metaTitle")]
+    pub meta_title: Option<String>,
     #[serde(rename = "content")]
     pub content: Option<String>,
     #[serde(rename = "lang")]
     pub lang: Option<String>,
-    #[serde(rename = "title")]
-    pub title: Option<String>,
-    #[serde(rename = "id")]
-    pub id: i64,
-    #[serde(rename = "metaDescription")]
-    pub meta_description: Option<String>,
-    #[serde(rename = "metaTitle")]
-    pub meta_title: Option<String>,
+    #[serde(rename = "url")]
+    pub url: Option<String>,
     #[serde(rename = "shortDescription")]
     pub short_description: Option<String>,
+    #[serde(rename = "image")]
+    pub image: Option<String>,
     #[serde(rename = "isPinned")]
     pub is_pinned: Option<bool>,
+    #[serde(rename = "metaDescription")]
+    pub meta_description: Option<String>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogUpdateParams {
@@ -35,7 +35,7 @@ pub struct BlogBlogUpdateParams {
 }
 impl Schema for BlogBlogUpdateParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"props\":{\"type\":\"object\",\"properties\":{\"image\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"metaDescription\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"isPinned\":{\"type\":\"boolean\"}},\"required\":[\"id\"]},\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"props\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"props\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"title\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"isPinned\":{\"type\":\"boolean\"},\"metaDescription\":{\"type\":\"string\"}},\"required\":[\"id\"]},\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"props\"]}")
     }
 }
 impl Agent for BlogBlogUpdateParams {
@@ -50,7 +50,7 @@ impl Agent for BlogBlogUpdateParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct BlogBlogUpdateReturns(bool);
+pub struct BlogBlogUpdateReturns(pub bool);
 impl Schema for BlogBlogUpdateReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

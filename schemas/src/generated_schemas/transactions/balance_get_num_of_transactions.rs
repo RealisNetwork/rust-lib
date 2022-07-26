@@ -25,7 +25,7 @@ impl Agent for TransactionsBalanceGetNumOfTransactionsParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceGetNumOfTransactionsReturns(i64);
+pub struct TransactionsBalanceGetNumOfTransactionsReturns(pub i64);
 impl Schema for TransactionsBalanceGetNumOfTransactionsReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}")

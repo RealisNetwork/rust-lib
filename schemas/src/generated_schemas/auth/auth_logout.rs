@@ -25,7 +25,7 @@ impl Agent for AuthAuthLogoutParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthAuthLogoutReturns(bool);
+pub struct AuthAuthLogoutReturns(pub bool);
 impl Schema for AuthAuthLogoutReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

@@ -40,7 +40,7 @@ pub struct AdminUserRoleGetAllUsersWithNicknameReturnsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleGetAllUsersWithNicknameReturns(
-    Vec<AdminUserRoleGetAllUsersWithNicknameReturnsParams>,
+    pub Vec<AdminUserRoleGetAllUsersWithNicknameReturnsParams>,
 );
 impl Schema for AdminUserRoleGetAllUsersWithNicknameReturns {
     fn schema() -> Value {

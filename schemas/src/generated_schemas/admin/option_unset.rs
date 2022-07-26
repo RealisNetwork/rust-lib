@@ -25,7 +25,7 @@ impl Agent for AdminOptionUnsetParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AdminOptionUnsetReturns(bool);
+pub struct AdminOptionUnsetReturns(pub bool);
 impl Schema for AdminOptionUnsetReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")

@@ -27,7 +27,7 @@ impl Agent for AuthAuthConfirmEmailByCodeParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthAuthConfirmEmailByCodeReturns(String);
+pub struct AuthAuthConfirmEmailByCodeReturns(pub String);
 impl Schema for AuthAuthConfirmEmailByCodeReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"string\"}")

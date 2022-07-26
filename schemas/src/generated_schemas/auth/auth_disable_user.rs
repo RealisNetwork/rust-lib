@@ -25,7 +25,7 @@ impl Agent for AuthAuthDisableUserParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthAuthDisableUserReturns(bool);
+pub struct AuthAuthDisableUserReturns(pub bool);
 impl Schema for AuthAuthDisableUserReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
