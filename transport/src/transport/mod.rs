@@ -58,24 +58,10 @@ pub trait Transport: Send + Sync + Clone {
     async fn message_reply<Request: Serialize + Send, Reply: DeserializeOwned + Debug + Send>(
         &self,
         topic: String,
+        topic_response: String,
         request: Request,
         max_duration: Option<Duration>,
     ) -> TransportResult<Reply> {
-        self.message_reply_with_index(topic, 0, request, max_duration)
-            .await
-    }
-
-    async fn message_reply_with_index<
-        Request: Serialize + Send,
-        Reply: DeserializeOwned + Debug + Send,
-    >(
-        &self,
-        topic: String,
-        index: u32,
-        request: Request,
-        max_duration: Option<Duration>,
-    ) -> TransportResult<Reply> {
-        let topic_response = format!("MESSAGE-REPLY-{}-{}", index, topic);
         let payload = serde_json::to_vec(&request).map_err(|e| {
             BaseError::<()>::new(
                 format!("{:?}", e),
