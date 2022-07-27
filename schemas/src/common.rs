@@ -1,6 +1,6 @@
 use error_registry::BaseError;
 use serde::{Deserialize, Serialize};
-use std::fmt::{Debug, Formatter};
+use std::fmt::Debug;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Request<P> {
@@ -48,7 +48,7 @@ impl<Y, D: Debug> From<ResponseMessage<Y, D>> for Result<Y, BaseError<D>> {
     }
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Default, Serialize, Deserialize, PartialEq)]
 pub struct AuthInfo {
     #[serde(rename = "userId")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -60,14 +60,6 @@ pub struct AuthInfo {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub enum StrategyType {
-    #[serde(rename = "mobileApp")]
-    MobileApp,
-    #[serde(rename = "webSite")]
-    WebSite,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(tag = "type")]
 pub enum Auth {
     #[serde(rename = "mobileApp")]
@@ -76,27 +68,13 @@ pub enum Auth {
     WebSite { token: String },
 }
 
-#[derive(Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MobileAuth {
     pub token: Option<String>,
     #[serde(rename = "deviceId")]
     pub device_id: String,
     #[serde(rename = "appId")]
     pub app_id: u64,
-}
-
-impl Debug for MobileAuth {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        let a = self
-            .token
-            .as_ref()
-            .map(|token| "*".to_owned().repeat(token.len()));
-        f.debug_struct("Auth")
-            .field("token", &a as &dyn Debug)
-            .field("deviceId", &self.device_id as &dyn Debug)
-            .field("appId", &self.app_id as &dyn Debug)
-            .finish()
-    }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -107,4 +85,20 @@ pub struct SocketRequest<T> {
     pub params: T,
     pub auth: Auth,
     pub lang: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct SocketProcessedRequest<T> {
+    pub id: String,
+    pub method: String,
+    pub agent: String,
+    pub params: T,
+    pub lang: String,
+    #[serde(rename = "clientId")]
+    pub client_id: String,
+    #[serde(rename = "authInfo")]
+    pub auth_info: AuthInfo,
+    #[serde(rename = "topicResponse")]
+    pub topic_response: String,
+    pub auth: Auth,
 }
