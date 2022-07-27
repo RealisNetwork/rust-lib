@@ -102,3 +102,23 @@ pub struct SocketProcessedRequest<T> {
     pub topic_response: String,
     pub auth: Auth,
 }
+
+impl<T> From<SocketRequest<T>> for SocketProcessedRequest<T> {
+    fn from(socket_request: SocketRequest<T>) -> Self {
+        Self {
+            id: socket_request.id,
+            method: socket_request.method,
+            agent: socket_request.agent,
+            params: socket_request.params,
+            auth: socket_request.auth,
+            lang: socket_request.lang,
+            auth_info: AuthInfo {
+                user_id: None,
+                address: None,
+                continent: None,
+            },
+            client_id: "".to_string(),
+            topic_response: "".to_string(),
+        }
+    }
+}
