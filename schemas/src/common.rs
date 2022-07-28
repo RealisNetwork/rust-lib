@@ -48,6 +48,12 @@ impl<Y, D: Debug> From<ResponseMessage<Y, D>> for Result<Y, BaseError<D>> {
     }
 }
 
+impl<Y, D: Debug> From<BaseError<D>> for ResponseMessage<Y, D> {
+    fn from(base_error: BaseError<D>) -> Self {
+        ResponseMessage::Left { value: base_error }
+    }
+}
+
 #[derive(Debug, Clone, Default, Serialize, Deserialize, PartialEq)]
 pub struct AuthInfo {
     #[serde(rename = "userId")]
