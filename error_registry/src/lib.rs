@@ -2,6 +2,7 @@
 //! `BaseError` its custom error data structure.
 //! `ErrorType` its enum of possible errors
 //! what need to be traced for Realis microservices.
+use crate::custom_errors::Utils;
 use crate::generated_errors::{Critical, Db};
 use crate::{
     custom_errors::{CustomErrorType, EnvLoadedError, Nats as CustomNats},
@@ -17,6 +18,7 @@ use std::{
     fmt,
     fmt::{Debug, Display, Formatter},
 };
+
 pub mod custom_errors;
 pub mod generated_errors;
 
@@ -410,6 +412,21 @@ impl<D: Debug> From<RedisError> for BaseError<D> {
     }
 }
 
+impl<D: Debug> From<serde_json::Error> for BaseError<D> {
+    fn from(serde_error: serde_json::Error) -> Self {
+        let trace = Backtrace::new();
+        let msg = serde_error.to_string();
+        let error_type = ErrorType::from(serde_error);
+        Self {
+            msg,
+            trace: format!("{:?}", trace),
+            data: None,
+            status: error_type.clone().into(),
+            error_type,
+        }
+    }
+}
+
 /// All custom types of errors in Realis.
 ///
 /// Custom enum extends manually.
@@ -583,6 +600,13 @@ impl From<RedisError> for ErrorType {
     /// Case `RedisError` to `ErrorType`
     fn from(_: RedisError) -> Self {
         ErrorType::Generated(GeneratedError::Redis(Redis::InternalServerError))
+    }
+}
+
+impl From<serde_json::Error> for ErrorType {
+    /// Case `serde_json::Error` to `ErrorType`
+    fn from(_: serde_json::Error) -> Self {
+        ErrorType::Custom(CustomErrorType::Utils(Utils::Parse))
     }
 }
 
