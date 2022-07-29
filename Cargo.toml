@@ -1,17 +1,10 @@
 [workspace]
 members = [
-    "byte-formatter",
-    "config",
+    "app",
     "error_registry",
-    "macros",
-    "topics",
-    "topics/parser",
+    "schemas",
     "transport",
-    "types",
-    "vault",
-    "async_logger",
-    "blockchain",
-    "json",
-    "inner_db",
     "healthchecker",
+    "macros",
+    "config"
 ]

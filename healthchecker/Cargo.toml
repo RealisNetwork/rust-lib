@@ -8,8 +8,9 @@ edition = "2021"
 [dependencies]
 
 error_registry = { path = "./../error_registry"}
-tokio={version = "1.11.0", features = ["full","time"]}
-futures={version = "0.1.11"}
-tokio-minihttp={git = "https://github.com/tokio-rs/tokio-minihttp.git"}
-tokio-proto={version = "0.1"}
-tokio-service={version = "0.1"}
+tokio = { version = "1.20.1", features = ["full","time"] }
+futures = { version = "0.3.21" }
+log = "0.4.17"
+async-trait = "0.1.56"
+hyper = { version = "0.14.20", features = ["full"] }
+futures-util = { version = "0.3", default-features = false }

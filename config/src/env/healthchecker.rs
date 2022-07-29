@@ -1,6 +1,6 @@
-use crate::env::{Env, EnvLoaded};
+use crate::env::env_loaded::{Env, EnvLoaded};
 use error_registry::BaseError;
-use healthchecker::HealthChecker;
+use healthchecker::HealthcheckerServer;
 
 #[derive(Debug, Clone, Env)]
 pub struct Healthchecker {
@@ -9,7 +9,7 @@ pub struct Healthchecker {
 }
 
 impl Healthchecker {
-    pub async fn build(&self) -> Result<HealthChecker, BaseError<()>> {
-        HealthChecker::new(&self.host, 10000).await
+    pub async fn build(&self) -> Result<HealthcheckerServer, BaseError<()>> {
+        HealthcheckerServer::new(None, &self.host).await
     }
 }

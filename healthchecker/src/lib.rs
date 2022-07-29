@@ -1,71 +1,204 @@
-use std::io;
-
+use async_trait::async_trait;
 use error_registry::BaseError;
-use futures::future;
-use tokio::time::{sleep, Duration};
-use tokio_minihttp::{Http, Request, Response};
-use tokio_proto::TcpServer;
-use tokio_service::Service;
+use futures_util::future;
+use hyper::service::Service;
+use hyper::{http, Body, Request, Response, Server};
+use std::fmt::Debug;
+use std::future::Future;
+use std::net::SocketAddr;
+use std::pin::Pin;
+use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::Arc;
+use std::task::{Context, Poll};
+use tokio::sync::Mutex;
 
-use std::sync::{
-    atomic::{AtomicBool, Ordering},
-    Arc,
-};
+/// Wrap services in this wrapper in order to conveniently add them to healthchecker
+pub struct Wrapper<T: Alivable>(Arc<T>);
 
+#[async_trait]
+impl<T: Alivable> Alivable for Wrapper<T> {
+    async fn is_alive(&self) -> bool {
+        self.0.is_alive().await
+    }
+
+    async fn info(&self) -> &'static str {
+        self.0.info().await
+    }
+}
+
+impl<T: Alivable> From<T> for Wrapper<T> {
+    fn from(other: T) -> Wrapper<T> {
+        Wrapper(Arc::new(other))
+    }
+}
+
+impl<T: Alivable> From<Arc<T>> for Wrapper<T> {
+    fn from(other: Arc<T>) -> Wrapper<T> {
+        Wrapper(other)
+    }
+}
+
+/// Implement this trait on your service structure or any service that can loose connection or etc.
+/// Object of this trait can be passed as services to healthchecker in oreder to check em all.
+#[async_trait]
+pub trait Alivable: Sync + Send {
+    async fn is_alive(&self) -> bool;
+    async fn info(&self) -> &'static str;
+}
+
+/// Base of healthchecker, should be made one time, in case you have to control state of
+/// other services, lightweight instances of healthchecker can be obtained using get_health_cheker()
+/// In case state of healthchecker is sick or any service in service vector is sick
+/// http request to healthchecker will return 500 code, if everything is fine, it will return 200
 #[derive(Clone)]
-pub struct HealthChecker {
+pub struct HealthcheckerServer {
     /// Determine status of program
     /// true - all okay
     /// false - something goes wrong, need restart
-    pub health: Arc<AtomicBool>,
-    /// Timeout between checks, in millis
-    pub timeout: u64,
+    health: Arc<AtomicBool>,
+    host: String,
+    services: Arc<Mutex<Vec<Box<dyn Alivable>>>>,
 }
 
-impl HealthChecker {
-    pub async fn new(host: &String, timeout: u64) -> Result<Self, BaseError<()>> {
+impl HealthcheckerServer {
+    pub async fn new(
+        services: Option<Vec<Box<dyn Alivable>>>,
+        host: &str,
+    ) -> Result<Self, BaseError<()>> {
         let health_checker = Self {
             health: Arc::new(AtomicBool::new(true)),
-            timeout,
+            host: host.to_string(),
+            services: Arc::new(Mutex::new(services.unwrap_or_default())),
         };
-        let addr = host.parse()?;
-        tokio::spawn({
-            let health_checker = health_checker.clone();
-            async move { TcpServer::new(Http, addr).serve(move || Ok(health_checker.clone())) }
-        });
+
         Ok(health_checker)
     }
 
-    pub async fn is_alive(&self) {
-        while self.health.load(Ordering::Acquire) {
-            sleep(Duration::from_millis(self.timeout)).await;
+    pub async fn run(self) {
+        tokio::spawn(async move {
+            match self.host.parse::<SocketAddr>() {
+                Ok(addr) => {
+                    match Server::bind(&addr)
+                        .serve(HealthcheckerHTTPBuilder {
+                            healthchecker: self.clone(),
+                        })
+                        .await
+                    {
+                        Ok(_) => log::info!("Run healthchecker on http://{}", addr),
+                        Err(e) => log::error!("Fail to run http server on `{}` `{:?}`", addr, e),
+                    }
+                }
+                Err(e) => log::error!("Fail to parse addr `{:?}`", e),
+            }
+        });
+    }
+
+    /// Add any struct that implements Alivable to vector of checkable services (all the services
+    /// will be checked when is_ok() method is executed)
+    pub async fn push(&mut self, s: Box<dyn Alivable>) {
+        self.services.lock().await.push(s);
+    }
+
+    /// Add any struct that implements Alivable to vector of checkable services (all the services
+    /// will be checked when is_ok() method is executed)
+    pub async fn add<T: 'static + Alivable>(self, s: Wrapper<T>) -> Self {
+        self.services.lock().await.push(Box::new(s));
+        self
+    }
+
+    /// Returns lightweight structure, witch can change inner state of healthchecker
+    pub fn get_health_checker(&self) -> Healthchecker {
+        Healthchecker {
+            health: self.health.clone(),
         }
     }
 
+    /// Checks every single service in the list and checks inner state
+    pub async fn is_ok(&self) -> bool {
+        if self.health.load(Ordering::Acquire) {
+            for service in self.services.lock().await.iter() {
+                if !service.is_alive().await {
+                    log::error!("Healthchecker fallen by reason: {}", service.info().await);
+                    return false;
+                }
+            }
+        } else {
+            return false;
+        }
+        true
+    }
+
+    /// Toggle state of healthchecker to not alive
     pub fn make_sick(&self) {
         self.health.store(false, Ordering::SeqCst);
     }
+}
 
-    pub fn is_ok(&self) -> bool {
-        self.health.load(Ordering::Acquire)
+/// Lightweight simple structure for setting up the state of healthchecker
+#[derive(Clone)]
+pub struct Healthchecker {
+    pub health: Arc<AtomicBool>,
+}
+
+impl Healthchecker {
+    /// Toggle state of healthchecker
+    pub fn make_sick<D: Debug>(&self, log: Option<D>) {
+        log::error!("Made sick on: {:#?}", log);
+        self.health.store(false, Ordering::SeqCst);
     }
 }
 
-impl Service for HealthChecker {
-    type Error = io::Error;
-    type Future = future::Ok<Response, io::Error>;
-    type Request = Request;
-    type Response = Response;
+impl Service<Request<Body>> for HealthcheckerServer {
+    type Response = Response<Body>;
+    type Error = http::Error;
+    type Future =
+        Pin<Box<dyn Future<Output = Result<Self::Response, Self::Error>> + 'static + Send>>;
 
-    fn call(&self, _request: Request) -> Self::Future {
-        let mut resp = Response::new();
-        if self.health.load(Ordering::Acquire) {
-            resp.status_code(200, "OK");
-            resp.body("DEBUG_OK");
-        } else {
-            resp.status_code(500, "Internal Server Error");
-            resp.body("DEBUG_ERROR");
-        }
-        future::ok(resp)
+    fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
+        Ok(()).into()
+    }
+
+    #[allow(unused_variables)]
+    fn call(&mut self, req: Request<Body>) -> Self::Future {
+        let rsp = Response::builder();
+
+        let healthchecker = self.clone();
+
+        // Prepare future to response
+        let fut = async move {
+            let state = healthchecker.is_ok().await;
+            let rsp = if state {
+                rsp.status(200)
+                    .body(Body::from(Vec::from("DEBUG_OK")))
+                    .unwrap()
+            } else {
+                rsp.status(500)
+                    .body(Body::from(Vec::from("DEBUG_ERROR")))
+                    .unwrap()
+            };
+
+            Ok(rsp)
+        };
+
+        Box::pin(fut)
+    }
+}
+
+/// Dispatch HTTP request to service
+pub struct HealthcheckerHTTPBuilder {
+    healthchecker: HealthcheckerServer,
+}
+
+impl<T> Service<T> for HealthcheckerHTTPBuilder {
+    type Response = HealthcheckerServer;
+    type Error = std::io::Error;
+    type Future = future::Ready<Result<Self::Response, Self::Error>>;
+
+    fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
+        Ok(()).into()
+    }
+
+    fn call(&mut self, _: T) -> Self::Future {
+        future::ok(self.healthchecker.clone())
     }
 }

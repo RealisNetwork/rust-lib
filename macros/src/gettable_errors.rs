@@ -7,8 +7,8 @@ pub fn impl_gettable_errors_macros(input: TokenStream) -> TokenStream {
     let input: DeriveInput = parse_macro_input!(input as DeriveInput);
 
     // get enum name
-    let ref name = input.ident;
-    let ref data = input.data;
+    let name = &input.ident;
+    let data = &input.data;
 
     match data {
         Data::Enum(data_enum) => {

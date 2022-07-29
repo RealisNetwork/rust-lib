@@ -28,15 +28,27 @@ pub fn impl_env_macros(item: TokenStream) -> TokenStream {
             // .map(|attr| symbol::get_env_meta_items(&attr))
             // .flatten()
             .for_each(|meta| match meta {
-                Meta(NameValue(m)) if m.path == symbol::RENAME => field_attributes.field_name = EnvNameAttrs::Rename(m.lit),
-                Meta(Path(path)) if path == symbol::FLATTEN => field_attributes.field_name = EnvNameAttrs::Flatten,
-                Meta(NameValue(m)) if m.path == symbol::RENAME_ABS => field_attributes.field_name = EnvNameAttrs::RenameAbs(m.lit),
-                Meta(Path(path)) if path == symbol::DEFAULT => field_attributes.default_type = EnvDefaultAttrs::Default,
-                Meta(NameValue(m)) if m.path == symbol::DEFAULT_PATH => field_attributes.default_type = EnvDefaultAttrs::DefaultPath(m.lit),
+                Meta(NameValue(m)) if m.path == symbol::RENAME => {
+                    field_attributes.field_name = EnvNameAttrs::Rename(m.lit)
+                }
+                Meta(Path(path)) if path == symbol::FLATTEN => {
+                    field_attributes.field_name = EnvNameAttrs::Flatten
+                }
+                Meta(NameValue(m)) if m.path == symbol::RENAME_ABS => {
+                    field_attributes.field_name = EnvNameAttrs::RenameAbs(m.lit)
+                }
+                Meta(Path(path)) if path == symbol::DEFAULT => {
+                    field_attributes.default_type = EnvDefaultAttrs::Default
+                }
+                Meta(NameValue(m)) if m.path == symbol::DEFAULT_PATH => {
+                    field_attributes.default_type = EnvDefaultAttrs::DefaultPath(m.lit)
+                }
                 _ => {}
             });
 
-        let env_name = field_attributes.field_name.name(&struct_name.to_string(), &field_name.to_string());
+        let env_name = field_attributes
+            .field_name
+            .name(&struct_name.to_string(), &field_name.to_string());
         let postfix = field_attributes.default_type.postfix();
 
         match field.ty {

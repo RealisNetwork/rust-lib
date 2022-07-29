@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
-#[serde(untagged)]
 #[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
+#[serde(untagged)]
 pub enum CustomErrorType {
     Default,
     Blockchain(Blockchain),
@@ -21,7 +21,9 @@ impl From<CustomErrorType> for u32 {
             CustomErrorType::Rpc(rpc) => 3000u32 + u32::from(rpc),
             CustomErrorType::Nats(nats) => 4000u32 + u32::from(nats),
             CustomErrorType::Db(db) => 5000u32 + u32::from(db),
-            CustomErrorType::EnvLoadedError(env_loaded_error) => 6000u32 + u32::from(env_loaded_error),
+            CustomErrorType::EnvLoadedError(env_loaded_error) => {
+                6000u32 + u32::from(env_loaded_error)
+            }
             CustomErrorType::Common(common) => 7000u32 + u32::from(common),
             CustomErrorType::Utils(utils) => 8000u32 + u32::from(utils),
         }
@@ -109,6 +111,9 @@ pub enum Nats {
     Unsubscribe,
     Disconnected,
     Send,
+    Timeout,
+    CantSerialize,
+    FailedToSubscribe,
 }
 
 impl From<Nats> for u32 {
@@ -119,6 +124,9 @@ impl From<Nats> for u32 {
             Nats::Unsubscribe => 3u32,
             Nats::Disconnected => 4u32,
             Nats::Send => 5u32,
+            Nats::Timeout => 6u32,
+            Nats::CantSerialize => 7u32,
+            Nats::FailedToSubscribe => 8u32,
         }
     }
 }
@@ -151,6 +159,11 @@ pub enum Common {
     ParseBool,
     OutOfRange,
     Other,
+    CanNotSerialize,
+    ExternalServiceError,
+    NotImplemented,
+    FailedToInit,
+    HealthChecker,
 }
 
 impl From<Common> for u32 {
@@ -163,6 +176,11 @@ impl From<Common> for u32 {
             Common::ParseBool => 5u32,
             Common::OutOfRange => 6u32,
             Common::Other => 7u32,
+            Common::CanNotSerialize => 8u32,
+            Common::ExternalServiceError => 9u32,
+            Common::NotImplemented => 10u32,
+            Common::FailedToInit => 11u32,
+            Common::HealthChecker => 12u32,
         }
     }
 }
