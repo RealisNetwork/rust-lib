@@ -78,13 +78,9 @@ impl<
                         log::debug!("got response schema{:#?}", response_schema);
                         Ok(())
                     }
-                    Err(error) if error.is_critical() => {
-                        log::debug!("Got response error critical: {:#?}", error);
-                        Err(error)
-                    }
                     Err(error) => {
                         log::debug!("Got response left: {:#?}", error);
-                        Ok(())
+                        Err(error)
                     }
                 },
                 Err(error) => {
