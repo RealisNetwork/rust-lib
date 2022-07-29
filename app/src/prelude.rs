@@ -1,3 +1,4 @@
+pub use crate::any_app::{AnyApp, AnyService};
 pub use crate::app::{App, DependencyContainerParameter, Runnable};
 pub use crate::broadcast_app::{BroadcastApp, BroadcastService};
 pub use crate::error_registry::{

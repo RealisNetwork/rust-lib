@@ -1,6 +1,7 @@
 pub mod app;
 pub mod service_app;
 
+pub mod any_app;
 pub mod broadcast_app;
 pub mod prelude;
 pub mod service_runner;
