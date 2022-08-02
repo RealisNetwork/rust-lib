@@ -17,16 +17,15 @@ futures = "0.3.21"
 serde = "1.0.137"
 log = "0.4.17"
 env_logger = "0.9.0"
-tokio = "1.19.2"
+tokio = "1.20.1"
 realis-macros = { path = "./../macros" }
 dotenv = "0.15.0"
-
 
 [dev-dependencies]
 nats = "0.9.18"
 serde = "1.0.137"
 stan = "0.0.16"
-tokio = "1.19.2"
+tokio = "1.20.1"
 
 [[example]]
 name = "example"
