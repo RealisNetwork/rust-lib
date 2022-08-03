@@ -1,6 +1,6 @@
 #[cfg(feature = "rebuild")]
 fn main() {
-    use config::env::env::EnvLoaded;
+    use config::env::EnvLoaded;
     use quote::__private::Ident;
     use quote::{quote, ToTokens};
     use schemas_generator::{

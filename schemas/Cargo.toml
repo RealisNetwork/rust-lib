@@ -13,11 +13,16 @@ serde_json = "1.0.82"
 serde = "1.0.138"
 
 [build-dependencies]
-schemas-generator = { path = "schemas-generator" }
-config = { git = "https://github.com/RealisNetwork/rust-lib.git" }
-quote = "1.0.20"
-syn = "1.0.98"
+schemas-generator = { path = "schemas-generator", optional = true }
+config = { git = "https://github.com/RealisNetwork/rust-lib.git", optional = true }
+quote = { version = "1.0.20", optional = true }
+syn = { version = "1.0.98", optional = true }
 
 [features]
 default = []
-rebuild = []
+rebuild = [
+    "schemas-generator",
+    "config",
+    "quote",
+    "syn",
+]
