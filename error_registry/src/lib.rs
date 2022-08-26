@@ -5,7 +5,7 @@
 use crate::custom_errors::Utils;
 use crate::generated_errors::{Critical, Db};
 use crate::{
-    custom_errors::{CustomErrorType, EnvLoadedError, Nats as CustomNats},
+    custom_errors::{Common as CustomCommon, CustomErrorType, EnvLoadedError, Nats as CustomNats},
     generated_errors::{Common, Redis},
 };
 use backtrace::Backtrace;
@@ -427,6 +427,21 @@ impl<D: Debug> From<serde_json::Error> for BaseError<D> {
     }
 }
 
+impl<D: Debug> From<&'static str> for BaseError<D> {
+    fn from(error: &'static str) -> Self {
+        let trace = Backtrace::new();
+        let msg = error.to_string();
+        let error_type = ErrorType::from(error);
+        Self {
+            msg,
+            error_type,
+            trace: format!("{:?}", trace),
+            data: None,
+            status: error.to_string().parse::<u32>().unwrap(),
+        }
+    }
+}
+
 /// All custom types of errors in Realis.
 ///
 /// Custom enum extends manually.
@@ -607,6 +622,13 @@ impl From<serde_json::Error> for ErrorType {
     /// Case `serde_json::Error` to `ErrorType`
     fn from(_: serde_json::Error) -> Self {
         ErrorType::Custom(CustomErrorType::Utils(Utils::Parse))
+    }
+}
+
+impl From<&'static str> for ErrorType {
+    /// Case `&'static str` to `ErrorType`
+    fn from(_: &'static str) -> Self {
+        ErrorType::Custom(CustomErrorType::Common(CustomCommon::ParseString))
     }
 }
 
