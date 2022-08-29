@@ -36,6 +36,12 @@ impl EnvLoaded for u64 {
     }
 }
 
+impl EnvLoaded for f64 {
+    fn load(key: Option<String>) -> Result<Self, BaseError<()>> {
+        Ok(dotenv::var(key.unwrap())?.parse::<f64>()?)
+    }
+}
+
 impl EnvLoaded for Vec<u8> {
     fn load(key: Option<String>) -> Result<Self, BaseError<()>> {
         Ok(hex::decode(dotenv::var(key.unwrap())?)?)

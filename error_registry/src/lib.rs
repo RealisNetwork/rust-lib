@@ -243,6 +243,21 @@ impl<D: Debug> From<std::num::ParseIntError> for BaseError<D> {
     }
 }
 
+impl<D: Debug> From<std::num::ParseFloatError> for BaseError<D> {
+    fn from(error: std::num::ParseFloatError) -> Self {
+        let trace = Backtrace::new();
+        let msg = error.to_string();
+        let error_type = ErrorType::from(error);
+        BaseError {
+            msg,
+            trace: format!("{:?}", trace),
+            status: error_type.clone().into(),
+            error_type,
+            data: None,
+        }
+    }
+}
+
 impl<D: Debug> From<hex::FromHexError> for BaseError<D> {
     fn from(error: hex::FromHexError) -> Self {
         let trace = Backtrace::new();
@@ -565,6 +580,13 @@ impl From<hex::FromHexError> for ErrorType {
 
 impl From<std::num::ParseIntError> for ErrorType {
     fn from(_: std::num::ParseIntError) -> Self {
+        // Custom EnvLoadedError: Convert
+        ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Convert))
+    }
+}
+
+impl From<std::num::ParseFloatError> for ErrorType {
+    fn from(_: std::num::ParseFloatError) -> Self {
         // Custom EnvLoadedError: Convert
         ErrorType::Custom(CustomErrorType::EnvLoadedError(EnvLoadedError::Convert))
     }
