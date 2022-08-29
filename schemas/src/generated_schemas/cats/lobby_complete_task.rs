@@ -8,7 +8,7 @@ pub struct CatsLobbyCompleteTaskParams {
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "taskId")]
-    pub task_id: i64,
+    pub task_id: f64,
 }
 impl Schema for CatsLobbyCompleteTaskParams {
     fn schema() -> Value {
@@ -26,19 +26,14 @@ impl Agent for CatsLobbyCompleteTaskParams {
         "cats"
     }
 }
-impl<'de> Deserialize<'de> for CatsLobbyCompleteTaskReturns {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
-    where
-        D: Deserializer<'de>,
-    {
-        Ok(CatsLobbyCompleteTaskReturns)
-    }
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct CatsLobbyCompleteTaskReturns {
+    #[serde(rename = "TaskId")]
+    pub task_id: f64,
 }
-#[derive(Debug, Clone, Serialize)]
-pub struct CatsLobbyCompleteTaskReturns;
 impl Schema for CatsLobbyCompleteTaskReturns {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"TaskId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"TaskId\"]}")
     }
 }
 impl Agent for CatsLobbyCompleteTaskReturns {

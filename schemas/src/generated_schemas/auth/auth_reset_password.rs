@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthResetPasswordParams {
-    #[serde(rename = "hash")]
-    pub hash: String,
     #[serde(rename = "newPassword")]
     pub new_password: String,
+    #[serde(rename = "hash")]
+    pub hash: String,
 }
 impl Schema for AuthAuthResetPasswordParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"hash\":{\"type\":\"string\"},\"newPassword\":{\"type\":\"string\"}},\"required\":[\"hash\",\"newPassword\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newPassword\":{\"type\":\"string\"},\"hash\":{\"type\":\"string\"}},\"required\":[\"hash\",\"newPassword\"]}")
     }
 }
 impl Agent for AuthAuthResetPasswordParams {

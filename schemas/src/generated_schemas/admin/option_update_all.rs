@@ -18,10 +18,10 @@ pub struct AdminOptionUpdateAllParamsClientKeysParamsParams {
     pub value: String,
     #[serde(rename = "extraDetails")]
     pub extra_details: Option<AdminOptionUpdateAllParamsClientKeysParamsParamsExtraDetailsParams>,
-    #[serde(rename = "key")]
-    pub key: String,
     #[serde(rename = "description")]
     pub description: Option<String>,
+    #[serde(rename = "key")]
+    pub key: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionUpdateAllParams {
@@ -30,7 +30,7 @@ pub struct AdminOptionUpdateAllParams {
 }
 impl Schema for AdminOptionUpdateAllParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"clientKeys\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"scope\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"tab\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":null},\"key\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\"]}}},\"required\":[\"clientKeys\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"clientKeys\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"scope\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"tab\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":null},\"description\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\"]}}},\"required\":[\"clientKeys\"]}")
     }
 }
 impl Agent for AdminOptionUpdateAllParams {

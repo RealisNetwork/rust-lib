@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileBanProfileParams {
-    #[serde(rename = "reason")]
-    pub reason: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "reason")]
+    pub reason: String,
 }
 impl Schema for UserProfileBanProfileParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"reason\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"reason\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"}},\"required\":[\"userId\",\"reason\"]}")
     }
 }
 impl Agent for UserProfileBanProfileParams {

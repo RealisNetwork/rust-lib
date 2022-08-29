@@ -24,19 +24,14 @@ impl Agent for CatsLobbyGetUsersCompletedTasksParams {
         "cats"
     }
 }
-impl<'de> Deserialize<'de> for CatsLobbyGetUsersCompletedTasksReturns {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
-    where
-        D: Deserializer<'de>,
-    {
-        Ok(CatsLobbyGetUsersCompletedTasksReturns)
-    }
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct CatsLobbyGetUsersCompletedTasksReturns {
+    #[serde(rename = "Tasks")]
+    pub tasks: Vec<f64>,
 }
-#[derive(Debug, Clone, Serialize)]
-pub struct CatsLobbyGetUsersCompletedTasksReturns;
 impl Schema for CatsLobbyGetUsersCompletedTasksReturns {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"Tasks\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}}},\"required\":[\"Tasks\"]}")
     }
 }
 impl Agent for CatsLobbyGetUsersCompletedTasksReturns {

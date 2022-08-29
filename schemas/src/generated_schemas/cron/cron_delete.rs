@@ -6,7 +6,7 @@ use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CronCronDeleteParams {
     #[serde(rename = "id")]
-    pub id: i64,
+    pub id: f64,
 }
 impl Schema for CronCronDeleteParams {
     fn schema() -> Value {

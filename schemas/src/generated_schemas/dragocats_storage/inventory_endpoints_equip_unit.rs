@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsEquipUnitParams {
-    #[serde(rename = "slotId")]
-    pub slot_id: i32,
     #[serde(rename = "unitId")]
     pub unit_id: i32,
+    #[serde(rename = "slotId")]
+    pub slot_id: i32,
 }
 impl Schema for DragocatsStorageInventoryEndpointsEquipUnitParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"slotId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"unitId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"slotId\",\"unitId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"unitId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"slotId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"slotId\",\"unitId\"]}")
     }
 }
 impl Agent for DragocatsStorageInventoryEndpointsEquipUnitParams {

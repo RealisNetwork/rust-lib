@@ -6,7 +6,7 @@ use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbyGetProfileParams {
     #[serde(rename = "deviceId")]
-    pub device_id: i64,
+    pub device_id: f64,
 }
 impl Schema for DragonsLobbyGetProfileParams {
     fn schema() -> Value {

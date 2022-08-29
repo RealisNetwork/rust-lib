@@ -30,14 +30,14 @@ impl Agent for GooglePlayPurchaseValidateSubscriptionParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GooglePlayPurchaseValidateSubscriptionReturns {
-    #[serde(rename = "expiryTimeMillis")]
-    pub expiry_time_millis: Option<String>,
     #[serde(rename = "isValid")]
     pub is_valid: bool,
+    #[serde(rename = "expiryTimeMillis")]
+    pub expiry_time_millis: Option<String>,
 }
 impl Schema for GooglePlayPurchaseValidateSubscriptionReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"expiryTimeMillis\":{\"type\":\"string\"},\"isValid\":{\"type\":\"boolean\"}},\"required\":[\"isValid\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isValid\":{\"type\":\"boolean\"},\"expiryTimeMillis\":{\"type\":\"string\"}},\"required\":[\"isValid\"]}")
     }
 }
 impl Agent for GooglePlayPurchaseValidateSubscriptionReturns {

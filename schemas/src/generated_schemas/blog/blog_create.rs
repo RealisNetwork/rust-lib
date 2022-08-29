@@ -5,33 +5,33 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogCreateParamsPropsParams {
-    #[serde(rename = "shortDescription")]
-    pub short_description: String,
-    #[serde(rename = "metaTitle")]
-    pub meta_title: String,
     #[serde(rename = "metaDescription")]
     pub meta_description: String,
-    #[serde(rename = "url")]
-    pub url: String,
-    #[serde(rename = "content")]
-    pub content: String,
+    #[serde(rename = "shortDescription")]
+    pub short_description: String,
     #[serde(rename = "title")]
     pub title: String,
-    #[serde(rename = "lang")]
-    pub lang: Option<String>,
+    #[serde(rename = "url")]
+    pub url: String,
     #[serde(rename = "image")]
     pub image: String,
+    #[serde(rename = "lang")]
+    pub lang: Option<String>,
+    #[serde(rename = "metaTitle")]
+    pub meta_title: String,
+    #[serde(rename = "content")]
+    pub content: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogCreateParams {
     #[serde(rename = "props")]
     pub props: BlogBlogCreateParamsPropsParams,
     #[serde(rename = "categoryId")]
-    pub category_id: i64,
+    pub category_id: f64,
 }
 impl Schema for BlogBlogCreateParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"props\":{\"type\":\"object\",\"properties\":{\"shortDescription\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"}},\"required\":[\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\"]},\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"props\",\"categoryId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"props\":{\"type\":\"object\",\"properties\":{\"metaDescription\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"}},\"required\":[\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\"]},\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"props\",\"categoryId\"]}")
     }
 }
 impl Agent for BlogBlogCreateParams {

@@ -6,7 +6,7 @@ use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceIsNewClientParams {
     #[serde(rename = "appId")]
-    pub app_id: i64,
+    pub app_id: f64,
     #[serde(rename = "internalUserId")]
     pub internal_user_id: String,
 }

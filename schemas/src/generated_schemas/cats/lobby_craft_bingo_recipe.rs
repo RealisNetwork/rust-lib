@@ -8,7 +8,7 @@ pub struct CatsLobbyCraftBingoRecipeParams {
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "recipeId")]
-    pub recipe_id: i64,
+    pub recipe_id: f64,
 }
 impl Schema for CatsLobbyCraftBingoRecipeParams {
     fn schema() -> Value {

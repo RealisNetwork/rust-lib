@@ -29,7 +29,7 @@ pub struct AdminRoleGetRoleByNameReturns {
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "id")]
-    pub id: i64,
+    pub id: f64,
 }
 impl Schema for AdminRoleGetRoleByNameReturns {
     fn schema() -> Value {

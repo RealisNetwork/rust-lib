@@ -8,11 +8,11 @@ pub struct TaskTaskCompleteTaskParams {
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "taskId")]
-    pub task_id: i32,
+    pub task_id: f64,
 }
 impl Schema for TaskTaskCompleteTaskParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"taskId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"userId\",\"taskId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"taskId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"taskId\"]}")
     }
 }
 impl Agent for TaskTaskCompleteTaskParams {
@@ -28,14 +28,12 @@ impl Agent for TaskTaskCompleteTaskParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TaskTaskCompleteTaskReturns {
-    #[serde(rename = "reward")]
-    pub reward: i32,
-    #[serde(rename = "taskId")]
-    pub task_id: i32,
+    #[serde(rename = "TaskId")]
+    pub task_id: f64,
 }
 impl Schema for TaskTaskCompleteTaskReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"reward\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"taskId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"taskId\",\"reward\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"TaskId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"TaskId\"]}")
     }
 }
 impl Agent for TaskTaskCompleteTaskReturns {

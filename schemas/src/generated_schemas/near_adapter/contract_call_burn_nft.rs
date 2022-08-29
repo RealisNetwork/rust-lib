@@ -5,12 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterContractCallBurnNftParams {
-    #[serde(rename = "nftId")]
-    pub nft_id: String,
+    #[serde(rename = "userId")]
+    pub user_id: Option<String>,
+    #[serde(rename = "approvalId")]
+    pub approval_id: Option<String>,
+    #[serde(rename = "tokenId")]
+    pub token_id: String,
 }
 impl Schema for NearAdapterContractCallBurnNftParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"nftId\":{\"type\":\"string\"}},\"required\":[\"nftId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"approvalId\":{\"type\":\"string\"},\"tokenId\":{\"type\":\"string\"}},\"required\":[\"tokenId\"]}")
     }
 }
 impl Agent for NearAdapterContractCallBurnNftParams {
@@ -25,13 +29,10 @@ impl Agent for NearAdapterContractCallBurnNftParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct NearAdapterContractCallBurnNftReturns {
-    #[serde(rename = "balance")]
-    pub balance: String,
-}
+pub struct NearAdapterContractCallBurnNftReturns(pub bool);
 impl Schema for NearAdapterContractCallBurnNftReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"balance\":{\"type\":\"string\"}},\"required\":[\"balance\"]}")
+        serde_json::json!("{\"type\":\"boolean\"}")
     }
 }
 impl Agent for NearAdapterContractCallBurnNftReturns {

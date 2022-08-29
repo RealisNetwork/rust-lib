@@ -5,10 +5,10 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionSetParamsExtraDetailsParams {
-    #[serde(rename = "type")]
-    pub r#type: String,
     #[serde(rename = "tab")]
     pub tab: String,
+    #[serde(rename = "type")]
+    pub r#type: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionSetParams {
@@ -23,7 +23,7 @@ pub struct AdminOptionSetParams {
 }
 impl Schema for AdminOptionSetParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"value\":{\"type\":\"string\"},\"clientKey\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"}},\"required\":null}},\"required\":[\"clientKey\",\"value\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"value\":{\"type\":\"string\"},\"clientKey\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"tab\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":null}},\"required\":[\"clientKey\",\"value\"]}")
     }
 }
 impl Agent for AdminOptionSetParams {

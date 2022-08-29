@@ -6,9 +6,9 @@ use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyBuyCatParams {
     #[serde(rename = "catId")]
-    pub cat_id: i64,
+    pub cat_id: f64,
     #[serde(rename = "price")]
-    pub price: i64,
+    pub price: f64,
     #[serde(rename = "userId")]
     pub user_id: String,
 }

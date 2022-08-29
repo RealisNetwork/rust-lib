@@ -6,7 +6,7 @@ use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbyOpenLootboxParams {
     #[serde(rename = "lootboxId")]
-    pub lootbox_id: i64,
+    pub lootbox_id: f64,
     #[serde(rename = "userId")]
     pub user_id: String,
 }

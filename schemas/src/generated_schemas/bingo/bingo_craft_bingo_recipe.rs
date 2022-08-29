@@ -28,16 +28,16 @@ impl Agent for BingoBingoCraftBingoRecipeParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BingoBingoCraftBingoRecipeReturns {
-    #[serde(rename = "jackpotRewardAmount")]
-    pub jackpot_reward_amount: String,
     #[serde(rename = "bingoReceiptId")]
     pub bingo_receipt_id: i32,
     #[serde(rename = "hardRewardAmount")]
     pub hard_reward_amount: String,
+    #[serde(rename = "jackpotRewardAmount")]
+    pub jackpot_reward_amount: String,
 }
 impl Schema for BingoBingoCraftBingoRecipeReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"jackpotRewardAmount\":{\"type\":\"string\"},\"bingoReceiptId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"hardRewardAmount\":{\"type\":\"string\"}},\"required\":[\"bingoReceiptId\",\"hardRewardAmount\",\"jackpotRewardAmount\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"bingoReceiptId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"hardRewardAmount\":{\"type\":\"string\"},\"jackpotRewardAmount\":{\"type\":\"string\"}},\"required\":[\"bingoReceiptId\",\"hardRewardAmount\",\"jackpotRewardAmount\"]}")
     }
 }
 impl Agent for BingoBingoCraftBingoRecipeReturns {

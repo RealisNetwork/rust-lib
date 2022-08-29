@@ -6,7 +6,7 @@ use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeGetHashParams {
     #[serde(rename = "orchestratorId")]
-    pub orchestrator_id: i64,
+    pub orchestrator_id: f64,
     #[serde(rename = "type")]
     pub r#type: String,
 }

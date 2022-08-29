@@ -44,7 +44,7 @@ impl Integer {
             AdditionalAttribute::Byte => quote! { i8 },
             AdditionalAttribute::Short => quote! { i16 },
             AdditionalAttribute::Int => quote! { i32 },
-            AdditionalAttribute::Number => quote! { i64 },
+            AdditionalAttribute::Number => quote! { f64 },
         }
     }
 

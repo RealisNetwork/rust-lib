@@ -5,22 +5,22 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetUserByParamsParams {
+    #[serde(rename = "nickname")]
+    pub nickname: String,
+    #[serde(rename = "supportId")]
+    pub support_id: String,
     #[serde(rename = "ethWallet")]
     pub eth_wallet: String,
     #[serde(rename = "email")]
     pub email: String,
     #[serde(rename = "lisWallet")]
     pub lis_wallet: String,
-    #[serde(rename = "supportId")]
-    pub support_id: String,
     #[serde(rename = "GPA")]
     pub gpa: String,
-    #[serde(rename = "nickname")]
-    pub nickname: String,
 }
 impl Schema for UserProfileGetUserByParamsParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"ethWallet\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"lisWallet\":{\"type\":\"string\"},\"supportId\":{\"type\":\"string\"},\"GPA\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"}},\"required\":null}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"nickname\":{\"type\":\"string\"},\"supportId\":{\"type\":\"string\"},\"ethWallet\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"lisWallet\":{\"type\":\"string\"},\"GPA\":{\"type\":\"string\"}},\"required\":null}")
     }
 }
 impl Agent for UserProfileGetUserByParamsParams {
@@ -36,51 +36,51 @@ impl Agent for UserProfileGetUserByParamsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetUserByParamsReturnsBanParams {
-    #[serde(rename = "createdAt")]
-    pub created_at: i64,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: i64,
-    #[serde(rename = "id")]
-    pub id: i64,
-    #[serde(rename = "reason")]
-    pub reason: String,
     #[serde(rename = "whoBanned")]
     pub who_banned: String,
+    #[serde(rename = "reason")]
+    pub reason: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: f64,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: f64,
+    #[serde(rename = "id")]
+    pub id: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetUserByParamsReturns {
-    #[serde(rename = "id")]
-    pub id: i64,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "isNicknameChanged")]
-    pub is_nickname_changed: bool,
     #[serde(rename = "notice")]
     pub notice: String,
     #[serde(rename = "isBanned")]
     pub is_banned: bool,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "isSubscribedToMailing")]
     pub is_subscribed_to_mailing: bool,
-    #[serde(rename = "isDeleted")]
-    pub is_deleted: bool,
-    #[serde(rename = "ban")]
-    pub ban: UserProfileGetUserByParamsReturnsBanParams,
     #[serde(rename = "isConfirmed")]
     pub is_confirmed: bool,
-    #[serde(rename = "verified")]
-    pub verified: bool,
-    #[serde(rename = "suspicious")]
-    pub suspicious: bool,
-    #[serde(rename = "registeredAt")]
-    pub registered_at: i64,
     #[serde(rename = "nickname")]
     pub nickname: String,
+    #[serde(rename = "suspicious")]
+    pub suspicious: bool,
+    #[serde(rename = "verified")]
+    pub verified: bool,
+    #[serde(rename = "isDeleted")]
+    pub is_deleted: bool,
     #[serde(rename = "email")]
     pub email: String,
+    #[serde(rename = "ban")]
+    pub ban: UserProfileGetUserByParamsReturnsBanParams,
+    #[serde(rename = "registeredAt")]
+    pub registered_at: f64,
+    #[serde(rename = "isNicknameChanged")]
+    pub is_nickname_changed: bool,
 }
 impl Schema for UserProfileGetUserByParamsReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"isNicknameChanged\":{\"type\":\"boolean\"},\"notice\":{\"type\":\"string\"},\"isBanned\":{\"type\":\"boolean\"},\"isSubscribedToMailing\":{\"type\":\"boolean\"},\"isDeleted\":{\"type\":\"boolean\"},\"ban\":{\"type\":\"object\",\"properties\":{\"createdAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"reason\":{\"type\":\"string\"},\"whoBanned\":{\"type\":\"string\"}},\"required\":[\"id\",\"reason\",\"whoBanned\",\"createdAt\",\"updatedAt\"]},\"isConfirmed\":{\"type\":\"boolean\"},\"verified\":{\"type\":\"boolean\"},\"suspicious\":{\"type\":\"boolean\"},\"registeredAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"nickname\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"nickname\",\"email\",\"verified\",\"isNicknameChanged\",\"isSubscribedToMailing\",\"suspicious\",\"isConfirmed\",\"notice\",\"isBanned\",\"isDeleted\",\"ban\",\"registeredAt\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"notice\":{\"type\":\"string\"},\"isBanned\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"isSubscribedToMailing\":{\"type\":\"boolean\"},\"isConfirmed\":{\"type\":\"boolean\"},\"nickname\":{\"type\":\"string\"},\"suspicious\":{\"type\":\"boolean\"},\"verified\":{\"type\":\"boolean\"},\"isDeleted\":{\"type\":\"boolean\"},\"email\":{\"type\":\"string\"},\"ban\":{\"type\":\"object\",\"properties\":{\"whoBanned\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"reason\",\"whoBanned\",\"createdAt\",\"updatedAt\"]},\"registeredAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isNicknameChanged\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"userId\",\"nickname\",\"email\",\"verified\",\"isNicknameChanged\",\"isSubscribedToMailing\",\"suspicious\",\"isConfirmed\",\"notice\",\"isBanned\",\"isDeleted\",\"ban\",\"registeredAt\"]}")
     }
 }
 impl Agent for UserProfileGetUserByParamsReturns {

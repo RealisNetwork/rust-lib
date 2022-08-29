@@ -6,7 +6,7 @@ use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorProductBurnParams {
     #[serde(rename = "productIds")]
-    pub product_ids: Vec<i64>,
+    pub product_ids: Vec<f64>,
 }
 impl Schema for OrchestratorProductBurnParams {
     fn schema() -> Value {

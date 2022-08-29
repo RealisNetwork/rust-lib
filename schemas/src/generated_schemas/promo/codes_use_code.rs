@@ -39,7 +39,7 @@ pub struct PromoCodesUseCodeReturnsParams {
 pub struct PromoCodesUseCodeReturns(pub Vec<PromoCodesUseCodeReturnsParams>);
 impl Schema for PromoCodesUseCodeReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"rewardType\":{\"type\":\"string\"},\"currencyKey\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"},\"currencyAmount\":{\"type\":\"string\"},\"heroId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"rewardType\",\"currencyKey\",\"currencyAmount\",\"heroId\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"rewardType\":{\"type\":\"string\"},\"currencyKey\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"currencyAmount\":{\"type\":\"string\"},\"heroId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"rewardType\",\"currencyKey\",\"currencyAmount\",\"heroId\"]}}")
     }
 }
 impl Agent for PromoCodesUseCodeReturns {

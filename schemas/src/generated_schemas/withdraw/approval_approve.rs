@@ -6,7 +6,7 @@ use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalApproveParams {
     #[serde(rename = "attemptId")]
-    pub attempt_id: i64,
+    pub attempt_id: f64,
 }
 impl Schema for WithdrawApprovalApproveParams {
     fn schema() -> Value {

@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct DragonsLobbyUnlinkAccountParams {
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "password")]
-    pub password: String,
     #[serde(rename = "email")]
     pub email: String,
+    #[serde(rename = "password")]
+    pub password: String,
 }
 impl Schema for DragonsLobbyUnlinkAccountParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"password\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"}},\"required\":[\"userId\",\"email\",\"password\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"password\":{\"type\":\"string\"}},\"required\":[\"userId\",\"email\",\"password\"]}")
     }
 }
 impl Agent for DragonsLobbyUnlinkAccountParams {

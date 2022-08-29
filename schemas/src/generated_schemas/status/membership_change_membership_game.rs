@@ -6,9 +6,9 @@ use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipChangeMembershipGameParams {
     #[serde(rename = "id")]
-    pub id: i64,
+    pub id: f64,
     #[serde(rename = "newAppId")]
-    pub new_app_id: i64,
+    pub new_app_id: f64,
 }
 impl Schema for StatusMembershipChangeMembershipGameParams {
     fn schema() -> Value {

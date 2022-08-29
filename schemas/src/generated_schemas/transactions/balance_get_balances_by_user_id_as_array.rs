@@ -42,7 +42,7 @@ pub struct TransactionsBalanceGetBalancesByUserIdAsArrayReturns(
 );
 impl Schema for TransactionsBalanceGetBalancesByUserIdAsArrayReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"}},\"required\":[\"currency\",\"amount\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"}},\"required\":[\"currency\",\"amount\"]}}")
     }
 }
 impl Agent for TransactionsBalanceGetBalancesByUserIdAsArrayReturns {

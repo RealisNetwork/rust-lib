@@ -29,19 +29,25 @@ impl Agent for CatsLobbyGetCurrentTasksParams {
         "cats"
     }
 }
-impl<'de> Deserialize<'de> for CatsLobbyGetCurrentTasksReturns {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
-    where
-        D: Deserializer<'de>,
-    {
-        Ok(CatsLobbyGetCurrentTasksReturns)
-    }
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct CatsLobbyGetCurrentTasksReturnsTasksParamsParams {
+    #[serde(rename = "QuestRewardId")]
+    pub quest_reward_id: f64,
+    #[serde(rename = "QuestId")]
+    pub quest_id: f64,
+    #[serde(rename = "RewardAmount")]
+    pub reward_amount: f64,
 }
-#[derive(Debug, Clone, Serialize)]
-pub struct CatsLobbyGetCurrentTasksReturns;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct CatsLobbyGetCurrentTasksReturns {
+    #[serde(rename = "EndDateMM")]
+    pub end_date_mm: f64,
+    #[serde(rename = "Tasks")]
+    pub tasks: Vec<CatsLobbyGetCurrentTasksReturnsTasksParamsParams>,
+}
 impl Schema for CatsLobbyGetCurrentTasksReturns {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"EndDateMM\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"Tasks\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"QuestRewardId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"QuestId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"RewardAmount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"QuestId\",\"QuestRewardId\",\"RewardAmount\"]}}},\"required\":[\"Tasks\",\"EndDateMM\"]}")
     }
 }
 impl Agent for CatsLobbyGetCurrentTasksReturns {

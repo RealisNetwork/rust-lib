@@ -6,11 +6,11 @@ use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct JsTestsDragocatsBattleProcessEndpointsStartTestParams {
     #[serde(rename = "startGames")]
-    pub start_games: i64,
+    pub start_games: f64,
     #[serde(rename = "durationMinutes")]
-    pub duration_minutes: i64,
+    pub duration_minutes: f64,
     #[serde(rename = "intervalMs")]
-    pub interval_ms: i64,
+    pub interval_ms: f64,
 }
 impl Schema for JsTestsDragocatsBattleProcessEndpointsStartTestParams {
     fn schema() -> Value {

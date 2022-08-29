@@ -6,9 +6,9 @@ use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeGetAllParams {
     #[serde(rename = "page")]
-    pub page: i64,
+    pub page: f64,
     #[serde(rename = "perPage")]
-    pub per_page: i64,
+    pub per_page: f64,
 }
 impl Schema for ProductFactoryProductTypeGetAllParams {
     fn schema() -> Value {

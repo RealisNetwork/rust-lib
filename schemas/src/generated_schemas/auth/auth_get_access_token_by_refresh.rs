@@ -27,7 +27,7 @@ impl Agent for AuthAuthGetAccessTokenByRefreshParams {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthGetAccessTokenByRefreshReturns {
     #[serde(rename = "expires_in")]
-    pub expires_in: i64,
+    pub expires_in: f64,
     #[serde(rename = "access_token")]
     pub access_token: String,
 }

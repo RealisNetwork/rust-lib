@@ -6,7 +6,7 @@ use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbySetReferrerParams {
     #[serde(rename = "siteReferrerId")]
-    pub site_referrer_id: i64,
+    pub site_referrer_id: f64,
     #[serde(rename = "userId")]
     pub user_id: String,
 }

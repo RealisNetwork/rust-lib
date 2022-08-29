@@ -6,7 +6,7 @@ use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsProductFactoryProductsGetInfoByProductIdParams {
     #[serde(rename = "productId")]
-    pub product_id: i64,
+    pub product_id: f64,
 }
 impl Schema for DragocatsProductFactoryProductsGetInfoByProductIdParams {
     fn schema() -> Value {
@@ -26,20 +26,20 @@ impl Agent for DragocatsProductFactoryProductsGetInfoByProductIdParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsProductFactoryProductsGetInfoByProductIdReturns {
+    #[serde(rename = "name")]
+    pub name: String,
+    #[serde(rename = "isNft")]
+    pub is_nft: bool,
+    #[serde(rename = "productType")]
+    pub product_type: String,
     #[serde(rename = "personalType")]
     pub personal_type: String,
     #[serde(rename = "subType")]
     pub sub_type: String,
-    #[serde(rename = "isNft")]
-    pub is_nft: bool,
-    #[serde(rename = "name")]
-    pub name: String,
-    #[serde(rename = "productType")]
-    pub product_type: String,
 }
 impl Schema for DragocatsProductFactoryProductsGetInfoByProductIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"},\"isNft\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"productType\":{\"type\":\"string\"}},\"required\":[\"personalType\",\"productType\",\"subType\",\"name\",\"isNft\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"isNft\":{\"type\":\"boolean\"},\"productType\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"}},\"required\":[\"personalType\",\"productType\",\"subType\",\"name\",\"isNft\"]}")
     }
 }
 impl Agent for DragocatsProductFactoryProductsGetInfoByProductIdReturns {

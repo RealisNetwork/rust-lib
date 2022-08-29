@@ -10,7 +10,7 @@ pub struct EmailEmailCreateAndSendParams {
     #[serde(rename = "receivers")]
     pub receivers: Vec<String>,
     #[serde(rename = "timeToSend")]
-    pub time_to_send: i64,
+    pub time_to_send: f64,
     #[serde(rename = "subject")]
     pub subject: String,
 }

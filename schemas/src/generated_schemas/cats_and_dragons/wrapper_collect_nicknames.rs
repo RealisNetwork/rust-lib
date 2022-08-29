@@ -8,7 +8,7 @@ pub struct CatsAndDragonsWrapperCollectNicknamesParams {
     #[serde(rename = "userIds")]
     pub user_ids: Vec<String>,
     #[serde(rename = "appId")]
-    pub app_id: i64,
+    pub app_id: f64,
 }
 impl Schema for CatsAndDragonsWrapperCollectNicknamesParams {
     fn schema() -> Value {

@@ -5,12 +5,12 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAdminDeleteUserRoleParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
+    #[serde(rename = "internalUserId")]
+    pub internal_user_id: String,
 }
 impl Schema for AuthAdminDeleteUserRoleParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"internalUserId\":{\"type\":\"string\"}},\"required\":[\"internalUserId\"]}")
     }
 }
 impl Agent for AuthAdminDeleteUserRoleParams {

@@ -8,7 +8,7 @@ pub struct DragonsLobbyUpgradeCardParams {
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "cardId")]
-    pub card_id: i64,
+    pub card_id: f64,
 }
 impl Schema for DragonsLobbyUpgradeCardParams {
     fn schema() -> Value {

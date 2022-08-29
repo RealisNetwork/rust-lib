@@ -5,14 +5,18 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterContractCallMintNftParams {
-    #[serde(rename = "nftMetadata")]
-    pub nft_metadata: String,
-    #[serde(rename = "recipientUserId")]
-    pub recipient_user_id: String,
+    #[serde(rename = "tokenId")]
+    pub token_id: String,
+    #[serde(rename = "userId")]
+    pub user_id: Option<String>,
+    #[serde(rename = "ownerId")]
+    pub owner_id: String,
+    #[serde(rename = "metadata")]
+    pub metadata: Option<String>,
 }
 impl Schema for NearAdapterContractCallMintNftParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"nftMetadata\":{\"type\":\"string\"},\"recipientUserId\":{\"type\":\"string\"}},\"required\":[\"recipientUserId\",\"nftMetadata\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"tokenId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"},\"metadata\":{\"type\":\"string\"}},\"required\":[\"tokenId\",\"ownerId\"]}")
     }
 }
 impl Agent for NearAdapterContractCallMintNftParams {
@@ -27,13 +31,10 @@ impl Agent for NearAdapterContractCallMintNftParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct NearAdapterContractCallMintNftReturns {
-    #[serde(rename = "nftId")]
-    pub nft_id: String,
-}
+pub struct NearAdapterContractCallMintNftReturns(pub bool);
 impl Schema for NearAdapterContractCallMintNftReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"nftId\":{\"type\":\"string\"}},\"required\":[\"nftId\"]}")
+        serde_json::json!("{\"type\":\"boolean\"}")
     }
 }
 impl Agent for NearAdapterContractCallMintNftReturns {

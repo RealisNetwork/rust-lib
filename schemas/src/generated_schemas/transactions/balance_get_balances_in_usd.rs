@@ -30,7 +30,7 @@ impl Agent for TransactionsBalanceGetBalancesInUsdParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceGetBalancesInUsdReturns(pub i64);
+pub struct TransactionsBalanceGetBalancesInUsdReturns(pub f64);
 impl Schema for TransactionsBalanceGetBalancesInUsdReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}")

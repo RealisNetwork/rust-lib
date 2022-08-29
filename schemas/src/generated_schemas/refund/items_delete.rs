@@ -6,7 +6,7 @@ use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundItemsDeleteParams {
     #[serde(rename = "hashItemId")]
-    pub hash_item_id: i64,
+    pub hash_item_id: f64,
     #[serde(rename = "userId")]
     pub user_id: String,
 }

@@ -10,7 +10,7 @@ pub struct TransactionsBalanceGetBalanceByUserIdParams {
 }
 impl Schema for TransactionsBalanceGetBalanceByUserIdParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)$\"}},\"required\":[\"currency\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"}},\"required\":[\"currency\"]}")
     }
 }
 impl Agent for TransactionsBalanceGetBalanceByUserIdParams {

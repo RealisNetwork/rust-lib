@@ -8,7 +8,7 @@ pub struct DragonsLobbyBuyUsualLootboxParams {
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "lootboxId")]
-    pub lootbox_id: i64,
+    pub lootbox_id: f64,
 }
 impl Schema for DragonsLobbyBuyUsualLootboxParams {
     fn schema() -> Value {
