@@ -31,10 +31,10 @@ impl Agent for CatsLobbyGetCurrentTasksParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyGetCurrentTasksReturnsTasksParamsParams {
-    #[serde(rename = "QuestRewardId")]
-    pub quest_reward_id: f64,
     #[serde(rename = "QuestId")]
     pub quest_id: f64,
+    #[serde(rename = "QuestRewardId")]
+    pub quest_reward_id: f64,
     #[serde(rename = "RewardAmount")]
     pub reward_amount: f64,
 }
@@ -47,7 +47,7 @@ pub struct CatsLobbyGetCurrentTasksReturns {
 }
 impl Schema for CatsLobbyGetCurrentTasksReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"EndDateMM\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"Tasks\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"QuestRewardId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"QuestId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"RewardAmount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"QuestId\",\"QuestRewardId\",\"RewardAmount\"]}}},\"required\":[\"Tasks\",\"EndDateMM\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"EndDateMM\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"Tasks\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"QuestId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"QuestRewardId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"RewardAmount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"QuestId\",\"QuestRewardId\",\"RewardAmount\"]}}},\"required\":[\"Tasks\",\"EndDateMM\"]}")
     }
 }
 impl Agent for CatsLobbyGetCurrentTasksReturns {

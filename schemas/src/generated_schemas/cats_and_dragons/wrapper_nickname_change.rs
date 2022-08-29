@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperNicknameChangeParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "newNickname")]
     pub new_nickname: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for CatsAndDragonsWrapperNicknameChangeParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"newNickname\":{\"type\":\"string\"}},\"required\":[\"userId\",\"newNickname\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newNickname\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"newNickname\"]}")
     }
 }
 impl Agent for CatsAndDragonsWrapperNicknameChangeParams {

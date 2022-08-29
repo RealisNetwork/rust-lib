@@ -30,15 +30,20 @@ impl Agent for TransactionsBalanceGetMyBalancesWithRoundingParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TransactionsBalanceGetMyBalancesWithRoundingReturnsTickersParamsParams {
+    #[serde(rename = "ticker")]
+    pub ticker: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetMyBalancesWithRoundingReturns {
     #[serde(rename = "tickers")]
-    pub tickers: (),
+    pub tickers: Vec<TransactionsBalanceGetMyBalancesWithRoundingReturnsTickersParamsParams>,
 }
 impl Schema for TransactionsBalanceGetMyBalancesWithRoundingReturns {
     fn schema() -> Value {
-        serde_json::json!(
-            "{\"type\":\"object\",\"properties\":{\"tickers\":{}},\"required\":[\"tickers\"]}"
-        )
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"tickers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"ticker\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"ticker\",\"amount\"]}}},\"required\":[\"tickers\"]}")
     }
 }
 impl Agent for TransactionsBalanceGetMyBalancesWithRoundingReturns {
