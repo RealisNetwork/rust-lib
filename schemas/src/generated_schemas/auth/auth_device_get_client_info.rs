@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceGetClientInfoParams {
-    #[serde(rename = "provider")]
-    pub provider: String,
     #[serde(rename = "providerId")]
     pub provider_id: String,
+    #[serde(rename = "provider")]
+    pub provider: String,
 }
 impl Schema for AuthAuthDeviceGetClientInfoParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"provider\":{\"type\":\"string\",\"pattern\":\"^(Keycloak)|(DeviceId)$\"},\"providerId\":{\"type\":\"string\"}},\"required\":[\"providerId\",\"provider\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"providerId\":{\"type\":\"string\"},\"provider\":{\"type\":\"string\",\"pattern\":\"^(Keycloak)|(DeviceId)$\"}},\"required\":[\"providerId\",\"provider\"]}")
     }
 }
 impl Agent for AuthAuthDeviceGetClientInfoParams {
@@ -30,14 +30,14 @@ impl Agent for AuthAuthDeviceGetClientInfoParams {
 pub struct AuthAuthDeviceGetClientInfoReturns {
     #[serde(rename = "email")]
     pub email: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "isAuth")]
     pub is_auth: bool,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for AuthAuthDeviceGetClientInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"isAuth\":{\"type\":\"boolean\"}},\"required\":[\"userId\",\"email\",\"isAuth\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\"},\"isAuth\":{\"type\":\"boolean\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"email\",\"isAuth\"]}")
     }
 }
 impl Agent for AuthAuthDeviceGetClientInfoReturns {

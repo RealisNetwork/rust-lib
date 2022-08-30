@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceConvertParams {
+    #[serde(rename = "amount")]
+    pub amount: String,
     #[serde(rename = "fromCurrency")]
     pub from_currency: String,
     #[serde(rename = "toCurrency")]
     pub to_currency: String,
-    #[serde(rename = "amount")]
-    pub amount: String,
 }
 impl Schema for TransactionsBalanceConvertParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"fromCurrency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"toCurrency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"fromCurrency\",\"toCurrency\",\"amount\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"fromCurrency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"toCurrency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"}},\"required\":[\"fromCurrency\",\"toCurrency\",\"amount\"]}")
     }
 }
 impl Agent for TransactionsBalanceConvertParams {

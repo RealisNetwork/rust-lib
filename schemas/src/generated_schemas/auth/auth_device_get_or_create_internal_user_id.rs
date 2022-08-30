@@ -5,10 +5,10 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceGetOrCreateInternalUserIdParams {
-    #[serde(rename = "provider")]
-    pub provider: String,
     #[serde(rename = "providerId")]
     pub provider_id: String,
+    #[serde(rename = "provider")]
+    pub provider: String,
     #[serde(rename = "email")]
     pub email: Option<String>,
     #[serde(rename = "appId")]
@@ -16,7 +16,7 @@ pub struct AuthAuthDeviceGetOrCreateInternalUserIdParams {
 }
 impl Schema for AuthAuthDeviceGetOrCreateInternalUserIdParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"provider\":{\"type\":\"string\",\"pattern\":\"^(Keycloak)|(DeviceId)$\"},\"providerId\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"providerId\",\"provider\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"providerId\":{\"type\":\"string\"},\"provider\":{\"type\":\"string\",\"pattern\":\"^(Keycloak)|(DeviceId)$\"},\"email\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"providerId\",\"provider\"]}")
     }
 }
 impl Agent for AuthAuthDeviceGetOrCreateInternalUserIdParams {

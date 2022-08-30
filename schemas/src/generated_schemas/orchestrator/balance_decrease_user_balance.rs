@@ -5,22 +5,22 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorBalanceDecreaseUserBalanceParams {
-    #[serde(rename = "amount")]
-    pub amount: String,
-    #[serde(rename = "currency")]
-    pub currency: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
+    #[serde(rename = "topicToSuccessResponse")]
+    pub topic_to_success_response: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "topicToSuccessResponse")]
-    pub topic_to_success_response: String,
-    #[serde(rename = "creator")]
-    pub creator: String,
+    #[serde(rename = "currency")]
+    pub currency: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
 }
 impl Schema for OrchestratorBalanceDecreaseUserBalanceParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"txId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"topicToSuccessResponse\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\",\"topicToSuccessResponse\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"creator\":{\"type\":\"string\"},\"topicToSuccessResponse\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\",\"topicToSuccessResponse\"]}")
     }
 }
 impl Agent for OrchestratorBalanceDecreaseUserBalanceParams {

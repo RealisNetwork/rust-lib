@@ -28,14 +28,14 @@ impl Agent for CdBalancesBalanceGetBalanceByUserIdAndCurrencyParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CdBalancesBalanceGetBalanceByUserIdAndCurrencyReturns {
-    #[serde(rename = "amount")]
-    pub amount: String,
     #[serde(rename = "totalEarned")]
     pub total_earned: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
 }
 impl Schema for CdBalancesBalanceGetBalanceByUserIdAndCurrencyReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"totalEarned\":{\"type\":\"string\"}},\"required\":[\"amount\",\"totalEarned\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalEarned\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"amount\",\"totalEarned\"]}")
     }
 }
 impl Agent for CdBalancesBalanceGetBalanceByUserIdAndCurrencyReturns {

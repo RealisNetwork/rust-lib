@@ -331,7 +331,7 @@ dependencies = [
 [[package]]
 name = "config"
 version = "0.1.0"
-source = "git+https://github.com/RealisNetwork/rust-lib.git#10801edb8cdb96b37406420e2c3e9ba3b809bedd"
+source = "git+https://github.com/RealisNetwork/rust-lib.git#ab4d7930cae35d86d6a8231222295d56537ea43c"
 dependencies = [
  "dotenv",
  "error_registry 0.1.0 (git+https://github.com/RealisNetwork/rust-lib.git)",
@@ -610,9 +610,9 @@ checksum = "77c90badedccf4105eca100756a0b1289e191f6fcbdadd3cee1d2f614f97da8f"
 
 [[package]]
 name = "dotenvy"
-version = "0.15.2"
+version = "0.15.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d14217f19387ebd26b24ff4ecf93de2dbe68bab13957e43732127f19ca21a6d3"
+checksum = "da3db6fcad7c1fc4abdd99bf5276a4db30d6a819127903a709ed41e5ff016e84"
 dependencies = [
  "dirs",
 ]
@@ -720,7 +720,7 @@ dependencies = [
 [[package]]
 name = "error_registry"
 version = "0.1.0"
-source = "git+https://github.com/RealisNetwork/rust-lib.git#10801edb8cdb96b37406420e2c3e9ba3b809bedd"
+source = "git+https://github.com/RealisNetwork/rust-lib.git#ab4d7930cae35d86d6a8231222295d56537ea43c"
 dependencies = [
  "backtrace",
  "deadpool",
@@ -1012,7 +1012,7 @@ dependencies = [
 [[package]]
 name = "healthchecker"
 version = "0.1.0"
-source = "git+https://github.com/RealisNetwork/rust-lib.git#10801edb8cdb96b37406420e2c3e9ba3b809bedd"
+source = "git+https://github.com/RealisNetwork/rust-lib.git#ab4d7930cae35d86d6a8231222295d56537ea43c"
 dependencies = [
  "async-trait",
  "error_registry 0.1.0 (git+https://github.com/RealisNetwork/rust-lib.git)",
@@ -2183,7 +2183,7 @@ dependencies = [
 [[package]]
 name = "realis-macros"
 version = "0.1.0"
-source = "git+https://github.com/RealisNetwork/rust-lib.git#10801edb8cdb96b37406420e2c3e9ba3b809bedd"
+source = "git+https://github.com/RealisNetwork/rust-lib.git#ab4d7930cae35d86d6a8231222295d56537ea43c"
 dependencies = [
  "convert_case",
  "proc-macro2 1.0.43",
