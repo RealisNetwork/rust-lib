@@ -7,18 +7,18 @@ use crate::generated_schemas::prelude::*;
 pub struct OrchestratorBalanceUserBlockchainDepositParams {
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "creator")]
-    pub creator: String,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
     #[serde(rename = "currency")]
     pub currency: String,
     #[serde(rename = "amount")]
     pub amount: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
 }
 impl Schema for OrchestratorBalanceUserBlockchainDepositParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"amount\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\"]}")
     }
 }
 impl Agent for OrchestratorBalanceUserBlockchainDepositParams {

@@ -26,86 +26,86 @@ impl Agent for LobbyEquipmentEndpointsGetItemByItemIdAndUserIdParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyEquipmentEndpointsGetItemByItemIdAndUserIdReturnsAttributesParams {
-    #[serde(rename = "healthRegenPercent")]
-    pub health_regen_percent: String,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: String,
-    #[serde(rename = "strength")]
-    pub strength: String,
-    #[serde(rename = "skillEffectPower")]
-    pub skill_effect_power: String,
-    #[serde(rename = "moveSpeed")]
-    pub move_speed: String,
-    #[serde(rename = "ultPower")]
-    pub ult_power: String,
     #[serde(rename = "agility")]
     pub agility: String,
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: String,
+    #[serde(rename = "skillEffectPower")]
+    pub skill_effect_power: String,
+    #[serde(rename = "strength")]
+    pub strength: String,
+    #[serde(rename = "healthRegenPercent")]
+    pub health_regen_percent: String,
+    #[serde(rename = "armor")]
+    pub armor: String,
+    #[serde(rename = "health")]
+    pub health: String,
     #[serde(rename = "attackDamage")]
     pub attack_damage: String,
     #[serde(rename = "skillPower")]
     pub skill_power: String,
-    #[serde(rename = "intelligence")]
-    pub intelligence: String,
-    #[serde(rename = "health")]
-    pub health: String,
+    #[serde(rename = "ultPower")]
+    pub ult_power: String,
+    #[serde(rename = "moveSpeed")]
+    pub move_speed: String,
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: String,
     #[serde(rename = "vampirismPower")]
     pub vampirism_power: String,
-    #[serde(rename = "armor")]
-    pub armor: String,
+    #[serde(rename = "intelligence")]
+    pub intelligence: String,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyEquipmentEndpointsGetItemByItemIdAndUserIdReturnsMultipliersParams {
-    #[serde(rename = "skillPower")]
-    pub skill_power: String,
-    #[serde(rename = "vampirismPower")]
-    pub vampirism_power: String,
-    #[serde(rename = "moveSpeed")]
-    pub move_speed: String,
+    #[serde(rename = "attackDamage")]
+    pub attack_damage: String,
+    #[serde(rename = "healthRegenPercent")]
+    pub health_regen_percent: String,
+    #[serde(rename = "skillEffectPower")]
+    pub skill_effect_power: String,
+    #[serde(rename = "ultPower")]
+    pub ult_power: String,
+    #[serde(rename = "strength")]
+    pub strength: String,
     #[serde(rename = "agility")]
     pub agility: String,
     #[serde(rename = "health")]
     pub health: String,
     #[serde(rename = "armor")]
     pub armor: String,
-    #[serde(rename = "attackDamage")]
-    pub attack_damage: String,
-    #[serde(rename = "strength")]
-    pub strength: String,
-    #[serde(rename = "skillEffectPower")]
-    pub skill_effect_power: String,
-    #[serde(rename = "ultPower")]
-    pub ult_power: String,
+    #[serde(rename = "moveSpeed")]
+    pub move_speed: String,
     #[serde(rename = "attackReloadSpeed")]
     pub attack_reload_speed: String,
+    #[serde(rename = "skillPower")]
+    pub skill_power: String,
     #[serde(rename = "ultEffectPower")]
     pub ult_effect_power: String,
-    #[serde(rename = "healthRegenPercent")]
-    pub health_regen_percent: String,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: String,
     #[serde(rename = "intelligence")]
     pub intelligence: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyEquipmentEndpointsGetItemByItemIdAndUserIdReturns {
+    #[serde(rename = "slotId")]
+    pub slot_id: i32,
     #[serde(rename = "attributes")]
     pub attributes: LobbyEquipmentEndpointsGetItemByItemIdAndUserIdReturnsAttributesParams,
     #[serde(rename = "multipliers")]
     pub multipliers: LobbyEquipmentEndpointsGetItemByItemIdAndUserIdReturnsMultipliersParams,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "level")]
-    pub level: i32,
-    #[serde(rename = "slotId")]
-    pub slot_id: i32,
-    #[serde(rename = "type")]
-    pub r#type: String,
     #[serde(rename = "itemId")]
     pub item_id: i32,
+    #[serde(rename = "level")]
+    pub level: i32,
+    #[serde(rename = "type")]
+    pub r#type: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for LobbyEquipmentEndpointsGetItemByItemIdAndUserIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"attributes\":{\"type\":\"object\",\"properties\":{\"healthRegenPercent\":{\"type\":\"string\"},\"attackReloadSpeed\":{\"type\":\"string\"},\"strength\":{\"type\":\"string\"},\"skillEffectPower\":{\"type\":\"string\"},\"moveSpeed\":{\"type\":\"string\"},\"ultPower\":{\"type\":\"string\"},\"agility\":{\"type\":\"string\"},\"ultEffectPower\":{\"type\":\"string\"},\"attackDamage\":{\"type\":\"string\"},\"skillPower\":{\"type\":\"string\"},\"intelligence\":{\"type\":\"string\"},\"health\":{\"type\":\"string\"},\"vampirismPower\":{\"type\":\"string\"},\"armor\":{\"type\":\"string\"}},\"required\":[\"strength\",\"agility\",\"intelligence\",\"health\",\"healthRegenPercent\",\"armor\",\"moveSpeed\",\"attackDamage\",\"attackReloadSpeed\",\"skillPower\",\"skillEffectPower\",\"ultPower\",\"ultEffectPower\",\"vampirismPower\"]},\"multipliers\":{\"type\":\"object\",\"properties\":{\"skillPower\":{\"type\":\"string\"},\"vampirismPower\":{\"type\":\"string\"},\"moveSpeed\":{\"type\":\"string\"},\"agility\":{\"type\":\"string\"},\"health\":{\"type\":\"string\"},\"armor\":{\"type\":\"string\"},\"attackDamage\":{\"type\":\"string\"},\"strength\":{\"type\":\"string\"},\"skillEffectPower\":{\"type\":\"string\"},\"ultPower\":{\"type\":\"string\"},\"attackReloadSpeed\":{\"type\":\"string\"},\"ultEffectPower\":{\"type\":\"string\"},\"healthRegenPercent\":{\"type\":\"string\"},\"intelligence\":{\"type\":\"string\"}},\"required\":[\"strength\",\"agility\",\"intelligence\",\"health\",\"healthRegenPercent\",\"armor\",\"moveSpeed\",\"attackDamage\",\"attackReloadSpeed\",\"skillPower\",\"skillEffectPower\",\"ultPower\",\"ultEffectPower\",\"vampirismPower\"]},\"userId\":{\"type\":\"string\"},\"level\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"slotId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"type\":{\"type\":\"string\"},\"itemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"type\",\"slotId\",\"userId\",\"itemId\",\"level\",\"attributes\",\"multipliers\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"slotId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"attributes\":{\"type\":\"object\",\"properties\":{\"agility\":{\"type\":\"string\"},\"skillEffectPower\":{\"type\":\"string\"},\"strength\":{\"type\":\"string\"},\"healthRegenPercent\":{\"type\":\"string\"},\"armor\":{\"type\":\"string\"},\"health\":{\"type\":\"string\"},\"attackDamage\":{\"type\":\"string\"},\"skillPower\":{\"type\":\"string\"},\"ultPower\":{\"type\":\"string\"},\"moveSpeed\":{\"type\":\"string\"},\"ultEffectPower\":{\"type\":\"string\"},\"vampirismPower\":{\"type\":\"string\"},\"intelligence\":{\"type\":\"string\"},\"attackReloadSpeed\":{\"type\":\"string\"}},\"required\":[\"strength\",\"agility\",\"intelligence\",\"health\",\"healthRegenPercent\",\"armor\",\"moveSpeed\",\"attackDamage\",\"attackReloadSpeed\",\"skillPower\",\"skillEffectPower\",\"ultPower\",\"ultEffectPower\",\"vampirismPower\"]},\"multipliers\":{\"type\":\"object\",\"properties\":{\"attackDamage\":{\"type\":\"string\"},\"healthRegenPercent\":{\"type\":\"string\"},\"skillEffectPower\":{\"type\":\"string\"},\"ultPower\":{\"type\":\"string\"},\"strength\":{\"type\":\"string\"},\"agility\":{\"type\":\"string\"},\"health\":{\"type\":\"string\"},\"armor\":{\"type\":\"string\"},\"moveSpeed\":{\"type\":\"string\"},\"attackReloadSpeed\":{\"type\":\"string\"},\"skillPower\":{\"type\":\"string\"},\"ultEffectPower\":{\"type\":\"string\"},\"vampirismPower\":{\"type\":\"string\"},\"intelligence\":{\"type\":\"string\"}},\"required\":[\"strength\",\"agility\",\"intelligence\",\"health\",\"healthRegenPercent\",\"armor\",\"moveSpeed\",\"attackDamage\",\"attackReloadSpeed\",\"skillPower\",\"skillEffectPower\",\"ultPower\",\"ultEffectPower\",\"vampirismPower\"]},\"itemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"level\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"type\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"type\",\"slotId\",\"userId\",\"itemId\",\"level\",\"attributes\",\"multipliers\"]}")
     }
 }
 impl Agent for LobbyEquipmentEndpointsGetItemByItemIdAndUserIdReturns {

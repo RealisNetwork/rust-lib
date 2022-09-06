@@ -7,10 +7,12 @@ use crate::generated_schemas::prelude::*;
 pub struct StatusMembershipDisableParams {
     #[serde(rename = "id")]
     pub id: f64,
+    #[serde(rename = "userId")]
+    pub user_id: Option<String>,
 }
 impl Schema for StatusMembershipDisableParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"id\"]}")
     }
 }
 impl Agent for StatusMembershipDisableParams {

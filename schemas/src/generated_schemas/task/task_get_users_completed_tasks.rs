@@ -4,13 +4,10 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TaskTaskGetUsersCompletedTasksParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
-}
+pub struct TaskTaskGetUsersCompletedTasksParams {}
 impl Schema for TaskTaskGetUsersCompletedTasksParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
+        serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
     }
 }
 impl Agent for TaskTaskGetUsersCompletedTasksParams {

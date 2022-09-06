@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductAddLootboxParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "personalType")]
     pub personal_type: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for ProductFactoryProductAddLootboxParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"}},\"required\":[\"userId\",\"personalType\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"personalType\"]}")
     }
 }
 impl Agent for ProductFactoryProductAddLootboxParams {

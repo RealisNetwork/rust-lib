@@ -7,16 +7,16 @@ use crate::generated_schemas::prelude::*;
 pub struct DragonsLobbyPurchaseValidationParams {
     #[serde(rename = "purchaseToken")]
     pub purchase_token: String,
-    #[serde(rename = "productId")]
-    pub product_id: String,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "storeId")]
     pub store_id: f64,
+    #[serde(rename = "productId")]
+    pub product_id: String,
 }
 impl Schema for DragonsLobbyPurchaseValidationParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"purchaseToken\":{\"type\":\"string\"},\"productId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"storeId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"storeId\",\"productId\",\"purchaseToken\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"purchaseToken\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"storeId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"productId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"storeId\",\"productId\",\"purchaseToken\"]}")
     }
 }
 impl Agent for DragonsLobbyPurchaseValidationParams {

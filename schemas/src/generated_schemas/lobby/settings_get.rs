@@ -31,22 +31,22 @@ impl Agent for LobbySettingsGetParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbySettingsGetReturns {
-    #[serde(rename = "language")]
-    pub language: i8,
     #[serde(rename = "isChanged")]
     pub is_changed: bool,
-    #[serde(rename = "HFREffects")]
-    pub hfr_effects: i8,
     #[serde(rename = "sounds")]
     pub sounds: bool,
+    #[serde(rename = "HFREffects")]
+    pub hfr_effects: i8,
     #[serde(rename = "quality")]
     pub quality: i8,
+    #[serde(rename = "language")]
+    pub language: i8,
     #[serde(rename = "music")]
     pub music: bool,
 }
 impl Schema for LobbySettingsGetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"language\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"isChanged\":{\"type\":\"boolean\"},\"HFREffects\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"sounds\":{\"type\":\"boolean\"},\"quality\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"music\":{\"type\":\"boolean\"}},\"required\":[\"music\",\"sounds\",\"language\",\"quality\",\"HFREffects\",\"isChanged\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isChanged\":{\"type\":\"boolean\"},\"sounds\":{\"type\":\"boolean\"},\"HFREffects\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"quality\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"language\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"music\":{\"type\":\"boolean\"}},\"required\":[\"music\",\"sounds\",\"language\",\"quality\",\"HFREffects\",\"isChanged\"]}")
     }
 }
 impl Agent for LobbySettingsGetReturns {

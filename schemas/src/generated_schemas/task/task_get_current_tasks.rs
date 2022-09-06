@@ -33,10 +33,10 @@ impl Agent for TaskTaskGetCurrentTasksParams {
 pub struct TaskTaskGetCurrentTasksReturnsTasksParamsParams {
     #[serde(rename = "QuestId")]
     pub quest_id: f64,
-    #[serde(rename = "RewardAmount")]
-    pub reward_amount: f64,
     #[serde(rename = "QuestRewardId")]
     pub quest_reward_id: f64,
+    #[serde(rename = "RewardAmount")]
+    pub reward_amount: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TaskTaskGetCurrentTasksReturns {
@@ -47,7 +47,7 @@ pub struct TaskTaskGetCurrentTasksReturns {
 }
 impl Schema for TaskTaskGetCurrentTasksReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"Tasks\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"QuestId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"RewardAmount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"QuestRewardId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"QuestId\",\"QuestRewardId\",\"RewardAmount\"]}},\"EndDateMM\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"Tasks\",\"EndDateMM\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"Tasks\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"QuestId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"QuestRewardId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"RewardAmount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"QuestId\",\"QuestRewardId\",\"RewardAmount\"]}},\"EndDateMM\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"Tasks\",\"EndDateMM\"]}")
     }
 }
 impl Agent for TaskTaskGetCurrentTasksReturns {

@@ -4,3 +4,5 @@ pub mod contract_call_transfer;
 pub mod contract_call_withdraw;
 pub mod contract_is_enough_balance_on_withdraw_wallet;
 pub mod wallet_get_my;
+pub mod wallet_get_my_nft;
+pub mod wallet_get_user_by_account_id;

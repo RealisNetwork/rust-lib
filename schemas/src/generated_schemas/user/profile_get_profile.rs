@@ -26,53 +26,53 @@ impl Agent for UserProfileGetProfileParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetProfileReturnsBanParams {
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
     #[serde(rename = "bannedUntil")]
     pub banned_until: String,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: String,
-    #[serde(rename = "whoBanned")]
-    pub who_banned: String,
     #[serde(rename = "reason")]
     pub reason: String,
     #[serde(rename = "id")]
     pub id: f64,
+    #[serde(rename = "whoBanned")]
+    pub who_banned: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetProfileReturns {
-    #[serde(rename = "notice")]
-    pub notice: String,
-    #[serde(rename = "isDeleted")]
-    pub is_deleted: bool,
     #[serde(rename = "email")]
     pub email: String,
-    #[serde(rename = "verified")]
-    pub verified: bool,
+    #[serde(rename = "isDeleted")]
+    pub is_deleted: bool,
     #[serde(rename = "id")]
     pub id: f64,
     #[serde(rename = "ban")]
     pub ban: UserProfileGetProfileReturnsBanParams,
-    #[serde(rename = "suspicious")]
-    pub suspicious: bool,
-    #[serde(rename = "isNicknameChanged")]
-    pub is_nickname_changed: bool,
+    #[serde(rename = "registeredAt")]
+    pub registered_at: String,
+    #[serde(rename = "nickname")]
+    pub nickname: String,
+    #[serde(rename = "verified")]
+    pub verified: bool,
+    #[serde(rename = "isBanned")]
+    pub is_banned: bool,
+    #[serde(rename = "isConfirmed")]
+    pub is_confirmed: bool,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "isSubscribedToMailing")]
     pub is_subscribed_to_mailing: bool,
-    #[serde(rename = "isBanned")]
-    pub is_banned: bool,
-    #[serde(rename = "nickname")]
-    pub nickname: String,
-    #[serde(rename = "isConfirmed")]
-    pub is_confirmed: bool,
-    #[serde(rename = "registeredAt")]
-    pub registered_at: String,
+    #[serde(rename = "suspicious")]
+    pub suspicious: bool,
+    #[serde(rename = "notice")]
+    pub notice: String,
+    #[serde(rename = "isNicknameChanged")]
+    pub is_nickname_changed: bool,
 }
 impl Schema for UserProfileGetProfileReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"notice\":{\"type\":\"string\"},\"isDeleted\":{\"type\":\"boolean\"},\"email\":{\"type\":\"string\"},\"verified\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"ban\":{\"type\":\"object\",\"properties\":{\"createdAt\":{\"type\":\"string\"},\"bannedUntil\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"whoBanned\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"reason\",\"whoBanned\",\"createdAt\",\"updatedAt\",\"bannedUntil\"]},\"suspicious\":{\"type\":\"boolean\"},\"isNicknameChanged\":{\"type\":\"boolean\"},\"userId\":{\"type\":\"string\"},\"isSubscribedToMailing\":{\"type\":\"boolean\"},\"isBanned\":{\"type\":\"boolean\"},\"nickname\":{\"type\":\"string\"},\"isConfirmed\":{\"type\":\"boolean\"},\"registeredAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"nickname\",\"email\",\"verified\",\"isNicknameChanged\",\"isSubscribedToMailing\",\"suspicious\",\"isConfirmed\",\"notice\",\"isBanned\",\"isDeleted\",\"ban\",\"registeredAt\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\"},\"isDeleted\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"ban\":{\"type\":\"object\",\"properties\":{\"bannedUntil\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"whoBanned\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"reason\",\"whoBanned\",\"createdAt\",\"updatedAt\",\"bannedUntil\"]},\"registeredAt\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"verified\":{\"type\":\"boolean\"},\"isBanned\":{\"type\":\"boolean\"},\"isConfirmed\":{\"type\":\"boolean\"},\"userId\":{\"type\":\"string\"},\"isSubscribedToMailing\":{\"type\":\"boolean\"},\"suspicious\":{\"type\":\"boolean\"},\"notice\":{\"type\":\"string\"},\"isNicknameChanged\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"userId\",\"nickname\",\"email\",\"verified\",\"isNicknameChanged\",\"isSubscribedToMailing\",\"suspicious\",\"isConfirmed\",\"notice\",\"isBanned\",\"isDeleted\",\"ban\",\"registeredAt\"]}")
     }
 }
 impl Agent for UserProfileGetProfileReturns {

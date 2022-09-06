@@ -9,22 +9,22 @@ pub struct TransactionsBalanceDecreaseBalanceByUserIdParamsExtraDetailsParams {}
 pub struct TransactionsBalanceDecreaseBalanceByUserIdParams {
     #[serde(rename = "creator")]
     pub creator: String,
-    #[serde(rename = "amount")]
-    pub amount: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "reason")]
-    pub reason: String,
-    #[serde(rename = "currency")]
-    pub currency: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
     #[serde(rename = "extraDetails")]
     pub extra_details: Option<TransactionsBalanceDecreaseBalanceByUserIdParamsExtraDetailsParams>,
+    #[serde(rename = "currency")]
+    pub currency: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
+    #[serde(rename = "reason")]
+    pub reason: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for TransactionsBalanceDecreaseBalanceByUserIdParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"creator\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"txId\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{},\"required\":null}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"creator\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"amount\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}")
     }
 }
 impl Agent for TransactionsBalanceDecreaseBalanceByUserIdParams {

@@ -5,22 +5,22 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetUserByParamsParams {
-    #[serde(rename = "ethWallet")]
-    pub eth_wallet: String,
-    #[serde(rename = "lisWallet")]
-    pub lis_wallet: String,
-    #[serde(rename = "nickname")]
-    pub nickname: String,
     #[serde(rename = "email")]
     pub email: String,
-    #[serde(rename = "supportId")]
-    pub support_id: String,
     #[serde(rename = "GPA")]
     pub gpa: String,
+    #[serde(rename = "nickname")]
+    pub nickname: String,
+    #[serde(rename = "lisWallet")]
+    pub lis_wallet: String,
+    #[serde(rename = "supportId")]
+    pub support_id: String,
+    #[serde(rename = "ethWallet")]
+    pub eth_wallet: String,
 }
 impl Schema for UserProfileGetUserByParamsParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"ethWallet\":{\"type\":\"string\"},\"lisWallet\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"supportId\":{\"type\":\"string\"},\"GPA\":{\"type\":\"string\"}},\"required\":null}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\"},\"GPA\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"lisWallet\":{\"type\":\"string\"},\"supportId\":{\"type\":\"string\"},\"ethWallet\":{\"type\":\"string\"}},\"required\":null}")
     }
 }
 impl Agent for UserProfileGetUserByParamsParams {
@@ -35,52 +35,10 @@ impl Agent for UserProfileGetUserByParamsParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UserProfileGetUserByParamsReturnsBanParams {
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "whoBanned")]
-    pub who_banned: String,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: f64,
-    #[serde(rename = "reason")]
-    pub reason: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: f64,
-}
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UserProfileGetUserByParamsReturns {
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "verified")]
-    pub verified: bool,
-    #[serde(rename = "suspicious")]
-    pub suspicious: bool,
-    #[serde(rename = "isBanned")]
-    pub is_banned: bool,
-    #[serde(rename = "isNicknameChanged")]
-    pub is_nickname_changed: bool,
-    #[serde(rename = "nickname")]
-    pub nickname: String,
-    #[serde(rename = "email")]
-    pub email: String,
-    #[serde(rename = "isSubscribedToMailing")]
-    pub is_subscribed_to_mailing: bool,
-    #[serde(rename = "isDeleted")]
-    pub is_deleted: bool,
-    #[serde(rename = "ban")]
-    pub ban: UserProfileGetUserByParamsReturnsBanParams,
-    #[serde(rename = "registeredAt")]
-    pub registered_at: f64,
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "isConfirmed")]
-    pub is_confirmed: bool,
-    #[serde(rename = "notice")]
-    pub notice: String,
-}
+pub struct UserProfileGetUserByParamsReturns(pub String);
 impl Schema for UserProfileGetUserByParamsReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"verified\":{\"type\":\"boolean\"},\"suspicious\":{\"type\":\"boolean\"},\"isBanned\":{\"type\":\"boolean\"},\"isNicknameChanged\":{\"type\":\"boolean\"},\"nickname\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"isSubscribedToMailing\":{\"type\":\"boolean\"},\"isDeleted\":{\"type\":\"boolean\"},\"ban\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"whoBanned\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"reason\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"reason\",\"whoBanned\",\"createdAt\",\"updatedAt\"]},\"registeredAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isConfirmed\":{\"type\":\"boolean\"},\"notice\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"nickname\",\"email\",\"verified\",\"isNicknameChanged\",\"isSubscribedToMailing\",\"suspicious\",\"isConfirmed\",\"notice\",\"isBanned\",\"isDeleted\",\"ban\",\"registeredAt\"]}")
+        serde_json::json!("{\"type\":\"string\"}")
     }
 }
 impl Agent for UserProfileGetUserByParamsReturns {

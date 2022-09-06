@@ -7,16 +7,16 @@ use crate::generated_schemas::prelude::*;
 pub struct ProductFactoryLootboxTypeUpdateByLootboxIdParams {
     #[serde(rename = "name")]
     pub name: Option<String>,
-    #[serde(rename = "dropChanceMultiplier")]
-    pub drop_chance_multiplier: Option<i32>,
     #[serde(rename = "type")]
     pub r#type: Option<String>,
+    #[serde(rename = "dropChanceMultiplier")]
+    pub drop_chance_multiplier: Option<i32>,
     #[serde(rename = "lootboxId")]
     pub lootbox_id: i32,
 }
 impl Schema for ProductFactoryLootboxTypeUpdateByLootboxIdParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"dropChanceMultiplier\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"type\":{\"type\":\"string\"},\"lootboxId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"lootboxId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"dropChanceMultiplier\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"lootboxId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"lootboxId\"]}")
     }
 }
 impl Agent for ProductFactoryLootboxTypeUpdateByLootboxIdParams {

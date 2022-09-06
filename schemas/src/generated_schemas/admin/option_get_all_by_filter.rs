@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetAllByFilterParams {
-    #[serde(rename = "type")]
-    pub r#type: String,
     #[serde(rename = "tab")]
     pub tab: String,
+    #[serde(rename = "type")]
+    pub r#type: String,
 }
 impl Schema for AdminOptionGetAllByFilterParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"}},\"required\":null}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"tab\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":null}")
     }
 }
 impl Agent for AdminOptionGetAllByFilterParams {
@@ -35,24 +35,24 @@ pub struct AdminOptionGetAllByFilterReturnsParamsExtraDetailsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetAllByFilterReturnsParams {
+    #[serde(rename = "value")]
+    pub value: String,
+    #[serde(rename = "description")]
+    pub description: String,
+    #[serde(rename = "scope")]
+    pub scope: String,
     #[serde(rename = "key")]
     pub key: String,
     #[serde(rename = "previousValue")]
     pub previous_value: String,
-    #[serde(rename = "scope")]
-    pub scope: String,
     #[serde(rename = "extraDetails")]
     pub extra_details: AdminOptionGetAllByFilterReturnsParamsExtraDetailsParams,
-    #[serde(rename = "description")]
-    pub description: String,
-    #[serde(rename = "value")]
-    pub value: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetAllByFilterReturns(pub Vec<AdminOptionGetAllByFilterReturnsParams>);
 impl Schema for AdminOptionGetAllByFilterReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"},\"previousValue\":{\"type\":\"string\"},\"scope\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"}},\"required\":null},\"description\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\",\"previousValue\",\"description\",\"extraDetails\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"value\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"scope\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"previousValue\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"}},\"required\":null}},\"required\":[\"scope\",\"key\",\"value\",\"previousValue\",\"description\",\"extraDetails\"]}}")
     }
 }
 impl Agent for AdminOptionGetAllByFilterReturns {

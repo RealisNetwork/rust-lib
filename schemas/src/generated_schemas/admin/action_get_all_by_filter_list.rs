@@ -5,28 +5,28 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionGetAllByFilterListParams {
-    #[serde(rename = "isCancelable")]
-    pub is_cancelable: bool,
     #[serde(rename = "method")]
     pub method: String,
+    #[serde(rename = "isCancelable")]
+    pub is_cancelable: bool,
+    #[serde(rename = "agent")]
+    pub agent: String,
+    #[serde(rename = "nickname")]
+    pub nickname: String,
     #[serde(rename = "firstDate")]
     pub first_date: String,
+    #[serde(rename = "page")]
+    pub page: f64,
+    #[serde(rename = "perPage")]
+    pub per_page: f64,
     #[serde(rename = "lastDate")]
     pub last_date: String,
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "nickname")]
-    pub nickname: String,
-    #[serde(rename = "perPage")]
-    pub per_page: f64,
-    #[serde(rename = "page")]
-    pub page: f64,
-    #[serde(rename = "agent")]
-    pub agent: String,
 }
 impl Schema for AdminActionGetAllByFilterListParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isCancelable\":{\"type\":\"boolean\"},\"method\":{\"type\":\"string\"},\"firstDate\":{\"type\":\"string\"},\"lastDate\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"agent\":{\"type\":\"string\"}},\"required\":null}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"method\":{\"type\":\"string\"},\"isCancelable\":{\"type\":\"boolean\"},\"agent\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"firstDate\":{\"type\":\"string\"},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"lastDate\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":null}")
     }
 }
 impl Agent for AdminActionGetAllByFilterListParams {
@@ -46,33 +46,33 @@ pub struct AdminActionGetAllByFilterListReturnsDataParamsParamsParamsParams {}
 pub struct AdminActionGetAllByFilterListReturnsDataParamsParams {
     #[serde(rename = "id")]
     pub id: f64,
+    #[serde(rename = "nickname")]
+    pub nickname: String,
+    #[serde(rename = "method")]
+    pub method: String,
+    #[serde(rename = "params")]
+    pub params: AdminActionGetAllByFilterListReturnsDataParamsParamsParamsParams,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "actionId")]
+    pub action_id: String,
+    #[serde(rename = "agent")]
+    pub agent: String,
     #[serde(rename = "isCancelable")]
     pub is_cancelable: bool,
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "params")]
-    pub params: AdminActionGetAllByFilterListReturnsDataParamsParamsParamsParams,
-    #[serde(rename = "method")]
-    pub method: String,
-    #[serde(rename = "actionId")]
-    pub action_id: String,
-    #[serde(rename = "nickname")]
-    pub nickname: String,
-    #[serde(rename = "agent")]
-    pub agent: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionGetAllByFilterListReturns {
-    #[serde(rename = "totalCount")]
-    pub total_count: f64,
     #[serde(rename = "data")]
     pub data: Vec<AdminActionGetAllByFilterListReturnsDataParamsParams>,
+    #[serde(rename = "totalCount")]
+    pub total_count: f64,
 }
 impl Schema for AdminActionGetAllByFilterListReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isCancelable\":{\"type\":\"boolean\"},\"userId\":{\"type\":\"string\"},\"params\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"method\":{\"type\":\"string\"},\"actionId\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"agent\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"actionId\",\"nickname\",\"userId\",\"method\",\"isCancelable\",\"params\",\"agent\",\"createdAt\"]}}},\"required\":[\"data\",\"totalCount\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"nickname\":{\"type\":\"string\"},\"method\":{\"type\":\"string\"},\"params\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"createdAt\":{\"type\":\"string\"},\"actionId\":{\"type\":\"string\"},\"agent\":{\"type\":\"string\"},\"isCancelable\":{\"type\":\"boolean\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"id\",\"actionId\",\"nickname\",\"userId\",\"method\",\"isCancelable\",\"params\",\"agent\",\"createdAt\"]}},\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"data\",\"totalCount\"]}")
     }
 }
 impl Agent for AdminActionGetAllByFilterListReturns {
