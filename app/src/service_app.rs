@@ -4,6 +4,7 @@ use error_registry::generated_errors::{Common, GeneratedError};
 use error_registry::BaseError;
 use healthchecker::Healthchecker;
 use schemas::{Agent, Request, Response, ResponseMessage, ResponseResult, Schema};
+use serde_json::json;
 use serde_json::Value;
 use std::sync::Arc;
 use transport::{ReceivedMessage, Subscription, Transport, VReceivedMessage, VSubscription};
@@ -62,10 +63,15 @@ impl<Params: Agent, Returns: Schema, S: Service<Params, Returns>, T: Transport>
     async fn before_run(&mut self) -> Result<(), BaseError<Value>> {
         // Logs
         log::info!(
-            "Run service: \nagent: \t{:?},\nmethod:\t{:?},\ntopic: \t{:?},",
-            Params::agent(),
-            Params::method(),
-            Params::topic(),
+            "{}",
+            json!({
+                "Run service": {
+                    "agent": Params::agent(),
+                    "method": Params::method(),
+                    "topic": Params::topic(),
+                }
+            })
+            .to_string()
         );
         // Notification gateway
         self.run_notification().await?;
@@ -76,10 +82,15 @@ impl<Params: Agent, Returns: Schema, S: Service<Params, Returns>, T: Transport>
     async fn after_run(&mut self) -> Result<(), BaseError<Value>> {
         // Logs
         log::warn!(
-            "Stop service: \nagent: \t{:?},\nmethod:\t{:?},\ntopic: \t{:?},",
-            Params::agent(),
-            Params::method(),
-            Params::topic(),
+            "{}",
+            json!({
+                "Stop service": {
+                    "agent": Params::agent(),
+                    "method": Params::method(),
+                    "topic": Params::topic(),
+                }
+            })
+            .to_string()
         );
 
         Ok(())
@@ -120,7 +131,14 @@ impl<Params: Agent, Returns: Schema, S: Service<Params, Returns>, T: Transport>
             let message = self.subscription.next().await?;
             match message.deserialize() {
                 Ok(request) => {
-                    log::info!("By topic: {:?} | Got request: {:#?}", topic, request);
+                    log::info!(
+                        "{}",
+                        json!({
+                            "topic": topic,
+                            "request": request
+                        })
+                        .to_string()
+                    );
                     match self.service.process(request).await {
                         Ok(response_schema) => {
                             log::debug!("got response schema{:#?}", response_schema);
