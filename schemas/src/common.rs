@@ -76,6 +76,7 @@ pub enum Auth {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MobileAuth {
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub token: Option<String>,
     #[serde(rename = "deviceId")]
     pub device_id: String,
