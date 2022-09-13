@@ -1006,6 +1006,7 @@ dependencies = [
  "futures-util",
  "hyper",
  "log",
+ "serde_json",
  "tokio",
 ]
 

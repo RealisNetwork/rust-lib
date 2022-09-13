@@ -156,7 +156,7 @@ impl<Params: Agent, Returns: Schema, S: Service<Params, Returns>, T: Transport>
                 }
                 Err(error) => {
                     log::error!(
-                        "Fail to deserialize {:?}",
+                        "Fail to deserialize {}",
                         json!({
                             "error": error,
                             "topic": topic,
@@ -219,7 +219,7 @@ impl<Params: Agent, Returns: Schema, S: Service<Params, Returns>, T: Transport>
         self.transport.raw_publish(topic.clone(), &response).await?;
 
         log::info!(
-            "Publish {:?}",
+            "Publish {}",
             json!({
                 "topic": topic,
                 "response": response,
