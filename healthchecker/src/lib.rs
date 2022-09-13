@@ -143,7 +143,7 @@ pub struct Healthchecker {
 impl Healthchecker {
     /// Toggle state of healthchecker
     pub fn make_sick<D: Debug>(&self, log: Option<D>) {
-        log::error!("Made sick on: {:#?}", log);
+        log::error!("Made sick on: {:?}", log);
         self.health.store(false, Ordering::SeqCst);
     }
 }

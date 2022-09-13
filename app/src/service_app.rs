@@ -208,7 +208,7 @@ impl<Params: Agent, Returns: Schema, S: Service<Params, Returns>, T: Transport>
 
         self.transport.raw_publish(topic.clone(), &response).await?;
 
-        log::info!("By topic: {:?} | Publish {:#?}", topic, response);
+        log::info!("By topic: {:?} | Publish {:?}", topic, response);
         Ok(())
     }
 
