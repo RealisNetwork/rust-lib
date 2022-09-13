@@ -4,10 +4,11 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for ProductFactoryProductLootboxOpenedNotificationParams {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(ProductFactoryProductLootboxOpenedNotificationParams)
     }
 }
@@ -31,12 +32,12 @@ impl Agent for ProductFactoryProductLootboxOpenedNotificationParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductLootboxOpenedNotificationReturnsRewardsParamsParams {
-    #[serde(rename = "itemId")]
-    pub item_id: i32,
-    #[serde(rename = "amount")]
-    pub amount: i32,
     #[serde(rename = "type")]
     pub r#type: i32,
+    #[serde(rename = "amount")]
+    pub amount: i32,
+    #[serde(rename = "itemId")]
+    pub item_id: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductLootboxOpenedNotificationReturns {
@@ -47,7 +48,7 @@ pub struct ProductFactoryProductLootboxOpenedNotificationReturns {
 }
 impl Schema for ProductFactoryProductLootboxOpenedNotificationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"rewards\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"itemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"amount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"type\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"type\",\"amount\",\"itemId\"]}}},\"required\":[\"rewards\",\"bindingId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"rewards\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"amount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"itemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"type\",\"amount\",\"itemId\"]}}},\"required\":[\"rewards\",\"bindingId\"]}")
     }
 }
 impl Agent for ProductFactoryProductLootboxOpenedNotificationReturns {

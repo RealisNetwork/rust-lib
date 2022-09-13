@@ -26,17 +26,17 @@ impl Agent for BingoBingoGetBingoDataParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BingoBingoGetBingoDataReturnsBingoItemsParamsParams {
-    #[serde(rename = "amount")]
-    pub amount: String,
     #[serde(rename = "itemId")]
     pub item_id: i32,
+    #[serde(rename = "amount")]
+    pub amount: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BingoBingoGetBingoDataReturnsBingoSeasonInfoParams {
-    #[serde(rename = "lastUpdateTimeMs")]
-    pub last_update_time_ms: String,
     #[serde(rename = "seasonState")]
     pub season_state: i32,
+    #[serde(rename = "lastUpdateTimeMs")]
+    pub last_update_time_ms: String,
     #[serde(rename = "seasonDurationMs")]
     pub season_duration_ms: String,
     #[serde(rename = "seasonStartDelayMs")]
@@ -53,7 +53,7 @@ pub struct BingoBingoGetBingoDataReturns {
 }
 impl Schema for BingoBingoGetBingoDataReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"bingoItems\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"itemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"itemId\",\"amount\"]}},\"bingoSeasonInfo\":{\"type\":\"object\",\"properties\":{\"lastUpdateTimeMs\":{\"type\":\"string\"},\"seasonState\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"seasonDurationMs\":{\"type\":\"string\"},\"seasonStartDelayMs\":{\"type\":\"string\"},\"seasonId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"seasonId\",\"seasonState\",\"lastUpdateTimeMs\",\"seasonDurationMs\",\"seasonStartDelayMs\"]}},\"required\":[\"bingoItems\",\"bingoSeasonInfo\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"bingoItems\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"itemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"amount\":{\"type\":\"string\"}},\"required\":[\"itemId\",\"amount\"]}},\"bingoSeasonInfo\":{\"type\":\"object\",\"properties\":{\"seasonState\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"lastUpdateTimeMs\":{\"type\":\"string\"},\"seasonDurationMs\":{\"type\":\"string\"},\"seasonStartDelayMs\":{\"type\":\"string\"},\"seasonId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"seasonId\",\"seasonState\",\"lastUpdateTimeMs\",\"seasonDurationMs\",\"seasonStartDelayMs\"]}},\"required\":[\"bingoItems\",\"bingoSeasonInfo\"]}")
     }
 }
 impl Agent for BingoBingoGetBingoDataReturns {

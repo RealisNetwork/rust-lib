@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeGetHashParams {
-    #[serde(rename = "type")]
-    pub r#type: String,
     #[serde(rename = "orchestratorId")]
     pub orchestrator_id: f64,
+    #[serde(rename = "type")]
+    pub r#type: String,
 }
 impl Schema for ProductFactoryProductTypeGetHashParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"orchestratorId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"type\",\"orchestratorId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"orchestratorId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"type\":{\"type\":\"string\"}},\"required\":[\"type\",\"orchestratorId\"]}")
     }
 }
 impl Agent for ProductFactoryProductTypeGetHashParams {
@@ -27,10 +27,11 @@ impl Agent for ProductFactoryProductTypeGetHashParams {
     }
 }
 impl<'de> Deserialize<'de> for ProductFactoryProductTypeGetHashReturns {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(ProductFactoryProductTypeGetHashReturns)
     }
 }

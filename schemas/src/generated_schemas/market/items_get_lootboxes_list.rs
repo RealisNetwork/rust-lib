@@ -4,10 +4,11 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for MarketItemsGetLootboxesListParams {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(MarketItemsGetLootboxesListParams)
     }
 }
@@ -31,14 +32,14 @@ impl Agent for MarketItemsGetLootboxesListParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketItemsGetLootboxesListReturnsProductParamsParams {
-    #[serde(rename = "type")]
-    pub r#type: i32,
-    #[serde(rename = "currencyType")]
-    pub currency_type: String,
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "type")]
+    pub r#type: i32,
     #[serde(rename = "price")]
     pub price: String,
+    #[serde(rename = "currencyType")]
+    pub currency_type: String,
     #[serde(rename = "productType")]
     pub product_type: String,
 }
@@ -49,7 +50,7 @@ pub struct MarketItemsGetLootboxesListReturns {
 }
 impl Schema for MarketItemsGetLootboxesListReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"product\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"currencyType\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"price\":{\"type\":\"string\"},\"productType\":{\"type\":\"string\"}},\"required\":[\"id\",\"type\",\"productType\",\"currencyType\",\"price\"]}}},\"required\":[\"product\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"product\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"type\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"price\":{\"type\":\"string\"},\"currencyType\":{\"type\":\"string\"},\"productType\":{\"type\":\"string\"}},\"required\":[\"id\",\"type\",\"productType\",\"currencyType\",\"price\"]}}},\"required\":[\"product\"]}")
     }
 }
 impl Agent for MarketItemsGetLootboxesListReturns {

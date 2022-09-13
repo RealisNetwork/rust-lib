@@ -4,10 +4,11 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for AdminMailTemplateGetAllParams {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(AdminMailTemplateGetAllParams)
     }
 }
@@ -31,18 +32,18 @@ impl Agent for AdminMailTemplateGetAllParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminMailTemplateGetAllReturnsParams {
-    #[serde(rename = "mailTemplate")]
-    pub mail_template: String,
-    #[serde(rename = "key")]
-    pub key: String,
     #[serde(rename = "name")]
     pub name: String,
+    #[serde(rename = "key")]
+    pub key: String,
+    #[serde(rename = "mailTemplate")]
+    pub mail_template: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminMailTemplateGetAllReturns(pub Vec<AdminMailTemplateGetAllReturnsParams>);
 impl Schema for AdminMailTemplateGetAllReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"mailTemplate\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}},\"required\":[\"key\",\"name\",\"mailTemplate\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"mailTemplate\":{\"type\":\"string\"}},\"required\":[\"key\",\"name\",\"mailTemplate\"]}}")
     }
 }
 impl Agent for AdminMailTemplateGetAllReturns {

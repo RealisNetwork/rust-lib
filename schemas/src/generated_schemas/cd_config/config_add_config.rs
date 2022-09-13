@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct CdConfigConfigAddConfigParamsDataParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CdConfigConfigAddConfigParams {
-    #[serde(rename = "key")]
-    pub key: String,
     #[serde(rename = "data")]
     pub data: CdConfigConfigAddConfigParamsDataParams,
+    #[serde(rename = "key")]
+    pub key: String,
 }
 impl Schema for CdConfigConfigAddConfigParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"},\"data\":{\"type\":\"object\",\"properties\":{},\"required\":null}},\"required\":[\"key\",\"data\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"data\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"key\":{\"type\":\"string\"}},\"required\":[\"key\",\"data\"]}")
     }
 }
 impl Agent for CdConfigConfigAddConfigParams {

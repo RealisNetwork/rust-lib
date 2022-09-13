@@ -4,10 +4,11 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for TransactionsBalanceGetAllCreditTransactionListParams {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(TransactionsBalanceGetAllCreditTransactionListParams)
     }
 }
@@ -31,14 +32,14 @@ impl Agent for TransactionsBalanceGetAllCreditTransactionListParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetAllCreditTransactionListReturns {
-    #[serde(rename = "date")]
-    pub date: String,
     #[serde(rename = "amount")]
     pub amount: String,
+    #[serde(rename = "date")]
+    pub date: String,
 }
 impl Schema for TransactionsBalanceGetAllCreditTransactionListReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"date\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"amount\",\"date\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"date\":{\"type\":\"string\"}},\"required\":[\"amount\",\"date\"]}")
     }
 }
 impl Agent for TransactionsBalanceGetAllCreditTransactionListReturns {

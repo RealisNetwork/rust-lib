@@ -26,20 +26,20 @@ impl Agent for DragocatsProductFactoryProductsGetInfoByProductIdParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsProductFactoryProductsGetInfoByProductIdReturns {
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
-    #[serde(rename = "productType")]
-    pub product_type: String,
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "isNft")]
-    pub is_nft: bool,
     #[serde(rename = "subType")]
     pub sub_type: String,
+    #[serde(rename = "productType")]
+    pub product_type: String,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
+    #[serde(rename = "isNft")]
+    pub is_nft: bool,
 }
 impl Schema for DragocatsProductFactoryProductsGetInfoByProductIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"productType\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"isNft\":{\"type\":\"boolean\"},\"subType\":{\"type\":\"string\"}},\"required\":[\"personalType\",\"productType\",\"subType\",\"name\",\"isNft\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"},\"productType\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"isNft\":{\"type\":\"boolean\"}},\"required\":[\"personalType\",\"productType\",\"subType\",\"name\",\"isNft\"]}")
     }
 }
 impl Agent for DragocatsProductFactoryProductsGetInfoByProductIdReturns {

@@ -4,10 +4,11 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for LobbyRegionsGetParams {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(LobbyRegionsGetParams)
     }
 }
@@ -31,10 +32,10 @@ impl Agent for LobbyRegionsGetParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyRegionsGetReturnsListParamsParams {
-    #[serde(rename = "name")]
-    pub name: String,
     #[serde(rename = "host")]
     pub host: String,
+    #[serde(rename = "name")]
+    pub name: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyRegionsGetReturns {
@@ -47,7 +48,7 @@ pub struct LobbyRegionsGetReturns {
 }
 impl Schema for LobbyRegionsGetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"active\":{\"type\":\"string\"},\"isFixed\":{\"type\":\"boolean\"},\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"host\":{\"type\":\"string\"}},\"required\":[\"name\",\"host\"]}}},\"required\":[\"active\",\"isFixed\",\"list\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"active\":{\"type\":\"string\"},\"isFixed\":{\"type\":\"boolean\"},\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"host\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}},\"required\":[\"name\",\"host\"]}}},\"required\":[\"active\",\"isFixed\",\"list\"]}")
     }
 }
 impl Agent for LobbyRegionsGetReturns {

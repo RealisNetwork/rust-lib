@@ -4,10 +4,11 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for DragonsLobbyGetCurrentTasksParams {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(DragonsLobbyGetCurrentTasksParams)
     }
 }
@@ -30,10 +31,11 @@ impl Agent for DragonsLobbyGetCurrentTasksParams {
     }
 }
 impl<'de> Deserialize<'de> for DragonsLobbyGetCurrentTasksReturns {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(DragonsLobbyGetCurrentTasksReturns)
     }
 }

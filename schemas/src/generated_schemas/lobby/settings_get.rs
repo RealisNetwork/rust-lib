@@ -4,10 +4,11 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for LobbySettingsGetParams {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(LobbySettingsGetParams)
     }
 }
@@ -31,22 +32,22 @@ impl Agent for LobbySettingsGetParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbySettingsGetReturns {
-    #[serde(rename = "music")]
-    pub music: bool,
-    #[serde(rename = "sounds")]
-    pub sounds: bool,
-    #[serde(rename = "language")]
-    pub language: i8,
-    #[serde(rename = "isChanged")]
-    pub is_changed: bool,
     #[serde(rename = "HFREffects")]
     pub hfr_effects: i8,
     #[serde(rename = "quality")]
     pub quality: i8,
+    #[serde(rename = "sounds")]
+    pub sounds: bool,
+    #[serde(rename = "language")]
+    pub language: i8,
+    #[serde(rename = "music")]
+    pub music: bool,
+    #[serde(rename = "isChanged")]
+    pub is_changed: bool,
 }
 impl Schema for LobbySettingsGetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"music\":{\"type\":\"boolean\"},\"sounds\":{\"type\":\"boolean\"},\"language\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"isChanged\":{\"type\":\"boolean\"},\"HFREffects\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"quality\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"music\",\"sounds\",\"language\",\"quality\",\"HFREffects\",\"isChanged\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"HFREffects\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"quality\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"sounds\":{\"type\":\"boolean\"},\"language\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"music\":{\"type\":\"boolean\"},\"isChanged\":{\"type\":\"boolean\"}},\"required\":[\"music\",\"sounds\",\"language\",\"quality\",\"HFREffects\",\"isChanged\"]}")
     }
 }
 impl Agent for LobbySettingsGetReturns {

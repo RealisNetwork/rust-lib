@@ -4,10 +4,11 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for DragonsLobbyGetClientVersionParams {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(DragonsLobbyGetClientVersionParams)
     }
 }
@@ -30,10 +31,11 @@ impl Agent for DragonsLobbyGetClientVersionParams {
     }
 }
 impl<'de> Deserialize<'de> for DragonsLobbyGetClientVersionReturns {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(DragonsLobbyGetClientVersionReturns)
     }
 }

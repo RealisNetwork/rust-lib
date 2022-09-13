@@ -4,10 +4,11 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for AdminOptionGetListParams {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(AdminOptionGetListParams)
     }
 }
@@ -31,18 +32,18 @@ impl Agent for AdminOptionGetListParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetListReturnsParams {
-    #[serde(rename = "value")]
-    pub value: String,
-    #[serde(rename = "scope")]
-    pub scope: String,
     #[serde(rename = "key")]
     pub key: String,
+    #[serde(rename = "scope")]
+    pub scope: String,
+    #[serde(rename = "value")]
+    pub value: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetListReturns(pub Vec<AdminOptionGetListReturnsParams>);
 impl Schema for AdminOptionGetListReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"value\":{\"type\":\"string\"},\"scope\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"},\"scope\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\"]}}")
     }
 }
 impl Agent for AdminOptionGetListReturns {

@@ -4,10 +4,11 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for AuthInstantMigrationStopMigrationParams {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(AuthInstantMigrationStopMigrationParams)
     }
 }
@@ -33,14 +34,14 @@ impl Agent for AuthInstantMigrationStopMigrationParams {
 pub struct AuthInstantMigrationStopMigrationReturns {
     #[serde(rename = "startIndex")]
     pub start_index: f64,
-    #[serde(rename = "count")]
-    pub count: f64,
     #[serde(rename = "interval")]
     pub interval: f64,
+    #[serde(rename = "count")]
+    pub count: f64,
 }
 impl Schema for AuthInstantMigrationStopMigrationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"startIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"count\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"interval\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"startIndex\",\"count\",\"interval\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"startIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"interval\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"count\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"startIndex\",\"count\",\"interval\"]}")
     }
 }
 impl Agent for AuthInstantMigrationStopMigrationReturns {

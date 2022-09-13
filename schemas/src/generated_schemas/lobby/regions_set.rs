@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyRegionsSetParams {
-    #[serde(rename = "isFixed")]
-    pub is_fixed: bool,
     #[serde(rename = "regionName")]
     pub region_name: String,
+    #[serde(rename = "isFixed")]
+    pub is_fixed: bool,
 }
 impl Schema for LobbyRegionsSetParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isFixed\":{\"type\":\"boolean\"},\"regionName\":{\"type\":\"string\"}},\"required\":[\"regionName\",\"isFixed\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"regionName\":{\"type\":\"string\"},\"isFixed\":{\"type\":\"boolean\"}},\"required\":[\"regionName\",\"isFixed\"]}")
     }
 }
 impl Agent for LobbyRegionsSetParams {
@@ -27,10 +27,11 @@ impl Agent for LobbyRegionsSetParams {
     }
 }
 impl<'de> Deserialize<'de> for LobbyRegionsSetReturns {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(LobbyRegionsSetReturns)
     }
 }

@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CdBalancesBalanceGetBalanceByUserIdAndCurrencyParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "currency")]
     pub currency: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for CdBalancesBalanceGetBalanceByUserIdAndCurrencyParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\"]}")
     }
 }
 impl Agent for CdBalancesBalanceGetBalanceByUserIdAndCurrencyParams {
@@ -28,14 +28,14 @@ impl Agent for CdBalancesBalanceGetBalanceByUserIdAndCurrencyParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CdBalancesBalanceGetBalanceByUserIdAndCurrencyReturns {
-    #[serde(rename = "amount")]
-    pub amount: String,
     #[serde(rename = "totalEarned")]
     pub total_earned: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
 }
 impl Schema for CdBalancesBalanceGetBalanceByUserIdAndCurrencyReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"totalEarned\":{\"type\":\"string\"}},\"required\":[\"amount\",\"totalEarned\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalEarned\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"amount\",\"totalEarned\"]}")
     }
 }
 impl Agent for CdBalancesBalanceGetBalanceByUserIdAndCurrencyReturns {

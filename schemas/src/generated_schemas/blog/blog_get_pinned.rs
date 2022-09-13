@@ -4,10 +4,11 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for BlogBlogGetPinnedParams {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(BlogBlogGetPinnedParams)
     }
 }
@@ -31,20 +32,20 @@ impl Agent for BlogBlogGetPinnedParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetPinnedReturns {
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "title")]
-    pub title: String,
-    #[serde(rename = "url")]
-    pub url: String,
     #[serde(rename = "shortDescription")]
     pub short_description: String,
+    #[serde(rename = "title")]
+    pub title: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
     #[serde(rename = "image")]
     pub image: String,
+    #[serde(rename = "url")]
+    pub url: String,
 }
 impl Schema for BlogBlogGetPinnedReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"createdAt\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"}},\"required\":[\"title\",\"image\",\"url\",\"createdAt\",\"shortDescription\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"shortDescription\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"}},\"required\":[\"title\",\"image\",\"url\",\"createdAt\",\"shortDescription\"]}")
     }
 }
 impl Agent for BlogBlogGetPinnedReturns {

@@ -4,10 +4,11 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for TransactionsBalanceGetMyBalancesWithRoundingParams {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(TransactionsBalanceGetMyBalancesWithRoundingParams)
     }
 }
@@ -31,10 +32,10 @@ impl Agent for TransactionsBalanceGetMyBalancesWithRoundingParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetMyBalancesWithRoundingReturnsTickersParamsParams {
-    #[serde(rename = "ticker")]
-    pub ticker: String,
     #[serde(rename = "amount")]
     pub amount: String,
+    #[serde(rename = "ticker")]
+    pub ticker: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetMyBalancesWithRoundingReturns {
@@ -43,7 +44,7 @@ pub struct TransactionsBalanceGetMyBalancesWithRoundingReturns {
 }
 impl Schema for TransactionsBalanceGetMyBalancesWithRoundingReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"tickers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"ticker\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"ticker\",\"amount\"]}}},\"required\":[\"tickers\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"tickers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"ticker\":{\"type\":\"string\"}},\"required\":[\"ticker\",\"amount\"]}}},\"required\":[\"tickers\"]}")
     }
 }
 impl Agent for TransactionsBalanceGetMyBalancesWithRoundingReturns {

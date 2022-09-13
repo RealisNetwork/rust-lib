@@ -25,10 +25,11 @@ impl Agent for CatsLobbyGetBingoDataParams {
     }
 }
 impl<'de> Deserialize<'de> for CatsLobbyGetBingoDataReturns {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(CatsLobbyGetBingoDataReturns)
     }
 }

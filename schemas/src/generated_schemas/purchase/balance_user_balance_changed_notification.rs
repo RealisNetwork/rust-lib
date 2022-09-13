@@ -4,10 +4,11 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for PurchaseBalanceUserBalanceChangedNotificationParams {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(PurchaseBalanceUserBalanceChangedNotificationParams)
     }
 }
@@ -37,14 +38,14 @@ pub struct PurchaseBalanceUserBalanceChangedNotificationReturns {
     pub currency: String,
     #[serde(rename = "amount")]
     pub amount: String,
-    #[serde(rename = "transactionHash")]
-    pub transaction_hash: String,
     #[serde(rename = "balance")]
     pub balance: String,
+    #[serde(rename = "transactionHash")]
+    pub transaction_hash: String,
 }
 impl Schema for PurchaseBalanceUserBalanceChangedNotificationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"blockId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"amount\":{\"type\":\"string\"},\"transactionHash\":{\"type\":\"string\"},\"balance\":{\"type\":\"string\"}},\"required\":[\"currency\",\"amount\",\"transactionHash\",\"balance\",\"blockId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"blockId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"amount\":{\"type\":\"string\"},\"balance\":{\"type\":\"string\"},\"transactionHash\":{\"type\":\"string\"}},\"required\":[\"currency\",\"amount\",\"transactionHash\",\"balance\",\"blockId\"]}")
     }
 }
 impl Agent for PurchaseBalanceUserBalanceChangedNotificationReturns {

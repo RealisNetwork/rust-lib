@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyUnlinkAccountParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "email")]
     pub email: String,
     #[serde(rename = "password")]
     pub password: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for CatsLobbyUnlinkAccountParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"password\":{\"type\":\"string\"}},\"required\":[\"userId\",\"email\",\"password\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\"},\"password\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"email\",\"password\"]}")
     }
 }
 impl Agent for CatsLobbyUnlinkAccountParams {
@@ -29,10 +29,11 @@ impl Agent for CatsLobbyUnlinkAccountParams {
     }
 }
 impl<'de> Deserialize<'de> for CatsLobbyUnlinkAccountReturns {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(CatsLobbyUnlinkAccountReturns)
     }
 }

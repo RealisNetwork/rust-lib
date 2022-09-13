@@ -4,10 +4,11 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for RefundBalancesGetAllMyParams {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(RefundBalancesGetAllMyParams)
     }
 }
@@ -31,14 +32,14 @@ impl Agent for RefundBalancesGetAllMyParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllMyReturns {
-    #[serde(rename = "ETH")]
-    pub eth: Option<String>,
     #[serde(rename = "LIS")]
     pub lis: Option<String>,
+    #[serde(rename = "ETH")]
+    pub eth: Option<String>,
 }
 impl Schema for RefundBalancesGetAllMyReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"ETH\":{\"type\":\"string\"},\"LIS\":{\"type\":\"string\"}},\"required\":null}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"LIS\":{\"type\":\"string\"},\"ETH\":{\"type\":\"string\"}},\"required\":null}")
     }
 }
 impl Agent for RefundBalancesGetAllMyReturns {

@@ -4,10 +4,11 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for TransactionsBalanceGetBalancesByUserIdParams {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(TransactionsBalanceGetBalancesByUserIdParams)
     }
 }
@@ -31,16 +32,16 @@ impl Agent for TransactionsBalanceGetBalancesByUserIdParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetBalancesByUserIdReturns {
-    #[serde(rename = "WLIS")]
-    pub wlis: String,
-    #[serde(rename = "ETH")]
-    pub eth: String,
     #[serde(rename = "LIS")]
     pub lis: String,
+    #[serde(rename = "ETH")]
+    pub eth: String,
+    #[serde(rename = "WLIS")]
+    pub wlis: String,
 }
 impl Schema for TransactionsBalanceGetBalancesByUserIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"WLIS\":{\"type\":\"string\"},\"ETH\":{\"type\":\"string\"},\"LIS\":{\"type\":\"string\"}},\"required\":[\"ETH\",\"LIS\",\"WLIS\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"LIS\":{\"type\":\"string\"},\"ETH\":{\"type\":\"string\"},\"WLIS\":{\"type\":\"string\"}},\"required\":[\"ETH\",\"LIS\",\"WLIS\"]}")
     }
 }
 impl Agent for TransactionsBalanceGetBalancesByUserIdReturns {

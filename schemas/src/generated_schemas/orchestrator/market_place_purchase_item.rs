@@ -5,18 +5,18 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorMarketPlacePurchaseItemParams {
+    #[serde(rename = "txId")]
+    pub tx_id: String,
+    #[serde(rename = "productId")]
+    pub product_id: i32,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "creator")]
     pub creator: String,
-    #[serde(rename = "productId")]
-    pub product_id: i32,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
 }
 impl Schema for OrchestratorMarketPlacePurchaseItemParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"txId\":{\"type\":\"string\"}},\"required\":[\"productId\",\"userId\",\"txId\",\"creator\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"txId\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"}},\"required\":[\"productId\",\"userId\",\"txId\",\"creator\"]}")
     }
 }
 impl Agent for OrchestratorMarketPlacePurchaseItemParams {
@@ -31,10 +31,11 @@ impl Agent for OrchestratorMarketPlacePurchaseItemParams {
     }
 }
 impl<'de> Deserialize<'de> for OrchestratorMarketPlacePurchaseItemReturns {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(OrchestratorMarketPlacePurchaseItemReturns)
     }
 }

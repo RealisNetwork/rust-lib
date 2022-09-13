@@ -4,10 +4,11 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 impl<'de> Deserialize<'de> for CatsLobbyGetApplicationSettingsParams {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(CatsLobbyGetApplicationSettingsParams)
     }
 }
@@ -30,10 +31,11 @@ impl Agent for CatsLobbyGetApplicationSettingsParams {
     }
 }
 impl<'de> Deserialize<'de> for CatsLobbyGetApplicationSettingsReturns {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(CatsLobbyGetApplicationSettingsReturns)
     }
 }

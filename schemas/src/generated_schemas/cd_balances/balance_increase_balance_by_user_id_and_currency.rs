@@ -9,14 +9,14 @@ pub struct CdBalancesBalanceIncreaseBalanceByUserIdAndCurrencyParams {
     pub tx_id: String,
     #[serde(rename = "currencyType")]
     pub currency_type: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "amount")]
     pub amount: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for CdBalancesBalanceIncreaseBalanceByUserIdAndCurrencyParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"txId\":{\"type\":\"string\"},\"currencyType\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currencyType\",\"amount\",\"txId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"txId\":{\"type\":\"string\"},\"currencyType\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currencyType\",\"amount\",\"txId\"]}")
     }
 }
 impl Agent for CdBalancesBalanceIncreaseBalanceByUserIdAndCurrencyParams {
@@ -31,10 +31,11 @@ impl Agent for CdBalancesBalanceIncreaseBalanceByUserIdAndCurrencyParams {
     }
 }
 impl<'de> Deserialize<'de> for CdBalancesBalanceIncreaseBalanceByUserIdAndCurrencyReturns {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(CdBalancesBalanceIncreaseBalanceByUserIdAndCurrencyReturns)
     }
 }

@@ -7,18 +7,18 @@ use crate::generated_schemas::prelude::*;
 pub struct LobbySettingsSetParams {
     #[serde(rename = "sounds")]
     pub sounds: bool,
-    #[serde(rename = "music")]
-    pub music: bool,
-    #[serde(rename = "language")]
-    pub language: i8,
-    #[serde(rename = "HFREffects")]
-    pub hfr_effects: i8,
     #[serde(rename = "quality")]
     pub quality: i8,
+    #[serde(rename = "HFREffects")]
+    pub hfr_effects: i8,
+    #[serde(rename = "language")]
+    pub language: i8,
+    #[serde(rename = "music")]
+    pub music: bool,
 }
 impl Schema for LobbySettingsSetParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"sounds\":{\"type\":\"boolean\"},\"music\":{\"type\":\"boolean\"},\"language\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"HFREffects\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"quality\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"sounds\",\"music\",\"quality\",\"HFREffects\",\"language\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"sounds\":{\"type\":\"boolean\"},\"quality\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"HFREffects\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"language\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"music\":{\"type\":\"boolean\"}},\"required\":[\"sounds\",\"music\",\"quality\",\"HFREffects\",\"language\"]}")
     }
 }
 impl Agent for LobbySettingsSetParams {
@@ -33,10 +33,11 @@ impl Agent for LobbySettingsSetParams {
     }
 }
 impl<'de> Deserialize<'de> for LobbySettingsSetReturns {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(LobbySettingsSetReturns)
     }
 }

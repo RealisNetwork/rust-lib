@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyUpdateConfigParams {
-    #[serde(rename = "configJson")]
-    pub config_json: String,
     #[serde(rename = "configKey")]
     pub config_key: String,
+    #[serde(rename = "configJson")]
+    pub config_json: String,
 }
 impl Schema for CatsLobbyUpdateConfigParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"configJson\":{\"type\":\"string\"},\"configKey\":{\"type\":\"string\"}},\"required\":[\"configKey\",\"configJson\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"configKey\":{\"type\":\"string\"},\"configJson\":{\"type\":\"string\"}},\"required\":[\"configKey\",\"configJson\"]}")
     }
 }
 impl Agent for CatsLobbyUpdateConfigParams {
@@ -27,10 +27,11 @@ impl Agent for CatsLobbyUpdateConfigParams {
     }
 }
 impl<'de> Deserialize<'de> for CatsLobbyUpdateConfigReturns {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(CatsLobbyUpdateConfigReturns)
     }
 }

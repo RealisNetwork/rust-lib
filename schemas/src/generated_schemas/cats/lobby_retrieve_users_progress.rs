@@ -25,10 +25,11 @@ impl Agent for CatsLobbyRetrieveUsersProgressParams {
     }
 }
 impl<'de> Deserialize<'de> for CatsLobbyRetrieveUsersProgressReturns {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(CatsLobbyRetrieveUsersProgressReturns)
     }
 }

@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct OrchestratorBattlePassPurchasePremiumParams {
     #[serde(rename = "creator")]
     pub creator: String,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
 }
 impl Schema for OrchestratorBattlePassPurchasePremiumParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"creator\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"txId\",\"creator\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"creator\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"txId\",\"creator\"]}")
     }
 }
 impl Agent for OrchestratorBattlePassPurchasePremiumParams {
@@ -29,10 +29,11 @@ impl Agent for OrchestratorBattlePassPurchasePremiumParams {
     }
 }
 impl<'de> Deserialize<'de> for OrchestratorBattlePassPurchasePremiumReturns {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(OrchestratorBattlePassPurchasePremiumReturns)
     }
 }

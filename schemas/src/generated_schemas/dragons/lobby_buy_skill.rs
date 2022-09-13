@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbyBuySkillParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "skillPurchaseKey")]
     pub skill_purchase_key: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for DragonsLobbyBuySkillParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"skillPurchaseKey\":{\"type\":\"string\"}},\"required\":[\"userId\",\"skillPurchaseKey\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"skillPurchaseKey\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"skillPurchaseKey\"]}")
     }
 }
 impl Agent for DragonsLobbyBuySkillParams {
@@ -27,10 +27,11 @@ impl Agent for DragonsLobbyBuySkillParams {
     }
 }
 impl<'de> Deserialize<'de> for DragonsLobbyBuySkillReturns {
-    fn deserialize<D>(_deserializer: D) -> Result<Self, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
+        serde_json::Value::deserialize(deserializer)?;
         Ok(DragonsLobbyBuySkillReturns)
     }
 }

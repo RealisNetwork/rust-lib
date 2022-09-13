@@ -35,24 +35,24 @@ pub struct WithdrawApprovalListUnapprovedReturnsParamsApproveDataParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalListUnapprovedReturnsParams {
-    #[serde(rename = "updatedAt")]
-    pub updated_at: f64,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "amount")]
-    pub amount: String,
     #[serde(rename = "recipientAddress")]
     pub recipient_address: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: f64,
-    #[serde(rename = "fee")]
-    pub fee: String,
     #[serde(rename = "id")]
     pub id: f64,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "fee")]
+    pub fee: String,
     #[serde(rename = "status")]
     pub status: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
     #[serde(rename = "approveData")]
     pub approve_data: WithdrawApprovalListUnapprovedReturnsParamsApproveDataParams,
+    #[serde(rename = "createdAt")]
+    pub created_at: f64,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalListUnapprovedReturns(
@@ -60,7 +60,7 @@ pub struct WithdrawApprovalListUnapprovedReturns(
 );
 impl Schema for WithdrawApprovalListUnapprovedReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"updatedAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"recipientAddress\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"fee\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"status\":{\"type\":\"string\",\"pattern\":\"^(raw)|(success)$\"},\"approveData\":{\"type\":\"object\",\"properties\":{\"whoConsidered\":{\"type\":\"string\"},\"approveReason\":{\"type\":\"string\"}},\"required\":null}},\"required\":[\"id\",\"userId\",\"amount\",\"fee\",\"recipientAddress\",\"status\",\"approveData\",\"createdAt\",\"updatedAt\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"recipientAddress\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"fee\":{\"type\":\"string\"},\"status\":{\"type\":\"string\",\"pattern\":\"^(raw)|(success)$\"},\"amount\":{\"type\":\"string\"},\"approveData\":{\"type\":\"object\",\"properties\":{\"whoConsidered\":{\"type\":\"string\"},\"approveReason\":{\"type\":\"string\"}},\"required\":null},\"createdAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"userId\",\"amount\",\"fee\",\"recipientAddress\",\"status\",\"approveData\",\"createdAt\",\"updatedAt\"]}}")
     }
 }
 impl Agent for WithdrawApprovalListUnapprovedReturns {
