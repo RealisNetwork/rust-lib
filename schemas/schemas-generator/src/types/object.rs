@@ -98,18 +98,18 @@ impl Object {
         field_name: &str,
         field_type: &AgentParams,
     ) -> TokenStream {
-        match self
+        let mut field_type = field_type.get_type(name);
+
+        if !self
             .required
-            .as_ref()
-            .map(|fields| fields.contains(&field_name.to_owned()))
+            .clone()
+            .unwrap_or_default()
+            .contains(&field_name.to_owned())
         {
-            Some(true) | None => field_type.get_type(name),
-            Some(false) => {
-                let field_type = field_type.get_type(name);
-                quote! {
-                    Option<#field_type>
-                }
+            field_type = quote! {
+                Option<#field_type>
             }
         }
+        field_type
     }
 }
