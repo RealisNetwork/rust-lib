@@ -155,7 +155,17 @@ impl<Params: Agent, Returns: Schema, S: Service<Params, Returns>, T: Transport>
                     }
                 }
                 Err(error) => {
-                    log::debug!("got error{:#?}", error);
+                    log::error!(
+                        "Fail to deserialize {:?}",
+                        json!({
+                            "error": error,
+                            "topic": topic,
+                            "request": message.deserialize::<Value>()
+                                .map(|value| value.to_string())
+                                .unwrap_or_else(|_| String::from("INVALID JSON")),
+                        })
+                        .to_string()
+                    );
                     self.on_process_error(message, error.clone()).await?;
                     return Err(error);
                 }
@@ -210,10 +220,11 @@ impl<Params: Agent, Returns: Schema, S: Service<Params, Returns>, T: Transport>
 
         log::info!(
             "Publish {:?}",
-            serde_json::json!({
+            json!({
                 "topic": topic,
                 "response": response,
             })
+            .to_string()
         );
         Ok(())
     }
