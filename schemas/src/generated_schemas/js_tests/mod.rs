@@ -1,1 +1,3 @@
-pub mod dragocats_battle_process_endpoints_start_test ; pub mod dragocats_battle_process_endpoints_stop_test ; pub mod dragocats_battle_process_endpoints_get_test_state ;
+pub mod dragocats_battle_process_endpoints_get_test_state;
+pub mod dragocats_battle_process_endpoints_start_test;
+pub mod dragocats_battle_process_endpoints_stop_test;
