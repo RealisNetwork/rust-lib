@@ -71,7 +71,10 @@ pub enum Auth {
     #[serde(rename = "mobileApp")]
     MobileApp(MobileAuth),
     #[serde(rename = "webSite")]
-    WebSite { token: String },
+    WebSite {
+        #[serde(skip_serializing_if = "Option::is_none")]
+        token: Option<String>,
+    },
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
