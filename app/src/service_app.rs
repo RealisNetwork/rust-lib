@@ -132,7 +132,7 @@ impl<Params: Agent, Returns: Schema, S: Service<Params, Returns>, T: Transport>
             match message.deserialize() {
                 Ok(request) => {
                     log::info!(
-                        "{}",
+                        "Got {}",
                         json!({
                             "topic": topic,
                             "request": request
@@ -208,7 +208,13 @@ impl<Params: Agent, Returns: Schema, S: Service<Params, Returns>, T: Transport>
 
         self.transport.raw_publish(topic.clone(), &response).await?;
 
-        log::info!("By topic: {:?} | Publish {:?}", topic, response);
+        log::info!(
+            "Publish {:?}",
+            serde_json::json!({
+                "topic": topic,
+                "response": response,
+            })
+        );
         Ok(())
     }
 
