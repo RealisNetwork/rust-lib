@@ -22,7 +22,7 @@ pub fn impl_gettable_errors_macros(input: TokenStream) -> TokenStream {
                 })
                 .collect::<Vec<_>>();
 
-            return quote! {
+            quote! {
                 impl ToJson for #name {
                     fn as_string(&self) -> String {
                         match self {
@@ -31,7 +31,7 @@ pub fn impl_gettable_errors_macros(input: TokenStream) -> TokenStream {
                     }
                 }
             }
-            .into();
+            .into()
         }
         _ => panic!("Macro impl only for enums"),
     }

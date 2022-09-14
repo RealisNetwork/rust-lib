@@ -26,12 +26,12 @@ impl Agent for PromoCodesUseCodeParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesUseCodeReturnsParams {
+    #[serde(rename = "rewardType")]
+    pub reward_type: String,
     #[serde(rename = "heroId")]
     pub hero_id: i8,
     #[serde(rename = "currencyKey")]
     pub currency_key: String,
-    #[serde(rename = "rewardType")]
-    pub reward_type: String,
     #[serde(rename = "currencyAmount")]
     pub currency_amount: String,
 }
@@ -39,7 +39,7 @@ pub struct PromoCodesUseCodeReturnsParams {
 pub struct PromoCodesUseCodeReturns(pub Vec<PromoCodesUseCodeReturnsParams>);
 impl Schema for PromoCodesUseCodeReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"heroId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"currencyKey\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"rewardType\":{\"type\":\"string\"},\"currencyAmount\":{\"type\":\"string\"}},\"required\":[\"rewardType\",\"currencyKey\",\"currencyAmount\",\"heroId\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"rewardType\":{\"type\":\"string\"},\"heroId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"currencyKey\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"currencyAmount\":{\"type\":\"string\"}},\"required\":[\"rewardType\",\"currencyKey\",\"currencyAmount\",\"heroId\"]}}")
     }
 }
 impl Agent for PromoCodesUseCodeReturns {

@@ -4,41 +4,41 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct NearAdapterContractCallMintNftParams {
+pub struct NearAdapterContractCallNftLockParams {
     #[serde(rename = "tokenId")]
     pub token_id: String,
-    #[serde(rename = "metadata")]
-    pub metadata: Option<String>,
+    #[serde(rename = "approvalId")]
+    pub approval_id: Option<String>,
 }
-impl Schema for NearAdapterContractCallMintNftParams {
+impl Schema for NearAdapterContractCallNftLockParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"tokenId\":{\"type\":\"string\"},\"metadata\":{\"type\":\"string\"}},\"required\":[\"tokenId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"tokenId\":{\"type\":\"string\"},\"approvalId\":{\"type\":\"string\"}},\"required\":[\"tokenId\"]}")
     }
 }
-impl Agent for NearAdapterContractCallMintNftParams {
+impl Agent for NearAdapterContractCallNftLockParams {
     fn topic() -> &'static str {
-        "near-adapter_contract_callMintNft"
+        "near-adapter_contract_callNftLock"
     }
     fn method() -> &'static str {
-        "contract_callMintNft"
+        "contract_callNftLock"
     }
     fn agent() -> &'static str {
         "near-adapter"
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct NearAdapterContractCallMintNftReturns(pub bool);
-impl Schema for NearAdapterContractCallMintNftReturns {
+pub struct NearAdapterContractCallNftLockReturns(pub bool);
+impl Schema for NearAdapterContractCallNftLockReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"boolean\"}")
     }
 }
-impl Agent for NearAdapterContractCallMintNftReturns {
+impl Agent for NearAdapterContractCallNftLockReturns {
     fn topic() -> &'static str {
-        "near-adapter_contract_callMintNft"
+        "near-adapter_contract_callNftLock"
     }
     fn method() -> &'static str {
-        "contract_callMintNft"
+        "contract_callNftLock"
     }
     fn agent() -> &'static str {
         "near-adapter"

@@ -54,7 +54,7 @@ impl<Y, D: Debug> From<BaseError<D>> for ResponseMessage<Y, D> {
     }
 }
 
-#[derive(Debug, Clone, Default, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Default, Serialize, Deserialize, PartialEq, Eq)]
 pub struct AuthInfo {
     #[serde(rename = "userId")]
     #[serde(skip_serializing_if = "Option::is_none")]

@@ -7,24 +7,24 @@ use crate::generated_schemas::prelude::*;
 pub struct TransactionsBalanceAdminIncreaseBalanceParamsExtraDetailsParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceAdminIncreaseBalanceParams {
+    #[serde(rename = "currency")]
+    pub currency: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "creator")]
     pub creator: String,
     #[serde(rename = "extraDetails")]
     pub extra_details: Option<TransactionsBalanceAdminIncreaseBalanceParamsExtraDetailsParams>,
-    #[serde(rename = "reason")]
-    pub reason: String,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
     #[serde(rename = "amount")]
     pub amount: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "currency")]
-    pub currency: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
+    #[serde(rename = "reason")]
+    pub reason: String,
 }
 impl Schema for TransactionsBalanceAdminIncreaseBalanceParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"creator\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"reason\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"userId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"amount\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}")
     }
 }
 impl Agent for TransactionsBalanceAdminIncreaseBalanceParams {

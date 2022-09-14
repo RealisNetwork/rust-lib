@@ -157,7 +157,7 @@ mod rebuild {
 
         general_enum.extend(quote!(
             use serde::{Serialize, Deserialize};
-            #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+            #[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
             #[serde(untagged)]
             pub enum #general_enum_name{
                 #(#field_name(#field_name),)*
@@ -197,7 +197,7 @@ mod rebuild {
             let full_names2 = full_names.clone();
 
             code.extend(quote!(
-                #[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+                #[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
                 pub enum #enum_name_indent {
                     #(
                         #[serde(rename = #full_names2)]

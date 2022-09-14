@@ -72,7 +72,7 @@ impl From<Utils> for CustomErrorType {
     }
 }
 
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Blockchain {
     Send,
 }
@@ -85,7 +85,7 @@ impl From<Blockchain> for u32 {
     }
 }
 
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Rpc {
     Api,
     BlockNotFound,
@@ -104,7 +104,7 @@ impl From<Rpc> for u32 {
     }
 }
 
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Nats {
     Receive,
     Ok,
@@ -131,7 +131,7 @@ impl From<Nats> for u32 {
     }
 }
 
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Db {
     ConnectionError,
     WalletNotFound,
@@ -150,7 +150,7 @@ impl From<Db> for u32 {
 }
 
 /// Common error types
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Common {
     Overflow,
     Parse,
@@ -185,7 +185,7 @@ impl From<Common> for u32 {
     }
 }
 
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum EnvLoadedError {
     Load,
     Convert,
@@ -200,7 +200,7 @@ impl From<EnvLoadedError> for u32 {
     }
 }
 
-#[derive(Debug, Clone, Deserialize, Serialize, PartialEq)]
+#[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
 pub enum Utils {
     Convert, // 777008001
     Parse,

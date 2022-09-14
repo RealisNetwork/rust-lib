@@ -9,18 +9,18 @@ pub struct OrchestratorBalanceIncreaseUserBalanceParams {
     pub amount: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
     #[serde(rename = "creator")]
     pub creator: String,
     #[serde(rename = "currency")]
     pub currency: String,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
     #[serde(rename = "topicToSuccessResponse")]
     pub topic_to_success_response: String,
 }
 impl Schema for OrchestratorBalanceIncreaseUserBalanceParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"txId\":{\"type\":\"string\"},\"topicToSuccessResponse\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\",\"topicToSuccessResponse\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"topicToSuccessResponse\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\",\"topicToSuccessResponse\"]}")
     }
 }
 impl Agent for OrchestratorBalanceIncreaseUserBalanceParams {

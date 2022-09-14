@@ -30,36 +30,36 @@ impl Agent for TransactionsBalanceGetAllMyParams {
 pub struct TransactionsBalanceGetAllMyReturnsParamsExtraDetailsParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetAllMyReturnsParams {
-    #[serde(rename = "txId")]
-    pub tx_id: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "credit")]
+    pub credit: String,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "extraDetails")]
     pub extra_details: Option<TransactionsBalanceGetAllMyReturnsParamsExtraDetailsParams>,
-    #[serde(rename = "creator")]
-    pub creator: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: String,
-    #[serde(rename = "credit")]
-    pub credit: String,
+    #[serde(rename = "reason")]
+    pub reason: String,
     #[serde(rename = "currency")]
     pub currency: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
     #[serde(rename = "debit")]
     pub debit: String,
     #[serde(rename = "totalCount")]
     pub total_count: f64,
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "reason")]
-    pub reason: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetAllMyReturns(pub Vec<TransactionsBalanceGetAllMyReturnsParams>);
 impl Schema for TransactionsBalanceGetAllMyReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"txId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"creator\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"credit\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"debit\":{\"type\":\"string\"},\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"reason\":{\"type\":\"string\"}},\"required\":[\"totalCount\",\"id\",\"debit\",\"credit\",\"reason\",\"currency\",\"txId\",\"userId\",\"creator\",\"createdAt\",\"updatedAt\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"createdAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"credit\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"reason\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"txId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"debit\":{\"type\":\"string\"},\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"totalCount\",\"id\",\"debit\",\"credit\",\"reason\",\"currency\",\"txId\",\"userId\",\"creator\",\"createdAt\",\"updatedAt\"]}}")
     }
 }
 impl Agent for TransactionsBalanceGetAllMyReturns {

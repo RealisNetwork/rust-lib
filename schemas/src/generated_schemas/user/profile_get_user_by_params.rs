@@ -7,20 +7,20 @@ use crate::generated_schemas::prelude::*;
 pub struct UserProfileGetUserByParamsParams {
     #[serde(rename = "lisWallet")]
     pub lis_wallet: Option<String>,
-    #[serde(rename = "GPA")]
-    pub gpa: Option<String>,
-    #[serde(rename = "supportId")]
-    pub support_id: Option<String>,
     #[serde(rename = "email")]
     pub email: Option<String>,
-    #[serde(rename = "ethWallet")]
-    pub eth_wallet: Option<String>,
+    #[serde(rename = "supportId")]
+    pub support_id: Option<String>,
+    #[serde(rename = "GPA")]
+    pub gpa: Option<String>,
     #[serde(rename = "nickname")]
     pub nickname: Option<String>,
+    #[serde(rename = "ethWallet")]
+    pub eth_wallet: Option<String>,
 }
 impl Schema for UserProfileGetUserByParamsParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"lisWallet\":{\"type\":\"string\"},\"GPA\":{\"type\":\"string\"},\"supportId\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"ethWallet\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"}},\"required\":null}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"lisWallet\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"supportId\":{\"type\":\"string\"},\"GPA\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"ethWallet\":{\"type\":\"string\"}},\"required\":null}")
     }
 }
 impl Agent for UserProfileGetUserByParamsParams {
