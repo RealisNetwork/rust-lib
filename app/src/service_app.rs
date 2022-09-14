@@ -145,11 +145,11 @@ impl<Params: Agent, Returns: Schema, S: Service<Params, Returns>, T: Transport>
                             self.on_process_success(message, response_schema).await?
                         }
                         Err(error) if error.is_critical() => {
-                            log::debug!("Got response error critical: {:#?}", error);
+                            log::info!("Got response error critical: {:#?}", error);
                             return Err(error);
                         }
                         Err(error) => {
-                            log::debug!("Got response left: {:#?}", error);
+                            log::info!("Got response left: {:#?}", error);
                             self.on_process_error(message, error).await?
                         }
                     }
