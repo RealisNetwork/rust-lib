@@ -357,7 +357,7 @@ impl<D: Debug> StdDefault for BaseError<D> {
     /// ```
     fn default() -> Self {
         let trace = Backtrace::new();
-        let error_type = ErrorType::Custom(CustomErrorType::Default);
+        let error_type = ErrorType::Generated(GeneratedError::Critical(Critical::Db));
         Self {
             msg: String::from("Default error."),
             status: error_type.clone().into(),
@@ -446,13 +446,13 @@ impl<D: Debug> From<&'static str> for BaseError<D> {
     fn from(error: &'static str) -> Self {
         let trace = Backtrace::new();
         let msg = error.to_string();
-        let error_type = ErrorType::from(error);
+        let error_type = ErrorType::Generated(GeneratedError::Critical(Critical::Db));
         Self {
             msg,
+            status: error_type.clone().into(),
             error_type,
             trace: format!("{:?}", trace),
             data: None,
-            status: error.to_string().parse::<u32>().unwrap(),
         }
     }
 }
