@@ -28,16 +28,16 @@ impl Agent for BlogBlogGetAllParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllReturnsDataParamsParams {
-    #[serde(rename = "isPinned")]
-    pub is_pinned: bool,
-    #[serde(rename = "id")]
-    pub id: f64,
     #[serde(rename = "title")]
     pub title: String,
     #[serde(rename = "views")]
     pub views: f64,
+    #[serde(rename = "id")]
+    pub id: f64,
     #[serde(rename = "url")]
     pub url: String,
+    #[serde(rename = "isPinned")]
+    pub is_pinned: bool,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllReturns {
@@ -48,7 +48,7 @@ pub struct BlogBlogGetAllReturns {
 }
 impl Schema for BlogBlogGetAllReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"isPinned\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"title\":{\"type\":\"string\"},\"views\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"url\":{\"type\":\"string\"}},\"required\":[\"id\",\"url\",\"title\",\"isPinned\",\"views\"]}}},\"required\":[\"totalCount\",\"data\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"title\":{\"type\":\"string\"},\"views\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"url\":{\"type\":\"string\"},\"isPinned\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"url\",\"title\",\"isPinned\",\"views\"]}}},\"required\":[\"totalCount\",\"data\"]}")
     }
 }
 impl Agent for BlogBlogGetAllReturns {

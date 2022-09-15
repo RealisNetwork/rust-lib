@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct TransactionsRegistryProductAddProductParams {
     #[serde(rename = "productId")]
     pub product_id: String,
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
 }
 impl Schema for TransactionsRegistryProductAddProductParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"productId\",\"personalType\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"}},\"required\":[\"userId\",\"productId\",\"personalType\"]}")
     }
 }
 impl Agent for TransactionsRegistryProductAddProductParams {

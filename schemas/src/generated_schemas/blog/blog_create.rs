@@ -9,18 +9,22 @@ pub struct BlogBlogCreateParamsPropsParams {
     pub title: String,
     #[serde(rename = "url")]
     pub url: String,
-    #[serde(rename = "shortDescription")]
-    pub short_description: String,
-    #[serde(rename = "content")]
-    pub content: String,
-    #[serde(rename = "lang")]
-    pub lang: Option<String>,
-    #[serde(rename = "metaDescription")]
-    pub meta_description: String,
-    #[serde(rename = "image")]
-    pub image: String,
     #[serde(rename = "metaTitle")]
     pub meta_title: String,
+    #[serde(rename = "shortDescription")]
+    pub short_description: String,
+    #[serde(rename = "metaDescription")]
+    pub meta_description: String,
+    #[serde(rename = "lang")]
+    pub lang: Option<String>,
+    #[serde(rename = "question")]
+    pub question: Option<String>,
+    #[serde(rename = "content")]
+    pub content: String,
+    #[serde(rename = "image")]
+    pub image: String,
+    #[serde(rename = "answers")]
+    pub answers: Option<Vec<f64>>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogCreateParams {
@@ -31,7 +35,7 @@ pub struct BlogBlogCreateParams {
 }
 impl Schema for BlogBlogCreateParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"props\":{\"type\":\"object\",\"properties\":{\"title\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"}},\"required\":[\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\"]},\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"props\",\"categoryId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"props\":{\"type\":\"object\",\"properties\":{\"title\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"},\"question\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}}},\"required\":[\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\"]},\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"props\",\"categoryId\"]}")
     }
 }
 impl Agent for BlogBlogCreateParams {

@@ -7,16 +7,16 @@ use crate::generated_schemas::prelude::*;
 pub struct DragocatsProductFactoryLootboxOpenParams {
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "excludedPersonalTypes")]
-    pub excluded_personal_types: Vec<String>,
-    #[serde(rename = "productId")]
-    pub product_id: f64,
     #[serde(rename = "lootboxBindingId")]
     pub lootbox_binding_id: f64,
+    #[serde(rename = "productId")]
+    pub product_id: f64,
+    #[serde(rename = "excludedPersonalTypes")]
+    pub excluded_personal_types: Vec<String>,
 }
 impl Schema for DragocatsProductFactoryLootboxOpenParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"excludedPersonalTypes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"productId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"lootboxBindingId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"productId\",\"userId\",\"lootboxBindingId\",\"excludedPersonalTypes\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"lootboxBindingId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"productId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"excludedPersonalTypes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"productId\",\"userId\",\"lootboxBindingId\",\"excludedPersonalTypes\"]}")
     }
 }
 impl Agent for DragocatsProductFactoryLootboxOpenParams {

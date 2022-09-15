@@ -7,24 +7,24 @@ use crate::generated_schemas::prelude::*;
 pub struct TransactionsBalanceAdminDecreaseBalanceParamsExtraDetailsParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceAdminDecreaseBalanceParams {
+    #[serde(rename = "extraDetails")]
+    pub extra_details: Option<TransactionsBalanceAdminDecreaseBalanceParamsExtraDetailsParams>,
     #[serde(rename = "reason")]
     pub reason: String,
     #[serde(rename = "currency")]
     pub currency: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "extraDetails")]
-    pub extra_details: Option<TransactionsBalanceAdminDecreaseBalanceParamsExtraDetailsParams>,
-    #[serde(rename = "amount")]
-    pub amount: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
     #[serde(rename = "creator")]
     pub creator: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
 }
 impl Schema for TransactionsBalanceAdminDecreaseBalanceParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"reason\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"userId\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"amount\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"extraDetails\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"reason\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"txId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}")
     }
 }
 impl Agent for TransactionsBalanceAdminDecreaseBalanceParams {

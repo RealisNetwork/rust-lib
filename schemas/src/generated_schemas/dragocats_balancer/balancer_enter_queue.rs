@@ -4,36 +4,36 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsUnitPartsParamsParams {
-    #[serde(rename = "slot")]
-    pub slot: String,
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "element")]
-    pub element: String,
-}
-#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsAttributesParams {
     #[serde(rename = "health")]
     pub health: f64,
+    #[serde(rename = "power")]
+    pub power: f64,
     #[serde(rename = "defence")]
     pub defence: f64,
     #[serde(rename = "speed")]
     pub speed: f64,
-    #[serde(rename = "power")]
-    pub power: f64,
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsUnitPartsParamsParams {
+    #[serde(rename = "slot")]
+    pub slot: String,
+    #[serde(rename = "element")]
+    pub element: String,
+    #[serde(rename = "id")]
+    pub id: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParams {
-    #[serde(rename = "level")]
-    pub level: f64,
+    #[serde(rename = "attributes")]
+    pub attributes: DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsAttributesParams,
     #[serde(rename = "unitId")]
     pub unit_id: f64,
     #[serde(rename = "unitParts")]
     pub unit_parts:
         Vec<DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsUnitPartsParamsParams>,
-    #[serde(rename = "attributes")]
-    pub attributes: DragocatsBalancerBalancerEnterQueueParamsUnitsParamsParamsAttributesParams,
+    #[serde(rename = "level")]
+    pub level: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsBalancerBalancerEnterQueueParams {
@@ -42,7 +42,7 @@ pub struct DragocatsBalancerBalancerEnterQueueParams {
 }
 impl Schema for DragocatsBalancerBalancerEnterQueueParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"units\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"level\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"unitId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"unitParts\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"slot\":{\"type\":\"string\",\"pattern\":\"^(head)|(tail)|(body)$\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"element\":{\"type\":\"string\",\"pattern\":\"^(fire)|(water)|(earth)|(air)|(light)|(dark)|(crystal)|(iron)|(energy)$\"}},\"required\":[\"id\",\"element\",\"slot\"]}},\"attributes\":{\"type\":\"object\",\"properties\":{\"health\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"defence\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"speed\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"power\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"health\",\"power\",\"defence\",\"speed\"]}},\"required\":[\"unitId\",\"attributes\",\"level\",\"unitParts\"]}}},\"required\":[\"units\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"units\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"attributes\":{\"type\":\"object\",\"properties\":{\"health\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"power\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"defence\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"speed\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"health\",\"power\",\"defence\",\"speed\"]},\"unitId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"unitParts\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"slot\":{\"type\":\"string\",\"pattern\":\"^(head)|(tail)|(body)$\"},\"element\":{\"type\":\"string\",\"pattern\":\"^(fire)|(water)|(earth)|(air)|(light)|(dark)|(crystal)|(iron)|(energy)$\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"element\",\"slot\"]}},\"level\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"unitId\",\"attributes\",\"level\",\"unitParts\"]}}},\"required\":[\"units\"]}")
     }
 }
 impl Agent for DragocatsBalancerBalancerEnterQueueParams {

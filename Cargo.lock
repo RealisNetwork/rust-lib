@@ -3106,6 +3106,7 @@ version = "0.1.0"
 dependencies = [
  "app",
  "async-trait",
+ "backtrace",
  "enum_dispatch",
  "error_registry 0.1.0",
  "healthchecker 0.1.0",

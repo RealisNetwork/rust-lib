@@ -5,24 +5,28 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogUpdateParamsPropsParams {
-    #[serde(rename = "shortDescription")]
-    pub short_description: Option<String>,
-    #[serde(rename = "title")]
-    pub title: Option<String>,
-    #[serde(rename = "metaDescription")]
-    pub meta_description: Option<String>,
-    #[serde(rename = "isPinned")]
-    pub is_pinned: Option<bool>,
-    #[serde(rename = "id")]
-    pub id: f64,
     #[serde(rename = "metaTitle")]
     pub meta_title: Option<String>,
-    #[serde(rename = "image")]
-    pub image: Option<String>,
+    #[serde(rename = "question")]
+    pub question: Option<String>,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "title")]
+    pub title: Option<String>,
+    #[serde(rename = "answers")]
+    pub answers: Option<Vec<f64>>,
     #[serde(rename = "content")]
     pub content: Option<String>,
+    #[serde(rename = "shortDescription")]
+    pub short_description: Option<String>,
     #[serde(rename = "url")]
     pub url: Option<String>,
+    #[serde(rename = "metaDescription")]
+    pub meta_description: Option<String>,
+    #[serde(rename = "image")]
+    pub image: Option<String>,
+    #[serde(rename = "isPinned")]
+    pub is_pinned: Option<bool>,
     #[serde(rename = "lang")]
     pub lang: Option<String>,
 }
@@ -35,7 +39,7 @@ pub struct BlogBlogUpdateParams {
 }
 impl Schema for BlogBlogUpdateParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"props\":{\"type\":\"object\",\"properties\":{\"shortDescription\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"},\"isPinned\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"metaTitle\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"}},\"required\":[\"id\"]},\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"props\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"props\":{\"type\":\"object\",\"properties\":{\"metaTitle\":{\"type\":\"string\"},\"question\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"title\":{\"type\":\"string\"},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"content\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"isPinned\":{\"type\":\"boolean\"},\"lang\":{\"type\":\"string\"}},\"required\":[\"id\"]},\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"props\"]}")
     }
 }
 impl Agent for BlogBlogUpdateParams {

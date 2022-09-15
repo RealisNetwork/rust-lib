@@ -11,16 +11,16 @@ pub struct StatusConfigAddParams {
     pub max_count: String,
     #[serde(rename = "membership")]
     pub membership: String,
+    #[serde(rename = "priceInLis")]
+    pub price_in_lis: String,
     #[serde(rename = "price")]
     pub price: String,
     #[serde(rename = "multiplier")]
     pub multiplier: String,
-    #[serde(rename = "priceInLis")]
-    pub price_in_lis: String,
 }
 impl Schema for StatusConfigAddParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isAvailable\":{\"type\":\"boolean\"},\"maxCount\":{\"type\":\"string\"},\"membership\":{\"type\":\"string\"},\"price\":{\"type\":\"string\"},\"multiplier\":{\"type\":\"string\"},\"priceInLis\":{\"type\":\"string\"}},\"required\":[\"membership\",\"price\",\"multiplier\",\"priceInLis\",\"maxCount\",\"isAvailable\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isAvailable\":{\"type\":\"boolean\"},\"maxCount\":{\"type\":\"string\"},\"membership\":{\"type\":\"string\"},\"priceInLis\":{\"type\":\"string\"},\"price\":{\"type\":\"string\"},\"multiplier\":{\"type\":\"string\"}},\"required\":[\"membership\",\"price\",\"multiplier\",\"priceInLis\",\"maxCount\",\"isAvailable\"]}")
     }
 }
 impl Agent for StatusConfigAddParams {

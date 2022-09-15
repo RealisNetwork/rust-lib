@@ -3,9 +3,9 @@ use std::time::Duration;
 use async_trait::async_trait;
 use serde_json::Value;
 
-use error_registry::custom_errors::{CustomErrorType, Nats as CustomNats};
-use error_registry::generated_errors::{GeneratedError, Nats as GeneratedNats};
-use error_registry::{BaseError, ErrorType};
+use error_registry::custom_errors::Nats as CustomNats;
+use error_registry::generated_errors::Nats as GeneratedNats;
+use error_registry::BaseError;
 use healthchecker::Alivable;
 use jet_stream::{
     self,
@@ -23,13 +23,8 @@ pub struct JetTransport {
 
 impl JetTransport {
     pub fn new(nats_url: &str) -> TransportResult<JetTransport> {
-        let nats = jet_stream::connect(nats_url).map_err(|error| {
-            BaseError::<Value>::new(
-                format!("{:?}", error),
-                ErrorType::Custom(CustomErrorType::Nats(CustomNats::Disconnected)),
-                None,
-            )
-        })?;
+        let nats = jet_stream::connect(nats_url)
+            .map_err(|error| BaseError::new(format!("{:?}", error), CustomNats::Disconnected))?;
         let jet_stream = jetstream::new(nats);
 
         Ok(Self { stream: jet_stream })
@@ -41,13 +36,8 @@ impl JetTransport {
 
         let mut config = match streams {
             Some(stream) => {
-                let stream = stream.map_err(|error| {
-                    BaseError::<Value>::new(
-                        format!("{:?}", error),
-                        CustomErrorType::Nats(CustomNats::Send).into(),
-                        None,
-                    )
-                })?;
+                let stream = stream
+                    .map_err(|error| BaseError::new(format!("{:?}", error), CustomNats::Send))?;
                 if stream.config.subjects.contains(&topic.to_owned()) {
                     return Ok(());
                 }
@@ -93,13 +83,9 @@ impl Transport for JetTransport {
         );
 
         tokio::task::block_in_place(move || {
-            self.stream.publish(&topic_res, response).map_err(|error| {
-                BaseError::<Value>::new(
-                    format!("{:?}", error),
-                    CustomErrorType::Nats(CustomNats::Send).into(),
-                    None,
-                )
-            })?;
+            self.stream
+                .publish(&topic_res, response)
+                .map_err(|error| BaseError::new(format!("{:?}", error), CustomNats::Send))?;
             Ok(())
         })
     }
@@ -117,11 +103,7 @@ impl Transport for JetTransport {
             .subscribe_with_options(topic, &subscription_options)
             .map(|subscription| subscription.into())
             .map_err(|error| {
-                BaseError::<Value>::new(
-                    format!("{:?}", error),
-                    GeneratedError::Nats(GeneratedNats::InternalServiceCall).into(),
-                    None,
-                )
+                BaseError::new(format!("{:?}", error), GeneratedNats::InternalServiceCall).into()
             })
     }
 
@@ -133,11 +115,7 @@ impl Transport for JetTransport {
             .subscribe_with_options(topic, &subscription_options)
             .map(|subscription| subscription.into())
             .map_err(|error| {
-                BaseError::<Value>::new(
-                    format!("{:?}", error),
-                    GeneratedError::Nats(GeneratedNats::InternalServiceCall).into(),
-                    None,
-                )
+                BaseError::new(format!("{:?}", error), GeneratedNats::InternalServiceCall).into()
             })
     }
 

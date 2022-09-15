@@ -49,25 +49,26 @@ where
 
 impl<T, E, D, ET> ProcessError<T, E, D, ET> for Result<T, E>
 where
-    E: Debug,
+    E: Debug + std::fmt::Display,
     D: Debug,
     ET: Into<ErrorType>,
 {
     fn process_err(self, error: ET) -> Result<T, BaseError<D>> {
-        self.map_err(|err| BaseError::new(format!("{:?}", err), error.into(), None))
+        self.map_err(|err| {
+            let trace = Backtrace::new();
+            let error_type = error.into();
+            BaseError {
+                msg: err.to_string(),
+                error_type: error_type.clone(),
+                trace: format!("{:?}", trace),
+                data: None,
+                status: error_type.into(),
+            }
+        })
     }
 }
 
-impl<D: Debug> BaseError<D> {
-    pub fn is_critical(&self) -> bool {
-        matches!(
-            self.error_type,
-            ErrorType::Generated(GeneratedError::Critical(_))
-        )
-    }
-}
-
-impl<D: Debug> BaseError<D> {
+impl BaseError<()> {
     /// Create a new `BaseError`
     /// # Arguments
     /// * `msg` - Extra message for explanation of Error
@@ -85,21 +86,29 @@ impl<D: Debug> BaseError<D> {
     /// use error_registry::custom_errors::{CustomErrorType, Nats};
     ///
     /// // BaseError save a error backtrace.
-    /// let err = BaseError::<()>::new("Custom message".to_string(), ErrorType::Custom(CustomErrorType::Nats(Nats::Send)), None);
+    /// let err = BaseError::<()>::new("Custom message".to_string(), ErrorType::Custom(CustomErrorType::Nats(Nats::Send)));
     /// println!("{}", err.trace);
     /// ```
     #[must_use]
-    pub fn new(msg: String, error_type: ErrorType, data: Option<D>) -> Self {
+    pub fn new<M: ToString, E: Into<ErrorType>>(msg: M, error_type: E) -> Self {
+        let error_type: ErrorType = error_type.into();
         let trace = Backtrace::new();
-        let status = error_type.clone().into();
-
-        Self {
-            msg,
+        BaseError {
+            msg: msg.to_string(),
+            error_type: error_type.clone(),
             trace: format!("{:?}", trace),
-            error_type,
-            data,
-            status,
+            data: None,
+            status: error_type.into(),
         }
+    }
+}
+
+impl<D: Debug> BaseError<D> {
+    pub fn is_critical(&self) -> bool {
+        matches!(
+            self.error_type,
+            ErrorType::Generated(GeneratedError::Critical(_))
+        )
     }
 }
 
@@ -619,20 +628,6 @@ impl From<tokio::task::JoinError> for ErrorType {
     }
 }
 
-impl From<CustomErrorType> for ErrorType {
-    /// Cast `CustomErrorType` to `ErrorType`
-    fn from(error: CustomErrorType) -> Self {
-        ErrorType::Custom(error)
-    }
-}
-
-impl From<GeneratedError> for ErrorType {
-    /// Cast `GeneratedError` to `ErrorType`
-    fn from(gen_err: GeneratedError) -> Self {
-        ErrorType::Generated(gen_err)
-    }
-}
-
 impl From<RedisError> for ErrorType {
     /// Case `RedisError` to `ErrorType`
     fn from(_: RedisError) -> Self {
@@ -651,6 +646,12 @@ impl From<&'static str> for ErrorType {
     /// Case `&'static str` to `ErrorType`
     fn from(_: &'static str) -> Self {
         ErrorType::Custom(CustomErrorType::Common(CustomCommon::ParseString))
+    }
+}
+
+impl From<std::io::Error> for ErrorType {
+    fn from(_: std::io::Error) -> Self {
+        ErrorType::Generated(GeneratedError::Common(Common::InternalServerError))
     }
 }
 

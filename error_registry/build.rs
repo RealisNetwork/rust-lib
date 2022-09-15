@@ -157,6 +157,7 @@ mod rebuild {
 
         general_enum.extend(quote!(
             use serde::{Serialize, Deserialize};
+            use crate::ErrorType;
             #[derive(Debug, Clone, Deserialize, Serialize, PartialEq, Eq)]
             #[serde(untagged)]
             pub enum #general_enum_name{
@@ -233,6 +234,12 @@ mod rebuild {
             impl From<#field_name2> for #general_enum_name {
                 fn from(error: #field_name2) -> Self {
                     #general_enum_name::#field_name2(error)
+                }
+            }
+
+            impl From<#field_name2> for ErrorType {
+                fn from(error: #field_name2) -> Self {
+                    ErrorType::Generated(error.into())
                 }
             }
         )*

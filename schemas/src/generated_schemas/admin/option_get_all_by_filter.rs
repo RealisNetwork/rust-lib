@@ -37,22 +37,22 @@ pub struct AdminOptionGetAllByFilterReturnsParamsExtraDetailsParams {
 pub struct AdminOptionGetAllByFilterReturnsParams {
     #[serde(rename = "scope")]
     pub scope: String,
-    #[serde(rename = "description")]
-    pub description: String,
     #[serde(rename = "key")]
     pub key: String,
     #[serde(rename = "previousValue")]
     pub previous_value: String,
-    #[serde(rename = "extraDetails")]
-    pub extra_details: AdminOptionGetAllByFilterReturnsParamsExtraDetailsParams,
     #[serde(rename = "value")]
     pub value: String,
+    #[serde(rename = "description")]
+    pub description: String,
+    #[serde(rename = "extraDetails")]
+    pub extra_details: AdminOptionGetAllByFilterReturnsParamsExtraDetailsParams,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetAllByFilterReturns(pub Vec<AdminOptionGetAllByFilterReturnsParams>);
 impl Schema for AdminOptionGetAllByFilterReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"scope\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"previousValue\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"tab\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":null},\"value\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\",\"previousValue\",\"description\",\"extraDetails\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"scope\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"previousValue\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"tab\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":null}},\"required\":[\"scope\",\"key\",\"value\",\"previousValue\",\"description\",\"extraDetails\"]}}")
     }
 }
 impl Agent for AdminOptionGetAllByFilterReturns {

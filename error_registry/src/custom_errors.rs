@@ -1,3 +1,4 @@
+use crate::ErrorType;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
@@ -36,9 +37,21 @@ impl From<Blockchain> for CustomErrorType {
     }
 }
 
+impl From<Blockchain> for ErrorType {
+    fn from(error: Blockchain) -> Self {
+        ErrorType::Custom(error.into())
+    }
+}
+
 impl From<Nats> for CustomErrorType {
     fn from(error: Nats) -> Self {
         CustomErrorType::Nats(error)
+    }
+}
+
+impl From<Nats> for ErrorType {
+    fn from(error: Nats) -> Self {
+        ErrorType::Custom(error.into())
     }
 }
 
@@ -48,9 +61,21 @@ impl From<Rpc> for CustomErrorType {
     }
 }
 
+impl From<Rpc> for ErrorType {
+    fn from(error: Rpc) -> Self {
+        ErrorType::Custom(error.into())
+    }
+}
+
 impl From<Db> for CustomErrorType {
     fn from(error: Db) -> Self {
         CustomErrorType::Db(error)
+    }
+}
+
+impl From<Db> for ErrorType {
+    fn from(error: Db) -> Self {
+        ErrorType::Custom(error.into())
     }
 }
 
@@ -60,15 +85,33 @@ impl From<Common> for CustomErrorType {
     }
 }
 
+impl From<Common> for ErrorType {
+    fn from(error: Common) -> Self {
+        ErrorType::Custom(error.into())
+    }
+}
+
 impl From<EnvLoadedError> for CustomErrorType {
     fn from(error: EnvLoadedError) -> Self {
         CustomErrorType::EnvLoadedError(error)
     }
 }
 
+impl From<EnvLoadedError> for ErrorType {
+    fn from(error: EnvLoadedError) -> Self {
+        ErrorType::Custom(error.into())
+    }
+}
+
 impl From<Utils> for CustomErrorType {
     fn from(error: Utils) -> Self {
         CustomErrorType::Utils(error)
+    }
+}
+
+impl From<Utils> for ErrorType {
+    fn from(error: Utils) -> Self {
+        ErrorType::Custom(error.into())
     }
 }
 

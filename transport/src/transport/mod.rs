@@ -11,7 +11,7 @@ use crate::Response;
 use crate::VReceivedMessage;
 use async_trait::async_trait;
 use enum_dispatch::enum_dispatch;
-use error_registry::generated_errors::{Common, GeneratedError};
+use error_registry::generated_errors::Common;
 use error_registry::BaseError;
 use healthchecker::Alivable;
 use serde::de::DeserializeOwned;
@@ -29,13 +29,8 @@ pub trait Transport: Send + Sync + Clone {
         topic: String,
         message: &M,
     ) -> TransportResult<()> {
-        let payload = serde_json::to_vec(&message).map_err(|error| {
-            BaseError::<()>::new(
-                format!("{:?}", error),
-                GeneratedError::Common(Common::InternalServerError).into(),
-                None,
-            )
-        })?;
+        let payload = serde_json::to_vec(&message)
+            .map_err(|error| BaseError::new(format!("{:?}", error), Common::InternalServerError))?;
 
         self.publish(VResponse::Response(Response {
             topic_res: topic,
@@ -62,13 +57,8 @@ pub trait Transport: Send + Sync + Clone {
         request: Request,
         max_duration: Option<Duration>,
     ) -> TransportResult<Reply> {
-        let payload = serde_json::to_vec(&request).map_err(|e| {
-            BaseError::<()>::new(
-                format!("{:?}", e),
-                GeneratedError::Common(Common::InternalServerError).into(),
-                None,
-            )
-        })?;
+        let payload = serde_json::to_vec(&request)
+            .map_err(|e| BaseError::new(format!("{:?}", e), Common::InternalServerError))?;
 
         let request = VResponse::Response(Response {
             topic_res: topic,

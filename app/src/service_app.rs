@@ -238,13 +238,7 @@ impl<Params: Agent, Returns: Schema, S: Service<Params, Returns>, T: Transport>
 
             Some(topic) => Ok(topic
                 .as_str()
-                .ok_or_else(|| {
-                    BaseError::<Value>::new(
-                        "Unexpected type".to_string(),
-                        GeneratedError::Common(Common::Unknown).into(),
-                        None,
-                    )
-                })?
+                .ok_or_else(|| BaseError::new("Unexpected type".to_string(), Common::Unknown))?
                 .to_string()),
         };
         log::debug!("request {:#?} : ", request);

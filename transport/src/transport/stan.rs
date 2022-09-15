@@ -3,9 +3,9 @@ use crate::response::VResponse;
 use crate::subscription::{Subscription, VSubscription};
 use crate::{Transport, VReceivedMessage};
 use async_trait::async_trait;
-use error_registry::custom_errors::{CustomErrorType, Nats as CustomNats};
-use error_registry::generated_errors::{GeneratedError, Nats as GeneratedNats};
-use error_registry::{BaseError, ErrorType};
+use error_registry::custom_errors::Nats as CustomNats;
+use error_registry::generated_errors::Nats as GeneratedNats;
+use error_registry::BaseError;
 use healthchecker::Alivable;
 use serde_json::Value;
 use stan::{Client, SubscriptionConfig, SubscriptionStart};
@@ -19,20 +19,10 @@ pub struct StanTransport {
 
 impl StanTransport {
     pub fn new(url: &str, cluster_id: &str, client_id: &str) -> TransportResult<Self> {
-        let nats = nats::connect(url).map_err(|error| {
-            BaseError::<Value>::new(
-                format!("{:?}", error),
-                ErrorType::Custom(CustomErrorType::Nats(CustomNats::Disconnected)),
-                None,
-            )
-        })?;
-        let stan = stan::connect(nats, cluster_id, client_id).map_err(|error| {
-            BaseError::<Value>::new(
-                format!("{:?}", error),
-                CustomErrorType::Nats(CustomNats::Disconnected).into(),
-                None,
-            )
-        })?;
+        let nats = nats::connect(url)
+            .map_err(|error| BaseError::new(format!("{:?}", error), CustomNats::Disconnected))?;
+        let stan = stan::connect(nats, cluster_id, client_id)
+            .map_err(|error| BaseError::new(format!("{:?}", error), CustomNats::Disconnected))?;
 
         Ok(Self {
             client_id: client_id.to_owned(),
@@ -73,13 +63,9 @@ impl Transport for StanTransport {
         );
 
         tokio::task::block_in_place(move || {
-            self.client.publish(&topic_res, response).map_err(|error| {
-                BaseError::<Value>::new(
-                    format!("{:?}", error),
-                    CustomErrorType::Nats(CustomNats::Send).into(),
-                    None,
-                )
-            })
+            self.client
+                .publish(&topic_res, response)
+                .map_err(|error| BaseError::new(format!("{:?}", error), CustomNats::Send).into())
         })
     }
 
@@ -96,11 +82,8 @@ impl Transport for StanTransport {
                 .subscribe(topic, subscription_config)
                 .map(|subscription| subscription.into())
                 .map_err(|error| {
-                    BaseError::<Value>::new(
-                        format!("{:?}", error),
-                        GeneratedError::Nats(GeneratedNats::InternalServiceCall).into(),
-                        None,
-                    )
+                    BaseError::new(format!("{:?}", error), GeneratedNats::InternalServiceCall)
+                        .into()
                 })
         })
     }
@@ -117,11 +100,8 @@ impl Transport for StanTransport {
                 .subscribe(topic, subscription_config)
                 .map(|subscription| subscription.into())
                 .map_err(|error| {
-                    BaseError::<Value>::new(
-                        format!("{:?}", error),
-                        GeneratedError::Nats(GeneratedNats::InternalServiceCall).into(),
-                        None,
-                    )
+                    BaseError::new(format!("{:?}", error), GeneratedNats::InternalServiceCall)
+                        .into()
                 })
         })
     }

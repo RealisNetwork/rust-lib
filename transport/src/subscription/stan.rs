@@ -2,7 +2,7 @@ use crate::common::TransportResult;
 use crate::{Subscription, VReceivedMessage};
 use ::stan::Subscription as LibStanSubscription;
 use async_trait::async_trait;
-use error_registry::custom_errors::{CustomErrorType, Nats as CustomNats};
+use error_registry::custom_errors::Nats as CustomNats;
 use error_registry::generated_errors::{GeneratedError, Nats};
 use error_registry::BaseError;
 use serde_json::Value;
@@ -30,23 +30,13 @@ impl Subscription for StanSubscription {
             self.subscription
                 .next_timeout(timeout)
                 .map(|message| message.into())
-                .map_err(|err| {
-                    BaseError::<Value>::new(
-                        err.to_string(),
-                        CustomErrorType::Nats(CustomNats::Timeout).into(),
-                        None,
-                    )
-                })
+                .map_err(|err| BaseError::new(format!("{:?}", err), CustomNats::Timeout).into())
         })
     }
     async fn unsubscribe(mut self) -> TransportResult<()> {
         tokio::spawn(async move {
             self.subscription.unsubscribe().map_err(|error| {
-                BaseError::<Value>::new(
-                    format!("{:?}", error),
-                    CustomErrorType::Nats(CustomNats::Unsubscribe).into(),
-                    None,
-                )
+                BaseError::new(format!("{:?}", error), CustomNats::Unsubscribe).into()
             })
         })
         .await

@@ -27,32 +27,32 @@ impl Agent for ReferralReferralGetReferralsParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ReferralReferralGetReferralsReturnsReferralsParamsParams {
+    #[serde(rename = "nickname")]
+    pub nickname: String,
+    #[serde(rename = "appId")]
+    pub app_id: f64,
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralGetReferralsReturnsReferralTransactionsParamsParams {
-    #[serde(rename = "date")]
-    pub date: String,
     #[serde(rename = "amount")]
     pub amount: String,
     #[serde(rename = "nickname")]
     pub nickname: String,
-}
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ReferralReferralGetReferralsReturnsReferralsParamsParams {
-    #[serde(rename = "appId")]
-    pub app_id: f64,
-    #[serde(rename = "nickname")]
-    pub nickname: String,
+    #[serde(rename = "date")]
+    pub date: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralGetReferralsReturns {
+    #[serde(rename = "referrals")]
+    pub referrals: Vec<ReferralReferralGetReferralsReturnsReferralsParamsParams>,
     #[serde(rename = "referralTransactions")]
     pub referral_transactions:
         Vec<ReferralReferralGetReferralsReturnsReferralTransactionsParamsParams>,
-    #[serde(rename = "referrals")]
-    pub referrals: Vec<ReferralReferralGetReferralsReturnsReferralsParamsParams>,
 }
 impl Schema for ReferralReferralGetReferralsReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"referralTransactions\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"date\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"}},\"required\":[\"date\",\"nickname\",\"amount\"]}},\"referrals\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"nickname\":{\"type\":\"string\"}},\"required\":[\"nickname\",\"appId\"]}}},\"required\":[\"referrals\",\"referralTransactions\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"referrals\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"nickname\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"nickname\",\"appId\"]}},\"referralTransactions\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"date\":{\"type\":\"string\"}},\"required\":[\"date\",\"nickname\",\"amount\"]}}},\"required\":[\"referrals\",\"referralTransactions\"]}")
     }
 }
 impl Agent for ReferralReferralGetReferralsReturns {

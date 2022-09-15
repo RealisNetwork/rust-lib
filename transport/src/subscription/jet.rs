@@ -4,7 +4,7 @@ use async_trait::async_trait;
 use jet_stream::jetstream::PushSubscription;
 use serde_json::Value;
 
-use error_registry::custom_errors::{CustomErrorType, Nats as CustomNats};
+use error_registry::custom_errors::Nats as CustomNats;
 use error_registry::generated_errors::{GeneratedError, Nats};
 use error_registry::BaseError;
 
@@ -31,25 +31,15 @@ impl Subscription for JetSubscription {
             self.subscription
                 .next_timeout(timeout)
                 .map(|message| message.into())
-                .map_err(|err| {
-                    BaseError::<Value>::new(
-                        err.to_string(),
-                        CustomErrorType::Nats(CustomNats::Timeout).into(),
-                        None,
-                    )
-                })
+                .map_err(|err| BaseError::new(format!("{:?}", err), CustomNats::Timeout).into())
         })
     }
 
     async fn unsubscribe(self) -> TransportResult<()> {
         tokio::spawn(async move {
-            self.subscription.unsubscribe().map_err(|error| {
-                BaseError::<Value>::new(
-                    format!("{:?}", error),
-                    CustomErrorType::Nats(CustomNats::Unsubscribe).into(),
-                    None,
-                )
-            })
+            self.subscription
+                .unsubscribe()
+                .map_err(|err| BaseError::new(format!("{:?}", err), CustomNats::Unsubscribe).into())
         })
         .await
         .map_err(|_| BaseError::<Value>::from(GeneratedError::Nats(Nats::Receive)))?

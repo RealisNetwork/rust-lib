@@ -8,8 +8,8 @@ pub use crate::error_registry::{
     },
     generated_errors::{
         Action, AdminOptions, Auth, Bff, Blockchain, Bytes, BytesFormatter, CatsAndDragons, Common,
-        Critical, Cron, Db, Fs, Functions, GeneratedError, Geo, GooglePlay, Http, Nats,
-        Orchestrator, Permissions, ProductFactory, ProductRegistry, Profile, Promo, Redis,
+        Confirmation, Critical, Cron, Db, Fs, Functions, GeneratedError, Geo, GooglePlay, Http,
+        Nats, Orchestrator, Permissions, ProductFactory, ProductRegistry, Profile, Promo, Redis,
         Referrals, RestorePassword, Roles, Soul, Status, Transactions, TwoFactorAuth, Utils,
         Validation,
     },
