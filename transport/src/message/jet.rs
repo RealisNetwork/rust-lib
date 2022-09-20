@@ -2,7 +2,7 @@ use std::fmt::Debug;
 
 use async_trait::async_trait;
 use backtrace::Backtrace;
-use error_registry::custom_errors::{Nats as CustomNats};
+use error_registry::custom_errors::Nats as CustomNats;
 use error_registry::generated_errors::Common;
 use error_registry::{BaseError, ErrorType};
 use jet_stream::Message;
