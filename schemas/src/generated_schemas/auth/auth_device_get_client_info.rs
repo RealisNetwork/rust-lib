@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceGetClientInfoParams {
-    #[serde(rename = "providerId")]
-    pub provider_id: String,
     #[serde(rename = "provider")]
     pub provider: String,
+    #[serde(rename = "providerId")]
+    pub provider_id: String,
 }
 impl Schema for AuthAuthDeviceGetClientInfoParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"providerId\":{\"type\":\"string\"},\"provider\":{\"type\":\"string\",\"pattern\":\"^(Keycloak)|(DeviceId)$\"}},\"required\":[\"providerId\",\"provider\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"provider\":{\"type\":\"string\",\"pattern\":\"^(Keycloak)|(DeviceId)$\"},\"providerId\":{\"type\":\"string\"}},\"required\":[\"providerId\",\"provider\"]}")
     }
 }
 impl Agent for AuthAuthDeviceGetClientInfoParams {

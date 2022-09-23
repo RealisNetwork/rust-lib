@@ -2418,6 +2418,9 @@ impl SchemaManager {
             _ => None,
         }
     }
+    pub fn get_access_level(agent: &str, method: &str) -> Option<&'static str> {
+        None
+    }
     pub fn validate_params(
         agent: &str,
         method: &str,

@@ -7,20 +7,20 @@ use crate::generated_schemas::prelude::*;
 pub struct NotificationsNotificationsCreateNewParams {
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "category")]
-    pub category: String,
-    #[serde(rename = "description")]
-    pub description: String,
     #[serde(rename = "title")]
     pub title: String,
+    #[serde(rename = "category")]
+    pub category: String,
     #[serde(rename = "senderUserId")]
     pub sender_user_id: String,
+    #[serde(rename = "description")]
+    pub description: String,
     #[serde(rename = "notificationType")]
     pub notification_type: (),
 }
 impl Schema for NotificationsNotificationsCreateNewParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"category\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"senderUserId\":{\"type\":\"string\"},\"notificationType\":{}},\"required\":[\"notificationType\",\"userId\",\"category\",\"description\",\"senderUserId\",\"title\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"category\":{\"type\":\"string\"},\"senderUserId\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"notificationType\":{}},\"required\":[\"notificationType\",\"userId\",\"category\",\"description\",\"senderUserId\",\"title\"]}")
     }
 }
 impl Agent for NotificationsNotificationsCreateNewParams {

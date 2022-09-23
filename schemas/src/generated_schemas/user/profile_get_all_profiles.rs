@@ -28,61 +28,61 @@ impl Agent for UserProfileGetAllProfilesParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetAllProfilesReturnsParamsBanParams {
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "reason")]
-    pub reason: String,
     #[serde(rename = "whoBanned")]
     pub who_banned: String,
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
-    #[serde(rename = "bannedUntil")]
-    pub banned_until: String,
     #[serde(rename = "createdAt")]
     pub created_at: String,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "reason")]
+    pub reason: String,
+    #[serde(rename = "bannedUntil")]
+    pub banned_until: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetAllProfilesReturnsParams {
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "nickname")]
-    pub nickname: String,
-    #[serde(rename = "hasPassword")]
-    pub has_password: bool,
-    #[serde(rename = "isNicknameChanged")]
-    pub is_nickname_changed: bool,
-    #[serde(rename = "suspicious")]
-    pub suspicious: bool,
-    #[serde(rename = "isDeleted")]
-    pub is_deleted: bool,
-    #[serde(rename = "isBanned")]
-    pub is_banned: bool,
-    #[serde(rename = "notice")]
-    pub notice: String,
-    #[serde(rename = "isConfirmed")]
-    pub is_confirmed: bool,
     #[serde(rename = "verified")]
     pub verified: bool,
-    #[serde(rename = "lifeTimeInterest")]
-    pub life_time_interest: bool,
-    #[serde(rename = "email")]
-    pub email: String,
+    #[serde(rename = "isNicknameChanged")]
+    pub is_nickname_changed: bool,
     #[serde(rename = "lifeTimeInterestPercent")]
     pub life_time_interest_percent: String,
-    #[serde(rename = "id")]
-    pub id: f64,
+    #[serde(rename = "isDeleted")]
+    pub is_deleted: bool,
     #[serde(rename = "isSubscribedToMailing")]
     pub is_subscribed_to_mailing: bool,
+    #[serde(rename = "nickname")]
+    pub nickname: String,
     #[serde(rename = "ban")]
     pub ban: UserProfileGetAllProfilesReturnsParamsBanParams,
+    #[serde(rename = "notice")]
+    pub notice: String,
+    #[serde(rename = "suspicious")]
+    pub suspicious: bool,
+    #[serde(rename = "hasPassword")]
+    pub has_password: bool,
+    #[serde(rename = "lifeTimeInterest")]
+    pub life_time_interest: bool,
     #[serde(rename = "registeredAt")]
     pub registered_at: String,
+    #[serde(rename = "isConfirmed")]
+    pub is_confirmed: bool,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "isBanned")]
+    pub is_banned: bool,
+    #[serde(rename = "email")]
+    pub email: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetAllProfilesReturns(pub Vec<UserProfileGetAllProfilesReturnsParams>);
 impl Schema for UserProfileGetAllProfilesReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"hasPassword\":{\"type\":\"boolean\"},\"isNicknameChanged\":{\"type\":\"boolean\"},\"suspicious\":{\"type\":\"boolean\"},\"isDeleted\":{\"type\":\"boolean\"},\"isBanned\":{\"type\":\"boolean\"},\"notice\":{\"type\":\"string\"},\"isConfirmed\":{\"type\":\"boolean\"},\"verified\":{\"type\":\"boolean\"},\"lifeTimeInterest\":{\"type\":\"boolean\"},\"email\":{\"type\":\"string\"},\"lifeTimeInterestPercent\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isSubscribedToMailing\":{\"type\":\"boolean\"},\"ban\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"reason\":{\"type\":\"string\"},\"whoBanned\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"bannedUntil\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"reason\",\"whoBanned\",\"createdAt\",\"updatedAt\",\"bannedUntil\"]},\"registeredAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"nickname\",\"email\",\"verified\",\"isNicknameChanged\",\"isSubscribedToMailing\",\"suspicious\",\"isConfirmed\",\"notice\",\"isBanned\",\"isDeleted\",\"hasPassword\",\"ban\",\"registeredAt\",\"lifeTimeInterest\",\"lifeTimeInterestPercent\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"verified\":{\"type\":\"boolean\"},\"isNicknameChanged\":{\"type\":\"boolean\"},\"lifeTimeInterestPercent\":{\"type\":\"string\"},\"isDeleted\":{\"type\":\"boolean\"},\"isSubscribedToMailing\":{\"type\":\"boolean\"},\"nickname\":{\"type\":\"string\"},\"ban\":{\"type\":\"object\",\"properties\":{\"whoBanned\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"reason\":{\"type\":\"string\"},\"bannedUntil\":{\"type\":\"string\"}},\"required\":[\"id\",\"reason\",\"whoBanned\",\"createdAt\",\"updatedAt\",\"bannedUntil\"]},\"notice\":{\"type\":\"string\"},\"suspicious\":{\"type\":\"boolean\"},\"hasPassword\":{\"type\":\"boolean\"},\"lifeTimeInterest\":{\"type\":\"boolean\"},\"registeredAt\":{\"type\":\"string\"},\"isConfirmed\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isBanned\":{\"type\":\"boolean\"},\"email\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"nickname\",\"email\",\"verified\",\"isNicknameChanged\",\"isSubscribedToMailing\",\"suspicious\",\"isConfirmed\",\"notice\",\"isBanned\",\"isDeleted\",\"hasPassword\",\"ban\",\"registeredAt\",\"lifeTimeInterest\",\"lifeTimeInterestPercent\"]}}")
     }
 }
 impl Agent for UserProfileGetAllProfilesReturns {

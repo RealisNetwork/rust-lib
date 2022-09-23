@@ -28,53 +28,53 @@ impl Agent for BlogBlogGetParams {
 pub struct BlogBlogGetReturnsCategoryParams {
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "id")]
-    pub id: f64,
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
+    #[serde(rename = "id")]
+    pub id: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetReturns {
     #[serde(rename = "category")]
     pub category: BlogBlogGetReturnsCategoryParams,
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "isAvailable")]
-    pub is_available: bool,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: String,
-    #[serde(rename = "isPinned")]
-    pub is_pinned: bool,
     #[serde(rename = "metaDescription")]
     pub meta_description: String,
-    #[serde(rename = "question")]
-    pub question: String,
-    #[serde(rename = "lang")]
-    pub lang: String,
-    #[serde(rename = "isOpenPoll")]
-    pub is_open_poll: bool,
+    #[serde(rename = "content")]
+    pub content: String,
+    #[serde(rename = "answers")]
+    pub answers: Vec<String>,
     #[serde(rename = "metaTitle")]
     pub meta_title: String,
     #[serde(rename = "image")]
     pub image: String,
     #[serde(rename = "shortDescription")]
     pub short_description: String,
+    #[serde(rename = "isAvailable")]
+    pub is_available: bool,
+    #[serde(rename = "lang")]
+    pub lang: String,
+    #[serde(rename = "question")]
+    pub question: String,
     #[serde(rename = "url")]
     pub url: String,
     #[serde(rename = "views")]
     pub views: f64,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "content")]
-    pub content: String,
+    #[serde(rename = "id")]
+    pub id: f64,
     #[serde(rename = "title")]
     pub title: String,
-    #[serde(rename = "answers")]
-    pub answers: Vec<String>,
+    #[serde(rename = "isOpenPoll")]
+    pub is_open_poll: bool,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
+    #[serde(rename = "isPinned")]
+    pub is_pinned: bool,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
 }
 impl Schema for BlogBlogGetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"category\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isAvailable\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"name\",\"isAvailable\"]},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isAvailable\":{\"type\":\"boolean\"},\"updatedAt\":{\"type\":\"string\"},\"isPinned\":{\"type\":\"boolean\"},\"metaDescription\":{\"type\":\"string\"},\"question\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"},\"isOpenPoll\":{\"type\":\"boolean\"},\"metaTitle\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"views\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"createdAt\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"id\",\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\",\"isPinned\",\"views\",\"isAvailable\",\"lang\",\"isOpenPoll\",\"question\",\"answers\",\"createdAt\",\"updatedAt\",\"category\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"category\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"name\",\"isAvailable\"]},\"metaDescription\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"metaTitle\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"},\"lang\":{\"type\":\"string\"},\"question\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"views\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"title\":{\"type\":\"string\"},\"isOpenPoll\":{\"type\":\"boolean\"},\"updatedAt\":{\"type\":\"string\"},\"isPinned\":{\"type\":\"boolean\"},\"createdAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\",\"isPinned\",\"views\",\"isAvailable\",\"lang\",\"isOpenPoll\",\"question\",\"answers\",\"createdAt\",\"updatedAt\",\"category\"]}")
     }
 }
 impl Agent for BlogBlogGetReturns {

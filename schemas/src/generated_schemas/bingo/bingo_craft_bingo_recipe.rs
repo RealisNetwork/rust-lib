@@ -30,16 +30,16 @@ impl Agent for BingoBingoCraftBingoRecipeParams {
 pub struct BingoBingoCraftBingoRecipeReturns {
     #[serde(rename = "BingoReceiptId")]
     pub bingo_receipt_id: i32,
+    #[serde(rename = "status")]
+    pub status: i32,
     #[serde(rename = "HardRewardAmount")]
     pub hard_reward_amount: String,
     #[serde(rename = "JackpotRewardAmount")]
     pub jackpot_reward_amount: String,
-    #[serde(rename = "status")]
-    pub status: i32,
 }
 impl Schema for BingoBingoCraftBingoRecipeReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"BingoReceiptId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"HardRewardAmount\":{\"type\":\"string\"},\"JackpotRewardAmount\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"status\",\"BingoReceiptId\",\"HardRewardAmount\",\"JackpotRewardAmount\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"BingoReceiptId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"HardRewardAmount\":{\"type\":\"string\"},\"JackpotRewardAmount\":{\"type\":\"string\"}},\"required\":[\"status\",\"BingoReceiptId\",\"HardRewardAmount\",\"JackpotRewardAmount\"]}")
     }
 }
 impl Agent for BingoBingoCraftBingoRecipeReturns {
