@@ -1,4 +1,5 @@
 pub mod market_endpoints_get_by_filter;
+pub mod market_endpoints_get_similar;
 pub mod market_place_add_to_market_place;
 pub mod market_place_buy_item;
 pub mod market_place_cancel_sale;

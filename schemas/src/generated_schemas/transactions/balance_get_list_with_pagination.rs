@@ -26,25 +26,25 @@ impl Agent for TransactionsBalanceGetListWithPaginationParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetListWithPaginationReturnsListParamsParams {
-    #[serde(rename = "balanceChange")]
-    pub balance_change: String,
     #[serde(rename = "dateTime")]
     pub date_time: String,
     #[serde(rename = "blockId")]
     pub block_id: String,
+    #[serde(rename = "balanceChange")]
+    pub balance_change: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetListWithPaginationReturns {
-    #[serde(rename = "list")]
-    pub list: Vec<TransactionsBalanceGetListWithPaginationReturnsListParamsParams>,
-    #[serde(rename = "page")]
-    pub page: i16,
     #[serde(rename = "pages")]
     pub pages: i16,
+    #[serde(rename = "page")]
+    pub page: i16,
+    #[serde(rename = "list")]
+    pub list: Vec<TransactionsBalanceGetListWithPaginationReturnsListParamsParams>,
 }
 impl Schema for TransactionsBalanceGetListWithPaginationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"balanceChange\":{\"type\":\"string\"},\"dateTime\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"}},\"required\":[\"blockId\",\"dateTime\",\"balanceChange\"]}},\"page\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"pages\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}}},\"required\":[\"page\",\"pages\",\"list\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"pages\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"page\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"dateTime\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"},\"balanceChange\":{\"type\":\"string\"}},\"required\":[\"blockId\",\"dateTime\",\"balanceChange\"]}}},\"required\":[\"page\",\"pages\",\"list\"]}")
     }
 }
 impl Agent for TransactionsBalanceGetListWithPaginationReturns {

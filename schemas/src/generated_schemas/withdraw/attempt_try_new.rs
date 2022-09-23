@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawAttemptTryNewParams {
-    #[serde(rename = "receiverAddress")]
-    pub receiver_address: String,
     #[serde(rename = "amount")]
     pub amount: String,
+    #[serde(rename = "receiverAddress")]
+    pub receiver_address: String,
 }
 impl Schema for WithdrawAttemptTryNewParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"receiverAddress\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"receiverAddress\",\"amount\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"receiverAddress\":{\"type\":\"string\"}},\"required\":[\"receiverAddress\",\"amount\"]}")
     }
 }
 impl Agent for WithdrawAttemptTryNewParams {

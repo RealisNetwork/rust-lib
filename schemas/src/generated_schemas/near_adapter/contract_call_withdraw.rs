@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterContractCallWithdrawParams {
+    #[serde(rename = "signature")]
+    pub signature: String,
     #[serde(rename = "recipientAddress")]
     pub recipient_address: String,
     #[serde(rename = "amount")]
     pub amount: String,
-    #[serde(rename = "signature")]
-    pub signature: String,
 }
 impl Schema for NearAdapterContractCallWithdrawParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"recipientAddress\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"signature\":{\"type\":\"string\"}},\"required\":[\"recipientAddress\",\"amount\",\"signature\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"signature\":{\"type\":\"string\"},\"recipientAddress\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"recipientAddress\",\"amount\",\"signature\"]}")
     }
 }
 impl Agent for NearAdapterContractCallWithdrawParams {

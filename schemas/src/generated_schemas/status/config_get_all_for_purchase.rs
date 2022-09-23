@@ -32,18 +32,18 @@ impl Agent for StatusConfigGetAllForPurchaseParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigGetAllForPurchaseReturnsParams {
+    #[serde(rename = "membershipId")]
+    pub membership_id: f64,
+    #[serde(rename = "maxCount")]
+    pub max_count: String,
     #[serde(rename = "priceInLis")]
     pub price_in_lis: String,
     #[serde(rename = "price")]
     pub price: String,
-    #[serde(rename = "priorityIndex")]
-    pub priority_index: f64,
     #[serde(rename = "membership")]
     pub membership: String,
-    #[serde(rename = "maxCount")]
-    pub max_count: String,
-    #[serde(rename = "membershipId")]
-    pub membership_id: f64,
+    #[serde(rename = "priorityIndex")]
+    pub priority_index: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigGetAllForPurchaseReturns(
@@ -51,7 +51,7 @@ pub struct StatusConfigGetAllForPurchaseReturns(
 );
 impl Schema for StatusConfigGetAllForPurchaseReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"priceInLis\":{\"type\":\"string\"},\"price\":{\"type\":\"string\"},\"priorityIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"membership\":{\"type\":\"string\"},\"maxCount\":{\"type\":\"string\"},\"membershipId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"membershipId\",\"priorityIndex\",\"membership\",\"maxCount\",\"priceInLis\",\"price\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"membershipId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"maxCount\":{\"type\":\"string\"},\"priceInLis\":{\"type\":\"string\"},\"price\":{\"type\":\"string\"},\"membership\":{\"type\":\"string\"},\"priorityIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"membershipId\",\"priorityIndex\",\"membership\",\"maxCount\",\"priceInLis\",\"price\"]}}")
     }
 }
 impl Agent for StatusConfigGetAllForPurchaseReturns {

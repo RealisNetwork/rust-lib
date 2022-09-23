@@ -32,21 +32,21 @@ impl Agent for ReferralLinkGetAllMyParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralLinkGetAllMyReturnsReferralLinksParamsParams {
-    #[serde(rename = "appId")]
-    pub app_id: f64,
     #[serde(rename = "link")]
     pub link: String,
+    #[serde(rename = "appId")]
+    pub app_id: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralLinkGetAllMyReturns {
-    #[serde(rename = "referralLinks")]
-    pub referral_links: Vec<ReferralLinkGetAllMyReturnsReferralLinksParamsParams>,
     #[serde(rename = "referralCode")]
     pub referral_code: String,
+    #[serde(rename = "referralLinks")]
+    pub referral_links: Vec<ReferralLinkGetAllMyReturnsReferralLinksParamsParams>,
 }
 impl Schema for ReferralLinkGetAllMyReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"referralLinks\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"link\":{\"type\":\"string\"}},\"required\":[\"appId\",\"link\"]}},\"referralCode\":{\"type\":\"string\"}},\"required\":[\"referralCode\",\"referralLinks\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"referralCode\":{\"type\":\"string\"},\"referralLinks\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"link\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"appId\",\"link\"]}}},\"required\":[\"referralCode\",\"referralLinks\"]}")
     }
 }
 impl Agent for ReferralLinkGetAllMyReturns {

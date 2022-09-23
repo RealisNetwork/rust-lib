@@ -4,27 +4,27 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceAdminIncreaseBalanceParamsExtraDetailsParams {}
+pub struct TransactionsBalanceAdminIncreaseBalanceParamsExtraDetailParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceAdminIncreaseBalanceParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "extraDetails")]
-    pub extra_details: Option<TransactionsBalanceAdminIncreaseBalanceParamsExtraDetailsParams>,
-    #[serde(rename = "currency")]
-    pub currency: String,
-    #[serde(rename = "creator")]
-    pub creator: String,
     #[serde(rename = "reason")]
     pub reason: String,
-    #[serde(rename = "amount")]
-    pub amount: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
+    #[serde(rename = "currency")]
+    pub currency: String,
+    #[serde(rename = "extraDetail")]
+    pub extra_detail: Option<TransactionsBalanceAdminIncreaseBalanceParamsExtraDetailParams>,
+    #[serde(rename = "creator")]
+    pub creator: String,
 }
 impl Schema for TransactionsBalanceAdminIncreaseBalanceParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"creator\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"reason\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"extraDetail\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"creator\":{\"type\":\"string\"}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}")
     }
 }
 impl Agent for TransactionsBalanceAdminIncreaseBalanceParams {

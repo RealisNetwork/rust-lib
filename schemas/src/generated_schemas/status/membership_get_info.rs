@@ -30,16 +30,16 @@ impl Agent for StatusMembershipGetInfoParams {
 pub struct StatusMembershipGetInfoReturns {
     #[serde(rename = "membership")]
     pub membership: String,
-    #[serde(rename = "price")]
-    pub price: f64,
     #[serde(rename = "multiplier")]
     pub multiplier: f64,
+    #[serde(rename = "price")]
+    pub price: f64,
     #[serde(rename = "priceInLis")]
     pub price_in_lis: f64,
 }
 impl Schema for StatusMembershipGetInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"membership\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"multiplier\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"priceInLis\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"membership\",\"multiplier\",\"price\",\"priceInLis\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"membership\":{\"type\":\"string\"},\"multiplier\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"price\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"priceInLis\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"membership\",\"multiplier\",\"price\",\"priceInLis\"]}")
     }
 }
 impl Agent for StatusMembershipGetInfoReturns {

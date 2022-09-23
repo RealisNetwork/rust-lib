@@ -26,34 +26,36 @@ impl Agent for BingoBingoGetBingoDataParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BingoBingoGetBingoDataReturnsBingoSeasonInfoParams {
-    #[serde(rename = "seasonId")]
+    #[serde(rename = "SeasonStartDelayMs")]
+    pub season_start_delay_ms: f64,
+    #[serde(rename = "LastUpdateTimeMs")]
+    pub last_update_time_ms: f64,
+    #[serde(rename = "SeasonId")]
     pub season_id: i32,
-    #[serde(rename = "lastUpdateTimeMs")]
-    pub last_update_time_ms: String,
-    #[serde(rename = "seasonDurationMs")]
-    pub season_duration_ms: String,
-    #[serde(rename = "seasonStartDelayMs")]
-    pub season_start_delay_ms: String,
-    #[serde(rename = "seasonState")]
+    #[serde(rename = "SeasonState")]
     pub season_state: i32,
+    #[serde(rename = "SeasonDurationMs")]
+    pub season_duration_ms: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BingoBingoGetBingoDataReturnsBingoItemsParamsParams {
-    #[serde(rename = "itemId")]
+    #[serde(rename = "ItemId")]
     pub item_id: i32,
-    #[serde(rename = "amount")]
+    #[serde(rename = "Amount")]
     pub amount: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BingoBingoGetBingoDataReturns {
-    #[serde(rename = "bingoSeasonInfo")]
+    #[serde(rename = "BingoSeasonInfo")]
     pub bingo_season_info: BingoBingoGetBingoDataReturnsBingoSeasonInfoParams,
-    #[serde(rename = "bingoItems")]
+    #[serde(rename = "status")]
+    pub status: i32,
+    #[serde(rename = "BingoItems")]
     pub bingo_items: Vec<BingoBingoGetBingoDataReturnsBingoItemsParamsParams>,
 }
 impl Schema for BingoBingoGetBingoDataReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"bingoSeasonInfo\":{\"type\":\"object\",\"properties\":{\"seasonId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"lastUpdateTimeMs\":{\"type\":\"string\"},\"seasonDurationMs\":{\"type\":\"string\"},\"seasonStartDelayMs\":{\"type\":\"string\"},\"seasonState\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"seasonId\",\"seasonState\",\"lastUpdateTimeMs\",\"seasonDurationMs\",\"seasonStartDelayMs\"]},\"bingoItems\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"itemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"amount\":{\"type\":\"string\"}},\"required\":[\"itemId\",\"amount\"]}}},\"required\":[\"bingoItems\",\"bingoSeasonInfo\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"BingoSeasonInfo\":{\"type\":\"object\",\"properties\":{\"SeasonStartDelayMs\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"LastUpdateTimeMs\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"SeasonId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"SeasonState\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"SeasonDurationMs\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"SeasonId\",\"SeasonState\",\"LastUpdateTimeMs\",\"SeasonDurationMs\",\"SeasonStartDelayMs\"]},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"BingoItems\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"ItemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"Amount\":{\"type\":\"string\"}},\"required\":[\"ItemId\",\"Amount\"]}}},\"required\":[\"status\",\"BingoItems\",\"BingoSeasonInfo\"]}")
     }
 }
 impl Agent for BingoBingoGetBingoDataReturns {

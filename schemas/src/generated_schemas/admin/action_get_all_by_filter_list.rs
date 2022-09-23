@@ -5,28 +5,28 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionGetAllByFilterListParams {
-    #[serde(rename = "firstDate")]
-    pub first_date: Option<String>,
-    #[serde(rename = "agent")]
-    pub agent: Option<String>,
-    #[serde(rename = "method")]
-    pub method: Option<String>,
-    #[serde(rename = "userId")]
-    pub user_id: Option<String>,
-    #[serde(rename = "page")]
-    pub page: Option<f64>,
     #[serde(rename = "perPage")]
     pub per_page: Option<f64>,
+    #[serde(rename = "agent")]
+    pub agent: Option<String>,
+    #[serde(rename = "firstDate")]
+    pub first_date: Option<String>,
     #[serde(rename = "lastDate")]
     pub last_date: Option<String>,
     #[serde(rename = "isCancelable")]
     pub is_cancelable: Option<bool>,
+    #[serde(rename = "page")]
+    pub page: Option<f64>,
     #[serde(rename = "nickname")]
     pub nickname: Option<String>,
+    #[serde(rename = "method")]
+    pub method: Option<String>,
+    #[serde(rename = "userId")]
+    pub user_id: Option<String>,
 }
 impl Schema for AdminActionGetAllByFilterListParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"firstDate\":{\"type\":\"string\"},\"agent\":{\"type\":\"string\"},\"method\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"lastDate\":{\"type\":\"string\"},\"isCancelable\":{\"type\":\"boolean\"},\"nickname\":{\"type\":\"string\"}},\"required\":null}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"agent\":{\"type\":\"string\"},\"firstDate\":{\"type\":\"string\"},\"lastDate\":{\"type\":\"string\"},\"isCancelable\":{\"type\":\"boolean\"},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"nickname\":{\"type\":\"string\"},\"method\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":null}")
     }
 }
 impl Agent for AdminActionGetAllByFilterListParams {
@@ -46,22 +46,22 @@ pub struct AdminActionGetAllByFilterListReturnsDataParamsParamsParamsParams {}
 pub struct AdminActionGetAllByFilterListReturnsDataParamsParams {
     #[serde(rename = "nickname")]
     pub nickname: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "agent")]
+    pub agent: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "id")]
+    pub id: f64,
     #[serde(rename = "actionId")]
     pub action_id: String,
     #[serde(rename = "method")]
     pub method: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "params")]
     pub params: AdminActionGetAllByFilterListReturnsDataParamsParamsParamsParams,
-    #[serde(rename = "agent")]
-    pub agent: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
     #[serde(rename = "isCancelable")]
     pub is_cancelable: bool,
-    #[serde(rename = "id")]
-    pub id: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionGetAllByFilterListReturns {
@@ -72,7 +72,7 @@ pub struct AdminActionGetAllByFilterListReturns {
 }
 impl Schema for AdminActionGetAllByFilterListReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"nickname\":{\"type\":\"string\"},\"actionId\":{\"type\":\"string\"},\"method\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"params\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"agent\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"isCancelable\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"actionId\",\"nickname\",\"userId\",\"method\",\"isCancelable\",\"params\",\"agent\",\"createdAt\"]}}},\"required\":[\"data\",\"totalCount\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"nickname\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"agent\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"actionId\":{\"type\":\"string\"},\"method\":{\"type\":\"string\"},\"params\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"isCancelable\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"actionId\",\"nickname\",\"userId\",\"method\",\"isCancelable\",\"params\",\"agent\",\"createdAt\"]}}},\"required\":[\"data\",\"totalCount\"]}")
     }
 }
 impl Agent for AdminActionGetAllByFilterListReturns {

@@ -6,6 +6,7 @@ fn main() {
     use schemas_generator::{
         agent::Agent,
         env_loader::{GitLoader, Loader},
+        manager::SchemaManagerGenerator,
     };
     use std::collections::HashSet;
     use std::{
@@ -16,6 +17,7 @@ fn main() {
 
     const PATH: &str = "src/generated_schemas/";
     const MOD_RS: &str = "mod.rs";
+    const SCHEMA_MANAGER: &str = "src/manager.rs";
 
     let git_loader = GitLoader::load(None).expect("Fail to load env");
 
@@ -68,16 +70,21 @@ fn main() {
     // Creating src/generated_schemas/mod.rs in
     let mut mod_file = std::fs::File::create(&Path::new(&format!("{}{}", PATH, MOD_RS)))
         .expect("Fail to create \"mod.rs\" file");
-    let values = agents
+    let values: Vec<_> = agents
         .clone()
         .into_iter()
         .map(|agent| agent.create_directory_name())
         .collect::<HashSet<_>>()
         .into_iter()
-        .map(|agent| Ident::new(&agent, Span::call_site()));
+        .map(|agent| Ident::new(&agent, Span::call_site()))
+        .collect();
+
+    let pub_mod = values.clone();
+    let pub_use = values;
 
     let pub_mod = quote! {
-      #( pub mod #values; )*
+      #( pub mod #pub_mod; )*
+      #( pub use #pub_use::*; )*
       pub mod prelude;
     };
     mod_file
@@ -97,7 +104,7 @@ fn main() {
         .write_all(pub_prelude.to_string().as_bytes())
         .expect("Fail to write to \"prelude.rs\"");
 
-    for schema in agents {
+    for schema in agents.clone() {
         let agent = schema.create_directory_name();
         let method = schema.create_file_name();
 
@@ -109,6 +116,8 @@ fn main() {
 
         std::fs::write(out, content).unwrap();
     }
+
+    SchemaManagerGenerator::new(agents, SCHEMA_MANAGER.to_string()).generate();
 }
 
 #[cfg(not(feature = "rebuild"))]

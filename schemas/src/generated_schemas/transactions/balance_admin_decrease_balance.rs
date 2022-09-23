@@ -4,27 +4,27 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceAdminDecreaseBalanceParamsExtraDetailsParams {}
+pub struct TransactionsBalanceAdminDecreaseBalanceParamsExtraDetailParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceAdminDecreaseBalanceParams {
-    #[serde(rename = "extraDetails")]
-    pub extra_details: Option<TransactionsBalanceAdminDecreaseBalanceParamsExtraDetailsParams>,
-    #[serde(rename = "reason")]
-    pub reason: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
     #[serde(rename = "currency")]
     pub currency: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
-    #[serde(rename = "creator")]
-    pub creator: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
+    #[serde(rename = "reason")]
+    pub reason: String,
     #[serde(rename = "amount")]
     pub amount: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "extraDetail")]
+    pub extra_detail: Option<TransactionsBalanceAdminDecreaseBalanceParamsExtraDetailParams>,
 }
 impl Schema for TransactionsBalanceAdminDecreaseBalanceParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"extraDetails\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"reason\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"txId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"creator\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"txId\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"extraDetail\":{\"type\":\"object\",\"properties\":{},\"required\":null}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}")
     }
 }
 impl Agent for TransactionsBalanceAdminDecreaseBalanceParams {

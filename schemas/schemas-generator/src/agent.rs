@@ -37,6 +37,16 @@ impl Agent {
         Ident::new(&name, Span::call_site())
     }
 
+    pub fn create_ident_params(&self) -> Ident {
+        let name = self.create_name_params();
+        Ident::new(&name, Span::call_site())
+    }
+
+    pub fn create_ident_returns(&self) -> Ident {
+        let name = self.create_name_returns();
+        Ident::new(&name, Span::call_site())
+    }
+
     #[must_use]
     pub fn create_name_params(&self) -> String {
         format!("{}Params", self.create_name_case_pascal())

@@ -4,27 +4,27 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceIncreaseBalanceByUserIdParamsExtraDetailsParams {}
+pub struct TransactionsBalanceIncreaseBalanceByUserIdParamsExtraDetailParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceIncreaseBalanceByUserIdParams {
     #[serde(rename = "creator")]
     pub creator: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "amount")]
-    pub amount: String,
-    #[serde(rename = "extraDetails")]
-    pub extra_details: Option<TransactionsBalanceIncreaseBalanceByUserIdParamsExtraDetailsParams>,
     #[serde(rename = "currency")]
     pub currency: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
+    #[serde(rename = "extraDetail")]
+    pub extra_detail: Option<TransactionsBalanceIncreaseBalanceByUserIdParamsExtraDetailParams>,
     #[serde(rename = "reason")]
     pub reason: String,
 }
 impl Schema for TransactionsBalanceIncreaseBalanceByUserIdParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"creator\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"txId\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"creator\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"amount\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"extraDetail\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"reason\":{\"type\":\"string\"}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}")
     }
 }
 impl Agent for TransactionsBalanceIncreaseBalanceByUserIdParams {
