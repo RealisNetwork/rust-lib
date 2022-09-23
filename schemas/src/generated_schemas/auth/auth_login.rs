@@ -7,16 +7,16 @@ use crate::generated_schemas::prelude::*;
 pub struct AuthAuthLoginParams {
     #[serde(rename = "appId")]
     pub app_id: Option<i32>,
-    #[serde(rename = "deviceId")]
-    pub device_id: Option<String>,
     #[serde(rename = "username")]
     pub username: String,
     #[serde(rename = "password")]
     pub password: String,
+    #[serde(rename = "deviceId")]
+    pub device_id: Option<String>,
 }
 impl Schema for AuthAuthLoginParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"appId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"deviceId\":{\"type\":\"string\"},\"username\":{\"type\":\"string\"},\"password\":{\"type\":\"string\"}},\"required\":[\"username\",\"password\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"appId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"username\":{\"type\":\"string\"},\"password\":{\"type\":\"string\"},\"deviceId\":{\"type\":\"string\"}},\"required\":[\"username\",\"password\"]}")
     }
 }
 impl Agent for AuthAuthLoginParams {
@@ -34,18 +34,18 @@ impl Agent for AuthAuthLoginParams {
 pub struct AuthAuthLoginReturns {
     #[serde(rename = "access_token")]
     pub access_token: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "expires_in")]
-    pub expires_in: i32,
     #[serde(rename = "refresh_token")]
     pub refresh_token: String,
+    #[serde(rename = "expires_in")]
+    pub expires_in: i32,
     #[serde(rename = "refresh_expires_in")]
     pub refresh_expires_in: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for AuthAuthLoginReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"access_token\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"refresh_token\":{\"type\":\"string\"},\"refresh_expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"access_token\",\"expires_in\",\"refresh_expires_in\",\"refresh_token\",\"userId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"access_token\":{\"type\":\"string\"},\"refresh_token\":{\"type\":\"string\"},\"expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"refresh_expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"access_token\",\"expires_in\",\"refresh_expires_in\",\"refresh_token\",\"userId\"]}")
     }
 }
 impl Agent for AuthAuthLoginReturns {

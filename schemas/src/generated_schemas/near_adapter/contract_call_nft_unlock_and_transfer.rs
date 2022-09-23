@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterContractCallNftUnlockAndTransferParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "tokenId")]
     pub token_id: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for NearAdapterContractCallNftUnlockAndTransferParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"tokenId\":{\"type\":\"string\"}},\"required\":[\"tokenId\",\"userId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"tokenId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"tokenId\",\"userId\"]}")
     }
 }
 impl Agent for NearAdapterContractCallNftUnlockAndTransferParams {

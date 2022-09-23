@@ -28,24 +28,24 @@ impl Agent for CatsAndDragonsWrapperGetUserInfoParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetUserInfoReturns {
-    #[serde(rename = "isNewProfile")]
-    pub is_new_profile: bool,
-    #[serde(rename = "refCode")]
-    pub ref_code: String,
+    #[serde(rename = "isAuthorized")]
+    pub is_authorized: bool,
     #[serde(rename = "email")]
     pub email: String,
+    #[serde(rename = "refCode")]
+    pub ref_code: String,
+    #[serde(rename = "hasReferrer")]
+    pub has_referrer: bool,
     #[serde(rename = "refLink")]
     pub ref_link: String,
     #[serde(rename = "nickname")]
     pub nickname: String,
-    #[serde(rename = "hasReferrer")]
-    pub has_referrer: bool,
-    #[serde(rename = "isAuthorized")]
-    pub is_authorized: bool,
+    #[serde(rename = "isNewProfile")]
+    pub is_new_profile: bool,
 }
 impl Schema for CatsAndDragonsWrapperGetUserInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isNewProfile\":{\"type\":\"boolean\"},\"refCode\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"refLink\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"hasReferrer\":{\"type\":\"boolean\"},\"isAuthorized\":{\"type\":\"boolean\"}},\"required\":[\"email\",\"isAuthorized\",\"refLink\",\"refCode\",\"hasReferrer\",\"nickname\",\"isNewProfile\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isAuthorized\":{\"type\":\"boolean\"},\"email\":{\"type\":\"string\"},\"refCode\":{\"type\":\"string\"},\"hasReferrer\":{\"type\":\"boolean\"},\"refLink\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"isNewProfile\":{\"type\":\"boolean\"}},\"required\":[\"email\",\"isAuthorized\",\"refLink\",\"refCode\",\"hasReferrer\",\"nickname\",\"isNewProfile\"]}")
     }
 }
 impl Agent for CatsAndDragonsWrapperGetUserInfoReturns {

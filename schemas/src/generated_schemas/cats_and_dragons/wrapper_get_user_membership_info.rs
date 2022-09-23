@@ -28,20 +28,20 @@ impl Agent for CatsAndDragonsWrapperGetUserMembershipInfoParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetUserMembershipInfoReturns {
-    #[serde(rename = "balance")]
-    pub balance: String,
-    #[serde(rename = "isAuthorized")]
-    pub is_authorized: bool,
-    #[serde(rename = "membershipId")]
-    pub membership_id: f64,
-    #[serde(rename = "statusPurchaseAppId")]
-    pub status_purchase_app_id: f64,
     #[serde(rename = "multiplier")]
     pub multiplier: f64,
+    #[serde(rename = "membershipId")]
+    pub membership_id: f64,
+    #[serde(rename = "balance")]
+    pub balance: String,
+    #[serde(rename = "statusPurchaseAppId")]
+    pub status_purchase_app_id: f64,
+    #[serde(rename = "isAuthorized")]
+    pub is_authorized: bool,
 }
 impl Schema for CatsAndDragonsWrapperGetUserMembershipInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"balance\":{\"type\":\"string\"},\"isAuthorized\":{\"type\":\"boolean\"},\"membershipId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"statusPurchaseAppId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"multiplier\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"statusPurchaseAppId\",\"membershipId\",\"multiplier\",\"balance\",\"isAuthorized\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"multiplier\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"membershipId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"balance\":{\"type\":\"string\"},\"statusPurchaseAppId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isAuthorized\":{\"type\":\"boolean\"}},\"required\":[\"statusPurchaseAppId\",\"membershipId\",\"multiplier\",\"balance\",\"isAuthorized\"]}")
     }
 }
 impl Agent for CatsAndDragonsWrapperGetUserMembershipInfoReturns {

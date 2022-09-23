@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogUpdateIsOpenPollParams {
-    #[serde(rename = "id")]
-    pub id: f64,
     #[serde(rename = "status")]
     pub status: bool,
+    #[serde(rename = "id")]
+    pub id: f64,
 }
 impl Schema for BlogBlogUpdateIsOpenPollParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"status\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"status\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"status\"]}")
     }
 }
 impl Agent for BlogBlogUpdateIsOpenPollParams {

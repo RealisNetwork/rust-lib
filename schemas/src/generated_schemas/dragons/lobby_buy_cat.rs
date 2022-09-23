@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct DragonsLobbyBuyCatParams {
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "catId")]
-    pub cat_id: f64,
     #[serde(rename = "price")]
     pub price: f64,
+    #[serde(rename = "catId")]
+    pub cat_id: f64,
 }
 impl Schema for DragonsLobbyBuyCatParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"catId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"price\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"catId\",\"price\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"catId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"catId\",\"price\"]}")
     }
 }
 impl Agent for DragonsLobbyBuyCatParams {

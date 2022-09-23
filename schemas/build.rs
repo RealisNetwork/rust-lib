@@ -47,19 +47,6 @@ fn main() {
             .collect::<Vec<_>>();
         let pub_mods = quote! {
           #( pub mod #agent_methods; )*
-        };
-        mod_file
-            .write_all(pub_mods.to_string().as_bytes())
-            .expect("Fail to write to \"mod.rs\"");
-
-        // Creating `pub use ...::*
-        // Maybe get rid of this?
-        let agent_methods = agents
-            .iter()
-            .filter(|a| a.agent == agent)
-            .map(|agent| Ident::new(&agent.create_file_name(), Span::call_site()))
-            .collect::<Vec<_>>();
-        let pub_mods = quote! {
           #( pub use #agent_methods::*; )*
         };
         mod_file

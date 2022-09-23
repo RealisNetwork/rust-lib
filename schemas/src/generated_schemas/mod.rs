@@ -1,5 +1,6 @@
 pub mod achievements;
 pub mod admin;
+pub mod analytics;
 pub mod auth;
 pub mod balances;
 pub mod battle_pass;
@@ -44,6 +45,7 @@ pub mod user;
 pub mod withdraw;
 pub use achievements::*;
 pub use admin::*;
+pub use analytics::*;
 pub use auth::*;
 pub use balances::*;
 pub use battle_pass::*;

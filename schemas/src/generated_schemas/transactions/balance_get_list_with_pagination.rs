@@ -35,16 +35,16 @@ pub struct TransactionsBalanceGetListWithPaginationReturnsListParamsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetListWithPaginationReturns {
-    #[serde(rename = "pages")]
-    pub pages: i16,
     #[serde(rename = "page")]
     pub page: i16,
+    #[serde(rename = "pages")]
+    pub pages: i16,
     #[serde(rename = "list")]
     pub list: Vec<TransactionsBalanceGetListWithPaginationReturnsListParamsParams>,
 }
 impl Schema for TransactionsBalanceGetListWithPaginationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"pages\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"page\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"dateTime\":{\"type\":\"string\"},\"balanceChange\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"}},\"required\":[\"blockId\",\"dateTime\",\"balanceChange\"]}}},\"required\":[\"page\",\"pages\",\"list\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"pages\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"dateTime\":{\"type\":\"string\"},\"balanceChange\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"}},\"required\":[\"blockId\",\"dateTime\",\"balanceChange\"]}}},\"required\":[\"page\",\"pages\",\"list\"]}")
     }
 }
 impl Agent for TransactionsBalanceGetListWithPaginationReturns {

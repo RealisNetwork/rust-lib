@@ -1,13 +1,4 @@
-use crate::generated_schemas::{
-    achievements::*, admin::*, auth::*, balances::*, battle_pass::*, binance_wallet::*, bingo::*,
-    blog::*, cats::*, cats_and_dragons::*, cd_balances::*, cd_config::*, cd_user::*, cron::*,
-    dragocats_balancer::*, dragocats_lobby::*, dragocats_product_factory::*, dragocats_storage::*,
-    dragons::*, email::*, game_balancer::*, google_play::*, images::*, js_tests::*,
-    listeria_storage::*, lobby::*, lootboxes::*, market::*, market_place::*, near_adapter::*,
-    notifications::*, orchestrator::*, product_factory::*, promo::*, purchase::*, realis::*,
-    referral::*, refund::*, soul_adapter::*, status::*, task::*, transactions::*, user::*,
-    withdraw::*,
-};
+use crate::generated_schemas::*;
 use crate::Schema;
 use error_registry::{
     generated_errors::{Common, Validation},
@@ -87,6 +78,7 @@ impl SchemaManager {
                 Some(AdminUserRoleGetAllUsersWithNicknameParams::schema())
             }
             ("admin", "userRole_isAdmin") => Some(AdminUserRoleIsAdminParams::schema()),
+            ("analytics", "analytics_get") => Some(AnalyticsAnalyticsGetParams::schema()),
             ("auth", "admin_login") => Some(AuthAdminLoginParams::schema()),
             ("auth", "admin_addUserRole") => Some(AuthAdminAddUserRoleParams::schema()),
             ("auth", "admin_deleteUserRole") => Some(AuthAdminDeleteUserRoleParams::schema()),
@@ -1274,6 +1266,7 @@ impl SchemaManager {
                 Some(AdminUserRoleGetAllUsersWithNicknameReturns::schema())
             }
             ("admin", "userRole_isAdmin") => Some(AdminUserRoleIsAdminReturns::schema()),
+            ("analytics", "analytics_get") => Some(AnalyticsAnalyticsGetReturns::schema()),
             ("auth", "admin_login") => Some(AuthAdminLoginReturns::schema()),
             ("auth", "admin_addUserRole") => Some(AuthAdminAddUserRoleReturns::schema()),
             ("auth", "admin_deleteUserRole") => Some(AuthAdminDeleteUserRoleReturns::schema()),

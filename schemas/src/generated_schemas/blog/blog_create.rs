@@ -5,28 +5,28 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogCreateParamsPropsParams {
-    #[serde(rename = "answers")]
-    pub answers: Option<Vec<String>>,
-    #[serde(rename = "question")]
-    pub question: Option<String>,
-    #[serde(rename = "lang")]
-    pub lang: Option<String>,
-    #[serde(rename = "url")]
-    pub url: String,
-    #[serde(rename = "title")]
-    pub title: String,
-    #[serde(rename = "shortDescription")]
-    pub short_description: String,
-    #[serde(rename = "metaDescription")]
-    pub meta_description: String,
-    #[serde(rename = "metaTitle")]
-    pub meta_title: String,
     #[serde(rename = "image")]
     pub image: String,
-    #[serde(rename = "content")]
-    pub content: String,
+    #[serde(rename = "metaTitle")]
+    pub meta_title: String,
+    #[serde(rename = "lang")]
+    pub lang: Option<String>,
     #[serde(rename = "isOpenPoll")]
     pub is_open_poll: Option<bool>,
+    #[serde(rename = "title")]
+    pub title: String,
+    #[serde(rename = "metaDescription")]
+    pub meta_description: String,
+    #[serde(rename = "answers")]
+    pub answers: Option<Vec<String>>,
+    #[serde(rename = "shortDescription")]
+    pub short_description: String,
+    #[serde(rename = "content")]
+    pub content: String,
+    #[serde(rename = "question")]
+    pub question: Option<String>,
+    #[serde(rename = "url")]
+    pub url: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogCreateParams {
@@ -37,7 +37,7 @@ pub struct BlogBlogCreateParams {
 }
 impl Schema for BlogBlogCreateParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"props\":{\"type\":\"object\",\"properties\":{\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"question\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"isOpenPoll\":{\"type\":\"boolean\"}},\"required\":[\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\"]}},\"required\":[\"props\",\"categoryId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"props\":{\"type\":\"object\",\"properties\":{\"image\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"},\"isOpenPoll\":{\"type\":\"boolean\"},\"title\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"shortDescription\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"question\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"}},\"required\":[\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\"]}},\"required\":[\"props\",\"categoryId\"]}")
     }
 }
 impl Agent for BlogBlogCreateParams {

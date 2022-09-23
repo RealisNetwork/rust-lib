@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsRegistryProductAddProductHashParams {
-    #[serde(rename = "hashId")]
-    pub hash_id: String,
     #[serde(rename = "productId")]
     pub product_id: String,
+    #[serde(rename = "hashId")]
+    pub hash_id: String,
 }
 impl Schema for TransactionsRegistryProductAddProductHashParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"hashId\":{\"type\":\"string\"},\"productId\":{\"type\":\"string\"}},\"required\":[\"productId\",\"hashId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"string\"},\"hashId\":{\"type\":\"string\"}},\"required\":[\"productId\",\"hashId\"]}")
     }
 }
 impl Agent for TransactionsRegistryProductAddProductHashParams {

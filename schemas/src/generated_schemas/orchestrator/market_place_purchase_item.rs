@@ -9,14 +9,14 @@ pub struct OrchestratorMarketPlacePurchaseItemParams {
     pub product_id: i32,
     #[serde(rename = "txId")]
     pub tx_id: String,
-    #[serde(rename = "creator")]
-    pub creator: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
 }
 impl Schema for OrchestratorMarketPlacePurchaseItemParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"txId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"productId\",\"userId\",\"txId\",\"creator\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"txId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"}},\"required\":[\"productId\",\"userId\",\"txId\",\"creator\"]}")
     }
 }
 impl Agent for OrchestratorMarketPlacePurchaseItemParams {

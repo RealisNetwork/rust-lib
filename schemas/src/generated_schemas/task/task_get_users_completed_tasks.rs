@@ -23,14 +23,14 @@ impl Agent for TaskTaskGetUsersCompletedTasksParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TaskTaskGetUsersCompletedTasksReturns {
-    #[serde(rename = "Tasks")]
-    pub tasks: Vec<f64>,
     #[serde(rename = "status")]
     pub status: i32,
+    #[serde(rename = "Tasks")]
+    pub tasks: Vec<f64>,
 }
 impl Schema for TaskTaskGetUsersCompletedTasksReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"Tasks\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"status\",\"Tasks\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"Tasks\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}}},\"required\":[\"status\",\"Tasks\"]}")
     }
 }
 impl Agent for TaskTaskGetUsersCompletedTasksReturns {
