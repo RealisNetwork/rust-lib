@@ -28,14 +28,14 @@ impl Agent for AdminOptionGetParams {
 pub struct AdminOptionGetReturns {
     #[serde(rename = "scope")]
     pub scope: String,
-    #[serde(rename = "key")]
-    pub key: String,
     #[serde(rename = "value")]
     pub value: String,
+    #[serde(rename = "key")]
+    pub key: String,
 }
 impl Schema for AdminOptionGetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"scope\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"scope\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\"]}")
     }
 }
 impl Agent for AdminOptionGetReturns {

@@ -1,8 +1,10 @@
 use crate::agent::Agent;
-use quote::__private::TokenStream;
+use quote::__private::{Ident, TokenStream};
 use quote::quote;
+use std::collections::HashSet;
 use std::io::Write;
 use std::path::Path;
+use syn::__private::Span;
 
 pub struct SchemaManagerGenerator {
     agents: Vec<Agent>,
@@ -38,9 +40,22 @@ impl SchemaManagerGenerator {
             quote! {(#agent, #method) => Some(#ident::schema()),}
         });
 
+        let agents_hash_set = self
+            .agents
+            .clone()
+            .into_iter()
+            .map(|agent| agent.create_directory_name())
+            .collect::<HashSet<_>>();
+
+        let vec_agents = agents_hash_set
+            .iter()
+            .map(|agent| Ident::new(agent, Span::call_site()))
+            .collect::<Vec<_>>();
+
         quote! {
-            use crate::{generated_schemas::*, Schema};
-            use error_registry::{generated_errors::Common, BaseError};
+            use crate::generated_schemas::{#(#vec_agents::*,)*};
+            use crate::Schema;
+            use error_registry::{generated_errors::{Common, Validation}, BaseError};
             use jsonschema::JSONSchema;
             use serde_json::{json, Value};
 
@@ -92,9 +107,10 @@ impl SchemaManagerGenerator {
                         .validate(json)
                         .map_err(|e| BaseError {
                             msg: format!(
-                                "Invalid JSON: {:?}",
+                                "Does not match pattern: {:?}",
                                 e.map(|e| e.to_string()).collect::<Vec<_>>()
                             ),
+                            error_type: Validation::DoesNotMatchPattern.into(),
                             data: Some(json!({
                                 "schema": schema,
                                 "json": json,

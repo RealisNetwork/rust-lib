@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceUpdateTransactionHashAndBlockIdParams {
-    #[serde(rename = "oldTxId")]
-    pub old_tx_id: String,
-    #[serde(rename = "newTxId")]
-    pub new_tx_id: String,
     #[serde(rename = "newBlockId")]
     pub new_block_id: String,
+    #[serde(rename = "newTxId")]
+    pub new_tx_id: String,
+    #[serde(rename = "oldTxId")]
+    pub old_tx_id: String,
 }
 impl Schema for TransactionsBalanceUpdateTransactionHashAndBlockIdParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"oldTxId\":{\"type\":\"string\"},\"newTxId\":{\"type\":\"string\"},\"newBlockId\":{\"type\":\"string\"}},\"required\":[\"oldTxId\",\"newTxId\",\"newBlockId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newBlockId\":{\"type\":\"string\"},\"newTxId\":{\"type\":\"string\"},\"oldTxId\":{\"type\":\"string\"}},\"required\":[\"oldTxId\",\"newTxId\",\"newBlockId\"]}")
     }
 }
 impl Agent for TransactionsBalanceUpdateTransactionHashAndBlockIdParams {

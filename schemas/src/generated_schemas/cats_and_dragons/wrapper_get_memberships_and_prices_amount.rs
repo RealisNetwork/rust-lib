@@ -39,14 +39,14 @@ pub struct CatsAndDragonsWrapperGetMembershipsAndPricesAmountReturnsMembershipsI
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetMembershipsAndPricesAmountReturnsMembershipsInfoParamsMembershipsParams
 {
-    #[serde(rename = "platinum")]
-    pub platinum: f64,
-    #[serde(rename = "gold")]
-    pub gold: f64,
     #[serde(rename = "silver")]
     pub silver: f64,
+    #[serde(rename = "platinum")]
+    pub platinum: f64,
     #[serde(rename = "standard")]
     pub standard: f64,
+    #[serde(rename = "gold")]
+    pub gold: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetMembershipsAndPricesAmountReturnsMembershipsInfoParams { # [serde (rename = "Price")] pub price : CatsAndDragonsWrapperGetMembershipsAndPricesAmountReturnsMembershipsInfoParamsPriceParams , # [serde (rename = "Memberships")] pub memberships : CatsAndDragonsWrapperGetMembershipsAndPricesAmountReturnsMembershipsInfoParamsMembershipsParams }
@@ -58,7 +58,7 @@ pub struct CatsAndDragonsWrapperGetMembershipsAndPricesAmountReturns {
 }
 impl Schema for CatsAndDragonsWrapperGetMembershipsAndPricesAmountReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"membershipsInfo\":{\"type\":\"object\",\"properties\":{\"Price\":{\"type\":\"object\",\"properties\":{\"lisUsd\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"lisUsd\"]},\"Memberships\":{\"type\":\"object\",\"properties\":{\"platinum\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"gold\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"silver\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"standard\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"standard\",\"silver\",\"gold\",\"platinum\"]}},\"required\":[\"Memberships\",\"Price\"]}},\"required\":[\"membershipsInfo\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"membershipsInfo\":{\"type\":\"object\",\"properties\":{\"Price\":{\"type\":\"object\",\"properties\":{\"lisUsd\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"lisUsd\"]},\"Memberships\":{\"type\":\"object\",\"properties\":{\"silver\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"platinum\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"standard\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"gold\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"standard\",\"silver\",\"gold\",\"platinum\"]}},\"required\":[\"Memberships\",\"Price\"]}},\"required\":[\"membershipsInfo\"]}")
     }
 }
 impl Agent for CatsAndDragonsWrapperGetMembershipsAndPricesAmountReturns {

@@ -1,5 +1,18 @@
-use crate::{generated_schemas::*, Schema};
-use error_registry::{generated_errors::Common, BaseError};
+use crate::generated_schemas::{
+    achievements::*, admin::*, auth::*, balances::*, battle_pass::*, binance_wallet::*, bingo::*,
+    blog::*, cats::*, cats_and_dragons::*, cd_balances::*, cd_config::*, cd_user::*, cron::*,
+    dragocats_balancer::*, dragocats_lobby::*, dragocats_product_factory::*, dragocats_storage::*,
+    dragons::*, email::*, game_balancer::*, google_play::*, images::*, js_tests::*,
+    listeria_storage::*, lobby::*, lootboxes::*, market::*, market_place::*, near_adapter::*,
+    notifications::*, orchestrator::*, product_factory::*, promo::*, purchase::*, realis::*,
+    referral::*, refund::*, soul_adapter::*, status::*, task::*, transactions::*, user::*,
+    withdraw::*,
+};
+use crate::Schema;
+use error_registry::{
+    generated_errors::{Common, Validation},
+    BaseError,
+};
 use jsonschema::JSONSchema;
 use serde_json::{json, Value};
 pub struct SchemaManager;
@@ -2441,9 +2454,10 @@ impl SchemaManager {
             .validate(json)
             .map_err(|e| BaseError {
                 msg: format!(
-                    "Invalid JSON: {:?}",
+                    "Does not match pattern: {:?}",
                     e.map(|e| e.to_string()).collect::<Vec<_>>()
                 ),
+                error_type: Validation::DoesNotMatchPattern.into(),
                 data: Some(json ! ({ "schema" : schema , "json" : json , })),
                 ..Default::default()
             })

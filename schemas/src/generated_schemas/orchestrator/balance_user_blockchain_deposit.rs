@@ -5,20 +5,20 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorBalanceUserBlockchainDepositParams {
-    #[serde(rename = "currency")]
-    pub currency: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
     #[serde(rename = "creator")]
     pub creator: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "amount")]
-    pub amount: String,
+    #[serde(rename = "currency")]
+    pub currency: String,
 }
 impl Schema for OrchestratorBalanceUserBlockchainDepositParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"creator\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\"]}")
     }
 }
 impl Agent for OrchestratorBalanceUserBlockchainDepositParams {

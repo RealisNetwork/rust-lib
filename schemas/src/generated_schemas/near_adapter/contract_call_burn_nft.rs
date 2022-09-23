@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct NearAdapterContractCallBurnNftParams {
     #[serde(rename = "tokenId")]
     pub token_id: String,
-    #[serde(rename = "userId")]
-    pub user_id: Option<String>,
     #[serde(rename = "approvalId")]
     pub approval_id: Option<String>,
+    #[serde(rename = "userId")]
+    pub user_id: Option<String>,
 }
 impl Schema for NearAdapterContractCallBurnNftParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"tokenId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"approvalId\":{\"type\":\"string\"}},\"required\":[\"tokenId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"tokenId\":{\"type\":\"string\"},\"approvalId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"tokenId\"]}")
     }
 }
 impl Agent for NearAdapterContractCallBurnNftParams {

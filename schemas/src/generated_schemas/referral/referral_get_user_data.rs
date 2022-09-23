@@ -30,14 +30,14 @@ impl Agent for ReferralReferralGetUserDataParams {
 pub struct ReferralReferralGetUserDataReturns {
     #[serde(rename = "refLink")]
     pub ref_link: String,
-    #[serde(rename = "hasReferrer")]
-    pub has_referrer: bool,
     #[serde(rename = "refCode")]
     pub ref_code: String,
+    #[serde(rename = "hasReferrer")]
+    pub has_referrer: bool,
 }
 impl Schema for ReferralReferralGetUserDataReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"refLink\":{\"type\":\"string\"},\"hasReferrer\":{\"type\":\"boolean\"},\"refCode\":{\"type\":\"string\"}},\"required\":[\"refLink\",\"refCode\",\"hasReferrer\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"refLink\":{\"type\":\"string\"},\"refCode\":{\"type\":\"string\"},\"hasReferrer\":{\"type\":\"boolean\"}},\"required\":[\"refLink\",\"refCode\",\"hasReferrer\"]}")
     }
 }
 impl Agent for ReferralReferralGetUserDataReturns {

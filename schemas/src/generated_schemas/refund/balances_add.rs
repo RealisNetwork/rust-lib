@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesAddParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "lockedFunds")]
     pub locked_funds: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for RefundBalancesAddParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"lockedFunds\":{\"type\":\"string\"}},\"required\":[\"userId\",\"lockedFunds\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"lockedFunds\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"lockedFunds\"]}")
     }
 }
 impl Agent for RefundBalancesAddParams {
