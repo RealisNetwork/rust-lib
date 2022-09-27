@@ -34,16 +34,16 @@ impl Agent for ListeriaStorageInventoryEndpointsAddedUnequippableItemNotificatio
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ListeriaStorageInventoryEndpointsAddedUnequippableItemNotificationReturns {
-    #[serde(rename = "itemId")]
-    pub item_id: i32,
     #[serde(rename = "bindingId")]
     pub binding_id: i32,
     #[serde(rename = "type")]
     pub r#type: i32,
+    #[serde(rename = "itemId")]
+    pub item_id: i32,
 }
 impl Schema for ListeriaStorageInventoryEndpointsAddedUnequippableItemNotificationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"itemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"type\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"itemId\",\"bindingId\",\"type\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"type\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"itemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"itemId\",\"bindingId\",\"type\"]}")
     }
 }
 impl Agent for ListeriaStorageInventoryEndpointsAddedUnequippableItemNotificationReturns {

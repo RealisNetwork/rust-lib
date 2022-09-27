@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyRegionsSetParams {
-    #[serde(rename = "isFixed")]
-    pub is_fixed: bool,
     #[serde(rename = "regionName")]
     pub region_name: String,
+    #[serde(rename = "isFixed")]
+    pub is_fixed: bool,
 }
 impl Schema for LobbyRegionsSetParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isFixed\":{\"type\":\"boolean\"},\"regionName\":{\"type\":\"string\"}},\"required\":[\"regionName\",\"isFixed\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"regionName\":{\"type\":\"string\"},\"isFixed\":{\"type\":\"boolean\"}},\"required\":[\"regionName\",\"isFixed\"]}")
     }
 }
 impl Agent for LobbyRegionsSetParams {

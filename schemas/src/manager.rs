@@ -78,7 +78,7 @@ impl SchemaManager {
                 Some(AdminUserRoleGetAllUsersWithNicknameParams::schema())
             }
             ("admin", "userRole_isAdmin") => Some(AdminUserRoleIsAdminParams::schema()),
-            ("analytics", "analytics_get") => Some(AnalyticsAnalyticsGetParams::schema()),
+            ("analytics", "analytics_send") => Some(AnalyticsAnalyticsSendParams::schema()),
             ("auth", "admin_login") => Some(AuthAdminLoginParams::schema()),
             ("auth", "admin_addUserRole") => Some(AuthAdminAddUserRoleParams::schema()),
             ("auth", "admin_deleteUserRole") => Some(AuthAdminDeleteUserRoleParams::schema()),
@@ -1122,6 +1122,9 @@ impl SchemaManager {
             ("transactions", "balance_getNumWithFilter") => {
                 Some(TransactionsBalanceGetNumWithFilterParams::schema())
             }
+            ("transactions", "balance_getTestnetLis") => {
+                Some(TransactionsBalanceGetTestnetLisParams::schema())
+            }
             ("transactions", "registryProduct_addProduct") => {
                 Some(TransactionsRegistryProductAddProductParams::schema())
             }
@@ -1266,7 +1269,7 @@ impl SchemaManager {
                 Some(AdminUserRoleGetAllUsersWithNicknameReturns::schema())
             }
             ("admin", "userRole_isAdmin") => Some(AdminUserRoleIsAdminReturns::schema()),
-            ("analytics", "analytics_get") => Some(AnalyticsAnalyticsGetReturns::schema()),
+            ("analytics", "analytics_send") => Some(AnalyticsAnalyticsSendReturns::schema()),
             ("auth", "admin_login") => Some(AuthAdminLoginReturns::schema()),
             ("auth", "admin_addUserRole") => Some(AuthAdminAddUserRoleReturns::schema()),
             ("auth", "admin_deleteUserRole") => Some(AuthAdminDeleteUserRoleReturns::schema()),
@@ -2335,6 +2338,9 @@ impl SchemaManager {
             }
             ("transactions", "balance_getNumWithFilter") => {
                 Some(TransactionsBalanceGetNumWithFilterReturns::schema())
+            }
+            ("transactions", "balance_getTestnetLis") => {
+                Some(TransactionsBalanceGetTestnetLisReturns::schema())
             }
             ("transactions", "registryProduct_addProduct") => {
                 Some(TransactionsRegistryProductAddProductReturns::schema())

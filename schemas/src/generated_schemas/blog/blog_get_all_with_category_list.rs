@@ -28,14 +28,14 @@ impl Agent for BlogBlogGetAllWithCategoryListParams {
 pub struct BlogBlogGetAllWithCategoryListReturnsParamsArticlesParamsParams {
     #[serde(rename = "image")]
     pub image: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
     #[serde(rename = "title")]
     pub title: String,
-    #[serde(rename = "shortDescription")]
-    pub short_description: String,
     #[serde(rename = "url")]
     pub url: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "shortDescription")]
+    pub short_description: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetAllWithCategoryListReturnsParams {
@@ -52,7 +52,7 @@ pub struct BlogBlogGetAllWithCategoryListReturns(
 );
 impl Schema for BlogBlogGetAllWithCategoryListReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"articles\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"image\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"}},\"required\":[\"title\",\"image\",\"url\",\"createdAt\",\"shortDescription\"]}},\"categoryName\":{\"type\":\"string\"}},\"required\":[\"categoryName\",\"categoryId\",\"articles\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"articles\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"image\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"}},\"required\":[\"title\",\"image\",\"url\",\"createdAt\",\"shortDescription\"]}},\"categoryName\":{\"type\":\"string\"}},\"required\":[\"categoryName\",\"categoryId\",\"articles\"]}}")
     }
 }
 impl Agent for BlogBlogGetAllWithCategoryListReturns {

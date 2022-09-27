@@ -32,10 +32,10 @@ impl Agent for ListeriaStorageInventoryEndpointsGetLootboxesListParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ListeriaStorageInventoryEndpointsGetLootboxesListReturnsLootboxesParamsParams {
-    #[serde(rename = "lootboxId")]
-    pub lootbox_id: i32,
     #[serde(rename = "status")]
     pub status: i32,
+    #[serde(rename = "lootboxId")]
+    pub lootbox_id: i32,
     #[serde(rename = "bindingId")]
     pub binding_id: i32,
 }
@@ -47,7 +47,7 @@ pub struct ListeriaStorageInventoryEndpointsGetLootboxesListReturns {
 }
 impl Schema for ListeriaStorageInventoryEndpointsGetLootboxesListReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"lootboxes\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"lootboxId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"lootboxId\",\"bindingId\",\"status\"]}}},\"required\":[\"lootboxes\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"lootboxes\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"lootboxId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"lootboxId\",\"bindingId\",\"status\"]}}},\"required\":[\"lootboxes\"]}")
     }
 }
 impl Agent for ListeriaStorageInventoryEndpointsGetLootboxesListReturns {

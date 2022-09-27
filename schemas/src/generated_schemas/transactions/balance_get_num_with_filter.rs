@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct TransactionsBalanceGetNumWithFilterParams {
     #[serde(rename = "userId")]
     pub user_id: Option<String>,
-    #[serde(rename = "debit")]
-    pub debit: Option<String>,
     #[serde(rename = "credit")]
     pub credit: Option<String>,
+    #[serde(rename = "debit")]
+    pub debit: Option<String>,
 }
 impl Schema for TransactionsBalanceGetNumWithFilterParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"debit\":{\"type\":\"string\"},\"credit\":{\"type\":\"string\"}},\"required\":null}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"credit\":{\"type\":\"string\"},\"debit\":{\"type\":\"string\"}},\"required\":null}")
     }
 }
 impl Agent for TransactionsBalanceGetNumWithFilterParams {

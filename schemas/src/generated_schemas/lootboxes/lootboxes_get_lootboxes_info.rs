@@ -28,14 +28,14 @@ impl Agent for LootboxesLootboxesGetLootboxesInfoParams {
 pub struct LootboxesLootboxesGetLootboxesInfoReturns {
     #[serde(rename = "UsualLootboxes")]
     pub usual_lootboxes: Vec<f64>,
-    #[serde(rename = "CooldownedLootboxes")]
-    pub cooldowned_lootboxes: Vec<f64>,
     #[serde(rename = "Status")]
     pub status: f64,
+    #[serde(rename = "CooldownedLootboxes")]
+    pub cooldowned_lootboxes: Vec<f64>,
 }
 impl Schema for LootboxesLootboxesGetLootboxesInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"UsualLootboxes\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"CooldownedLootboxes\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"Status\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"CooldownedLootboxes\",\"UsualLootboxes\",\"Status\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"UsualLootboxes\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"Status\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"CooldownedLootboxes\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}}},\"required\":[\"CooldownedLootboxes\",\"UsualLootboxes\",\"Status\"]}")
     }
 }
 impl Agent for LootboxesLootboxesGetLootboxesInfoReturns {

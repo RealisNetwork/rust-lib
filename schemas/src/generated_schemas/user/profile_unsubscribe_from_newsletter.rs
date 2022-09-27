@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileUnsubscribeFromNewsletterParams {
-    #[serde(rename = "email")]
-    pub email: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "email")]
+    pub email: String,
 }
 impl Schema for UserProfileUnsubscribeFromNewsletterParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"email\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"}},\"required\":[\"userId\",\"email\"]}")
     }
 }
 impl Agent for UserProfileUnsubscribeFromNewsletterParams {

@@ -28,12 +28,12 @@ impl Agent for ReferralReferralGetReferralsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralGetReferralsReturnsReferralTransactionsParamsParams {
-    #[serde(rename = "date")]
-    pub date: String,
     #[serde(rename = "nickname")]
     pub nickname: String,
     #[serde(rename = "amount")]
     pub amount: String,
+    #[serde(rename = "date")]
+    pub date: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralGetReferralsReturnsReferralsParamsParams {
@@ -52,7 +52,7 @@ pub struct ReferralReferralGetReferralsReturns {
 }
 impl Schema for ReferralReferralGetReferralsReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"referralTransactions\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"date\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"date\",\"nickname\",\"amount\"]}},\"referrals\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"nickname\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"nickname\",\"appId\"]}}},\"required\":[\"referrals\",\"referralTransactions\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"referralTransactions\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"nickname\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"date\":{\"type\":\"string\"}},\"required\":[\"date\",\"nickname\",\"amount\"]}},\"referrals\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"nickname\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"nickname\",\"appId\"]}}},\"required\":[\"referrals\",\"referralTransactions\"]}")
     }
 }
 impl Agent for ReferralReferralGetReferralsReturns {

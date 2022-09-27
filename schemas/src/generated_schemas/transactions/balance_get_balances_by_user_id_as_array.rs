@@ -32,10 +32,10 @@ impl Agent for TransactionsBalanceGetBalancesByUserIdAsArrayParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetBalancesByUserIdAsArrayReturnsParams {
-    #[serde(rename = "currency")]
-    pub currency: String,
     #[serde(rename = "amount")]
     pub amount: String,
+    #[serde(rename = "currency")]
+    pub currency: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetBalancesByUserIdAsArrayReturns(
@@ -43,7 +43,7 @@ pub struct TransactionsBalanceGetBalancesByUserIdAsArrayReturns(
 );
 impl Schema for TransactionsBalanceGetBalancesByUserIdAsArrayReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"currency\",\"amount\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"}},\"required\":[\"currency\",\"amount\"]}}")
     }
 }
 impl Agent for TransactionsBalanceGetBalancesByUserIdAsArrayReturns {

@@ -34,14 +34,14 @@ impl Agent for TransactionsBalanceGetBalancesByUserIdParams {
 pub struct TransactionsBalanceGetBalancesByUserIdReturns {
     #[serde(rename = "ETH")]
     pub eth: String,
-    #[serde(rename = "LIS")]
-    pub lis: String,
     #[serde(rename = "WLIS")]
     pub wlis: String,
+    #[serde(rename = "LIS")]
+    pub lis: String,
 }
 impl Schema for TransactionsBalanceGetBalancesByUserIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"ETH\":{\"type\":\"string\"},\"LIS\":{\"type\":\"string\"},\"WLIS\":{\"type\":\"string\"}},\"required\":[\"ETH\",\"LIS\",\"WLIS\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"ETH\":{\"type\":\"string\"},\"WLIS\":{\"type\":\"string\"},\"LIS\":{\"type\":\"string\"}},\"required\":[\"ETH\",\"LIS\",\"WLIS\"]}")
     }
 }
 impl Agent for TransactionsBalanceGetBalancesByUserIdReturns {

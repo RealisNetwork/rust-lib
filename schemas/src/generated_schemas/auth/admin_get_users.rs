@@ -26,36 +26,36 @@ impl Agent for AuthAdminGetUsersParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAdminGetUsersReturnsParams {
-    #[serde(rename = "facebookId")]
-    pub facebook_id: String,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: String,
-    #[serde(rename = "IsActive")]
-    pub is_active: bool,
-    #[serde(rename = "isBanned")]
-    pub is_banned: bool,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "appIds")]
-    pub app_ids: Vec<f64>,
-    #[serde(rename = "role")]
-    pub role: f64,
-    #[serde(rename = "email")]
-    pub email: String,
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "passwordHash")]
-    pub password_hash: String,
-    #[serde(rename = "id")]
-    pub id: f64,
+    #[serde(rename = "isBanned")]
+    pub is_banned: bool,
+    #[serde(rename = "IsActive")]
+    pub is_active: bool,
+    #[serde(rename = "facebookId")]
+    pub facebook_id: String,
     #[serde(rename = "googleId")]
     pub google_id: String,
+    #[serde(rename = "role")]
+    pub role: f64,
+    #[serde(rename = "appIds")]
+    pub app_ids: Vec<f64>,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "email")]
+    pub email: String,
+    #[serde(rename = "passwordHash")]
+    pub password_hash: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAdminGetUsersReturns(pub Vec<AuthAdminGetUsersReturnsParams>);
 impl Schema for AuthAdminGetUsersReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"facebookId\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"IsActive\":{\"type\":\"boolean\"},\"isBanned\":{\"type\":\"boolean\"},\"createdAt\":{\"type\":\"string\"},\"appIds\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"role\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"email\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"passwordHash\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"googleId\":{\"type\":\"string\"}},\"required\":[\"id\",\"email\",\"userId\",\"passwordHash\",\"isBanned\",\"IsActive\",\"googleId\",\"facebookId\",\"appIds\",\"createdAt\",\"updatedAt\",\"role\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"isBanned\":{\"type\":\"boolean\"},\"IsActive\":{\"type\":\"boolean\"},\"facebookId\":{\"type\":\"string\"},\"googleId\":{\"type\":\"string\"},\"role\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"appIds\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"updatedAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"email\":{\"type\":\"string\"},\"passwordHash\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"email\",\"userId\",\"passwordHash\",\"isBanned\",\"IsActive\",\"googleId\",\"facebookId\",\"appIds\",\"createdAt\",\"updatedAt\",\"role\"]}}")
     }
 }
 impl Agent for AuthAdminGetUsersReturns {

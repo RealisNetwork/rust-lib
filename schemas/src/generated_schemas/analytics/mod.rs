@@ -1,2 +1,2 @@
-pub mod analytics_get;
-pub use analytics_get::*;
+pub mod analytics_send;
+pub use analytics_send::*;
