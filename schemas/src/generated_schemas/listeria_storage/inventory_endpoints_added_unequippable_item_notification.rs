@@ -18,7 +18,7 @@ impl<'de> Deserialize<'de>
 pub struct ListeriaStorageInventoryEndpointsAddedUnequippableItemNotificationParams;
 impl Schema for ListeriaStorageInventoryEndpointsAddedUnequippableItemNotificationParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for ListeriaStorageInventoryEndpointsAddedUnequippableItemNotificationParams {

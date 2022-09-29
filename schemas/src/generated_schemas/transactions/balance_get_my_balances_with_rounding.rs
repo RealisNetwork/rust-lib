@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for TransactionsBalanceGetMyBalancesWithRoundingParam
 pub struct TransactionsBalanceGetMyBalancesWithRoundingParams;
 impl Schema for TransactionsBalanceGetMyBalancesWithRoundingParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for TransactionsBalanceGetMyBalancesWithRoundingParams {

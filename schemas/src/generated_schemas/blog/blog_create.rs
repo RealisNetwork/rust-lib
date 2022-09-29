@@ -12,8 +12,20 @@ pub struct BlogBlogCreateParamsPropsParamsAnswersParamsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogCreateParamsPropsParams {
+    #[serde(rename = "title")]
+    pub title: String,
+    #[serde(rename = "image")]
+    pub image: String,
     #[serde(rename = "metaDescription")]
     pub meta_description: String,
+    #[serde(rename = "url")]
+    pub url: String,
+    #[serde(rename = "lang")]
+    pub lang: Option<String>,
+    #[serde(rename = "metaTitle")]
+    pub meta_title: String,
+    #[serde(rename = "question")]
+    pub question: Option<String>,
     #[serde(rename = "isOpenPoll")]
     pub is_open_poll: Option<bool>,
     #[serde(rename = "answers")]
@@ -22,29 +34,17 @@ pub struct BlogBlogCreateParamsPropsParams {
     pub short_description: String,
     #[serde(rename = "content")]
     pub content: String,
-    #[serde(rename = "lang")]
-    pub lang: Option<String>,
-    #[serde(rename = "question")]
-    pub question: Option<String>,
-    #[serde(rename = "image")]
-    pub image: String,
-    #[serde(rename = "title")]
-    pub title: String,
-    #[serde(rename = "metaTitle")]
-    pub meta_title: String,
-    #[serde(rename = "url")]
-    pub url: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogCreateParams {
-    #[serde(rename = "props")]
-    pub props: BlogBlogCreateParamsPropsParams,
     #[serde(rename = "categoryId")]
     pub category_id: f64,
+    #[serde(rename = "props")]
+    pub props: BlogBlogCreateParamsPropsParams,
 }
 impl Schema for BlogBlogCreateParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"props\":{\"type\":\"object\",\"properties\":{\"metaDescription\":{\"type\":\"string\"},\"isOpenPoll\":{\"type\":\"boolean\"},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"answer\":{\"type\":\"string\"},\"isImage\":{\"type\":\"boolean\"}},\"required\":[\"isImage\",\"answer\"]}},\"shortDescription\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"},\"question\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"}},\"required\":[\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\"]},\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"props\",\"categoryId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"props\":{\"type\":\"object\",\"properties\":{\"title\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"question\":{\"type\":\"string\"},\"isOpenPoll\":{\"type\":\"boolean\"},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"answer\":{\"type\":\"string\"},\"isImage\":{\"type\":\"boolean\"}},\"required\":[\"isImage\",\"answer\"]}},\"shortDescription\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"}},\"required\":[\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\"]}},\"required\":[\"props\",\"categoryId\"]}") . unwrap ()
     }
 }
 impl Agent for BlogBlogCreateParams {

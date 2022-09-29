@@ -10,7 +10,7 @@ pub struct SoulAdapterWalletGetBalanceByAddressParams {
 }
 impl Schema for SoulAdapterWalletGetBalanceByAddressParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"address\":{\"type\":\"string\"}},\"required\":[\"address\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"address\":{\"type\":\"string\"}},\"required\":[\"address\"]}") . unwrap ()
     }
 }
 impl Agent for SoulAdapterWalletGetBalanceByAddressParams {

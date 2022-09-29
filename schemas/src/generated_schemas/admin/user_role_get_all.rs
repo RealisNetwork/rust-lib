@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for AdminUserRoleGetAllParams {
 pub struct AdminUserRoleGetAllParams;
 impl Schema for AdminUserRoleGetAllParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for AdminUserRoleGetAllParams {
@@ -32,10 +32,10 @@ impl Agent for AdminUserRoleGetAllParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleGetAllReturnsParamsRoleParams {
-    #[serde(rename = "name")]
-    pub name: String,
     #[serde(rename = "id")]
     pub id: f64,
+    #[serde(rename = "name")]
+    pub name: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleGetAllReturnsParams {
@@ -52,7 +52,7 @@ pub struct AdminUserRoleGetAllReturnsParams {
 pub struct AdminUserRoleGetAllReturns(pub Vec<AdminUserRoleGetAllReturnsParams>);
 impl Schema for AdminUserRoleGetAllReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"isActive\":{\"type\":\"boolean\"},\"role\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"name\"]}},\"required\":[\"id\",\"userId\",\"isActive\",\"role\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"isActive\":{\"type\":\"boolean\"},\"role\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\"]}},\"required\":[\"id\",\"userId\",\"isActive\",\"role\"]}}")
     }
 }
 impl Agent for AdminUserRoleGetAllReturns {

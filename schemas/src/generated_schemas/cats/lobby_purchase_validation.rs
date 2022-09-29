@@ -16,7 +16,7 @@ pub struct CatsLobbyPurchaseValidationParams {
 }
 impl Schema for CatsLobbyPurchaseValidationParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"storeId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"productId\":{\"type\":\"string\"},\"purchaseToken\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"storeId\",\"productId\",\"purchaseToken\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"storeId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"productId\":{\"type\":\"string\"},\"purchaseToken\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"storeId\",\"productId\",\"purchaseToken\"]}") . unwrap ()
     }
 }
 impl Agent for CatsLobbyPurchaseValidationParams {

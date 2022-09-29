@@ -10,7 +10,7 @@ pub struct UserProfileChangeNicknameParams {
 }
 impl Schema for UserProfileChangeNicknameParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newNickname\":{\"type\":\"string\"}},\"required\":[\"newNickname\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"newNickname\":{\"type\":\"string\"}},\"required\":[\"newNickname\"]}") . unwrap ()
     }
 }
 impl Agent for UserProfileChangeNicknameParams {

@@ -7,7 +7,7 @@ use crate::generated_schemas::prelude::*;
 pub struct BattlePassBattlePassEndpointsGetBattlePassPricesParams {}
 impl Schema for BattlePassBattlePassEndpointsGetBattlePassPricesParams {
     fn schema() -> Value {
-        serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
+        serde_json::from_str("{\"type\":\"object\",\"properties\":{},\"required\":null}").unwrap()
     }
 }
 impl Agent for BattlePassBattlePassEndpointsGetBattlePassPricesParams {
@@ -23,10 +23,10 @@ impl Agent for BattlePassBattlePassEndpointsGetBattlePassPricesParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassPricesReturnsBattlePassPriceParamsParams {
-    #[serde(rename = "price")]
-    pub price: String,
     #[serde(rename = "battlePassType")]
     pub battle_pass_type: i32,
+    #[serde(rename = "price")]
+    pub price: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassPricesReturns {
@@ -38,7 +38,7 @@ pub struct BattlePassBattlePassEndpointsGetBattlePassPricesReturns {
 }
 impl Schema for BattlePassBattlePassEndpointsGetBattlePassPricesReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"experiencePrice\":{\"type\":\"string\"},\"battlePassPrice\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"price\":{\"type\":\"string\"},\"battlePassType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"battlePassType\",\"price\"]}}},\"required\":[\"experiencePrice\",\"battlePassPrice\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"experiencePrice\":{\"type\":\"string\"},\"battlePassPrice\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"battlePassType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"price\":{\"type\":\"string\"}},\"required\":[\"battlePassType\",\"price\"]}}},\"required\":[\"experiencePrice\",\"battlePassPrice\"]}")
     }
 }
 impl Agent for BattlePassBattlePassEndpointsGetBattlePassPricesReturns {

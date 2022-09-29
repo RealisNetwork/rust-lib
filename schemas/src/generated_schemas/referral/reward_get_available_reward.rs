@@ -10,7 +10,7 @@ pub struct ReferralRewardGetAvailableRewardParams {
 }
 impl Schema for ReferralRewardGetAvailableRewardParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"referrerId\":{\"type\":\"string\"}},\"required\":[\"referrerId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"referrerId\":{\"type\":\"string\"}},\"required\":[\"referrerId\"]}") . unwrap ()
     }
 }
 impl Agent for ReferralRewardGetAvailableRewardParams {

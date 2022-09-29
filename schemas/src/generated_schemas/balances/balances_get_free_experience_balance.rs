@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for BalancesBalancesGetFreeExperienceBalanceParams {
 pub struct BalancesBalancesGetFreeExperienceBalanceParams;
 impl Schema for BalancesBalancesGetFreeExperienceBalanceParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for BalancesBalancesGetFreeExperienceBalanceParams {

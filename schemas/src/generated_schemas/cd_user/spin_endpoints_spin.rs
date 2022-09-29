@@ -10,7 +10,7 @@ pub struct CdUserSpinEndpointsSpinParams {
 }
 impl Schema for CdUserSpinEndpointsSpinParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"Type\":{\"type\":\"string\"}},\"required\":[\"Type\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"Type\":{\"type\":\"string\"}},\"required\":[\"Type\"]}") . unwrap ()
     }
 }
 impl Agent for CdUserSpinEndpointsSpinParams {

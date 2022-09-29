@@ -10,7 +10,7 @@ pub struct CdConfigConfigGetConfigByKeyParams {
 }
 impl Schema for CdConfigConfigGetConfigByKeyParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"}},\"required\":[\"key\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"}},\"required\":[\"key\"]}") . unwrap ()
     }
 }
 impl Agent for CdConfigConfigGetConfigByKeyParams {

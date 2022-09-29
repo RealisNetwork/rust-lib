@@ -10,7 +10,7 @@ pub struct AuthAuthRemoveAccountParams {
 }
 impl Schema for AuthAuthRemoveAccountParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"hash\":{\"type\":\"string\"}},\"required\":[\"hash\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"hash\":{\"type\":\"string\"}},\"required\":[\"hash\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthRemoveAccountParams {

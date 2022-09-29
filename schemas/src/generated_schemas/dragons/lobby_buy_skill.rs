@@ -12,7 +12,7 @@ pub struct DragonsLobbyBuySkillParams {
 }
 impl Schema for DragonsLobbyBuySkillParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"skillPurchaseKey\":{\"type\":\"string\"}},\"required\":[\"userId\",\"skillPurchaseKey\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"skillPurchaseKey\":{\"type\":\"string\"}},\"required\":[\"userId\",\"skillPurchaseKey\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbyBuySkillParams {

@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for DragonsLobbyGetLootboxJackpotPoolParams {
 pub struct DragonsLobbyGetLootboxJackpotPoolParams;
 impl Schema for DragonsLobbyGetLootboxJackpotPoolParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for DragonsLobbyGetLootboxJackpotPoolParams {

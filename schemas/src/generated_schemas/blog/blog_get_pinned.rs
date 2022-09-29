@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for BlogBlogGetPinnedParams {
 pub struct BlogBlogGetPinnedParams;
 impl Schema for BlogBlogGetPinnedParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for BlogBlogGetPinnedParams {
@@ -32,20 +32,20 @@ impl Agent for BlogBlogGetPinnedParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetPinnedReturns {
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "shortDescription")]
-    pub short_description: String,
     #[serde(rename = "image")]
     pub image: String,
-    #[serde(rename = "url")]
-    pub url: String,
+    #[serde(rename = "shortDescription")]
+    pub short_description: String,
     #[serde(rename = "title")]
     pub title: String,
+    #[serde(rename = "url")]
+    pub url: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
 }
 impl Schema for BlogBlogGetPinnedReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"createdAt\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"}},\"required\":[\"title\",\"image\",\"url\",\"createdAt\",\"shortDescription\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"image\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"}},\"required\":[\"title\",\"image\",\"url\",\"createdAt\",\"shortDescription\"]}")
     }
 }
 impl Agent for BlogBlogGetPinnedReturns {

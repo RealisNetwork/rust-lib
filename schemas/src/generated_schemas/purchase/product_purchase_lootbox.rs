@@ -10,7 +10,7 @@ pub struct PurchaseProductPurchaseLootboxParams {
 }
 impl Schema for PurchaseProductPurchaseLootboxParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"lootboxType\":{\"type\":\"string\"}},\"required\":[\"lootboxType\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"lootboxType\":{\"type\":\"string\"}},\"required\":[\"lootboxType\"]}") . unwrap ()
     }
 }
 impl Agent for PurchaseProductPurchaseLootboxParams {

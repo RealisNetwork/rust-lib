@@ -12,7 +12,7 @@ pub struct DragonsLobbyShareScoreParams {
 }
 impl Schema for DragonsLobbyShareScoreParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"score\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"score\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"score\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"score\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbyShareScoreParams {

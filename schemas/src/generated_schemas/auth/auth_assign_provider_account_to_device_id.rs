@@ -10,7 +10,7 @@ pub struct AuthAuthAssignProviderAccountToDeviceIdParams {
 }
 impl Schema for AuthAuthAssignProviderAccountToDeviceIdParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"token\":{\"type\":\"string\"}},\"required\":[\"token\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"token\":{\"type\":\"string\"}},\"required\":[\"token\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthAssignProviderAccountToDeviceIdParams {

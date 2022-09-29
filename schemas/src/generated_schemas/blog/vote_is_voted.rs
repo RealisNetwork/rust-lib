@@ -10,7 +10,7 @@ pub struct BlogVoteIsVotedParams {
 }
 impl Schema for BlogVoteIsVotedParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"blogId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"blogId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"blogId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"blogId\"]}") . unwrap ()
     }
 }
 impl Agent for BlogVoteIsVotedParams {

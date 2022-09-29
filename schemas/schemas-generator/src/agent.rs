@@ -79,7 +79,7 @@ impl ToTokens for Agent {
         let impl_schema_params = quote! {
             impl Schema for #ident_name_params {
                 fn schema() -> Value {
-                    serde_json::json!(#params_schema)
+                    serde_json::from_str(#params_schema).unwrap()
                 }
             }
             impl Agent for #ident_name_params {

@@ -10,7 +10,7 @@ pub struct BinanceWalletWalletCreateWalletParams {
 }
 impl Schema for BinanceWalletWalletCreateWalletParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}") . unwrap ()
     }
 }
 impl Agent for BinanceWalletWalletCreateWalletParams {
@@ -26,14 +26,14 @@ impl Agent for BinanceWalletWalletCreateWalletParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BinanceWalletWalletCreateWalletReturns {
-    #[serde(rename = "address")]
-    pub address: String,
     #[serde(rename = "privateKey")]
     pub private_key: String,
+    #[serde(rename = "address")]
+    pub address: String,
 }
 impl Schema for BinanceWalletWalletCreateWalletReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"address\":{\"type\":\"string\"},\"privateKey\":{\"type\":\"string\"}},\"required\":[\"privateKey\",\"address\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"privateKey\":{\"type\":\"string\"},\"address\":{\"type\":\"string\"}},\"required\":[\"privateKey\",\"address\"]}")
     }
 }
 impl Agent for BinanceWalletWalletCreateWalletReturns {

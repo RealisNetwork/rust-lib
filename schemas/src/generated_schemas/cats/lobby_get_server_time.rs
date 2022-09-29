@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for CatsLobbyGetServerTimeParams {
 pub struct CatsLobbyGetServerTimeParams;
 impl Schema for CatsLobbyGetServerTimeParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for CatsLobbyGetServerTimeParams {

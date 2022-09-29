@@ -10,7 +10,7 @@ pub struct DragonsLobbyAdventureMapLevelUpParams {
 }
 impl Schema for DragonsLobbyAdventureMapLevelUpParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbyAdventureMapLevelUpParams {

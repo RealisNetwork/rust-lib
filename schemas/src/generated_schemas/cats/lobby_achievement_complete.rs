@@ -12,7 +12,7 @@ pub struct CatsLobbyAchievementCompleteParams {
 }
 impl Schema for CatsLobbyAchievementCompleteParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"achievementKey\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"achievementKey\",\"userId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"achievementKey\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"achievementKey\",\"userId\"]}") . unwrap ()
     }
 }
 impl Agent for CatsLobbyAchievementCompleteParams {

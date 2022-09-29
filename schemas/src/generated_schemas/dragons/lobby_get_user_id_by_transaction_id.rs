@@ -10,7 +10,7 @@ pub struct DragonsLobbyGetUserIdByTransactionIdParams {
 }
 impl Schema for DragonsLobbyGetUserIdByTransactionIdParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"transactionId\":{\"type\":\"string\"}},\"required\":[\"transactionId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"transactionId\":{\"type\":\"string\"}},\"required\":[\"transactionId\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbyGetUserIdByTransactionIdParams {

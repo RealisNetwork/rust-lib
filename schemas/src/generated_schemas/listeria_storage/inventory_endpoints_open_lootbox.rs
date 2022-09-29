@@ -10,7 +10,7 @@ pub struct ListeriaStorageInventoryEndpointsOpenLootboxParams {
 }
 impl Schema for ListeriaStorageInventoryEndpointsOpenLootboxParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"bindingId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"bindingId\"]}") . unwrap ()
     }
 }
 impl Agent for ListeriaStorageInventoryEndpointsOpenLootboxParams {

@@ -10,7 +10,7 @@ pub struct ListeriaStorageInventoryEndpointsLevelUpParams {
 }
 impl Schema for ListeriaStorageInventoryEndpointsLevelUpParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"itemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"itemId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"itemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"itemId\"]}") . unwrap ()
     }
 }
 impl Agent for ListeriaStorageInventoryEndpointsLevelUpParams {

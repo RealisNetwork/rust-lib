@@ -12,7 +12,7 @@ pub struct BalancesBalancesAddFreeExperienceParams {
 }
 impl Schema for BalancesBalancesAddFreeExperienceParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"txId\":{\"type\":\"string\"}},\"required\":[\"amount\",\"txId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"txId\":{\"type\":\"string\"}},\"required\":[\"amount\",\"txId\"]}") . unwrap ()
     }
 }
 impl Agent for BalancesBalancesAddFreeExperienceParams {

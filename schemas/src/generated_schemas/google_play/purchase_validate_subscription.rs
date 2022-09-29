@@ -14,7 +14,7 @@ pub struct GooglePlayPurchaseValidateSubscriptionParams {
 }
 impl Schema for GooglePlayPurchaseValidateSubscriptionParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"packageName\":{\"type\":\"string\"},\"subscriptionProductId\":{\"type\":\"string\"},\"subscriptionToken\":{\"type\":\"string\"}},\"required\":[\"subscriptionToken\",\"subscriptionProductId\",\"packageName\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"packageName\":{\"type\":\"string\"},\"subscriptionProductId\":{\"type\":\"string\"},\"subscriptionToken\":{\"type\":\"string\"}},\"required\":[\"subscriptionToken\",\"subscriptionProductId\",\"packageName\"]}") . unwrap ()
     }
 }
 impl Agent for GooglePlayPurchaseValidateSubscriptionParams {

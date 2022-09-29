@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for UserProfileGetMyBanInfoParams {
 pub struct UserProfileGetMyBanInfoParams;
 impl Schema for UserProfileGetMyBanInfoParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for UserProfileGetMyBanInfoParams {

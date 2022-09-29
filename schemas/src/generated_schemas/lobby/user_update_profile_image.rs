@@ -10,7 +10,7 @@ pub struct LobbyUserUpdateProfileImageParams {
 }
 impl Schema for LobbyUserUpdateProfileImageParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"image\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"image\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"image\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"image\"]}") . unwrap ()
     }
 }
 impl Agent for LobbyUserUpdateProfileImageParams {

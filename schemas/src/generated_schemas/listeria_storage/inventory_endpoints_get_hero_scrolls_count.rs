@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for ListeriaStorageInventoryEndpointsGetHeroScrollsCo
 pub struct ListeriaStorageInventoryEndpointsGetHeroScrollsCountParams;
 impl Schema for ListeriaStorageInventoryEndpointsGetHeroScrollsCountParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for ListeriaStorageInventoryEndpointsGetHeroScrollsCountParams {

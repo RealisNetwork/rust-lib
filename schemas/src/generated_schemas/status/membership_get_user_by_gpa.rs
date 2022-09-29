@@ -10,7 +10,7 @@ pub struct StatusMembershipGetUserByGpaParams {
 }
 impl Schema for StatusMembershipGetUserByGpaParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"gpa\":{\"type\":\"string\"}},\"required\":[\"gpa\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"gpa\":{\"type\":\"string\"}},\"required\":[\"gpa\"]}") . unwrap ()
     }
 }
 impl Agent for StatusMembershipGetUserByGpaParams {

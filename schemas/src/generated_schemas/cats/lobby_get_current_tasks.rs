@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for CatsLobbyGetCurrentTasksParams {
 pub struct CatsLobbyGetCurrentTasksParams;
 impl Schema for CatsLobbyGetCurrentTasksParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for CatsLobbyGetCurrentTasksParams {

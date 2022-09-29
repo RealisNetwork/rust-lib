@@ -12,7 +12,7 @@ pub struct CdBalancesBalanceGetBalanceByUserIdAndCurrencyParams {
 }
 impl Schema for CdBalancesBalanceGetBalanceByUserIdAndCurrencyParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\"]}") . unwrap ()
     }
 }
 impl Agent for CdBalancesBalanceGetBalanceByUserIdAndCurrencyParams {

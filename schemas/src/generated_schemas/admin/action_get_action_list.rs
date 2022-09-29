@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for AdminActionGetActionListParams {
 pub struct AdminActionGetActionListParams;
 impl Schema for AdminActionGetActionListParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for AdminActionGetActionListParams {

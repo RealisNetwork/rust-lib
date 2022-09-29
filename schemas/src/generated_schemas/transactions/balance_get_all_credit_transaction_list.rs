@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for TransactionsBalanceGetAllCreditTransactionListPar
 pub struct TransactionsBalanceGetAllCreditTransactionListParams;
 impl Schema for TransactionsBalanceGetAllCreditTransactionListParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for TransactionsBalanceGetAllCreditTransactionListParams {
@@ -32,14 +32,14 @@ impl Agent for TransactionsBalanceGetAllCreditTransactionListParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetAllCreditTransactionListReturns {
-    #[serde(rename = "amount")]
-    pub amount: String,
     #[serde(rename = "date")]
     pub date: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
 }
 impl Schema for TransactionsBalanceGetAllCreditTransactionListReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"date\":{\"type\":\"string\"}},\"required\":[\"amount\",\"date\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"date\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"amount\",\"date\"]}")
     }
 }
 impl Agent for TransactionsBalanceGetAllCreditTransactionListReturns {

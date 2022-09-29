@@ -10,7 +10,7 @@ pub struct NearAdapterWalletGetUserByAccountIdParams {
 }
 impl Schema for NearAdapterWalletGetUserByAccountIdParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"accountId\":{\"type\":\"string\"}},\"required\":[\"accountId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"accountId\":{\"type\":\"string\"}},\"required\":[\"accountId\"]}") . unwrap ()
     }
 }
 impl Agent for NearAdapterWalletGetUserByAccountIdParams {

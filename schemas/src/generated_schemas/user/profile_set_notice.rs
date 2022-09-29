@@ -12,7 +12,7 @@ pub struct UserProfileSetNoticeParams {
 }
 impl Schema for UserProfileSetNoticeParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"notice\":{\"type\":\"string\"}},\"required\":[\"userId\",\"notice\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"notice\":{\"type\":\"string\"}},\"required\":[\"userId\",\"notice\"]}") . unwrap ()
     }
 }
 impl Agent for UserProfileSetNoticeParams {

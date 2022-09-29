@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for CatsLobbyGetAvailableMembershipAmountParams {
 pub struct CatsLobbyGetAvailableMembershipAmountParams;
 impl Schema for CatsLobbyGetAvailableMembershipAmountParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for CatsLobbyGetAvailableMembershipAmountParams {

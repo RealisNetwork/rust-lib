@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralGetUserDataParams {
-    #[serde(rename = "appId")]
-    pub app_id: f64,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "appId")]
+    pub app_id: f64,
 }
 impl Schema for ReferralReferralGetUserDataParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"appId\",\"userId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"appId\",\"userId\"]}") . unwrap ()
     }
 }
 impl Agent for ReferralReferralGetUserDataParams {
@@ -28,16 +28,16 @@ impl Agent for ReferralReferralGetUserDataParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralGetUserDataReturns {
+    #[serde(rename = "refCode")]
+    pub ref_code: String,
     #[serde(rename = "hasReferrer")]
     pub has_referrer: bool,
     #[serde(rename = "refLink")]
     pub ref_link: String,
-    #[serde(rename = "refCode")]
-    pub ref_code: String,
 }
 impl Schema for ReferralReferralGetUserDataReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"hasReferrer\":{\"type\":\"boolean\"},\"refLink\":{\"type\":\"string\"},\"refCode\":{\"type\":\"string\"}},\"required\":[\"refLink\",\"refCode\",\"hasReferrer\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"refCode\":{\"type\":\"string\"},\"hasReferrer\":{\"type\":\"boolean\"},\"refLink\":{\"type\":\"string\"}},\"required\":[\"refLink\",\"refCode\",\"hasReferrer\"]}")
     }
 }
 impl Agent for ReferralReferralGetUserDataReturns {

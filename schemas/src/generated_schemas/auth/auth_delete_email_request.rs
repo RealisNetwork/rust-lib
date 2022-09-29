@@ -10,7 +10,7 @@ pub struct AuthAuthDeleteEmailRequestParams {
 }
 impl Schema for AuthAuthDeleteEmailRequestParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"emailHash\":{\"type\":\"string\"}},\"required\":[\"emailHash\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"emailHash\":{\"type\":\"string\"}},\"required\":[\"emailHash\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthDeleteEmailRequestParams {

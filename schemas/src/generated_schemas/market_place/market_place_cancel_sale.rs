@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceCancelSaleParams {
-    #[serde(rename = "productId")]
-    pub product_id: i32,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "productId")]
+    pub product_id: i32,
 }
 impl Schema for MarketPlaceMarketPlaceCancelSaleParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"productId\",\"userId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"productId\",\"userId\"]}") . unwrap ()
     }
 }
 impl Agent for MarketPlaceMarketPlaceCancelSaleParams {

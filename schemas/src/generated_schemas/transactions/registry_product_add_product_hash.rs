@@ -12,7 +12,7 @@ pub struct TransactionsRegistryProductAddProductHashParams {
 }
 impl Schema for TransactionsRegistryProductAddProductHashParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"string\"},\"hashId\":{\"type\":\"string\"}},\"required\":[\"productId\",\"hashId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"string\"},\"hashId\":{\"type\":\"string\"}},\"required\":[\"productId\",\"hashId\"]}") . unwrap ()
     }
 }
 impl Agent for TransactionsRegistryProductAddProductHashParams {

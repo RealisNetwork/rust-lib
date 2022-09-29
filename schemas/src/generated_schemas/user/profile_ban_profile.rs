@@ -12,7 +12,7 @@ pub struct UserProfileBanProfileParams {
 }
 impl Schema for UserProfileBanProfileParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"}},\"required\":[\"userId\",\"reason\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"}},\"required\":[\"userId\",\"reason\"]}") . unwrap ()
     }
 }
 impl Agent for UserProfileBanProfileParams {

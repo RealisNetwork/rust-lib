@@ -12,7 +12,7 @@ pub struct AdminPermissionDeleteParams {
 }
 impl Schema for AdminPermissionDeleteParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"permissionName\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"roleName\":{\"type\":\"string\"}},\"required\":[\"permissionName\",\"roleName\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"permissionName\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"roleName\":{\"type\":\"string\"}},\"required\":[\"permissionName\",\"roleName\"]}") . unwrap ()
     }
 }
 impl Agent for AdminPermissionDeleteParams {

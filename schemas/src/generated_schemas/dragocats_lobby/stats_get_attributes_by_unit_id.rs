@@ -10,7 +10,7 @@ pub struct DragocatsLobbyStatsGetAttributesByUnitIdParams {
 }
 impl Schema for DragocatsLobbyStatsGetAttributesByUnitIdParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"unitId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"unitId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"unitId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"unitId\"]}") . unwrap ()
     }
 }
 impl Agent for DragocatsLobbyStatsGetAttributesByUnitIdParams {
@@ -26,22 +26,22 @@ impl Agent for DragocatsLobbyStatsGetAttributesByUnitIdParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsLobbyStatsGetAttributesByUnitIdReturns {
-    #[serde(rename = "defence")]
-    pub defence: i32,
-    #[serde(rename = "health")]
-    pub health: i32,
-    #[serde(rename = "id")]
-    pub id: i32,
     #[serde(rename = "speed")]
     pub speed: i32,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "health")]
+    pub health: i32,
     #[serde(rename = "power")]
     pub power: i32,
     #[serde(rename = "combatPower")]
     pub combat_power: f64,
+    #[serde(rename = "defence")]
+    pub defence: i32,
 }
 impl Schema for DragocatsLobbyStatsGetAttributesByUnitIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"defence\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"health\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"speed\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"power\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"combatPower\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"health\",\"speed\",\"power\",\"defence\",\"combatPower\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"speed\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"health\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"power\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"combatPower\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"defence\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"health\",\"speed\",\"power\",\"defence\",\"combatPower\"]}")
     }
 }
 impl Agent for DragocatsLobbyStatsGetAttributesByUnitIdReturns {

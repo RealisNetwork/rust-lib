@@ -12,7 +12,7 @@ pub struct AuthAuthConfirmEmailByCodeParams {
 }
 impl Schema for AuthAuthConfirmEmailByCodeParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"},\"emailHash\":{\"type\":\"string\"}},\"required\":[\"code\",\"emailHash\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"},\"emailHash\":{\"type\":\"string\"}},\"required\":[\"code\",\"emailHash\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthConfirmEmailByCodeParams {

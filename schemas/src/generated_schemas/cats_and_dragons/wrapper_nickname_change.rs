@@ -12,7 +12,7 @@ pub struct CatsAndDragonsWrapperNicknameChangeParams {
 }
 impl Schema for CatsAndDragonsWrapperNicknameChangeParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newNickname\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"newNickname\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"newNickname\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"newNickname\"]}") . unwrap ()
     }
 }
 impl Agent for CatsAndDragonsWrapperNicknameChangeParams {

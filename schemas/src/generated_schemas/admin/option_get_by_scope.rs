@@ -10,7 +10,7 @@ pub struct AdminOptionGetByScopeParams {
 }
 impl Schema for AdminOptionGetByScopeParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"scope\":{\"type\":\"string\"}},\"required\":[\"scope\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"scope\":{\"type\":\"string\"}},\"required\":[\"scope\"]}") . unwrap ()
     }
 }
 impl Agent for AdminOptionGetByScopeParams {
@@ -28,16 +28,16 @@ impl Agent for AdminOptionGetByScopeParams {
 pub struct AdminOptionGetByScopeReturnsParams {
     #[serde(rename = "key")]
     pub key: String,
-    #[serde(rename = "value")]
-    pub value: String,
     #[serde(rename = "scope")]
     pub scope: String,
+    #[serde(rename = "value")]
+    pub value: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetByScopeReturns(pub Vec<AdminOptionGetByScopeReturnsParams>);
 impl Schema for AdminOptionGetByScopeReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"},\"scope\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"},\"scope\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\"]}}")
     }
 }
 impl Agent for AdminOptionGetByScopeReturns {

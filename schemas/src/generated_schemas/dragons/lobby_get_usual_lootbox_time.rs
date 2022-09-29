@@ -7,7 +7,7 @@ use crate::generated_schemas::prelude::*;
 pub struct DragonsLobbyGetUsualLootboxTimeParams {}
 impl Schema for DragonsLobbyGetUsualLootboxTimeParams {
     fn schema() -> Value {
-        serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
+        serde_json::from_str("{\"type\":\"object\",\"properties\":{},\"required\":null}").unwrap()
     }
 }
 impl Agent for DragonsLobbyGetUsualLootboxTimeParams {

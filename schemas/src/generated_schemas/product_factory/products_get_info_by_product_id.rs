@@ -10,7 +10,7 @@ pub struct ProductFactoryProductsGetInfoByProductIdParams {
 }
 impl Schema for ProductFactoryProductsGetInfoByProductIdParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"productId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"productId\"]}") . unwrap ()
     }
 }
 impl Agent for ProductFactoryProductsGetInfoByProductIdParams {
@@ -26,20 +26,20 @@ impl Agent for ProductFactoryProductsGetInfoByProductIdParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductsGetInfoByProductIdReturns {
-    #[serde(rename = "productType")]
-    pub product_type: String,
     #[serde(rename = "personalType")]
     pub personal_type: String,
-    #[serde(rename = "isNft")]
-    pub is_nft: bool,
     #[serde(rename = "subType")]
     pub sub_type: String,
     #[serde(rename = "name")]
     pub name: String,
+    #[serde(rename = "isNft")]
+    pub is_nft: bool,
+    #[serde(rename = "productType")]
+    pub product_type: String,
 }
 impl Schema for ProductFactoryProductsGetInfoByProductIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productType\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"isNft\":{\"type\":\"boolean\"},\"subType\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}},\"required\":[\"personalType\",\"productType\",\"subType\",\"name\",\"isNft\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"isNft\":{\"type\":\"boolean\"},\"productType\":{\"type\":\"string\"}},\"required\":[\"personalType\",\"productType\",\"subType\",\"name\",\"isNft\"]}")
     }
 }
 impl Agent for ProductFactoryProductsGetInfoByProductIdReturns {

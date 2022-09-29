@@ -10,7 +10,7 @@ pub struct BattlePassBattlePassEndpointsPurchaseBattlePassPremiumParams {
 }
 impl Schema for BattlePassBattlePassEndpointsPurchaseBattlePassPremiumParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"battlePassType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"battlePassType\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"battlePassType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"battlePassType\"]}") . unwrap ()
     }
 }
 impl Agent for BattlePassBattlePassEndpointsPurchaseBattlePassPremiumParams {

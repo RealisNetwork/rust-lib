@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for AuthTwoFactorGetSecretParams {
 pub struct AuthTwoFactorGetSecretParams;
 impl Schema for AuthTwoFactorGetSecretParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for AuthTwoFactorGetSecretParams {

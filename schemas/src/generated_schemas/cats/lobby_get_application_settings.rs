@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for CatsLobbyGetApplicationSettingsParams {
 pub struct CatsLobbyGetApplicationSettingsParams;
 impl Schema for CatsLobbyGetApplicationSettingsParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for CatsLobbyGetApplicationSettingsParams {

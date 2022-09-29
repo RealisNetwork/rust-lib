@@ -10,7 +10,7 @@ pub struct UserProfileSetMailingSubscriptionStatusParams {
 }
 impl Schema for UserProfileSetMailingSubscriptionStatusParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"boolean\"}},\"required\":[\"status\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"boolean\"}},\"required\":[\"status\"]}") . unwrap ()
     }
 }
 impl Agent for UserProfileSetMailingSubscriptionStatusParams {

@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminConfirmationAddSolutionAdminParams {
-    #[serde(rename = "id")]
-    pub id: f64,
     #[serde(rename = "isConfirmed")]
     pub is_confirmed: bool,
+    #[serde(rename = "id")]
+    pub id: f64,
 }
 impl Schema for AdminConfirmationAddSolutionAdminParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isConfirmed\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"isConfirmed\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"isConfirmed\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"isConfirmed\"]}") . unwrap ()
     }
 }
 impl Agent for AdminConfirmationAddSolutionAdminParams {

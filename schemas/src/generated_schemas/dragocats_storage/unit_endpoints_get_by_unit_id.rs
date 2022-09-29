@@ -10,7 +10,7 @@ pub struct DragocatsStorageUnitEndpointsGetByUnitIdParams {
 }
 impl Schema for DragocatsStorageUnitEndpointsGetByUnitIdParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"unitId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"unitId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"unitId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"unitId\"]}") . unwrap ()
     }
 }
 impl Agent for DragocatsStorageUnitEndpointsGetByUnitIdParams {
@@ -37,29 +37,29 @@ pub struct DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParamsAttri
     pub stamina: (),
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParams { # [serde (rename = "slotId")] pub slot_id : i32 , # [serde (rename = "typeId")] pub type_id : i32 , # [serde (rename = "attributesCoefficients")] pub attributes_coefficients : DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParamsAttributesCoefficientsParams , # [serde (rename = "element")] pub element : String }
+pub struct DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParams { # [serde (rename = "slotId")] pub slot_id : i32 , # [serde (rename = "element")] pub element : String , # [serde (rename = "typeId")] pub type_id : i32 , # [serde (rename = "attributesCoefficients")] pub attributes_coefficients : DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParamsAttributesCoefficientsParams }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsStorageUnitEndpointsGetByUnitIdReturns {
-    #[serde(rename = "maxLevel")]
-    pub max_level: i32,
     #[serde(rename = "level")]
     pub level: i32,
-    #[serde(rename = "experienceForLevelup")]
-    pub experience_for_levelup: i32,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "rarity")]
-    pub rarity: i32,
+    #[serde(rename = "maxLevel")]
+    pub max_level: i32,
+    #[serde(rename = "status")]
+    pub status: i32,
     #[serde(rename = "unitId")]
     pub unit_id: i32,
     #[serde(rename = "parts")]
     pub parts: Vec<DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParams>,
-    #[serde(rename = "status")]
-    pub status: i32,
+    #[serde(rename = "experienceForLevelup")]
+    pub experience_for_levelup: i32,
+    #[serde(rename = "rarity")]
+    pub rarity: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for DragocatsStorageUnitEndpointsGetByUnitIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"maxLevel\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"level\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"experienceForLevelup\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"rarity\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"unitId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"parts\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"slotId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"typeId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"attributesCoefficients\":{\"type\":\"object\",\"properties\":{\"power\":{},\"speed\":{},\"defence\":{},\"stamina\":{}},\"required\":[\"stamina\",\"power\",\"speed\",\"defence\"]},\"element\":{\"type\":\"string\"}},\"required\":[\"slotId\",\"element\",\"typeId\",\"attributesCoefficients\"]}},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"userId\",\"unitId\",\"level\",\"status\",\"rarity\",\"maxLevel\",\"experienceForLevelup\",\"parts\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"level\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"maxLevel\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"unitId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"parts\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"slotId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"element\":{\"type\":\"string\"},\"typeId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"attributesCoefficients\":{\"type\":\"object\",\"properties\":{\"power\":{},\"speed\":{},\"defence\":{},\"stamina\":{}},\"required\":[\"stamina\",\"power\",\"speed\",\"defence\"]}},\"required\":[\"slotId\",\"element\",\"typeId\",\"attributesCoefficients\"]}},\"experienceForLevelup\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"rarity\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"unitId\",\"level\",\"status\",\"rarity\",\"maxLevel\",\"experienceForLevelup\",\"parts\"]}")
     }
 }
 impl Agent for DragocatsStorageUnitEndpointsGetByUnitIdReturns {

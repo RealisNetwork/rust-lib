@@ -10,7 +10,7 @@ pub struct TaskTaskCompleteTaskParams {
 }
 impl Schema for TaskTaskCompleteTaskParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"taskId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"taskId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"taskId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"taskId\"]}") . unwrap ()
     }
 }
 impl Agent for TaskTaskCompleteTaskParams {

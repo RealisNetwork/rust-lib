@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for NearAdapterWalletGetMyNftParams {
 pub struct NearAdapterWalletGetMyNftParams;
 impl Schema for NearAdapterWalletGetMyNftParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for NearAdapterWalletGetMyNftParams {

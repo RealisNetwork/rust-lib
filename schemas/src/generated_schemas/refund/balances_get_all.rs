@@ -10,7 +10,7 @@ pub struct RefundBalancesGetAllParams {
 }
 impl Schema for RefundBalancesGetAllParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}") . unwrap ()
     }
 }
 impl Agent for RefundBalancesGetAllParams {
@@ -28,22 +28,22 @@ impl Agent for RefundBalancesGetAllParams {
 pub struct RefundBalancesGetAllReturnsParams {
     #[serde(rename = "lockedFunds")]
     pub locked_funds: String,
-    #[serde(rename = "currency")]
-    pub currency: (),
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "lockedUntil")]
     pub locked_until: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "currency")]
+    pub currency: (),
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllReturns(pub Vec<RefundBalancesGetAllReturnsParams>);
 impl Schema for RefundBalancesGetAllReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"lockedFunds\":{\"type\":\"string\"},\"currency\":{},\"userId\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\",\"format\":\"date\"},\"createdAt\":{\"type\":\"string\",\"format\":\"date\"},\"lockedUntil\":{\"type\":\"string\",\"format\":\"date\"}},\"required\":[\"userId\",\"lockedFunds\",\"currency\",\"lockedUntil\",\"createdAt\",\"updatedAt\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"lockedFunds\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\",\"format\":\"date\"},\"userId\":{\"type\":\"string\"},\"lockedUntil\":{\"type\":\"string\",\"format\":\"date\"},\"createdAt\":{\"type\":\"string\",\"format\":\"date\"},\"currency\":{}},\"required\":[\"userId\",\"lockedFunds\",\"currency\",\"lockedUntil\",\"createdAt\",\"updatedAt\"]}}")
     }
 }
 impl Agent for RefundBalancesGetAllReturns {

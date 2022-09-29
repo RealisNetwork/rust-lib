@@ -12,7 +12,7 @@ pub struct UserProfileChangeEmailParams {
 }
 impl Schema for UserProfileChangeEmailParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"newEmail\":{\"type\":\"string\",\"format\":\"email\"}},\"required\":[\"userId\",\"newEmail\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"newEmail\":{\"type\":\"string\",\"format\":\"email\"}},\"required\":[\"userId\",\"newEmail\"]}") . unwrap ()
     }
 }
 impl Agent for UserProfileChangeEmailParams {

@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralRewardAddReferralExpenseParams {
-    #[serde(rename = "amount")]
-    pub amount: String,
     #[serde(rename = "referralId")]
     pub referral_id: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
 }
 impl Schema for ReferralRewardAddReferralExpenseParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"referralId\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"}},\"required\":[\"referralId\",\"amount\",\"txId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"referralId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"}},\"required\":[\"referralId\",\"amount\",\"txId\"]}") . unwrap ()
     }
 }
 impl Agent for ReferralRewardAddReferralExpenseParams {

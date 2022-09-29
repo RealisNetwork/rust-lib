@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for AuthInstantMigrationStopMigrationParams {
 pub struct AuthInstantMigrationStopMigrationParams;
 impl Schema for AuthInstantMigrationStopMigrationParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for AuthInstantMigrationStopMigrationParams {
@@ -34,14 +34,14 @@ impl Agent for AuthInstantMigrationStopMigrationParams {
 pub struct AuthInstantMigrationStopMigrationReturns {
     #[serde(rename = "interval")]
     pub interval: f64,
-    #[serde(rename = "count")]
-    pub count: f64,
     #[serde(rename = "startIndex")]
     pub start_index: f64,
+    #[serde(rename = "count")]
+    pub count: f64,
 }
 impl Schema for AuthInstantMigrationStopMigrationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"interval\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"count\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"startIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"startIndex\",\"count\",\"interval\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"interval\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"startIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"count\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"startIndex\",\"count\",\"interval\"]}")
     }
 }
 impl Agent for AuthInstantMigrationStopMigrationReturns {

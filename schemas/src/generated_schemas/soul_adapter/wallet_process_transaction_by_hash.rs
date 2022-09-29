@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct SoulAdapterWalletProcessTransactionByHashParams {
     #[serde(rename = "currency")]
     pub currency: String,
-    #[serde(rename = "blockNumber")]
-    pub block_number: f64,
     #[serde(rename = "hash")]
     pub hash: String,
+    #[serde(rename = "blockNumber")]
+    pub block_number: f64,
 }
 impl Schema for SoulAdapterWalletProcessTransactionByHashParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"blockNumber\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"hash\":{\"type\":\"string\"}},\"required\":[\"hash\",\"blockNumber\",\"currency\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"hash\":{\"type\":\"string\"},\"blockNumber\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"hash\",\"blockNumber\",\"currency\"]}") . unwrap ()
     }
 }
 impl Agent for SoulAdapterWalletProcessTransactionByHashParams {

@@ -12,7 +12,7 @@ pub struct AuthAdminAddUserRoleParams {
 }
 impl Schema for AuthAdminAddUserRoleParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"roleName\":{\"type\":\"string\"},\"internalUserId\":{\"type\":\"string\"}},\"required\":[\"roleName\",\"internalUserId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"roleName\":{\"type\":\"string\"},\"internalUserId\":{\"type\":\"string\"}},\"required\":[\"roleName\",\"internalUserId\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAdminAddUserRoleParams {

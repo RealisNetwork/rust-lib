@@ -10,7 +10,7 @@ pub struct BlogCategoryCreateParams {
 }
 impl Schema for BlogCategoryCreateParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"}},\"required\":[\"name\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"}},\"required\":[\"name\"]}") . unwrap ()
     }
 }
 impl Agent for BlogCategoryCreateParams {

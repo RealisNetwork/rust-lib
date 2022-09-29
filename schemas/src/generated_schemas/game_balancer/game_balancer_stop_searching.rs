@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for GameBalancerGameBalancerStopSearchingParams {
 pub struct GameBalancerGameBalancerStopSearchingParams;
 impl Schema for GameBalancerGameBalancerStopSearchingParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for GameBalancerGameBalancerStopSearchingParams {

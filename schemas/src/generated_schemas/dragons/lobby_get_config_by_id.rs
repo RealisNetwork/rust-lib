@@ -10,7 +10,7 @@ pub struct DragonsLobbyGetConfigByIdParams {
 }
 impl Schema for DragonsLobbyGetConfigByIdParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"configKey\":{\"type\":\"string\"}},\"required\":[\"configKey\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"configKey\":{\"type\":\"string\"}},\"required\":[\"configKey\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbyGetConfigByIdParams {

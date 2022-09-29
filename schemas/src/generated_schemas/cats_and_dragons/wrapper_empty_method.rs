@@ -10,7 +10,7 @@ pub struct CatsAndDragonsWrapperEmptyMethodParams {
 }
 impl Schema for CatsAndDragonsWrapperEmptyMethodParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"accessToken\":{\"type\":\"string\"}},\"required\":[\"accessToken\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"accessToken\":{\"type\":\"string\"}},\"required\":[\"accessToken\"]}") . unwrap ()
     }
 }
 impl Agent for CatsAndDragonsWrapperEmptyMethodParams {

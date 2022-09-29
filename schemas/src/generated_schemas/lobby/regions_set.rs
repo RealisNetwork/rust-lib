@@ -12,7 +12,7 @@ pub struct LobbyRegionsSetParams {
 }
 impl Schema for LobbyRegionsSetParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"regionName\":{\"type\":\"string\"},\"isFixed\":{\"type\":\"boolean\"}},\"required\":[\"regionName\",\"isFixed\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"regionName\":{\"type\":\"string\"},\"isFixed\":{\"type\":\"boolean\"}},\"required\":[\"regionName\",\"isFixed\"]}") . unwrap ()
     }
 }
 impl Agent for LobbyRegionsSetParams {

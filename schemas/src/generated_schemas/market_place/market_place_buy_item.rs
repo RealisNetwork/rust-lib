@@ -12,7 +12,7 @@ pub struct MarketPlaceMarketPlaceBuyItemParams {
 }
 impl Schema for MarketPlaceMarketPlaceBuyItemParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"userId\",\"productId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"userId\",\"productId\"]}") . unwrap ()
     }
 }
 impl Agent for MarketPlaceMarketPlaceBuyItemParams {

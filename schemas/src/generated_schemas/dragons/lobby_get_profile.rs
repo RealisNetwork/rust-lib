@@ -10,7 +10,7 @@ pub struct DragonsLobbyGetProfileParams {
 }
 impl Schema for DragonsLobbyGetProfileParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"deviceId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"deviceId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"deviceId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"deviceId\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbyGetProfileParams {

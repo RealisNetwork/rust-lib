@@ -10,7 +10,7 @@ pub struct LobbyUserUpdateUsernameParams {
 }
 impl Schema for LobbyUserUpdateUsernameParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newUsername\":{\"type\":\"string\"}},\"required\":[\"newUsername\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"newUsername\":{\"type\":\"string\"}},\"required\":[\"newUsername\"]}") . unwrap ()
     }
 }
 impl Agent for LobbyUserUpdateUsernameParams {

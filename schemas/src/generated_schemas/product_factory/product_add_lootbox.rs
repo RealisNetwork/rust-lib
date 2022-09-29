@@ -12,7 +12,7 @@ pub struct ProductFactoryProductAddLootboxParams {
 }
 impl Schema for ProductFactoryProductAddLootboxParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"personalType\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"personalType\"]}") . unwrap ()
     }
 }
 impl Agent for ProductFactoryProductAddLootboxParams {

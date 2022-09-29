@@ -12,7 +12,7 @@ pub struct AdminPermissionUpdatePermissionsParams {
 }
 impl Schema for AdminPermissionUpdatePermissionsParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"permissions\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"roleName\":{\"type\":\"string\"}},\"required\":[\"roleName\",\"permissions\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"permissions\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"roleName\":{\"type\":\"string\"}},\"required\":[\"roleName\",\"permissions\"]}") . unwrap ()
     }
 }
 impl Agent for AdminPermissionUpdatePermissionsParams {

@@ -10,7 +10,7 @@ pub struct NearAdapterContractIsEnoughBalanceOnWithdrawWalletParams {
 }
 impl Schema for NearAdapterContractIsEnoughBalanceOnWithdrawWalletParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"}},\"required\":[\"amount\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"}},\"required\":[\"amount\"]}") . unwrap ()
     }
 }
 impl Agent for NearAdapterContractIsEnoughBalanceOnWithdrawWalletParams {

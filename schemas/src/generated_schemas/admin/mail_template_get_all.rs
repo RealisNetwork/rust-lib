@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for AdminMailTemplateGetAllParams {
 pub struct AdminMailTemplateGetAllParams;
 impl Schema for AdminMailTemplateGetAllParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for AdminMailTemplateGetAllParams {

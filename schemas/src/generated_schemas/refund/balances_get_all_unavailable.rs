@@ -10,7 +10,7 @@ pub struct RefundBalancesGetAllUnavailableParams {
 }
 impl Schema for RefundBalancesGetAllUnavailableParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\"]}") . unwrap ()
     }
 }
 impl Agent for RefundBalancesGetAllUnavailableParams {
@@ -26,14 +26,14 @@ impl Agent for RefundBalancesGetAllUnavailableParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllUnavailableReturns {
-    #[serde(rename = "LIS")]
-    pub lis: Option<String>,
     #[serde(rename = "ETH")]
     pub eth: Option<String>,
+    #[serde(rename = "LIS")]
+    pub lis: Option<String>,
 }
 impl Schema for RefundBalancesGetAllUnavailableReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"LIS\":{\"type\":\"string\"},\"ETH\":{\"type\":\"string\"}},\"required\":null}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"ETH\":{\"type\":\"string\"},\"LIS\":{\"type\":\"string\"}},\"required\":null}")
     }
 }
 impl Agent for RefundBalancesGetAllUnavailableReturns {

@@ -10,7 +10,7 @@ pub struct AuthAuthConfirmPasswordParams {
 }
 impl Schema for AuthAuthConfirmPasswordParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"password\":{\"type\":\"string\"}},\"required\":[\"password\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"password\":{\"type\":\"string\"}},\"required\":[\"password\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthConfirmPasswordParams {

@@ -12,7 +12,7 @@ pub struct DragonsLobbyBuyScienceParams {
 }
 impl Schema for DragonsLobbyBuyScienceParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"sciencePurchaseKey\":{\"type\":\"string\"}},\"required\":[\"userId\",\"sciencePurchaseKey\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"sciencePurchaseKey\":{\"type\":\"string\"}},\"required\":[\"userId\",\"sciencePurchaseKey\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbyBuyScienceParams {

@@ -5,12 +5,12 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorLootboxOpenParamsProductsParamsParams {
+    #[serde(rename = "clientType")]
+    pub client_type: String,
     #[serde(rename = "personalType")]
     pub personal_type: String,
     #[serde(rename = "isNft")]
     pub is_nft: bool,
-    #[serde(rename = "clientType")]
-    pub client_type: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorLootboxOpenParams {
@@ -25,7 +25,7 @@ pub struct OrchestratorLootboxOpenParams {
 }
 impl Schema for OrchestratorLootboxOpenParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"lootboxBindingId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"products\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"isNft\":{\"type\":\"boolean\"},\"clientType\":{\"type\":\"string\",\"pattern\":\"^(none)|(hero)|(equipment)|(skin)|(lootbox)|(undistributedExperience)|(heroScroll)|(equipmentScroll)$\"}},\"required\":[\"personalType\",\"isNft\",\"clientType\"]}},\"userId\":{\"type\":\"string\"},\"lootboxIdentifier\":{\"type\":\"string\"}},\"required\":[\"userId\",\"lootboxIdentifier\",\"lootboxBindingId\",\"products\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"lootboxBindingId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"products\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"clientType\":{\"type\":\"string\",\"pattern\":\"^(none)|(hero)|(equipment)|(skin)|(lootbox)|(undistributedExperience)|(heroScroll)|(equipmentScroll)$\"},\"personalType\":{\"type\":\"string\"},\"isNft\":{\"type\":\"boolean\"}},\"required\":[\"personalType\",\"isNft\",\"clientType\"]}},\"userId\":{\"type\":\"string\"},\"lootboxIdentifier\":{\"type\":\"string\"}},\"required\":[\"userId\",\"lootboxIdentifier\",\"lootboxBindingId\",\"products\"]}") . unwrap ()
     }
 }
 impl Agent for OrchestratorLootboxOpenParams {

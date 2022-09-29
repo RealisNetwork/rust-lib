@@ -10,7 +10,7 @@ pub struct TransactionsRegistryProductBurnProductParams {
 }
 impl Schema for TransactionsRegistryProductBurnProductParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"string\"}},\"required\":[\"productId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"string\"}},\"required\":[\"productId\"]}") . unwrap ()
     }
 }
 impl Agent for TransactionsRegistryProductBurnProductParams {

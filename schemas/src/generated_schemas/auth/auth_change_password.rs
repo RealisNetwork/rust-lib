@@ -14,7 +14,7 @@ pub struct AuthAuthChangePasswordParams {
 }
 impl Schema for AuthAuthChangePasswordParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"username\":{\"type\":\"string\"},\"newPassword\":{\"type\":\"string\"},\"password\":{\"type\":\"string\"}},\"required\":[\"username\",\"newPassword\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"username\":{\"type\":\"string\"},\"newPassword\":{\"type\":\"string\"},\"password\":{\"type\":\"string\"}},\"required\":[\"username\",\"newPassword\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthChangePasswordParams {

@@ -12,7 +12,7 @@ pub struct UserProfileUnsubscribeFromNewsletterParams {
 }
 impl Schema for UserProfileUnsubscribeFromNewsletterParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"}},\"required\":[\"userId\",\"email\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"}},\"required\":[\"userId\",\"email\"]}") . unwrap ()
     }
 }
 impl Agent for UserProfileUnsubscribeFromNewsletterParams {

@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for DragocatsStorageInventoryEndpointsAddLootboxNotif
 pub struct DragocatsStorageInventoryEndpointsAddLootboxNotificationParams;
 impl Schema for DragocatsStorageInventoryEndpointsAddLootboxNotificationParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for DragocatsStorageInventoryEndpointsAddLootboxNotificationParams {
@@ -32,16 +32,16 @@ impl Agent for DragocatsStorageInventoryEndpointsAddLootboxNotificationParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsAddLootboxNotificationReturns {
+    #[serde(rename = "status")]
+    pub status: i32,
     #[serde(rename = "bindingId")]
     pub binding_id: i32,
     #[serde(rename = "lootboxId")]
     pub lootbox_id: i32,
-    #[serde(rename = "status")]
-    pub status: i32,
 }
 impl Schema for DragocatsStorageInventoryEndpointsAddLootboxNotificationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"lootboxId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"bindingId\",\"lootboxId\",\"status\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"lootboxId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"bindingId\",\"lootboxId\",\"status\"]}")
     }
 }
 impl Agent for DragocatsStorageInventoryEndpointsAddLootboxNotificationReturns {

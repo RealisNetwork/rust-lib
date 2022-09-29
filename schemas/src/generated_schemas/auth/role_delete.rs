@@ -10,7 +10,7 @@ pub struct AuthRoleDeleteParams {
 }
 impl Schema for AuthRoleDeleteParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"roleName\":{\"type\":\"string\"}},\"required\":[\"roleName\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"roleName\":{\"type\":\"string\"}},\"required\":[\"roleName\"]}") . unwrap ()
     }
 }
 impl Agent for AuthRoleDeleteParams {

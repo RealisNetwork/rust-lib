@@ -10,7 +10,7 @@ pub struct TransactionsBalanceGetListWithPaginationParams {
 }
 impl Schema for TransactionsBalanceGetListWithPaginationParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}}},\"required\":[\"page\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}}},\"required\":[\"page\"]}") . unwrap ()
     }
 }
 impl Agent for TransactionsBalanceGetListWithPaginationParams {

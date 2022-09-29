@@ -10,7 +10,7 @@ pub struct ListeriaStorageHeroesEndpointsGiveFreeExperienceToHeroParams {
 }
 impl Schema for ListeriaStorageHeroesEndpointsGiveFreeExperienceToHeroParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"heroId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"heroId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"heroId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"heroId\"]}") . unwrap ()
     }
 }
 impl Agent for ListeriaStorageHeroesEndpointsGiveFreeExperienceToHeroParams {

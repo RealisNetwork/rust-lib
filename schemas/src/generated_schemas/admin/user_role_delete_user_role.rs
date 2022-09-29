@@ -10,7 +10,7 @@ pub struct AdminUserRoleDeleteUserRoleParams {
 }
 impl Schema for AdminUserRoleDeleteUserRoleParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"internalUserId\":{\"type\":\"string\"}},\"required\":[\"internalUserId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"internalUserId\":{\"type\":\"string\"}},\"required\":[\"internalUserId\"]}") . unwrap ()
     }
 }
 impl Agent for AdminUserRoleDeleteUserRoleParams {

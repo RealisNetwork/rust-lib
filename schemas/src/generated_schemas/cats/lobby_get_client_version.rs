@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for CatsLobbyGetClientVersionParams {
 pub struct CatsLobbyGetClientVersionParams;
 impl Schema for CatsLobbyGetClientVersionParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for CatsLobbyGetClientVersionParams {

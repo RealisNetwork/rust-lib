@@ -10,7 +10,7 @@ pub struct UserProfileIsEmailExistsParams {
 }
 impl Schema for UserProfileIsEmailExistsParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\"}},\"required\":[\"email\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\"}},\"required\":[\"email\"]}") . unwrap ()
     }
 }
 impl Agent for UserProfileIsEmailExistsParams {

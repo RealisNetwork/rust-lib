@@ -10,7 +10,7 @@ pub struct UserProfileGetNicknamesByUserIdsParams {
 }
 impl Schema for UserProfileGetNicknamesByUserIdsParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userIds\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"userIds\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userIds\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"userIds\"]}") . unwrap ()
     }
 }
 impl Agent for UserProfileGetNicknamesByUserIdsParams {

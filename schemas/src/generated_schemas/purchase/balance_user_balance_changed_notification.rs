@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for PurchaseBalanceUserBalanceChangedNotificationPara
 pub struct PurchaseBalanceUserBalanceChangedNotificationParams;
 impl Schema for PurchaseBalanceUserBalanceChangedNotificationParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for PurchaseBalanceUserBalanceChangedNotificationParams {
@@ -32,20 +32,20 @@ impl Agent for PurchaseBalanceUserBalanceChangedNotificationParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PurchaseBalanceUserBalanceChangedNotificationReturns {
-    #[serde(rename = "amount")]
-    pub amount: String,
-    #[serde(rename = "transactionHash")]
-    pub transaction_hash: String,
     #[serde(rename = "currency")]
     pub currency: String,
-    #[serde(rename = "blockId")]
-    pub block_id: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
     #[serde(rename = "balance")]
     pub balance: String,
+    #[serde(rename = "transactionHash")]
+    pub transaction_hash: String,
+    #[serde(rename = "blockId")]
+    pub block_id: String,
 }
 impl Schema for PurchaseBalanceUserBalanceChangedNotificationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"transactionHash\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"blockId\":{\"type\":\"string\"},\"balance\":{\"type\":\"string\"}},\"required\":[\"currency\",\"amount\",\"transactionHash\",\"balance\",\"blockId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"amount\":{\"type\":\"string\"},\"balance\":{\"type\":\"string\"},\"transactionHash\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"}},\"required\":[\"currency\",\"amount\",\"transactionHash\",\"balance\",\"blockId\"]}")
     }
 }
 impl Agent for PurchaseBalanceUserBalanceChangedNotificationReturns {

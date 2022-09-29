@@ -10,7 +10,7 @@ pub struct GameBalancerGameBalancerDeletePlayersParams {
 }
 impl Schema for GameBalancerGameBalancerDeletePlayersParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userIds\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"userIds\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userIds\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"userIds\"]}") . unwrap ()
     }
 }
 impl Agent for GameBalancerGameBalancerDeletePlayersParams {

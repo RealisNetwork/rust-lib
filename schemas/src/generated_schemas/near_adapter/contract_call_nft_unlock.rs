@@ -10,7 +10,7 @@ pub struct NearAdapterContractCallNftUnlockParams {
 }
 impl Schema for NearAdapterContractCallNftUnlockParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"tokenId\":{\"type\":\"string\"}},\"required\":[\"tokenId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"tokenId\":{\"type\":\"string\"}},\"required\":[\"tokenId\"]}") . unwrap ()
     }
 }
 impl Agent for NearAdapterContractCallNftUnlockParams {

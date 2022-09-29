@@ -10,7 +10,7 @@ pub struct AuthTwoFactorVerifyCodeParams {
 }
 impl Schema for AuthTwoFactorVerifyCodeParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"]}") . unwrap ()
     }
 }
 impl Agent for AuthTwoFactorVerifyCodeParams {

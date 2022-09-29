@@ -12,7 +12,7 @@ pub struct ProductFactoryProductTypeGetHashParams {
 }
 impl Schema for ProductFactoryProductTypeGetHashParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"orchestratorId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"type\":{\"type\":\"string\"}},\"required\":[\"type\",\"orchestratorId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"orchestratorId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"type\":{\"type\":\"string\"}},\"required\":[\"type\",\"orchestratorId\"]}") . unwrap ()
     }
 }
 impl Agent for ProductFactoryProductTypeGetHashParams {

@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for EmailEmailSendNotSentLettersParams {
 pub struct EmailEmailSendNotSentLettersParams;
 impl Schema for EmailEmailSendNotSentLettersParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for EmailEmailSendNotSentLettersParams {

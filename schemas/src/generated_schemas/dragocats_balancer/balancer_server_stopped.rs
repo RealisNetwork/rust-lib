@@ -10,7 +10,7 @@ pub struct DragocatsBalancerBalancerServerStoppedParams {
 }
 impl Schema for DragocatsBalancerBalancerServerStoppedParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"clientId\":{\"type\":\"string\"}},\"required\":[\"clientId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"clientId\":{\"type\":\"string\"}},\"required\":[\"clientId\"]}") . unwrap ()
     }
 }
 impl Agent for DragocatsBalancerBalancerServerStoppedParams {

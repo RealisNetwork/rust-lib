@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for EmailEmailSendInProcessLettersParams {
 pub struct EmailEmailSendInProcessLettersParams;
 impl Schema for EmailEmailSendInProcessLettersParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for EmailEmailSendInProcessLettersParams {

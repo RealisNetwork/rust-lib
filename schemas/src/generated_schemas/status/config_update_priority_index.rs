@@ -17,7 +17,7 @@ pub struct StatusConfigUpdatePriorityIndexParams {
 }
 impl Schema for StatusConfigUpdatePriorityIndexParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"configParams\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"priorityIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"priorityIndex\"]}}},\"required\":[\"configParams\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"configParams\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"priorityIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"priorityIndex\"]}}},\"required\":[\"configParams\"]}") . unwrap ()
     }
 }
 impl Agent for StatusConfigUpdatePriorityIndexParams {

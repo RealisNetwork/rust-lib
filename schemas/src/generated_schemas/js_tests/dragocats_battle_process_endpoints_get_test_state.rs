@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for JsTestsDragocatsBattleProcessEndpointsGetTestStat
 pub struct JsTestsDragocatsBattleProcessEndpointsGetTestStateParams;
 impl Schema for JsTestsDragocatsBattleProcessEndpointsGetTestStateParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for JsTestsDragocatsBattleProcessEndpointsGetTestStateParams {
@@ -32,16 +32,16 @@ impl Agent for JsTestsDragocatsBattleProcessEndpointsGetTestStateParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct JsTestsDragocatsBattleProcessEndpointsGetTestStateReturns {
-    #[serde(rename = "startGames")]
-    pub start_games: f64,
-    #[serde(rename = "durationMinutes")]
-    pub duration_minutes: f64,
     #[serde(rename = "intervalMs")]
     pub interval_ms: f64,
+    #[serde(rename = "durationMinutes")]
+    pub duration_minutes: f64,
+    #[serde(rename = "startGames")]
+    pub start_games: f64,
 }
 impl Schema for JsTestsDragocatsBattleProcessEndpointsGetTestStateReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"startGames\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"durationMinutes\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"intervalMs\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"intervalMs\",\"startGames\",\"durationMinutes\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"intervalMs\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"durationMinutes\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"startGames\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"intervalMs\",\"startGames\",\"durationMinutes\"]}")
     }
 }
 impl Agent for JsTestsDragocatsBattleProcessEndpointsGetTestStateReturns {

@@ -10,7 +10,7 @@ pub struct PromoCodesUseCodeParams {
 }
 impl Schema for PromoCodesUseCodeParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"}},\"required\":[\"code\"]}") . unwrap ()
     }
 }
 impl Agent for PromoCodesUseCodeParams {
@@ -26,20 +26,20 @@ impl Agent for PromoCodesUseCodeParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesUseCodeReturnsParams {
-    #[serde(rename = "rewardType")]
-    pub reward_type: String,
     #[serde(rename = "currencyAmount")]
     pub currency_amount: String,
-    #[serde(rename = "currencyKey")]
-    pub currency_key: String,
     #[serde(rename = "heroId")]
     pub hero_id: i8,
+    #[serde(rename = "rewardType")]
+    pub reward_type: String,
+    #[serde(rename = "currencyKey")]
+    pub currency_key: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesUseCodeReturns(pub Vec<PromoCodesUseCodeReturnsParams>);
 impl Schema for PromoCodesUseCodeReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"rewardType\":{\"type\":\"string\"},\"currencyAmount\":{\"type\":\"string\"},\"currencyKey\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)$\"},\"heroId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"rewardType\",\"currencyKey\",\"currencyAmount\",\"heroId\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"currencyAmount\":{\"type\":\"string\"},\"heroId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"rewardType\":{\"type\":\"string\"},\"currencyKey\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"}},\"required\":[\"rewardType\",\"currencyKey\",\"currencyAmount\",\"heroId\"]}}")
     }
 }
 impl Agent for PromoCodesUseCodeReturns {

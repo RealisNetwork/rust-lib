@@ -10,7 +10,7 @@ pub struct WithdrawApprovalDenyParams {
 }
 impl Schema for WithdrawApprovalDenyParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"attemptId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"attemptId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"attemptId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"attemptId\"]}") . unwrap ()
     }
 }
 impl Agent for WithdrawApprovalDenyParams {

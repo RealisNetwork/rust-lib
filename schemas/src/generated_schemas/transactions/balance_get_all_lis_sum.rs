@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for TransactionsBalanceGetAllLisSumParams {
 pub struct TransactionsBalanceGetAllLisSumParams;
 impl Schema for TransactionsBalanceGetAllLisSumParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for TransactionsBalanceGetAllLisSumParams {

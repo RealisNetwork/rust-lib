@@ -12,7 +12,7 @@ pub struct WithdrawAttemptTryNewParams {
 }
 impl Schema for WithdrawAttemptTryNewParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"receiverAddress\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"receiverAddress\",\"amount\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"receiverAddress\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"receiverAddress\",\"amount\"]}") . unwrap ()
     }
 }
 impl Agent for WithdrawAttemptTryNewParams {

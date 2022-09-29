@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for StatusConfigGetListParams {
 pub struct StatusConfigGetListParams;
 impl Schema for StatusConfigGetListParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for StatusConfigGetListParams {

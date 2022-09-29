@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for GameBalancerGameBalancerGameStartedNotificationPa
 pub struct GameBalancerGameBalancerGameStartedNotificationParams;
 impl Schema for GameBalancerGameBalancerGameStartedNotificationParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for GameBalancerGameBalancerGameStartedNotificationParams {

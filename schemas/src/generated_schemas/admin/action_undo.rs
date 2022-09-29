@@ -10,7 +10,7 @@ pub struct AdminActionUndoParams {
 }
 impl Schema for AdminActionUndoParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"actionId\":{\"type\":\"string\"}},\"required\":[\"actionId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"actionId\":{\"type\":\"string\"}},\"required\":[\"actionId\"]}") . unwrap ()
     }
 }
 impl Agent for AdminActionUndoParams {

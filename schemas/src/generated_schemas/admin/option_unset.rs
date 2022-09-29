@@ -10,7 +10,7 @@ pub struct AdminOptionUnsetParams {
 }
 impl Schema for AdminOptionUnsetParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"clientKey\":{\"type\":\"string\"}},\"required\":[\"clientKey\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"clientKey\":{\"type\":\"string\"}},\"required\":[\"clientKey\"]}") . unwrap ()
     }
 }
 impl Agent for AdminOptionUnsetParams {

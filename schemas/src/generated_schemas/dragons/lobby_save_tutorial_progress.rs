@@ -12,7 +12,7 @@ pub struct DragonsLobbySaveTutorialProgressParams {
 }
 impl Schema for DragonsLobbySaveTutorialProgressParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"dataObject\":{\"type\":\"string\"}},\"required\":[\"userId\",\"dataObject\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"dataObject\":{\"type\":\"string\"}},\"required\":[\"userId\",\"dataObject\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbySaveTutorialProgressParams {

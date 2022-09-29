@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for LobbyStatsOptionsEndpointsGetPersonalTypesListPar
 pub struct LobbyStatsOptionsEndpointsGetPersonalTypesListParams;
 impl Schema for LobbyStatsOptionsEndpointsGetPersonalTypesListParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for LobbyStatsOptionsEndpointsGetPersonalTypesListParams {

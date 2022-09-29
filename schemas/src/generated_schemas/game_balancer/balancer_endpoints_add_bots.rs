@@ -10,7 +10,7 @@ pub struct GameBalancerBalancerEndpointsAddBotsParams {
 }
 impl Schema for GameBalancerBalancerEndpointsAddBotsParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"region\":{\"type\":\"string\"}},\"required\":[\"region\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"region\":{\"type\":\"string\"}},\"required\":[\"region\"]}") . unwrap ()
     }
 }
 impl Agent for GameBalancerBalancerEndpointsAddBotsParams {

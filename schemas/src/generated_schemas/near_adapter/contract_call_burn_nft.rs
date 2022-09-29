@@ -14,7 +14,7 @@ pub struct NearAdapterContractCallBurnNftParams {
 }
 impl Schema for NearAdapterContractCallBurnNftParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"tokenId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"approvalId\":{\"type\":\"string\"}},\"required\":[\"tokenId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"tokenId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"approvalId\":{\"type\":\"string\"}},\"required\":[\"tokenId\"]}") . unwrap ()
     }
 }
 impl Agent for NearAdapterContractCallBurnNftParams {

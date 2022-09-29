@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for AdminConfirmationGetNotConfirmedActionsParams {
 pub struct AdminConfirmationGetNotConfirmedActionsParams;
 impl Schema for AdminConfirmationGetNotConfirmedActionsParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for AdminConfirmationGetNotConfirmedActionsParams {

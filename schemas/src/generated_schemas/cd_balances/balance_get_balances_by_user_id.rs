@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for CdBalancesBalanceGetBalancesByUserIdParams {
 pub struct CdBalancesBalanceGetBalancesByUserIdParams;
 impl Schema for CdBalancesBalanceGetBalancesByUserIdParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for CdBalancesBalanceGetBalancesByUserIdParams {
@@ -32,16 +32,16 @@ impl Agent for CdBalancesBalanceGetBalancesByUserIdParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CdBalancesBalanceGetBalancesByUserIdReturnsParams {
+    #[serde(rename = "totalEarned")]
+    pub total_earned: String,
+    #[serde(rename = "id")]
+    pub id: f64,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "amount")]
     pub amount: String,
     #[serde(rename = "currency")]
     pub currency: String,
-    #[serde(rename = "totalEarned")]
-    pub total_earned: String,
-    #[serde(rename = "id")]
-    pub id: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CdBalancesBalanceGetBalancesByUserIdReturns(
@@ -49,7 +49,7 @@ pub struct CdBalancesBalanceGetBalancesByUserIdReturns(
 );
 impl Schema for CdBalancesBalanceGetBalancesByUserIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\"},\"totalEarned\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"userId\",\"amount\",\"currency\",\"totalEarned\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"totalEarned\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"amount\",\"currency\",\"totalEarned\"]}}")
     }
 }
 impl Agent for CdBalancesBalanceGetBalancesByUserIdReturns {

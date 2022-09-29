@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for AdminUserRoleIsAdminParams {
 pub struct AdminUserRoleIsAdminParams;
 impl Schema for AdminUserRoleIsAdminParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for AdminUserRoleIsAdminParams {

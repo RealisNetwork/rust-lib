@@ -12,7 +12,7 @@ pub struct OrchestratorBattlePassGenerateProductParams {
 }
 impl Schema for OrchestratorBattlePassGenerateProductParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"personalTypes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"userId\",\"personalTypes\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"personalTypes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"userId\",\"personalTypes\"]}") . unwrap ()
     }
 }
 impl Agent for OrchestratorBattlePassGenerateProductParams {

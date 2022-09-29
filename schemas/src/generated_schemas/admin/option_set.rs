@@ -23,7 +23,7 @@ pub struct AdminOptionSetParams {
 }
 impl Schema for AdminOptionSetParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"extraDetails\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"}},\"required\":null},\"description\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"},\"clientKey\":{\"type\":\"string\"}},\"required\":[\"clientKey\",\"value\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"extraDetails\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"}},\"required\":null},\"description\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"},\"clientKey\":{\"type\":\"string\"}},\"required\":[\"clientKey\",\"value\"]}") . unwrap ()
     }
 }
 impl Agent for AdminOptionSetParams {

@@ -10,7 +10,7 @@ pub struct DragocatsProductFactoryProductsGetInfoByProductIdParams {
 }
 impl Schema for DragocatsProductFactoryProductsGetInfoByProductIdParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"productId\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"productId\"]}") . unwrap ()
     }
 }
 impl Agent for DragocatsProductFactoryProductsGetInfoByProductIdParams {
@@ -26,20 +26,20 @@ impl Agent for DragocatsProductFactoryProductsGetInfoByProductIdParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsProductFactoryProductsGetInfoByProductIdReturns {
-    #[serde(rename = "subType")]
-    pub sub_type: String,
-    #[serde(rename = "name")]
-    pub name: String,
     #[serde(rename = "productType")]
     pub product_type: String,
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
     #[serde(rename = "isNft")]
     pub is_nft: bool,
+    #[serde(rename = "name")]
+    pub name: String,
+    #[serde(rename = "subType")]
+    pub sub_type: String,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
 }
 impl Schema for DragocatsProductFactoryProductsGetInfoByProductIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"subType\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"productType\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"isNft\":{\"type\":\"boolean\"}},\"required\":[\"personalType\",\"productType\",\"subType\",\"name\",\"isNft\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productType\":{\"type\":\"string\"},\"isNft\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"}},\"required\":[\"personalType\",\"productType\",\"subType\",\"name\",\"isNft\"]}")
     }
 }
 impl Agent for DragocatsProductFactoryProductsGetInfoByProductIdReturns {

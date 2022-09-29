@@ -16,7 +16,7 @@ impl<'de> Deserialize<'de> for CatsLobbyGetBadTransactionsParams {
 pub struct CatsLobbyGetBadTransactionsParams;
 impl Schema for CatsLobbyGetBadTransactionsParams {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::from_str("{}").unwrap()
     }
 }
 impl Agent for CatsLobbyGetBadTransactionsParams {

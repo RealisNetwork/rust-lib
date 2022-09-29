@@ -12,7 +12,7 @@ pub struct AuthAuthResetPasswordParams {
 }
 impl Schema for AuthAuthResetPasswordParams {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"newPassword\":{\"type\":\"string\"},\"hash\":{\"type\":\"string\"}},\"required\":[\"hash\",\"newPassword\"]}")
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"newPassword\":{\"type\":\"string\"},\"hash\":{\"type\":\"string\"}},\"required\":[\"hash\",\"newPassword\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthResetPasswordParams {
