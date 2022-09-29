@@ -25,13 +25,6 @@ impl Agent for BlogBlogGetByUrlParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct BlogBlogGetByUrlReturnsAnswersParamsParams {
-    #[serde(rename = "answer")]
-    pub answer: String,
-    #[serde(rename = "isImage")]
-    pub is_image: bool,
-}
-#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetByUrlReturnsCategoryParams {
     #[serde(rename = "id")]
     pub id: f64,
@@ -41,47 +34,54 @@ pub struct BlogBlogGetByUrlReturnsCategoryParams {
     pub name: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct BlogBlogGetByUrlReturnsAnswersParamsParams {
+    #[serde(rename = "isImage")]
+    pub is_image: bool,
+    #[serde(rename = "answer")]
+    pub answer: String,
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetByUrlReturns {
-    #[serde(rename = "answers")]
-    pub answers: Vec<BlogBlogGetByUrlReturnsAnswersParamsParams>,
-    #[serde(rename = "lang")]
-    pub lang: String,
-    #[serde(rename = "isAvailable")]
-    pub is_available: bool,
-    #[serde(rename = "metaTitle")]
-    pub meta_title: String,
-    #[serde(rename = "isPinned")]
-    pub is_pinned: bool,
     #[serde(rename = "title")]
     pub title: String,
-    #[serde(rename = "shortDescription")]
-    pub short_description: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "isPinned")]
+    pub is_pinned: bool,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "isAvailable")]
+    pub is_available: bool,
     #[serde(rename = "url")]
     pub url: String,
     #[serde(rename = "image")]
     pub image: String,
-    #[serde(rename = "content")]
-    pub content: String,
-    #[serde(rename = "views")]
-    pub views: f64,
+    #[serde(rename = "shortDescription")]
+    pub short_description: String,
     #[serde(rename = "isOpenPoll")]
     pub is_open_poll: bool,
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "metaDescription")]
-    pub meta_description: String,
-    #[serde(rename = "category")]
-    pub category: BlogBlogGetByUrlReturnsCategoryParams,
     #[serde(rename = "question")]
     pub question: String,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
+    #[serde(rename = "metaTitle")]
+    pub meta_title: String,
+    #[serde(rename = "category")]
+    pub category: BlogBlogGetByUrlReturnsCategoryParams,
+    #[serde(rename = "content")]
+    pub content: String,
+    #[serde(rename = "lang")]
+    pub lang: String,
+    #[serde(rename = "metaDescription")]
+    pub meta_description: String,
+    #[serde(rename = "answers")]
+    pub answers: Vec<BlogBlogGetByUrlReturnsAnswersParamsParams>,
+    #[serde(rename = "views")]
+    pub views: f64,
 }
 impl Schema for BlogBlogGetByUrlReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"answer\":{\"type\":\"string\"},\"isImage\":{\"type\":\"boolean\"}},\"required\":[\"isImage\",\"answer\"]}},\"lang\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"},\"metaTitle\":{\"type\":\"string\"},\"isPinned\":{\"type\":\"boolean\"},\"title\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"views\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isOpenPoll\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"metaDescription\":{\"type\":\"string\"},\"category\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isAvailable\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\",\"isAvailable\"]},\"question\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\",\"isPinned\",\"views\",\"isAvailable\",\"lang\",\"isOpenPoll\",\"question\",\"answers\",\"createdAt\",\"updatedAt\",\"category\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"title\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isPinned\":{\"type\":\"boolean\"},\"createdAt\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"},\"url\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"isOpenPoll\":{\"type\":\"boolean\"},\"question\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"category\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isAvailable\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\",\"isAvailable\"]},\"content\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"isImage\":{\"type\":\"boolean\"},\"answer\":{\"type\":\"string\"}},\"required\":[\"isImage\",\"answer\"]}},\"views\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\",\"isPinned\",\"views\",\"isAvailable\",\"lang\",\"isOpenPoll\",\"question\",\"answers\",\"createdAt\",\"updatedAt\",\"category\"]}")
     }
 }
 impl Agent for BlogBlogGetByUrlReturns {

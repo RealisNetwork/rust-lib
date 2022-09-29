@@ -39,7 +39,7 @@ pub struct RefundBalancesGetAllMyReturns {
 }
 impl Schema for RefundBalancesGetAllMyReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"ETH\":{\"type\":\"string\"},\"LIS\":{\"type\":\"string\"}},\"required\":null}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"ETH\":{\"type\":\"string\"},\"LIS\":{\"type\":\"string\"}}}")
     }
 }
 impl Agent for RefundBalancesGetAllMyReturns {

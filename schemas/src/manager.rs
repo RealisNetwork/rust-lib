@@ -127,6 +127,7 @@ impl SchemaManager {
             ("auth", "auth_assignProviderAccountToDeviceId") => {
                 Some(AuthAuthAssignProviderAccountToDeviceIdParams::schema())
             }
+            ("auth", "auth_resetUserProgress") => Some(AuthAuthResetUserProgressParams::schema()),
             ("auth", "authDevice_getOrCreateInternalUserId") => {
                 Some(AuthAuthDeviceGetOrCreateInternalUserIdParams::schema())
             }
@@ -1119,11 +1120,11 @@ impl SchemaManager {
             ("transactions", "balance_adminDecreaseBalance") => {
                 Some(TransactionsBalanceAdminDecreaseBalanceParams::schema())
             }
-            ("transactions", "balance_getNumWithFilter") => {
-                Some(TransactionsBalanceGetNumWithFilterParams::schema())
-            }
             ("transactions", "balance_getTestnetLis") => {
                 Some(TransactionsBalanceGetTestnetLisParams::schema())
+            }
+            ("transactions", "balance_getNumWithFilter") => {
+                Some(TransactionsBalanceGetNumWithFilterParams::schema())
             }
             ("transactions", "registryProduct_addProduct") => {
                 Some(TransactionsRegistryProductAddProductParams::schema())
@@ -1326,6 +1327,7 @@ impl SchemaManager {
             ("auth", "auth_assignProviderAccountToDeviceId") => {
                 Some(AuthAuthAssignProviderAccountToDeviceIdReturns::schema())
             }
+            ("auth", "auth_resetUserProgress") => Some(AuthAuthResetUserProgressReturns::schema()),
             ("auth", "authDevice_getOrCreateInternalUserId") => {
                 Some(AuthAuthDeviceGetOrCreateInternalUserIdReturns::schema())
             }
@@ -2336,11 +2338,11 @@ impl SchemaManager {
             ("transactions", "balance_adminDecreaseBalance") => {
                 Some(TransactionsBalanceAdminDecreaseBalanceReturns::schema())
             }
-            ("transactions", "balance_getNumWithFilter") => {
-                Some(TransactionsBalanceGetNumWithFilterReturns::schema())
-            }
             ("transactions", "balance_getTestnetLis") => {
                 Some(TransactionsBalanceGetTestnetLisReturns::schema())
+            }
+            ("transactions", "balance_getNumWithFilter") => {
+                Some(TransactionsBalanceGetNumWithFilterReturns::schema())
             }
             ("transactions", "registryProduct_addProduct") => {
                 Some(TransactionsRegistryProductAddProductReturns::schema())

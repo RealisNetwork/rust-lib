@@ -26,12 +26,12 @@ impl Agent for TransactionsBalanceGetListWithPaginationParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetListWithPaginationReturnsListParamsParams {
-    #[serde(rename = "blockId")]
-    pub block_id: String,
-    #[serde(rename = "balanceChange")]
-    pub balance_change: String,
     #[serde(rename = "dateTime")]
     pub date_time: String,
+    #[serde(rename = "balanceChange")]
+    pub balance_change: String,
+    #[serde(rename = "blockId")]
+    pub block_id: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetListWithPaginationReturns {
@@ -44,7 +44,7 @@ pub struct TransactionsBalanceGetListWithPaginationReturns {
 }
 impl Schema for TransactionsBalanceGetListWithPaginationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"pages\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"blockId\":{\"type\":\"string\"},\"balanceChange\":{\"type\":\"string\"},\"dateTime\":{\"type\":\"string\"}},\"required\":[\"blockId\",\"dateTime\",\"balanceChange\"]}},\"page\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}}},\"required\":[\"page\",\"pages\",\"list\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"pages\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"dateTime\":{\"type\":\"string\"},\"balanceChange\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"}},\"required\":[\"blockId\",\"dateTime\",\"balanceChange\"]}},\"page\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}}},\"required\":[\"page\",\"pages\",\"list\"]}")
     }
 }
 impl Agent for TransactionsBalanceGetListWithPaginationReturns {

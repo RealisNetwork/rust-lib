@@ -33,55 +33,55 @@ pub struct BlogBlogGetReturnsAnswersParamsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetReturnsCategoryParams {
+    #[serde(rename = "id")]
+    pub id: f64,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
-    #[serde(rename = "id")]
-    pub id: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetReturns {
-    #[serde(rename = "metaTitle")]
-    pub meta_title: String,
-    #[serde(rename = "url")]
-    pub url: String,
-    #[serde(rename = "answers")]
-    pub answers: Vec<BlogBlogGetReturnsAnswersParamsParams>,
-    #[serde(rename = "metaDescription")]
-    pub meta_description: String,
-    #[serde(rename = "id")]
-    pub id: f64,
+    #[serde(rename = "image")]
+    pub image: String,
+    #[serde(rename = "isPinned")]
+    pub is_pinned: bool,
+    #[serde(rename = "content")]
+    pub content: String,
     #[serde(rename = "shortDescription")]
     pub short_description: String,
+    #[serde(rename = "metaTitle")]
+    pub meta_title: String,
     #[serde(rename = "createdAt")]
     pub created_at: String,
+    #[serde(rename = "metaDescription")]
+    pub meta_description: String,
     #[serde(rename = "views")]
     pub views: f64,
+    #[serde(rename = "lang")]
+    pub lang: String,
+    #[serde(rename = "isOpenPoll")]
+    pub is_open_poll: bool,
+    #[serde(rename = "answers")]
+    pub answers: Vec<BlogBlogGetReturnsAnswersParamsParams>,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
+    #[serde(rename = "category")]
+    pub category: BlogBlogGetReturnsCategoryParams,
+    #[serde(rename = "question")]
+    pub question: String,
+    #[serde(rename = "id")]
+    pub id: f64,
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
     #[serde(rename = "title")]
     pub title: String,
-    #[serde(rename = "isPinned")]
-    pub is_pinned: bool,
-    #[serde(rename = "image")]
-    pub image: String,
-    #[serde(rename = "category")]
-    pub category: BlogBlogGetReturnsCategoryParams,
-    #[serde(rename = "isOpenPoll")]
-    pub is_open_poll: bool,
-    #[serde(rename = "lang")]
-    pub lang: String,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: String,
-    #[serde(rename = "question")]
-    pub question: String,
-    #[serde(rename = "content")]
-    pub content: String,
+    #[serde(rename = "url")]
+    pub url: String,
 }
 impl Schema for BlogBlogGetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"metaTitle\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"isImage\":{\"type\":\"boolean\"},\"answer\":{\"type\":\"string\"}},\"required\":[\"isImage\",\"answer\"]}},\"metaDescription\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"shortDescription\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"views\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isAvailable\":{\"type\":\"boolean\"},\"title\":{\"type\":\"string\"},\"isPinned\":{\"type\":\"boolean\"},\"image\":{\"type\":\"string\"},\"category\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"name\",\"isAvailable\"]},\"isOpenPoll\":{\"type\":\"boolean\"},\"lang\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"question\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"}},\"required\":[\"id\",\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\",\"isPinned\",\"views\",\"isAvailable\",\"lang\",\"isOpenPoll\",\"question\",\"answers\",\"createdAt\",\"updatedAt\",\"category\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"image\":{\"type\":\"string\"},\"isPinned\":{\"type\":\"boolean\"},\"content\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"},\"views\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"lang\":{\"type\":\"string\"},\"isOpenPoll\":{\"type\":\"boolean\"},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"isImage\":{\"type\":\"boolean\"},\"answer\":{\"type\":\"string\"}},\"required\":[\"isImage\",\"answer\"]}},\"updatedAt\":{\"type\":\"string\"},\"category\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"name\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"name\",\"isAvailable\"]},\"question\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isAvailable\":{\"type\":\"boolean\"},\"title\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"}},\"required\":[\"id\",\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\",\"isPinned\",\"views\",\"isAvailable\",\"lang\",\"isOpenPoll\",\"question\",\"answers\",\"createdAt\",\"updatedAt\",\"category\"]}")
     }
 }
 impl Agent for BlogBlogGetReturns {

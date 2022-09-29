@@ -5,18 +5,18 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AnalyticsAnalyticsSendParams {
-    #[serde(rename = "value")]
-    pub value: Option<()>,
     #[serde(rename = "param")]
     pub param: Option<String>,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "key")]
     pub key: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "value")]
+    pub value: Option<()>,
 }
 impl Schema for AnalyticsAnalyticsSendParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"value\":{},\"param\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"}},\"required\":[\"key\",\"userId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"param\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"value\":{}},\"required\":[\"key\",\"userId\"]}") . unwrap ()
     }
 }
 impl Agent for AnalyticsAnalyticsSendParams {
@@ -31,10 +31,13 @@ impl Agent for AnalyticsAnalyticsSendParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AnalyticsAnalyticsSendReturns(pub bool);
+pub struct AnalyticsAnalyticsSendReturns {
+    #[serde(rename = "isSuccess")]
+    pub is_success: bool,
+}
 impl Schema for AnalyticsAnalyticsSendReturns {
     fn schema() -> Value {
-        serde_json::json!("{\"type\":\"boolean\"}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isSuccess\":{\"type\":\"boolean\"}},\"required\":[\"isSuccess\"]}")
     }
 }
 impl Agent for AnalyticsAnalyticsSendReturns {

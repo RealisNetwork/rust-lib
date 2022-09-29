@@ -7,7 +7,7 @@ use crate::generated_schemas::prelude::*;
 pub struct BattlePassBattlePassEndpointsPurchaseBattlePassExperienceToLevelupParams {}
 impl Schema for BattlePassBattlePassEndpointsPurchaseBattlePassExperienceToLevelupParams {
     fn schema() -> Value {
-        serde_json::from_str("{\"type\":\"object\",\"properties\":{},\"required\":null}").unwrap()
+        serde_json::from_str("{\"type\":\"object\",\"properties\":{}}").unwrap()
     }
 }
 impl Agent for BattlePassBattlePassEndpointsPurchaseBattlePassExperienceToLevelupParams {
@@ -25,7 +25,7 @@ impl Agent for BattlePassBattlePassEndpointsPurchaseBattlePassExperienceToLevelu
 pub struct BattlePassBattlePassEndpointsPurchaseBattlePassExperienceToLevelupReturns {}
 impl Schema for BattlePassBattlePassEndpointsPurchaseBattlePassExperienceToLevelupReturns {
     fn schema() -> Value {
-        serde_json::json!("{\"type\":\"object\",\"properties\":{},\"required\":null}")
+        serde_json::json!("{\"type\":\"object\",\"properties\":{}}")
     }
 }
 impl Agent for BattlePassBattlePassEndpointsPurchaseBattlePassExperienceToLevelupReturns {

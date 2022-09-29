@@ -5,18 +5,18 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryLootboxOpenParams {
-    #[serde(rename = "lootboxBindingId")]
-    pub lootbox_binding_id: f64,
-    #[serde(rename = "productId")]
-    pub product_id: f64,
-    #[serde(rename = "excludedPersonalTypes")]
-    pub excluded_personal_types: Vec<String>,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "excludedPersonalTypes")]
+    pub excluded_personal_types: Vec<String>,
+    #[serde(rename = "productId")]
+    pub product_id: f64,
+    #[serde(rename = "lootboxBindingId")]
+    pub lootbox_binding_id: f64,
 }
 impl Schema for ProductFactoryLootboxOpenParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"lootboxBindingId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"productId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"excludedPersonalTypes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"productId\",\"userId\",\"lootboxBindingId\",\"excludedPersonalTypes\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"excludedPersonalTypes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"productId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"lootboxBindingId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"productId\",\"userId\",\"lootboxBindingId\",\"excludedPersonalTypes\"]}") . unwrap ()
     }
 }
 impl Agent for ProductFactoryLootboxOpenParams {

@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthSocialNetworkAuthParams {
-    #[serde(rename = "provider")]
-    pub provider: String,
     #[serde(rename = "credential")]
     pub credential: String,
+    #[serde(rename = "provider")]
+    pub provider: String,
 }
 impl Schema for AuthAuthSocialNetworkAuthParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"provider\":{\"type\":\"string\"},\"credential\":{\"type\":\"string\"}},\"required\":[\"credential\",\"provider\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"credential\":{\"type\":\"string\"},\"provider\":{\"type\":\"string\"}},\"required\":[\"credential\",\"provider\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthSocialNetworkAuthParams {
@@ -28,8 +28,6 @@ impl Agent for AuthAuthSocialNetworkAuthParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthSocialNetworkAuthReturns {
-    #[serde(rename = "expires_in")]
-    pub expires_in: i32,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "refresh_token")]
@@ -38,10 +36,12 @@ pub struct AuthAuthSocialNetworkAuthReturns {
     pub access_token: String,
     #[serde(rename = "refresh_expires_in")]
     pub refresh_expires_in: Option<i32>,
+    #[serde(rename = "expires_in")]
+    pub expires_in: i32,
 }
 impl Schema for AuthAuthSocialNetworkAuthReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"refresh_token\":{\"type\":\"string\"},\"access_token\":{\"type\":\"string\"},\"refresh_expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"access_token\",\"expires_in\",\"userId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"refresh_token\":{\"type\":\"string\"},\"access_token\":{\"type\":\"string\"},\"refresh_expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"access_token\",\"expires_in\",\"userId\"]}")
     }
 }
 impl Agent for AuthAuthSocialNetworkAuthReturns {

@@ -14,7 +14,7 @@ pub struct TransactionsBalanceGetNumWithFilterParams {
 }
 impl Schema for TransactionsBalanceGetNumWithFilterParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"credit\":{\"type\":\"string\"},\"debit\":{\"type\":\"string\"}},\"required\":null}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"credit\":{\"type\":\"string\"},\"debit\":{\"type\":\"string\"}}}") . unwrap ()
     }
 }
 impl Agent for TransactionsBalanceGetNumWithFilterParams {

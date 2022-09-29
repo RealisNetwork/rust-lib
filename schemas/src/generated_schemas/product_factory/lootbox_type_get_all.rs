@@ -32,14 +32,14 @@ impl Agent for ProductFactoryLootboxTypeGetAllParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryLootboxTypeGetAllReturnsParams {
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "dropChanceMultiplier")]
-    pub drop_chance_multiplier: i32,
-    #[serde(rename = "lootboxId")]
-    pub lootbox_id: i32,
     #[serde(rename = "name")]
     pub name: String,
+    #[serde(rename = "dropChanceMultiplier")]
+    pub drop_chance_multiplier: i32,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "lootboxId")]
+    pub lootbox_id: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryLootboxTypeGetAllReturns(
@@ -47,7 +47,7 @@ pub struct ProductFactoryLootboxTypeGetAllReturns(
 );
 impl Schema for ProductFactoryLootboxTypeGetAllReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"dropChanceMultiplier\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"lootboxId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\",\"lootboxId\",\"dropChanceMultiplier\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"dropChanceMultiplier\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"lootboxId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"name\",\"lootboxId\",\"dropChanceMultiplier\"]}}")
     }
 }
 impl Agent for ProductFactoryLootboxTypeGetAllReturns {

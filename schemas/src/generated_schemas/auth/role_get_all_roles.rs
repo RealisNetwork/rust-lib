@@ -7,7 +7,7 @@ use crate::generated_schemas::prelude::*;
 pub struct AuthRoleGetAllRolesParams {}
 impl Schema for AuthRoleGetAllRolesParams {
     fn schema() -> Value {
-        serde_json::from_str("{\"type\":\"object\",\"properties\":{},\"required\":null}").unwrap()
+        serde_json::from_str("{\"type\":\"object\",\"properties\":{}}").unwrap()
     }
 }
 impl Agent for AuthRoleGetAllRolesParams {

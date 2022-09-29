@@ -36,7 +36,7 @@ pub struct PromoCodesGetListStrictReturnsParams {}
 pub struct PromoCodesGetListStrictReturns(pub Vec<PromoCodesGetListStrictReturnsParams>);
 impl Schema for PromoCodesGetListStrictReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{},\"required\":null}}")
+        serde_json::json!("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{}}}")
     }
 }
 impl Agent for PromoCodesGetListStrictReturns {

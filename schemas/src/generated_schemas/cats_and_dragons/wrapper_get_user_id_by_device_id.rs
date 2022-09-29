@@ -10,7 +10,7 @@ pub struct CatsAndDragonsWrapperGetUserIdByDeviceIdParams {
 }
 impl Schema for CatsAndDragonsWrapperGetUserIdByDeviceIdParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"appId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":null}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"appId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}}}") . unwrap ()
     }
 }
 impl Agent for CatsAndDragonsWrapperGetUserIdByDeviceIdParams {

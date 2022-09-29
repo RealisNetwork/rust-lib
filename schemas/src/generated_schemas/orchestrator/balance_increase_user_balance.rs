@@ -7,20 +7,20 @@ use crate::generated_schemas::prelude::*;
 pub struct OrchestratorBalanceIncreaseUserBalanceParams {
     #[serde(rename = "txId")]
     pub tx_id: String,
+    #[serde(rename = "topicToSuccessResponse")]
+    pub topic_to_success_response: String,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "currency")]
     pub currency: String,
-    #[serde(rename = "creator")]
-    pub creator: String,
     #[serde(rename = "amount")]
     pub amount: String,
-    #[serde(rename = "topicToSuccessResponse")]
-    pub topic_to_success_response: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
 }
 impl Schema for OrchestratorBalanceIncreaseUserBalanceParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"txId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"creator\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"topicToSuccessResponse\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\",\"topicToSuccessResponse\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"txId\":{\"type\":\"string\"},\"topicToSuccessResponse\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"amount\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\",\"topicToSuccessResponse\"]}") . unwrap ()
     }
 }
 impl Agent for OrchestratorBalanceIncreaseUserBalanceParams {

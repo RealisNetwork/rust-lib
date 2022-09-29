@@ -12,43 +12,43 @@ pub struct BlogBlogUpdateParamsPropsParamsAnswersParamsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogUpdateParamsPropsParams {
-    #[serde(rename = "answers")]
-    pub answers: Option<Vec<BlogBlogUpdateParamsPropsParamsAnswersParamsParams>>,
-    #[serde(rename = "title")]
-    pub title: Option<String>,
-    #[serde(rename = "url")]
-    pub url: Option<String>,
-    #[serde(rename = "image")]
-    pub image: Option<String>,
-    #[serde(rename = "shortDescription")]
-    pub short_description: Option<String>,
-    #[serde(rename = "isPinned")]
-    pub is_pinned: Option<bool>,
-    #[serde(rename = "metaTitle")]
-    pub meta_title: Option<String>,
-    #[serde(rename = "question")]
-    pub question: Option<String>,
-    #[serde(rename = "content")]
-    pub content: Option<String>,
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "metaDescription")]
-    pub meta_description: Option<String>,
-    #[serde(rename = "lang")]
-    pub lang: Option<String>,
     #[serde(rename = "isOpenPoll")]
     pub is_open_poll: Option<bool>,
+    #[serde(rename = "content")]
+    pub content: Option<String>,
+    #[serde(rename = "answers")]
+    pub answers: Option<Vec<BlogBlogUpdateParamsPropsParamsAnswersParamsParams>>,
+    #[serde(rename = "image")]
+    pub image: Option<String>,
+    #[serde(rename = "isPinned")]
+    pub is_pinned: Option<bool>,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "question")]
+    pub question: Option<String>,
+    #[serde(rename = "url")]
+    pub url: Option<String>,
+    #[serde(rename = "metaTitle")]
+    pub meta_title: Option<String>,
+    #[serde(rename = "lang")]
+    pub lang: Option<String>,
+    #[serde(rename = "title")]
+    pub title: Option<String>,
+    #[serde(rename = "shortDescription")]
+    pub short_description: Option<String>,
+    #[serde(rename = "metaDescription")]
+    pub meta_description: Option<String>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogUpdateParams {
-    #[serde(rename = "categoryId")]
-    pub category_id: Option<f64>,
     #[serde(rename = "props")]
     pub props: BlogBlogUpdateParamsPropsParams,
+    #[serde(rename = "categoryId")]
+    pub category_id: Option<f64>,
 }
 impl Schema for BlogBlogUpdateParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"props\":{\"type\":\"object\",\"properties\":{\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"answer\":{\"type\":\"string\"},\"isImage\":{\"type\":\"boolean\"}},\"required\":[\"isImage\",\"answer\"]}},\"title\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"isPinned\":{\"type\":\"boolean\"},\"metaTitle\":{\"type\":\"string\"},\"question\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"metaDescription\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"},\"isOpenPoll\":{\"type\":\"boolean\"}},\"required\":[\"id\"]}},\"required\":[\"props\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"props\":{\"type\":\"object\",\"properties\":{\"isOpenPoll\":{\"type\":\"boolean\"},\"content\":{\"type\":\"string\"},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"answer\":{\"type\":\"string\"},\"isImage\":{\"type\":\"boolean\"}},\"required\":[\"isImage\",\"answer\"]}},\"image\":{\"type\":\"string\"},\"isPinned\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"question\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"}},\"required\":[\"id\"]},\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"props\"]}") . unwrap ()
     }
 }
 impl Agent for BlogBlogUpdateParams {

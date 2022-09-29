@@ -28,18 +28,18 @@ impl Agent for ProductFactoryProductsGetInfoByProductIdParams {
 pub struct ProductFactoryProductsGetInfoByProductIdReturns {
     #[serde(rename = "personalType")]
     pub personal_type: String,
+    #[serde(rename = "productType")]
+    pub product_type: String,
+    #[serde(rename = "isNft")]
+    pub is_nft: bool,
     #[serde(rename = "subType")]
     pub sub_type: String,
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "isNft")]
-    pub is_nft: bool,
-    #[serde(rename = "productType")]
-    pub product_type: String,
 }
 impl Schema for ProductFactoryProductsGetInfoByProductIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"isNft\":{\"type\":\"boolean\"},\"productType\":{\"type\":\"string\"}},\"required\":[\"personalType\",\"productType\",\"subType\",\"name\",\"isNft\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"productType\":{\"type\":\"string\"},\"isNft\":{\"type\":\"boolean\"},\"subType\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}},\"required\":[\"personalType\",\"productType\",\"subType\",\"name\",\"isNft\"]}")
     }
 }
 impl Agent for ProductFactoryProductsGetInfoByProductIdReturns {

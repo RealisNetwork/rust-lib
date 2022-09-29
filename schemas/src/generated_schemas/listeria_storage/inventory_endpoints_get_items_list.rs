@@ -32,35 +32,35 @@ impl Agent for ListeriaStorageInventoryEndpointsGetItemsListParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ListeriaStorageInventoryEndpointsGetItemsListReturnsParamsEffectsParamsParams {
-    #[serde(rename = "power")]
-    pub power: String,
     #[serde(rename = "statName")]
     pub stat_name: i8,
+    #[serde(rename = "power")]
+    pub power: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ListeriaStorageInventoryEndpointsGetItemsListReturnsParams {
-    #[serde(rename = "effects")]
-    pub effects: Vec<ListeriaStorageInventoryEndpointsGetItemsListReturnsParamsEffectsParamsParams>,
+    #[serde(rename = "toNextLevelScrolls")]
+    pub to_next_level_scrolls: i32,
+    #[serde(rename = "level")]
+    pub level: i16,
+    #[serde(rename = "linkToExplorer")]
+    pub link_to_explorer: String,
+    #[serde(rename = "maxLevel")]
+    pub max_level: i16,
     #[serde(rename = "isPending")]
     pub is_pending: bool,
     #[serde(rename = "equipmentItemId")]
     pub equipment_item_id: i32,
-    #[serde(rename = "transactionHash")]
-    pub transaction_hash: Option<String>,
-    #[serde(rename = "level")]
-    pub level: i16,
-    #[serde(rename = "status")]
-    pub status: i32,
-    #[serde(rename = "bindingId")]
-    pub binding_id: i32,
-    #[serde(rename = "toNextLevelScrolls")]
-    pub to_next_level_scrolls: i32,
-    #[serde(rename = "linkToExplorer")]
-    pub link_to_explorer: String,
     #[serde(rename = "blockId")]
     pub block_id: Option<String>,
-    #[serde(rename = "maxLevel")]
-    pub max_level: i16,
+    #[serde(rename = "effects")]
+    pub effects: Vec<ListeriaStorageInventoryEndpointsGetItemsListReturnsParamsEffectsParamsParams>,
+    #[serde(rename = "status")]
+    pub status: i32,
+    #[serde(rename = "transactionHash")]
+    pub transaction_hash: Option<String>,
+    #[serde(rename = "bindingId")]
+    pub binding_id: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ListeriaStorageInventoryEndpointsGetItemsListReturns(
@@ -68,7 +68,7 @@ pub struct ListeriaStorageInventoryEndpointsGetItemsListReturns(
 );
 impl Schema for ListeriaStorageInventoryEndpointsGetItemsListReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"effects\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"power\":{\"type\":\"string\"},\"statName\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"statName\",\"power\"]}},\"isPending\":{\"type\":\"boolean\"},\"equipmentItemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"transactionHash\":{\"type\":\"string\"},\"level\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"toNextLevelScrolls\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"linkToExplorer\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"},\"maxLevel\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}}},\"required\":[\"equipmentItemId\",\"bindingId\",\"linkToExplorer\",\"effects\",\"isPending\",\"level\",\"maxLevel\",\"toNextLevelScrolls\",\"status\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"toNextLevelScrolls\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"level\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"linkToExplorer\":{\"type\":\"string\"},\"maxLevel\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"isPending\":{\"type\":\"boolean\"},\"equipmentItemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"blockId\":{\"type\":\"string\"},\"effects\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"statName\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"power\":{\"type\":\"string\"}},\"required\":[\"statName\",\"power\"]}},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"transactionHash\":{\"type\":\"string\"},\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"equipmentItemId\",\"bindingId\",\"linkToExplorer\",\"effects\",\"isPending\",\"level\",\"maxLevel\",\"toNextLevelScrolls\",\"status\"]}}")
     }
 }
 impl Agent for ListeriaStorageInventoryEndpointsGetItemsListReturns {

@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ImagesImageUploadImageParams {
-    #[serde(rename = "extension")]
-    pub extension: String,
     #[serde(rename = "binary")]
     pub binary: String,
+    #[serde(rename = "extension")]
+    pub extension: String,
 }
 impl Schema for ImagesImageUploadImageParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"extension\":{\"type\":\"string\"},\"binary\":{\"type\":\"string\"}},\"required\":[\"binary\",\"extension\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"binary\":{\"type\":\"string\"},\"extension\":{\"type\":\"string\"}},\"required\":[\"binary\",\"extension\"]}") . unwrap ()
     }
 }
 impl Agent for ImagesImageUploadImageParams {
@@ -27,10 +27,13 @@ impl Agent for ImagesImageUploadImageParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ImagesImageUploadImageReturns(pub String);
+pub struct ImagesImageUploadImageReturns {
+    #[serde(rename = "location")]
+    pub location: String,
+}
 impl Schema for ImagesImageUploadImageReturns {
     fn schema() -> Value {
-        serde_json::json!("{\"type\":\"string\"}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"location\":{\"type\":\"string\"}},\"required\":[\"location\"]}")
     }
 }
 impl Agent for ImagesImageUploadImageReturns {

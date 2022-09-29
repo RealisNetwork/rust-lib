@@ -10,7 +10,10 @@ pub struct AuthAuthDeleteMyUserParams {
 }
 impl Schema for AuthAuthDeleteMyUserParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"token\":{\"type\":\"string\"}},\"required\":null}") . unwrap ()
+        serde_json::from_str(
+            "{\"type\":\"object\",\"properties\":{\"token\":{\"type\":\"string\"}}}",
+        )
+        .unwrap()
     }
 }
 impl Agent for AuthAuthDeleteMyUserParams {

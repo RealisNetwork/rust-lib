@@ -14,7 +14,7 @@ pub struct CdConfigConfigAddConfigParams {
 }
 impl Schema for CdConfigConfigAddConfigParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"data\":{\"type\":\"object\",\"properties\":{},\"required\":null},\"key\":{\"type\":\"string\"}},\"required\":[\"key\",\"data\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"data\":{\"type\":\"object\",\"properties\":{}},\"key\":{\"type\":\"string\"}},\"required\":[\"key\",\"data\"]}") . unwrap ()
     }
 }
 impl Agent for CdConfigConfigAddConfigParams {

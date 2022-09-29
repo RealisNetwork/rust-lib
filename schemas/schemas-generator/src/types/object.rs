@@ -9,6 +9,7 @@ use syn::__private::Span;
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct Object {
     properties: HashMap<String, AgentParams>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     required: Option<Vec<String>>,
 }
 
