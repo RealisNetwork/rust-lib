@@ -233,6 +233,9 @@ impl SchemaManager {
             ("bingo", "bingo_getBingoJackpotWinnersInfo") => {
                 Some(BingoBingoGetBingoJackpotWinnersInfoParams::schema())
             }
+            ("bingo", "bingo_getCurrentBingoSeason") => {
+                Some(BingoBingoGetCurrentBingoSeasonParams::schema())
+            }
             ("blog", "blog_create") => Some(BlogBlogCreateParams::schema()),
             ("blog", "blog_update") => Some(BlogBlogUpdateParams::schema()),
             ("blog", "blog_delete") => Some(BlogBlogDeleteParams::schema()),
@@ -244,18 +247,19 @@ impl SchemaManager {
             ("blog", "blog_getAllWithCategoryList") => {
                 Some(BlogBlogGetAllWithCategoryListParams::schema())
             }
-            ("blog", "blog_updateIsOpenPoll") => Some(BlogBlogUpdateIsOpenPollParams::schema()),
             ("blog", "category_create") => Some(BlogCategoryCreateParams::schema()),
             ("blog", "category_update") => Some(BlogCategoryUpdateParams::schema()),
             ("blog", "category_delete") => Some(BlogCategoryDeleteParams::schema()),
             ("blog", "category_getAll") => Some(BlogCategoryGetAllParams::schema()),
             ("blog", "category_get") => Some(BlogCategoryGetParams::schema()),
+            ("blog", "poll_add") => Some(BlogPollAddParams::schema()),
+            ("blog", "poll_getAll") => Some(BlogPollGetAllParams::schema()),
+            ("blog", "poll_get") => Some(BlogPollGetParams::schema()),
+            ("blog", "poll_update") => Some(BlogPollUpdateParams::schema()),
+            ("blog", "poll_delete") => Some(BlogPollDeleteParams::schema()),
             ("blog", "vote_addVote") => Some(BlogVoteAddVoteParams::schema()),
-            ("blog", "vote_deleteAllVotesByBlogId") => {
-                Some(BlogVoteDeleteAllVotesByBlogIdParams::schema())
-            }
-            ("blog", "vote_getAllVotesByBlogId") => {
-                Some(BlogVoteGetAllVotesByBlogIdParams::schema())
+            ("blog", "vote_getAllVotesByPollId") => {
+                Some(BlogVoteGetAllVotesByPollIdParams::schema())
             }
             ("blog", "vote_isVoted") => Some(BlogVoteIsVotedParams::schema()),
             ("cats", "lobby_achievementComplete") => {
@@ -1126,6 +1130,9 @@ impl SchemaManager {
             ("transactions", "balance_getNumWithFilter") => {
                 Some(TransactionsBalanceGetNumWithFilterParams::schema())
             }
+            ("transactions", "balance_checkTransactionForCurrency") => {
+                Some(TransactionsBalanceCheckTransactionForCurrencyParams::schema())
+            }
             ("transactions", "registryProduct_addProduct") => {
                 Some(TransactionsRegistryProductAddProductParams::schema())
             }
@@ -1437,6 +1444,9 @@ impl SchemaManager {
             ("bingo", "bingo_getBingoJackpotWinnersInfo") => {
                 Some(BingoBingoGetBingoJackpotWinnersInfoReturns::schema())
             }
+            ("bingo", "bingo_getCurrentBingoSeason") => {
+                Some(BingoBingoGetCurrentBingoSeasonReturns::schema())
+            }
             ("blog", "blog_create") => Some(BlogBlogCreateReturns::schema()),
             ("blog", "blog_update") => Some(BlogBlogUpdateReturns::schema()),
             ("blog", "blog_delete") => Some(BlogBlogDeleteReturns::schema()),
@@ -1448,18 +1458,19 @@ impl SchemaManager {
             ("blog", "blog_getAllWithCategoryList") => {
                 Some(BlogBlogGetAllWithCategoryListReturns::schema())
             }
-            ("blog", "blog_updateIsOpenPoll") => Some(BlogBlogUpdateIsOpenPollReturns::schema()),
             ("blog", "category_create") => Some(BlogCategoryCreateReturns::schema()),
             ("blog", "category_update") => Some(BlogCategoryUpdateReturns::schema()),
             ("blog", "category_delete") => Some(BlogCategoryDeleteReturns::schema()),
             ("blog", "category_getAll") => Some(BlogCategoryGetAllReturns::schema()),
             ("blog", "category_get") => Some(BlogCategoryGetReturns::schema()),
+            ("blog", "poll_add") => Some(BlogPollAddReturns::schema()),
+            ("blog", "poll_getAll") => Some(BlogPollGetAllReturns::schema()),
+            ("blog", "poll_get") => Some(BlogPollGetReturns::schema()),
+            ("blog", "poll_update") => Some(BlogPollUpdateReturns::schema()),
+            ("blog", "poll_delete") => Some(BlogPollDeleteReturns::schema()),
             ("blog", "vote_addVote") => Some(BlogVoteAddVoteReturns::schema()),
-            ("blog", "vote_deleteAllVotesByBlogId") => {
-                Some(BlogVoteDeleteAllVotesByBlogIdReturns::schema())
-            }
-            ("blog", "vote_getAllVotesByBlogId") => {
-                Some(BlogVoteGetAllVotesByBlogIdReturns::schema())
+            ("blog", "vote_getAllVotesByPollId") => {
+                Some(BlogVoteGetAllVotesByPollIdReturns::schema())
             }
             ("blog", "vote_isVoted") => Some(BlogVoteIsVotedReturns::schema()),
             ("cats", "lobby_achievementComplete") => {
@@ -2343,6 +2354,9 @@ impl SchemaManager {
             }
             ("transactions", "balance_getNumWithFilter") => {
                 Some(TransactionsBalanceGetNumWithFilterReturns::schema())
+            }
+            ("transactions", "balance_checkTransactionForCurrency") => {
+                Some(TransactionsBalanceCheckTransactionForCurrencyReturns::schema())
             }
             ("transactions", "registryProduct_addProduct") => {
                 Some(TransactionsRegistryProductAddProductReturns::schema())

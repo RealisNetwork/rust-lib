@@ -5,14 +5,22 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthSocialNetworkAuthParams {
+    #[serde(rename = "email")]
+    pub email: Option<String>,
     #[serde(rename = "credential")]
-    pub credential: String,
+    pub credential: Option<String>,
+    #[serde(rename = "deviceId")]
+    pub device_id: Option<String>,
     #[serde(rename = "provider")]
     pub provider: String,
+    #[serde(rename = "appId")]
+    pub app_id: Option<f64>,
+    #[serde(rename = "providerId")]
+    pub provider_id: Option<String>,
 }
 impl Schema for AuthAuthSocialNetworkAuthParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"credential\":{\"type\":\"string\"},\"provider\":{\"type\":\"string\"}},\"required\":[\"credential\",\"provider\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\"},\"credential\":{\"type\":\"string\"},\"deviceId\":{\"type\":\"string\"},\"provider\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"providerId\":{\"type\":\"string\"}},\"required\":[\"provider\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthSocialNetworkAuthParams {
@@ -28,20 +36,20 @@ impl Agent for AuthAuthSocialNetworkAuthParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthSocialNetworkAuthReturns {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "refresh_token")]
     pub refresh_token: Option<String>,
-    #[serde(rename = "access_token")]
-    pub access_token: String,
     #[serde(rename = "refresh_expires_in")]
     pub refresh_expires_in: Option<i32>,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "access_token")]
+    pub access_token: String,
     #[serde(rename = "expires_in")]
     pub expires_in: i32,
 }
 impl Schema for AuthAuthSocialNetworkAuthReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"refresh_token\":{\"type\":\"string\"},\"access_token\":{\"type\":\"string\"},\"refresh_expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"access_token\",\"expires_in\",\"userId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"refresh_token\":{\"type\":\"string\"},\"refresh_expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"access_token\":{\"type\":\"string\"},\"expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"access_token\",\"expires_in\",\"userId\"]}")
     }
 }
 impl Agent for AuthAuthSocialNetworkAuthReturns {

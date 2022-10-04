@@ -32,12 +32,12 @@ impl Agent for ProductFactoryProductLootboxOpenedNotificationParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductLootboxOpenedNotificationReturnsRewardsParamsParams {
-    #[serde(rename = "itemId")]
-    pub item_id: i32,
-    #[serde(rename = "type")]
-    pub r#type: i32,
     #[serde(rename = "amount")]
     pub amount: i32,
+    #[serde(rename = "type")]
+    pub r#type: i32,
+    #[serde(rename = "itemId")]
+    pub item_id: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductLootboxOpenedNotificationReturns {
@@ -48,7 +48,7 @@ pub struct ProductFactoryProductLootboxOpenedNotificationReturns {
 }
 impl Schema for ProductFactoryProductLootboxOpenedNotificationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"rewards\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"itemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"type\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"amount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"type\",\"amount\",\"itemId\"]}},\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"rewards\",\"bindingId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"rewards\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"type\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"itemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"type\",\"amount\",\"itemId\"]}},\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"rewards\",\"bindingId\"]}")
     }
 }
 impl Agent for ProductFactoryProductLootboxOpenedNotificationReturns {

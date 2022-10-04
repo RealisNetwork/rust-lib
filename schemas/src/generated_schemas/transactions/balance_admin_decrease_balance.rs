@@ -7,24 +7,24 @@ use crate::generated_schemas::prelude::*;
 pub struct TransactionsBalanceAdminDecreaseBalanceParamsExtraDetailParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceAdminDecreaseBalanceParams {
-    #[serde(rename = "currency")]
-    pub currency: String,
-    #[serde(rename = "amount")]
-    pub amount: String,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "reason")]
-    pub reason: String,
-    #[serde(rename = "creator")]
-    pub creator: String,
     #[serde(rename = "extraDetail")]
     pub extra_detail: Option<TransactionsBalanceAdminDecreaseBalanceParamsExtraDetailParams>,
+    #[serde(rename = "creator")]
+    pub creator: String,
+    #[serde(rename = "reason")]
+    pub reason: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
+    #[serde(rename = "currency")]
+    pub currency: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
 }
 impl Schema for TransactionsBalanceAdminDecreaseBalanceParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"amount\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"extraDetail\":{\"type\":\"object\",\"properties\":{}}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"extraDetail\":{\"type\":\"object\",\"properties\":{}},\"creator\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"txId\":{\"type\":\"string\"}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}") . unwrap ()
     }
 }
 impl Agent for TransactionsBalanceAdminDecreaseBalanceParams {

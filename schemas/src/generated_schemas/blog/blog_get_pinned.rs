@@ -32,20 +32,20 @@ impl Agent for BlogBlogGetPinnedParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetPinnedReturns {
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
     #[serde(rename = "title")]
     pub title: String,
+    #[serde(rename = "image")]
+    pub image: String,
     #[serde(rename = "url")]
     pub url: String,
     #[serde(rename = "shortDescription")]
     pub short_description: String,
-    #[serde(rename = "image")]
-    pub image: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
 }
 impl Schema for BlogBlogGetPinnedReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"createdAt\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"}},\"required\":[\"title\",\"image\",\"url\",\"createdAt\",\"shortDescription\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"title\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"}},\"required\":[\"title\",\"image\",\"url\",\"createdAt\",\"shortDescription\"]}")
     }
 }
 impl Agent for BlogBlogGetPinnedReturns {

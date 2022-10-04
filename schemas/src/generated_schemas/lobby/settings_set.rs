@@ -9,16 +9,16 @@ pub struct LobbySettingsSetParams {
     pub music: bool,
     #[serde(rename = "language")]
     pub language: i8,
-    #[serde(rename = "HFREffects")]
-    pub hfr_effects: i8,
     #[serde(rename = "sounds")]
     pub sounds: bool,
+    #[serde(rename = "HFREffects")]
+    pub hfr_effects: i8,
     #[serde(rename = "quality")]
     pub quality: i8,
 }
 impl Schema for LobbySettingsSetParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"music\":{\"type\":\"boolean\"},\"language\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"HFREffects\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"sounds\":{\"type\":\"boolean\"},\"quality\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"sounds\",\"music\",\"quality\",\"HFREffects\",\"language\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"music\":{\"type\":\"boolean\"},\"language\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"sounds\":{\"type\":\"boolean\"},\"HFREffects\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"quality\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"sounds\",\"music\",\"quality\",\"HFREffects\",\"language\"]}") . unwrap ()
     }
 }
 impl Agent for LobbySettingsSetParams {

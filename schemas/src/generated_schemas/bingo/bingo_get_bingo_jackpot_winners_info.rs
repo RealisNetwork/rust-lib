@@ -36,18 +36,18 @@ pub struct BingoBingoGetBingoJackpotWinnersInfoReturns {
     pub status: i32,
     #[serde(rename = "Reward")]
     pub reward: f64,
-    #[serde(rename = "StatusId")]
-    pub status_id: f64,
     #[serde(rename = "Windate")]
     pub windate: f64,
-    #[serde(rename = "Nick")]
-    pub nick: String,
     #[serde(rename = "UserId")]
     pub user_id: String,
+    #[serde(rename = "StatusId")]
+    pub status_id: f64,
+    #[serde(rename = "Nick")]
+    pub nick: String,
 }
 impl Schema for BingoBingoGetBingoJackpotWinnersInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"Reward\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"StatusId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"Windate\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"Nick\":{\"type\":\"string\"},\"UserId\":{\"type\":\"string\"}},\"required\":[\"status\",\"Nick\",\"UserId\",\"Reward\",\"StatusId\",\"Windate\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"Reward\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"Windate\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"UserId\":{\"type\":\"string\"},\"StatusId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"Nick\":{\"type\":\"string\"}},\"required\":[\"status\",\"Nick\",\"UserId\",\"Reward\",\"StatusId\",\"Windate\"]}")
     }
 }
 impl Agent for BingoBingoGetBingoJackpotWinnersInfoReturns {

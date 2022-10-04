@@ -5,18 +5,18 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CdBalancesBalanceDecreaseBalanceByUserIdAndCurrencyParams {
+    #[serde(rename = "amount")]
+    pub amount: String,
     #[serde(rename = "currencyType")]
     pub currency_type: String,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
-    #[serde(rename = "amount")]
-    pub amount: String,
 }
 impl Schema for CdBalancesBalanceDecreaseBalanceByUserIdAndCurrencyParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"currencyType\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currencyType\",\"amount\",\"txId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"currencyType\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currencyType\",\"amount\",\"txId\"]}") . unwrap ()
     }
 }
 impl Agent for CdBalancesBalanceDecreaseBalanceByUserIdAndCurrencyParams {

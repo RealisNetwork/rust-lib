@@ -34,45 +34,45 @@ impl Agent for PurchaseProductGetEquipmentListParams {
 pub struct PurchaseProductGetEquipmentListReturnsParamsStatsParams {
     #[serde(rename = "attackDamage")]
     pub attack_damage: i32,
-    #[serde(rename = "skillEffectPower")]
-    pub skill_effect_power: i32,
-    #[serde(rename = "agility")]
-    pub agility: i32,
-    #[serde(rename = "strength")]
-    pub strength: i32,
     #[serde(rename = "moveSpeed")]
     pub move_speed: String,
+    #[serde(rename = "intelligence")]
+    pub intelligence: i32,
+    #[serde(rename = "skillEffectPower")]
+    pub skill_effect_power: i32,
+    #[serde(rename = "strength")]
+    pub strength: i32,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: String,
+    #[serde(rename = "healthRegenPercent")]
+    pub health_regen_percent: String,
+    #[serde(rename = "agility")]
+    pub agility: i32,
+    #[serde(rename = "armor")]
+    pub armor: String,
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: i32,
     #[serde(rename = "skillPower")]
     pub skill_power: i32,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: String,
+    #[serde(rename = "health")]
+    pub health: i32,
     #[serde(rename = "mainCharacteristic")]
     pub main_characteristic: i8,
     #[serde(rename = "ultPower")]
     pub ult_power: i32,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: String,
-    #[serde(rename = "health")]
-    pub health: i32,
-    #[serde(rename = "vampirismPower")]
-    pub vampirism_power: String,
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: i32,
-    #[serde(rename = "healthRegenPercent")]
-    pub health_regen_percent: String,
-    #[serde(rename = "intelligence")]
-    pub intelligence: i32,
-    #[serde(rename = "armor")]
-    pub armor: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PurchaseProductGetEquipmentListReturnsParams {
-    #[serde(rename = "currency")]
-    pub currency: String,
-    #[serde(rename = "price")]
-    pub price: String,
     #[serde(rename = "equipmentId")]
     pub equipment_id: i32,
+    #[serde(rename = "currency")]
+    pub currency: String,
     #[serde(rename = "productType")]
     pub product_type: String,
+    #[serde(rename = "price")]
+    pub price: String,
     #[serde(rename = "stats")]
     pub stats: PurchaseProductGetEquipmentListReturnsParamsStatsParams,
 }
@@ -82,7 +82,7 @@ pub struct PurchaseProductGetEquipmentListReturns(
 );
 impl Schema for PurchaseProductGetEquipmentListReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"price\":{\"type\":\"string\"},\"equipmentId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"productType\":{\"type\":\"string\"},\"stats\":{\"type\":\"object\",\"properties\":{\"attackDamage\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"skillEffectPower\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"agility\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"strength\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"moveSpeed\":{\"type\":\"string\"},\"skillPower\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"mainCharacteristic\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"ultPower\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"attackReloadSpeed\":{\"type\":\"string\"},\"health\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"vampirismPower\":{\"type\":\"string\"},\"ultEffectPower\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"healthRegenPercent\":{\"type\":\"string\"},\"intelligence\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"armor\":{\"type\":\"string\"}},\"required\":[\"strength\",\"agility\",\"intelligence\",\"mainCharacteristic\",\"health\",\"healthRegenPercent\",\"armor\",\"moveSpeed\",\"attackDamage\",\"attackReloadSpeed\",\"skillPower\",\"skillEffectPower\",\"ultPower\",\"ultEffectPower\",\"vampirismPower\"]}},\"required\":[\"equipmentId\",\"productType\",\"currency\",\"price\",\"stats\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"equipmentId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"productType\":{\"type\":\"string\"},\"price\":{\"type\":\"string\"},\"stats\":{\"type\":\"object\",\"properties\":{\"attackDamage\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"moveSpeed\":{\"type\":\"string\"},\"intelligence\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"skillEffectPower\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"strength\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"attackReloadSpeed\":{\"type\":\"string\"},\"healthRegenPercent\":{\"type\":\"string\"},\"agility\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"armor\":{\"type\":\"string\"},\"ultEffectPower\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"skillPower\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"vampirismPower\":{\"type\":\"string\"},\"health\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"mainCharacteristic\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"ultPower\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"strength\",\"agility\",\"intelligence\",\"mainCharacteristic\",\"health\",\"healthRegenPercent\",\"armor\",\"moveSpeed\",\"attackDamage\",\"attackReloadSpeed\",\"skillPower\",\"skillEffectPower\",\"ultPower\",\"ultEffectPower\",\"vampirismPower\"]}},\"required\":[\"equipmentId\",\"productType\",\"currency\",\"price\",\"stats\"]}}")
     }
 }
 impl Agent for PurchaseProductGetEquipmentListReturns {
