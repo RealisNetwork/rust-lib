@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct AuthAuthChangePasswordParams {
     #[serde(rename = "newPassword")]
     pub new_password: String,
-    #[serde(rename = "username")]
-    pub username: String,
     #[serde(rename = "password")]
     pub password: Option<String>,
+    #[serde(rename = "username")]
+    pub username: String,
 }
 impl Schema for AuthAuthChangePasswordParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"newPassword\":{\"type\":\"string\"},\"username\":{\"type\":\"string\"},\"password\":{\"type\":\"string\"}},\"required\":[\"username\",\"newPassword\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"newPassword\":{\"type\":\"string\"},\"password\":{\"type\":\"string\"},\"username\":{\"type\":\"string\"}},\"required\":[\"username\",\"newPassword\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthChangePasswordParams {

@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterContractCallMintNftParams {
-    #[serde(rename = "tokenId")]
-    pub token_id: String,
     #[serde(rename = "metadata")]
     pub metadata: Option<String>,
+    #[serde(rename = "tokenId")]
+    pub token_id: String,
 }
 impl Schema for NearAdapterContractCallMintNftParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"tokenId\":{\"type\":\"string\"},\"metadata\":{\"type\":\"string\"}},\"required\":[\"tokenId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"metadata\":{\"type\":\"string\"},\"tokenId\":{\"type\":\"string\"}},\"required\":[\"tokenId\"]}") . unwrap ()
     }
 }
 impl Agent for NearAdapterContractCallMintNftParams {

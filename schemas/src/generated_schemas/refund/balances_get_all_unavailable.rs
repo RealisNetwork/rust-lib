@@ -26,14 +26,14 @@ impl Agent for RefundBalancesGetAllUnavailableParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllUnavailableReturns {
-    #[serde(rename = "LIS")]
-    pub lis: Option<String>,
     #[serde(rename = "ETH")]
     pub eth: Option<String>,
+    #[serde(rename = "LIS")]
+    pub lis: Option<String>,
 }
 impl Schema for RefundBalancesGetAllUnavailableReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"LIS\":{\"type\":\"string\"},\"ETH\":{\"type\":\"string\"}}}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"ETH\":{\"type\":\"string\"},\"LIS\":{\"type\":\"string\"}}}")
     }
 }
 impl Agent for RefundBalancesGetAllUnavailableReturns {

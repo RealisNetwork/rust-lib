@@ -5,14 +5,8 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogCreateParamsPropsParams {
-    #[serde(rename = "url")]
-    pub url: String,
-    #[serde(rename = "title")]
-    pub title: String,
     #[serde(rename = "content")]
     pub content: String,
-    #[serde(rename = "lang")]
-    pub lang: Option<String>,
     #[serde(rename = "image")]
     pub image: String,
     #[serde(rename = "metaDescription")]
@@ -21,6 +15,12 @@ pub struct BlogBlogCreateParamsPropsParams {
     pub short_description: String,
     #[serde(rename = "metaTitle")]
     pub meta_title: String,
+    #[serde(rename = "title")]
+    pub title: String,
+    #[serde(rename = "url")]
+    pub url: String,
+    #[serde(rename = "lang")]
+    pub lang: Option<String>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogCreateParams {
@@ -31,7 +31,7 @@ pub struct BlogBlogCreateParams {
 }
 impl Schema for BlogBlogCreateParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"props\":{\"type\":\"object\",\"properties\":{\"url\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"}},\"required\":[\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\"]},\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"props\",\"categoryId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"props\":{\"type\":\"object\",\"properties\":{\"content\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"}},\"required\":[\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\"]},\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"props\",\"categoryId\"]}") . unwrap ()
     }
 }
 impl Agent for BlogBlogCreateParams {

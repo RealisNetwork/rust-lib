@@ -26,14 +26,14 @@ impl Agent for AuthAuthGetAccessTokenByRefreshParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthGetAccessTokenByRefreshReturns {
-    #[serde(rename = "expires_in")]
-    pub expires_in: f64,
     #[serde(rename = "access_token")]
     pub access_token: String,
+    #[serde(rename = "expires_in")]
+    pub expires_in: f64,
 }
 impl Schema for AuthAuthGetAccessTokenByRefreshReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"expires_in\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"access_token\":{\"type\":\"string\"}},\"required\":[\"access_token\",\"expires_in\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"access_token\":{\"type\":\"string\"},\"expires_in\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"access_token\",\"expires_in\"]}")
     }
 }
 impl Agent for AuthAuthGetAccessTokenByRefreshReturns {

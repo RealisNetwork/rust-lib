@@ -26,20 +26,11 @@ impl Agent for TransactionsBalanceCheckTransactionForCurrencyParams {
         "transactions"
     }
 }
-impl<'de> Deserialize<'de> for TransactionsBalanceCheckTransactionForCurrencyReturns {
-    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-    where
-        D: Deserializer<'de>,
-    {
-        serde_json::Value::deserialize(deserializer)?;
-        Ok(TransactionsBalanceCheckTransactionForCurrencyReturns)
-    }
-}
-#[derive(Debug, Clone, Serialize)]
-pub struct TransactionsBalanceCheckTransactionForCurrencyReturns;
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TransactionsBalanceCheckTransactionForCurrencyReturns(pub bool);
 impl Schema for TransactionsBalanceCheckTransactionForCurrencyReturns {
     fn schema() -> Value {
-        serde_json::json!("{}")
+        serde_json::json!("{\"type\":\"boolean\"}")
     }
 }
 impl Agent for TransactionsBalanceCheckTransactionForCurrencyReturns {
