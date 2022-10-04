@@ -1,12 +1,21 @@
 use crate::agent::Agent;
 use quote::__private::TokenStream;
 use quote::quote;
+use serde::Deserialize;
 use std::io::Write;
 use std::path::Path;
 
 pub struct SchemaManagerGenerator {
     agents: Vec<Agent>,
     filename: String,
+}
+
+#[derive(Deserialize, Debug, Clone, PartialEq, Eq)]
+pub enum AccessLevel {
+    Public,
+    Protected,
+    Private,
+    Internal,
 }
 
 impl SchemaManagerGenerator {
@@ -37,6 +46,12 @@ impl SchemaManagerGenerator {
             let ident = a.create_ident_returns();
             quote! {(#agent, #method) => Some(#ident::schema()),}
         });
+        let access_level = self.agents.iter().map(|a| {
+            let agent = &a.agent;
+            let method = &a.method;
+            let ident = a.create_access_level();
+            quote! {(#agent, #method) => Some(#ident)}
+        });
 
         quote! {
             use crate::generated_schemas::*;
@@ -62,8 +77,11 @@ impl SchemaManagerGenerator {
                     }
                 }
 
-                pub fn get_access_level(agent: &str, method: &str) -> Option<&'static str> {
-                    None
+                pub fn get_access_level(agent: &str, method: &str) -> Option<AccessLevel> {
+                    match (agent, method) {
+                        #(#access_level)*
+                        _ => None,
+                    }
                 }
 
                 pub fn validate_params(

@@ -84,7 +84,7 @@ fn main() {
     let pub_prelude = quote! {
       pub use serde::{Serialize, Deserialize};
       pub use serde_json::Value;
-      pub use crate::{Agent, Schema};
+      pub use crate::{Agent, AccessLevel, Schema};
       pub use serde::de::Deserializer;
     };
     prelude_file
