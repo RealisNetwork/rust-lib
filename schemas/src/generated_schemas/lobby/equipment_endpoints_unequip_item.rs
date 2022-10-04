@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyEquipmentEndpointsUnequipItemParams {
-    #[serde(rename = "heroBindingId")]
-    pub hero_binding_id: i32,
     #[serde(rename = "bindingId")]
     pub binding_id: i32,
+    #[serde(rename = "heroBindingId")]
+    pub hero_binding_id: i32,
 }
 impl Schema for LobbyEquipmentEndpointsUnequipItemParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"heroBindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"bindingId\",\"heroBindingId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"heroBindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"bindingId\",\"heroBindingId\"]}") . unwrap ()
     }
 }
 impl Agent for LobbyEquipmentEndpointsUnequipItemParams {
@@ -28,16 +28,16 @@ impl Agent for LobbyEquipmentEndpointsUnequipItemParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyEquipmentEndpointsUnequipItemReturns {
-    #[serde(rename = "heroBindingId")]
-    pub hero_binding_id: i32,
-    #[serde(rename = "slotId")]
-    pub slot_id: i32,
     #[serde(rename = "bindingId")]
     pub binding_id: i32,
+    #[serde(rename = "slotId")]
+    pub slot_id: i32,
+    #[serde(rename = "heroBindingId")]
+    pub hero_binding_id: i32,
 }
 impl Schema for LobbyEquipmentEndpointsUnequipItemReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"heroBindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"slotId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"bindingId\",\"heroBindingId\",\"slotId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"slotId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"heroBindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"bindingId\",\"heroBindingId\",\"slotId\"]}")
     }
 }
 impl Agent for LobbyEquipmentEndpointsUnequipItemReturns {

@@ -37,22 +37,22 @@ pub struct AdminOptionGetAllByFilterReturnsParamsExtraDetailsParams {
 pub struct AdminOptionGetAllByFilterReturnsParams {
     #[serde(rename = "key")]
     pub key: String,
-    #[serde(rename = "scope")]
-    pub scope: String,
+    #[serde(rename = "value")]
+    pub value: String,
+    #[serde(rename = "extraDetails")]
+    pub extra_details: AdminOptionGetAllByFilterReturnsParamsExtraDetailsParams,
     #[serde(rename = "previousValue")]
     pub previous_value: String,
     #[serde(rename = "description")]
     pub description: String,
-    #[serde(rename = "extraDetails")]
-    pub extra_details: AdminOptionGetAllByFilterReturnsParamsExtraDetailsParams,
-    #[serde(rename = "value")]
-    pub value: String,
+    #[serde(rename = "scope")]
+    pub scope: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetAllByFilterReturns(pub Vec<AdminOptionGetAllByFilterReturnsParams>);
 impl Schema for AdminOptionGetAllByFilterReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"},\"scope\":{\"type\":\"string\"},\"previousValue\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"tab\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}}},\"value\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\",\"previousValue\",\"description\",\"extraDetails\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"tab\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}}},\"previousValue\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"scope\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\",\"previousValue\",\"description\",\"extraDetails\"]}}")
     }
 }
 impl Agent for AdminOptionGetAllByFilterReturns {

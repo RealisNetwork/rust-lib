@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthCreateRequestToChangeEmailParams {
-    #[serde(rename = "password")]
-    pub password: String,
     #[serde(rename = "newEmail")]
     pub new_email: String,
+    #[serde(rename = "password")]
+    pub password: String,
 }
 impl Schema for AuthAuthCreateRequestToChangeEmailParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"password\":{\"type\":\"string\"},\"newEmail\":{\"type\":\"string\"}},\"required\":[\"newEmail\",\"password\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"newEmail\":{\"type\":\"string\"},\"password\":{\"type\":\"string\"}},\"required\":[\"newEmail\",\"password\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthCreateRequestToChangeEmailParams {

@@ -7,12 +7,12 @@ use crate::generated_schemas::prelude::*;
 pub struct TransactionsBalanceCheckTransactionForCurrencyParams {
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "currency")]
-    pub currency: String,
+    #[serde(rename = "currencies")]
+    pub currencies: Vec<String>,
 }
 impl Schema for TransactionsBalanceCheckTransactionForCurrencyParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"}},\"required\":[\"userId\",\"currency\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"currencies\":{\"type\":\"array\",\"items\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"}}},\"required\":[\"userId\",\"currencies\"]}") . unwrap ()
     }
 }
 impl Agent for TransactionsBalanceCheckTransactionForCurrencyParams {

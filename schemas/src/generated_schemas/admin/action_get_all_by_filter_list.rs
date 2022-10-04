@@ -5,28 +5,28 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionGetAllByFilterListParams {
-    #[serde(rename = "isCancelable")]
-    pub is_cancelable: Option<bool>,
-    #[serde(rename = "perPage")]
-    pub per_page: Option<f64>,
     #[serde(rename = "firstDate")]
     pub first_date: Option<String>,
-    #[serde(rename = "nickname")]
-    pub nickname: Option<String>,
-    #[serde(rename = "userId")]
-    pub user_id: Option<String>,
-    #[serde(rename = "lastDate")]
-    pub last_date: Option<String>,
-    #[serde(rename = "page")]
-    pub page: Option<f64>,
     #[serde(rename = "agent")]
     pub agent: Option<String>,
+    #[serde(rename = "page")]
+    pub page: Option<f64>,
+    #[serde(rename = "userId")]
+    pub user_id: Option<String>,
+    #[serde(rename = "perPage")]
+    pub per_page: Option<f64>,
+    #[serde(rename = "nickname")]
+    pub nickname: Option<String>,
+    #[serde(rename = "lastDate")]
+    pub last_date: Option<String>,
     #[serde(rename = "method")]
     pub method: Option<String>,
+    #[serde(rename = "isCancelable")]
+    pub is_cancelable: Option<bool>,
 }
 impl Schema for AdminActionGetAllByFilterListParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"isCancelable\":{\"type\":\"boolean\"},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"firstDate\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"lastDate\":{\"type\":\"string\"},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"agent\":{\"type\":\"string\"},\"method\":{\"type\":\"string\"}}}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"firstDate\":{\"type\":\"string\"},\"agent\":{\"type\":\"string\"},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"nickname\":{\"type\":\"string\"},\"lastDate\":{\"type\":\"string\"},\"method\":{\"type\":\"string\"},\"isCancelable\":{\"type\":\"boolean\"}}}") . unwrap ()
     }
 }
 impl Agent for AdminActionGetAllByFilterListParams {
@@ -44,24 +44,24 @@ impl Agent for AdminActionGetAllByFilterListParams {
 pub struct AdminActionGetAllByFilterListReturnsDataParamsParamsParamsParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionGetAllByFilterListReturnsDataParamsParams {
-    #[serde(rename = "nickname")]
-    pub nickname: String,
-    #[serde(rename = "isCancelable")]
-    pub is_cancelable: bool,
-    #[serde(rename = "actionId")]
-    pub action_id: String,
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "params")]
-    pub params: AdminActionGetAllByFilterListReturnsDataParamsParamsParamsParams,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "agent")]
-    pub agent: String,
     #[serde(rename = "method")]
     pub method: String,
+    #[serde(rename = "actionId")]
+    pub action_id: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "params")]
+    pub params: AdminActionGetAllByFilterListReturnsDataParamsParamsParamsParams,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "isCancelable")]
+    pub is_cancelable: bool,
+    #[serde(rename = "nickname")]
+    pub nickname: String,
+    #[serde(rename = "agent")]
+    pub agent: String,
+    #[serde(rename = "id")]
+    pub id: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionGetAllByFilterListReturns {
@@ -72,7 +72,7 @@ pub struct AdminActionGetAllByFilterListReturns {
 }
 impl Schema for AdminActionGetAllByFilterListReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"nickname\":{\"type\":\"string\"},\"isCancelable\":{\"type\":\"boolean\"},\"actionId\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"params\":{\"type\":\"object\",\"properties\":{}},\"createdAt\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"agent\":{\"type\":\"string\"},\"method\":{\"type\":\"string\"}},\"required\":[\"id\",\"actionId\",\"nickname\",\"userId\",\"method\",\"isCancelable\",\"params\",\"agent\",\"createdAt\"]}}},\"required\":[\"data\",\"totalCount\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"method\":{\"type\":\"string\"},\"actionId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"params\":{\"type\":\"object\",\"properties\":{}},\"userId\":{\"type\":\"string\"},\"isCancelable\":{\"type\":\"boolean\"},\"nickname\":{\"type\":\"string\"},\"agent\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"actionId\",\"nickname\",\"userId\",\"method\",\"isCancelable\",\"params\",\"agent\",\"createdAt\"]}}},\"required\":[\"data\",\"totalCount\"]}")
     }
 }
 impl Agent for AdminActionGetAllByFilterListReturns {

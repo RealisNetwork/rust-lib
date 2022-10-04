@@ -32,22 +32,22 @@ impl Agent for LobbySettingsGetParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbySettingsGetReturns {
-    #[serde(rename = "isChanged")]
-    pub is_changed: bool,
-    #[serde(rename = "language")]
-    pub language: i8,
     #[serde(rename = "sounds")]
     pub sounds: bool,
+    #[serde(rename = "language")]
+    pub language: i8,
+    #[serde(rename = "quality")]
+    pub quality: i8,
     #[serde(rename = "HFREffects")]
     pub hfr_effects: i8,
     #[serde(rename = "music")]
     pub music: bool,
-    #[serde(rename = "quality")]
-    pub quality: i8,
+    #[serde(rename = "isChanged")]
+    pub is_changed: bool,
 }
 impl Schema for LobbySettingsGetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isChanged\":{\"type\":\"boolean\"},\"language\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"sounds\":{\"type\":\"boolean\"},\"HFREffects\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"music\":{\"type\":\"boolean\"},\"quality\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"music\",\"sounds\",\"language\",\"quality\",\"HFREffects\",\"isChanged\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"sounds\":{\"type\":\"boolean\"},\"language\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"quality\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"HFREffects\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"music\":{\"type\":\"boolean\"},\"isChanged\":{\"type\":\"boolean\"}},\"required\":[\"music\",\"sounds\",\"language\",\"quality\",\"HFREffects\",\"isChanged\"]}")
     }
 }
 impl Agent for LobbySettingsGetReturns {

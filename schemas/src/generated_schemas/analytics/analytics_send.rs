@@ -9,14 +9,14 @@ pub struct AnalyticsAnalyticsSendParams {
     pub key: String,
     #[serde(rename = "param")]
     pub param: Option<String>,
-    #[serde(rename = "value")]
-    pub value: Option<()>,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "value")]
+    pub value: Option<()>,
 }
 impl Schema for AnalyticsAnalyticsSendParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"},\"param\":{\"type\":\"string\"},\"value\":{},\"userId\":{\"type\":\"string\"}},\"required\":[\"key\",\"userId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"},\"param\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"value\":{}},\"required\":[\"key\",\"userId\"]}") . unwrap ()
     }
 }
 impl Agent for AnalyticsAnalyticsSendParams {

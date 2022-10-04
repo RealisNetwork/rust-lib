@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BingoBingoCraftBingoRecipeParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "recipeId")]
     pub recipe_id: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for BingoBingoCraftBingoRecipeParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"recipeId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"userId\",\"recipeId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"recipeId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"recipeId\"]}") . unwrap ()
     }
 }
 impl Agent for BingoBingoCraftBingoRecipeParams {

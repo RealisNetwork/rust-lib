@@ -12,14 +12,14 @@ pub struct BlogPollUpdateParamsPropsParamsAnswersParamsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogPollUpdateParamsPropsParams {
-    #[serde(rename = "question")]
-    pub question: Option<String>,
+    #[serde(rename = "id")]
+    pub id: f64,
     #[serde(rename = "answers")]
     pub answers: Option<Vec<BlogPollUpdateParamsPropsParamsAnswersParamsParams>>,
     #[serde(rename = "endDate")]
     pub end_date: Option<String>,
-    #[serde(rename = "id")]
-    pub id: f64,
+    #[serde(rename = "question")]
+    pub question: Option<String>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogPollUpdateParams {
@@ -28,7 +28,7 @@ pub struct BlogPollUpdateParams {
 }
 impl Schema for BlogPollUpdateParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"props\":{\"type\":\"object\",\"properties\":{\"question\":{\"type\":\"string\"},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"isImage\":{\"type\":\"boolean\"},\"answer\":{\"type\":\"string\"}},\"required\":[\"isImage\",\"answer\"]}},\"endDate\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\"]}},\"required\":[\"props\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"props\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"isImage\":{\"type\":\"boolean\"},\"answer\":{\"type\":\"string\"}},\"required\":[\"isImage\",\"answer\"]}},\"endDate\":{\"type\":\"string\"},\"question\":{\"type\":\"string\"}},\"required\":[\"id\"]}},\"required\":[\"props\"]}") . unwrap ()
     }
 }
 impl Agent for BlogPollUpdateParams {

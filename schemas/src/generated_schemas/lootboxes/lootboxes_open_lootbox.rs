@@ -28,26 +28,26 @@ impl Agent for LootboxesLootboxesOpenLootboxParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LootboxesLootboxesOpenLootboxReturns {
-    #[serde(rename = "JackpotPool")]
-    pub jackpot_pool: String,
+    #[serde(rename = "Status")]
+    pub status: f64,
     #[serde(rename = "HardReward")]
     pub hard_reward: f64,
-    #[serde(rename = "ScienceReward")]
-    pub science_reward: f64,
     #[serde(rename = "CardRewards")]
     pub card_rewards: Vec<()>,
     #[serde(rename = "JackpotReward")]
     pub jackpot_reward: String,
     #[serde(rename = "BingoItemRewards")]
     pub bingo_item_rewards: Vec<()>,
-    #[serde(rename = "Status")]
-    pub status: f64,
     #[serde(rename = "LootboxId")]
     pub lootbox_id: f64,
+    #[serde(rename = "JackpotPool")]
+    pub jackpot_pool: String,
+    #[serde(rename = "ScienceReward")]
+    pub science_reward: f64,
 }
 impl Schema for LootboxesLootboxesOpenLootboxReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"JackpotPool\":{\"type\":\"string\"},\"HardReward\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"ScienceReward\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"CardRewards\":{\"type\":\"array\",\"items\":{}},\"JackpotReward\":{\"type\":\"string\"},\"BingoItemRewards\":{\"type\":\"array\",\"items\":{}},\"Status\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"LootboxId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"LootboxId\",\"CardRewards\",\"ScienceReward\",\"HardReward\",\"JackpotReward\",\"JackpotPool\",\"BingoItemRewards\",\"Status\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"Status\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"HardReward\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"CardRewards\":{\"type\":\"array\",\"items\":{}},\"JackpotReward\":{\"type\":\"string\"},\"BingoItemRewards\":{\"type\":\"array\",\"items\":{}},\"LootboxId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"JackpotPool\":{\"type\":\"string\"},\"ScienceReward\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"LootboxId\",\"CardRewards\",\"ScienceReward\",\"HardReward\",\"JackpotReward\",\"JackpotPool\",\"BingoItemRewards\",\"Status\"]}")
     }
 }
 impl Agent for LootboxesLootboxesOpenLootboxReturns {

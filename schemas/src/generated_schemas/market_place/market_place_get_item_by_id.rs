@@ -30,32 +30,32 @@ pub struct MarketPlaceMarketPlaceGetItemByIdReturnsAdditionalParamsParams {}
 pub struct MarketPlaceMarketPlaceGetItemByIdReturns {
     #[serde(rename = "productId")]
     pub product_id: i32,
-    #[serde(rename = "type")]
-    pub r#type: String,
-    #[serde(rename = "isLocked")]
-    pub is_locked: bool,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
     #[serde(rename = "category")]
     pub category: i32,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: i32,
-    #[serde(rename = "subType")]
-    pub sub_type: String,
-    #[serde(rename = "price")]
-    pub price: i32,
     #[serde(rename = "createdAt")]
     pub created_at: i32,
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "id")]
-    pub id: i32,
+    #[serde(rename = "type")]
+    pub r#type: String,
+    #[serde(rename = "subType")]
+    pub sub_type: String,
+    #[serde(rename = "isLocked")]
+    pub is_locked: bool,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: i32,
+    #[serde(rename = "price")]
+    pub price: i32,
     #[serde(rename = "additionalParams")]
     pub additional_params: MarketPlaceMarketPlaceGetItemByIdReturnsAdditionalParamsParams,
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
+    #[serde(rename = "id")]
+    pub id: i32,
 }
 impl Schema for MarketPlaceMarketPlaceGetItemByIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"type\":{\"type\":\"string\"},\"isLocked\":{\"type\":\"boolean\"},\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"subType\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"personalType\":{\"type\":\"string\"}},\"required\":[\"id\",\"productId\",\"userId\",\"personalType\",\"type\",\"subType\",\"price\",\"additionalParams\",\"isLocked\",\"category\",\"createdAt\",\"updatedAt\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"personalType\":{\"type\":\"string\"},\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"},\"isLocked\":{\"type\":\"boolean\"},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"productId\",\"userId\",\"personalType\",\"type\",\"subType\",\"price\",\"additionalParams\",\"isLocked\",\"category\",\"createdAt\",\"updatedAt\"]}")
     }
 }
 impl Agent for MarketPlaceMarketPlaceGetItemByIdReturns {

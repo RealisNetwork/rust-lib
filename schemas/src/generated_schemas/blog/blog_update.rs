@@ -5,37 +5,37 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogUpdateParamsPropsParams {
-    #[serde(rename = "metaDescription")]
-    pub meta_description: Option<String>,
-    #[serde(rename = "isPinned")]
-    pub is_pinned: Option<bool>,
-    #[serde(rename = "title")]
-    pub title: Option<String>,
-    #[serde(rename = "image")]
-    pub image: Option<String>,
-    #[serde(rename = "content")]
-    pub content: Option<String>,
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "url")]
-    pub url: Option<String>,
-    #[serde(rename = "shortDescription")]
-    pub short_description: Option<String>,
-    #[serde(rename = "metaTitle")]
-    pub meta_title: Option<String>,
     #[serde(rename = "lang")]
     pub lang: Option<String>,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "image")]
+    pub image: Option<String>,
+    #[serde(rename = "metaTitle")]
+    pub meta_title: Option<String>,
+    #[serde(rename = "shortDescription")]
+    pub short_description: Option<String>,
+    #[serde(rename = "title")]
+    pub title: Option<String>,
+    #[serde(rename = "url")]
+    pub url: Option<String>,
+    #[serde(rename = "metaDescription")]
+    pub meta_description: Option<String>,
+    #[serde(rename = "content")]
+    pub content: Option<String>,
+    #[serde(rename = "isPinned")]
+    pub is_pinned: Option<bool>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogUpdateParams {
-    #[serde(rename = "categoryId")]
-    pub category_id: Option<f64>,
     #[serde(rename = "props")]
     pub props: BlogBlogUpdateParamsPropsParams,
+    #[serde(rename = "categoryId")]
+    pub category_id: Option<f64>,
 }
 impl Schema for BlogBlogUpdateParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"props\":{\"type\":\"object\",\"properties\":{\"metaDescription\":{\"type\":\"string\"},\"isPinned\":{\"type\":\"boolean\"},\"title\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"url\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"}},\"required\":[\"id\"]}},\"required\":[\"props\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"props\":{\"type\":\"object\",\"properties\":{\"lang\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"image\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"isPinned\":{\"type\":\"boolean\"}},\"required\":[\"id\"]},\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"props\"]}") . unwrap ()
     }
 }
 impl Agent for BlogBlogUpdateParams {

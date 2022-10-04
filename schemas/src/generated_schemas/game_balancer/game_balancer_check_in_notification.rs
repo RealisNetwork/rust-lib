@@ -32,73 +32,73 @@ impl Agent for GameBalancerGameBalancerCheckInNotificationParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GameBalancerGameBalancerCheckInNotificationReturnsPlayersParamsParamsAttributesParams {
-    #[serde(rename = "skillEffectPower")]
-    pub skill_effect_power: String,
-    #[serde(rename = "attackDamage")]
-    pub attack_damage: String,
     #[serde(rename = "intelligence")]
     pub intelligence: String,
-    #[serde(rename = "mainCharacteristic")]
-    pub main_characteristic: i8,
-    #[serde(rename = "health")]
-    pub health: String,
-    #[serde(rename = "ultPower")]
-    pub ult_power: String,
-    #[serde(rename = "agility")]
-    pub agility: String,
-    #[serde(rename = "ultEffectPower")]
-    pub ult_effect_power: String,
-    #[serde(rename = "attackReloadSpeed")]
-    pub attack_reload_speed: String,
-    #[serde(rename = "skillPower")]
-    pub skill_power: String,
-    #[serde(rename = "strength")]
-    pub strength: String,
     #[serde(rename = "vampirismPower")]
     pub vampirism_power: String,
-    #[serde(rename = "healthRegenPercent")]
-    pub health_regen_percent: String,
-    #[serde(rename = "armor")]
-    pub armor: String,
+    #[serde(rename = "skillPower")]
+    pub skill_power: String,
+    #[serde(rename = "mainCharacteristic")]
+    pub main_characteristic: i8,
+    #[serde(rename = "agility")]
+    pub agility: String,
     #[serde(rename = "moveSpeed")]
     pub move_speed: String,
+    #[serde(rename = "attackReloadSpeed")]
+    pub attack_reload_speed: String,
+    #[serde(rename = "strength")]
+    pub strength: String,
+    #[serde(rename = "health")]
+    pub health: String,
+    #[serde(rename = "attackDamage")]
+    pub attack_damage: String,
+    #[serde(rename = "skillEffectPower")]
+    pub skill_effect_power: String,
+    #[serde(rename = "armor")]
+    pub armor: String,
+    #[serde(rename = "ultEffectPower")]
+    pub ult_effect_power: String,
+    #[serde(rename = "healthRegenPercent")]
+    pub health_regen_percent: String,
+    #[serde(rename = "ultPower")]
+    pub ult_power: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GameBalancerGameBalancerCheckInNotificationReturnsPlayersParamsParams {
-    #[serde(rename = "heroId")]
-    pub hero_id: i8,
     #[serde(rename = "nickname")]
     pub nickname: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "attributes")]
     pub attributes:
         GameBalancerGameBalancerCheckInNotificationReturnsPlayersParamsParamsAttributesParams,
-    #[serde(rename = "userId")]
-    pub user_id: String,
+    #[serde(rename = "heroId")]
+    pub hero_id: i8,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GameBalancerGameBalancerCheckInNotificationReturns {
-    #[serde(rename = "teamId")]
-    pub team_id: i8,
-    #[serde(rename = "players")]
-    pub players: Vec<GameBalancerGameBalancerCheckInNotificationReturnsPlayersParamsParams>,
     #[serde(rename = "success")]
     pub success: bool,
-    #[serde(rename = "apiVersion")]
-    pub api_version: String,
-    #[serde(rename = "authToken")]
-    pub auth_token: String,
-    #[serde(rename = "roomId")]
-    pub room_id: i32,
-    #[serde(rename = "roomUdpPort")]
-    pub room_udp_port: i32,
-    #[serde(rename = "roomHost")]
-    pub room_host: String,
     #[serde(rename = "roomTcpPort")]
     pub room_tcp_port: i32,
+    #[serde(rename = "apiVersion")]
+    pub api_version: String,
+    #[serde(rename = "roomId")]
+    pub room_id: i32,
+    #[serde(rename = "players")]
+    pub players: Vec<GameBalancerGameBalancerCheckInNotificationReturnsPlayersParamsParams>,
+    #[serde(rename = "teamId")]
+    pub team_id: i8,
+    #[serde(rename = "roomHost")]
+    pub room_host: String,
+    #[serde(rename = "roomUdpPort")]
+    pub room_udp_port: i32,
+    #[serde(rename = "authToken")]
+    pub auth_token: String,
 }
 impl Schema for GameBalancerGameBalancerCheckInNotificationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"teamId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"players\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"heroId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"nickname\":{\"type\":\"string\"},\"attributes\":{\"type\":\"object\",\"properties\":{\"skillEffectPower\":{\"type\":\"string\"},\"attackDamage\":{\"type\":\"string\"},\"intelligence\":{\"type\":\"string\"},\"mainCharacteristic\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"health\":{\"type\":\"string\"},\"ultPower\":{\"type\":\"string\"},\"agility\":{\"type\":\"string\"},\"ultEffectPower\":{\"type\":\"string\"},\"attackReloadSpeed\":{\"type\":\"string\"},\"skillPower\":{\"type\":\"string\"},\"strength\":{\"type\":\"string\"},\"vampirismPower\":{\"type\":\"string\"},\"healthRegenPercent\":{\"type\":\"string\"},\"armor\":{\"type\":\"string\"},\"moveSpeed\":{\"type\":\"string\"}},\"required\":[\"strength\",\"agility\",\"intelligence\",\"mainCharacteristic\",\"health\",\"healthRegenPercent\",\"armor\",\"moveSpeed\",\"attackDamage\",\"attackReloadSpeed\",\"skillPower\",\"skillEffectPower\",\"ultPower\",\"ultEffectPower\",\"vampirismPower\"]},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"nickname\",\"heroId\",\"attributes\"]}},\"success\":{\"type\":\"boolean\"},\"apiVersion\":{\"type\":\"string\"},\"authToken\":{\"type\":\"string\"},\"roomId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"roomUdpPort\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"roomHost\":{\"type\":\"string\"},\"roomTcpPort\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"success\",\"apiVersion\",\"authToken\",\"roomId\",\"roomHost\",\"roomTcpPort\",\"roomUdpPort\",\"teamId\",\"players\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"success\":{\"type\":\"boolean\"},\"roomTcpPort\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"apiVersion\":{\"type\":\"string\"},\"roomId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"players\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"nickname\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"attributes\":{\"type\":\"object\",\"properties\":{\"intelligence\":{\"type\":\"string\"},\"vampirismPower\":{\"type\":\"string\"},\"skillPower\":{\"type\":\"string\"},\"mainCharacteristic\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"agility\":{\"type\":\"string\"},\"moveSpeed\":{\"type\":\"string\"},\"attackReloadSpeed\":{\"type\":\"string\"},\"strength\":{\"type\":\"string\"},\"health\":{\"type\":\"string\"},\"attackDamage\":{\"type\":\"string\"},\"skillEffectPower\":{\"type\":\"string\"},\"armor\":{\"type\":\"string\"},\"ultEffectPower\":{\"type\":\"string\"},\"healthRegenPercent\":{\"type\":\"string\"},\"ultPower\":{\"type\":\"string\"}},\"required\":[\"strength\",\"agility\",\"intelligence\",\"mainCharacteristic\",\"health\",\"healthRegenPercent\",\"armor\",\"moveSpeed\",\"attackDamage\",\"attackReloadSpeed\",\"skillPower\",\"skillEffectPower\",\"ultPower\",\"ultEffectPower\",\"vampirismPower\"]},\"heroId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"userId\",\"nickname\",\"heroId\",\"attributes\"]}},\"teamId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"roomHost\":{\"type\":\"string\"},\"roomUdpPort\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"authToken\":{\"type\":\"string\"}},\"required\":[\"success\",\"apiVersion\",\"authToken\",\"roomId\",\"roomHost\",\"roomTcpPort\",\"roomUdpPort\",\"teamId\",\"players\"]}")
     }
 }
 impl Agent for GameBalancerGameBalancerCheckInNotificationReturns {

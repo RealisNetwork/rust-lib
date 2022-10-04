@@ -25,41 +25,30 @@ impl Agent for BlogPollGetParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct BlogPollGetReturnsVotesParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "answer")]
-    pub answer: f64,
-    #[serde(rename = "id")]
-    pub id: f64,
-}
-#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogPollGetReturnsAnswersParamsParams {
-    #[serde(rename = "answer")]
-    pub answer: String,
     #[serde(rename = "isImage")]
     pub is_image: bool,
+    #[serde(rename = "answer")]
+    pub answer: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogPollGetReturns {
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "endDate")]
-    pub end_date: String,
-    #[serde(rename = "question")]
-    pub question: String,
     #[serde(rename = "createdAt")]
     pub created_at: String,
-    #[serde(rename = "votes")]
-    pub votes: BlogPollGetReturnsVotesParams,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "question")]
+    pub question: String,
+    #[serde(rename = "endDate")]
+    pub end_date: String,
     #[serde(rename = "answers")]
     pub answers: Vec<BlogPollGetReturnsAnswersParamsParams>,
 }
 impl Schema for BlogPollGetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"updatedAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"endDate\":{\"type\":\"string\"},\"question\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"votes\":{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"answer\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"userId\",\"answer\"]},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"answer\":{\"type\":\"string\"},\"isImage\":{\"type\":\"boolean\"}},\"required\":[\"isImage\",\"answer\"]}}},\"required\":[\"id\",\"question\",\"answers\",\"endDate\",\"createdAt\",\"updatedAt\",\"votes\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"updatedAt\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"question\":{\"type\":\"string\"},\"endDate\":{\"type\":\"string\"},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"isImage\":{\"type\":\"boolean\"},\"answer\":{\"type\":\"string\"}},\"required\":[\"isImage\",\"answer\"]}}},\"required\":[\"id\",\"question\",\"answers\",\"endDate\",\"createdAt\",\"updatedAt\"]}")
     }
 }
 impl Agent for BlogPollGetReturns {
