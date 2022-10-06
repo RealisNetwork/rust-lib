@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct ProductFactoryProductTypeGetAllByTypeParams {
     #[serde(rename = "type")]
     pub r#type: String,
-    #[serde(rename = "perPage")]
-    pub per_page: Option<f64>,
     #[serde(rename = "page")]
     pub page: Option<f64>,
+    #[serde(rename = "perPage")]
+    pub per_page: Option<f64>,
 }
 impl Schema for ProductFactoryProductTypeGetAllByTypeParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"type\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"type\"]}") . unwrap ()
     }
 }
 impl Agent for ProductFactoryProductTypeGetAllByTypeParams {

@@ -5,22 +5,22 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NotificationsNotificationsCreateNewParams {
-    #[serde(rename = "category")]
-    pub category: String,
     #[serde(rename = "description")]
     pub description: String,
-    #[serde(rename = "title")]
-    pub title: String,
-    #[serde(rename = "senderUserId")]
-    pub sender_user_id: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "category")]
+    pub category: String,
+    #[serde(rename = "title")]
+    pub title: String,
     #[serde(rename = "notificationType")]
     pub notification_type: (),
+    #[serde(rename = "senderUserId")]
+    pub sender_user_id: String,
 }
 impl Schema for NotificationsNotificationsCreateNewParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"category\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"senderUserId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"notificationType\":{}},\"required\":[\"notificationType\",\"userId\",\"category\",\"description\",\"senderUserId\",\"title\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"description\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"category\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"notificationType\":{},\"senderUserId\":{\"type\":\"string\"}},\"required\":[\"notificationType\",\"userId\",\"category\",\"description\",\"senderUserId\",\"title\"]}") . unwrap ()
     }
 }
 impl Agent for NotificationsNotificationsCreateNewParams {

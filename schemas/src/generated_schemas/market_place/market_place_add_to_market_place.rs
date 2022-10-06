@@ -9,10 +9,10 @@ pub struct MarketPlaceMarketPlaceAddToMarketPlaceParamsAdditionalParamsParams {}
 pub struct MarketPlaceMarketPlaceAddToMarketPlaceParams {
     #[serde(rename = "category")]
     pub category: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "personalType")]
     pub personal_type: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "additionalParams")]
     pub additional_params: MarketPlaceMarketPlaceAddToMarketPlaceParamsAdditionalParamsParams,
     #[serde(rename = "productId")]
@@ -22,7 +22,7 @@ pub struct MarketPlaceMarketPlaceAddToMarketPlaceParams {
 }
 impl Schema for MarketPlaceMarketPlaceAddToMarketPlaceParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"category\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"userId\",\"price\",\"category\",\"personalType\",\"productId\",\"additionalParams\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"category\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"userId\",\"price\",\"category\",\"personalType\",\"productId\",\"additionalParams\"]}") . unwrap ()
     }
 }
 impl Agent for MarketPlaceMarketPlaceAddToMarketPlaceParams {

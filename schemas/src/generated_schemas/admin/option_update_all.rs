@@ -5,23 +5,23 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionUpdateAllParamsClientKeysParamsParamsExtraDetailsParams {
-    #[serde(rename = "tab")]
-    pub tab: Option<String>,
     #[serde(rename = "type")]
     pub r#type: Option<String>,
+    #[serde(rename = "tab")]
+    pub tab: Option<String>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionUpdateAllParamsClientKeysParamsParams {
+    #[serde(rename = "description")]
+    pub description: Option<String>,
+    #[serde(rename = "scope")]
+    pub scope: String,
+    #[serde(rename = "key")]
+    pub key: String,
     #[serde(rename = "extraDetails")]
     pub extra_details: Option<AdminOptionUpdateAllParamsClientKeysParamsParamsExtraDetailsParams>,
     #[serde(rename = "value")]
     pub value: String,
-    #[serde(rename = "key")]
-    pub key: String,
-    #[serde(rename = "scope")]
-    pub scope: String,
-    #[serde(rename = "description")]
-    pub description: Option<String>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionUpdateAllParams {
@@ -30,7 +30,7 @@ pub struct AdminOptionUpdateAllParams {
 }
 impl Schema for AdminOptionUpdateAllParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"clientKeys\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"extraDetails\":{\"type\":\"object\",\"properties\":{\"tab\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}}},\"value\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"scope\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\"]}}},\"required\":[\"clientKeys\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"clientKeys\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"description\":{\"type\":\"string\"},\"scope\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"}}},\"value\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\"]}}},\"required\":[\"clientKeys\"]}") . unwrap ()
     }
 }
 impl Agent for AdminOptionUpdateAllParams {

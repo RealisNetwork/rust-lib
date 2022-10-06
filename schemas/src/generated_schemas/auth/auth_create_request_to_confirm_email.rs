@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct AuthAuthCreateRequestToConfirmEmailParams {
     #[serde(rename = "deviceId")]
     pub device_id: Option<String>,
-    #[serde(rename = "email")]
-    pub email: String,
     #[serde(rename = "referralCode")]
     pub referral_code: Option<String>,
+    #[serde(rename = "email")]
+    pub email: String,
 }
 impl Schema for AuthAuthCreateRequestToConfirmEmailParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"deviceId\":{\"type\":\"string\"},\"email\":{\"type\":\"string\",\"pattern\":\"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\\\.[a-zA-Z0-9-.]+$\"},\"referralCode\":{\"type\":\"string\"}},\"required\":[\"email\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"deviceId\":{\"type\":\"string\"},\"referralCode\":{\"type\":\"string\"},\"email\":{\"type\":\"string\",\"pattern\":\"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\\\.[a-zA-Z0-9-.]+$\"}},\"required\":[\"email\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthCreateRequestToConfirmEmailParams {

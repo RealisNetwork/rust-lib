@@ -1,5 +1,6 @@
 pub mod balance_admin_decrease_balance;
 pub mod balance_admin_increase_balance;
+pub mod balance_check_my_transaction_for_currency;
 pub mod balance_check_transaction_for_currency;
 pub mod balance_convert;
 pub mod balance_decrease_balance_by_user_id;
@@ -31,6 +32,7 @@ pub mod registry_product_get_personal_types_by_user;
 pub mod registry_product_update_product_owner;
 pub use balance_admin_decrease_balance::*;
 pub use balance_admin_increase_balance::*;
+pub use balance_check_my_transaction_for_currency::*;
 pub use balance_check_transaction_for_currency::*;
 pub use balance_convert::*;
 pub use balance_decrease_balance_by_user_id::*;

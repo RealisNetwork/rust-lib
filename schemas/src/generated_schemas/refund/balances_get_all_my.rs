@@ -32,14 +32,14 @@ impl Agent for RefundBalancesGetAllMyParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllMyReturns {
-    #[serde(rename = "ETH")]
-    pub eth: Option<String>,
     #[serde(rename = "LIS")]
     pub lis: Option<String>,
+    #[serde(rename = "ETH")]
+    pub eth: Option<String>,
 }
 impl Schema for RefundBalancesGetAllMyReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"ETH\":{\"type\":\"string\"},\"LIS\":{\"type\":\"string\"}}}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"LIS\":{\"type\":\"string\"},\"ETH\":{\"type\":\"string\"}}}")
     }
 }
 impl Agent for RefundBalancesGetAllMyReturns {

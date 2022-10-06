@@ -5,12 +5,12 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogVoteIsVotedParams {
-    #[serde(rename = "blogId")]
-    pub blog_id: f64,
+    #[serde(rename = "pollId")]
+    pub poll_id: f64,
 }
 impl Schema for BlogVoteIsVotedParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"blogId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"blogId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"pollId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"pollId\"]}") . unwrap ()
     }
 }
 impl Agent for BlogVoteIsVotedParams {

@@ -39,6 +39,9 @@ impl SchemaManager {
             ("admin", "confirmation_getNotConfirmedActions") => {
                 Some(AdminConfirmationGetNotConfirmedActionsParams::schema())
             }
+            ("admin", "confirmation_addSolutionAdminForMany") => {
+                Some(AdminConfirmationAddSolutionAdminForManyParams::schema())
+            }
             ("admin", "mailTemplate_create") => Some(AdminMailTemplateCreateParams::schema()),
             ("admin", "mailTemplate_delete") => Some(AdminMailTemplateDeleteParams::schema()),
             ("admin", "mailTemplate_getByKey") => Some(AdminMailTemplateGetByKeyParams::schema()),
@@ -1133,6 +1136,9 @@ impl SchemaManager {
             ("transactions", "balance_checkTransactionForCurrency") => {
                 Some(TransactionsBalanceCheckTransactionForCurrencyParams::schema())
             }
+            ("transactions", "balance_checkMyTransactionForCurrency") => {
+                Some(TransactionsBalanceCheckMyTransactionForCurrencyParams::schema())
+            }
             ("transactions", "registryProduct_addProduct") => {
                 Some(TransactionsRegistryProductAddProductParams::schema())
             }
@@ -1237,6 +1243,9 @@ impl SchemaManager {
             }
             ("admin", "confirmation_getNotConfirmedActions") => {
                 Some(AdminConfirmationGetNotConfirmedActionsReturns::schema())
+            }
+            ("admin", "confirmation_addSolutionAdminForMany") => {
+                Some(AdminConfirmationAddSolutionAdminForManyReturns::schema())
             }
             ("admin", "mailTemplate_create") => Some(AdminMailTemplateCreateReturns::schema()),
             ("admin", "mailTemplate_delete") => Some(AdminMailTemplateDeleteReturns::schema()),
@@ -2357,6 +2366,9 @@ impl SchemaManager {
             }
             ("transactions", "balance_checkTransactionForCurrency") => {
                 Some(TransactionsBalanceCheckTransactionForCurrencyReturns::schema())
+            }
+            ("transactions", "balance_checkMyTransactionForCurrency") => {
+                Some(TransactionsBalanceCheckMyTransactionForCurrencyReturns::schema())
             }
             ("transactions", "registryProduct_addProduct") => {
                 Some(TransactionsRegistryProductAddProductReturns::schema())

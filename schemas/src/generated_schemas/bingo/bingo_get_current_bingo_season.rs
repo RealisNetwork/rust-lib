@@ -25,13 +25,10 @@ impl Agent for BingoBingoGetCurrentBingoSeasonParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct BingoBingoGetCurrentBingoSeasonReturns {
-    #[serde(rename = "season")]
-    pub season: i32,
-}
+pub struct BingoBingoGetCurrentBingoSeasonReturns(pub bool);
 impl Schema for BingoBingoGetCurrentBingoSeasonReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"season\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"season\"]}")
+        serde_json::json!("{\"type\":\"boolean\"}")
     }
 }
 impl Agent for BingoBingoGetCurrentBingoSeasonReturns {
