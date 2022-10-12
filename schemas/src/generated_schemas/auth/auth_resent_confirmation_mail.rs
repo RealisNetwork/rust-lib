@@ -23,6 +23,9 @@ impl Agent for AuthAuthResentConfirmationMailParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthResentConfirmationMailReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for AuthAuthResentConfirmationMailReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

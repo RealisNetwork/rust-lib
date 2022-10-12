@@ -29,19 +29,22 @@ impl Agent for MarketPlaceMarketPlaceGetBoughtItemsParams {
     fn agent() -> &'static str {
         "market-place"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetBoughtItemsReturnsParams {
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "productId")]
     pub product_id: i32,
     #[serde(rename = "createdAt")]
     pub created_at: i32,
     #[serde(rename = "status")]
     pub status: String,
-    #[serde(rename = "id")]
-    pub id: i32,
-    #[serde(rename = "userId")]
-    pub user_id: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetBoughtItemsReturns(
@@ -49,7 +52,7 @@ pub struct MarketPlaceMarketPlaceGetBoughtItemsReturns(
 );
 impl Schema for MarketPlaceMarketPlaceGetBoughtItemsReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"status\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"productId\",\"status\",\"createdAt\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"status\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"productId\",\"status\",\"createdAt\"]}}")
     }
 }
 impl Agent for MarketPlaceMarketPlaceGetBoughtItemsReturns {
@@ -61,5 +64,8 @@ impl Agent for MarketPlaceMarketPlaceGetBoughtItemsReturns {
     }
     fn agent() -> &'static str {
         "market-place"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

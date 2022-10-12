@@ -29,6 +29,9 @@ impl Agent for LobbyLobbyStartGameParams {
     fn agent() -> &'static str {
         "lobby"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 impl<'de> Deserialize<'de> for LobbyLobbyStartGameReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -55,5 +58,8 @@ impl Agent for LobbyLobbyStartGameReturns {
     }
     fn agent() -> &'static str {
         "lobby"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

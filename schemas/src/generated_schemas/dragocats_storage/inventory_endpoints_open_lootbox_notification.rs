@@ -29,6 +29,9 @@ impl Agent for DragocatsStorageInventoryEndpointsOpenLootboxNotificationParams {
     fn agent() -> &'static str {
         "dragocats-storage"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsOpenLootboxNotificationReturns {}
@@ -46,5 +49,8 @@ impl Agent for DragocatsStorageInventoryEndpointsOpenLootboxNotificationReturns 
     }
     fn agent() -> &'static str {
         "dragocats-storage"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

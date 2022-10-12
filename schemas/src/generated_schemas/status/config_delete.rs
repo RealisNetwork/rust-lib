@@ -23,6 +23,9 @@ impl Agent for StatusConfigDeleteParams {
     fn agent() -> &'static str {
         "status"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigDeleteReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for StatusConfigDeleteReturns {
     }
     fn agent() -> &'static str {
         "status"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

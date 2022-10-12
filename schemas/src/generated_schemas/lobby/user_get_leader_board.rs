@@ -23,6 +23,9 @@ impl Agent for LobbyUserGetLeaderBoardParams {
     fn agent() -> &'static str {
         "lobby"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserGetLeaderBoardReturnsLeaderboardParamsParams {
@@ -56,5 +59,8 @@ impl Agent for LobbyUserGetLeaderBoardReturns {
     }
     fn agent() -> &'static str {
         "lobby"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

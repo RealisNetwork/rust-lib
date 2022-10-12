@@ -23,6 +23,9 @@ impl Agent for CatsAndDragonsWrapperEmptyMethodParams {
     fn agent() -> &'static str {
         "catsAndDragons"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperEmptyMethodReturns {}
@@ -40,5 +43,8 @@ impl Agent for CatsAndDragonsWrapperEmptyMethodReturns {
     }
     fn agent() -> &'static str {
         "catsAndDragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

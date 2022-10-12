@@ -23,6 +23,9 @@ impl Agent for AuthAuthRemoveAccountParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthRemoveAccountReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for AuthAuthRemoveAccountReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

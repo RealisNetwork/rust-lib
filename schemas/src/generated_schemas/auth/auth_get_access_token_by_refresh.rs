@@ -23,6 +23,9 @@ impl Agent for AuthAuthGetAccessTokenByRefreshParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthGetAccessTokenByRefreshReturns {
@@ -45,5 +48,8 @@ impl Agent for AuthAuthGetAccessTokenByRefreshReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

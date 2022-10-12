@@ -23,6 +23,9 @@ impl Agent for RefundBalancesGetAllUnavailableParams {
     fn agent() -> &'static str {
         "refund"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllUnavailableReturns {
@@ -45,5 +48,8 @@ impl Agent for RefundBalancesGetAllUnavailableReturns {
     }
     fn agent() -> &'static str {
         "refund"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

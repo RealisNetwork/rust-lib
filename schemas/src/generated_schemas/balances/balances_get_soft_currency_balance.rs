@@ -29,6 +29,9 @@ impl Agent for BalancesBalancesGetSoftCurrencyBalanceParams {
     fn agent() -> &'static str {
         "balances"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BalancesBalancesGetSoftCurrencyBalanceReturns {
@@ -49,5 +52,8 @@ impl Agent for BalancesBalancesGetSoftCurrencyBalanceReturns {
     }
     fn agent() -> &'static str {
         "balances"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

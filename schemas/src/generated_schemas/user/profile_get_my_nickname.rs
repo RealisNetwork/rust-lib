@@ -29,6 +29,9 @@ impl Agent for UserProfileGetMyNicknameParams {
     fn agent() -> &'static str {
         "user"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetMyNicknameReturns(pub String);
@@ -46,5 +49,8 @@ impl Agent for UserProfileGetMyNicknameReturns {
     }
     fn agent() -> &'static str {
         "user"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

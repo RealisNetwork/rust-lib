@@ -23,6 +23,9 @@ impl Agent for AuthAuthDeviceGetClientStatusByInternalUserIdParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceGetClientStatusByInternalUserIdReturns(pub String);
@@ -40,5 +43,8 @@ impl Agent for AuthAuthDeviceGetClientStatusByInternalUserIdReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

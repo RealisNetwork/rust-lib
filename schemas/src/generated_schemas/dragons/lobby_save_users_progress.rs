@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbySaveUsersProgressParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "dataObject")]
     pub data_object: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for DragonsLobbySaveUsersProgressParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"dataObject\":{\"type\":\"string\"}},\"required\":[\"userId\",\"dataObject\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"dataObject\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"dataObject\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbySaveUsersProgressParams {
@@ -24,6 +24,9 @@ impl Agent for DragonsLobbySaveUsersProgressParams {
     }
     fn agent() -> &'static str {
         "dragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }
 impl<'de> Deserialize<'de> for DragonsLobbySaveUsersProgressReturns {
@@ -51,5 +54,8 @@ impl Agent for DragonsLobbySaveUsersProgressReturns {
     }
     fn agent() -> &'static str {
         "dragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

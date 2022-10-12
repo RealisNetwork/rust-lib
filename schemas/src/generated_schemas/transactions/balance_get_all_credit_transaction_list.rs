@@ -29,17 +29,24 @@ impl Agent for TransactionsBalanceGetAllCreditTransactionListParams {
     fn agent() -> &'static str {
         "transactions"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceGetAllCreditTransactionListReturns {
+pub struct TransactionsBalanceGetAllCreditTransactionListReturnsParams {
     #[serde(rename = "amount")]
     pub amount: String,
     #[serde(rename = "date")]
     pub date: String,
 }
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TransactionsBalanceGetAllCreditTransactionListReturns(
+    pub Vec<TransactionsBalanceGetAllCreditTransactionListReturnsParams>,
+);
 impl Schema for TransactionsBalanceGetAllCreditTransactionListReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"date\":{\"type\":\"string\"}},\"required\":[\"amount\",\"date\"]}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"date\":{\"type\":\"string\"}},\"required\":[\"amount\",\"date\"]}}")
     }
 }
 impl Agent for TransactionsBalanceGetAllCreditTransactionListReturns {
@@ -51,5 +58,8 @@ impl Agent for TransactionsBalanceGetAllCreditTransactionListReturns {
     }
     fn agent() -> &'static str {
         "transactions"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

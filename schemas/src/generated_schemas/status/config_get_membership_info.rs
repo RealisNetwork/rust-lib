@@ -23,27 +23,30 @@ impl Agent for StatusConfigGetMembershipInfoParams {
     fn agent() -> &'static str {
         "status"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigGetMembershipInfoReturns {
-    #[serde(rename = "maxCount")]
-    pub max_count: String,
-    #[serde(rename = "priceInLis")]
-    pub price_in_lis: String,
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "isAvailable")]
-    pub is_available: bool,
-    #[serde(rename = "price")]
-    pub price: String,
-    #[serde(rename = "multiplier")]
-    pub multiplier: String,
     #[serde(rename = "membership")]
     pub membership: String,
+    #[serde(rename = "multiplier")]
+    pub multiplier: String,
+    #[serde(rename = "price")]
+    pub price: String,
+    #[serde(rename = "maxCount")]
+    pub max_count: String,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "priceInLis")]
+    pub price_in_lis: String,
+    #[serde(rename = "isAvailable")]
+    pub is_available: bool,
 }
 impl Schema for StatusConfigGetMembershipInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"maxCount\":{\"type\":\"string\"},\"priceInLis\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isAvailable\":{\"type\":\"boolean\"},\"price\":{\"type\":\"string\"},\"multiplier\":{\"type\":\"string\"},\"membership\":{\"type\":\"string\"}},\"required\":[\"id\",\"membership\",\"price\",\"multiplier\",\"priceInLis\",\"maxCount\",\"isAvailable\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"membership\":{\"type\":\"string\"},\"multiplier\":{\"type\":\"string\"},\"price\":{\"type\":\"string\"},\"maxCount\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"priceInLis\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"membership\",\"price\",\"multiplier\",\"priceInLis\",\"maxCount\",\"isAvailable\"]}")
     }
 }
 impl Agent for StatusConfigGetMembershipInfoReturns {
@@ -55,5 +58,8 @@ impl Agent for StatusConfigGetMembershipInfoReturns {
     }
     fn agent() -> &'static str {
         "status"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

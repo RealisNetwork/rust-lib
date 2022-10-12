@@ -25,6 +25,9 @@ impl Agent for AdminPermissionDeleteParams {
     fn agent() -> &'static str {
         "admin"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminPermissionDeleteReturns(pub bool);
@@ -42,5 +45,8 @@ impl Agent for AdminPermissionDeleteReturns {
     }
     fn agent() -> &'static str {
         "admin"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

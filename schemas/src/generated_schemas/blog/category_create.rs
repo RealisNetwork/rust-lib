@@ -23,6 +23,9 @@ impl Agent for BlogCategoryCreateParams {
     fn agent() -> &'static str {
         "blog"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogCategoryCreateReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for BlogCategoryCreateReturns {
     }
     fn agent() -> &'static str {
         "blog"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

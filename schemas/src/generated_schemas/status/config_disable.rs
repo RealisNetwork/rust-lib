@@ -23,6 +23,9 @@ impl Agent for StatusConfigDisableParams {
     fn agent() -> &'static str {
         "status"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigDisableReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for StatusConfigDisableReturns {
     }
     fn agent() -> &'static str {
         "status"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

@@ -7,22 +7,22 @@ use crate::generated_schemas::prelude::*;
 pub struct MarketPlaceMarketPlaceAddToMarketPlaceParamsAdditionalParamsParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceAddToMarketPlaceParams {
-    #[serde(rename = "category")]
-    pub category: String,
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "additionalParams")]
-    pub additional_params: MarketPlaceMarketPlaceAddToMarketPlaceParamsAdditionalParamsParams,
-    #[serde(rename = "productId")]
-    pub product_id: i32,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
     #[serde(rename = "price")]
     pub price: i32,
+    #[serde(rename = "productId")]
+    pub product_id: i32,
+    #[serde(rename = "additionalParams")]
+    pub additional_params: MarketPlaceMarketPlaceAddToMarketPlaceParamsAdditionalParamsParams,
+    #[serde(rename = "category")]
+    pub category: String,
 }
 impl Schema for MarketPlaceMarketPlaceAddToMarketPlaceParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"category\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"userId\",\"price\",\"category\",\"personalType\",\"productId\",\"additionalParams\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"category\":{\"type\":\"string\"}},\"required\":[\"userId\",\"price\",\"category\",\"personalType\",\"productId\",\"additionalParams\"]}") . unwrap ()
     }
 }
 impl Agent for MarketPlaceMarketPlaceAddToMarketPlaceParams {
@@ -34,6 +34,9 @@ impl Agent for MarketPlaceMarketPlaceAddToMarketPlaceParams {
     }
     fn agent() -> &'static str {
         "market-place"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -52,5 +55,8 @@ impl Agent for MarketPlaceMarketPlaceAddToMarketPlaceReturns {
     }
     fn agent() -> &'static str {
         "market-place"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

@@ -20,6 +20,9 @@ impl Agent for AuthTwoFactorSendRequestToDeleteTwoFaParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthTwoFactorSendRequestToDeleteTwoFaReturns(pub bool);
@@ -37,5 +40,8 @@ impl Agent for AuthTwoFactorSendRequestToDeleteTwoFaReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyOpenLootboxParams {
-    #[serde(rename = "lootboxId")]
-    pub lootbox_id: f64,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "lootboxId")]
+    pub lootbox_id: f64,
 }
 impl Schema for CatsLobbyOpenLootboxParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"lootboxId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"lootboxId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"lootboxId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"lootboxId\"]}") . unwrap ()
     }
 }
 impl Agent for CatsLobbyOpenLootboxParams {
@@ -24,6 +24,9 @@ impl Agent for CatsLobbyOpenLootboxParams {
     }
     fn agent() -> &'static str {
         "cats"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }
 impl<'de> Deserialize<'de> for CatsLobbyOpenLootboxReturns {
@@ -51,5 +54,8 @@ impl Agent for CatsLobbyOpenLootboxReturns {
     }
     fn agent() -> &'static str {
         "cats"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

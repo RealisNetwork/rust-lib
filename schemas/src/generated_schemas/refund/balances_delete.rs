@@ -25,6 +25,9 @@ impl Agent for RefundBalancesDeleteParams {
     fn agent() -> &'static str {
         "refund"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesDeleteReturns(pub bool);
@@ -42,5 +45,8 @@ impl Agent for RefundBalancesDeleteReturns {
     }
     fn agent() -> &'static str {
         "refund"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

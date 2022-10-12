@@ -29,12 +29,15 @@ impl Agent for TransactionsBalanceGetBalancesInUsdParams {
     fn agent() -> &'static str {
         "transactions"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceGetBalancesInUsdReturns(pub f64);
+pub struct TransactionsBalanceGetBalancesInUsdReturns(pub String);
 impl Schema for TransactionsBalanceGetBalancesInUsdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}")
+        serde_json::json!("{\"type\":\"string\"}")
     }
 }
 impl Agent for TransactionsBalanceGetBalancesInUsdReturns {
@@ -46,5 +49,8 @@ impl Agent for TransactionsBalanceGetBalancesInUsdReturns {
     }
     fn agent() -> &'static str {
         "transactions"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

@@ -25,6 +25,9 @@ impl Agent for StatusMembershipChangeMembershipGameParams {
     fn agent() -> &'static str {
         "status"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipChangeMembershipGameReturns(pub bool);
@@ -42,5 +45,8 @@ impl Agent for StatusMembershipChangeMembershipGameReturns {
     }
     fn agent() -> &'static str {
         "status"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

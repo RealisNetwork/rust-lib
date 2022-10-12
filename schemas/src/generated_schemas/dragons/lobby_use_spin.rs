@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbyUseSpinParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "spinTypeId")]
     pub spin_type_id: f64,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for DragonsLobbyUseSpinParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"spinTypeId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"spinTypeId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"spinTypeId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"spinTypeId\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbyUseSpinParams {
@@ -24,6 +24,9 @@ impl Agent for DragonsLobbyUseSpinParams {
     }
     fn agent() -> &'static str {
         "dragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }
 impl<'de> Deserialize<'de> for DragonsLobbyUseSpinReturns {
@@ -51,5 +54,8 @@ impl Agent for DragonsLobbyUseSpinReturns {
     }
     fn agent() -> &'static str {
         "dragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

@@ -25,6 +25,9 @@ impl Agent for CatsLobbySaveTutorialProgressParams {
     fn agent() -> &'static str {
         "cats"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 impl<'de> Deserialize<'de> for CatsLobbySaveTutorialProgressReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -51,5 +54,8 @@ impl Agent for CatsLobbySaveTutorialProgressReturns {
     }
     fn agent() -> &'static str {
         "cats"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

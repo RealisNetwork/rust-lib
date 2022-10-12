@@ -29,6 +29,9 @@ impl Agent for JsTestsDragocatsBattleProcessEndpointsStopTestParams {
     fn agent() -> &'static str {
         "js-tests"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 impl<'de> Deserialize<'de> for JsTestsDragocatsBattleProcessEndpointsStopTestReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -55,5 +58,8 @@ impl Agent for JsTestsDragocatsBattleProcessEndpointsStopTestReturns {
     }
     fn agent() -> &'static str {
         "js-tests"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

@@ -29,6 +29,9 @@ impl Agent for SoulAdapterWalletGetMyWalletParams {
     fn agent() -> &'static str {
         "soul-adapter"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SoulAdapterWalletGetMyWalletReturns(pub String);
@@ -46,5 +49,8 @@ impl Agent for SoulAdapterWalletGetMyWalletReturns {
     }
     fn agent() -> &'static str {
         "soul-adapter"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

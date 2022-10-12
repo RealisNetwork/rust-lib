@@ -7,16 +7,16 @@ use crate::generated_schemas::prelude::*;
 pub struct DragonsLobbyPurchaseValidationParams {
     #[serde(rename = "productId")]
     pub product_id: String,
-    #[serde(rename = "storeId")]
-    pub store_id: f64,
-    #[serde(rename = "purchaseToken")]
-    pub purchase_token: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "purchaseToken")]
+    pub purchase_token: String,
+    #[serde(rename = "storeId")]
+    pub store_id: f64,
 }
 impl Schema for DragonsLobbyPurchaseValidationParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"string\"},\"storeId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"purchaseToken\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"storeId\",\"productId\",\"purchaseToken\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"purchaseToken\":{\"type\":\"string\"},\"storeId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"storeId\",\"productId\",\"purchaseToken\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbyPurchaseValidationParams {
@@ -28,6 +28,9 @@ impl Agent for DragonsLobbyPurchaseValidationParams {
     }
     fn agent() -> &'static str {
         "dragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }
 impl<'de> Deserialize<'de> for DragonsLobbyPurchaseValidationReturns {
@@ -55,5 +58,8 @@ impl Agent for DragonsLobbyPurchaseValidationReturns {
     }
     fn agent() -> &'static str {
         "dragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

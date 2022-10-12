@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbyBuySkillParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "skillPurchaseKey")]
     pub skill_purchase_key: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for DragonsLobbyBuySkillParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"skillPurchaseKey\":{\"type\":\"string\"}},\"required\":[\"userId\",\"skillPurchaseKey\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"skillPurchaseKey\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"skillPurchaseKey\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbyBuySkillParams {
@@ -24,6 +24,9 @@ impl Agent for DragonsLobbyBuySkillParams {
     }
     fn agent() -> &'static str {
         "dragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }
 impl<'de> Deserialize<'de> for DragonsLobbyBuySkillReturns {
@@ -51,5 +54,8 @@ impl Agent for DragonsLobbyBuySkillReturns {
     }
     fn agent() -> &'static str {
         "dragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

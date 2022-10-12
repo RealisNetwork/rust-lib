@@ -23,6 +23,9 @@ impl Agent for DragocatsStorageInventoryEndpointsOpenLootboxParams {
     fn agent() -> &'static str {
         "dragocats-storage"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 impl<'de> Deserialize<'de> for DragocatsStorageInventoryEndpointsOpenLootboxReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -49,5 +52,8 @@ impl Agent for DragocatsStorageInventoryEndpointsOpenLootboxReturns {
     }
     fn agent() -> &'static str {
         "dragocats-storage"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

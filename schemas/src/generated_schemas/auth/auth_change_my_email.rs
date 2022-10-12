@@ -23,6 +23,9 @@ impl Agent for AuthAuthChangeMyEmailParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthChangeMyEmailReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for AuthAuthChangeMyEmailReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

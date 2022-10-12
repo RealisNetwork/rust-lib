@@ -5,22 +5,22 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PurchaseBalanceIncreaseUserBalanceParams {
-    #[serde(rename = "creator")]
-    pub creator: String,
-    #[serde(rename = "currency")]
-    pub currency: String,
-    #[serde(rename = "topicToSuccessResponse")]
-    pub topic_to_success_response: String,
     #[serde(rename = "amount")]
     pub amount: String,
+    #[serde(rename = "topicToSuccessResponse")]
+    pub topic_to_success_response: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "currency")]
+    pub currency: String,
 }
 impl Schema for PurchaseBalanceIncreaseUserBalanceParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"creator\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"topicToSuccessResponse\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\",\"topicToSuccessResponse\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"topicToSuccessResponse\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\",\"topicToSuccessResponse\"]}") . unwrap ()
     }
 }
 impl Agent for PurchaseBalanceIncreaseUserBalanceParams {
@@ -32,6 +32,9 @@ impl Agent for PurchaseBalanceIncreaseUserBalanceParams {
     }
     fn agent() -> &'static str {
         "purchase"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -50,5 +53,8 @@ impl Agent for PurchaseBalanceIncreaseUserBalanceReturns {
     }
     fn agent() -> &'static str {
         "purchase"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

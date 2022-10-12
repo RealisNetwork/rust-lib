@@ -29,6 +29,9 @@ impl Agent for UserProfileGetNumParams {
     fn agent() -> &'static str {
         "user"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetNumReturns(pub f64);
@@ -46,5 +49,8 @@ impl Agent for UserProfileGetNumReturns {
     }
     fn agent() -> &'static str {
         "user"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

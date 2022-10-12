@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorPurchasePurchaseProductParams {
-    #[serde(rename = "productType")]
-    pub product_type: String,
     #[serde(rename = "creator")]
     pub creator: String,
+    #[serde(rename = "productType")]
+    pub product_type: String,
 }
 impl Schema for OrchestratorPurchasePurchaseProductParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"productType\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"}},\"required\":[\"productType\",\"creator\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"creator\":{\"type\":\"string\"},\"productType\":{\"type\":\"string\"}},\"required\":[\"productType\",\"creator\"]}") . unwrap ()
     }
 }
 impl Agent for OrchestratorPurchasePurchaseProductParams {
@@ -24,6 +24,9 @@ impl Agent for OrchestratorPurchasePurchaseProductParams {
     }
     fn agent() -> &'static str {
         "orchestrator"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -42,5 +45,8 @@ impl Agent for OrchestratorPurchasePurchaseProductReturns {
     }
     fn agent() -> &'static str {
         "orchestrator"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

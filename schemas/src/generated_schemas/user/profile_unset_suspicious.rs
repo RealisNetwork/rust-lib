@@ -23,6 +23,9 @@ impl Agent for UserProfileUnsetSuspiciousParams {
     fn agent() -> &'static str {
         "user"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileUnsetSuspiciousReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for UserProfileUnsetSuspiciousReturns {
     }
     fn agent() -> &'static str {
         "user"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

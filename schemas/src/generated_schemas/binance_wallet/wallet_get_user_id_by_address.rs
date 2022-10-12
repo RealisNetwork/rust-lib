@@ -23,6 +23,9 @@ impl Agent for BinanceWalletWalletGetUserIdByAddressParams {
     fn agent() -> &'static str {
         "binance-wallet"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BinanceWalletWalletGetUserIdByAddressReturns(pub String);
@@ -40,5 +43,8 @@ impl Agent for BinanceWalletWalletGetUserIdByAddressReturns {
     }
     fn agent() -> &'static str {
         "binance-wallet"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

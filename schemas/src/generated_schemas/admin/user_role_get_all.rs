@@ -29,6 +29,9 @@ impl Agent for AdminUserRoleGetAllParams {
     fn agent() -> &'static str {
         "admin"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleGetAllReturnsParamsRoleParams {
@@ -39,20 +42,20 @@ pub struct AdminUserRoleGetAllReturnsParamsRoleParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleGetAllReturnsParams {
-    #[serde(rename = "role")]
-    pub role: AdminUserRoleGetAllReturnsParamsRoleParams,
-    #[serde(rename = "isActive")]
-    pub is_active: bool,
-    #[serde(rename = "id")]
-    pub id: f64,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "isActive")]
+    pub is_active: bool,
+    #[serde(rename = "role")]
+    pub role: AdminUserRoleGetAllReturnsParamsRoleParams,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleGetAllReturns(pub Vec<AdminUserRoleGetAllReturnsParams>);
 impl Schema for AdminUserRoleGetAllReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"role\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\"]},\"isActive\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"isActive\",\"role\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isActive\":{\"type\":\"boolean\"},\"role\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\"]}},\"required\":[\"id\",\"userId\",\"isActive\",\"role\"]}}")
     }
 }
 impl Agent for AdminUserRoleGetAllReturns {
@@ -64,5 +67,8 @@ impl Agent for AdminUserRoleGetAllReturns {
     }
     fn agent() -> &'static str {
         "admin"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

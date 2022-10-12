@@ -20,6 +20,9 @@ impl Agent for BattlePassBattlePassEndpointsGetCurrentBattlePassExperienceParams
     fn agent() -> &'static str {
         "battle-pass"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetCurrentBattlePassExperienceReturns {
@@ -40,5 +43,8 @@ impl Agent for BattlePassBattlePassEndpointsGetCurrentBattlePassExperienceReturn
     }
     fn agent() -> &'static str {
         "battle-pass"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

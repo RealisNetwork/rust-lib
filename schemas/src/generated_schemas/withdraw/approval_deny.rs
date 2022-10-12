@@ -23,6 +23,9 @@ impl Agent for WithdrawApprovalDenyParams {
     fn agent() -> &'static str {
         "withdraw"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalDenyReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for WithdrawApprovalDenyReturns {
     }
     fn agent() -> &'static str {
         "withdraw"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

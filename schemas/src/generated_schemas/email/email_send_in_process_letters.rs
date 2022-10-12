@@ -29,6 +29,9 @@ impl Agent for EmailEmailSendInProcessLettersParams {
     fn agent() -> &'static str {
         "email"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 impl<'de> Deserialize<'de> for EmailEmailSendInProcessLettersReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -55,5 +58,8 @@ impl Agent for EmailEmailSendInProcessLettersReturns {
     }
     fn agent() -> &'static str {
         "email"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

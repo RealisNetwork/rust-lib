@@ -23,6 +23,9 @@ impl Agent for AuthTwoFactorDisableTwoFaParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthTwoFactorDisableTwoFaReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for AuthTwoFactorDisableTwoFaReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

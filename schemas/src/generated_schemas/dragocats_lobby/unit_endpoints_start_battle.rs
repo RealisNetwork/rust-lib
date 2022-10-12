@@ -29,6 +29,9 @@ impl Agent for DragocatsLobbyUnitEndpointsStartBattleParams {
     fn agent() -> &'static str {
         "dragocats-lobby"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 impl<'de> Deserialize<'de> for DragocatsLobbyUnitEndpointsStartBattleReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -55,5 +58,8 @@ impl Agent for DragocatsLobbyUnitEndpointsStartBattleReturns {
     }
     fn agent() -> &'static str {
         "dragocats-lobby"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

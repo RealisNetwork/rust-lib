@@ -23,6 +23,9 @@ impl Agent for AchievementsAchievementGetUsersAchievementsParams {
     fn agent() -> &'static str {
         "achievements"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AchievementsAchievementGetUsersAchievementsReturns {
@@ -45,5 +48,8 @@ impl Agent for AchievementsAchievementGetUsersAchievementsReturns {
     }
     fn agent() -> &'static str {
         "achievements"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

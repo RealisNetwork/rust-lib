@@ -29,6 +29,9 @@ impl Agent for CatsLobbyGetLootboxJackpotPoolParams {
     fn agent() -> &'static str {
         "cats"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 impl<'de> Deserialize<'de> for CatsLobbyGetLootboxJackpotPoolReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -55,5 +58,8 @@ impl Agent for CatsLobbyGetLootboxJackpotPoolReturns {
     }
     fn agent() -> &'static str {
         "cats"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

@@ -29,6 +29,9 @@ impl Agent for CatsLobbyGetPreviousTournamentStatsParams {
     fn agent() -> &'static str {
         "cats"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 impl<'de> Deserialize<'de> for CatsLobbyGetPreviousTournamentStatsReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -55,5 +58,8 @@ impl Agent for CatsLobbyGetPreviousTournamentStatsReturns {
     }
     fn agent() -> &'static str {
         "cats"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

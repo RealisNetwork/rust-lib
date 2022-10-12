@@ -23,6 +23,9 @@ impl Agent for ProductFactoryProductTypeIsExistParams {
     fn agent() -> &'static str {
         "productFactory"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeIsExistReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for ProductFactoryProductTypeIsExistReturns {
     }
     fn agent() -> &'static str {
         "productFactory"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

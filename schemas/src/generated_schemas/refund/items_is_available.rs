@@ -25,6 +25,9 @@ impl Agent for RefundItemsIsAvailableParams {
     fn agent() -> &'static str {
         "refund"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundItemsIsAvailableReturns(pub bool);
@@ -42,5 +45,8 @@ impl Agent for RefundItemsIsAvailableReturns {
     }
     fn agent() -> &'static str {
         "refund"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

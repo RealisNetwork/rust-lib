@@ -23,6 +23,9 @@ impl Agent for ProductFactoryProductTypeGetAttributeListByPersonalTypeParams {
     fn agent() -> &'static str {
         "productFactory"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeGetAttributeListByPersonalTypeReturns {}
@@ -40,5 +43,8 @@ impl Agent for ProductFactoryProductTypeGetAttributeListByPersonalTypeReturns {
     }
     fn agent() -> &'static str {
         "productFactory"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

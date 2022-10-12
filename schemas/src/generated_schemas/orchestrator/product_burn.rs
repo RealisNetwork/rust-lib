@@ -23,6 +23,9 @@ impl Agent for OrchestratorProductBurnParams {
     fn agent() -> &'static str {
         "orchestrator"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorProductBurnReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for OrchestratorProductBurnReturns {
     }
     fn agent() -> &'static str {
         "orchestrator"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

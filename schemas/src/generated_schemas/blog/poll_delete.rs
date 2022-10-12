@@ -23,6 +23,9 @@ impl Agent for BlogPollDeleteParams {
     fn agent() -> &'static str {
         "blog"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogPollDeleteReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for BlogPollDeleteReturns {
     }
     fn agent() -> &'static str {
         "blog"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

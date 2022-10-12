@@ -23,6 +23,9 @@ impl Agent for GameBalancerBalancerEndpointsAddBotsParams {
     fn agent() -> &'static str {
         "gameBalancer"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 impl<'de> Deserialize<'de> for GameBalancerBalancerEndpointsAddBotsReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -49,5 +52,8 @@ impl Agent for GameBalancerBalancerEndpointsAddBotsReturns {
     }
     fn agent() -> &'static str {
         "gameBalancer"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

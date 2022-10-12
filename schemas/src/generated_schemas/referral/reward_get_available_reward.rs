@@ -23,6 +23,9 @@ impl Agent for ReferralRewardGetAvailableRewardParams {
     fn agent() -> &'static str {
         "referral"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralRewardGetAvailableRewardReturns(pub String);
@@ -40,5 +43,8 @@ impl Agent for ReferralRewardGetAvailableRewardReturns {
     }
     fn agent() -> &'static str {
         "referral"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

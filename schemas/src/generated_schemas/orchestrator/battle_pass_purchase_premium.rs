@@ -27,6 +27,9 @@ impl Agent for OrchestratorBattlePassPurchasePremiumParams {
     fn agent() -> &'static str {
         "orchestrator"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 impl<'de> Deserialize<'de> for OrchestratorBattlePassPurchasePremiumReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -53,5 +56,8 @@ impl Agent for OrchestratorBattlePassPurchasePremiumReturns {
     }
     fn agent() -> &'static str {
         "orchestrator"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

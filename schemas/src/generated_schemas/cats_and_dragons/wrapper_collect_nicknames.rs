@@ -25,6 +25,9 @@ impl Agent for CatsAndDragonsWrapperCollectNicknamesParams {
     fn agent() -> &'static str {
         "catsAndDragons"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 impl<'de> Deserialize<'de> for CatsAndDragonsWrapperCollectNicknamesReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -51,5 +54,8 @@ impl Agent for CatsAndDragonsWrapperCollectNicknamesReturns {
     }
     fn agent() -> &'static str {
         "catsAndDragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

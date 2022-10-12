@@ -25,6 +25,9 @@ impl Agent for ImagesImageUploadImageParams {
     fn agent() -> &'static str {
         "images"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ImagesImageUploadImageReturns {
@@ -45,5 +48,8 @@ impl Agent for ImagesImageUploadImageReturns {
     }
     fn agent() -> &'static str {
         "images"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

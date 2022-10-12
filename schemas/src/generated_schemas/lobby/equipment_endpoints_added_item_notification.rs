@@ -29,6 +29,9 @@ impl Agent for LobbyEquipmentEndpointsAddedItemNotificationParams {
     fn agent() -> &'static str {
         "lobby"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyEquipmentEndpointsAddedItemNotificationReturnsEffectsParamsParams {
@@ -39,32 +42,32 @@ pub struct LobbyEquipmentEndpointsAddedItemNotificationReturnsEffectsParamsParam
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyEquipmentEndpointsAddedItemNotificationReturns {
-    #[serde(rename = "linkToExplorer")]
-    pub link_to_explorer: String,
-    #[serde(rename = "status")]
-    pub status: i32,
-    #[serde(rename = "equipmentItemId")]
-    pub equipment_item_id: i32,
-    #[serde(rename = "bindingId")]
-    pub binding_id: i32,
-    #[serde(rename = "level")]
-    pub level: i16,
-    #[serde(rename = "effects")]
-    pub effects: Vec<LobbyEquipmentEndpointsAddedItemNotificationReturnsEffectsParamsParams>,
     #[serde(rename = "isPending")]
     pub is_pending: bool,
+    #[serde(rename = "status")]
+    pub status: i32,
+    #[serde(rename = "level")]
+    pub level: i16,
+    #[serde(rename = "toNextLevelScrolls")]
+    pub to_next_level_scrolls: i32,
+    #[serde(rename = "equipmentItemId")]
+    pub equipment_item_id: i32,
+    #[serde(rename = "effects")]
+    pub effects: Vec<LobbyEquipmentEndpointsAddedItemNotificationReturnsEffectsParamsParams>,
     #[serde(rename = "transactionHash")]
     pub transaction_hash: Option<String>,
     #[serde(rename = "maxLevel")]
     pub max_level: i16,
-    #[serde(rename = "toNextLevelScrolls")]
-    pub to_next_level_scrolls: i32,
+    #[serde(rename = "bindingId")]
+    pub binding_id: i32,
+    #[serde(rename = "linkToExplorer")]
+    pub link_to_explorer: String,
     #[serde(rename = "blockId")]
     pub block_id: Option<String>,
 }
 impl Schema for LobbyEquipmentEndpointsAddedItemNotificationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"linkToExplorer\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"equipmentItemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"level\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"effects\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"statName\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"power\":{\"type\":\"string\"}},\"required\":[\"statName\",\"power\"]}},\"isPending\":{\"type\":\"boolean\"},\"transactionHash\":{\"type\":\"string\"},\"maxLevel\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"toNextLevelScrolls\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"blockId\":{\"type\":\"string\"}},\"required\":[\"equipmentItemId\",\"bindingId\",\"linkToExplorer\",\"effects\",\"isPending\",\"level\",\"maxLevel\",\"toNextLevelScrolls\",\"status\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isPending\":{\"type\":\"boolean\"},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"level\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"toNextLevelScrolls\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"equipmentItemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"effects\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"statName\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"power\":{\"type\":\"string\"}},\"required\":[\"statName\",\"power\"]}},\"transactionHash\":{\"type\":\"string\"},\"maxLevel\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"linkToExplorer\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"}},\"required\":[\"equipmentItemId\",\"bindingId\",\"linkToExplorer\",\"effects\",\"isPending\",\"level\",\"maxLevel\",\"toNextLevelScrolls\",\"status\"]}")
     }
 }
 impl Agent for LobbyEquipmentEndpointsAddedItemNotificationReturns {
@@ -76,5 +79,8 @@ impl Agent for LobbyEquipmentEndpointsAddedItemNotificationReturns {
     }
     fn agent() -> &'static str {
         "lobby"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

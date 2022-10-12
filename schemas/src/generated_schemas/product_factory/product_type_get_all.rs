@@ -25,6 +25,9 @@ impl Agent for ProductFactoryProductTypeGetAllParams {
     fn agent() -> &'static str {
         "productFactory"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 impl<'de> Deserialize<'de> for ProductFactoryProductTypeGetAllReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -51,5 +54,8 @@ impl Agent for ProductFactoryProductTypeGetAllReturns {
     }
     fn agent() -> &'static str {
         "productFactory"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

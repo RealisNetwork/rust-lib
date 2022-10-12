@@ -23,6 +23,9 @@ impl Agent for MarketPlaceMarketPlaceUnlockItemParams {
     fn agent() -> &'static str {
         "market-place"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceUnlockItemReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for MarketPlaceMarketPlaceUnlockItemReturns {
     }
     fn agent() -> &'static str {
         "market-place"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

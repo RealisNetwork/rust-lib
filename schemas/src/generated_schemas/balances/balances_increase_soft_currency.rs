@@ -25,6 +25,9 @@ impl Agent for BalancesBalancesIncreaseSoftCurrencyParams {
     fn agent() -> &'static str {
         "balances"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BalancesBalancesIncreaseSoftCurrencyReturns {
@@ -45,5 +48,8 @@ impl Agent for BalancesBalancesIncreaseSoftCurrencyReturns {
     }
     fn agent() -> &'static str {
         "balances"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

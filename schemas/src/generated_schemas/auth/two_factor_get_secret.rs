@@ -29,6 +29,9 @@ impl Agent for AuthTwoFactorGetSecretParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthTwoFactorGetSecretReturns(pub String);
@@ -46,5 +49,8 @@ impl Agent for AuthTwoFactorGetSecretReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

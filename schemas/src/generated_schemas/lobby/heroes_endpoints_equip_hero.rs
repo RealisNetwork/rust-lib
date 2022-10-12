@@ -23,6 +23,9 @@ impl Agent for LobbyHeroesEndpointsEquipHeroParams {
     fn agent() -> &'static str {
         "lobby"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 impl<'de> Deserialize<'de> for LobbyHeroesEndpointsEquipHeroReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -49,5 +52,8 @@ impl Agent for LobbyHeroesEndpointsEquipHeroReturns {
     }
     fn agent() -> &'static str {
         "lobby"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

@@ -29,6 +29,9 @@ impl Agent for UserProfileGetCountActivesParams {
     fn agent() -> &'static str {
         "user"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetCountActivesReturns(pub f64);
@@ -46,5 +49,8 @@ impl Agent for UserProfileGetCountActivesReturns {
     }
     fn agent() -> &'static str {
         "user"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

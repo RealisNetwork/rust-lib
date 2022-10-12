@@ -25,6 +25,9 @@ impl Agent for ProductFactoryProductMarkHeroAsNftParams {
     fn agent() -> &'static str {
         "productFactory"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 impl<'de> Deserialize<'de> for ProductFactoryProductMarkHeroAsNftReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -51,5 +54,8 @@ impl Agent for ProductFactoryProductMarkHeroAsNftReturns {
     }
     fn agent() -> &'static str {
         "productFactory"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

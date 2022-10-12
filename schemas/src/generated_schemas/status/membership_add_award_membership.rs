@@ -5,18 +5,18 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipAddAwardMembershipParams {
-    #[serde(rename = "appId")]
-    pub app_id: f64,
-    #[serde(rename = "membershipId")]
-    pub membership_id: f64,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "days")]
     pub days: f64,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "membershipId")]
+    pub membership_id: f64,
+    #[serde(rename = "appId")]
+    pub app_id: f64,
 }
 impl Schema for StatusMembershipAddAwardMembershipParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"membershipId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"days\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"appId\",\"days\",\"membershipId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"days\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"membershipId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"appId\",\"days\",\"membershipId\"]}") . unwrap ()
     }
 }
 impl Agent for StatusMembershipAddAwardMembershipParams {
@@ -28,6 +28,9 @@ impl Agent for StatusMembershipAddAwardMembershipParams {
     }
     fn agent() -> &'static str {
         "status"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -46,5 +49,8 @@ impl Agent for StatusMembershipAddAwardMembershipReturns {
     }
     fn agent() -> &'static str {
         "status"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

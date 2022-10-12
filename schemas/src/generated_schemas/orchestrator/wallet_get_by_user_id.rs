@@ -23,6 +23,9 @@ impl Agent for OrchestratorWalletGetByUserIdParams {
     fn agent() -> &'static str {
         "orchestrator"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorWalletGetByUserIdReturns {
@@ -43,5 +46,8 @@ impl Agent for OrchestratorWalletGetByUserIdReturns {
     }
     fn agent() -> &'static str {
         "orchestrator"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

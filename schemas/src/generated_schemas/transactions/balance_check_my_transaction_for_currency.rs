@@ -23,6 +23,9 @@ impl Agent for TransactionsBalanceCheckMyTransactionForCurrencyParams {
     fn agent() -> &'static str {
         "transactions"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceCheckMyTransactionForCurrencyReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for TransactionsBalanceCheckMyTransactionForCurrencyReturns {
     }
     fn agent() -> &'static str {
         "transactions"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

@@ -25,6 +25,9 @@ impl Agent for AuthAuthConfirmEmailByCodeParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthConfirmEmailByCodeReturns(pub String);
@@ -42,5 +45,8 @@ impl Agent for AuthAuthConfirmEmailByCodeReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

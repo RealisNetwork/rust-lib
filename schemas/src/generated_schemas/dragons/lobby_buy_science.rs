@@ -25,6 +25,9 @@ impl Agent for DragonsLobbyBuyScienceParams {
     fn agent() -> &'static str {
         "dragons"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 impl<'de> Deserialize<'de> for DragonsLobbyBuyScienceReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -51,5 +54,8 @@ impl Agent for DragonsLobbyBuyScienceReturns {
     }
     fn agent() -> &'static str {
         "dragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

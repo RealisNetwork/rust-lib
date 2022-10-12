@@ -20,6 +20,9 @@ impl Agent for BattlePassBattlePassEndpointsGetBattlePassPricesParams {
     fn agent() -> &'static str {
         "battle-pass"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassPricesReturnsBattlePassPriceParamsParams {
@@ -30,15 +33,15 @@ pub struct BattlePassBattlePassEndpointsGetBattlePassPricesReturnsBattlePassPric
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassPricesReturns {
+    #[serde(rename = "experiencePrice")]
+    pub experience_price: String,
     #[serde(rename = "battlePassPrice")]
     pub battle_pass_price:
         Vec<BattlePassBattlePassEndpointsGetBattlePassPricesReturnsBattlePassPriceParamsParams>,
-    #[serde(rename = "experiencePrice")]
-    pub experience_price: String,
 }
 impl Schema for BattlePassBattlePassEndpointsGetBattlePassPricesReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"battlePassPrice\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"price\":{\"type\":\"string\"},\"battlePassType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"battlePassType\",\"price\"]}},\"experiencePrice\":{\"type\":\"string\"}},\"required\":[\"experiencePrice\",\"battlePassPrice\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"experiencePrice\":{\"type\":\"string\"},\"battlePassPrice\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"price\":{\"type\":\"string\"},\"battlePassType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"battlePassType\",\"price\"]}}},\"required\":[\"experiencePrice\",\"battlePassPrice\"]}")
     }
 }
 impl Agent for BattlePassBattlePassEndpointsGetBattlePassPricesReturns {
@@ -50,5 +53,8 @@ impl Agent for BattlePassBattlePassEndpointsGetBattlePassPricesReturns {
     }
     fn agent() -> &'static str {
         "battle-pass"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

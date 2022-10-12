@@ -5,20 +5,20 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorBalanceUserBlockchainDepositParams {
-    #[serde(rename = "amount")]
-    pub amount: String,
-    #[serde(rename = "creator")]
-    pub creator: String,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
-    #[serde(rename = "currency")]
-    pub currency: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "currency")]
+    pub currency: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
 }
 impl Schema for OrchestratorBalanceUserBlockchainDepositParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"creator\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\"]}") . unwrap ()
     }
 }
 impl Agent for OrchestratorBalanceUserBlockchainDepositParams {
@@ -30,6 +30,9 @@ impl Agent for OrchestratorBalanceUserBlockchainDepositParams {
     }
     fn agent() -> &'static str {
         "orchestrator"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -48,5 +51,8 @@ impl Agent for OrchestratorBalanceUserBlockchainDepositReturns {
     }
     fn agent() -> &'static str {
         "orchestrator"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

@@ -23,21 +23,24 @@ impl Agent for ProductFactoryLootboxTypeGetByLootboxIdParams {
     fn agent() -> &'static str {
         "productFactory"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryLootboxTypeGetByLootboxIdReturns {
-    #[serde(rename = "dropChanceMultiplier")]
-    pub drop_chance_multiplier: i32,
-    #[serde(rename = "name")]
-    pub name: String,
     #[serde(rename = "id")]
     pub id: i32,
     #[serde(rename = "lootboxId")]
     pub lootbox_id: String,
+    #[serde(rename = "dropChanceMultiplier")]
+    pub drop_chance_multiplier: i32,
+    #[serde(rename = "name")]
+    pub name: String,
 }
 impl Schema for ProductFactoryLootboxTypeGetByLootboxIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"dropChanceMultiplier\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"name\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"lootboxId\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\",\"lootboxId\",\"dropChanceMultiplier\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"lootboxId\":{\"type\":\"string\"},\"dropChanceMultiplier\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\",\"lootboxId\",\"dropChanceMultiplier\"]}")
     }
 }
 impl Agent for ProductFactoryLootboxTypeGetByLootboxIdReturns {
@@ -49,5 +52,8 @@ impl Agent for ProductFactoryLootboxTypeGetByLootboxIdReturns {
     }
     fn agent() -> &'static str {
         "productFactory"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

@@ -29,6 +29,9 @@ impl Agent for UserProfileGetTestDataParams {
     fn agent() -> &'static str {
         "user"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetTestDataReturns {
@@ -49,5 +52,8 @@ impl Agent for UserProfileGetTestDataReturns {
     }
     fn agent() -> &'static str {
         "user"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

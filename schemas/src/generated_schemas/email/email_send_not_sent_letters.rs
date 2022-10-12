@@ -29,6 +29,9 @@ impl Agent for EmailEmailSendNotSentLettersParams {
     fn agent() -> &'static str {
         "email"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 impl<'de> Deserialize<'de> for EmailEmailSendNotSentLettersReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -55,5 +58,8 @@ impl Agent for EmailEmailSendNotSentLettersReturns {
     }
     fn agent() -> &'static str {
         "email"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

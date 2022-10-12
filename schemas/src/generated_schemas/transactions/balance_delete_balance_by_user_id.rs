@@ -23,6 +23,9 @@ impl Agent for TransactionsBalanceDeleteBalanceByUserIdParams {
     fn agent() -> &'static str {
         "transactions"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceDeleteBalanceByUserIdReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for TransactionsBalanceDeleteBalanceByUserIdReturns {
     }
     fn agent() -> &'static str {
         "transactions"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

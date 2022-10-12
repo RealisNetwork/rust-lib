@@ -23,6 +23,9 @@ impl Agent for TransactionsRegistryProductBurnProductParams {
     fn agent() -> &'static str {
         "transactions"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsRegistryProductBurnProductReturns {
@@ -45,5 +48,8 @@ impl Agent for TransactionsRegistryProductBurnProductReturns {
     }
     fn agent() -> &'static str {
         "transactions"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

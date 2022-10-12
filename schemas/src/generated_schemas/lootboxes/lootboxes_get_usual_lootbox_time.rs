@@ -20,6 +20,9 @@ impl Agent for LootboxesLootboxesGetUsualLootboxTimeParams {
     fn agent() -> &'static str {
         "lootboxes"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 impl<'de> Deserialize<'de> for LootboxesLootboxesGetUsualLootboxTimeReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -46,5 +49,8 @@ impl Agent for LootboxesLootboxesGetUsualLootboxTimeReturns {
     }
     fn agent() -> &'static str {
         "lootboxes"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

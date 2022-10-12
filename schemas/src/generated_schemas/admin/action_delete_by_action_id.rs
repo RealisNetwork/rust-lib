@@ -23,6 +23,9 @@ impl Agent for AdminActionDeleteByActionIdParams {
     fn agent() -> &'static str {
         "admin"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionDeleteByActionIdReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for AdminActionDeleteByActionIdReturns {
     }
     fn agent() -> &'static str {
         "admin"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

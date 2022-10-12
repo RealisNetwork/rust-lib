@@ -23,6 +23,9 @@ impl Agent for CatsLobbyGetSoftLeaderboardStatsParams {
     fn agent() -> &'static str {
         "cats"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 impl<'de> Deserialize<'de> for CatsLobbyGetSoftLeaderboardStatsReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -49,5 +52,8 @@ impl Agent for CatsLobbyGetSoftLeaderboardStatsReturns {
     }
     fn agent() -> &'static str {
         "cats"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

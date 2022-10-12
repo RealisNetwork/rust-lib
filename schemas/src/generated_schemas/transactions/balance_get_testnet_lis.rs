@@ -29,6 +29,9 @@ impl Agent for TransactionsBalanceGetTestnetLisParams {
     fn agent() -> &'static str {
         "transactions"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetTestnetLisReturns(pub bool);
@@ -46,5 +49,8 @@ impl Agent for TransactionsBalanceGetTestnetLisReturns {
     }
     fn agent() -> &'static str {
         "transactions"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

@@ -29,6 +29,9 @@ impl Agent for LobbyStatsOptionsEndpointsGetPersonalTypesListParams {
     fn agent() -> &'static str {
         "lobby"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyStatsOptionsEndpointsGetPersonalTypesListReturns {
@@ -49,5 +52,8 @@ impl Agent for LobbyStatsOptionsEndpointsGetPersonalTypesListReturns {
     }
     fn agent() -> &'static str {
         "lobby"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

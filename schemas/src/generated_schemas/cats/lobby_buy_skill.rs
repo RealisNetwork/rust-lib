@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyBuySkillParams {
-    #[serde(rename = "skillPurchaseKey")]
-    pub skill_purchase_key: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "skillPurchaseKey")]
+    pub skill_purchase_key: String,
 }
 impl Schema for CatsLobbyBuySkillParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"skillPurchaseKey\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"skillPurchaseKey\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"skillPurchaseKey\":{\"type\":\"string\"}},\"required\":[\"userId\",\"skillPurchaseKey\"]}") . unwrap ()
     }
 }
 impl Agent for CatsLobbyBuySkillParams {
@@ -24,6 +24,9 @@ impl Agent for CatsLobbyBuySkillParams {
     }
     fn agent() -> &'static str {
         "cats"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }
 impl<'de> Deserialize<'de> for CatsLobbyBuySkillReturns {
@@ -51,5 +54,8 @@ impl Agent for CatsLobbyBuySkillReturns {
     }
     fn agent() -> &'static str {
         "cats"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

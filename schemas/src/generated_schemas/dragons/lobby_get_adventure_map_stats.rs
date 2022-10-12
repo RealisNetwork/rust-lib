@@ -23,6 +23,9 @@ impl Agent for DragonsLobbyGetAdventureMapStatsParams {
     fn agent() -> &'static str {
         "dragons"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 impl<'de> Deserialize<'de> for DragonsLobbyGetAdventureMapStatsReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -49,5 +52,8 @@ impl Agent for DragonsLobbyGetAdventureMapStatsReturns {
     }
     fn agent() -> &'static str {
         "dragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

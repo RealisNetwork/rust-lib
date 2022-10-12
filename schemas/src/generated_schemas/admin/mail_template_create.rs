@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminMailTemplateCreateParams {
-    #[serde(rename = "key")]
-    pub key: String,
     #[serde(rename = "mailTemplate")]
     pub mail_template: String,
+    #[serde(rename = "key")]
+    pub key: String,
     #[serde(rename = "name")]
     pub name: String,
 }
 impl Schema for AdminMailTemplateCreateParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"},\"mailTemplate\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}},\"required\":[\"key\",\"name\",\"mailTemplate\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"mailTemplate\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}},\"required\":[\"key\",\"name\",\"mailTemplate\"]}") . unwrap ()
     }
 }
 impl Agent for AdminMailTemplateCreateParams {
@@ -26,6 +26,9 @@ impl Agent for AdminMailTemplateCreateParams {
     }
     fn agent() -> &'static str {
         "admin"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -44,5 +47,8 @@ impl Agent for AdminMailTemplateCreateReturns {
     }
     fn agent() -> &'static str {
         "admin"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

@@ -25,6 +25,9 @@ impl Agent for AuthAuthDeviceGetClientInfoParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceGetClientInfoReturns {
@@ -49,5 +52,8 @@ impl Agent for AuthAuthDeviceGetClientInfoReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

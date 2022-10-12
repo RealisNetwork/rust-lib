@@ -23,6 +23,9 @@ impl Agent for CdUserSpinEndpointsSpinParams {
     fn agent() -> &'static str {
         "cd-user"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CdUserSpinEndpointsSpinReturns {
@@ -43,5 +46,8 @@ impl Agent for CdUserSpinEndpointsSpinReturns {
     }
     fn agent() -> &'static str {
         "cd-user"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

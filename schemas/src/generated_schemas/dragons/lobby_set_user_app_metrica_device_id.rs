@@ -25,6 +25,9 @@ impl Agent for DragonsLobbySetUserAppMetricaDeviceIdParams {
     fn agent() -> &'static str {
         "dragons"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 impl<'de> Deserialize<'de> for DragonsLobbySetUserAppMetricaDeviceIdReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -51,5 +54,8 @@ impl Agent for DragonsLobbySetUserAppMetricaDeviceIdReturns {
     }
     fn agent() -> &'static str {
         "dragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

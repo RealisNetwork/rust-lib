@@ -23,6 +23,9 @@ impl Agent for CdConfigConfigGetConfigByKeyParams {
     fn agent() -> &'static str {
         "cd-config"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CdConfigConfigGetConfigByKeyReturns {}
@@ -40,5 +43,8 @@ impl Agent for CdConfigConfigGetConfigByKeyReturns {
     }
     fn agent() -> &'static str {
         "cd-config"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

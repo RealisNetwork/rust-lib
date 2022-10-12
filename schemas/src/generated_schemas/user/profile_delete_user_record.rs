@@ -23,6 +23,9 @@ impl Agent for UserProfileDeleteUserRecordParams {
     fn agent() -> &'static str {
         "user"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileDeleteUserRecordReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for UserProfileDeleteUserRecordReturns {
     }
     fn agent() -> &'static str {
         "user"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

@@ -23,17 +23,20 @@ impl Agent for BlogCategoryGetParams {
     fn agent() -> &'static str {
         "blog"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogCategoryGetReturns {
-    #[serde(rename = "id")]
-    pub id: f64,
     #[serde(rename = "name")]
     pub name: String,
+    #[serde(rename = "id")]
+    pub id: f64,
 }
 impl Schema for BlogCategoryGetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"name\"]}")
     }
 }
 impl Agent for BlogCategoryGetReturns {
@@ -45,5 +48,8 @@ impl Agent for BlogCategoryGetReturns {
     }
     fn agent() -> &'static str {
         "blog"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

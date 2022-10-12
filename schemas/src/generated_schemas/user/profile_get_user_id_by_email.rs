@@ -23,6 +23,9 @@ impl Agent for UserProfileGetUserIdByEmailParams {
     fn agent() -> &'static str {
         "user"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetUserIdByEmailReturns(pub String);
@@ -40,5 +43,8 @@ impl Agent for UserProfileGetUserIdByEmailReturns {
     }
     fn agent() -> &'static str {
         "user"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BalancesBalancesAddFreeExperienceParams {
-    #[serde(rename = "txId")]
-    pub tx_id: String,
     #[serde(rename = "amount")]
     pub amount: i16,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
 }
 impl Schema for BalancesBalancesAddFreeExperienceParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"txId\":{\"type\":\"string\"},\"amount\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}}},\"required\":[\"amount\",\"txId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"txId\":{\"type\":\"string\"}},\"required\":[\"amount\",\"txId\"]}") . unwrap ()
     }
 }
 impl Agent for BalancesBalancesAddFreeExperienceParams {
@@ -24,6 +24,9 @@ impl Agent for BalancesBalancesAddFreeExperienceParams {
     }
     fn agent() -> &'static str {
         "balances"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -45,5 +48,8 @@ impl Agent for BalancesBalancesAddFreeExperienceReturns {
     }
     fn agent() -> &'static str {
         "balances"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

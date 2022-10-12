@@ -23,6 +23,9 @@ impl Agent for PurchaseProductPurchaseLootboxParams {
     fn agent() -> &'static str {
         "purchase"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PurchaseProductPurchaseLootboxReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for PurchaseProductPurchaseLootboxReturns {
     }
     fn agent() -> &'static str {
         "purchase"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

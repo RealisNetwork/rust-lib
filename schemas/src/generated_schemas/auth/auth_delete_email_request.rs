@@ -23,6 +23,9 @@ impl Agent for AuthAuthDeleteEmailRequestParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeleteEmailRequestReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for AuthAuthDeleteEmailRequestReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

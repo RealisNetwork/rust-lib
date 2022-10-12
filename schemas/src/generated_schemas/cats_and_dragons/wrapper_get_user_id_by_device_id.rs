@@ -23,6 +23,9 @@ impl Agent for CatsAndDragonsWrapperGetUserIdByDeviceIdParams {
     fn agent() -> &'static str {
         "catsAndDragons"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetUserIdByDeviceIdReturns {
@@ -43,5 +46,8 @@ impl Agent for CatsAndDragonsWrapperGetUserIdByDeviceIdReturns {
     }
     fn agent() -> &'static str {
         "catsAndDragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

@@ -23,6 +23,9 @@ impl Agent for TransactionsRegistryProductGetPersonalTypesByUserParams {
     fn agent() -> &'static str {
         "transactions"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsRegistryProductGetPersonalTypesByUserReturns(pub Vec<String>);
@@ -40,5 +43,8 @@ impl Agent for TransactionsRegistryProductGetPersonalTypesByUserReturns {
     }
     fn agent() -> &'static str {
         "transactions"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

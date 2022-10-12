@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralAddReferralParams {
-    #[serde(rename = "referrerId")]
-    pub referrer_id: String,
     #[serde(rename = "referralId")]
     pub referral_id: String,
+    #[serde(rename = "referrerId")]
+    pub referrer_id: String,
 }
 impl Schema for ReferralReferralAddReferralParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"referrerId\":{\"type\":\"string\"},\"referralId\":{\"type\":\"string\"}},\"required\":[\"referralId\",\"referrerId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"referralId\":{\"type\":\"string\"},\"referrerId\":{\"type\":\"string\"}},\"required\":[\"referralId\",\"referrerId\"]}") . unwrap ()
     }
 }
 impl Agent for ReferralReferralAddReferralParams {
@@ -24,6 +24,9 @@ impl Agent for ReferralReferralAddReferralParams {
     }
     fn agent() -> &'static str {
         "referral"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -42,5 +45,8 @@ impl Agent for ReferralReferralAddReferralReturns {
     }
     fn agent() -> &'static str {
         "referral"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

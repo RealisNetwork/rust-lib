@@ -27,6 +27,9 @@ impl Agent for DragonsLobbyUnlinkAccountParams {
     fn agent() -> &'static str {
         "dragons"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 impl<'de> Deserialize<'de> for DragonsLobbyUnlinkAccountReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -53,5 +56,8 @@ impl Agent for DragonsLobbyUnlinkAccountReturns {
     }
     fn agent() -> &'static str {
         "dragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

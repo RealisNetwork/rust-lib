@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileChangeEmailParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "newEmail")]
     pub new_email: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for UserProfileChangeEmailParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"newEmail\":{\"type\":\"string\",\"format\":\"email\"}},\"required\":[\"userId\",\"newEmail\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"newEmail\":{\"type\":\"string\",\"format\":\"email\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"newEmail\"]}") . unwrap ()
     }
 }
 impl Agent for UserProfileChangeEmailParams {
@@ -24,6 +24,9 @@ impl Agent for UserProfileChangeEmailParams {
     }
     fn agent() -> &'static str {
         "user"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -42,5 +45,8 @@ impl Agent for UserProfileChangeEmailReturns {
     }
     fn agent() -> &'static str {
         "user"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

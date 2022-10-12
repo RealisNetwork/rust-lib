@@ -29,6 +29,9 @@ impl Agent for NearAdapterWalletGetMyParams {
     fn agent() -> &'static str {
         "near-adapter"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterWalletGetMyReturns(pub String);
@@ -46,5 +49,8 @@ impl Agent for NearAdapterWalletGetMyReturns {
     }
     fn agent() -> &'static str {
         "near-adapter"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

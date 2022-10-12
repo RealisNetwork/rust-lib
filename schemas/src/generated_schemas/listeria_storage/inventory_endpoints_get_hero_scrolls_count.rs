@@ -29,6 +29,9 @@ impl Agent for ListeriaStorageInventoryEndpointsGetHeroScrollsCountParams {
     fn agent() -> &'static str {
         "listeria-storage"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ListeriaStorageInventoryEndpointsGetHeroScrollsCountReturns(pub i32);
@@ -46,5 +49,8 @@ impl Agent for ListeriaStorageInventoryEndpointsGetHeroScrollsCountReturns {
     }
     fn agent() -> &'static str {
         "listeria-storage"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

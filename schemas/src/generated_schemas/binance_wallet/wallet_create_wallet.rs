@@ -23,6 +23,9 @@ impl Agent for BinanceWalletWalletCreateWalletParams {
     fn agent() -> &'static str {
         "binance-wallet"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BinanceWalletWalletCreateWalletReturns {
@@ -45,5 +48,8 @@ impl Agent for BinanceWalletWalletCreateWalletReturns {
     }
     fn agent() -> &'static str {
         "binance-wallet"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

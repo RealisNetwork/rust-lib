@@ -5,18 +5,18 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthLoginParams {
-    #[serde(rename = "username")]
-    pub username: String,
-    #[serde(rename = "password")]
-    pub password: String,
     #[serde(rename = "appId")]
     pub app_id: Option<i32>,
+    #[serde(rename = "password")]
+    pub password: String,
+    #[serde(rename = "username")]
+    pub username: String,
     #[serde(rename = "deviceId")]
     pub device_id: Option<String>,
 }
 impl Schema for AuthAuthLoginParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"username\":{\"type\":\"string\"},\"password\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"deviceId\":{\"type\":\"string\"}},\"required\":[\"username\",\"password\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"appId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"password\":{\"type\":\"string\"},\"username\":{\"type\":\"string\"},\"deviceId\":{\"type\":\"string\"}},\"required\":[\"username\",\"password\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthLoginParams {
@@ -29,23 +29,26 @@ impl Agent for AuthAuthLoginParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthLoginReturns {
-    #[serde(rename = "refresh_token")]
-    pub refresh_token: String,
     #[serde(rename = "expires_in")]
     pub expires_in: i32,
     #[serde(rename = "refresh_expires_in")]
     pub refresh_expires_in: i32,
-    #[serde(rename = "userId")]
-    pub user_id: String,
+    #[serde(rename = "refresh_token")]
+    pub refresh_token: String,
     #[serde(rename = "access_token")]
     pub access_token: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for AuthAuthLoginReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"refresh_token\":{\"type\":\"string\"},\"expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"refresh_expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"access_token\":{\"type\":\"string\"}},\"required\":[\"access_token\",\"expires_in\",\"refresh_expires_in\",\"refresh_token\",\"userId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"refresh_expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"refresh_token\":{\"type\":\"string\"},\"access_token\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"access_token\",\"expires_in\",\"refresh_expires_in\",\"refresh_token\",\"userId\"]}")
     }
 }
 impl Agent for AuthAuthLoginReturns {
@@ -57,5 +60,8 @@ impl Agent for AuthAuthLoginReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

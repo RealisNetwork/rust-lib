@@ -23,6 +23,9 @@ impl Agent for BingoBingoGetCurrentBingoSeasonParams {
     fn agent() -> &'static str {
         "bingo"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BingoBingoGetCurrentBingoSeasonReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for BingoBingoGetCurrentBingoSeasonReturns {
     }
     fn agent() -> &'static str {
         "bingo"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

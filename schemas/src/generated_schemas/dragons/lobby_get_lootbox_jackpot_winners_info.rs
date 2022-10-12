@@ -23,6 +23,9 @@ impl Agent for DragonsLobbyGetLootboxJackpotWinnersInfoParams {
     fn agent() -> &'static str {
         "dragons"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 impl<'de> Deserialize<'de> for DragonsLobbyGetLootboxJackpotWinnersInfoReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -49,5 +52,8 @@ impl Agent for DragonsLobbyGetLootboxJackpotWinnersInfoReturns {
     }
     fn agent() -> &'static str {
         "dragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

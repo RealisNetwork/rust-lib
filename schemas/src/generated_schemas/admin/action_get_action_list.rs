@@ -29,6 +29,9 @@ impl Agent for AdminActionGetActionListParams {
     fn agent() -> &'static str {
         "admin"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionGetActionListReturns(pub Vec<String>);
@@ -46,5 +49,8 @@ impl Agent for AdminActionGetActionListReturns {
     }
     fn agent() -> &'static str {
         "admin"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

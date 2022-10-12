@@ -23,6 +23,9 @@ impl Agent for AdminActionUndoParams {
     fn agent() -> &'static str {
         "admin"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionUndoReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for AdminActionUndoReturns {
     }
     fn agent() -> &'static str {
         "admin"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

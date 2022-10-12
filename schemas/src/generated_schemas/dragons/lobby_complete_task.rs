@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbyCompleteTaskParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "taskId")]
     pub task_id: f64,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for DragonsLobbyCompleteTaskParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"taskId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"taskId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"taskId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"taskId\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbyCompleteTaskParams {
@@ -24,6 +24,9 @@ impl Agent for DragonsLobbyCompleteTaskParams {
     }
     fn agent() -> &'static str {
         "dragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }
 impl<'de> Deserialize<'de> for DragonsLobbyCompleteTaskReturns {
@@ -51,5 +54,8 @@ impl Agent for DragonsLobbyCompleteTaskReturns {
     }
     fn agent() -> &'static str {
         "dragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

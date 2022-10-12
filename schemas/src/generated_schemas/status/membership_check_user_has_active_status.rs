@@ -29,6 +29,9 @@ impl Agent for StatusMembershipCheckUserHasActiveStatusParams {
     fn agent() -> &'static str {
         "status"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipCheckUserHasActiveStatusReturns(pub bool);
@@ -46,5 +49,8 @@ impl Agent for StatusMembershipCheckUserHasActiveStatusReturns {
     }
     fn agent() -> &'static str {
         "status"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

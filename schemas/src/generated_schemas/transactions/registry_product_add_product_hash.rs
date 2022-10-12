@@ -25,6 +25,9 @@ impl Agent for TransactionsRegistryProductAddProductHashParams {
     fn agent() -> &'static str {
         "transactions"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsRegistryProductAddProductHashReturns(pub bool);
@@ -42,5 +45,8 @@ impl Agent for TransactionsRegistryProductAddProductHashReturns {
     }
     fn agent() -> &'static str {
         "transactions"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

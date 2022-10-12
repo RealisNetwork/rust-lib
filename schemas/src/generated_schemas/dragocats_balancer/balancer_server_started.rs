@@ -27,6 +27,9 @@ impl Agent for DragocatsBalancerBalancerServerStartedParams {
     fn agent() -> &'static str {
         "dragocats-balancer"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 impl<'de> Deserialize<'de> for DragocatsBalancerBalancerServerStartedReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -53,5 +56,8 @@ impl Agent for DragocatsBalancerBalancerServerStartedReturns {
     }
     fn agent() -> &'static str {
         "dragocats-balancer"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

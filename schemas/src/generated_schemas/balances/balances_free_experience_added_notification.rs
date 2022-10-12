@@ -29,6 +29,9 @@ impl Agent for BalancesBalancesFreeExperienceAddedNotificationParams {
     fn agent() -> &'static str {
         "balances"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BalancesBalancesFreeExperienceAddedNotificationReturns {
@@ -51,5 +54,8 @@ impl Agent for BalancesBalancesFreeExperienceAddedNotificationReturns {
     }
     fn agent() -> &'static str {
         "balances"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

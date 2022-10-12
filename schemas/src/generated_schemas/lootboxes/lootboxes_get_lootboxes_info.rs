@@ -23,6 +23,9 @@ impl Agent for LootboxesLootboxesGetLootboxesInfoParams {
     fn agent() -> &'static str {
         "lootboxes"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LootboxesLootboxesGetLootboxesInfoReturns {
@@ -47,5 +50,8 @@ impl Agent for LootboxesLootboxesGetLootboxesInfoReturns {
     }
     fn agent() -> &'static str {
         "lootboxes"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

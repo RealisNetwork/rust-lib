@@ -29,19 +29,22 @@ impl Agent for BingoBingoGetBingoJackpotPoolParams {
     fn agent() -> &'static str {
         "bingo"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BingoBingoGetBingoJackpotPoolReturns {
-    #[serde(rename = "Pool")]
-    pub pool: String,
     #[serde(rename = "status")]
     pub status: i32,
+    #[serde(rename = "Pool")]
+    pub pool: String,
     #[serde(rename = "WinDate")]
     pub win_date: f64,
 }
 impl Schema for BingoBingoGetBingoJackpotPoolReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"Pool\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"WinDate\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"status\",\"Pool\",\"WinDate\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"Pool\":{\"type\":\"string\"},\"WinDate\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"status\",\"Pool\",\"WinDate\"]}")
     }
 }
 impl Agent for BingoBingoGetBingoJackpotPoolReturns {
@@ -53,5 +56,8 @@ impl Agent for BingoBingoGetBingoJackpotPoolReturns {
     }
     fn agent() -> &'static str {
         "bingo"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

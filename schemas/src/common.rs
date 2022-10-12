@@ -132,3 +132,11 @@ impl<T> From<SocketRequest<T>> for SocketProcessedRequest<T> {
         }
     }
 }
+
+#[derive(Serialize, Deserialize, Debug, Clone, Copy, PartialEq, Eq)]
+pub enum AccessLevel {
+    Public,
+    Protected,
+    Private,
+    Internal,
+}

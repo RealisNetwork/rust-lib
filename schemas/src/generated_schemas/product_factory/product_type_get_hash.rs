@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeGetHashParams {
-    #[serde(rename = "orchestratorId")]
-    pub orchestrator_id: f64,
     #[serde(rename = "type")]
     pub r#type: String,
+    #[serde(rename = "orchestratorId")]
+    pub orchestrator_id: f64,
 }
 impl Schema for ProductFactoryProductTypeGetHashParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"orchestratorId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"type\":{\"type\":\"string\"}},\"required\":[\"type\",\"orchestratorId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"orchestratorId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"type\",\"orchestratorId\"]}") . unwrap ()
     }
 }
 impl Agent for ProductFactoryProductTypeGetHashParams {
@@ -24,6 +24,9 @@ impl Agent for ProductFactoryProductTypeGetHashParams {
     }
     fn agent() -> &'static str {
         "productFactory"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }
 impl<'de> Deserialize<'de> for ProductFactoryProductTypeGetHashReturns {
@@ -51,5 +54,8 @@ impl Agent for ProductFactoryProductTypeGetHashReturns {
     }
     fn agent() -> &'static str {
         "productFactory"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

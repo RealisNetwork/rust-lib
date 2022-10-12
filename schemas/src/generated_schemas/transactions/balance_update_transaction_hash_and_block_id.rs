@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceUpdateTransactionHashAndBlockIdParams {
-    #[serde(rename = "newTxId")]
-    pub new_tx_id: String,
     #[serde(rename = "newBlockId")]
     pub new_block_id: String,
     #[serde(rename = "oldTxId")]
     pub old_tx_id: String,
+    #[serde(rename = "newTxId")]
+    pub new_tx_id: String,
 }
 impl Schema for TransactionsBalanceUpdateTransactionHashAndBlockIdParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"newTxId\":{\"type\":\"string\"},\"newBlockId\":{\"type\":\"string\"},\"oldTxId\":{\"type\":\"string\"}},\"required\":[\"oldTxId\",\"newTxId\",\"newBlockId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"newBlockId\":{\"type\":\"string\"},\"oldTxId\":{\"type\":\"string\"},\"newTxId\":{\"type\":\"string\"}},\"required\":[\"oldTxId\",\"newTxId\",\"newBlockId\"]}") . unwrap ()
     }
 }
 impl Agent for TransactionsBalanceUpdateTransactionHashAndBlockIdParams {
@@ -26,6 +26,9 @@ impl Agent for TransactionsBalanceUpdateTransactionHashAndBlockIdParams {
     }
     fn agent() -> &'static str {
         "transactions"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -44,5 +47,8 @@ impl Agent for TransactionsBalanceUpdateTransactionHashAndBlockIdReturns {
     }
     fn agent() -> &'static str {
         "transactions"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

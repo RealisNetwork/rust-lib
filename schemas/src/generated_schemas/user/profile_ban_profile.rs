@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileBanProfileParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "reason")]
     pub reason: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for UserProfileBanProfileParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"}},\"required\":[\"userId\",\"reason\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"reason\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"reason\"]}") . unwrap ()
     }
 }
 impl Agent for UserProfileBanProfileParams {
@@ -24,6 +24,9 @@ impl Agent for UserProfileBanProfileParams {
     }
     fn agent() -> &'static str {
         "user"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -42,5 +45,8 @@ impl Agent for UserProfileBanProfileReturns {
     }
     fn agent() -> &'static str {
         "user"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

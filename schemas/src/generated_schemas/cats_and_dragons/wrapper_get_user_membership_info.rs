@@ -25,13 +25,16 @@ impl Agent for CatsAndDragonsWrapperGetUserMembershipInfoParams {
     fn agent() -> &'static str {
         "catsAndDragons"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetUserMembershipInfoReturns {
-    #[serde(rename = "statusPurchaseAppId")]
-    pub status_purchase_app_id: f64,
     #[serde(rename = "membershipId")]
     pub membership_id: f64,
+    #[serde(rename = "statusPurchaseAppId")]
+    pub status_purchase_app_id: f64,
     #[serde(rename = "multiplier")]
     pub multiplier: f64,
     #[serde(rename = "balance")]
@@ -41,7 +44,7 @@ pub struct CatsAndDragonsWrapperGetUserMembershipInfoReturns {
 }
 impl Schema for CatsAndDragonsWrapperGetUserMembershipInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"statusPurchaseAppId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"membershipId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"multiplier\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"balance\":{\"type\":\"string\"},\"isAuthorized\":{\"type\":\"boolean\"}},\"required\":[\"statusPurchaseAppId\",\"membershipId\",\"multiplier\",\"balance\",\"isAuthorized\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"membershipId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"statusPurchaseAppId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"multiplier\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"balance\":{\"type\":\"string\"},\"isAuthorized\":{\"type\":\"boolean\"}},\"required\":[\"statusPurchaseAppId\",\"membershipId\",\"multiplier\",\"balance\",\"isAuthorized\"]}")
     }
 }
 impl Agent for CatsAndDragonsWrapperGetUserMembershipInfoReturns {
@@ -53,5 +56,8 @@ impl Agent for CatsAndDragonsWrapperGetUserMembershipInfoReturns {
     }
     fn agent() -> &'static str {
         "catsAndDragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

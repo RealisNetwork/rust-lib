@@ -26,6 +26,9 @@ impl Agent for AuthAuthDeleteMyUserParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeleteMyUserReturns(pub bool);
@@ -43,5 +46,8 @@ impl Agent for AuthAuthDeleteMyUserReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

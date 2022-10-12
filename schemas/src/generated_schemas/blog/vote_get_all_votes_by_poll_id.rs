@@ -23,6 +23,9 @@ impl Agent for BlogVoteGetAllVotesByPollIdParams {
     fn agent() -> &'static str {
         "blog"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogVoteGetAllVotesByPollIdReturnsParams {
@@ -47,5 +50,8 @@ impl Agent for BlogVoteGetAllVotesByPollIdReturns {
     }
     fn agent() -> &'static str {
         "blog"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

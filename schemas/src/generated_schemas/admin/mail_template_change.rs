@@ -25,6 +25,9 @@ impl Agent for AdminMailTemplateChangeParams {
     fn agent() -> &'static str {
         "admin"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminMailTemplateChangeReturns(pub bool);
@@ -42,5 +45,8 @@ impl Agent for AdminMailTemplateChangeReturns {
     }
     fn agent() -> &'static str {
         "admin"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

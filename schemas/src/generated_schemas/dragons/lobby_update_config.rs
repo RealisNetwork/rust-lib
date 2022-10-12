@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbyUpdateConfigParams {
-    #[serde(rename = "configKey")]
-    pub config_key: String,
     #[serde(rename = "configJson")]
     pub config_json: String,
+    #[serde(rename = "configKey")]
+    pub config_key: String,
 }
 impl Schema for DragonsLobbyUpdateConfigParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"configKey\":{\"type\":\"string\"},\"configJson\":{\"type\":\"string\"}},\"required\":[\"configKey\",\"configJson\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"configJson\":{\"type\":\"string\"},\"configKey\":{\"type\":\"string\"}},\"required\":[\"configKey\",\"configJson\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbyUpdateConfigParams {
@@ -24,6 +24,9 @@ impl Agent for DragonsLobbyUpdateConfigParams {
     }
     fn agent() -> &'static str {
         "dragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }
 impl<'de> Deserialize<'de> for DragonsLobbyUpdateConfigReturns {
@@ -51,5 +54,8 @@ impl Agent for DragonsLobbyUpdateConfigReturns {
     }
     fn agent() -> &'static str {
         "dragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

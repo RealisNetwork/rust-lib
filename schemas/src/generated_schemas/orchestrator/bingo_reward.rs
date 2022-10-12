@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct OrchestratorBingoRewardParams {
     #[serde(rename = "amount")]
     pub amount: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "productIds")]
     pub product_ids: Vec<f64>,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for OrchestratorBingoRewardParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"productIds\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}}},\"required\":[\"userId\",\"productIds\",\"amount\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"productIds\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"productIds\",\"amount\"]}") . unwrap ()
     }
 }
 impl Agent for OrchestratorBingoRewardParams {
@@ -26,6 +26,9 @@ impl Agent for OrchestratorBingoRewardParams {
     }
     fn agent() -> &'static str {
         "orchestrator"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -44,5 +47,8 @@ impl Agent for OrchestratorBingoRewardReturns {
     }
     fn agent() -> &'static str {
         "orchestrator"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

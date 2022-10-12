@@ -23,6 +23,9 @@ impl Agent for SoulAdapterWalletGetUserIdByAddressParams {
     fn agent() -> &'static str {
         "soul-adapter"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SoulAdapterWalletGetUserIdByAddressReturns(pub String);
@@ -40,5 +43,8 @@ impl Agent for SoulAdapterWalletGetUserIdByAddressReturns {
     }
     fn agent() -> &'static str {
         "soul-adapter"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

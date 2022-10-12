@@ -23,6 +23,9 @@ impl Agent for DragocatsLobbyUnitEndpointsGetEquipedUnitsParams {
     fn agent() -> &'static str {
         "dragocats-lobby"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsLobbyUnitEndpointsGetEquipedUnitsReturnsParams {
@@ -49,5 +52,8 @@ impl Agent for DragocatsLobbyUnitEndpointsGetEquipedUnitsReturns {
     }
     fn agent() -> &'static str {
         "dragocats-lobby"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

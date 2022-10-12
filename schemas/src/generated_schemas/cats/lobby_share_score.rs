@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyShareScoreParams {
-    #[serde(rename = "score")]
-    pub score: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "score")]
+    pub score: String,
 }
 impl Schema for CatsLobbyShareScoreParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"score\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"score\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"score\":{\"type\":\"string\"}},\"required\":[\"userId\",\"score\"]}") . unwrap ()
     }
 }
 impl Agent for CatsLobbyShareScoreParams {
@@ -24,6 +24,9 @@ impl Agent for CatsLobbyShareScoreParams {
     }
     fn agent() -> &'static str {
         "cats"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }
 impl<'de> Deserialize<'de> for CatsLobbyShareScoreReturns {
@@ -51,5 +54,8 @@ impl Agent for CatsLobbyShareScoreReturns {
     }
     fn agent() -> &'static str {
         "cats"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

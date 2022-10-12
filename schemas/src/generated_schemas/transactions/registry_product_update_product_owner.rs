@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsRegistryProductUpdateProductOwnerParams {
-    #[serde(rename = "ownerId")]
-    pub owner_id: String,
     #[serde(rename = "productId")]
     pub product_id: String,
+    #[serde(rename = "ownerId")]
+    pub owner_id: String,
 }
 impl Schema for TransactionsRegistryProductUpdateProductOwnerParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"ownerId\":{\"type\":\"string\"},\"productId\":{\"type\":\"string\"}},\"required\":[\"productId\",\"ownerId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"string\"},\"ownerId\":{\"type\":\"string\"}},\"required\":[\"productId\",\"ownerId\"]}") . unwrap ()
     }
 }
 impl Agent for TransactionsRegistryProductUpdateProductOwnerParams {
@@ -24,6 +24,9 @@ impl Agent for TransactionsRegistryProductUpdateProductOwnerParams {
     }
     fn agent() -> &'static str {
         "transactions"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -42,5 +45,8 @@ impl Agent for TransactionsRegistryProductUpdateProductOwnerReturns {
     }
     fn agent() -> &'static str {
         "transactions"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

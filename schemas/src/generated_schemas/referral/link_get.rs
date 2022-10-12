@@ -25,6 +25,9 @@ impl Agent for ReferralLinkGetParams {
     fn agent() -> &'static str {
         "referral"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralLinkGetReturns(pub String);
@@ -42,5 +45,8 @@ impl Agent for ReferralLinkGetReturns {
     }
     fn agent() -> &'static str {
         "referral"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

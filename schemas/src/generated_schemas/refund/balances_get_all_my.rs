@@ -29,6 +29,9 @@ impl Agent for RefundBalancesGetAllMyParams {
     fn agent() -> &'static str {
         "refund"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllMyReturns {
@@ -51,5 +54,8 @@ impl Agent for RefundBalancesGetAllMyReturns {
     }
     fn agent() -> &'static str {
         "refund"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

@@ -29,6 +29,9 @@ impl Agent for GameBalancerGameBalancerGameStartedNotificationParams {
     fn agent() -> &'static str {
         "gameBalancer"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GameBalancerGameBalancerGameStartedNotificationReturns {
@@ -49,5 +52,8 @@ impl Agent for GameBalancerGameBalancerGameStartedNotificationReturns {
     }
     fn agent() -> &'static str {
         "gameBalancer"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

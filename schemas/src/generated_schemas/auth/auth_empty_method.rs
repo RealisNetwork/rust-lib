@@ -29,6 +29,9 @@ impl Agent for AuthAuthEmptyMethodParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthEmptyMethodReturns(pub bool);
@@ -46,5 +49,8 @@ impl Agent for AuthAuthEmptyMethodReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

@@ -23,6 +23,9 @@ impl Agent for NearAdapterContractCallNftUnlockParams {
     fn agent() -> &'static str {
         "near-adapter"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterContractCallNftUnlockReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for NearAdapterContractCallNftUnlockReturns {
     }
     fn agent() -> &'static str {
         "near-adapter"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

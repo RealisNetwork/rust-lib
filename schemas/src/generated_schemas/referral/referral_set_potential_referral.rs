@@ -25,6 +25,9 @@ impl Agent for ReferralReferralSetPotentialReferralParams {
     fn agent() -> &'static str {
         "referral"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralSetPotentialReferralReturns(pub bool);
@@ -42,5 +45,8 @@ impl Agent for ReferralReferralSetPotentialReferralReturns {
     }
     fn agent() -> &'static str {
         "referral"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

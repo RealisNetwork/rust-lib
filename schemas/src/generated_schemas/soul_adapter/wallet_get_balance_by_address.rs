@@ -23,6 +23,9 @@ impl Agent for SoulAdapterWalletGetBalanceByAddressParams {
     fn agent() -> &'static str {
         "soul-adapter"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SoulAdapterWalletGetBalanceByAddressReturns(pub String);
@@ -40,5 +43,8 @@ impl Agent for SoulAdapterWalletGetBalanceByAddressReturns {
     }
     fn agent() -> &'static str {
         "soul-adapter"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

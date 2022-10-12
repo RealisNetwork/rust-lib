@@ -23,6 +23,9 @@ impl Agent for StatusMembershipGetUserByGpaParams {
     fn agent() -> &'static str {
         "status"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipGetUserByGpaReturns(pub String);
@@ -40,5 +43,8 @@ impl Agent for StatusMembershipGetUserByGpaReturns {
     }
     fn agent() -> &'static str {
         "status"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

@@ -5,10 +5,10 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigUpdatePriorityIndexParamsConfigParamsParamsParams {
-    #[serde(rename = "priorityIndex")]
-    pub priority_index: f64,
     #[serde(rename = "id")]
     pub id: f64,
+    #[serde(rename = "priorityIndex")]
+    pub priority_index: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigUpdatePriorityIndexParams {
@@ -17,7 +17,7 @@ pub struct StatusConfigUpdatePriorityIndexParams {
 }
 impl Schema for StatusConfigUpdatePriorityIndexParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"configParams\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"priorityIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"priorityIndex\"]}}},\"required\":[\"configParams\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"configParams\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"priorityIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"priorityIndex\"]}}},\"required\":[\"configParams\"]}") . unwrap ()
     }
 }
 impl Agent for StatusConfigUpdatePriorityIndexParams {
@@ -29,6 +29,9 @@ impl Agent for StatusConfigUpdatePriorityIndexParams {
     }
     fn agent() -> &'static str {
         "status"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -47,5 +50,8 @@ impl Agent for StatusConfigUpdatePriorityIndexReturns {
     }
     fn agent() -> &'static str {
         "status"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

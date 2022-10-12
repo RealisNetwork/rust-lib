@@ -23,6 +23,9 @@ impl Agent for DragocatsStorageInventoryEndpointsUnEquipUnitParams {
     fn agent() -> &'static str {
         "dragocats-storage"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsStorageInventoryEndpointsUnEquipUnitReturns {
@@ -43,5 +46,8 @@ impl Agent for DragocatsStorageInventoryEndpointsUnEquipUnitReturns {
     }
     fn agent() -> &'static str {
         "dragocats-storage"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

@@ -25,6 +25,9 @@ impl Agent for MarketPlaceMarketPlaceCancelSaleParams {
     fn agent() -> &'static str {
         "market-place"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceCancelSaleReturns(pub bool);
@@ -42,5 +45,8 @@ impl Agent for MarketPlaceMarketPlaceCancelSaleReturns {
     }
     fn agent() -> &'static str {
         "market-place"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

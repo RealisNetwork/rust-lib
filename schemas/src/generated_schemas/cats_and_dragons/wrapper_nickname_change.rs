@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperNicknameChangeParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "newNickname")]
     pub new_nickname: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for CatsAndDragonsWrapperNicknameChangeParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"newNickname\":{\"type\":\"string\"}},\"required\":[\"userId\",\"newNickname\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"newNickname\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"newNickname\"]}") . unwrap ()
     }
 }
 impl Agent for CatsAndDragonsWrapperNicknameChangeParams {
@@ -24,6 +24,9 @@ impl Agent for CatsAndDragonsWrapperNicknameChangeParams {
     }
     fn agent() -> &'static str {
         "catsAndDragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -45,5 +48,8 @@ impl Agent for CatsAndDragonsWrapperNicknameChangeReturns {
     }
     fn agent() -> &'static str {
         "catsAndDragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

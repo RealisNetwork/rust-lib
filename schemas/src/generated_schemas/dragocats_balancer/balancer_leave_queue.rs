@@ -20,6 +20,9 @@ impl Agent for DragocatsBalancerBalancerLeaveQueueParams {
     fn agent() -> &'static str {
         "dragocats-balancer"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsBalancerBalancerLeaveQueueReturns(pub bool);
@@ -37,5 +40,8 @@ impl Agent for DragocatsBalancerBalancerLeaveQueueReturns {
     }
     fn agent() -> &'static str {
         "dragocats-balancer"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

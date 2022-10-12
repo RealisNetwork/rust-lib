@@ -1,3 +1,4 @@
+use crate::access_level::AccessLevel;
 use crate::agent_params::AgentParams;
 use convert_case::{Case, Casing};
 use quote::__private::{Ident, TokenStream};
@@ -7,6 +8,8 @@ use syn::__private::Span;
 
 #[derive(Deserialize, Debug, Clone, PartialEq, Eq)]
 pub struct Agent {
+    #[serde(rename = "accessLevel")]
+    pub access_level: AccessLevel,
     pub agent: String,
     pub method: String,
     pub topic: String,
@@ -47,6 +50,11 @@ impl Agent {
         Ident::new(&name, Span::call_site())
     }
 
+    pub fn create_ident_access_level(&self) -> Ident {
+        let access_level = self.create_access_level_name();
+        Ident::new(&access_level, Span::call_site())
+    }
+
     #[must_use]
     pub fn create_name_params(&self) -> String {
         format!("{}Params", self.create_name_case_pascal())
@@ -55,6 +63,10 @@ impl Agent {
     #[must_use]
     pub fn create_name_returns(&self) -> String {
         format!("{}Returns", self.create_name_case_pascal())
+    }
+
+    pub fn create_access_level_name(&self) -> String {
+        format!("{:?}", self.access_level)
     }
 }
 
@@ -75,6 +87,7 @@ impl ToTokens for Agent {
         let method = self.method.clone();
         let agent = self.agent.clone();
         let topic = self.topic.clone();
+        let access_level = self.access_level.clone();
 
         let impl_schema_params = quote! {
             impl Schema for #ident_name_params {
@@ -86,6 +99,7 @@ impl ToTokens for Agent {
                 fn topic() -> &'static str { #topic }
                 fn method() -> &'static str { #method }
                 fn agent() -> &'static str { #agent }
+                fn access_level() -> AccessLevel { #access_level }
             }
         };
         let impl_schema_returns = quote! {
@@ -98,6 +112,7 @@ impl ToTokens for Agent {
                 fn topic() -> &'static str { #topic }
                 fn method() -> &'static str { #method }
                 fn agent() -> &'static str { #agent }
+                fn access_level() -> AccessLevel { #access_level }
             }
         };
 

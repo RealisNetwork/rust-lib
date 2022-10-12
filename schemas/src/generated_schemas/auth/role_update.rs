@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthRoleUpdateParams {
-    #[serde(rename = "roleId")]
-    pub role_id: f64,
     #[serde(rename = "methods")]
     pub methods: Vec<String>,
+    #[serde(rename = "roleId")]
+    pub role_id: f64,
     #[serde(rename = "pages")]
     pub pages: Vec<String>,
 }
 impl Schema for AuthRoleUpdateParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"roleId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"methods\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"pages\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"roleId\",\"methods\",\"pages\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"methods\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"roleId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"pages\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"roleId\",\"methods\",\"pages\"]}") . unwrap ()
     }
 }
 impl Agent for AuthRoleUpdateParams {
@@ -26,6 +26,9 @@ impl Agent for AuthRoleUpdateParams {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -44,5 +47,8 @@ impl Agent for AuthRoleUpdateReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

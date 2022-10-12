@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsRegistryProductAddProductParams {
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
     #[serde(rename = "productId")]
     pub product_id: String,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
     #[serde(rename = "userId")]
     pub user_id: String,
 }
 impl Schema for TransactionsRegistryProductAddProductParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"productId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"productId\",\"personalType\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"productId\",\"personalType\"]}") . unwrap ()
     }
 }
 impl Agent for TransactionsRegistryProductAddProductParams {
@@ -26,6 +26,9 @@ impl Agent for TransactionsRegistryProductAddProductParams {
     }
     fn agent() -> &'static str {
         "transactions"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -44,5 +47,8 @@ impl Agent for TransactionsRegistryProductAddProductReturns {
     }
     fn agent() -> &'static str {
         "transactions"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

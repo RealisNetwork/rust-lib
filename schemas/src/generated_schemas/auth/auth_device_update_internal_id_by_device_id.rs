@@ -25,6 +25,9 @@ impl Agent for AuthAuthDeviceUpdateInternalIdByDeviceIdParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceUpdateInternalIdByDeviceIdReturns(pub bool);
@@ -42,5 +45,8 @@ impl Agent for AuthAuthDeviceUpdateInternalIdByDeviceIdReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

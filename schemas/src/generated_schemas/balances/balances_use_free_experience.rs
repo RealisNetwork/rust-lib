@@ -25,6 +25,9 @@ impl Agent for BalancesBalancesUseFreeExperienceParams {
     fn agent() -> &'static str {
         "balances"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BalancesBalancesUseFreeExperienceReturns(pub bool);
@@ -42,5 +45,8 @@ impl Agent for BalancesBalancesUseFreeExperienceReturns {
     }
     fn agent() -> &'static str {
         "balances"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

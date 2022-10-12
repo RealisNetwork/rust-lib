@@ -7,16 +7,16 @@ use crate::generated_schemas::prelude::*;
 pub struct CdBalancesBalanceIncreaseBalanceByUserIdAndCurrencyParams {
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
     #[serde(rename = "amount")]
     pub amount: String,
     #[serde(rename = "currencyType")]
     pub currency_type: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
 }
 impl Schema for CdBalancesBalanceIncreaseBalanceByUserIdAndCurrencyParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"currencyType\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currencyType\",\"amount\",\"txId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"currencyType\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currencyType\",\"amount\",\"txId\"]}") . unwrap ()
     }
 }
 impl Agent for CdBalancesBalanceIncreaseBalanceByUserIdAndCurrencyParams {
@@ -28,6 +28,9 @@ impl Agent for CdBalancesBalanceIncreaseBalanceByUserIdAndCurrencyParams {
     }
     fn agent() -> &'static str {
         "cd-balances"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }
 impl<'de> Deserialize<'de> for CdBalancesBalanceIncreaseBalanceByUserIdAndCurrencyReturns {
@@ -55,5 +58,8 @@ impl Agent for CdBalancesBalanceIncreaseBalanceByUserIdAndCurrencyReturns {
     }
     fn agent() -> &'static str {
         "cd-balances"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

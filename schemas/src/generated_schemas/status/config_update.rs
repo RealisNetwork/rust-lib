@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct StatusConfigUpdateParams {
     #[serde(rename = "price")]
     pub price: String,
-    #[serde(rename = "maxCount")]
-    pub max_count: String,
-    #[serde(rename = "priceInLis")]
-    pub price_in_lis: String,
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
+    #[serde(rename = "maxCount")]
+    pub max_count: String,
     #[serde(rename = "multiplier")]
     pub multiplier: String,
+    #[serde(rename = "priceInLis")]
+    pub price_in_lis: String,
     #[serde(rename = "id")]
     pub id: f64,
     #[serde(rename = "membership")]
@@ -22,7 +22,7 @@ pub struct StatusConfigUpdateParams {
 }
 impl Schema for StatusConfigUpdateParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"price\":{\"type\":\"string\"},\"maxCount\":{\"type\":\"string\"},\"priceInLis\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"},\"multiplier\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"membership\":{\"type\":\"string\"}},\"required\":[\"id\",\"membership\",\"price\",\"multiplier\",\"priceInLis\",\"maxCount\",\"isAvailable\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"price\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"},\"maxCount\":{\"type\":\"string\"},\"multiplier\":{\"type\":\"string\"},\"priceInLis\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"membership\":{\"type\":\"string\"}},\"required\":[\"id\",\"membership\",\"price\",\"multiplier\",\"priceInLis\",\"maxCount\",\"isAvailable\"]}") . unwrap ()
     }
 }
 impl Agent for StatusConfigUpdateParams {
@@ -34,6 +34,9 @@ impl Agent for StatusConfigUpdateParams {
     }
     fn agent() -> &'static str {
         "status"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -52,5 +55,8 @@ impl Agent for StatusConfigUpdateReturns {
     }
     fn agent() -> &'static str {
         "status"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

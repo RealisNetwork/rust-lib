@@ -23,6 +23,9 @@ impl Agent for UserProfileGetUserNicknameParams {
     fn agent() -> &'static str {
         "user"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetUserNicknameReturns(pub String);
@@ -40,5 +43,8 @@ impl Agent for UserProfileGetUserNicknameReturns {
     }
     fn agent() -> &'static str {
         "user"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

@@ -5,18 +5,18 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AnalyticsAnalyticsSendParams {
+    #[serde(rename = "value")]
+    pub value: Option<()>,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "key")]
     pub key: String,
-    #[serde(rename = "value")]
-    pub value: Option<()>,
     #[serde(rename = "param")]
     pub param: Option<String>,
 }
 impl Schema for AnalyticsAnalyticsSendParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"value\":{},\"param\":{\"type\":\"string\"}},\"required\":[\"key\",\"userId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"value\":{},\"userId\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"param\":{\"type\":\"string\"}},\"required\":[\"key\",\"userId\"]}") . unwrap ()
     }
 }
 impl Agent for AnalyticsAnalyticsSendParams {
@@ -28,6 +28,9 @@ impl Agent for AnalyticsAnalyticsSendParams {
     }
     fn agent() -> &'static str {
         "analytics"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -49,5 +52,8 @@ impl Agent for AnalyticsAnalyticsSendReturns {
     }
     fn agent() -> &'static str {
         "analytics"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

@@ -29,13 +29,16 @@ impl Agent for LobbyRegionsGetListParams {
     fn agent() -> &'static str {
         "lobby"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyRegionsGetListReturnsListParamsParams {
-    #[serde(rename = "host")]
-    pub host: String,
     #[serde(rename = "code")]
     pub code: String,
+    #[serde(rename = "host")]
+    pub host: String,
     #[serde(rename = "name")]
     pub name: String,
 }
@@ -46,7 +49,7 @@ pub struct LobbyRegionsGetListReturns {
 }
 impl Schema for LobbyRegionsGetListReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"host\":{\"type\":\"string\"},\"code\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}},\"required\":[\"name\",\"host\",\"code\"]}}},\"required\":[\"list\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"},\"host\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}},\"required\":[\"name\",\"host\",\"code\"]}}},\"required\":[\"list\"]}")
     }
 }
 impl Agent for LobbyRegionsGetListReturns {
@@ -58,5 +61,8 @@ impl Agent for LobbyRegionsGetListReturns {
     }
     fn agent() -> &'static str {
         "lobby"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

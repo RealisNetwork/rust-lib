@@ -23,12 +23,15 @@ impl Agent for TransactionsBalanceGetNumOfTransactionsParams {
     fn agent() -> &'static str {
         "transactions"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceGetNumOfTransactionsReturns(pub f64);
+pub struct TransactionsBalanceGetNumOfTransactionsReturns(pub i32);
 impl Schema for TransactionsBalanceGetNumOfTransactionsReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}")
+        serde_json :: json ! ("{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}")
     }
 }
 impl Agent for TransactionsBalanceGetNumOfTransactionsReturns {
@@ -40,5 +43,8 @@ impl Agent for TransactionsBalanceGetNumOfTransactionsReturns {
     }
     fn agent() -> &'static str {
         "transactions"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

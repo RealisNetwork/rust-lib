@@ -23,6 +23,9 @@ impl Agent for CronCronDeleteParams {
     fn agent() -> &'static str {
         "cron"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CronCronDeleteReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for CronCronDeleteReturns {
     }
     fn agent() -> &'static str {
         "cron"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

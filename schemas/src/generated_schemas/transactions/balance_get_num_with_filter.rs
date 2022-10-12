@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct TransactionsBalanceGetNumWithFilterParams {
     #[serde(rename = "debit")]
     pub debit: Option<String>,
-    #[serde(rename = "userId")]
-    pub user_id: Option<String>,
     #[serde(rename = "credit")]
     pub credit: Option<String>,
+    #[serde(rename = "userId")]
+    pub user_id: Option<String>,
 }
 impl Schema for TransactionsBalanceGetNumWithFilterParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"debit\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"credit\":{\"type\":\"string\"}}}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"debit\":{\"type\":\"string\"},\"credit\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}}}") . unwrap ()
     }
 }
 impl Agent for TransactionsBalanceGetNumWithFilterParams {
@@ -27,12 +27,15 @@ impl Agent for TransactionsBalanceGetNumWithFilterParams {
     fn agent() -> &'static str {
         "transactions"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceGetNumWithFilterReturns(pub f64);
+pub struct TransactionsBalanceGetNumWithFilterReturns(pub i32);
 impl Schema for TransactionsBalanceGetNumWithFilterReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}")
+        serde_json :: json ! ("{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}")
     }
 }
 impl Agent for TransactionsBalanceGetNumWithFilterReturns {
@@ -44,5 +47,8 @@ impl Agent for TransactionsBalanceGetNumWithFilterReturns {
     }
     fn agent() -> &'static str {
         "transactions"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

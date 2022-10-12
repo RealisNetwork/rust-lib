@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbyUpgradeCardParams {
-    #[serde(rename = "cardId")]
-    pub card_id: f64,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "cardId")]
+    pub card_id: f64,
 }
 impl Schema for DragonsLobbyUpgradeCardParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"cardId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"cardId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"cardId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"cardId\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbyUpgradeCardParams {
@@ -24,6 +24,9 @@ impl Agent for DragonsLobbyUpgradeCardParams {
     }
     fn agent() -> &'static str {
         "dragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }
 impl<'de> Deserialize<'de> for DragonsLobbyUpgradeCardReturns {
@@ -51,5 +54,8 @@ impl Agent for DragonsLobbyUpgradeCardReturns {
     }
     fn agent() -> &'static str {
         "dragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

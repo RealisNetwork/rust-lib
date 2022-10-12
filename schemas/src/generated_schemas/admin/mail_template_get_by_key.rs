@@ -23,6 +23,9 @@ impl Agent for AdminMailTemplateGetByKeyParams {
     fn agent() -> &'static str {
         "admin"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminMailTemplateGetByKeyReturns(pub String);
@@ -40,5 +43,8 @@ impl Agent for AdminMailTemplateGetByKeyReturns {
     }
     fn agent() -> &'static str {
         "admin"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

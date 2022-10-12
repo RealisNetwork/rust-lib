@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthResetPasswordParams {
-    #[serde(rename = "hash")]
-    pub hash: String,
     #[serde(rename = "newPassword")]
     pub new_password: String,
+    #[serde(rename = "hash")]
+    pub hash: String,
 }
 impl Schema for AuthAuthResetPasswordParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"hash\":{\"type\":\"string\"},\"newPassword\":{\"type\":\"string\"}},\"required\":[\"hash\",\"newPassword\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"newPassword\":{\"type\":\"string\"},\"hash\":{\"type\":\"string\"}},\"required\":[\"hash\",\"newPassword\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthResetPasswordParams {
@@ -24,6 +24,9 @@ impl Agent for AuthAuthResetPasswordParams {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -42,5 +45,8 @@ impl Agent for AuthAuthResetPasswordReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

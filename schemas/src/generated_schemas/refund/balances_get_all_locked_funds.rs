@@ -23,6 +23,9 @@ impl Agent for RefundBalancesGetAllLockedFundsParams {
     fn agent() -> &'static str {
         "refund"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllLockedFundsReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for RefundBalancesGetAllLockedFundsReturns {
     }
     fn agent() -> &'static str {
         "refund"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

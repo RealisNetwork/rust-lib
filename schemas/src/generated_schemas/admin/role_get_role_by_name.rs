@@ -23,6 +23,9 @@ impl Agent for AdminRoleGetRoleByNameParams {
     fn agent() -> &'static str {
         "admin"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminRoleGetRoleByNameReturns {
@@ -45,5 +48,8 @@ impl Agent for AdminRoleGetRoleByNameReturns {
     }
     fn agent() -> &'static str {
         "admin"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

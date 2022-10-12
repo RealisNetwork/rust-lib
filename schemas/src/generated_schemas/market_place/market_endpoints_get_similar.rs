@@ -23,6 +23,9 @@ impl Agent for MarketPlaceMarketEndpointsGetSimilarParams {
     fn agent() -> &'static str {
         "market-place"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetSimilarReturnsParamsAdditionalParamsParams {}
@@ -30,26 +33,26 @@ pub struct MarketPlaceMarketEndpointsGetSimilarReturnsParamsAdditionalParamsPara
 pub struct MarketPlaceMarketEndpointsGetSimilarReturnsParams {
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "productId")]
-    pub product_id: i32,
-    #[serde(rename = "isLocked")]
-    pub is_locked: bool,
-    #[serde(rename = "price")]
-    pub price: i32,
-    #[serde(rename = "category")]
-    pub category: i32,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "type")]
-    pub r#type: String,
     #[serde(rename = "personalType")]
     pub personal_type: String,
     #[serde(rename = "subType")]
     pub sub_type: String,
-    #[serde(rename = "additionalParams")]
-    pub additional_params: MarketPlaceMarketEndpointsGetSimilarReturnsParamsAdditionalParamsParams,
     #[serde(rename = "createdAt")]
     pub created_at: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "type")]
+    pub r#type: String,
+    #[serde(rename = "price")]
+    pub price: i32,
+    #[serde(rename = "additionalParams")]
+    pub additional_params: MarketPlaceMarketEndpointsGetSimilarReturnsParamsAdditionalParamsParams,
+    #[serde(rename = "productId")]
+    pub product_id: i32,
+    #[serde(rename = "category")]
+    pub category: i32,
+    #[serde(rename = "isLocked")]
+    pub is_locked: bool,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetSimilarReturns(
@@ -57,7 +60,7 @@ pub struct MarketPlaceMarketEndpointsGetSimilarReturns(
 );
 impl Schema for MarketPlaceMarketEndpointsGetSimilarReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"isLocked\":{\"type\":\"boolean\"},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"productId\",\"userId\",\"personalType\",\"type\",\"subType\",\"price\",\"additionalParams\",\"isLocked\",\"category\",\"createdAt\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"personalType\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"isLocked\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"productId\",\"userId\",\"personalType\",\"type\",\"subType\",\"price\",\"additionalParams\",\"isLocked\",\"category\",\"createdAt\"]}}")
     }
 }
 impl Agent for MarketPlaceMarketEndpointsGetSimilarReturns {
@@ -69,5 +72,8 @@ impl Agent for MarketPlaceMarketEndpointsGetSimilarReturns {
     }
     fn agent() -> &'static str {
         "market-place"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

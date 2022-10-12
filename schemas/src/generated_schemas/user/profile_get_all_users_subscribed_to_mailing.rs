@@ -29,6 +29,9 @@ impl Agent for UserProfileGetAllUsersSubscribedToMailingParams {
     fn agent() -> &'static str {
         "user"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetAllUsersSubscribedToMailingReturns(pub Vec<String>);
@@ -46,5 +49,8 @@ impl Agent for UserProfileGetAllUsersSubscribedToMailingReturns {
     }
     fn agent() -> &'static str {
         "user"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

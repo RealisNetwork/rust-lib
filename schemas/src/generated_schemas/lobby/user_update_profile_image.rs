@@ -23,6 +23,9 @@ impl Agent for LobbyUserUpdateProfileImageParams {
     fn agent() -> &'static str {
         "lobby"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserUpdateProfileImageReturns {
@@ -43,5 +46,8 @@ impl Agent for LobbyUserUpdateProfileImageReturns {
     }
     fn agent() -> &'static str {
         "lobby"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

@@ -23,6 +23,9 @@ impl Agent for BlogVoteIsVotedParams {
     fn agent() -> &'static str {
         "blog"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogVoteIsVotedReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for BlogVoteIsVotedReturns {
     }
     fn agent() -> &'static str {
         "blog"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

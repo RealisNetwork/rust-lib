@@ -23,6 +23,9 @@ impl Agent for OrchestratorLootboxPurchaseParams {
     fn agent() -> &'static str {
         "orchestrator"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorLootboxPurchaseReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for OrchestratorLootboxPurchaseReturns {
     }
     fn agent() -> &'static str {
         "orchestrator"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

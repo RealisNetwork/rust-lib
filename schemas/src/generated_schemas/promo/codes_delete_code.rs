@@ -23,6 +23,9 @@ impl Agent for PromoCodesDeleteCodeParams {
     fn agent() -> &'static str {
         "promo"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesDeleteCodeReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for PromoCodesDeleteCodeReturns {
     }
     fn agent() -> &'static str {
         "promo"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

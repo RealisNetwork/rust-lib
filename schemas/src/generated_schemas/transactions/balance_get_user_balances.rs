@@ -23,9 +23,14 @@ impl Agent for TransactionsBalanceGetUserBalancesParams {
     fn agent() -> &'static str {
         "transactions"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetUserBalancesReturns {
+    #[serde(rename = "TLIS")]
+    pub tlis: String,
     #[serde(rename = "ETH")]
     pub eth: String,
     #[serde(rename = "WLIS")]
@@ -35,7 +40,7 @@ pub struct TransactionsBalanceGetUserBalancesReturns {
 }
 impl Schema for TransactionsBalanceGetUserBalancesReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"ETH\":{\"type\":\"string\"},\"WLIS\":{\"type\":\"string\"},\"LIS\":{\"type\":\"string\"}},\"required\":[\"ETH\",\"LIS\",\"WLIS\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"TLIS\":{\"type\":\"string\"},\"ETH\":{\"type\":\"string\"},\"WLIS\":{\"type\":\"string\"},\"LIS\":{\"type\":\"string\"}},\"required\":[\"ETH\",\"LIS\",\"WLIS\",\"TLIS\"]}")
     }
 }
 impl Agent for TransactionsBalanceGetUserBalancesReturns {
@@ -47,5 +52,8 @@ impl Agent for TransactionsBalanceGetUserBalancesReturns {
     }
     fn agent() -> &'static str {
         "transactions"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

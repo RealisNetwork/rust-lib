@@ -25,6 +25,9 @@ impl Agent for AuthAdminUpdateUserRoleParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAdminUpdateUserRoleReturns(pub bool);
@@ -42,5 +45,8 @@ impl Agent for AuthAdminUpdateUserRoleReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

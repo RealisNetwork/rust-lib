@@ -23,6 +23,9 @@ impl Agent for ListeriaStorageInventoryEndpointsOpenLootboxParams {
     fn agent() -> &'static str {
         "listeria-storage"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 impl<'de> Deserialize<'de> for ListeriaStorageInventoryEndpointsOpenLootboxReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -49,5 +52,8 @@ impl Agent for ListeriaStorageInventoryEndpointsOpenLootboxReturns {
     }
     fn agent() -> &'static str {
         "listeria-storage"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

@@ -12,27 +12,27 @@ pub struct MarketPlaceMarketEndpointsGetByFilterParamsOrderByParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetByFilterParamsFiltersParamsParams {
-    #[serde(rename = "column")]
-    pub column: String,
     #[serde(rename = "value")]
     pub value: (),
+    #[serde(rename = "column")]
+    pub column: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetByFilterParams {
     #[serde(rename = "orderBy")]
     pub order_by: Option<MarketPlaceMarketEndpointsGetByFilterParamsOrderByParams>,
-    #[serde(rename = "filters")]
-    pub filters: Option<Vec<MarketPlaceMarketEndpointsGetByFilterParamsFiltersParamsParams>>,
     #[serde(rename = "page")]
     pub page: i32,
-    #[serde(rename = "category")]
-    pub category: String,
+    #[serde(rename = "filters")]
+    pub filters: Option<Vec<MarketPlaceMarketEndpointsGetByFilterParamsFiltersParamsParams>>,
     #[serde(rename = "perPage")]
     pub per_page: i32,
+    #[serde(rename = "category")]
+    pub category: String,
 }
 impl Schema for MarketPlaceMarketEndpointsGetByFilterParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"orderBy\":{\"type\":\"object\",\"properties\":{\"desc\":{\"type\":\"boolean\"},\"column\":{\"type\":\"string\"}},\"required\":[\"column\",\"desc\"]},\"filters\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"column\":{\"type\":\"string\"},\"value\":{}},\"required\":[\"column\",\"value\"]}},\"page\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"category\":{\"type\":\"string\"},\"perPage\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"category\",\"page\",\"perPage\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"orderBy\":{\"type\":\"object\",\"properties\":{\"desc\":{\"type\":\"boolean\"},\"column\":{\"type\":\"string\"}},\"required\":[\"column\",\"desc\"]},\"page\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"filters\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"value\":{},\"column\":{\"type\":\"string\"}},\"required\":[\"column\",\"value\"]}},\"perPage\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"category\":{\"type\":\"string\"}},\"required\":[\"category\",\"page\",\"perPage\"]}") . unwrap ()
     }
 }
 impl Agent for MarketPlaceMarketEndpointsGetByFilterParams {
@@ -45,33 +45,36 @@ impl Agent for MarketPlaceMarketEndpointsGetByFilterParams {
     fn agent() -> &'static str {
         "market-place"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetByFilterReturnsParamsAdditionalParamsParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetByFilterReturnsParams {
-    #[serde(rename = "type")]
-    pub r#type: String,
-    #[serde(rename = "id")]
-    pub id: i32,
-    #[serde(rename = "price")]
-    pub price: i32,
-    #[serde(rename = "personalType")]
-    pub personal_type: String,
-    #[serde(rename = "additionalParams")]
-    pub additional_params: MarketPlaceMarketEndpointsGetByFilterReturnsParamsAdditionalParamsParams,
-    #[serde(rename = "subType")]
-    pub sub_type: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "isLocked")]
-    pub is_locked: bool,
-    #[serde(rename = "createdAt")]
-    pub created_at: i32,
-    #[serde(rename = "category")]
-    pub category: i32,
     #[serde(rename = "productId")]
     pub product_id: i32,
+    #[serde(rename = "price")]
+    pub price: i32,
+    #[serde(rename = "createdAt")]
+    pub created_at: i32,
+    #[serde(rename = "type")]
+    pub r#type: String,
+    #[serde(rename = "subType")]
+    pub sub_type: String,
+    #[serde(rename = "additionalParams")]
+    pub additional_params: MarketPlaceMarketEndpointsGetByFilterReturnsParamsAdditionalParamsParams,
+    #[serde(rename = "isLocked")]
+    pub is_locked: bool,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
+    #[serde(rename = "category")]
+    pub category: i32,
+    #[serde(rename = "id")]
+    pub id: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetByFilterReturns(
@@ -79,7 +82,7 @@ pub struct MarketPlaceMarketEndpointsGetByFilterReturns(
 );
 impl Schema for MarketPlaceMarketEndpointsGetByFilterReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"personalType\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"subType\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"isLocked\":{\"type\":\"boolean\"},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"productId\",\"userId\",\"personalType\",\"type\",\"subType\",\"price\",\"additionalParams\",\"isLocked\",\"category\",\"createdAt\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"type\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"isLocked\":{\"type\":\"boolean\"},\"userId\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"productId\",\"userId\",\"personalType\",\"type\",\"subType\",\"price\",\"additionalParams\",\"isLocked\",\"category\",\"createdAt\"]}}")
     }
 }
 impl Agent for MarketPlaceMarketEndpointsGetByFilterReturns {
@@ -91,5 +94,8 @@ impl Agent for MarketPlaceMarketEndpointsGetByFilterReturns {
     }
     fn agent() -> &'static str {
         "market-place"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

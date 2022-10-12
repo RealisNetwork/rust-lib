@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterContractCallBurnNftParams {
-    #[serde(rename = "tokenId")]
-    pub token_id: String,
     #[serde(rename = "approvalId")]
     pub approval_id: Option<String>,
     #[serde(rename = "userId")]
     pub user_id: Option<String>,
+    #[serde(rename = "tokenId")]
+    pub token_id: String,
 }
 impl Schema for NearAdapterContractCallBurnNftParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"tokenId\":{\"type\":\"string\"},\"approvalId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"tokenId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"approvalId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"tokenId\":{\"type\":\"string\"}},\"required\":[\"tokenId\"]}") . unwrap ()
     }
 }
 impl Agent for NearAdapterContractCallBurnNftParams {
@@ -26,6 +26,9 @@ impl Agent for NearAdapterContractCallBurnNftParams {
     }
     fn agent() -> &'static str {
         "near-adapter"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -44,5 +47,8 @@ impl Agent for NearAdapterContractCallBurnNftReturns {
     }
     fn agent() -> &'static str {
         "near-adapter"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

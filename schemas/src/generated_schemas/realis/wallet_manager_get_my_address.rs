@@ -29,6 +29,9 @@ impl Agent for RealisWalletManagerGetMyAddressParams {
     fn agent() -> &'static str {
         "realis"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 impl<'de> Deserialize<'de> for RealisWalletManagerGetMyAddressReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -55,5 +58,8 @@ impl Agent for RealisWalletManagerGetMyAddressReturns {
     }
     fn agent() -> &'static str {
         "realis"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

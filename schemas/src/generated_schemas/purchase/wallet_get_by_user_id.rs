@@ -29,6 +29,9 @@ impl Agent for PurchaseWalletGetByUserIdParams {
     fn agent() -> &'static str {
         "purchase"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PurchaseWalletGetByUserIdReturns {
@@ -49,5 +52,8 @@ impl Agent for PurchaseWalletGetByUserIdReturns {
     }
     fn agent() -> &'static str {
         "purchase"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

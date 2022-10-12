@@ -25,6 +25,9 @@ impl Agent for ProductFactoryProductAddLootboxParams {
     fn agent() -> &'static str {
         "productFactory"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductAddLootboxReturns(pub bool);
@@ -42,5 +45,8 @@ impl Agent for ProductFactoryProductAddLootboxReturns {
     }
     fn agent() -> &'static str {
         "productFactory"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

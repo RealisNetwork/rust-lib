@@ -23,6 +23,9 @@ impl Agent for AuthAuthSendRequestToResetPasswordParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthSendRequestToResetPasswordReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for AuthAuthSendRequestToResetPasswordReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

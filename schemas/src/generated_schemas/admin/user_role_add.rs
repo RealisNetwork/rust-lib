@@ -25,6 +25,9 @@ impl Agent for AdminUserRoleAddParams {
     fn agent() -> &'static str {
         "admin"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleAddReturns(pub bool);
@@ -42,5 +45,8 @@ impl Agent for AdminUserRoleAddReturns {
     }
     fn agent() -> &'static str {
         "admin"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

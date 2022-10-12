@@ -23,6 +23,9 @@ impl Agent for ListeriaStorageHeroesEndpointsGiveFreeExperienceToHeroParams {
     fn agent() -> &'static str {
         "listeria-storage"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 impl<'de> Deserialize<'de> for ListeriaStorageHeroesEndpointsGiveFreeExperienceToHeroReturns {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
@@ -49,5 +52,8 @@ impl Agent for ListeriaStorageHeroesEndpointsGiveFreeExperienceToHeroReturns {
     }
     fn agent() -> &'static str {
         "listeria-storage"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

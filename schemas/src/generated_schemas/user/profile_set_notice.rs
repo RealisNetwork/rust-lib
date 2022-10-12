@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileSetNoticeParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "notice")]
     pub notice: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for UserProfileSetNoticeParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"notice\":{\"type\":\"string\"}},\"required\":[\"userId\",\"notice\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"notice\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"notice\"]}") . unwrap ()
     }
 }
 impl Agent for UserProfileSetNoticeParams {
@@ -24,6 +24,9 @@ impl Agent for UserProfileSetNoticeParams {
     }
     fn agent() -> &'static str {
         "user"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -42,5 +45,8 @@ impl Agent for UserProfileSetNoticeReturns {
     }
     fn agent() -> &'static str {
         "user"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

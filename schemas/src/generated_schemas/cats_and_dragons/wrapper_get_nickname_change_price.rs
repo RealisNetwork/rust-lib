@@ -23,6 +23,9 @@ impl Agent for CatsAndDragonsWrapperGetNicknameChangePriceParams {
     fn agent() -> &'static str {
         "catsAndDragons"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetNicknameChangePriceReturns {
@@ -43,5 +46,8 @@ impl Agent for CatsAndDragonsWrapperGetNicknameChangePriceReturns {
     }
     fn agent() -> &'static str {
         "catsAndDragons"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

@@ -25,6 +25,9 @@ impl Agent for UserProfileUnsubscribeFromNewsletterParams {
     fn agent() -> &'static str {
         "user"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileUnsubscribeFromNewsletterReturns(pub bool);
@@ -42,5 +45,8 @@ impl Agent for UserProfileUnsubscribeFromNewsletterReturns {
     }
     fn agent() -> &'static str {
         "user"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

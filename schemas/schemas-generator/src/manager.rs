@@ -37,6 +37,12 @@ impl SchemaManagerGenerator {
             let ident = a.create_ident_returns();
             quote! {(#agent, #method) => Some(#ident::schema()),}
         });
+        let access_level = self.agents.iter().map(|a| {
+            let agent = &a.agent;
+            let method = &a.method;
+            let ident = a.access_level;
+            quote! {(#agent, #method) => #ident,}
+        });
 
         quote! {
             use crate::generated_schemas::*;
@@ -44,6 +50,7 @@ impl SchemaManagerGenerator {
             use error_registry::{generated_errors::{Common, Validation}, BaseError};
             use jsonschema::JSONSchema;
             use serde_json::{json, Value};
+            use crate::common::*;
 
             pub struct SchemaManager;
 
@@ -62,8 +69,11 @@ impl SchemaManagerGenerator {
                     }
                 }
 
-                pub fn get_access_level(agent: &str, method: &str) -> Option<&'static str> {
-                    None
+                pub fn get_access_level(agent: &str, method: &str) -> Option<AccessLevel> {
+                    match (agent, method) {
+                        #(#access_level)*
+                        _ => None,
+                    }
                 }
 
                 pub fn validate_params(

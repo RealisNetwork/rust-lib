@@ -5,22 +5,22 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogCreateParamsPropsParams {
-    #[serde(rename = "lang")]
-    pub lang: Option<String>,
-    #[serde(rename = "content")]
-    pub content: String,
-    #[serde(rename = "image")]
-    pub image: String,
-    #[serde(rename = "metaTitle")]
-    pub meta_title: String,
     #[serde(rename = "title")]
     pub title: String,
-    #[serde(rename = "metaDescription")]
-    pub meta_description: String,
-    #[serde(rename = "shortDescription")]
-    pub short_description: String,
+    #[serde(rename = "metaTitle")]
+    pub meta_title: String,
+    #[serde(rename = "lang")]
+    pub lang: Option<String>,
     #[serde(rename = "url")]
     pub url: String,
+    #[serde(rename = "image")]
+    pub image: String,
+    #[serde(rename = "metaDescription")]
+    pub meta_description: String,
+    #[serde(rename = "content")]
+    pub content: String,
+    #[serde(rename = "shortDescription")]
+    pub short_description: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogCreateParams {
@@ -31,7 +31,7 @@ pub struct BlogBlogCreateParams {
 }
 impl Schema for BlogBlogCreateParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"props\":{\"type\":\"object\",\"properties\":{\"lang\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"}},\"required\":[\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\"]}},\"required\":[\"props\",\"categoryId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"categoryId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"props\":{\"type\":\"object\",\"properties\":{\"title\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"}},\"required\":[\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\"]}},\"required\":[\"props\",\"categoryId\"]}") . unwrap ()
     }
 }
 impl Agent for BlogBlogCreateParams {
@@ -43,6 +43,9 @@ impl Agent for BlogBlogCreateParams {
     }
     fn agent() -> &'static str {
         "blog"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -61,5 +64,8 @@ impl Agent for BlogBlogCreateReturns {
     }
     fn agent() -> &'static str {
         "blog"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

@@ -23,6 +23,9 @@ impl Agent for AuthBanGetUserBanParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthBanGetUserBanReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for AuthBanGetUserBanReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

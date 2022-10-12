@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct BlogCategoryUpdateParams {
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "id")]
-    pub id: f64,
     #[serde(rename = "isAvailable")]
     pub is_available: Option<bool>,
+    #[serde(rename = "id")]
+    pub id: f64,
 }
 impl Schema for BlogCategoryUpdateParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isAvailable\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"name\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"name\"]}") . unwrap ()
     }
 }
 impl Agent for BlogCategoryUpdateParams {
@@ -26,6 +26,9 @@ impl Agent for BlogCategoryUpdateParams {
     }
     fn agent() -> &'static str {
         "blog"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -44,5 +47,8 @@ impl Agent for BlogCategoryUpdateReturns {
     }
     fn agent() -> &'static str {
         "blog"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

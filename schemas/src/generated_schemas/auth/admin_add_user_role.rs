@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAdminAddUserRoleParams {
-    #[serde(rename = "roleName")]
-    pub role_name: String,
     #[serde(rename = "internalUserId")]
     pub internal_user_id: String,
+    #[serde(rename = "roleName")]
+    pub role_name: String,
 }
 impl Schema for AuthAdminAddUserRoleParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"roleName\":{\"type\":\"string\"},\"internalUserId\":{\"type\":\"string\"}},\"required\":[\"roleName\",\"internalUserId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"internalUserId\":{\"type\":\"string\"},\"roleName\":{\"type\":\"string\"}},\"required\":[\"roleName\",\"internalUserId\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAdminAddUserRoleParams {
@@ -24,6 +24,9 @@ impl Agent for AuthAdminAddUserRoleParams {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -42,5 +45,8 @@ impl Agent for AuthAdminAddUserRoleReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

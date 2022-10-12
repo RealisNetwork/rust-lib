@@ -29,13 +29,16 @@ impl Agent for AdminMailTemplateGetAllParams {
     fn agent() -> &'static str {
         "admin"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminMailTemplateGetAllReturnsParams {
-    #[serde(rename = "mailTemplate")]
-    pub mail_template: String,
     #[serde(rename = "name")]
     pub name: String,
+    #[serde(rename = "mailTemplate")]
+    pub mail_template: String,
     #[serde(rename = "key")]
     pub key: String,
 }
@@ -43,7 +46,7 @@ pub struct AdminMailTemplateGetAllReturnsParams {
 pub struct AdminMailTemplateGetAllReturns(pub Vec<AdminMailTemplateGetAllReturnsParams>);
 impl Schema for AdminMailTemplateGetAllReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"mailTemplate\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"}},\"required\":[\"key\",\"name\",\"mailTemplate\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"mailTemplate\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"}},\"required\":[\"key\",\"name\",\"mailTemplate\"]}}")
     }
 }
 impl Agent for AdminMailTemplateGetAllReturns {
@@ -55,5 +58,8 @@ impl Agent for AdminMailTemplateGetAllReturns {
     }
     fn agent() -> &'static str {
         "admin"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

@@ -23,6 +23,9 @@ impl Agent for PromoCodesGetDataByCodeStrictParams {
     fn agent() -> &'static str {
         "promo"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesGetDataByCodeStrictReturns {}
@@ -40,5 +43,8 @@ impl Agent for PromoCodesGetDataByCodeStrictReturns {
     }
     fn agent() -> &'static str {
         "promo"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

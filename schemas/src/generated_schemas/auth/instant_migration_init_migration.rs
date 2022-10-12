@@ -5,18 +5,18 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthInstantMigrationInitMigrationParams {
-    #[serde(rename = "count")]
-    pub count: f64,
-    #[serde(rename = "startIndex")]
-    pub start_index: f64,
     #[serde(rename = "isPartial")]
     pub is_partial: Option<bool>,
+    #[serde(rename = "startIndex")]
+    pub start_index: f64,
     #[serde(rename = "interval")]
     pub interval: i32,
+    #[serde(rename = "count")]
+    pub count: f64,
 }
 impl Schema for AuthInstantMigrationInitMigrationParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"count\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"startIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isPartial\":{\"type\":\"boolean\"},\"interval\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"startIndex\",\"interval\",\"count\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"isPartial\":{\"type\":\"boolean\"},\"startIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"interval\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"count\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"startIndex\",\"interval\",\"count\"]}") . unwrap ()
     }
 }
 impl Agent for AuthInstantMigrationInitMigrationParams {
@@ -28,6 +28,9 @@ impl Agent for AuthInstantMigrationInitMigrationParams {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -46,5 +49,8 @@ impl Agent for AuthInstantMigrationInitMigrationReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

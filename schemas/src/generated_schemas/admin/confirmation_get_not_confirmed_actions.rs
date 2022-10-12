@@ -29,6 +29,9 @@ impl Agent for AdminConfirmationGetNotConfirmedActionsParams {
     fn agent() -> &'static str {
         "admin"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminConfirmationGetNotConfirmedActionsReturns(pub f64);
@@ -46,5 +49,8 @@ impl Agent for AdminConfirmationGetNotConfirmedActionsReturns {
     }
     fn agent() -> &'static str {
         "admin"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

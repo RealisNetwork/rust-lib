@@ -23,6 +23,9 @@ impl Agent for NearAdapterContractIsEnoughBalanceOnWithdrawWalletParams {
     fn agent() -> &'static str {
         "near-adapter"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterContractIsEnoughBalanceOnWithdrawWalletReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for NearAdapterContractIsEnoughBalanceOnWithdrawWalletReturns {
     }
     fn agent() -> &'static str {
         "near-adapter"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

@@ -23,6 +23,9 @@ impl Agent for AuthAdminDeleteUserRoleParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAdminDeleteUserRoleReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for AuthAdminDeleteUserRoleReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

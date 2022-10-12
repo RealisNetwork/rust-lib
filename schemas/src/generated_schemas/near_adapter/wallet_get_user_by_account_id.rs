@@ -23,6 +23,9 @@ impl Agent for NearAdapterWalletGetUserByAccountIdParams {
     fn agent() -> &'static str {
         "near-adapter"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterWalletGetUserByAccountIdReturns(pub String);
@@ -40,5 +43,8 @@ impl Agent for NearAdapterWalletGetUserByAccountIdReturns {
     }
     fn agent() -> &'static str {
         "near-adapter"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

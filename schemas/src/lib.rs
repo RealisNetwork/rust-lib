@@ -18,6 +18,7 @@ pub trait Agent: Schema {
     fn topic() -> &'static str;
     fn method() -> &'static str;
     fn agent() -> &'static str;
+    fn access_level() -> AccessLevel;
 }
 
 impl Schema for Value {

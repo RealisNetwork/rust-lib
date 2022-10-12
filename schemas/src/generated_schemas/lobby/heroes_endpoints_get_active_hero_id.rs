@@ -23,6 +23,9 @@ impl Agent for LobbyHeroesEndpointsGetActiveHeroIdParams {
     fn agent() -> &'static str {
         "lobby"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyHeroesEndpointsGetActiveHeroIdReturns(pub i32);
@@ -40,5 +43,8 @@ impl Agent for LobbyHeroesEndpointsGetActiveHeroIdReturns {
     }
     fn agent() -> &'static str {
         "lobby"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

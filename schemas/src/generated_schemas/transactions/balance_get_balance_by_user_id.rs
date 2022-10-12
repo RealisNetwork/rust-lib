@@ -23,6 +23,9 @@ impl Agent for TransactionsBalanceGetBalanceByUserIdParams {
     fn agent() -> &'static str {
         "transactions"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetBalanceByUserIdReturns {
@@ -43,5 +46,8 @@ impl Agent for TransactionsBalanceGetBalanceByUserIdReturns {
     }
     fn agent() -> &'static str {
         "transactions"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

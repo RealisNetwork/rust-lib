@@ -25,6 +25,9 @@ impl Agent for AuthAuthResetUserProgressParams {
     fn agent() -> &'static str {
         "auth"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthResetUserProgressReturns(pub bool);
@@ -42,5 +45,8 @@ impl Agent for AuthAuthResetUserProgressReturns {
     }
     fn agent() -> &'static str {
         "auth"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

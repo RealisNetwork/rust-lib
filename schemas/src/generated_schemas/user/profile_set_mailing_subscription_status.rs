@@ -23,6 +23,9 @@ impl Agent for UserProfileSetMailingSubscriptionStatusParams {
     fn agent() -> &'static str {
         "user"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileSetMailingSubscriptionStatusReturns(pub bool);
@@ -40,5 +43,8 @@ impl Agent for UserProfileSetMailingSubscriptionStatusReturns {
     }
     fn agent() -> &'static str {
         "user"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

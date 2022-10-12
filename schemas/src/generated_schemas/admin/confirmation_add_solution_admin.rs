@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminConfirmationAddSolutionAdminParams {
-    #[serde(rename = "isConfirmed")]
-    pub is_confirmed: bool,
     #[serde(rename = "id")]
     pub id: f64,
+    #[serde(rename = "isConfirmed")]
+    pub is_confirmed: bool,
 }
 impl Schema for AdminConfirmationAddSolutionAdminParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"isConfirmed\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"isConfirmed\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isConfirmed\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"isConfirmed\"]}") . unwrap ()
     }
 }
 impl Agent for AdminConfirmationAddSolutionAdminParams {
@@ -24,6 +24,9 @@ impl Agent for AdminConfirmationAddSolutionAdminParams {
     }
     fn agent() -> &'static str {
         "admin"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -42,5 +45,8 @@ impl Agent for AdminConfirmationAddSolutionAdminReturns {
     }
     fn agent() -> &'static str {
         "admin"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }

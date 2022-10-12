@@ -29,6 +29,9 @@ impl Agent for GameBalancerGameBalancerStopSearchingParams {
     fn agent() -> &'static str {
         "gameBalancer"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GameBalancerGameBalancerStopSearchingReturns(pub bool);
@@ -46,5 +49,8 @@ impl Agent for GameBalancerGameBalancerStopSearchingReturns {
     }
     fn agent() -> &'static str {
         "gameBalancer"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Protected
     }
 }

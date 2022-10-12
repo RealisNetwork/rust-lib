@@ -29,23 +29,26 @@ impl Agent for BlogBlogGetPinnedParams {
     fn agent() -> &'static str {
         "blog"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetPinnedReturns {
-    #[serde(rename = "image")]
-    pub image: String,
     #[serde(rename = "url")]
     pub url: String,
-    #[serde(rename = "shortDescription")]
-    pub short_description: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
     #[serde(rename = "title")]
     pub title: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "image")]
+    pub image: String,
+    #[serde(rename = "shortDescription")]
+    pub short_description: String,
 }
 impl Schema for BlogBlogGetPinnedReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"image\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"}},\"required\":[\"title\",\"image\",\"url\",\"createdAt\",\"shortDescription\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"url\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"}},\"required\":[\"title\",\"image\",\"url\",\"createdAt\",\"shortDescription\"]}")
     }
 }
 impl Agent for BlogBlogGetPinnedReturns {
@@ -57,5 +60,8 @@ impl Agent for BlogBlogGetPinnedReturns {
     }
     fn agent() -> &'static str {
         "blog"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Public
     }
 }

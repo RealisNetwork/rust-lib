@@ -23,6 +23,9 @@ impl Agent for MarketItemsGetPriceParams {
     fn agent() -> &'static str {
         "market"
     }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
+    }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketItemsGetPriceReturns {
@@ -43,5 +46,8 @@ impl Agent for MarketItemsGetPriceReturns {
     }
     fn agent() -> &'static str {
         "market"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Internal
     }
 }

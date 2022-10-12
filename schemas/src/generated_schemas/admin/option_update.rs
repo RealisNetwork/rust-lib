@@ -14,16 +14,16 @@ pub struct AdminOptionUpdateParamsExtraDetailsParams {
 pub struct AdminOptionUpdateParams {
     #[serde(rename = "extraDetails")]
     pub extra_details: Option<AdminOptionUpdateParamsExtraDetailsParams>,
+    #[serde(rename = "value")]
+    pub value: Option<String>,
     #[serde(rename = "clientKey")]
     pub client_key: String,
     #[serde(rename = "description")]
     pub description: Option<String>,
-    #[serde(rename = "value")]
-    pub value: Option<String>,
 }
 impl Schema for AdminOptionUpdateParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"extraDetails\":{\"type\":\"object\",\"properties\":{\"tab\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}}},\"clientKey\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"required\":[\"clientKey\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"extraDetails\":{\"type\":\"object\",\"properties\":{\"tab\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}}},\"value\":{\"type\":\"string\"},\"clientKey\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"}},\"required\":[\"clientKey\"]}") . unwrap ()
     }
 }
 impl Agent for AdminOptionUpdateParams {
@@ -35,6 +35,9 @@ impl Agent for AdminOptionUpdateParams {
     }
     fn agent() -> &'static str {
         "admin"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -53,5 +56,8 @@ impl Agent for AdminOptionUpdateReturns {
     }
     fn agent() -> &'static str {
         "admin"
+    }
+    fn access_level() -> AccessLevel {
+        AccessLevel::Private
     }
 }
