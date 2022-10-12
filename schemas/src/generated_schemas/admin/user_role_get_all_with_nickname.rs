@@ -35,10 +35,10 @@ impl Agent for AdminUserRoleGetAllWithNicknameParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminUserRoleGetAllWithNicknameReturnsParams {
-    #[serde(rename = "nickname")]
-    pub nickname: String,
     #[serde(rename = "role")]
     pub role: String,
+    #[serde(rename = "nickname")]
+    pub nickname: String,
     #[serde(rename = "userId")]
     pub user_id: String,
 }
@@ -48,7 +48,7 @@ pub struct AdminUserRoleGetAllWithNicknameReturns(
 );
 impl Schema for AdminUserRoleGetAllWithNicknameReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"nickname\":{\"type\":\"string\"},\"role\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"nickname\",\"role\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"role\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"nickname\",\"role\"]}}")
     }
 }
 impl Agent for AdminUserRoleGetAllWithNicknameReturns {

@@ -31,14 +31,14 @@ impl Agent for AchievementsAchievementAchievementCompleteParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AchievementsAchievementAchievementCompleteReturns {
-    #[serde(rename = "Key")]
-    pub key: String,
     #[serde(rename = "status")]
     pub status: i32,
+    #[serde(rename = "Key")]
+    pub key: String,
 }
 impl Schema for AchievementsAchievementAchievementCompleteReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"Key\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"status\",\"Key\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"Key\":{\"type\":\"string\"}},\"required\":[\"status\",\"Key\"]}")
     }
 }
 impl Agent for AchievementsAchievementAchievementCompleteReturns {

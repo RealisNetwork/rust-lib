@@ -19,12 +19,6 @@ impl ToTokens for AccessLevel {
             Self::Private => quote! {AccessLevel::Private},
             Self::Internal => quote! {AccessLevel::Internal},
         };
-        // I remove redundant staff in agent
-        // not bad, i think
-        // what do you mean?
-        // that we have so much errors :D
-        // try to rebuild or clean rebuild
-        // i rebuilded at now
         tokens.extend(t);
     }
 }

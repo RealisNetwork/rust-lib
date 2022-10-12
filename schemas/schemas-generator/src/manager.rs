@@ -41,7 +41,7 @@ impl SchemaManagerGenerator {
             let agent = &a.agent;
             let method = &a.method;
             let ident = a.access_level;
-            quote! {(#agent, #method) => #ident,}
+            quote! {(#agent, #method) => Some(#ident),}
         });
 
         quote! {

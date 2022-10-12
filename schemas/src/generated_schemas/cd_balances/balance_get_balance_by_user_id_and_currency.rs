@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CdBalancesBalanceGetBalanceByUserIdAndCurrencyParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "currency")]
     pub currency: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for CdBalancesBalanceGetBalanceByUserIdAndCurrencyParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\"]}") . unwrap ()
     }
 }
 impl Agent for CdBalancesBalanceGetBalanceByUserIdAndCurrencyParams {

@@ -42,32 +42,32 @@ pub struct LobbyEquipmentEndpointsUpdatedItemNotificationReturnsEffectsParamsPar
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyEquipmentEndpointsUpdatedItemNotificationReturns {
-    #[serde(rename = "isPending")]
-    pub is_pending: bool,
-    #[serde(rename = "level")]
-    pub level: i16,
-    #[serde(rename = "effects")]
-    pub effects: Vec<LobbyEquipmentEndpointsUpdatedItemNotificationReturnsEffectsParamsParams>,
     #[serde(rename = "toNextLevelScrolls")]
     pub to_next_level_scrolls: i32,
+    #[serde(rename = "status")]
+    pub status: i32,
+    #[serde(rename = "level")]
+    pub level: i16,
+    #[serde(rename = "equipmentItemId")]
+    pub equipment_item_id: i32,
+    #[serde(rename = "bindingId")]
+    pub binding_id: i32,
     #[serde(rename = "blockId")]
     pub block_id: Option<String>,
     #[serde(rename = "transactionHash")]
     pub transaction_hash: Option<String>,
-    #[serde(rename = "status")]
-    pub status: i32,
-    #[serde(rename = "bindingId")]
-    pub binding_id: i32,
+    #[serde(rename = "isPending")]
+    pub is_pending: bool,
+    #[serde(rename = "effects")]
+    pub effects: Vec<LobbyEquipmentEndpointsUpdatedItemNotificationReturnsEffectsParamsParams>,
     #[serde(rename = "maxLevel")]
     pub max_level: i16,
     #[serde(rename = "linkToExplorer")]
     pub link_to_explorer: String,
-    #[serde(rename = "equipmentItemId")]
-    pub equipment_item_id: i32,
 }
 impl Schema for LobbyEquipmentEndpointsUpdatedItemNotificationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isPending\":{\"type\":\"boolean\"},\"level\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"effects\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"power\":{\"type\":\"string\"},\"statName\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"statName\",\"power\"]}},\"toNextLevelScrolls\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"blockId\":{\"type\":\"string\"},\"transactionHash\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"maxLevel\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"linkToExplorer\":{\"type\":\"string\"},\"equipmentItemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"equipmentItemId\",\"bindingId\",\"linkToExplorer\",\"effects\",\"isPending\",\"level\",\"maxLevel\",\"toNextLevelScrolls\",\"status\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"toNextLevelScrolls\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"level\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"equipmentItemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"bindingId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"blockId\":{\"type\":\"string\"},\"transactionHash\":{\"type\":\"string\"},\"isPending\":{\"type\":\"boolean\"},\"effects\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"power\":{\"type\":\"string\"},\"statName\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"statName\",\"power\"]}},\"maxLevel\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"linkToExplorer\":{\"type\":\"string\"}},\"required\":[\"equipmentItemId\",\"bindingId\",\"linkToExplorer\",\"effects\",\"isPending\",\"level\",\"maxLevel\",\"toNextLevelScrolls\",\"status\"]}")
     }
 }
 impl Agent for LobbyEquipmentEndpointsUpdatedItemNotificationReturns {

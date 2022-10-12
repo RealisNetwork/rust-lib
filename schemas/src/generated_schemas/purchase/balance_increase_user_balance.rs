@@ -9,18 +9,18 @@ pub struct PurchaseBalanceIncreaseUserBalanceParams {
     pub amount: String,
     #[serde(rename = "topicToSuccessResponse")]
     pub topic_to_success_response: String,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
     #[serde(rename = "creator")]
     pub creator: String,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "currency")]
     pub currency: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
 }
 impl Schema for PurchaseBalanceIncreaseUserBalanceParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"topicToSuccessResponse\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\",\"topicToSuccessResponse\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"topicToSuccessResponse\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"txId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\",\"topicToSuccessResponse\"]}") . unwrap ()
     }
 }
 impl Agent for PurchaseBalanceIncreaseUserBalanceParams {
