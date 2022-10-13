@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct DragocatsBalancerBalancerServerStartedParams {
     #[serde(rename = "clientId")]
     pub client_id: String,
-    #[serde(rename = "address")]
-    pub address: String,
     #[serde(rename = "port")]
     pub port: f64,
+    #[serde(rename = "address")]
+    pub address: String,
 }
 impl Schema for DragocatsBalancerBalancerServerStartedParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"clientId\":{\"type\":\"string\"},\"address\":{\"type\":\"string\"},\"port\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"clientId\",\"address\",\"port\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"clientId\":{\"type\":\"string\"},\"port\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"address\":{\"type\":\"string\"}},\"required\":[\"clientId\",\"address\",\"port\"]}") . unwrap ()
     }
 }
 impl Agent for DragocatsBalancerBalancerServerStartedParams {

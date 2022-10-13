@@ -35,7 +35,7 @@ pub struct BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsReturnsBattle
     pub item_id: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsReturnsBattlePassRewardParamsParams { # [serde (rename = "rewardId")] pub reward_id : i32 , # [serde (rename = "battlePassType")] pub battle_pass_type : i32 , # [serde (rename = "item")] pub item : BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsReturnsBattlePassRewardParamsParamsItemParams }
+pub struct BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsReturnsBattlePassRewardParamsParams { # [serde (rename = "item")] pub item : BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsReturnsBattlePassRewardParamsParamsItemParams , # [serde (rename = "battlePassType")] pub battle_pass_type : i32 , # [serde (rename = "rewardId")] pub reward_id : i32 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsReturns {
     #[serde(rename = "battlePassReward")]
@@ -45,7 +45,7 @@ pub struct BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsReturns {
 }
 impl Schema for BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"battlePassReward\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"rewardId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"battlePassType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"item\":{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"rewardType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"itemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"rewardType\",\"itemId\",\"amount\"]}},\"required\":[\"rewardId\",\"battlePassType\",\"item\"]}}},\"required\":[\"battlePassReward\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"battlePassReward\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"item\":{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"rewardType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"itemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"rewardType\",\"itemId\",\"amount\"]},\"battlePassType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"rewardId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"rewardId\",\"battlePassType\",\"item\"]}}},\"required\":[\"battlePassReward\"]}")
     }
 }
 impl Agent for BattlePassBattlePassEndpointsReceiveOldBattlePassRewardsReturns {

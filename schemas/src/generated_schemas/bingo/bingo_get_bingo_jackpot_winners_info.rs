@@ -39,10 +39,10 @@ pub struct BingoBingoGetBingoJackpotWinnersInfoReturnsWinnersParamsParams {
     pub nick: String,
     #[serde(rename = "Windate")]
     pub windate: f64,
-    #[serde(rename = "StatusId")]
-    pub status_id: f64,
     #[serde(rename = "UserId")]
     pub user_id: String,
+    #[serde(rename = "StatusId")]
+    pub status_id: f64,
     #[serde(rename = "Reward")]
     pub reward: f64,
 }
@@ -55,7 +55,7 @@ pub struct BingoBingoGetBingoJackpotWinnersInfoReturns {
 }
 impl Schema for BingoBingoGetBingoJackpotWinnersInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"Winners\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"Nick\":{\"type\":\"string\"},\"Windate\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"StatusId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"UserId\":{\"type\":\"string\"},\"Reward\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"Nick\",\"UserId\",\"Reward\",\"StatusId\",\"Windate\"]}},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"status\",\"Winners\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"Winners\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"Nick\":{\"type\":\"string\"},\"Windate\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"UserId\":{\"type\":\"string\"},\"StatusId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"Reward\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"Nick\",\"UserId\",\"Reward\",\"StatusId\",\"Windate\"]}},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"status\",\"Winners\"]}")
     }
 }
 impl Agent for BingoBingoGetBingoJackpotWinnersInfoReturns {

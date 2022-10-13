@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct AdminMailTemplateCreateParams {
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "key")]
-    pub key: String,
     #[serde(rename = "mailTemplate")]
     pub mail_template: String,
+    #[serde(rename = "key")]
+    pub key: String,
 }
 impl Schema for AdminMailTemplateCreateParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"mailTemplate\":{\"type\":\"string\"}},\"required\":[\"key\",\"name\",\"mailTemplate\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"mailTemplate\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"}},\"required\":[\"key\",\"name\",\"mailTemplate\"]}") . unwrap ()
     }
 }
 impl Agent for AdminMailTemplateCreateParams {

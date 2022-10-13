@@ -9,14 +9,14 @@ pub struct TransactionsBalanceIncreaseBalanceByUserIdParamsExtraDetailParams {}
 pub struct TransactionsBalanceIncreaseBalanceByUserIdParams {
     #[serde(rename = "extraDetail")]
     pub extra_detail: Option<TransactionsBalanceIncreaseBalanceByUserIdParamsExtraDetailParams>,
-    #[serde(rename = "creator")]
-    pub creator: String,
-    #[serde(rename = "reason")]
-    pub reason: String,
     #[serde(rename = "currency")]
     pub currency: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
     #[serde(rename = "amount")]
     pub amount: String,
+    #[serde(rename = "reason")]
+    pub reason: String,
     #[serde(rename = "txId")]
     pub tx_id: String,
     #[serde(rename = "userId")]
@@ -24,7 +24,7 @@ pub struct TransactionsBalanceIncreaseBalanceByUserIdParams {
 }
 impl Schema for TransactionsBalanceIncreaseBalanceByUserIdParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"extraDetail\":{\"type\":\"object\",\"properties\":{}},\"creator\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"amount\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"extraDetail\":{\"type\":\"object\",\"properties\":{}},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"creator\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}") . unwrap ()
     }
 }
 impl Agent for TransactionsBalanceIncreaseBalanceByUserIdParams {

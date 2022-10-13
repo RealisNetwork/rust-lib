@@ -42,16 +42,16 @@ pub struct LobbyRegionsGetReturnsListParamsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyRegionsGetReturns {
-    #[serde(rename = "active")]
-    pub active: String,
-    #[serde(rename = "list")]
-    pub list: Vec<LobbyRegionsGetReturnsListParamsParams>,
     #[serde(rename = "isFixed")]
     pub is_fixed: bool,
+    #[serde(rename = "list")]
+    pub list: Vec<LobbyRegionsGetReturnsListParamsParams>,
+    #[serde(rename = "active")]
+    pub active: String,
 }
 impl Schema for LobbyRegionsGetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"active\":{\"type\":\"string\"},\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"host\":{\"type\":\"string\"}},\"required\":[\"name\",\"host\"]}},\"isFixed\":{\"type\":\"boolean\"}},\"required\":[\"active\",\"isFixed\",\"list\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isFixed\":{\"type\":\"boolean\"},\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"host\":{\"type\":\"string\"}},\"required\":[\"name\",\"host\"]}},\"active\":{\"type\":\"string\"}},\"required\":[\"active\",\"isFixed\",\"list\"]}")
     }
 }
 impl Agent for LobbyRegionsGetReturns {

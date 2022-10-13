@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminConfirmationAddSolutionAdminForManyParams {
-    #[serde(rename = "isConfirmed")]
-    pub is_confirmed: bool,
     #[serde(rename = "ids")]
     pub ids: Vec<f64>,
+    #[serde(rename = "isConfirmed")]
+    pub is_confirmed: bool,
 }
 impl Schema for AdminConfirmationAddSolutionAdminForManyParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"isConfirmed\":{\"type\":\"boolean\"},\"ids\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}}},\"required\":[\"ids\",\"isConfirmed\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"ids\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"isConfirmed\":{\"type\":\"boolean\"}},\"required\":[\"ids\",\"isConfirmed\"]}") . unwrap ()
     }
 }
 impl Agent for AdminConfirmationAddSolutionAdminForManyParams {
