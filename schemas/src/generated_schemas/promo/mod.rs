@@ -1,10 +1,1 @@
-pub mod codes_create_code;
-pub mod codes_delete_code;
-pub mod codes_get_data_by_code_strict;
-pub mod codes_get_list_strict;
-pub mod codes_use_code;
-pub use codes_create_code::*;
-pub use codes_delete_code::*;
-pub use codes_get_data_by_code_strict::*;
-pub use codes_get_list_strict::*;
-pub use codes_use_code::*;
+pub mod codes_use_code ; pub mod codes_create_code ; pub mod codes_get_data_by_code_strict ; pub mod codes_get_list_strict ; pub mod codes_delete_code ; pub use codes_use_code :: * ; pub use codes_create_code :: * ; pub use codes_get_data_by_code_strict :: * ; pub use codes_get_list_strict :: * ; pub use codes_delete_code :: * ;

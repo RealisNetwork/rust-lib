@@ -73,6 +73,7 @@ fn main() {
       #( pub mod #pub_mod; )*
       #( pub use #pub_use::*; )*
       pub mod prelude;
+      pub mod utils;
     };
     mod_file
         .write_all(pub_mod.to_string().as_bytes())
@@ -86,10 +87,41 @@ fn main() {
       pub use serde_json::Value;
       pub use crate::{Agent, common::AccessLevel, Schema};
       pub use serde::de::Deserializer;
+      pub use super::utils::deserialize_to_string;
     };
     prelude_file
         .write_all(pub_prelude.to_string().as_bytes())
         .expect("Fail to write to \"prelude.rs\"");
+
+    // Creating src/generated_schemas/utils.rs
+    let mut utils_file = std::fs::File::create(&Path::new(&format!("{}utils.rs", PATH)))
+        .expect("Fail to create \"utils.rs\" file");
+    let pub_utils = quote! {
+        use serde::{Deserialize, Deserializer};
+        #[derive(Deserialize)]
+        #[serde(untagged)]
+        pub enum NumberOrString {
+            Number(f64),
+            String(String),
+        }
+
+        impl ToString for NumberOrString {
+            fn to_string(&self) -> String {
+                match self {
+                    Self::Number(v) => v.to_string(),
+                    Self::String(v) => v.clone()
+                }
+            }
+        }
+
+        pub fn deserialize_to_string<'de, D>(deserializer: D) -> Result<String, D::Error>
+        where D: Deserializer<'de> {
+            NumberOrString::deserialize(deserializer).map(|v| v.to_string())
+        }
+    };
+    utils_file
+        .write_all(pub_utils.to_string().as_bytes())
+        .expect("Fail to write to \"utils.rs\"");
 
     for schema in agents.clone() {
         let agent = schema.create_directory_name();

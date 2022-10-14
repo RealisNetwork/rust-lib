@@ -21,18 +21,34 @@ impl Object {
         field_type: AgentParams,
     ) -> (TokenStream, TokenStream) {
         let field_type_stream = self.get_field_type(name, field_name, &field_type);
+        let serde_annotation = match field_type {
+            AgentParams::String(_)
+                if self
+                    .required
+                    .clone()
+                    .unwrap_or_default()
+                    .contains(&field_name.to_string()) =>
+            {
+                quote! {
+                    #[serde(rename = #field_name, deserialize_with="deserialize_to_string")]
+                }
+            }
+            _ => quote! {
+                #[serde(rename = #field_name)]
+            },
+        };
         let field_declaration = match field_name.to_lowercase().as_str() {
             "type" => {
                 let ident = Ident::new_raw(&field_name.to_lowercase(), Span::call_site());
                 quote! {
-                    #[serde(rename = #field_name)]
+                    #serde_annotation
                     pub #ident: #field_type_stream
                 }
             }
             _ => {
                 let name_ident = Ident::new(&field_name.to_case(Case::Snake), Span::call_site());
                 quote! {
-                    #[serde(rename = #field_name)]
+                    #serde_annotation
                     pub #name_ident: #field_type_stream
                 }
             }
