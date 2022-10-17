@@ -3,6 +3,7 @@ use async_trait::async_trait;
 use error_registry::generated_errors::{Common, GeneratedError};
 use error_registry::BaseError;
 use healthchecker::Healthchecker;
+use schemas::manager::SchemaManager;
 use schemas::{Agent, Request, Response, ResponseMessage, ResponseResult, Schema};
 use serde_json::json;
 use serde_json::Value;
@@ -129,6 +130,7 @@ impl<Params: Agent, Returns: Schema, S: Service<Params, Returns>, T: Transport>
 
         loop {
             let message = self.subscription.next().await?;
+            let _ = Self::validate_by_schema(&message);
             match message.deserialize() {
                 Ok(request) => {
                     log::info!(
@@ -243,5 +245,29 @@ impl<Params: Agent, Returns: Schema, S: Service<Params, Returns>, T: Transport>
         };
         log::debug!("request {:#?} : ", request);
         result
+    }
+
+    fn validate_by_schema(message: &VReceivedMessage) -> Result<(), BaseError<Value>> {
+        let agent = Params::agent();
+        let method = Params::method();
+        let schema = Params::schema();
+        let json: Value = message.deserialize()?;
+        let params = json
+            .get("params")
+            .ok_or_else(|| BaseError::new("Missing field `params`", Common::InternalServerError))?;
+
+        if let Err(e) = SchemaManager::validate(&schema, params) {
+            log::warn!(
+                "Request do not match schema: {}",
+                json!({
+                    "agent": agent,
+                    "method": method,
+                    "error": e,
+                })
+                .to_string()
+            )
+        }
+
+        Ok(())
     }
 }

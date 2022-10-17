@@ -87,7 +87,7 @@ impl ToTokens for Agent {
         let method = self.method.clone();
         let agent = self.agent.clone();
         let topic = self.topic.clone();
-        let access_level = self.access_level.clone();
+        let access_level = self.access_level;
 
         let impl_schema_params = quote! {
             impl Schema for #ident_name_params {
