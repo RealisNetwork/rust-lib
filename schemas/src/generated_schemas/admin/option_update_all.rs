@@ -12,16 +12,16 @@ pub struct AdminOptionUpdateAllParamsClientKeysParamsParamsExtraDetailsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionUpdateAllParamsClientKeysParamsParams {
+    #[serde(rename = "value")]
+    pub value: String,
+    #[serde(rename = "extraDetails")]
+    pub extra_details: Option<AdminOptionUpdateAllParamsClientKeysParamsParamsExtraDetailsParams>,
     #[serde(rename = "description")]
     pub description: Option<String>,
     #[serde(rename = "key")]
     pub key: String,
-    #[serde(rename = "extraDetails")]
-    pub extra_details: Option<AdminOptionUpdateAllParamsClientKeysParamsParamsExtraDetailsParams>,
     #[serde(rename = "scope")]
     pub scope: String,
-    #[serde(rename = "value")]
-    pub value: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionUpdateAllParams {
@@ -30,7 +30,7 @@ pub struct AdminOptionUpdateAllParams {
 }
 impl Schema for AdminOptionUpdateAllParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"clientKeys\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"description\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"}}},\"scope\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\"]}}},\"required\":[\"clientKeys\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"clientKeys\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"value\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"}}},\"description\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"scope\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\"]}}},\"required\":[\"clientKeys\"]}") . unwrap ()
     }
 }
 impl Agent for AdminOptionUpdateAllParams {

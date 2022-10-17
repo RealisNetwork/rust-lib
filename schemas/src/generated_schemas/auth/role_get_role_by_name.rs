@@ -31,16 +31,16 @@ impl Agent for AuthRoleGetRoleByNameParams {
 pub struct AuthRoleGetRoleByNameReturns {
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "methods")]
-    pub methods: Vec<String>,
-    #[serde(rename = "pages")]
-    pub pages: Vec<String>,
     #[serde(rename = "id")]
     pub id: f64,
+    #[serde(rename = "pages")]
+    pub pages: Vec<String>,
+    #[serde(rename = "methods")]
+    pub methods: Vec<String>,
 }
 impl Schema for AuthRoleGetRoleByNameReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"methods\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"pages\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"name\",\"methods\",\"pages\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"pages\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"methods\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"id\",\"name\",\"methods\",\"pages\"]}")
     }
 }
 impl Agent for AuthRoleGetRoleByNameReturns {

@@ -28,10 +28,10 @@ impl Agent for AuthAuthResentConfirmationMailParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthAuthResentConfirmationMailReturns(pub bool);
+pub struct AuthAuthResentConfirmationMailReturns(pub String);
 impl Schema for AuthAuthResentConfirmationMailReturns {
     fn schema() -> Value {
-        serde_json::json!("{\"type\":\"boolean\"}")
+        serde_json::json!("{\"type\":\"string\"}")
     }
 }
 impl Agent for AuthAuthResentConfirmationMailReturns {

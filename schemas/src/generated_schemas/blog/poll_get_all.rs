@@ -40,10 +40,10 @@ pub struct BlogPollGetAllReturnsDataParamsParamsAnswersParamsParams {
 pub struct BlogPollGetAllReturnsDataParamsParams {
     #[serde(rename = "id")]
     pub id: f64,
-    #[serde(rename = "question")]
-    pub question: String,
     #[serde(rename = "answers")]
     pub answers: Vec<BlogPollGetAllReturnsDataParamsParamsAnswersParamsParams>,
+    #[serde(rename = "question")]
+    pub question: String,
     #[serde(rename = "endDate")]
     pub end_date: String,
 }
@@ -56,7 +56,7 @@ pub struct BlogPollGetAllReturns {
 }
 impl Schema for BlogPollGetAllReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"question\":{\"type\":\"string\"},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"isImage\":{\"type\":\"boolean\"},\"answer\":{\"type\":\"string\"}},\"required\":[\"isImage\",\"answer\"]}},\"endDate\":{\"type\":\"string\"}},\"required\":[\"id\",\"question\",\"answers\",\"endDate\"]}}},\"required\":[\"totalCount\",\"data\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"isImage\":{\"type\":\"boolean\"},\"answer\":{\"type\":\"string\"}},\"required\":[\"isImage\",\"answer\"]}},\"question\":{\"type\":\"string\"},\"endDate\":{\"type\":\"string\"}},\"required\":[\"id\",\"question\",\"answers\",\"endDate\"]}}},\"required\":[\"totalCount\",\"data\"]}")
     }
 }
 impl Agent for BlogPollGetAllReturns {

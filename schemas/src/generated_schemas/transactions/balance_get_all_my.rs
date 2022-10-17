@@ -30,39 +30,42 @@ impl Agent for TransactionsBalanceGetAllMyParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceGetAllMyReturnsParamsExtraDetailParams {}
+pub struct TransactionsBalanceGetAllMyReturnsDataParamsParamsExtraDetailParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceGetAllMyReturnsParams {
-    #[serde(rename = "currency")]
-    pub currency: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
+pub struct TransactionsBalanceGetAllMyReturnsDataParamsParams {
     #[serde(rename = "credit")]
     pub credit: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "extraDetail")]
-    pub extra_detail: Option<TransactionsBalanceGetAllMyReturnsParamsExtraDetailParams>,
     #[serde(rename = "reason")]
     pub reason: String,
-    #[serde(rename = "totalCount")]
-    pub total_count: i32,
-    #[serde(rename = "debit")]
-    pub debit: String,
-    #[serde(rename = "creator")]
-    pub creator: String,
-    #[serde(rename = "id")]
-    pub id: i32,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
+    #[serde(rename = "extraDetail")]
+    pub extra_detail: Option<TransactionsBalanceGetAllMyReturnsDataParamsParamsExtraDetailParams>,
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
+    #[serde(rename = "debit")]
+    pub debit: String,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "currency")]
+    pub currency: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceGetAllMyReturns(pub Vec<TransactionsBalanceGetAllMyReturnsParams>);
+pub struct TransactionsBalanceGetAllMyReturns {
+    #[serde(rename = "totalCount")]
+    pub total_count: f64,
+    #[serde(rename = "data")]
+    pub data: Vec<TransactionsBalanceGetAllMyReturnsDataParamsParams>,
+}
 impl Schema for TransactionsBalanceGetAllMyReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"createdAt\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"credit\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"extraDetail\":{\"type\":\"object\",\"properties\":{}},\"reason\":{\"type\":\"string\"},\"totalCount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"debit\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"totalCount\",\"id\",\"debit\",\"credit\",\"reason\",\"currency\",\"txId\",\"userId\",\"creator\",\"createdAt\",\"updatedAt\"]}}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"credit\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"extraDetail\":{\"type\":\"object\",\"properties\":{}},\"updatedAt\":{\"type\":\"string\"},\"debit\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"creator\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"id\",\"debit\",\"credit\",\"reason\",\"currency\",\"txId\",\"userId\",\"creator\",\"createdAt\",\"updatedAt\"]}}},\"required\":[\"totalCount\",\"data\"]}")
     }
 }
 impl Agent for TransactionsBalanceGetAllMyReturns {

@@ -28,8 +28,12 @@ impl SchemaManager {
             ("admin", "action_getAllByFilterList") => {
                 Some(AdminActionGetAllByFilterListParams::schema())
             }
+            ("admin", "confirmation_add") => Some(AdminConfirmationAddParams::schema()),
             ("admin", "confirmation_addSolutionAdmin") => {
                 Some(AdminConfirmationAddSolutionAdminParams::schema())
+            }
+            ("admin", "confirmation_addSolutionAdminForMany") => {
+                Some(AdminConfirmationAddSolutionAdminForManyParams::schema())
             }
             ("admin", "confirmation_deleteAction") => {
                 Some(AdminConfirmationDeleteActionParams::schema())
@@ -39,10 +43,6 @@ impl SchemaManager {
             }
             ("admin", "confirmation_getNotConfirmedActions") => {
                 Some(AdminConfirmationGetNotConfirmedActionsParams::schema())
-            }
-            ("admin", "confirmation_add") => Some(AdminConfirmationAddParams::schema()),
-            ("admin", "confirmation_addSolutionAdminForMany") => {
-                Some(AdminConfirmationAddSolutionAdminForManyParams::schema())
             }
             ("admin", "mailTemplate_create") => Some(AdminMailTemplateCreateParams::schema()),
             ("admin", "mailTemplate_delete") => Some(AdminMailTemplateDeleteParams::schema()),
@@ -173,6 +173,9 @@ impl SchemaManager {
                 Some(AuthTwoFactorSendRequestToDeleteTwoFaParams::schema())
             }
             ("auth", "twoFactor_deleteTwoFA") => Some(AuthTwoFactorDeleteTwoFaParams::schema()),
+            ("auth", "user_getProviderByUserId") => {
+                Some(AuthUserGetProviderByUserIdParams::schema())
+            }
             ("balances", "balances_freeExperienceAddedNotification") => {
                 Some(BalancesBalancesFreeExperienceAddedNotificationParams::schema())
             }
@@ -257,6 +260,11 @@ impl SchemaManager {
             ("blog", "category_delete") => Some(BlogCategoryDeleteParams::schema()),
             ("blog", "category_getAll") => Some(BlogCategoryGetAllParams::schema()),
             ("blog", "category_get") => Some(BlogCategoryGetParams::schema()),
+            ("blog", "gameNews_create") => Some(BlogGameNewsCreateParams::schema()),
+            ("blog", "gameNews_update") => Some(BlogGameNewsUpdateParams::schema()),
+            ("blog", "gameNews_delete") => Some(BlogGameNewsDeleteParams::schema()),
+            ("blog", "gameNews_get") => Some(BlogGameNewsGetParams::schema()),
+            ("blog", "gameNews_getAll") => Some(BlogGameNewsGetAllParams::schema()),
             ("blog", "poll_add") => Some(BlogPollAddParams::schema()),
             ("blog", "poll_get") => Some(BlogPollGetParams::schema()),
             ("blog", "poll_getAll") => Some(BlogPollGetAllParams::schema()),
@@ -1214,6 +1222,9 @@ impl SchemaManager {
             }
             ("withdraw", "approval_approve") => Some(WithdrawApprovalApproveParams::schema()),
             ("withdraw", "approval_deny") => Some(WithdrawApprovalDenyParams::schema()),
+            ("withdraw", "approval_getAllUserTransactions") => {
+                Some(WithdrawApprovalGetAllUserTransactionsParams::schema())
+            }
             ("withdraw", "attempt_tryNew") => Some(WithdrawAttemptTryNewParams::schema()),
             _ => None,
         }
@@ -1237,8 +1248,12 @@ impl SchemaManager {
             ("admin", "action_getAllByFilterList") => {
                 Some(AdminActionGetAllByFilterListReturns::schema())
             }
+            ("admin", "confirmation_add") => Some(AdminConfirmationAddReturns::schema()),
             ("admin", "confirmation_addSolutionAdmin") => {
                 Some(AdminConfirmationAddSolutionAdminReturns::schema())
+            }
+            ("admin", "confirmation_addSolutionAdminForMany") => {
+                Some(AdminConfirmationAddSolutionAdminForManyReturns::schema())
             }
             ("admin", "confirmation_deleteAction") => {
                 Some(AdminConfirmationDeleteActionReturns::schema())
@@ -1248,10 +1263,6 @@ impl SchemaManager {
             }
             ("admin", "confirmation_getNotConfirmedActions") => {
                 Some(AdminConfirmationGetNotConfirmedActionsReturns::schema())
-            }
-            ("admin", "confirmation_add") => Some(AdminConfirmationAddReturns::schema()),
-            ("admin", "confirmation_addSolutionAdminForMany") => {
-                Some(AdminConfirmationAddSolutionAdminForManyReturns::schema())
             }
             ("admin", "mailTemplate_create") => Some(AdminMailTemplateCreateReturns::schema()),
             ("admin", "mailTemplate_delete") => Some(AdminMailTemplateDeleteReturns::schema()),
@@ -1392,6 +1403,9 @@ impl SchemaManager {
                 Some(AuthTwoFactorSendRequestToDeleteTwoFaReturns::schema())
             }
             ("auth", "twoFactor_deleteTwoFA") => Some(AuthTwoFactorDeleteTwoFaReturns::schema()),
+            ("auth", "user_getProviderByUserId") => {
+                Some(AuthUserGetProviderByUserIdReturns::schema())
+            }
             ("balances", "balances_freeExperienceAddedNotification") => {
                 Some(BalancesBalancesFreeExperienceAddedNotificationReturns::schema())
             }
@@ -1478,6 +1492,11 @@ impl SchemaManager {
             ("blog", "category_delete") => Some(BlogCategoryDeleteReturns::schema()),
             ("blog", "category_getAll") => Some(BlogCategoryGetAllReturns::schema()),
             ("blog", "category_get") => Some(BlogCategoryGetReturns::schema()),
+            ("blog", "gameNews_create") => Some(BlogGameNewsCreateReturns::schema()),
+            ("blog", "gameNews_update") => Some(BlogGameNewsUpdateReturns::schema()),
+            ("blog", "gameNews_delete") => Some(BlogGameNewsDeleteReturns::schema()),
+            ("blog", "gameNews_get") => Some(BlogGameNewsGetReturns::schema()),
+            ("blog", "gameNews_getAll") => Some(BlogGameNewsGetAllReturns::schema()),
             ("blog", "poll_add") => Some(BlogPollAddReturns::schema()),
             ("blog", "poll_get") => Some(BlogPollGetReturns::schema()),
             ("blog", "poll_getAll") => Some(BlogPollGetAllReturns::schema()),
@@ -2457,6 +2476,9 @@ impl SchemaManager {
             }
             ("withdraw", "approval_approve") => Some(WithdrawApprovalApproveReturns::schema()),
             ("withdraw", "approval_deny") => Some(WithdrawApprovalDenyReturns::schema()),
+            ("withdraw", "approval_getAllUserTransactions") => {
+                Some(WithdrawApprovalGetAllUserTransactionsReturns::schema())
+            }
             ("withdraw", "attempt_tryNew") => Some(WithdrawAttemptTryNewReturns::schema()),
             _ => None,
         }
@@ -2470,12 +2492,12 @@ impl SchemaManager {
             ("admin", "action_getActionList") => Some(AccessLevel::Private),
             ("admin", "action_deleteByActionId") => Some(AccessLevel::Private),
             ("admin", "action_getAllByFilterList") => Some(AccessLevel::Private),
+            ("admin", "confirmation_add") => Some(AccessLevel::Internal),
             ("admin", "confirmation_addSolutionAdmin") => Some(AccessLevel::Private),
+            ("admin", "confirmation_addSolutionAdminForMany") => Some(AccessLevel::Private),
             ("admin", "confirmation_deleteAction") => Some(AccessLevel::Private),
             ("admin", "confirmation_getAllActions") => Some(AccessLevel::Private),
             ("admin", "confirmation_getNotConfirmedActions") => Some(AccessLevel::Private),
-            ("admin", "confirmation_add") => Some(AccessLevel::Internal),
-            ("admin", "confirmation_addSolutionAdminForMany") => Some(AccessLevel::Private),
             ("admin", "mailTemplate_create") => Some(AccessLevel::Private),
             ("admin", "mailTemplate_delete") => Some(AccessLevel::Private),
             ("admin", "mailTemplate_getByKey") => Some(AccessLevel::Private),
@@ -2563,6 +2585,7 @@ impl SchemaManager {
             ("auth", "twoFactor_getStatus") => Some(AccessLevel::Protected),
             ("auth", "twoFactor_sendRequestToDeleteTwoFA") => Some(AccessLevel::Protected),
             ("auth", "twoFactor_deleteTwoFA") => Some(AccessLevel::Public),
+            ("auth", "user_getProviderByUserId") => Some(AccessLevel::Internal),
             ("balances", "balances_freeExperienceAddedNotification") => {
                 Some(AccessLevel::Protected)
             }
@@ -2617,6 +2640,11 @@ impl SchemaManager {
             ("blog", "category_delete") => Some(AccessLevel::Private),
             ("blog", "category_getAll") => Some(AccessLevel::Public),
             ("blog", "category_get") => Some(AccessLevel::Private),
+            ("blog", "gameNews_create") => Some(AccessLevel::Private),
+            ("blog", "gameNews_update") => Some(AccessLevel::Private),
+            ("blog", "gameNews_delete") => Some(AccessLevel::Private),
+            ("blog", "gameNews_get") => Some(AccessLevel::Public),
+            ("blog", "gameNews_getAll") => Some(AccessLevel::Public),
             ("blog", "poll_add") => Some(AccessLevel::Private),
             ("blog", "poll_get") => Some(AccessLevel::Public),
             ("blog", "poll_getAll") => Some(AccessLevel::Private),
@@ -3090,6 +3118,7 @@ impl SchemaManager {
             ("withdraw", "approval_listUnapproved") => Some(AccessLevel::Private),
             ("withdraw", "approval_approve") => Some(AccessLevel::Private),
             ("withdraw", "approval_deny") => Some(AccessLevel::Private),
+            ("withdraw", "approval_getAllUserTransactions") => Some(AccessLevel::Private),
             ("withdraw", "attempt_tryNew") => Some(AccessLevel::Protected),
             _ => None,
         }

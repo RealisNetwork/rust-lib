@@ -9,24 +9,24 @@ pub struct ProductFactoryProductTypeUpdateParamsParamsParams {}
 pub struct ProductFactoryProductTypeUpdateParams {
     #[serde(rename = "rarity")]
     pub rarity: Option<f64>,
-    #[serde(rename = "name")]
-    pub name: Option<String>,
+    #[serde(rename = "dropChance")]
+    pub drop_chance: Option<f64>,
     #[serde(rename = "personalType")]
     pub personal_type: String,
     #[serde(rename = "params")]
     pub params: Option<ProductFactoryProductTypeUpdateParamsParamsParams>,
+    #[serde(rename = "name")]
+    pub name: Option<String>,
+    #[serde(rename = "isNFT")]
+    pub is_nft: Option<bool>,
     #[serde(rename = "type")]
     pub r#type: Option<String>,
     #[serde(rename = "underType")]
     pub under_type: Option<String>,
-    #[serde(rename = "isNFT")]
-    pub is_nft: Option<bool>,
-    #[serde(rename = "dropChance")]
-    pub drop_chance: Option<f64>,
 }
 impl Schema for ProductFactoryProductTypeUpdateParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"rarity\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"name\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"params\":{\"type\":\"object\",\"properties\":{}},\"type\":{\"type\":\"string\"},\"underType\":{\"type\":\"string\"},\"isNFT\":{\"type\":\"boolean\"},\"dropChance\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"personalType\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"rarity\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"dropChance\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"personalType\":{\"type\":\"string\"},\"params\":{\"type\":\"object\",\"properties\":{}},\"name\":{\"type\":\"string\"},\"isNFT\":{\"type\":\"boolean\"},\"type\":{\"type\":\"string\"},\"underType\":{\"type\":\"string\"}},\"required\":[\"personalType\"]}") . unwrap ()
     }
 }
 impl Agent for ProductFactoryProductTypeUpdateParams {

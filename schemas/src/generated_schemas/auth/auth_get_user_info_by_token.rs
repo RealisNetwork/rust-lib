@@ -29,24 +29,24 @@ impl Agent for AuthAuthGetUserInfoByTokenParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthGetUserInfoByTokenReturns {
-    #[serde(rename = "username")]
-    pub username: String,
-    #[serde(rename = "isBanned")]
-    pub is_banned: bool,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "role")]
-    pub role: String,
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "emailVerified")]
     pub email_verified: bool,
+    #[serde(rename = "role")]
+    pub role: Option<String>,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "email")]
     pub email: String,
+    #[serde(rename = "isBanned")]
+    pub is_banned: bool,
+    #[serde(rename = "username")]
+    pub username: String,
 }
 impl Schema for AuthAuthGetUserInfoByTokenReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"username\":{\"type\":\"string\"},\"isBanned\":{\"type\":\"boolean\"},\"userId\":{\"type\":\"string\"},\"role\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"emailVerified\":{\"type\":\"boolean\"},\"email\":{\"type\":\"string\"}},\"required\":[\"id\",\"username\",\"emailVerified\",\"email\",\"role\",\"isBanned\",\"userId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"string\"},\"emailVerified\":{\"type\":\"boolean\"},\"role\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"isBanned\":{\"type\":\"boolean\"},\"username\":{\"type\":\"string\"}},\"required\":[\"id\",\"username\",\"emailVerified\",\"email\",\"isBanned\",\"userId\"]}")
     }
 }
 impl Agent for AuthAuthGetUserInfoByTokenReturns {

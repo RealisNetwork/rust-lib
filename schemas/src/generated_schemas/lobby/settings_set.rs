@@ -5,12 +5,12 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbySettingsSetParams {
+    #[serde(rename = "HFREffects")]
+    pub hfr_effects: i8,
     #[serde(rename = "language")]
     pub language: i8,
     #[serde(rename = "sounds")]
     pub sounds: bool,
-    #[serde(rename = "HFREffects")]
-    pub hfr_effects: i8,
     #[serde(rename = "quality")]
     pub quality: i8,
     #[serde(rename = "music")]
@@ -18,7 +18,7 @@ pub struct LobbySettingsSetParams {
 }
 impl Schema for LobbySettingsSetParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"language\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"sounds\":{\"type\":\"boolean\"},\"HFREffects\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"quality\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"music\":{\"type\":\"boolean\"}},\"required\":[\"sounds\",\"music\",\"quality\",\"HFREffects\",\"language\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"HFREffects\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"language\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"sounds\":{\"type\":\"boolean\"},\"quality\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"music\":{\"type\":\"boolean\"}},\"required\":[\"sounds\",\"music\",\"quality\",\"HFREffects\",\"language\"]}") . unwrap ()
     }
 }
 impl Agent for LobbySettingsSetParams {
