@@ -4,7 +4,7 @@ use error_registry::BaseError;
 use healthchecker::Healthchecker;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
-use serde_json::Value;
+use serde_json::{json, Value};
 use std::fmt::Debug;
 use std::sync::Arc;
 use transport::{ReceivedMessage, Subscription, Transport, VSubscription};
@@ -87,7 +87,14 @@ impl<
                     }
                 },
                 Err(error) => {
-                    log::error!("got error {}", error.to_string());
+                    log::error!(
+                        "Fail to deserialize {}",
+                        json!({
+                            "topic": self.service.topic_to_subscribe(),
+                            "error": json!(error),
+                        })
+                        .to_string()
+                    );
                     Ok(())
                 }
             };
