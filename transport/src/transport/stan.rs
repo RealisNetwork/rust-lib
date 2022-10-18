@@ -2,6 +2,7 @@ use crate::common::TransportResult;
 use crate::response::VResponse;
 use crate::subscription::{Subscription, VSubscription};
 use crate::{Transport, VReceivedMessage};
+use crate::message::ReceivedMessage;
 use async_trait::async_trait;
 use error_registry::custom_errors::Nats as CustomNats;
 use error_registry::generated_errors::Nats as GeneratedNats;
@@ -120,8 +121,12 @@ impl Transport for StanTransport {
             .next_timeout(max_duration.unwrap_or_else(|| Duration::from_secs(25)))
             .await;
 
+        let message = message_result?;
+
+        message.clone().ok().await?;
+
         subscription.unsubscribe().await?;
 
-        Ok(message_result?)
+        Ok(message)
     }
 }

@@ -11,7 +11,7 @@ use serde::de::DeserializeOwned;
 use crate::common::TransportResult;
 use crate::ReceivedMessage;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct JetMessage {
     pub message: Message,
 }

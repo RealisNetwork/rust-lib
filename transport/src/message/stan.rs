@@ -9,7 +9,7 @@ use serde::de::DeserializeOwned;
 use stan::Message;
 use std::fmt::Debug;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct StanMessage {
     pub message: Message,
 }
