@@ -29,24 +29,24 @@ impl Agent for AuthAuthGetAllMyActiveSessionsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthGetAllMyActiveSessionsReturns {
-    #[serde(rename = "username")]
-    pub username: String,
-    #[serde(rename = "start")]
-    pub start: f64,
-    #[serde(rename = "ipAddress")]
-    pub ip_address: String,
-    #[serde(rename = "id")]
-    pub id: String,
+    #[serde(rename = "clients")]
+    pub clients: String,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "lastAccess")]
     pub last_access: f64,
-    #[serde(rename = "clients")]
-    pub clients: String,
+    #[serde(rename = "ipAddress")]
+    pub ip_address: String,
+    #[serde(rename = "start")]
+    pub start: f64,
+    #[serde(rename = "username")]
+    pub username: String,
+    #[serde(rename = "id")]
+    pub id: String,
 }
 impl Schema for AuthAuthGetAllMyActiveSessionsReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"username\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"ipAddress\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"lastAccess\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"clients\":{\"type\":\"string\"}},\"required\":[\"id\",\"username\",\"userId\",\"ipAddress\",\"start\",\"lastAccess\",\"clients\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"clients\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"lastAccess\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"ipAddress\":{\"type\":\"string\"},\"start\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"username\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"}},\"required\":[\"id\",\"username\",\"userId\",\"ipAddress\",\"start\",\"lastAccess\",\"clients\"]}")
     }
 }
 impl Agent for AuthAuthGetAllMyActiveSessionsReturns {

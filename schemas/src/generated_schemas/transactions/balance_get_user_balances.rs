@@ -29,6 +29,8 @@ impl Agent for TransactionsBalanceGetUserBalancesParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetUserBalancesReturns {
+    #[serde(rename = "TLIS")]
+    pub tlis: String,
     #[serde(rename = "LIS")]
     pub lis: String,
     #[serde(rename = "ETH")]
@@ -38,7 +40,7 @@ pub struct TransactionsBalanceGetUserBalancesReturns {
 }
 impl Schema for TransactionsBalanceGetUserBalancesReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"LIS\":{\"type\":\"string\"},\"ETH\":{\"type\":\"string\"},\"WLIS\":{\"type\":\"string\"}},\"required\":[\"ETH\",\"LIS\",\"WLIS\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"TLIS\":{\"type\":\"string\"},\"LIS\":{\"type\":\"string\"},\"ETH\":{\"type\":\"string\"},\"WLIS\":{\"type\":\"string\"}},\"required\":[\"ETH\",\"LIS\",\"WLIS\",\"TLIS\"]}")
     }
 }
 impl Agent for TransactionsBalanceGetUserBalancesReturns {

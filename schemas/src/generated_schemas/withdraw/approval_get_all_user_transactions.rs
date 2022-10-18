@@ -33,34 +33,34 @@ impl Agent for WithdrawApprovalGetAllUserTransactionsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalGetAllUserTransactionsReturnsDataParamsParamsApproveDataParams {
-    #[serde(rename = "whoConsidered")]
-    pub who_considered: Option<String>,
     #[serde(rename = "approveReason")]
     pub approve_reason: Option<String>,
+    #[serde(rename = "whoConsidered")]
+    pub who_considered: Option<String>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalGetAllUserTransactionsReturnsDataParamsParams {
-    #[serde(rename = "amount")]
-    pub amount: String,
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: String,
-    #[serde(rename = "recipientAddress")]
-    pub recipient_address: String,
-    #[serde(rename = "fee")]
-    pub fee: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
+    #[serde(rename = "status")]
+    pub status: String,
     #[serde(rename = "approveData")]
     pub approve_data:
         WithdrawApprovalGetAllUserTransactionsReturnsDataParamsParamsApproveDataParams,
     #[serde(rename = "currency")]
     pub currency: String,
-    #[serde(rename = "status")]
-    pub status: String,
+    #[serde(rename = "fee")]
+    pub fee: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "recipientAddress")]
+    pub recipient_address: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalGetAllUserTransactionsReturns {
@@ -71,7 +71,7 @@ pub struct WithdrawApprovalGetAllUserTransactionsReturns {
 }
 impl Schema for WithdrawApprovalGetAllUserTransactionsReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"createdAt\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"recipientAddress\":{\"type\":\"string\"},\"fee\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"approveData\":{\"type\":\"object\",\"properties\":{\"whoConsidered\":{\"type\":\"string\"},\"approveReason\":{\"type\":\"string\"}}},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"status\":{\"type\":\"string\",\"pattern\":\"^(raw)|(success)$\"}},\"required\":[\"id\",\"userId\",\"currency\",\"amount\",\"fee\",\"recipientAddress\",\"status\",\"approveData\",\"createdAt\",\"updatedAt\"]}},\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"totalCount\",\"data\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"string\",\"pattern\":\"^(raw)|(success)$\"},\"approveData\":{\"type\":\"object\",\"properties\":{\"approveReason\":{\"type\":\"string\"},\"whoConsidered\":{\"type\":\"string\"}}},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"fee\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"recipientAddress\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"currency\",\"amount\",\"fee\",\"recipientAddress\",\"status\",\"approveData\",\"createdAt\",\"updatedAt\"]}},\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"totalCount\",\"data\"]}")
     }
 }
 impl Agent for WithdrawApprovalGetAllUserTransactionsReturns {

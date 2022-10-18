@@ -36,16 +36,16 @@ pub struct BingoBingoGetBingoDataReturnsBingoItemsParamsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BingoBingoGetBingoDataReturnsBingoSeasonInfoParams {
-    #[serde(rename = "SeasonState")]
-    pub season_state: i32,
     #[serde(rename = "SeasonStartDelayMs")]
     pub season_start_delay_ms: f64,
     #[serde(rename = "LastUpdateTimeMs")]
     pub last_update_time_ms: f64,
-    #[serde(rename = "SeasonDurationMs")]
-    pub season_duration_ms: f64,
     #[serde(rename = "SeasonId")]
     pub season_id: i32,
+    #[serde(rename = "SeasonState")]
+    pub season_state: i32,
+    #[serde(rename = "SeasonDurationMs")]
+    pub season_duration_ms: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BingoBingoGetBingoDataReturns {
@@ -58,7 +58,7 @@ pub struct BingoBingoGetBingoDataReturns {
 }
 impl Schema for BingoBingoGetBingoDataReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"BingoItems\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"ItemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"Amount\":{\"type\":\"string\"}},\"required\":[\"ItemId\",\"Amount\"]}},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"BingoSeasonInfo\":{\"type\":\"object\",\"properties\":{\"SeasonState\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"SeasonStartDelayMs\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"LastUpdateTimeMs\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"SeasonDurationMs\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"SeasonId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"SeasonId\",\"SeasonState\",\"LastUpdateTimeMs\",\"SeasonDurationMs\",\"SeasonStartDelayMs\"]}},\"required\":[\"status\",\"BingoItems\",\"BingoSeasonInfo\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"BingoItems\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"ItemId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"Amount\":{\"type\":\"string\"}},\"required\":[\"ItemId\",\"Amount\"]}},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"BingoSeasonInfo\":{\"type\":\"object\",\"properties\":{\"SeasonStartDelayMs\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"LastUpdateTimeMs\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"SeasonId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"SeasonState\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"SeasonDurationMs\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"SeasonId\",\"SeasonState\",\"LastUpdateTimeMs\",\"SeasonDurationMs\",\"SeasonStartDelayMs\"]}},\"required\":[\"status\",\"BingoItems\",\"BingoSeasonInfo\"]}")
     }
 }
 impl Agent for BingoBingoGetBingoDataReturns {

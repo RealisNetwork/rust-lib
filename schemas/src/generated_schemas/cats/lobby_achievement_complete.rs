@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyAchievementCompleteParams {
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "achievementKey")]
     pub achievement_key: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for CatsLobbyAchievementCompleteParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"achievementKey\":{\"type\":\"string\"}},\"required\":[\"achievementKey\",\"userId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"achievementKey\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"achievementKey\",\"userId\"]}") . unwrap ()
     }
 }
 impl Agent for CatsLobbyAchievementCompleteParams {

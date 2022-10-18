@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct OrchestratorBattlePassPurchasePremiumParams {
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
     #[serde(rename = "creator")]
     pub creator: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
 }
 impl Schema for OrchestratorBattlePassPurchasePremiumParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"}},\"required\":[\"userId\",\"txId\",\"creator\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"txId\",\"creator\"]}") . unwrap ()
     }
 }
 impl Agent for OrchestratorBattlePassPurchasePremiumParams {

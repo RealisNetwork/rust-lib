@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct AuthRoleUpdateParams {
     #[serde(rename = "pages")]
     pub pages: Vec<String>,
-    #[serde(rename = "roleId")]
-    pub role_id: f64,
     #[serde(rename = "methods")]
     pub methods: Vec<String>,
+    #[serde(rename = "roleId")]
+    pub role_id: f64,
 }
 impl Schema for AuthRoleUpdateParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"pages\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"roleId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"methods\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"roleId\",\"methods\",\"pages\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"pages\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"methods\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"roleId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"roleId\",\"methods\",\"pages\"]}") . unwrap ()
     }
 }
 impl Agent for AuthRoleUpdateParams {

@@ -26,7 +26,7 @@ impl ReceivedMessage for StanMessage {
                 msg,
                 error_type: Common::InternalServerError.into(),
                 data: serde_json::from_slice(&self.message.data).ok(),
-                trace: format!("{:?}", trace),
+                trace: Some(format!("{:?}", trace)),
                 status: error_type.into(),
             }
         });
@@ -45,7 +45,7 @@ impl ReceivedMessage for StanMessage {
                     msg,
                     error_type: CustomNats::Ok.into(),
                     data: serde_json::to_value(self.message.data).ok(),
-                    trace: format!("{:?}", trace),
+                    trace: Some(format!("{:?}", trace)),
                     status: error_type.into(),
                 }
             })

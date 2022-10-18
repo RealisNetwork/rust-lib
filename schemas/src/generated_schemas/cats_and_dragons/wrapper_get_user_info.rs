@@ -31,26 +31,26 @@ impl Agent for CatsAndDragonsWrapperGetUserInfoParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetUserInfoReturns {
-    #[serde(rename = "email")]
-    pub email: String,
-    #[serde(rename = "refLink")]
-    pub ref_link: String,
-    #[serde(rename = "provider")]
-    pub provider: Option<String>,
-    #[serde(rename = "hasReferrer")]
-    pub has_referrer: bool,
     #[serde(rename = "isAuthorized")]
     pub is_authorized: bool,
+    #[serde(rename = "refCode")]
+    pub ref_code: String,
+    #[serde(rename = "email")]
+    pub email: String,
+    #[serde(rename = "hasReferrer")]
+    pub has_referrer: bool,
+    #[serde(rename = "provider")]
+    pub provider: Option<String>,
     #[serde(rename = "nickname")]
     pub nickname: String,
     #[serde(rename = "isNewProfile")]
     pub is_new_profile: bool,
-    #[serde(rename = "refCode")]
-    pub ref_code: String,
+    #[serde(rename = "refLink")]
+    pub ref_link: String,
 }
 impl Schema for CatsAndDragonsWrapperGetUserInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\"},\"refLink\":{\"type\":\"string\"},\"provider\":{\"type\":\"string\",\"pattern\":\"^(Keycloak)|(DeviceId)$\"},\"hasReferrer\":{\"type\":\"boolean\"},\"isAuthorized\":{\"type\":\"boolean\"},\"nickname\":{\"type\":\"string\"},\"isNewProfile\":{\"type\":\"boolean\"},\"refCode\":{\"type\":\"string\"}},\"required\":[\"email\",\"isAuthorized\",\"refLink\",\"refCode\",\"hasReferrer\",\"nickname\",\"isNewProfile\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isAuthorized\":{\"type\":\"boolean\"},\"refCode\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"hasReferrer\":{\"type\":\"boolean\"},\"provider\":{\"type\":\"string\",\"pattern\":\"^(Keycloak)|(DeviceId)$\"},\"nickname\":{\"type\":\"string\"},\"isNewProfile\":{\"type\":\"boolean\"},\"refLink\":{\"type\":\"string\"}},\"required\":[\"email\",\"isAuthorized\",\"refLink\",\"refCode\",\"hasReferrer\",\"nickname\",\"isNewProfile\"]}")
     }
 }
 impl Agent for CatsAndDragonsWrapperGetUserInfoReturns {
