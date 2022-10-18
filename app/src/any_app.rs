@@ -87,7 +87,7 @@ impl<
                     }
                 },
                 Err(error) => {
-                    log::debug!("got error {:#?}", error);
+                    log::error!("got error {}", error.to_string());
                     Ok(())
                 }
             };
