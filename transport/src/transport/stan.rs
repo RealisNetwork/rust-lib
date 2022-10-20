@@ -113,7 +113,20 @@ impl Transport for StanTransport {
         msg: VResponse,
         max_duration: Option<Duration>,
     ) -> TransportResult<VReceivedMessage> {
-        let mut subscription = self.subscribe_not_durable(topic_response.as_str()).await?;
+        let subscription_config = SubscriptionConfig {
+            queue_group: None,
+            durable_name: None,
+            start: SubscriptionStart::NewOnly,
+            ..Default::default()
+        };
+        let mut subscription: VSubscription = tokio::task::block_in_place(move || {
+            self.client
+                .subscribe(&topic_response, subscription_config)
+                .map(|subscription| subscription.into())
+                .map_err(|error| {
+                    BaseError::new(format!("{:?}", error), GeneratedNats::InternalServiceCall)
+                })
+        })?;
 
         self.publish(msg).await?;
 
