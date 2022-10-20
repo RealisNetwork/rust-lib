@@ -7,7 +7,7 @@ use error_registry::custom_errors::Nats as CustomNats;
 use error_registry::generated_errors::Nats as GeneratedNats;
 use error_registry::BaseError;
 use healthchecker::Alivable;
-use serde_json::Value;
+use serde_json::{json, Value};
 use stan::{Client, SubscriptionConfig, SubscriptionStart};
 use std::time::Duration;
 
@@ -56,12 +56,13 @@ impl Transport for StanTransport {
             VResponse::Response(response) => (response.topic_res, response.response),
         };
 
-        log::debug!(
-            "Publishing: {:#?} by topic: {}",
-            serde_json::from_slice::<Value>(&response),
-            topic_res
+        log::trace!(
+            "Publishing by topic `{}` request: {}",
+            topic_res,
+            serde_json::from_slice::<Value>(&response)
+                .unwrap_or_else(|_| json!({}))
+                .to_string()
         );
-
         tokio::task::block_in_place(move || {
             self.client
                 .publish(&topic_res, response)
@@ -77,6 +78,12 @@ impl Transport for StanTransport {
             start: SubscriptionStart::LastReceived,
             ..Default::default()
         };
+
+        log::trace!(
+            "Subscribing by topic: `{}`, durable name: `{}`",
+            topic,
+            durable_name
+        );
         tokio::task::block_in_place(move || {
             self.client
                 .subscribe(topic, subscription_config)
@@ -95,6 +102,8 @@ impl Transport for StanTransport {
             start: SubscriptionStart::LastReceived,
             ..Default::default()
         };
+
+        log::trace!("Subscribing by topic: `{}`", topic);
         tokio::task::block_in_place(move || {
             self.client
                 .subscribe(topic, subscription_config)
@@ -112,7 +121,25 @@ impl Transport for StanTransport {
         msg: VResponse,
         max_duration: Option<Duration>,
     ) -> TransportResult<VReceivedMessage> {
-        let mut subscription = self.subscribe_not_durable(topic_response.as_str()).await?;
+        let subscription_config = SubscriptionConfig {
+            queue_group: None,
+            durable_name: None,
+            start: SubscriptionStart::NewOnly,
+            ..Default::default()
+        };
+
+        log::trace!(
+            "Subscribing by topic: `{}`, for new messages only",
+            topic_response
+        );
+        let mut subscription: VSubscription = tokio::task::block_in_place(move || {
+            self.client
+                .subscribe(&topic_response, subscription_config)
+                .map(|subscription| subscription.into())
+                .map_err(|error| {
+                    BaseError::new(format!("{:?}", error), GeneratedNats::InternalServiceCall)
+                })
+        })?;
 
         self.publish(msg).await?;
 
