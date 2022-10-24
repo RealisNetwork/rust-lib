@@ -4,17 +4,21 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct MarketPlaceMarketPlaceAddToMarketPlaceParamsAdditionalParamsParams {}
+pub struct MarketPlaceMarketPlaceAddToMarketPlaceParamsAdditionalParamsParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceAddToMarketPlaceParams {
     #[serde(rename = "category")]
     pub category: String,
     #[serde(rename = "personalType")]
     pub personal_type: String,
-    #[serde(rename = "price")]
-    pub price: i32,
     #[serde(rename = "productId")]
     pub product_id: i32,
+    #[serde(rename = "price")]
+    pub price: i32,
+    #[serde(rename = "description")]
+    pub description: String,
+    #[serde(rename = "image")]
+    pub image: String,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "additionalParams")]
@@ -22,7 +26,7 @@ pub struct MarketPlaceMarketPlaceAddToMarketPlaceParams {
 }
 impl Schema for MarketPlaceMarketPlaceAddToMarketPlaceParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"category\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}}},\"required\":[\"userId\",\"price\",\"category\",\"personalType\",\"productId\",\"additionalParams\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"category\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"description\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}}},\"required\":[\"userId\",\"price\",\"description\",\"image\",\"category\",\"personalType\",\"productId\",\"additionalParams\"]}") . unwrap ()
     }
 }
 impl Agent for MarketPlaceMarketPlaceAddToMarketPlaceParams {

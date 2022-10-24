@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GooglePlayPurchaseValidateSubscriptionParams {
-    #[serde(rename = "subscriptionProductId")]
-    pub subscription_product_id: String,
     #[serde(rename = "packageName")]
     pub package_name: String,
     #[serde(rename = "subscriptionToken")]
     pub subscription_token: String,
+    #[serde(rename = "subscriptionProductId")]
+    pub subscription_product_id: String,
 }
 impl Schema for GooglePlayPurchaseValidateSubscriptionParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"subscriptionProductId\":{\"type\":\"string\"},\"packageName\":{\"type\":\"string\"},\"subscriptionToken\":{\"type\":\"string\"}},\"required\":[\"subscriptionToken\",\"subscriptionProductId\",\"packageName\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"packageName\":{\"type\":\"string\"},\"subscriptionToken\":{\"type\":\"string\"},\"subscriptionProductId\":{\"type\":\"string\"}},\"required\":[\"subscriptionToken\",\"subscriptionProductId\",\"packageName\"]}") . unwrap ()
     }
 }
 impl Agent for GooglePlayPurchaseValidateSubscriptionParams {

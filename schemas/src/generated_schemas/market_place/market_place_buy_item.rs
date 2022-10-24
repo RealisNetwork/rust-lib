@@ -5,12 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceBuyItemParams {
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "productId")]
     pub product_id: i32,
 }
 impl Schema for MarketPlaceMarketPlaceBuyItemParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"productId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"userId\",\"productId\"]}") . unwrap ()
     }
 }
 impl Agent for MarketPlaceMarketPlaceBuyItemParams {
@@ -24,7 +26,7 @@ impl Agent for MarketPlaceMarketPlaceBuyItemParams {
         "market-place"
     }
     fn access_level() -> AccessLevel {
-        AccessLevel::Protected
+        AccessLevel::Internal
     }
 }
 impl<'de> Deserialize<'de> for MarketPlaceMarketPlaceBuyItemReturns {
@@ -54,6 +56,6 @@ impl Agent for MarketPlaceMarketPlaceBuyItemReturns {
         "market-place"
     }
     fn access_level() -> AccessLevel {
-        AccessLevel::Protected
+        AccessLevel::Internal
     }
 }

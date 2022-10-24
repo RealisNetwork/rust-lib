@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyUnlinkAccountParams {
-    #[serde(rename = "password")]
-    pub password: String,
-    #[serde(rename = "email")]
-    pub email: String,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "email")]
+    pub email: String,
+    #[serde(rename = "password")]
+    pub password: String,
 }
 impl Schema for CatsLobbyUnlinkAccountParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"password\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"email\",\"password\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"},\"password\":{\"type\":\"string\"}},\"required\":[\"userId\",\"email\",\"password\"]}") . unwrap ()
     }
 }
 impl Agent for CatsLobbyUnlinkAccountParams {

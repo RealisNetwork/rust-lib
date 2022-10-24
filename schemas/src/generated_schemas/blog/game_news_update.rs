@@ -5,20 +5,20 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogGameNewsUpdateParams {
-    #[serde(rename = "id")]
-    pub id: f64,
     #[serde(rename = "title")]
     pub title: Option<String>,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "appId")]
+    pub app_id: Option<f64>,
     #[serde(rename = "content")]
     pub content: Option<String>,
     #[serde(rename = "image")]
     pub image: Option<String>,
-    #[serde(rename = "appId")]
-    pub app_id: Option<f64>,
 }
 impl Schema for BlogGameNewsUpdateParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"title\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"title\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"content\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"}},\"required\":[\"id\"]}") . unwrap ()
     }
 }
 impl Agent for BlogGameNewsUpdateParams {

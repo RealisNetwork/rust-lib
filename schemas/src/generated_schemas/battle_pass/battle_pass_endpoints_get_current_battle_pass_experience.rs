@@ -4,7 +4,7 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct BattlePassBattlePassEndpointsGetCurrentBattlePassExperienceParams {}
+pub struct BattlePassBattlePassEndpointsGetCurrentBattlePassExperienceParams(Value);
 impl Schema for BattlePassBattlePassEndpointsGetCurrentBattlePassExperienceParams {
     fn schema() -> Value {
         serde_json::from_str("{\"type\":\"object\",\"properties\":{}}").unwrap()

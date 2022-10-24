@@ -5,24 +5,24 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigUpdateParams {
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "isAvailable")]
-    pub is_available: bool,
-    #[serde(rename = "price")]
-    pub price: String,
-    #[serde(rename = "multiplier")]
-    pub multiplier: String,
     #[serde(rename = "priceInLis")]
     pub price_in_lis: String,
-    #[serde(rename = "membership")]
-    pub membership: String,
     #[serde(rename = "maxCount")]
     pub max_count: String,
+    #[serde(rename = "multiplier")]
+    pub multiplier: String,
+    #[serde(rename = "isAvailable")]
+    pub is_available: bool,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "membership")]
+    pub membership: String,
+    #[serde(rename = "price")]
+    pub price: String,
 }
 impl Schema for StatusConfigUpdateParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isAvailable\":{\"type\":\"boolean\"},\"price\":{\"type\":\"string\"},\"multiplier\":{\"type\":\"string\"},\"priceInLis\":{\"type\":\"string\"},\"membership\":{\"type\":\"string\"},\"maxCount\":{\"type\":\"string\"}},\"required\":[\"id\",\"membership\",\"price\",\"multiplier\",\"priceInLis\",\"maxCount\",\"isAvailable\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"priceInLis\":{\"type\":\"string\"},\"maxCount\":{\"type\":\"string\"},\"multiplier\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"membership\":{\"type\":\"string\"},\"price\":{\"type\":\"string\"}},\"required\":[\"id\",\"membership\",\"price\",\"multiplier\",\"priceInLis\",\"maxCount\",\"isAvailable\"]}") . unwrap ()
     }
 }
 impl Agent for StatusConfigUpdateParams {

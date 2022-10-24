@@ -28,7 +28,7 @@ impl Agent for ProductFactoryProductTypeGetAttributeListByPersonalTypeParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ProductFactoryProductTypeGetAttributeListByPersonalTypeReturns {}
+pub struct ProductFactoryProductTypeGetAttributeListByPersonalTypeReturns(Value);
 impl Schema for ProductFactoryProductTypeGetAttributeListByPersonalTypeReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"object\",\"properties\":{}}")

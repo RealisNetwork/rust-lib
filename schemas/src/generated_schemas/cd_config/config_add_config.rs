@@ -4,17 +4,17 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct CdConfigConfigAddConfigParamsDataParams {}
+pub struct CdConfigConfigAddConfigParamsDataParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CdConfigConfigAddConfigParams {
-    #[serde(rename = "data")]
-    pub data: CdConfigConfigAddConfigParamsDataParams,
     #[serde(rename = "key")]
     pub key: String,
+    #[serde(rename = "data")]
+    pub data: CdConfigConfigAddConfigParamsDataParams,
 }
 impl Schema for CdConfigConfigAddConfigParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"data\":{\"type\":\"object\",\"properties\":{}},\"key\":{\"type\":\"string\"}},\"required\":[\"key\",\"data\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"},\"data\":{\"type\":\"object\",\"properties\":{}}},\"required\":[\"key\",\"data\"]}") . unwrap ()
     }
 }
 impl Agent for CdConfigConfigAddConfigParams {

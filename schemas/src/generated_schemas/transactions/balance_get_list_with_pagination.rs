@@ -10,7 +10,7 @@ pub struct TransactionsBalanceGetListWithPaginationParams {
 }
 impl Schema for TransactionsBalanceGetListWithPaginationParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"page\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"page\"]}") . unwrap ()
     }
 }
 impl Agent for TransactionsBalanceGetListWithPaginationParams {
@@ -31,10 +31,10 @@ impl Agent for TransactionsBalanceGetListWithPaginationParams {
 pub struct TransactionsBalanceGetListWithPaginationReturnsListParamsParams {
     #[serde(rename = "balanceChange")]
     pub balance_change: String,
-    #[serde(rename = "dateTime")]
-    pub date_time: String,
     #[serde(rename = "blockId")]
     pub block_id: String,
+    #[serde(rename = "dateTime")]
+    pub date_time: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetListWithPaginationReturns {
@@ -47,7 +47,7 @@ pub struct TransactionsBalanceGetListWithPaginationReturns {
 }
 impl Schema for TransactionsBalanceGetListWithPaginationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"balanceChange\":{\"type\":\"string\"},\"dateTime\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"}},\"required\":[\"blockId\",\"dateTime\",\"balanceChange\"]}},\"page\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"pages\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"page\",\"pages\",\"list\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"balanceChange\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"},\"dateTime\":{\"type\":\"string\"}},\"required\":[\"blockId\",\"dateTime\",\"balanceChange\"]}},\"page\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"pages\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"page\",\"pages\",\"list\"]}")
     }
 }
 impl Agent for TransactionsBalanceGetListWithPaginationReturns {

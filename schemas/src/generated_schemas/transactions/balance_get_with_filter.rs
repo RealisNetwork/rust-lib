@@ -5,22 +5,22 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetWithFilterParamsFilterListParams {
-    #[serde(rename = "firstDate")]
-    pub first_date: Option<String>,
-    #[serde(rename = "perPage")]
-    pub per_page: Option<f64>,
-    #[serde(rename = "creator")]
-    pub creator: Option<String>,
     #[serde(rename = "page")]
     pub page: Option<f64>,
     #[serde(rename = "userId")]
     pub user_id: Option<String>,
-    #[serde(rename = "lastDate")]
-    pub last_date: Option<String>,
+    #[serde(rename = "creator")]
+    pub creator: Option<String>,
     #[serde(rename = "TypeTransaction")]
     pub type_transaction: Option<String>,
+    #[serde(rename = "firstDate")]
+    pub first_date: Option<String>,
+    #[serde(rename = "perPage")]
+    pub per_page: Option<f64>,
     #[serde(rename = "reason")]
     pub reason: Option<String>,
+    #[serde(rename = "lastDate")]
+    pub last_date: Option<String>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetWithFilterParams {
@@ -29,7 +29,7 @@ pub struct TransactionsBalanceGetWithFilterParams {
 }
 impl Schema for TransactionsBalanceGetWithFilterParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"filterList\":{\"type\":\"object\",\"properties\":{\"firstDate\":{\"type\":\"string\"},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"creator\":{\"type\":\"string\"},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"lastDate\":{\"type\":\"string\"},\"TypeTransaction\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"}}}},\"required\":[\"filterList\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"filterList\":{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"TypeTransaction\":{\"type\":\"string\"},\"firstDate\":{\"type\":\"string\"},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"reason\":{\"type\":\"string\"},\"lastDate\":{\"type\":\"string\"}}}},\"required\":[\"filterList\"]}") . unwrap ()
     }
 }
 impl Agent for TransactionsBalanceGetWithFilterParams {
@@ -47,43 +47,43 @@ impl Agent for TransactionsBalanceGetWithFilterParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceGetWithFilterReturnsDataParamsParamsExtraDetailParams {}
+pub struct TransactionsBalanceGetWithFilterReturnsDataParamsParamsExtraDetailParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetWithFilterReturnsDataParamsParams {
-    #[serde(rename = "reason")]
-    pub reason: String,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: String,
-    #[serde(rename = "id")]
-    pub id: i32,
-    #[serde(rename = "userId")]
-    pub user_id: String,
     #[serde(rename = "currency")]
     pub currency: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "credit")]
-    pub credit: String,
     #[serde(rename = "debit")]
     pub debit: String,
-    #[serde(rename = "extraDetail")]
-    pub extra_detail:
-        Option<TransactionsBalanceGetWithFilterReturnsDataParamsParamsExtraDetailParams>,
     #[serde(rename = "txId")]
     pub tx_id: String,
     #[serde(rename = "creator")]
     pub creator: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "extraDetail")]
+    pub extra_detail:
+        Option<TransactionsBalanceGetWithFilterReturnsDataParamsParamsExtraDetailParams>,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
+    #[serde(rename = "credit")]
+    pub credit: String,
+    #[serde(rename = "reason")]
+    pub reason: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetWithFilterReturns {
-    #[serde(rename = "totalCount")]
-    pub total_count: i32,
     #[serde(rename = "data")]
     pub data: Vec<TransactionsBalanceGetWithFilterReturnsDataParamsParams>,
+    #[serde(rename = "totalCount")]
+    pub total_count: i32,
 }
 impl Schema for TransactionsBalanceGetWithFilterReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"reason\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"createdAt\":{\"type\":\"string\"},\"credit\":{\"type\":\"string\"},\"debit\":{\"type\":\"string\"},\"extraDetail\":{\"type\":\"object\",\"properties\":{}},\"txId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"}},\"required\":[\"id\",\"debit\",\"credit\",\"reason\",\"currency\",\"txId\",\"userId\",\"creator\",\"createdAt\",\"updatedAt\"]}}},\"required\":[\"totalCount\",\"data\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"debit\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"extraDetail\":{\"type\":\"object\",\"properties\":{}},\"createdAt\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"credit\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"}},\"required\":[\"id\",\"debit\",\"credit\",\"reason\",\"currency\",\"txId\",\"userId\",\"creator\",\"createdAt\",\"updatedAt\"]}},\"totalCount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"totalCount\",\"data\"]}")
     }
 }
 impl Agent for TransactionsBalanceGetWithFilterReturns {

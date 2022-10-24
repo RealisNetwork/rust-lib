@@ -4,6 +4,17 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AdminConfirmationAddParamsInfoMethodParamsParamsParams(Value);
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AdminConfirmationAddParamsInfoMethodParams {
+    #[serde(rename = "agent")]
+    pub agent: String,
+    #[serde(rename = "params")]
+    pub params: AdminConfirmationAddParamsInfoMethodParamsParamsParams,
+    #[serde(rename = "method")]
+    pub method: String,
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminConfirmationAddParamsHistoryParamsParams {
     #[serde(rename = "userId")]
     pub user_id: String,
@@ -11,32 +22,21 @@ pub struct AdminConfirmationAddParamsHistoryParamsParams {
     pub is_confirmed: bool,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AdminConfirmationAddParamsInfoMethodParamsParamsParams {}
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AdminConfirmationAddParamsInfoMethodParams {
-    #[serde(rename = "params")]
-    pub params: AdminConfirmationAddParamsInfoMethodParamsParamsParams,
-    #[serde(rename = "agent")]
-    pub agent: String,
-    #[serde(rename = "method")]
-    pub method: String,
-}
-#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminConfirmationAddParams {
-    #[serde(rename = "isSuccess")]
-    pub is_success: Option<bool>,
-    #[serde(rename = "history")]
-    pub history: Option<Vec<AdminConfirmationAddParamsHistoryParamsParams>>,
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "infoMethod")]
-    pub info_method: AdminConfirmationAddParamsInfoMethodParams,
     #[serde(rename = "tab")]
     pub tab: String,
+    #[serde(rename = "infoMethod")]
+    pub info_method: AdminConfirmationAddParamsInfoMethodParams,
+    #[serde(rename = "history")]
+    pub history: Option<Vec<AdminConfirmationAddParamsHistoryParamsParams>>,
+    #[serde(rename = "isSuccess")]
+    pub is_success: Option<bool>,
 }
 impl Schema for AdminConfirmationAddParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"isSuccess\":{\"type\":\"boolean\"},\"history\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"isConfirmed\":{\"type\":\"boolean\"}},\"required\":[\"userId\",\"isConfirmed\"]}},\"userId\":{\"type\":\"string\"},\"infoMethod\":{\"type\":\"object\",\"properties\":{\"params\":{\"type\":\"object\",\"properties\":{}},\"agent\":{\"type\":\"string\"},\"method\":{\"type\":\"string\"}},\"required\":[\"agent\",\"method\",\"params\"]},\"tab\":{\"type\":\"string\"}},\"required\":[\"userId\",\"infoMethod\",\"tab\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"},\"infoMethod\":{\"type\":\"object\",\"properties\":{\"agent\":{\"type\":\"string\"},\"params\":{\"type\":\"object\",\"properties\":{}},\"method\":{\"type\":\"string\"}},\"required\":[\"agent\",\"method\",\"params\"]},\"history\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"isConfirmed\":{\"type\":\"boolean\"}},\"required\":[\"userId\",\"isConfirmed\"]}},\"isSuccess\":{\"type\":\"boolean\"}},\"required\":[\"userId\",\"infoMethod\",\"tab\"]}") . unwrap ()
     }
 }
 impl Agent for AdminConfirmationAddParams {

@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct AuthRoleAddParams {
     #[serde(rename = "pages")]
     pub pages: Vec<String>,
-    #[serde(rename = "roleName")]
-    pub role_name: String,
     #[serde(rename = "methods")]
     pub methods: Vec<String>,
+    #[serde(rename = "roleName")]
+    pub role_name: String,
 }
 impl Schema for AuthRoleAddParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"pages\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"roleName\":{\"type\":\"string\"},\"methods\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"roleName\",\"methods\",\"pages\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"pages\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"methods\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"roleName\":{\"type\":\"string\"}},\"required\":[\"roleName\",\"methods\",\"pages\"]}") . unwrap ()
     }
 }
 impl Agent for AuthRoleAddParams {

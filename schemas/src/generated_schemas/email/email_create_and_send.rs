@@ -5,20 +5,20 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct EmailEmailCreateAndSendParams {
+    #[serde(rename = "timeToSend")]
+    pub time_to_send: f64,
     #[serde(rename = "isResend")]
     pub is_resend: Option<bool>,
+    #[serde(rename = "body")]
+    pub body: String,
     #[serde(rename = "receivers")]
     pub receivers: Vec<String>,
     #[serde(rename = "subject")]
     pub subject: String,
-    #[serde(rename = "timeToSend")]
-    pub time_to_send: f64,
-    #[serde(rename = "body")]
-    pub body: String,
 }
 impl Schema for EmailEmailCreateAndSendParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"isResend\":{\"type\":\"boolean\"},\"receivers\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"subject\":{\"type\":\"string\"},\"timeToSend\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"body\":{\"type\":\"string\"}},\"required\":[\"body\",\"receivers\",\"timeToSend\",\"subject\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"timeToSend\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isResend\":{\"type\":\"boolean\"},\"body\":{\"type\":\"string\"},\"receivers\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"subject\":{\"type\":\"string\"}},\"required\":[\"body\",\"receivers\",\"timeToSend\",\"subject\"]}") . unwrap ()
     }
 }
 impl Agent for EmailEmailCreateAndSendParams {

@@ -5,18 +5,18 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogGameNewsCreateParams {
+    #[serde(rename = "appId")]
+    pub app_id: f64,
     #[serde(rename = "title")]
     pub title: String,
     #[serde(rename = "content")]
     pub content: String,
     #[serde(rename = "image")]
     pub image: String,
-    #[serde(rename = "appId")]
-    pub app_id: f64,
 }
 impl Schema for BlogGameNewsCreateParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"title\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"title\",\"content\",\"image\",\"appId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"title\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"}},\"required\":[\"title\",\"content\",\"image\",\"appId\"]}") . unwrap ()
     }
 }
 impl Agent for BlogGameNewsCreateParams {

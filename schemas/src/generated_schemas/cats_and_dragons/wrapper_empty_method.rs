@@ -28,7 +28,7 @@ impl Agent for CatsAndDragonsWrapperEmptyMethodParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct CatsAndDragonsWrapperEmptyMethodReturns {}
+pub struct CatsAndDragonsWrapperEmptyMethodReturns(Value);
 impl Schema for CatsAndDragonsWrapperEmptyMethodReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"object\",\"properties\":{}}")

@@ -38,16 +38,16 @@ pub struct LobbyUserGetLeaderBoardReturnsLeaderboardParamsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserGetLeaderBoardReturns {
-    #[serde(rename = "pages")]
-    pub pages: i16,
-    #[serde(rename = "page")]
-    pub page: i16,
     #[serde(rename = "leaderboard")]
     pub leaderboard: Vec<LobbyUserGetLeaderBoardReturnsLeaderboardParamsParams>,
+    #[serde(rename = "page")]
+    pub page: i16,
+    #[serde(rename = "pages")]
+    pub pages: i16,
 }
 impl Schema for LobbyUserGetLeaderBoardReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"pages\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"page\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"leaderboard\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"place\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"username\":{\"type\":\"string\"},\"rating\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"place\",\"username\",\"rating\"]}}},\"required\":[\"page\",\"pages\",\"leaderboard\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"leaderboard\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"place\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"username\":{\"type\":\"string\"},\"rating\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"place\",\"username\",\"rating\"]}},\"page\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}},\"pages\":{\"type\":\"integer\",\"minimum\":-32768,\"maximum\":32767,\"additionalAttributes\":{\"numberType\":\"Short\"}}},\"required\":[\"page\",\"pages\",\"leaderboard\"]}")
     }
 }
 impl Agent for LobbyUserGetLeaderBoardReturns {

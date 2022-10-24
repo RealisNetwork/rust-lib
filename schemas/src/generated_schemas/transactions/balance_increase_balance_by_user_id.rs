@@ -4,27 +4,27 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceIncreaseBalanceByUserIdParamsExtraDetailParams {}
+pub struct TransactionsBalanceIncreaseBalanceByUserIdParamsExtraDetailParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceIncreaseBalanceByUserIdParams {
-    #[serde(rename = "reason")]
-    pub reason: String,
-    #[serde(rename = "creator")]
-    pub creator: String,
-    #[serde(rename = "amount")]
-    pub amount: String,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
     #[serde(rename = "currency")]
     pub currency: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
     #[serde(rename = "extraDetail")]
     pub extra_detail: Option<TransactionsBalanceIncreaseBalanceByUserIdParamsExtraDetailParams>,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "reason")]
+    pub reason: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
 }
 impl Schema for TransactionsBalanceIncreaseBalanceByUserIdParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"reason\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"userId\":{\"type\":\"string\"},\"extraDetail\":{\"type\":\"object\",\"properties\":{}}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"creator\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"extraDetail\":{\"type\":\"object\",\"properties\":{}},\"userId\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}") . unwrap ()
     }
 }
 impl Agent for TransactionsBalanceIncreaseBalanceByUserIdParams {
@@ -42,7 +42,7 @@ impl Agent for TransactionsBalanceIncreaseBalanceByUserIdParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceIncreaseBalanceByUserIdReturns {}
+pub struct TransactionsBalanceIncreaseBalanceByUserIdReturns(Value);
 impl Schema for TransactionsBalanceIncreaseBalanceByUserIdReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"object\",\"properties\":{}}")

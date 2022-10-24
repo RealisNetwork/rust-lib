@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LootboxesLootboxesOpenLootboxParams {
-    #[serde(rename = "lootboxId")]
-    pub lootbox_id: f64,
     #[serde(rename = "userId")]
     pub user_id: String,
+    #[serde(rename = "lootboxId")]
+    pub lootbox_id: f64,
 }
 impl Schema for LootboxesLootboxesOpenLootboxParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"lootboxId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"lootboxId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"lootboxId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"lootboxId\"]}") . unwrap ()
     }
 }
 impl Agent for LootboxesLootboxesOpenLootboxParams {
@@ -35,22 +35,22 @@ pub struct LootboxesLootboxesOpenLootboxReturns {
     pub card_rewards: Vec<()>,
     #[serde(rename = "LootboxId")]
     pub lootbox_id: f64,
-    #[serde(rename = "ScienceReward")]
-    pub science_reward: f64,
-    #[serde(rename = "JackpotPool")]
-    pub jackpot_pool: String,
-    #[serde(rename = "JackpotReward")]
-    pub jackpot_reward: String,
     #[serde(rename = "HardReward")]
     pub hard_reward: f64,
+    #[serde(rename = "JackpotPool")]
+    pub jackpot_pool: String,
     #[serde(rename = "BingoItemRewards")]
     pub bingo_item_rewards: Vec<()>,
     #[serde(rename = "Status")]
     pub status: f64,
+    #[serde(rename = "ScienceReward")]
+    pub science_reward: f64,
+    #[serde(rename = "JackpotReward")]
+    pub jackpot_reward: String,
 }
 impl Schema for LootboxesLootboxesOpenLootboxReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"CardRewards\":{\"type\":\"array\",\"items\":{}},\"LootboxId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"ScienceReward\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"JackpotPool\":{\"type\":\"string\"},\"JackpotReward\":{\"type\":\"string\"},\"HardReward\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"BingoItemRewards\":{\"type\":\"array\",\"items\":{}},\"Status\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"LootboxId\",\"CardRewards\",\"ScienceReward\",\"HardReward\",\"JackpotReward\",\"JackpotPool\",\"BingoItemRewards\",\"Status\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"CardRewards\":{\"type\":\"array\",\"items\":{}},\"LootboxId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"HardReward\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"JackpotPool\":{\"type\":\"string\"},\"BingoItemRewards\":{\"type\":\"array\",\"items\":{}},\"Status\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"ScienceReward\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"JackpotReward\":{\"type\":\"string\"}},\"required\":[\"LootboxId\",\"CardRewards\",\"ScienceReward\",\"HardReward\",\"JackpotReward\",\"JackpotPool\",\"BingoItemRewards\",\"Status\"]}")
     }
 }
 impl Agent for LootboxesLootboxesOpenLootboxReturns {

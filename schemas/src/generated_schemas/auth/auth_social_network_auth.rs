@@ -35,20 +35,20 @@ impl Agent for AuthAuthSocialNetworkAuthParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthSocialNetworkAuthReturns {
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "access_token")]
-    pub access_token: String,
+    #[serde(rename = "expires_in")]
+    pub expires_in: i32,
     #[serde(rename = "refresh_expires_in")]
     pub refresh_expires_in: Option<i32>,
     #[serde(rename = "refresh_token")]
     pub refresh_token: Option<String>,
-    #[serde(rename = "expires_in")]
-    pub expires_in: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "access_token")]
+    pub access_token: String,
 }
 impl Schema for AuthAuthSocialNetworkAuthReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"access_token\":{\"type\":\"string\"},\"refresh_expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"refresh_token\":{\"type\":\"string\"},\"expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"access_token\",\"expires_in\",\"userId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"refresh_expires_in\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"refresh_token\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"access_token\":{\"type\":\"string\"}},\"required\":[\"access_token\",\"expires_in\",\"userId\"]}")
     }
 }
 impl Agent for AuthAuthSocialNetworkAuthReturns {
