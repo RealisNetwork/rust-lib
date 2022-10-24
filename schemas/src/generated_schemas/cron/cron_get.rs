@@ -29,22 +29,22 @@ impl Agent for CronCronGetParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CronCronGetReturns {
-    #[serde(rename = "key")]
-    pub key: String,
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
-    #[serde(rename = "id")]
-    pub id: f64,
     #[serde(rename = "howOften")]
     pub how_often: f64,
     #[serde(rename = "startsAt")]
     pub starts_at: String,
     #[serde(rename = "createdAt")]
     pub created_at: String,
+    #[serde(rename = "key")]
+    pub key: String,
+    #[serde(rename = "id")]
+    pub id: f64,
 }
 impl Schema for CronCronGetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"howOften\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"startsAt\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"key\",\"howOften\",\"startsAt\",\"createdAt\",\"updatedAt\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"updatedAt\":{\"type\":\"string\"},\"howOften\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"startsAt\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"key\",\"howOften\",\"startsAt\",\"createdAt\",\"updatedAt\"]}")
     }
 }
 impl Agent for CronCronGetReturns {

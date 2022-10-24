@@ -12,18 +12,18 @@ pub struct AdminOptionUpdateParamsExtraDetailsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionUpdateParams {
-    #[serde(rename = "clientKey")]
-    pub client_key: String,
-    #[serde(rename = "value")]
-    pub value: Option<String>,
     #[serde(rename = "description")]
     pub description: Option<String>,
     #[serde(rename = "extraDetails")]
     pub extra_details: Option<AdminOptionUpdateParamsExtraDetailsParams>,
+    #[serde(rename = "clientKey")]
+    pub client_key: String,
+    #[serde(rename = "value")]
+    pub value: Option<String>,
 }
 impl Schema for AdminOptionUpdateParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"clientKey\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"}}}},\"required\":[\"clientKey\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"description\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"}}},\"clientKey\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"required\":[\"clientKey\"]}") . unwrap ()
     }
 }
 impl Agent for AdminOptionUpdateParams {

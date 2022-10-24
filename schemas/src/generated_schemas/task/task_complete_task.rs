@@ -29,14 +29,14 @@ impl Agent for TaskTaskCompleteTaskParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TaskTaskCompleteTaskReturns {
-    #[serde(rename = "TaskId")]
-    pub task_id: f64,
     #[serde(rename = "status")]
     pub status: i32,
+    #[serde(rename = "TaskId")]
+    pub task_id: f64,
 }
 impl Schema for TaskTaskCompleteTaskReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"TaskId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"status\",\"TaskId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"TaskId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"status\",\"TaskId\"]}")
     }
 }
 impl Agent for TaskTaskCompleteTaskReturns {

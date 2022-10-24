@@ -9,22 +9,22 @@ pub struct TransactionsBalanceAdminIncreaseBalanceParamsExtraDetailParams(Value)
 pub struct TransactionsBalanceAdminIncreaseBalanceParams {
     #[serde(rename = "reason")]
     pub reason: String,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
-    #[serde(rename = "amount")]
-    pub amount: String,
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "creator")]
-    pub creator: String,
-    #[serde(rename = "extraDetail")]
-    pub extra_detail: Option<TransactionsBalanceAdminIncreaseBalanceParamsExtraDetailParams>,
     #[serde(rename = "currency")]
     pub currency: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
+    #[serde(rename = "creator")]
+    pub creator: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
+    #[serde(rename = "extraDetail")]
+    pub extra_detail: Option<TransactionsBalanceAdminIncreaseBalanceParamsExtraDetailParams>,
 }
 impl Schema for TransactionsBalanceAdminIncreaseBalanceParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"reason\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"extraDetail\":{\"type\":\"object\",\"properties\":{}},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"reason\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"txId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"extraDetail\":{\"type\":\"object\",\"properties\":{}}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}") . unwrap ()
     }
 }
 impl Agent for TransactionsBalanceAdminIncreaseBalanceParams {

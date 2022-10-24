@@ -29,24 +29,24 @@ impl Agent for BlogGameNewsGetParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogGameNewsGetReturns {
-    #[serde(rename = "image")]
-    pub image: String,
-    #[serde(rename = "appId")]
-    pub app_id: f64,
-    #[serde(rename = "title")]
-    pub title: String,
     #[serde(rename = "content")]
     pub content: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "id")]
-    pub id: f64,
     #[serde(rename = "updatedAt")]
     pub updated_at: String,
+    #[serde(rename = "image")]
+    pub image: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "title")]
+    pub title: String,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "appId")]
+    pub app_id: f64,
 }
 impl Schema for BlogGameNewsGetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"image\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"title\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"title\",\"content\",\"image\",\"appId\",\"createdAt\",\"updatedAt\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"content\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"title\",\"content\",\"image\",\"appId\",\"createdAt\",\"updatedAt\"]}")
     }
 }
 impl Agent for BlogGameNewsGetReturns {

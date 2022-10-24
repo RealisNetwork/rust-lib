@@ -7,10 +7,12 @@ use crate::generated_schemas::prelude::*;
 pub struct ProductFactoryProductsGenerateNftsParams {
     #[serde(rename = "category")]
     pub category: String,
+    #[serde(rename = "collection")]
+    pub collection: String,
 }
 impl Schema for ProductFactoryProductsGenerateNftsParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"category\":{\"type\":\"string\",\"pattern\":\"^(cats)|(dragons)$\"}},\"required\":[\"category\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"category\":{\"type\":\"string\",\"pattern\":\"^(cats)|(dragons)$\"},\"collection\":{\"type\":\"string\"}},\"required\":[\"category\",\"collection\"]}") . unwrap ()
     }
 }
 impl Agent for ProductFactoryProductsGenerateNftsParams {

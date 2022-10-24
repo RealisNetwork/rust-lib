@@ -37,16 +37,16 @@ impl Agent for MarketPlaceMarketPlaceGetCanceledItemsParams {
 pub struct MarketPlaceMarketPlaceGetCanceledItemsReturnsParams {
     #[serde(rename = "productId")]
     pub product_id: i32,
-    #[serde(rename = "userId")]
-    pub user_id: String,
+    #[serde(rename = "status")]
+    pub status: String,
     #[serde(rename = "price")]
     pub price: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "createdAt")]
     pub created_at: i32,
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "status")]
-    pub status: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetCanceledItemsReturns(
@@ -54,7 +54,7 @@ pub struct MarketPlaceMarketPlaceGetCanceledItemsReturns(
 );
 impl Schema for MarketPlaceMarketPlaceGetCanceledItemsReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"status\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"productId\",\"status\",\"price\",\"createdAt\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"status\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"userId\",\"productId\",\"status\",\"price\",\"createdAt\"]}}")
     }
 }
 impl Agent for MarketPlaceMarketPlaceGetCanceledItemsReturns {

@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalGetAllUserTransactionsParams {
-    #[serde(rename = "perPage")]
-    pub per_page: f64,
     #[serde(rename = "userId")]
     pub user_id: String,
     #[serde(rename = "page")]
     pub page: f64,
+    #[serde(rename = "perPage")]
+    pub per_page: f64,
 }
 impl Schema for WithdrawApprovalGetAllUserTransactionsParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"page\",\"perPage\",\"userId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"page\",\"perPage\",\"userId\"]}") . unwrap ()
     }
 }
 impl Agent for WithdrawApprovalGetAllUserTransactionsParams {
@@ -40,27 +40,27 @@ pub struct WithdrawApprovalGetAllUserTransactionsReturnsDataParamsParamsApproveD
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalGetAllUserTransactionsReturnsDataParamsParams {
+    #[serde(rename = "fee")]
+    pub fee: String,
+    #[serde(rename = "approveData")]
+    pub approve_data:
+        WithdrawApprovalGetAllUserTransactionsReturnsDataParamsParamsApproveDataParams,
     #[serde(rename = "currency")]
     pub currency: String,
     #[serde(rename = "amount")]
     pub amount: String,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: String,
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "status")]
-    pub status: String,
-    #[serde(rename = "approveData")]
-    pub approve_data:
-        WithdrawApprovalGetAllUserTransactionsReturnsDataParamsParamsApproveDataParams,
     #[serde(rename = "recipientAddress")]
     pub recipient_address: String,
     #[serde(rename = "createdAt")]
     pub created_at: String,
-    #[serde(rename = "fee")]
-    pub fee: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "status")]
+    pub status: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalGetAllUserTransactionsReturns {
@@ -71,7 +71,7 @@ pub struct WithdrawApprovalGetAllUserTransactionsReturns {
 }
 impl Schema for WithdrawApprovalGetAllUserTransactionsReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"amount\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"status\":{\"type\":\"string\",\"pattern\":\"^(raw)|(success)$\"},\"approveData\":{\"type\":\"object\",\"properties\":{\"whoConsidered\":{\"type\":\"string\"},\"approveReason\":{\"type\":\"string\"}}},\"recipientAddress\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"fee\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"currency\",\"amount\",\"fee\",\"recipientAddress\",\"status\",\"approveData\",\"createdAt\",\"updatedAt\"]}}},\"required\":[\"totalCount\",\"data\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"fee\":{\"type\":\"string\"},\"approveData\":{\"type\":\"object\",\"properties\":{\"whoConsidered\":{\"type\":\"string\"},\"approveReason\":{\"type\":\"string\"}}},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"amount\":{\"type\":\"string\"},\"recipientAddress\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"status\":{\"type\":\"string\",\"pattern\":\"^(raw)|(success)$\"}},\"required\":[\"id\",\"userId\",\"currency\",\"amount\",\"fee\",\"recipientAddress\",\"status\",\"approveData\",\"createdAt\",\"updatedAt\"]}}},\"required\":[\"totalCount\",\"data\"]}")
     }
 }
 impl Agent for WithdrawApprovalGetAllUserTransactionsReturns {

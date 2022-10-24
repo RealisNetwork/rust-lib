@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemHistoryParams {
-    #[serde(rename = "perPage")]
-    pub per_page: i32,
     #[serde(rename = "productId")]
     pub product_id: i32,
+    #[serde(rename = "perPage")]
+    pub per_page: i32,
     #[serde(rename = "page")]
     pub page: i32,
 }
 impl Schema for MarketPlaceMarketPlaceGetItemHistoryParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"perPage\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":100,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"page\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"productId\",\"page\",\"perPage\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":100,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"page\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"productId\",\"page\",\"perPage\"]}") . unwrap ()
     }
 }
 impl Agent for MarketPlaceMarketPlaceGetItemHistoryParams {
@@ -35,29 +35,29 @@ impl Agent for MarketPlaceMarketPlaceGetItemHistoryParams {
 pub struct MarketPlaceMarketPlaceGetItemHistoryReturnsItemsParamsParams {
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "price")]
-    pub price: i32,
-    #[serde(rename = "id")]
-    pub id: i32,
-    #[serde(rename = "nickname")]
-    pub nickname: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
     #[serde(rename = "productId")]
     pub product_id: i32,
     #[serde(rename = "status")]
     pub status: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
+    #[serde(rename = "nickname")]
+    pub nickname: String,
+    #[serde(rename = "price")]
+    pub price: i32,
+    #[serde(rename = "id")]
+    pub id: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemHistoryReturns {
-    #[serde(rename = "items")]
-    pub items: Vec<MarketPlaceMarketPlaceGetItemHistoryReturnsItemsParamsParams>,
     #[serde(rename = "totalCount")]
     pub total_count: i32,
+    #[serde(rename = "items")]
+    pub items: Vec<MarketPlaceMarketPlaceGetItemHistoryReturnsItemsParamsParams>,
 }
 impl Schema for MarketPlaceMarketPlaceGetItemHistoryReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"items\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"nickname\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"status\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"productId\",\"status\",\"createdAt\",\"price\",\"nickname\"]}},\"totalCount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"totalCount\",\"items\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"items\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"status\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"userId\",\"productId\",\"status\",\"createdAt\",\"price\",\"nickname\"]}}},\"required\":[\"totalCount\",\"items\"]}")
     }
 }
 impl Agent for MarketPlaceMarketPlaceGetItemHistoryReturns {

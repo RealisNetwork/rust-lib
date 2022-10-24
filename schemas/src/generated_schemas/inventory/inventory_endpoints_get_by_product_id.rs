@@ -31,36 +31,36 @@ impl Agent for InventoryInventoryEndpointsGetByProductIdParams {
 pub struct InventoryInventoryEndpointsGetByProductIdReturnsAdditionalParamsParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct InventoryInventoryEndpointsGetByProductIdReturns {
-    #[serde(rename = "status")]
-    pub status: String,
-    #[serde(rename = "type")]
-    pub r#type: String,
-    #[serde(rename = "subType")]
-    pub sub_type: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "productId")]
-    pub product_id: i32,
     #[serde(rename = "description")]
     pub description: String,
-    #[serde(rename = "image")]
-    pub image: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
     #[serde(rename = "id")]
     pub id: i32,
-    #[serde(rename = "createdAt")]
-    pub created_at: i32,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: i32,
     #[serde(rename = "nickname")]
     pub nickname: String,
+    #[serde(rename = "subType")]
+    pub sub_type: String,
+    #[serde(rename = "status")]
+    pub status: String,
+    #[serde(rename = "productId")]
+    pub product_id: i32,
     #[serde(rename = "category")]
     pub category: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: i32,
     #[serde(rename = "additionalParams")]
     pub additional_params: InventoryInventoryEndpointsGetByProductIdReturnsAdditionalParamsParams,
+    #[serde(rename = "type")]
+    pub r#type: String,
+    #[serde(rename = "image")]
+    pub image: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: i32,
 }
 impl Schema for InventoryInventoryEndpointsGetByProductIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"description\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"nickname\":{\"type\":\"string\"},\"category\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}}},\"required\":[\"id\",\"productId\",\"userId\",\"nickname\",\"type\",\"subType\",\"description\",\"image\",\"additionalParams\",\"status\",\"category\",\"createdAt\",\"updatedAt\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"description\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"nickname\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"},\"status\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"category\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"type\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"productId\",\"userId\",\"nickname\",\"type\",\"subType\",\"description\",\"image\",\"additionalParams\",\"status\",\"category\",\"createdAt\",\"updatedAt\"]}")
     }
 }
 impl Agent for InventoryInventoryEndpointsGetByProductIdReturns {

@@ -37,16 +37,16 @@ impl Agent for BlogCategoryGetAllParams {
 pub struct BlogCategoryGetAllReturnsParams {
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "id")]
-    pub id: f64,
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
+    #[serde(rename = "id")]
+    pub id: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogCategoryGetAllReturns(pub Vec<BlogCategoryGetAllReturnsParams>);
 impl Schema for BlogCategoryGetAllReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isAvailable\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"name\",\"isAvailable\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"name\",\"isAvailable\"]}}")
     }
 }
 impl Agent for BlogCategoryGetAllReturns {

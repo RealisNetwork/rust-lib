@@ -35,38 +35,38 @@ impl Agent for UserProfileGetMyProfileForBytesParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetMyProfileForBytesReturns {
-    #[serde(rename = "nickname")]
-    pub nickname: String,
+    #[serde(rename = "registeredAt")]
+    pub registered_at: String,
     #[serde(rename = "isSubscribedToMailing")]
     pub is_subscribed_to_mailing: bool,
-    #[serde(rename = "notice")]
-    pub notice: String,
+    #[serde(rename = "email")]
+    pub email: String,
+    #[serde(rename = "nickname")]
+    pub nickname: String,
+    #[serde(rename = "isBanned")]
+    pub is_banned: bool,
+    #[serde(rename = "isDeleted")]
+    pub is_deleted: bool,
+    #[serde(rename = "isNicknameChanged")]
+    pub is_nickname_changed: bool,
     #[serde(rename = "isConfirmed")]
     pub is_confirmed: bool,
+    #[serde(rename = "reason")]
+    pub reason: String,
+    #[serde(rename = "verified")]
+    pub verified: bool,
     #[serde(rename = "suspicious")]
     pub suspicious: bool,
+    #[serde(rename = "notice")]
+    pub notice: String,
     #[serde(rename = "id")]
     pub id: i32,
     #[serde(rename = "userId")]
     pub user_id: String,
-    #[serde(rename = "isNicknameChanged")]
-    pub is_nickname_changed: bool,
-    #[serde(rename = "isDeleted")]
-    pub is_deleted: bool,
-    #[serde(rename = "isBanned")]
-    pub is_banned: bool,
-    #[serde(rename = "email")]
-    pub email: String,
-    #[serde(rename = "reason")]
-    pub reason: String,
-    #[serde(rename = "registeredAt")]
-    pub registered_at: String,
-    #[serde(rename = "verified")]
-    pub verified: bool,
 }
 impl Schema for UserProfileGetMyProfileForBytesReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"nickname\":{\"type\":\"string\"},\"isSubscribedToMailing\":{\"type\":\"boolean\"},\"notice\":{\"type\":\"string\"},\"isConfirmed\":{\"type\":\"boolean\"},\"suspicious\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"isNicknameChanged\":{\"type\":\"boolean\"},\"isDeleted\":{\"type\":\"boolean\"},\"isBanned\":{\"type\":\"boolean\"},\"email\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"},\"registeredAt\":{\"type\":\"string\"},\"verified\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"userId\",\"nickname\",\"email\",\"verified\",\"isNicknameChanged\",\"isSubscribedToMailing\",\"suspicious\",\"isConfirmed\",\"notice\",\"isBanned\",\"isDeleted\",\"reason\",\"registeredAt\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"registeredAt\":{\"type\":\"string\"},\"isSubscribedToMailing\":{\"type\":\"boolean\"},\"email\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"isBanned\":{\"type\":\"boolean\"},\"isDeleted\":{\"type\":\"boolean\"},\"isNicknameChanged\":{\"type\":\"boolean\"},\"isConfirmed\":{\"type\":\"boolean\"},\"reason\":{\"type\":\"string\"},\"verified\":{\"type\":\"boolean\"},\"suspicious\":{\"type\":\"boolean\"},\"notice\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"nickname\",\"email\",\"verified\",\"isNicknameChanged\",\"isSubscribedToMailing\",\"suspicious\",\"isConfirmed\",\"notice\",\"isBanned\",\"isDeleted\",\"reason\",\"registeredAt\"]}")
     }
 }
 impl Agent for UserProfileGetMyProfileForBytesReturns {

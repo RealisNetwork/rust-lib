@@ -36,12 +36,12 @@ impl Agent for AchievementsAchievementGetAllAchievementsParams {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AchievementsAchievementGetAllAchievementsReturnsAchievementsParamsParamsGameEventsParamsParams
 {
+    #[serde(rename = "EventLifeType")]
+    pub event_life_type: String,
     #[serde(rename = "Count")]
     pub count: f64,
     #[serde(rename = "EventKey")]
     pub event_key: String,
-    #[serde(rename = "EventLifeType")]
-    pub event_life_type: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AchievementsAchievementGetAllAchievementsReturnsAchievementsParamsParamsDescriptionParamsParams
@@ -52,17 +52,17 @@ pub struct AchievementsAchievementGetAllAchievementsReturnsAchievementsParamsPar
     pub text: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AchievementsAchievementGetAllAchievementsReturnsAchievementsParamsParams { # [serde (rename = "GameEvents")] pub game_events : Vec < AchievementsAchievementGetAllAchievementsReturnsAchievementsParamsParamsGameEventsParamsParams > , # [serde (rename = "Description")] pub description : Vec < AchievementsAchievementGetAllAchievementsReturnsAchievementsParamsParamsDescriptionParamsParams > , # [serde (rename = "RewardType")] pub reward_type : i32 , # [serde (rename = "Key")] pub key : String , # [serde (rename = "Reward")] pub reward : f64 }
+pub struct AchievementsAchievementGetAllAchievementsReturnsAchievementsParamsParams { # [serde (rename = "RewardType")] pub reward_type : i32 , # [serde (rename = "GameEvents")] pub game_events : Vec < AchievementsAchievementGetAllAchievementsReturnsAchievementsParamsParamsGameEventsParamsParams > , # [serde (rename = "Key")] pub key : String , # [serde (rename = "Reward")] pub reward : f64 , # [serde (rename = "Description")] pub description : Vec < AchievementsAchievementGetAllAchievementsReturnsAchievementsParamsParamsDescriptionParamsParams > }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AchievementsAchievementGetAllAchievementsReturns {
-    #[serde(rename = "Achievements")]
-    pub achievements: Vec<AchievementsAchievementGetAllAchievementsReturnsAchievementsParamsParams>,
     #[serde(rename = "status")]
     pub status: i32,
+    #[serde(rename = "Achievements")]
+    pub achievements: Vec<AchievementsAchievementGetAllAchievementsReturnsAchievementsParamsParams>,
 }
 impl Schema for AchievementsAchievementGetAllAchievementsReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"Achievements\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"GameEvents\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"Count\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"EventKey\":{\"type\":\"string\"},\"EventLifeType\":{\"type\":\"string\"}},\"required\":[\"EventKey\",\"EventLifeType\",\"Count\"]}},\"Description\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"Language\":{\"type\":\"string\"},\"Text\":{\"type\":\"string\"}},\"required\":[\"Language\",\"Text\"]}},\"RewardType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"Key\":{\"type\":\"string\"},\"Reward\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"Key\",\"RewardType\",\"Reward\",\"Description\",\"GameEvents\"]}},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"status\",\"Achievements\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"Achievements\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"RewardType\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"GameEvents\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"EventLifeType\":{\"type\":\"string\"},\"Count\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"EventKey\":{\"type\":\"string\"}},\"required\":[\"EventKey\",\"EventLifeType\",\"Count\"]}},\"Key\":{\"type\":\"string\"},\"Reward\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"Description\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"Language\":{\"type\":\"string\"},\"Text\":{\"type\":\"string\"}},\"required\":[\"Language\",\"Text\"]}}},\"required\":[\"Key\",\"RewardType\",\"Reward\",\"Description\",\"GameEvents\"]}}},\"required\":[\"status\",\"Achievements\"]}")
     }
 }
 impl Agent for AchievementsAchievementGetAllAchievementsReturns {

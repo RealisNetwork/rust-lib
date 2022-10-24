@@ -33,37 +33,37 @@ impl Agent for InventoryInventoryEndpointsGetByProductIdAndUserIdParams {
 pub struct InventoryInventoryEndpointsGetByProductIdAndUserIdReturnsAdditionalParamsParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct InventoryInventoryEndpointsGetByProductIdAndUserIdReturns {
-    #[serde(rename = "status")]
-    pub status: String,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: i32,
-    #[serde(rename = "id")]
-    pub id: i32,
-    #[serde(rename = "subType")]
-    pub sub_type: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
-    #[serde(rename = "type")]
-    pub r#type: String,
-    #[serde(rename = "description")]
-    pub description: String,
-    #[serde(rename = "image")]
-    pub image: String,
     #[serde(rename = "additionalParams")]
     pub additional_params:
         InventoryInventoryEndpointsGetByProductIdAndUserIdReturnsAdditionalParamsParams,
-    #[serde(rename = "nickname")]
-    pub nickname: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: i32,
+    #[serde(rename = "status")]
+    pub status: String,
+    #[serde(rename = "image")]
+    pub image: String,
+    #[serde(rename = "id")]
+    pub id: i32,
     #[serde(rename = "productId")]
     pub product_id: i32,
+    #[serde(rename = "type")]
+    pub r#type: String,
     #[serde(rename = "category")]
     pub category: String,
+    #[serde(rename = "subType")]
+    pub sub_type: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: i32,
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "nickname")]
+    pub nickname: String,
+    #[serde(rename = "description")]
+    pub description: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: i32,
 }
 impl Schema for InventoryInventoryEndpointsGetByProductIdAndUserIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"subType\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"nickname\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"category\":{\"type\":\"string\"}},\"required\":[\"id\",\"productId\",\"userId\",\"nickname\",\"type\",\"subType\",\"description\",\"image\",\"additionalParams\",\"status\",\"category\",\"createdAt\",\"updatedAt\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"status\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"type\":{\"type\":\"string\"},\"category\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"productId\",\"userId\",\"nickname\",\"type\",\"subType\",\"description\",\"image\",\"additionalParams\",\"status\",\"category\",\"createdAt\",\"updatedAt\"]}")
     }
 }
 impl Agent for InventoryInventoryEndpointsGetByProductIdAndUserIdReturns {

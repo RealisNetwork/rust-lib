@@ -31,32 +31,32 @@ impl Agent for BlogPollGetAllParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogPollGetAllReturnsDataParamsParamsAnswersParamsParams {
-    #[serde(rename = "isImage")]
-    pub is_image: bool,
     #[serde(rename = "answer")]
     pub answer: String,
+    #[serde(rename = "isImage")]
+    pub is_image: bool,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogPollGetAllReturnsDataParamsParams {
     #[serde(rename = "answers")]
     pub answers: Vec<BlogPollGetAllReturnsDataParamsParamsAnswersParamsParams>,
+    #[serde(rename = "endDate")]
+    pub end_date: String,
     #[serde(rename = "question")]
     pub question: String,
     #[serde(rename = "id")]
     pub id: f64,
-    #[serde(rename = "endDate")]
-    pub end_date: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogPollGetAllReturns {
-    #[serde(rename = "data")]
-    pub data: Vec<BlogPollGetAllReturnsDataParamsParams>,
     #[serde(rename = "totalCount")]
     pub total_count: f64,
+    #[serde(rename = "data")]
+    pub data: Vec<BlogPollGetAllReturnsDataParamsParams>,
 }
 impl Schema for BlogPollGetAllReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"isImage\":{\"type\":\"boolean\"},\"answer\":{\"type\":\"string\"}},\"required\":[\"isImage\",\"answer\"]}},\"question\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"endDate\":{\"type\":\"string\"}},\"required\":[\"id\",\"question\",\"answers\",\"endDate\"]}},\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"totalCount\",\"data\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"answer\":{\"type\":\"string\"},\"isImage\":{\"type\":\"boolean\"}},\"required\":[\"isImage\",\"answer\"]}},\"endDate\":{\"type\":\"string\"},\"question\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"question\",\"answers\",\"endDate\"]}}},\"required\":[\"totalCount\",\"data\"]}")
     }
 }
 impl Agent for BlogPollGetAllReturns {
