@@ -38,24 +38,24 @@ pub struct AdminOptionGetAllByFilterReturnsParamsExtraDetailsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetAllByFilterReturnsParams {
-    #[serde(rename = "scope", deserialize_with = "deserialize_to_string")]
-    pub scope: String,
-    #[serde(rename = "key", deserialize_with = "deserialize_to_string")]
-    pub key: String,
-    #[serde(rename = "previousValue", deserialize_with = "deserialize_to_string")]
-    pub previous_value: String,
-    #[serde(rename = "value", deserialize_with = "deserialize_to_string")]
-    pub value: String,
     #[serde(rename = "description", deserialize_with = "deserialize_to_string")]
     pub description: String,
+    #[serde(rename = "key", deserialize_with = "deserialize_to_string")]
+    pub key: String,
+    #[serde(rename = "scope", deserialize_with = "deserialize_to_string")]
+    pub scope: String,
+    #[serde(rename = "value", deserialize_with = "deserialize_to_string")]
+    pub value: String,
     #[serde(rename = "extraDetails")]
     pub extra_details: AdminOptionGetAllByFilterReturnsParamsExtraDetailsParams,
+    #[serde(rename = "previousValue", deserialize_with = "deserialize_to_string")]
+    pub previous_value: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionGetAllByFilterReturns(pub Vec<AdminOptionGetAllByFilterReturnsParams>);
 impl Schema for AdminOptionGetAllByFilterReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"scope\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"previousValue\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"}}}},\"required\":[\"scope\",\"key\",\"value\",\"previousValue\",\"description\",\"extraDetails\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"description\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"scope\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"},\"extraDetails\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"}}},\"previousValue\":{\"type\":\"string\"}},\"required\":[\"scope\",\"key\",\"value\",\"previousValue\",\"description\",\"extraDetails\"]}}")
     }
 }
 impl Agent for AdminOptionGetAllByFilterReturns {

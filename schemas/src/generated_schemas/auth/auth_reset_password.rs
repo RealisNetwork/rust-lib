@@ -5,11 +5,9 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthResetPasswordParams {
-    #[serde(rename = "hash", deserialize_with = "deserialize_to_string")]
-    pub hash: String,
     #[serde(rename = "newPassword", deserialize_with = "deserialize_to_string")]
     pub new_password: String,
-    #[serde(rename = "hash")]
+    #[serde(rename = "hash", deserialize_with = "deserialize_to_string")]
     pub hash: String,
 }
 impl Schema for AuthAuthResetPasswordParams {

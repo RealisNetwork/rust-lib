@@ -9,12 +9,10 @@ pub struct OrchestratorBattlePassGenerateProductParams {
     pub personal_types: Vec<String>,
     #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
     pub user_id: String,
-    #[serde(rename = "personalTypes")]
-    pub personal_types: Vec<String>,
 }
 impl Schema for OrchestratorBattlePassGenerateProductParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"personalTypes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"userId\",\"personalTypes\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"personalTypes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"personalTypes\"]}") . unwrap ()
     }
 }
 impl Agent for OrchestratorBattlePassGenerateProductParams {

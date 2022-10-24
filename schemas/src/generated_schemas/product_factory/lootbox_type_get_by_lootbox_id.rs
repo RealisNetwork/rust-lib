@@ -29,22 +29,18 @@ impl Agent for ProductFactoryLootboxTypeGetByLootboxIdParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryLootboxTypeGetByLootboxIdReturns {
-    #[serde(rename = "dropChanceMultiplier")]
-    pub drop_chance_multiplier: i32,
     #[serde(rename = "lootboxId", deserialize_with = "deserialize_to_string")]
     pub lootbox_id: String,
-    #[serde(rename = "id")]
-    pub id: i32,
     #[serde(rename = "name", deserialize_with = "deserialize_to_string")]
     pub name: String,
-    #[serde(rename = "lootboxId")]
-    pub lootbox_id: String,
     #[serde(rename = "dropChanceMultiplier")]
     pub drop_chance_multiplier: i32,
+    #[serde(rename = "id")]
+    pub id: i32,
 }
 impl Schema for ProductFactoryLootboxTypeGetByLootboxIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"dropChanceMultiplier\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"lootboxId\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\",\"lootboxId\",\"dropChanceMultiplier\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"lootboxId\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"dropChanceMultiplier\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"name\",\"lootboxId\",\"dropChanceMultiplier\"]}")
     }
 }
 impl Agent for ProductFactoryLootboxTypeGetByLootboxIdReturns {

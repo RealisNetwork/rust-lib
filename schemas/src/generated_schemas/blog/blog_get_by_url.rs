@@ -29,21 +29,21 @@ impl Agent for BlogBlogGetByUrlParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetByUrlReturnsCategoryParams {
+    #[serde(rename = "name", deserialize_with = "deserialize_to_string")]
+    pub name: String,
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
     #[serde(rename = "id")]
     pub id: f64,
-    #[serde(rename = "name", deserialize_with = "deserialize_to_string")]
-    pub name: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetByUrlReturns {
-    #[serde(rename = "isPinned")]
-    pub is_pinned: bool,
     #[serde(rename = "title", deserialize_with = "deserialize_to_string")]
     pub title: String,
-    #[serde(rename = "metaDescription", deserialize_with = "deserialize_to_string")]
-    pub meta_description: String,
+    #[serde(rename = "content", deserialize_with = "deserialize_to_string")]
+    pub content: String,
+    #[serde(rename = "isPinned")]
+    pub is_pinned: bool,
     #[serde(rename = "metaTitle", deserialize_with = "deserialize_to_string")]
     pub meta_title: String,
     #[serde(rename = "views")]
@@ -52,29 +52,29 @@ pub struct BlogBlogGetByUrlReturns {
     pub lang: String,
     #[serde(rename = "createdAt", deserialize_with = "deserialize_to_string")]
     pub created_at: String,
-    #[serde(rename = "category")]
-    pub category: BlogBlogGetByUrlReturnsCategoryParams,
-    #[serde(rename = "url", deserialize_with = "deserialize_to_string")]
-    pub url: String,
     #[serde(rename = "updatedAt", deserialize_with = "deserialize_to_string")]
     pub updated_at: String,
-    #[serde(rename = "id")]
-    pub id: f64,
     #[serde(
         rename = "shortDescription",
         deserialize_with = "deserialize_to_string"
     )]
     pub short_description: String,
-    #[serde(rename = "content", deserialize_with = "deserialize_to_string")]
-    pub content: String,
+    #[serde(rename = "category")]
+    pub category: BlogBlogGetByUrlReturnsCategoryParams,
+    #[serde(rename = "id")]
+    pub id: f64,
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
     #[serde(rename = "image", deserialize_with = "deserialize_to_string")]
     pub image: String,
+    #[serde(rename = "metaDescription", deserialize_with = "deserialize_to_string")]
+    pub meta_description: String,
+    #[serde(rename = "url", deserialize_with = "deserialize_to_string")]
+    pub url: String,
 }
 impl Schema for BlogBlogGetByUrlReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isPinned\":{\"type\":\"boolean\"},\"title\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"views\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"lang\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"category\":{\"type\":\"object\",\"properties\":{\"isAvailable\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\",\"isAvailable\"]},\"url\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"shortDescription\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"},\"image\":{\"type\":\"string\"}},\"required\":[\"id\",\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\",\"isPinned\",\"views\",\"isAvailable\",\"lang\",\"createdAt\",\"updatedAt\",\"category\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"title\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"isPinned\":{\"type\":\"boolean\"},\"metaTitle\":{\"type\":\"string\"},\"views\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"lang\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"shortDescription\":{\"type\":\"string\"},\"category\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"name\",\"isAvailable\"]},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isAvailable\":{\"type\":\"boolean\"},\"image\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"}},\"required\":[\"id\",\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\",\"isPinned\",\"views\",\"isAvailable\",\"lang\",\"createdAt\",\"updatedAt\",\"category\"]}")
     }
 }
 impl Agent for BlogBlogGetByUrlReturns {

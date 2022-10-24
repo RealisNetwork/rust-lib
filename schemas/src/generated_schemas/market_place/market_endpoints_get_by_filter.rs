@@ -12,27 +12,27 @@ pub struct MarketPlaceMarketEndpointsGetByFilterParamsFiltersParamsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetByFilterParamsOrderByParams {
-    #[serde(rename = "desc")]
-    pub desc: bool,
     #[serde(rename = "column", deserialize_with = "deserialize_to_string")]
     pub column: String,
+    #[serde(rename = "desc")]
+    pub desc: bool,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetByFilterParams {
     #[serde(rename = "filters")]
     pub filters: Option<Vec<MarketPlaceMarketEndpointsGetByFilterParamsFiltersParamsParams>>,
-    #[serde(rename = "category", deserialize_with = "deserialize_to_string")]
-    pub category: String,
-    #[serde(rename = "orderBy")]
-    pub order_by: Option<MarketPlaceMarketEndpointsGetByFilterParamsOrderByParams>,
     #[serde(rename = "page")]
     pub page: i32,
+    #[serde(rename = "category", deserialize_with = "deserialize_to_string")]
+    pub category: String,
     #[serde(rename = "perPage")]
     pub per_page: i32,
+    #[serde(rename = "orderBy")]
+    pub order_by: Option<MarketPlaceMarketEndpointsGetByFilterParamsOrderByParams>,
 }
 impl Schema for MarketPlaceMarketEndpointsGetByFilterParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"filters\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"value\":{},\"column\":{\"type\":\"string\"}},\"required\":[\"column\",\"value\"]}},\"category\":{\"type\":\"string\"},\"orderBy\":{\"type\":\"object\",\"properties\":{\"desc\":{\"type\":\"boolean\"},\"column\":{\"type\":\"string\"}},\"required\":[\"column\",\"desc\"]},\"page\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":100,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"category\",\"page\",\"perPage\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"filters\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"value\":{},\"column\":{\"type\":\"string\"}},\"required\":[\"column\",\"value\"]}},\"page\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"category\":{\"type\":\"string\"},\"perPage\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":100,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"orderBy\":{\"type\":\"object\",\"properties\":{\"column\":{\"type\":\"string\"},\"desc\":{\"type\":\"boolean\"}},\"required\":[\"column\",\"desc\"]}},\"required\":[\"category\",\"page\",\"perPage\"]}") . unwrap ()
     }
 }
 impl Agent for MarketPlaceMarketEndpointsGetByFilterParams {
@@ -55,44 +55,44 @@ pub struct MarketPlaceMarketEndpointsGetByFilterReturnsItemsParamsParamsAddition
 );
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetByFilterReturnsItemsParamsParams {
-    #[serde(rename = "additionalParams")]
-    pub additional_params:
-        MarketPlaceMarketEndpointsGetByFilterReturnsItemsParamsParamsAdditionalParamsParams,
-    #[serde(rename = "isLocked")]
-    pub is_locked: bool,
+    #[serde(rename = "personalType", deserialize_with = "deserialize_to_string")]
+    pub personal_type: String,
+    #[serde(rename = "category")]
+    pub category: i32,
     #[serde(rename = "createdAt")]
     pub created_at: i32,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "isLocked")]
+    pub is_locked: bool,
     #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
     pub user_id: String,
     #[serde(rename = "description", deserialize_with = "deserialize_to_string")]
     pub description: String,
-    #[serde(rename = "id")]
-    pub id: i32,
-    #[serde(rename = "productId")]
-    pub product_id: i32,
+    #[serde(rename = "collection", deserialize_with = "deserialize_to_string")]
+    pub collection: String,
     #[serde(rename = "image", deserialize_with = "deserialize_to_string")]
     pub image: String,
     #[serde(rename = "type", deserialize_with = "deserialize_to_string")]
     pub r#type: String,
-    #[serde(rename = "category")]
-    pub category: i32,
-    #[serde(rename = "personalType", deserialize_with = "deserialize_to_string")]
-    pub personal_type: String,
-    #[serde(rename = "collection", deserialize_with = "deserialize_to_string")]
-    pub collection: String,
     #[serde(rename = "price")]
     pub price: i32,
+    #[serde(rename = "additionalParams")]
+    pub additional_params:
+        MarketPlaceMarketEndpointsGetByFilterReturnsItemsParamsParamsAdditionalParamsParams,
+    #[serde(rename = "productId")]
+    pub product_id: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetByFilterReturns {
-    #[serde(rename = "items")]
-    pub items: Vec<MarketPlaceMarketEndpointsGetByFilterReturnsItemsParamsParams>,
     #[serde(rename = "totalCount")]
     pub total_count: i32,
+    #[serde(rename = "items")]
+    pub items: Vec<MarketPlaceMarketEndpointsGetByFilterReturnsItemsParamsParams>,
 }
 impl Schema for MarketPlaceMarketEndpointsGetByFilterReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"items\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"isLocked\":{\"type\":\"boolean\"},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"image\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"personalType\":{\"type\":\"string\"},\"collection\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"productId\",\"userId\",\"personalType\",\"description\",\"image\",\"type\",\"collection\",\"price\",\"additionalParams\",\"isLocked\",\"category\",\"createdAt\"]}}},\"required\":[\"items\",\"totalCount\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"items\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"isLocked\":{\"type\":\"boolean\"},\"userId\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"collection\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"productId\",\"userId\",\"personalType\",\"description\",\"image\",\"type\",\"collection\",\"price\",\"additionalParams\",\"isLocked\",\"category\",\"createdAt\"]}}},\"required\":[\"items\",\"totalCount\"]}")
     }
 }
 impl Agent for MarketPlaceMarketEndpointsGetByFilterReturns {

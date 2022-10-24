@@ -12,27 +12,27 @@ pub struct InventoryInventoryEndpointsGetByFilterParamsOrderByParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct InventoryInventoryEndpointsGetByFilterParamsFiltersParamsParams {
-    #[serde(rename = "value")]
-    pub value: (),
     #[serde(rename = "column", deserialize_with = "deserialize_to_string")]
     pub column: String,
+    #[serde(rename = "value")]
+    pub value: (),
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct InventoryInventoryEndpointsGetByFilterParams {
+    #[serde(rename = "page")]
+    pub page: i32,
+    #[serde(rename = "perPage")]
+    pub per_page: i32,
+    #[serde(rename = "category", deserialize_with = "deserialize_to_string")]
+    pub category: String,
     #[serde(rename = "orderBy")]
     pub order_by: Option<InventoryInventoryEndpointsGetByFilterParamsOrderByParams>,
     #[serde(rename = "filters")]
     pub filters: Option<Vec<InventoryInventoryEndpointsGetByFilterParamsFiltersParamsParams>>,
-    #[serde(rename = "perPage")]
-    pub per_page: i32,
-    #[serde(rename = "page")]
-    pub page: i32,
-    #[serde(rename = "category", deserialize_with = "deserialize_to_string")]
-    pub category: String,
 }
 impl Schema for InventoryInventoryEndpointsGetByFilterParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"orderBy\":{\"type\":\"object\",\"properties\":{\"column\":{\"type\":\"string\"},\"desc\":{\"type\":\"boolean\"}},\"required\":[\"column\",\"desc\"]},\"filters\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"value\":{},\"column\":{\"type\":\"string\"}},\"required\":[\"column\",\"value\"]}},\"perPage\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":100,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"page\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"category\":{\"type\":\"string\"}},\"required\":[\"category\",\"page\",\"perPage\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":100,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"category\":{\"type\":\"string\"},\"orderBy\":{\"type\":\"object\",\"properties\":{\"column\":{\"type\":\"string\"},\"desc\":{\"type\":\"boolean\"}},\"required\":[\"column\",\"desc\"]},\"filters\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"column\":{\"type\":\"string\"},\"value\":{}},\"required\":[\"column\",\"value\"]}}},\"required\":[\"category\",\"page\",\"perPage\"]}") . unwrap ()
     }
 }
 impl Agent for InventoryInventoryEndpointsGetByFilterParams {
@@ -50,36 +50,38 @@ impl Agent for InventoryInventoryEndpointsGetByFilterParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct InventoryInventoryEndpointsGetByFilterReturnsItemsParamsParamsAdditionalParamsParams {}
+pub struct InventoryInventoryEndpointsGetByFilterReturnsItemsParamsParamsAdditionalParamsParams(
+    Value,
+);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct InventoryInventoryEndpointsGetByFilterReturnsItemsParamsParams {
-    #[serde(rename = "category", deserialize_with = "deserialize_to_string")]
-    pub category: String,
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: i32,
     #[serde(rename = "type", deserialize_with = "deserialize_to_string")]
     pub r#type: String,
-    #[serde(rename = "status", deserialize_with = "deserialize_to_string")]
-    pub status: String,
+    #[serde(rename = "description", deserialize_with = "deserialize_to_string")]
+    pub description: String,
     #[serde(rename = "id")]
     pub id: i32,
     #[serde(rename = "nickname", deserialize_with = "deserialize_to_string")]
     pub nickname: String,
-    #[serde(rename = "description", deserialize_with = "deserialize_to_string")]
-    pub description: String,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: i32,
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: i32,
-    #[serde(rename = "subType", deserialize_with = "deserialize_to_string")]
-    pub sub_type: String,
-    #[serde(rename = "image", deserialize_with = "deserialize_to_string")]
-    pub image: String,
     #[serde(rename = "additionalParams")]
     pub additional_params:
         InventoryInventoryEndpointsGetByFilterReturnsItemsParamsParamsAdditionalParamsParams,
+    #[serde(rename = "subType", deserialize_with = "deserialize_to_string")]
+    pub sub_type: String,
+    #[serde(rename = "category", deserialize_with = "deserialize_to_string")]
+    pub category: String,
     #[serde(rename = "productId")]
     pub product_id: i32,
+    #[serde(rename = "image", deserialize_with = "deserialize_to_string")]
+    pub image: String,
+    #[serde(rename = "status", deserialize_with = "deserialize_to_string")]
+    pub status: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct InventoryInventoryEndpointsGetByFilterReturns {
@@ -90,7 +92,7 @@ pub struct InventoryInventoryEndpointsGetByFilterReturns {
 }
 impl Schema for InventoryInventoryEndpointsGetByFilterReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"items\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"category\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"status\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"nickname\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"subType\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"productId\",\"userId\",\"nickname\",\"type\",\"subType\",\"description\",\"image\",\"additionalParams\",\"status\",\"category\",\"createdAt\",\"updatedAt\"]}}},\"required\":[\"items\",\"totalCount\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"items\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"type\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"nickname\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"subType\":{\"type\":\"string\"},\"category\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"image\":{\"type\":\"string\"},\"status\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"productId\",\"userId\",\"nickname\",\"type\",\"subType\",\"description\",\"image\",\"additionalParams\",\"status\",\"category\",\"createdAt\",\"updatedAt\"]}}},\"required\":[\"items\",\"totalCount\"]}")
     }
 }
 impl Agent for InventoryInventoryEndpointsGetByFilterReturns {

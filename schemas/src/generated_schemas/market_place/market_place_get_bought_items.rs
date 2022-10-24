@@ -35,18 +35,18 @@ impl Agent for MarketPlaceMarketPlaceGetBoughtItemsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetBoughtItemsReturnsParams {
-    #[serde(rename = "productId")]
-    pub product_id: i32,
-    #[serde(rename = "price")]
-    pub price: i32,
-    #[serde(rename = "createdAt")]
-    pub created_at: i32,
-    #[serde(rename = "id")]
-    pub id: i32,
     #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
     pub user_id: String,
+    #[serde(rename = "productId")]
+    pub product_id: i32,
+    #[serde(rename = "createdAt")]
+    pub created_at: i32,
+    #[serde(rename = "price")]
+    pub price: i32,
     #[serde(rename = "status", deserialize_with = "deserialize_to_string")]
     pub status: String,
+    #[serde(rename = "id")]
+    pub id: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetBoughtItemsReturns(
@@ -54,7 +54,7 @@ pub struct MarketPlaceMarketPlaceGetBoughtItemsReturns(
 );
 impl Schema for MarketPlaceMarketPlaceGetBoughtItemsReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"status\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"productId\",\"status\",\"price\",\"createdAt\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"status\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"userId\",\"productId\",\"status\",\"price\",\"createdAt\"]}}")
     }
 }
 impl Agent for MarketPlaceMarketPlaceGetBoughtItemsReturns {

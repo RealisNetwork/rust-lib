@@ -11,12 +11,10 @@ pub struct ReferralRewardAddReferralExpenseParams {
     pub tx_id: String,
     #[serde(rename = "amount", deserialize_with = "deserialize_to_string")]
     pub amount: String,
-    #[serde(rename = "txId")]
-    pub tx_id: String,
 }
 impl Schema for ReferralRewardAddReferralExpenseParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"referralId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"}},\"required\":[\"referralId\",\"amount\",\"txId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"referralId\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"referralId\",\"amount\",\"txId\"]}") . unwrap ()
     }
 }
 impl Agent for ReferralRewardAddReferralExpenseParams {

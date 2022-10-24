@@ -37,14 +37,14 @@ impl Agent for AdminUserRoleGetMyRoleParams {
 pub struct AdminUserRoleGetMyRoleReturns {
     #[serde(rename = "methods")]
     pub methods: Vec<String>,
-    #[serde(rename = "name", deserialize_with = "deserialize_to_string")]
-    pub name: String,
     #[serde(rename = "id")]
     pub id: f64,
+    #[serde(rename = "name", deserialize_with = "deserialize_to_string")]
+    pub name: String,
 }
 impl Schema for AdminUserRoleGetMyRoleReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"methods\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"name\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"name\",\"methods\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"methods\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\",\"methods\"]}")
     }
 }
 impl Agent for AdminUserRoleGetMyRoleReturns {

@@ -14,7 +14,7 @@ pub struct TransactionsRegistryProductAddProductParams {
 }
 impl Schema for TransactionsRegistryProductAddProductParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"}},\"required\":[\"userId\",\"productId\",\"personalType\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"productId\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"}},\"required\":[\"userId\",\"productId\",\"personalType\"]}") . unwrap ()
     }
 }
 impl Agent for TransactionsRegistryProductAddProductParams {

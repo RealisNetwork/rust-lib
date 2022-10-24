@@ -31,34 +31,34 @@ impl Agent for WithdrawApprovalListUnapprovedParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalListUnapprovedReturnsParamsApproveDataParams {
-    #[serde(rename = "approveReason")]
-    pub approve_reason: Option<String>,
     #[serde(rename = "whoConsidered")]
     pub who_considered: Option<String>,
+    #[serde(rename = "approveReason")]
+    pub approve_reason: Option<String>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalListUnapprovedReturnsParams {
-    #[serde(rename = "createdAt")]
-    pub created_at: f64,
     #[serde(
         rename = "recipientAddress",
         deserialize_with = "deserialize_to_string"
     )]
     pub recipient_address: String,
-    #[serde(rename = "approveData")]
-    pub approve_data: WithdrawApprovalListUnapprovedReturnsParamsApproveDataParams,
-    #[serde(rename = "id")]
-    pub id: f64,
     #[serde(rename = "fee", deserialize_with = "deserialize_to_string")]
     pub fee: String,
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
-    #[serde(rename = "amount", deserialize_with = "deserialize_to_string")]
-    pub amount: String,
-    #[serde(rename = "status", deserialize_with = "deserialize_to_string")]
-    pub status: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: f64,
     #[serde(rename = "updatedAt")]
     pub updated_at: f64,
+    #[serde(rename = "amount", deserialize_with = "deserialize_to_string")]
+    pub amount: String,
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "status", deserialize_with = "deserialize_to_string")]
+    pub status: String,
+    #[serde(rename = "approveData")]
+    pub approve_data: WithdrawApprovalListUnapprovedReturnsParamsApproveDataParams,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalListUnapprovedReturns(
@@ -66,7 +66,7 @@ pub struct WithdrawApprovalListUnapprovedReturns(
 );
 impl Schema for WithdrawApprovalListUnapprovedReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"createdAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"recipientAddress\":{\"type\":\"string\"},\"approveData\":{\"type\":\"object\",\"properties\":{\"whoConsidered\":{\"type\":\"string\"},\"approveReason\":{\"type\":\"string\"}}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"fee\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"status\":{\"type\":\"string\",\"pattern\":\"^(raw)|(success)$\"},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"userId\",\"amount\",\"fee\",\"recipientAddress\",\"status\",\"approveData\",\"createdAt\",\"updatedAt\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"recipientAddress\":{\"type\":\"string\"},\"fee\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"amount\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"status\":{\"type\":\"string\",\"pattern\":\"^(raw)|(success)$\"},\"approveData\":{\"type\":\"object\",\"properties\":{\"whoConsidered\":{\"type\":\"string\"},\"approveReason\":{\"type\":\"string\"}}}},\"required\":[\"id\",\"userId\",\"amount\",\"fee\",\"recipientAddress\",\"status\",\"approveData\",\"createdAt\",\"updatedAt\"]}}")
     }
 }
 impl Agent for WithdrawApprovalListUnapprovedReturns {

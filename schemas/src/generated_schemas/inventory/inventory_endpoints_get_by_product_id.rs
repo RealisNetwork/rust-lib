@@ -28,39 +28,39 @@ impl Agent for InventoryInventoryEndpointsGetByProductIdParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct InventoryInventoryEndpointsGetByProductIdReturnsAdditionalParamsParams {}
+pub struct InventoryInventoryEndpointsGetByProductIdReturnsAdditionalParamsParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct InventoryInventoryEndpointsGetByProductIdReturns {
-    #[serde(rename = "image", deserialize_with = "deserialize_to_string")]
-    pub image: String,
-    #[serde(rename = "id")]
-    pub id: i32,
+    #[serde(rename = "additionalParams")]
+    pub additional_params: InventoryInventoryEndpointsGetByProductIdReturnsAdditionalParamsParams,
+    #[serde(rename = "status", deserialize_with = "deserialize_to_string")]
+    pub status: String,
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: i32,
+    #[serde(rename = "nickname", deserialize_with = "deserialize_to_string")]
+    pub nickname: String,
     #[serde(rename = "category", deserialize_with = "deserialize_to_string")]
     pub category: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: i32,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "description", deserialize_with = "deserialize_to_string")]
+    pub description: String,
     #[serde(rename = "subType", deserialize_with = "deserialize_to_string")]
     pub sub_type: String,
     #[serde(rename = "productId")]
     pub product_id: i32,
-    #[serde(rename = "nickname", deserialize_with = "deserialize_to_string")]
-    pub nickname: String,
+    #[serde(rename = "image", deserialize_with = "deserialize_to_string")]
+    pub image: String,
     #[serde(rename = "type", deserialize_with = "deserialize_to_string")]
     pub r#type: String,
-    #[serde(rename = "description", deserialize_with = "deserialize_to_string")]
-    pub description: String,
-    #[serde(rename = "status", deserialize_with = "deserialize_to_string")]
-    pub status: String,
-    #[serde(rename = "additionalParams")]
-    pub additional_params: InventoryInventoryEndpointsGetByProductIdReturnsAdditionalParamsParams,
-    #[serde(rename = "createdAt")]
-    pub created_at: i32,
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: i32,
 }
 impl Schema for InventoryInventoryEndpointsGetByProductIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"image\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"category\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"nickname\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"status\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"productId\",\"userId\",\"nickname\",\"type\",\"subType\",\"description\",\"image\",\"additionalParams\",\"status\",\"category\",\"createdAt\",\"updatedAt\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"status\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"nickname\":{\"type\":\"string\"},\"category\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"description\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"image\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"}},\"required\":[\"id\",\"productId\",\"userId\",\"nickname\",\"type\",\"subType\",\"description\",\"image\",\"additionalParams\",\"status\",\"category\",\"createdAt\",\"updatedAt\"]}")
     }
 }
 impl Agent for InventoryInventoryEndpointsGetByProductIdReturns {

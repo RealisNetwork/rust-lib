@@ -7,26 +7,26 @@ use crate::generated_schemas::prelude::*;
 pub struct ProductFactoryProductTypeUpdateParamsParamsParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeUpdateParams {
-    #[serde(rename = "params")]
-    pub params: Option<ProductFactoryProductTypeUpdateParamsParamsParams>,
-    #[serde(rename = "underType")]
-    pub under_type: Option<String>,
     #[serde(rename = "personalType", deserialize_with = "deserialize_to_string")]
     pub personal_type: String,
     #[serde(rename = "type")]
     pub r#type: Option<String>,
-    #[serde(rename = "isNFT")]
-    pub is_nft: Option<bool>,
-    #[serde(rename = "name")]
-    pub name: Option<String>,
-    #[serde(rename = "rarity")]
-    pub rarity: Option<f64>,
     #[serde(rename = "dropChance")]
     pub drop_chance: Option<f64>,
+    #[serde(rename = "underType")]
+    pub under_type: Option<String>,
+    #[serde(rename = "name")]
+    pub name: Option<String>,
+    #[serde(rename = "params")]
+    pub params: Option<ProductFactoryProductTypeUpdateParamsParamsParams>,
+    #[serde(rename = "rarity")]
+    pub rarity: Option<f64>,
+    #[serde(rename = "isNFT")]
+    pub is_nft: Option<bool>,
 }
 impl Schema for ProductFactoryProductTypeUpdateParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"params\":{\"type\":\"object\",\"properties\":{}},\"underType\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"isNFT\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"rarity\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"dropChance\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"personalType\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"dropChance\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"underType\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"params\":{\"type\":\"object\",\"properties\":{}},\"rarity\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isNFT\":{\"type\":\"boolean\"}},\"required\":[\"personalType\"]}") . unwrap ()
     }
 }
 impl Agent for ProductFactoryProductTypeUpdateParams {

@@ -33,14 +33,14 @@ impl Agent for AuthAuthDeviceGetClientInfoParams {
 pub struct AuthAuthDeviceGetClientInfoReturns {
     #[serde(rename = "email", deserialize_with = "deserialize_to_string")]
     pub email: String,
-    #[serde(rename = "isAuth")]
-    pub is_auth: bool,
     #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
     pub user_id: String,
+    #[serde(rename = "isAuth")]
+    pub is_auth: bool,
 }
 impl Schema for AuthAuthDeviceGetClientInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\"},\"isAuth\":{\"type\":\"boolean\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"email\",\"isAuth\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"isAuth\":{\"type\":\"boolean\"}},\"required\":[\"userId\",\"email\",\"isAuth\"]}")
     }
 }
 impl Agent for AuthAuthDeviceGetClientInfoReturns {

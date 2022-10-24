@@ -5,23 +5,23 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogPollAddParamsAnswersParamsParams {
-    #[serde(rename = "answer", deserialize_with = "deserialize_to_string")]
-    pub answer: String,
     #[serde(rename = "isImage")]
     pub is_image: bool,
+    #[serde(rename = "answer", deserialize_with = "deserialize_to_string")]
+    pub answer: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogPollAddParams {
-    #[serde(rename = "question", deserialize_with = "deserialize_to_string")]
-    pub question: String,
-    #[serde(rename = "endDate", deserialize_with = "deserialize_to_string")]
-    pub end_date: String,
     #[serde(rename = "answers")]
     pub answers: Vec<BlogPollAddParamsAnswersParamsParams>,
+    #[serde(rename = "endDate", deserialize_with = "deserialize_to_string")]
+    pub end_date: String,
+    #[serde(rename = "question", deserialize_with = "deserialize_to_string")]
+    pub question: String,
 }
 impl Schema for BlogPollAddParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"question\":{\"type\":\"string\"},\"endDate\":{\"type\":\"string\"},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"answer\":{\"type\":\"string\"},\"isImage\":{\"type\":\"boolean\"}},\"required\":[\"isImage\",\"answer\"]}}},\"required\":[\"question\",\"answers\",\"endDate\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"isImage\":{\"type\":\"boolean\"},\"answer\":{\"type\":\"string\"}},\"required\":[\"isImage\",\"answer\"]}},\"endDate\":{\"type\":\"string\"},\"question\":{\"type\":\"string\"}},\"required\":[\"question\",\"answers\",\"endDate\"]}") . unwrap ()
     }
 }
 impl Agent for BlogPollAddParams {

@@ -9,12 +9,10 @@ pub struct LobbyRegionsSetParams {
     pub is_fixed: bool,
     #[serde(rename = "regionName", deserialize_with = "deserialize_to_string")]
     pub region_name: String,
-    #[serde(rename = "isFixed")]
-    pub is_fixed: bool,
 }
 impl Schema for LobbyRegionsSetParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"regionName\":{\"type\":\"string\"},\"isFixed\":{\"type\":\"boolean\"}},\"required\":[\"regionName\",\"isFixed\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"isFixed\":{\"type\":\"boolean\"},\"regionName\":{\"type\":\"string\"}},\"required\":[\"regionName\",\"isFixed\"]}") . unwrap ()
     }
 }
 impl Agent for LobbyRegionsSetParams {

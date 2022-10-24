@@ -5,8 +5,6 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterContractCallWithdrawParams {
-    #[serde(rename = "amount", deserialize_with = "deserialize_to_string")]
-    pub amount: String,
     #[serde(
         rename = "recipientAddress",
         deserialize_with = "deserialize_to_string"
@@ -14,7 +12,7 @@ pub struct NearAdapterContractCallWithdrawParams {
     pub recipient_address: String,
     #[serde(rename = "signature", deserialize_with = "deserialize_to_string")]
     pub signature: String,
-    #[serde(rename = "amount")]
+    #[serde(rename = "amount", deserialize_with = "deserialize_to_string")]
     pub amount: String,
 }
 impl Schema for NearAdapterContractCallWithdrawParams {

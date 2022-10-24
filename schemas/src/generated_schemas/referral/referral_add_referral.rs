@@ -5,11 +5,9 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralAddReferralParams {
-    #[serde(rename = "referralId", deserialize_with = "deserialize_to_string")]
-    pub referral_id: String,
     #[serde(rename = "referrerId", deserialize_with = "deserialize_to_string")]
     pub referrer_id: String,
-    #[serde(rename = "referralId")]
+    #[serde(rename = "referralId", deserialize_with = "deserialize_to_string")]
     pub referral_id: String,
 }
 impl Schema for ReferralReferralAddReferralParams {

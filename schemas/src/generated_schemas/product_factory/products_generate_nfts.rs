@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductsGenerateNftsParams {
-    #[serde(rename = "category", deserialize_with = "deserialize_to_string")]
-    pub category: String,
     #[serde(rename = "collection", deserialize_with = "deserialize_to_string")]
     pub collection: String,
+    #[serde(rename = "category", deserialize_with = "deserialize_to_string")]
+    pub category: String,
 }
 impl Schema for ProductFactoryProductsGenerateNftsParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"category\":{\"type\":\"string\",\"pattern\":\"^(cats)|(dragons)$\"},\"collection\":{\"type\":\"string\"}},\"required\":[\"category\",\"collection\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"collection\":{\"type\":\"string\"},\"category\":{\"type\":\"string\",\"pattern\":\"^(cats)|(dragons)$\"}},\"required\":[\"category\",\"collection\"]}") . unwrap ()
     }
 }
 impl Agent for ProductFactoryProductsGenerateNftsParams {

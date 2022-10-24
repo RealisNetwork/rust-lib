@@ -5,18 +5,18 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthCreateRequestToConfirmEmailParams {
-    #[serde(rename = "deviceId")]
-    pub device_id: Option<String>,
-    #[serde(rename = "email", deserialize_with = "deserialize_to_string")]
-    pub email: String,
     #[serde(rename = "referralCode")]
     pub referral_code: Option<String>,
+    #[serde(rename = "deviceId")]
+    pub device_id: Option<String>,
     #[serde(rename = "isResend")]
     pub is_resend: Option<bool>,
+    #[serde(rename = "email", deserialize_with = "deserialize_to_string")]
+    pub email: String,
 }
 impl Schema for AuthAuthCreateRequestToConfirmEmailParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"deviceId\":{\"type\":\"string\"},\"email\":{\"type\":\"string\",\"pattern\":\"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\\\.[a-zA-Z0-9-.]+$\"},\"referralCode\":{\"type\":\"string\"},\"isResend\":{\"type\":\"boolean\"}},\"required\":[\"email\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"referralCode\":{\"type\":\"string\"},\"deviceId\":{\"type\":\"string\"},\"isResend\":{\"type\":\"boolean\"},\"email\":{\"type\":\"string\",\"pattern\":\"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\\\.[a-zA-Z0-9-.]+$\"}},\"required\":[\"email\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthCreateRequestToConfirmEmailParams {

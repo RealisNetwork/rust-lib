@@ -5,13 +5,11 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceConvertParams {
-    #[serde(rename = "fromCurrency", deserialize_with = "deserialize_to_string")]
-    pub from_currency: String,
     #[serde(rename = "toCurrency", deserialize_with = "deserialize_to_string")]
     pub to_currency: String,
     #[serde(rename = "amount", deserialize_with = "deserialize_to_string")]
     pub amount: String,
-    #[serde(rename = "fromCurrency")]
+    #[serde(rename = "fromCurrency", deserialize_with = "deserialize_to_string")]
     pub from_currency: String,
 }
 impl Schema for TransactionsBalanceConvertParams {

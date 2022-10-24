@@ -35,20 +35,20 @@ impl Agent for PurchaseBalanceUserBalanceChangedNotificationParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PurchaseBalanceUserBalanceChangedNotificationReturns {
-    #[serde(rename = "transactionHash", deserialize_with = "deserialize_to_string")]
-    pub transaction_hash: String,
     #[serde(rename = "balance", deserialize_with = "deserialize_to_string")]
     pub balance: String,
-    #[serde(rename = "amount", deserialize_with = "deserialize_to_string")]
-    pub amount: String,
-    #[serde(rename = "currency", deserialize_with = "deserialize_to_string")]
-    pub currency: String,
     #[serde(rename = "blockId", deserialize_with = "deserialize_to_string")]
     pub block_id: String,
+    #[serde(rename = "currency", deserialize_with = "deserialize_to_string")]
+    pub currency: String,
+    #[serde(rename = "amount", deserialize_with = "deserialize_to_string")]
+    pub amount: String,
+    #[serde(rename = "transactionHash", deserialize_with = "deserialize_to_string")]
+    pub transaction_hash: String,
 }
 impl Schema for PurchaseBalanceUserBalanceChangedNotificationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"transactionHash\":{\"type\":\"string\"},\"balance\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"blockId\":{\"type\":\"string\"}},\"required\":[\"currency\",\"amount\",\"transactionHash\",\"balance\",\"blockId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"balance\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"amount\":{\"type\":\"string\"},\"transactionHash\":{\"type\":\"string\"}},\"required\":[\"currency\",\"amount\",\"transactionHash\",\"balance\",\"blockId\"]}")
     }
 }
 impl Agent for PurchaseBalanceUserBalanceChangedNotificationReturns {

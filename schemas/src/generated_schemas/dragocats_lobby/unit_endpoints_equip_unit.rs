@@ -31,14 +31,14 @@ impl Agent for DragocatsLobbyUnitEndpointsEquipUnitParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragocatsLobbyUnitEndpointsEquipUnitReturns {
-    #[serde(rename = "unitId")]
-    pub unit_id: i32,
     #[serde(rename = "slotId")]
     pub slot_id: i32,
+    #[serde(rename = "unitId")]
+    pub unit_id: i32,
 }
 impl Schema for DragocatsLobbyUnitEndpointsEquipUnitReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"unitId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"slotId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"unitId\",\"slotId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"slotId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"unitId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"unitId\",\"slotId\"]}")
     }
 }
 impl Agent for DragocatsLobbyUnitEndpointsEquipUnitReturns {

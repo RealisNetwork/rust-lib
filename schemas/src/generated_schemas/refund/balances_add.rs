@@ -9,12 +9,10 @@ pub struct RefundBalancesAddParams {
     pub user_id: String,
     #[serde(rename = "lockedFunds", deserialize_with = "deserialize_to_string")]
     pub locked_funds: String,
-    #[serde(rename = "userId")]
-    pub user_id: String,
 }
 impl Schema for RefundBalancesAddParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"lockedFunds\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"lockedFunds\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"lockedFunds\":{\"type\":\"string\"}},\"required\":[\"userId\",\"lockedFunds\"]}") . unwrap ()
     }
 }
 impl Agent for RefundBalancesAddParams {

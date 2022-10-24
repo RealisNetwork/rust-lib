@@ -5,11 +5,9 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbySaveUsersProgressParams {
-    #[serde(rename = "dataObject", deserialize_with = "deserialize_to_string")]
-    pub data_object: String,
     #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
     pub user_id: String,
-    #[serde(rename = "dataObject")]
+    #[serde(rename = "dataObject", deserialize_with = "deserialize_to_string")]
     pub data_object: String,
 }
 impl Schema for DragonsLobbySaveUsersProgressParams {

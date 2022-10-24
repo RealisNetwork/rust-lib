@@ -35,11 +35,9 @@ impl Agent for TransactionsBalanceGetMyBalancesWithRoundingParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetMyBalancesWithRoundingReturnsTickersParamsParams {
-    #[serde(rename = "amount", deserialize_with = "deserialize_to_string")]
-    pub amount: String,
     #[serde(rename = "ticker", deserialize_with = "deserialize_to_string")]
     pub ticker: String,
-    #[serde(rename = "amount")]
+    #[serde(rename = "amount", deserialize_with = "deserialize_to_string")]
     pub amount: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]

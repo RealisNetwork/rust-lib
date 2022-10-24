@@ -5,18 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthRoleAddParams {
-    #[serde(rename = "roleName", deserialize_with = "deserialize_to_string")]
-    pub role_name: String,
-    #[serde(rename = "pages")]
-    pub pages: Vec<String>,
     #[serde(rename = "methods")]
     pub methods: Vec<String>,
     #[serde(rename = "pages")]
     pub pages: Vec<String>,
+    #[serde(rename = "roleName", deserialize_with = "deserialize_to_string")]
+    pub role_name: String,
 }
 impl Schema for AuthRoleAddParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"roleName\":{\"type\":\"string\"},\"methods\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"pages\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"roleName\",\"methods\",\"pages\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"methods\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"pages\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"roleName\":{\"type\":\"string\"}},\"required\":[\"roleName\",\"methods\",\"pages\"]}") . unwrap ()
     }
 }
 impl Agent for AuthRoleAddParams {

@@ -30,8 +30,6 @@ pub struct BattlePassBattlePassEndpointsGetBattlePassPricesReturnsBattlePassPric
     pub price: String,
     #[serde(rename = "battlePassType")]
     pub battle_pass_type: i32,
-    #[serde(rename = "price")]
-    pub price: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassPricesReturns {

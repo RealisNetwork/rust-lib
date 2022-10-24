@@ -36,22 +36,22 @@ pub struct BlogPollGetReturnsAnswersParamsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogPollGetReturns {
-    #[serde(rename = "answers")]
-    pub answers: Vec<BlogPollGetReturnsAnswersParamsParams>,
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "question", deserialize_with = "deserialize_to_string")]
-    pub question: String,
-    #[serde(rename = "endDate", deserialize_with = "deserialize_to_string")]
-    pub end_date: String,
-    #[serde(rename = "createdAt", deserialize_with = "deserialize_to_string")]
-    pub created_at: String,
     #[serde(rename = "updatedAt", deserialize_with = "deserialize_to_string")]
     pub updated_at: String,
+    #[serde(rename = "endDate", deserialize_with = "deserialize_to_string")]
+    pub end_date: String,
+    #[serde(rename = "question", deserialize_with = "deserialize_to_string")]
+    pub question: String,
+    #[serde(rename = "createdAt", deserialize_with = "deserialize_to_string")]
+    pub created_at: String,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "answers")]
+    pub answers: Vec<BlogPollGetReturnsAnswersParamsParams>,
 }
 impl Schema for BlogPollGetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"answer\":{\"type\":\"string\"},\"isImage\":{\"type\":\"boolean\"}},\"required\":[\"isImage\",\"answer\"]}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"question\":{\"type\":\"string\"},\"endDate\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"question\",\"answers\",\"endDate\",\"createdAt\",\"updatedAt\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"updatedAt\":{\"type\":\"string\"},\"endDate\":{\"type\":\"string\"},\"question\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"answer\":{\"type\":\"string\"},\"isImage\":{\"type\":\"boolean\"}},\"required\":[\"isImage\",\"answer\"]}}},\"required\":[\"id\",\"question\",\"answers\",\"endDate\",\"createdAt\",\"updatedAt\"]}")
     }
 }
 impl Agent for BlogPollGetReturns {

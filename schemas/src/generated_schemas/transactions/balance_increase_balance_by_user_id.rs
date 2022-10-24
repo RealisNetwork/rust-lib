@@ -7,24 +7,24 @@ use crate::generated_schemas::prelude::*;
 pub struct TransactionsBalanceIncreaseBalanceByUserIdParamsExtraDetailParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceIncreaseBalanceByUserIdParams {
-    #[serde(rename = "creator", deserialize_with = "deserialize_to_string")]
-    pub creator: String,
     #[serde(rename = "amount", deserialize_with = "deserialize_to_string")]
     pub amount: String,
-    #[serde(rename = "extraDetail")]
-    pub extra_detail: Option<TransactionsBalanceIncreaseBalanceByUserIdParamsExtraDetailParams>,
     #[serde(rename = "reason", deserialize_with = "deserialize_to_string")]
     pub reason: String,
     #[serde(rename = "txId", deserialize_with = "deserialize_to_string")]
     pub tx_id: String,
-    #[serde(rename = "currency", deserialize_with = "deserialize_to_string")]
-    pub currency: String,
+    #[serde(rename = "extraDetail")]
+    pub extra_detail: Option<TransactionsBalanceIncreaseBalanceByUserIdParamsExtraDetailParams>,
     #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
     pub user_id: String,
+    #[serde(rename = "creator", deserialize_with = "deserialize_to_string")]
+    pub creator: String,
+    #[serde(rename = "currency", deserialize_with = "deserialize_to_string")]
+    pub currency: String,
 }
 impl Schema for TransactionsBalanceIncreaseBalanceByUserIdParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"creator\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"extraDetail\":{\"type\":\"object\",\"properties\":{}},\"reason\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"extraDetail\":{\"type\":\"object\",\"properties\":{}},\"userId\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"}},\"required\":[\"creator\",\"reason\",\"currency\",\"amount\",\"txId\",\"userId\"]}") . unwrap ()
     }
 }
 impl Agent for TransactionsBalanceIncreaseBalanceByUserIdParams {

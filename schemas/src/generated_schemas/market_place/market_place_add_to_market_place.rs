@@ -7,28 +7,28 @@ use crate::generated_schemas::prelude::*;
 pub struct MarketPlaceMarketPlaceAddToMarketPlaceParamsAdditionalParamsParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceAddToMarketPlaceParams {
+    #[serde(rename = "description", deserialize_with = "deserialize_to_string")]
+    pub description: String,
     #[serde(rename = "image", deserialize_with = "deserialize_to_string")]
     pub image: String,
+    #[serde(rename = "category", deserialize_with = "deserialize_to_string")]
+    pub category: String,
     #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
     pub user_id: String,
+    #[serde(rename = "personalType", deserialize_with = "deserialize_to_string")]
+    pub personal_type: String,
+    #[serde(rename = "additionalParams")]
+    pub additional_params: MarketPlaceMarketPlaceAddToMarketPlaceParamsAdditionalParamsParams,
     #[serde(rename = "price")]
     pub price: i32,
     #[serde(rename = "productId")]
     pub product_id: i32,
-    #[serde(rename = "personalType", deserialize_with = "deserialize_to_string")]
-    pub personal_type: String,
-    #[serde(rename = "category", deserialize_with = "deserialize_to_string")]
-    pub category: String,
-    #[serde(rename = "additionalParams")]
-    pub additional_params: MarketPlaceMarketPlaceAddToMarketPlaceParamsAdditionalParamsParams,
-    #[serde(rename = "description", deserialize_with = "deserialize_to_string")]
-    pub description: String,
     #[serde(rename = "collection", deserialize_with = "deserialize_to_string")]
     pub collection: String,
 }
 impl Schema for MarketPlaceMarketPlaceAddToMarketPlaceParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"image\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"personalType\":{\"type\":\"string\"},\"category\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"description\":{\"type\":\"string\"},\"collection\":{\"type\":\"string\"}},\"required\":[\"collection\",\"userId\",\"price\",\"description\",\"image\",\"category\",\"personalType\",\"productId\",\"additionalParams\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"description\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"category\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"collection\":{\"type\":\"string\"}},\"required\":[\"collection\",\"userId\",\"price\",\"description\",\"image\",\"category\",\"personalType\",\"productId\",\"additionalParams\"]}") . unwrap ()
     }
 }
 impl Agent for MarketPlaceMarketPlaceAddToMarketPlaceParams {

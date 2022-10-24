@@ -5,11 +5,9 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileChangeEmailParams {
-    #[serde(rename = "newEmail", deserialize_with = "deserialize_to_string")]
-    pub new_email: String,
     #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
     pub user_id: String,
-    #[serde(rename = "newEmail")]
+    #[serde(rename = "newEmail", deserialize_with = "deserialize_to_string")]
     pub new_email: String,
 }
 impl Schema for UserProfileChangeEmailParams {

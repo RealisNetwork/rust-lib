@@ -29,11 +29,9 @@ impl Agent for ReferralLinkGetAllParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralLinkGetAllReturnsReferralLinksParamsParams {
-    #[serde(rename = "link", deserialize_with = "deserialize_to_string")]
-    pub link: String,
     #[serde(rename = "appId")]
     pub app_id: f64,
-    #[serde(rename = "link")]
+    #[serde(rename = "link", deserialize_with = "deserialize_to_string")]
     pub link: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]

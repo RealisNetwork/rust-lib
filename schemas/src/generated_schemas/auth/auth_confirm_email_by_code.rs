@@ -9,12 +9,10 @@ pub struct AuthAuthConfirmEmailByCodeParams {
     pub email_hash: String,
     #[serde(rename = "code", deserialize_with = "deserialize_to_string")]
     pub code: String,
-    #[serde(rename = "emailHash")]
-    pub email_hash: String,
 }
 impl Schema for AuthAuthConfirmEmailByCodeParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"},\"emailHash\":{\"type\":\"string\"}},\"required\":[\"code\",\"emailHash\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"emailHash\":{\"type\":\"string\"},\"code\":{\"type\":\"string\"}},\"required\":[\"code\",\"emailHash\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthConfirmEmailByCodeParams {
