@@ -24,7 +24,7 @@ impl Agent for UserProfileGetUserNicknameParams {
         "user"
     }
     fn access_level() -> AccessLevel {
-        AccessLevel::Internal
+        AccessLevel::Public
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -45,6 +45,6 @@ impl Agent for UserProfileGetUserNicknameReturns {
         "user"
     }
     fn access_level() -> AccessLevel {
-        AccessLevel::Internal
+        AccessLevel::Public
     }
 }

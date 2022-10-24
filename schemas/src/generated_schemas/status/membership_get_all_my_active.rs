@@ -37,44 +37,44 @@ impl Agent for StatusMembershipGetAllMyActiveParams {
 pub struct StatusMembershipGetAllMyActiveReturnsParamsMembershipParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipGetAllMyActiveReturnsParams {
-    #[serde(rename = "appId")]
-    pub app_id: f64,
-    #[serde(rename = "createdAt", deserialize_with = "deserialize_to_string")]
-    pub created_at: String,
-    #[serde(rename = "updatedAt", deserialize_with = "deserialize_to_string")]
-    pub updated_at: String,
-    #[serde(rename = "endDate", deserialize_with = "deserialize_to_string")]
-    pub end_date: String,
-    #[serde(
-        rename = "subscriptionToken",
-        deserialize_with = "deserialize_to_string"
-    )]
-    pub subscription_token: String,
-    #[serde(
-        rename = "subscriptionTokenHash",
-        deserialize_with = "deserialize_to_string"
-    )]
-    pub subscription_token_hash: String,
+    #[serde(rename = "duration", deserialize_with = "deserialize_to_string")]
+    pub duration: String,
     #[serde(rename = "id")]
     pub id: f64,
+    #[serde(rename = "membership")]
+    pub membership: StatusMembershipGetAllMyActiveReturnsParamsMembershipParams,
     #[serde(
         rename = "subscriptionProductId",
         deserialize_with = "deserialize_to_string"
     )]
     pub subscription_product_id: String,
-    #[serde(rename = "membership")]
-    pub membership: StatusMembershipGetAllMyActiveReturnsParamsMembershipParams,
+    #[serde(rename = "updatedAt", deserialize_with = "deserialize_to_string")]
+    pub updated_at: String,
+    #[serde(
+        rename = "subscriptionToken",
+        deserialize_with = "deserialize_to_string"
+    )]
+    pub subscription_token: String,
+    #[serde(rename = "createdAt", deserialize_with = "deserialize_to_string")]
+    pub created_at: String,
+    #[serde(rename = "endDate", deserialize_with = "deserialize_to_string")]
+    pub end_date: String,
+    #[serde(rename = "appId")]
+    pub app_id: f64,
     #[serde(
         rename = "subscriptionOrderId",
         deserialize_with = "deserialize_to_string"
     )]
     pub subscription_order_id: String,
+    #[serde(
+        rename = "subscriptionTokenHash",
+        deserialize_with = "deserialize_to_string"
+    )]
+    pub subscription_token_hash: String,
     #[serde(rename = "isActive")]
     pub is_active: bool,
     #[serde(rename = "userId")]
     pub user_id: f64,
-    #[serde(rename = "duration", deserialize_with = "deserialize_to_string")]
-    pub duration: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipGetAllMyActiveReturns(
@@ -82,7 +82,7 @@ pub struct StatusMembershipGetAllMyActiveReturns(
 );
 impl Schema for StatusMembershipGetAllMyActiveReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"createdAt\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"endDate\":{\"type\":\"string\"},\"subscriptionToken\":{\"type\":\"string\"},\"subscriptionTokenHash\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"subscriptionProductId\":{\"type\":\"string\"},\"membership\":{\"type\":\"object\",\"properties\":{}},\"subscriptionOrderId\":{\"type\":\"string\"},\"isActive\":{\"type\":\"boolean\"},\"userId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"duration\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"appId\",\"isActive\",\"endDate\",\"duration\",\"subscriptionProductId\",\"subscriptionOrderId\",\"subscriptionToken\",\"subscriptionTokenHash\",\"createdAt\",\"updatedAt\",\"membership\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"duration\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"membership\":{\"type\":\"object\",\"properties\":{}},\"subscriptionProductId\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"subscriptionToken\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"endDate\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"subscriptionOrderId\":{\"type\":\"string\"},\"subscriptionTokenHash\":{\"type\":\"string\"},\"isActive\":{\"type\":\"boolean\"},\"userId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"userId\",\"appId\",\"isActive\",\"endDate\",\"duration\",\"subscriptionProductId\",\"subscriptionOrderId\",\"subscriptionToken\",\"subscriptionTokenHash\",\"createdAt\",\"updatedAt\",\"membership\"]}}")
     }
 }
 impl Agent for StatusMembershipGetAllMyActiveReturns {

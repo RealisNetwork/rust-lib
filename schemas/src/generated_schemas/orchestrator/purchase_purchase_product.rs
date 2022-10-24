@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct OrchestratorPurchasePurchaseProductParams {
-    #[serde(rename = "productType", deserialize_with = "deserialize_to_string")]
-    pub product_type: String,
     #[serde(rename = "creator", deserialize_with = "deserialize_to_string")]
     pub creator: String,
+    #[serde(rename = "productType", deserialize_with = "deserialize_to_string")]
+    pub product_type: String,
 }
 impl Schema for OrchestratorPurchasePurchaseProductParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"productType\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"}},\"required\":[\"productType\",\"creator\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"creator\":{\"type\":\"string\"},\"productType\":{\"type\":\"string\"}},\"required\":[\"productType\",\"creator\"]}") . unwrap ()
     }
 }
 impl Agent for OrchestratorPurchasePurchaseProductParams {

@@ -147,6 +147,9 @@ impl SchemaManager {
             ("auth", "authDevice_getClientStatusByInternalUserId") => {
                 Some(AuthAuthDeviceGetClientStatusByInternalUserIdParams::schema())
             }
+            ("auth", "authProvider_getProviderByUserIdAndAppId") => {
+                Some(AuthAuthProviderGetProviderByUserIdAndAppIdParams::schema())
+            }
             ("auth", "ban_ban") => Some(AuthBanBanParams::schema()),
             ("auth", "ban_unBan") => Some(AuthBanUnBanParams::schema()),
             ("auth", "ban_getUserBan") => Some(AuthBanGetUserBanParams::schema()),
@@ -656,6 +659,24 @@ impl SchemaManager {
                 Some(GooglePlayPurchaseValidateSubscriptionParams::schema())
             }
             ("images", "image_uploadImage") => Some(ImagesImageUploadImageParams::schema()),
+            ("inventory", "inventoryEndpoints_hasUserProduct") => {
+                Some(InventoryInventoryEndpointsHasUserProductParams::schema())
+            }
+            ("inventory", "inventoryEndpoints_addItemToMarketPlace") => {
+                Some(InventoryInventoryEndpointsAddItemToMarketPlaceParams::schema())
+            }
+            ("inventory", "inventoryEndpoints_cancelSale") => {
+                Some(InventoryInventoryEndpointsCancelSaleParams::schema())
+            }
+            ("inventory", "inventoryEndpoints_getByProductId") => {
+                Some(InventoryInventoryEndpointsGetByProductIdParams::schema())
+            }
+            ("inventory", "inventoryEndpoints_getByProductIdAndUserId") => {
+                Some(InventoryInventoryEndpointsGetByProductIdAndUserIdParams::schema())
+            }
+            ("inventory", "inventoryEndpoints_getByFilter") => {
+                Some(InventoryInventoryEndpointsGetByFilterParams::schema())
+            }
             ("js-tests", "dragocatsBattleProcessEndpoints_startTest") => {
                 Some(JsTestsDragocatsBattleProcessEndpointsStartTestParams::schema())
             }
@@ -816,6 +837,9 @@ impl SchemaManager {
             ("market-place", "marketPlace_addToMarketPlace") => {
                 Some(MarketPlaceMarketPlaceAddToMarketPlaceParams::schema())
             }
+            ("market-place", "marketPlace_getItemHistory") => {
+                Some(MarketPlaceMarketPlaceGetItemHistoryParams::schema())
+            }
             ("near-adapter", "contract_isEnoughBalanceOnWithdrawWallet") => {
                 Some(NearAdapterContractIsEnoughBalanceOnWithdrawWalletParams::schema())
             }
@@ -888,6 +912,9 @@ impl SchemaManager {
             ("product-factory", "lootbox_open") => Some(ProductFactoryLootboxOpenParams::schema()),
             ("product-factory", "products_getInfoByProductId") => {
                 Some(ProductFactoryProductsGetInfoByProductIdParams::schema())
+            }
+            ("product-factory", "products_generateNfts") => {
+                Some(ProductFactoryProductsGenerateNftsParams::schema())
             }
             ("productFactory", "lootboxType_add") => {
                 Some(ProductFactoryLootboxTypeAddParams::schema())
@@ -1209,6 +1236,9 @@ impl SchemaManager {
             }
             ("user", "profile_getTestData") => Some(UserProfileGetTestDataParams::schema()),
             ("user", "profile_getCountActives") => Some(UserProfileGetCountActivesParams::schema()),
+            ("user", "profile_getNicknamesWithUserIds") => {
+                Some(UserProfileGetNicknamesWithUserIdsParams::schema())
+            }
             ("user", "status_delete") => Some(UserStatusDeleteParams::schema()),
             ("user", "status_get") => Some(UserStatusGetParams::schema()),
             ("withdraw", "approval_getAllMyTransactions") => {
@@ -1219,6 +1249,9 @@ impl SchemaManager {
             }
             ("withdraw", "approval_approve") => Some(WithdrawApprovalApproveParams::schema()),
             ("withdraw", "approval_deny") => Some(WithdrawApprovalDenyParams::schema()),
+            ("withdraw", "approval_getAllUserTransactions") => {
+                Some(WithdrawApprovalGetAllUserTransactionsParams::schema())
+            }
             ("withdraw", "attempt_tryNew") => Some(WithdrawAttemptTryNewParams::schema()),
             _ => None,
         }
@@ -1370,6 +1403,9 @@ impl SchemaManager {
             }
             ("auth", "authDevice_getClientStatusByInternalUserId") => {
                 Some(AuthAuthDeviceGetClientStatusByInternalUserIdReturns::schema())
+            }
+            ("auth", "authProvider_getProviderByUserIdAndAppId") => {
+                Some(AuthAuthProviderGetProviderByUserIdAndAppIdReturns::schema())
             }
             ("auth", "ban_ban") => Some(AuthBanBanReturns::schema()),
             ("auth", "ban_unBan") => Some(AuthBanUnBanReturns::schema()),
@@ -1892,6 +1928,24 @@ impl SchemaManager {
                 Some(GooglePlayPurchaseValidateSubscriptionReturns::schema())
             }
             ("images", "image_uploadImage") => Some(ImagesImageUploadImageReturns::schema()),
+            ("inventory", "inventoryEndpoints_hasUserProduct") => {
+                Some(InventoryInventoryEndpointsHasUserProductReturns::schema())
+            }
+            ("inventory", "inventoryEndpoints_addItemToMarketPlace") => {
+                Some(InventoryInventoryEndpointsAddItemToMarketPlaceReturns::schema())
+            }
+            ("inventory", "inventoryEndpoints_cancelSale") => {
+                Some(InventoryInventoryEndpointsCancelSaleReturns::schema())
+            }
+            ("inventory", "inventoryEndpoints_getByProductId") => {
+                Some(InventoryInventoryEndpointsGetByProductIdReturns::schema())
+            }
+            ("inventory", "inventoryEndpoints_getByProductIdAndUserId") => {
+                Some(InventoryInventoryEndpointsGetByProductIdAndUserIdReturns::schema())
+            }
+            ("inventory", "inventoryEndpoints_getByFilter") => {
+                Some(InventoryInventoryEndpointsGetByFilterReturns::schema())
+            }
             ("js-tests", "dragocatsBattleProcessEndpoints_startTest") => {
                 Some(JsTestsDragocatsBattleProcessEndpointsStartTestReturns::schema())
             }
@@ -2052,6 +2106,9 @@ impl SchemaManager {
             ("market-place", "marketPlace_addToMarketPlace") => {
                 Some(MarketPlaceMarketPlaceAddToMarketPlaceReturns::schema())
             }
+            ("market-place", "marketPlace_getItemHistory") => {
+                Some(MarketPlaceMarketPlaceGetItemHistoryReturns::schema())
+            }
             ("near-adapter", "contract_isEnoughBalanceOnWithdrawWallet") => {
                 Some(NearAdapterContractIsEnoughBalanceOnWithdrawWalletReturns::schema())
             }
@@ -2124,6 +2181,9 @@ impl SchemaManager {
             ("product-factory", "lootbox_open") => Some(ProductFactoryLootboxOpenReturns::schema()),
             ("product-factory", "products_getInfoByProductId") => {
                 Some(ProductFactoryProductsGetInfoByProductIdReturns::schema())
+            }
+            ("product-factory", "products_generateNfts") => {
+                Some(ProductFactoryProductsGenerateNftsReturns::schema())
             }
             ("productFactory", "lootboxType_add") => {
                 Some(ProductFactoryLootboxTypeAddReturns::schema())
@@ -2457,6 +2517,9 @@ impl SchemaManager {
             ("user", "profile_getCountActives") => {
                 Some(UserProfileGetCountActivesReturns::schema())
             }
+            ("user", "profile_getNicknamesWithUserIds") => {
+                Some(UserProfileGetNicknamesWithUserIdsReturns::schema())
+            }
             ("user", "status_delete") => Some(UserStatusDeleteReturns::schema()),
             ("user", "status_get") => Some(UserStatusGetReturns::schema()),
             ("withdraw", "approval_getAllMyTransactions") => {
@@ -2467,6 +2530,9 @@ impl SchemaManager {
             }
             ("withdraw", "approval_approve") => Some(WithdrawApprovalApproveReturns::schema()),
             ("withdraw", "approval_deny") => Some(WithdrawApprovalDenyReturns::schema()),
+            ("withdraw", "approval_getAllUserTransactions") => {
+                Some(WithdrawApprovalGetAllUserTransactionsReturns::schema())
+            }
             ("withdraw", "attempt_tryNew") => Some(WithdrawAttemptTryNewReturns::schema()),
             _ => None,
         }
@@ -2555,6 +2621,7 @@ impl SchemaManager {
             ("auth", "authDevice_getClientInfo") => Some(AccessLevel::Internal),
             ("auth", "authDevice_updateInternalIdByDeviceId") => Some(AccessLevel::Internal),
             ("auth", "authDevice_getClientStatusByInternalUserId") => Some(AccessLevel::Internal),
+            ("auth", "authProvider_getProviderByUserIdAndAppId") => Some(AccessLevel::Internal),
             ("auth", "ban_ban") => Some(AccessLevel::Private),
             ("auth", "ban_unBan") => Some(AccessLevel::Private),
             ("auth", "ban_getUserBan") => Some(AccessLevel::Private),
@@ -2830,6 +2897,14 @@ impl SchemaManager {
             ("gameBalancer", "gameBalancer_checkInNotification") => Some(AccessLevel::Protected),
             ("google-play", "purchase_validateSubscription") => Some(AccessLevel::Internal),
             ("images", "image_uploadImage") => Some(AccessLevel::Private),
+            ("inventory", "inventoryEndpoints_hasUserProduct") => Some(AccessLevel::Protected),
+            ("inventory", "inventoryEndpoints_addItemToMarketPlace") => Some(AccessLevel::Internal),
+            ("inventory", "inventoryEndpoints_cancelSale") => Some(AccessLevel::Internal),
+            ("inventory", "inventoryEndpoints_getByProductId") => Some(AccessLevel::Public),
+            ("inventory", "inventoryEndpoints_getByProductIdAndUserId") => {
+                Some(AccessLevel::Internal)
+            }
+            ("inventory", "inventoryEndpoints_getByFilter") => Some(AccessLevel::Protected),
             ("js-tests", "dragocatsBattleProcessEndpoints_startTest") => Some(AccessLevel::Private),
             ("js-tests", "dragocatsBattleProcessEndpoints_stopTest") => Some(AccessLevel::Private),
             ("js-tests", "dragocatsBattleProcessEndpoints_getTestState") => {
@@ -2904,16 +2979,17 @@ impl SchemaManager {
             ("market", "items_getPrice") => Some(AccessLevel::Internal),
             ("market", "items_getLootboxesList") => Some(AccessLevel::Public),
             ("market-place", "marketEndpoints_getByFilter") => Some(AccessLevel::Public),
-            ("market-place", "marketEndpoints_getSimilar") => Some(AccessLevel::Internal),
+            ("market-place", "marketEndpoints_getSimilar") => Some(AccessLevel::Public),
             ("market-place", "marketPlace_buyItem") => Some(AccessLevel::Internal),
             ("market-place", "marketPlace_unlockItem") => Some(AccessLevel::Internal),
-            ("market-place", "marketPlace_getItemById") => Some(AccessLevel::Internal),
+            ("market-place", "marketPlace_getItemById") => Some(AccessLevel::Public),
             ("market-place", "marketPlace_getBoughtItems") => Some(AccessLevel::Protected),
             ("market-place", "marketPlace_getItemsByFilter") => Some(AccessLevel::Public),
             ("market-place", "marketPlace_lockItem") => Some(AccessLevel::Internal),
             ("market-place", "marketPlace_cancelSale") => Some(AccessLevel::Protected),
             ("market-place", "marketPlace_getCanceledItems") => Some(AccessLevel::Protected),
             ("market-place", "marketPlace_addToMarketPlace") => Some(AccessLevel::Protected),
+            ("market-place", "marketPlace_getItemHistory") => Some(AccessLevel::Public),
             ("near-adapter", "contract_isEnoughBalanceOnWithdrawWallet") => {
                 Some(AccessLevel::Internal)
             }
@@ -2945,6 +3021,7 @@ impl SchemaManager {
             ("product-factory", "generator_generate") => Some(AccessLevel::Protected),
             ("product-factory", "lootbox_open") => Some(AccessLevel::Protected),
             ("product-factory", "products_getInfoByProductId") => Some(AccessLevel::Internal),
+            ("product-factory", "products_generateNfts") => Some(AccessLevel::Private),
             ("productFactory", "lootboxType_add") => Some(AccessLevel::Private),
             ("productFactory", "lootboxType_getAll") => Some(AccessLevel::Private),
             ("productFactory", "lootboxType_updateByLootboxId") => Some(AccessLevel::Private),
@@ -3087,7 +3164,7 @@ impl SchemaManager {
             ("user", "profile_getNicknameChangePrice") => Some(AccessLevel::Protected),
             ("user", "profile_getUserByParams") => Some(AccessLevel::Protected),
             ("user", "profile_getMyNickname") => Some(AccessLevel::Protected),
-            ("user", "profile_getUserNickname") => Some(AccessLevel::Internal),
+            ("user", "profile_getUserNickname") => Some(AccessLevel::Public),
             ("user", "profile_getNicknamesByUserIds") => Some(AccessLevel::Internal),
             ("user", "profile_deleteUser") => Some(AccessLevel::Private),
             ("user", "profile_setNotice") => Some(AccessLevel::Private),
@@ -3099,12 +3176,14 @@ impl SchemaManager {
             ("user", "profile_getMyProfileForBytes") => Some(AccessLevel::Protected),
             ("user", "profile_getTestData") => Some(AccessLevel::Protected),
             ("user", "profile_getCountActives") => Some(AccessLevel::Public),
+            ("user", "profile_getNicknamesWithUserIds") => Some(AccessLevel::Internal),
             ("user", "status_delete") => Some(AccessLevel::Private),
             ("user", "status_get") => Some(AccessLevel::Private),
             ("withdraw", "approval_getAllMyTransactions") => Some(AccessLevel::Protected),
             ("withdraw", "approval_listUnapproved") => Some(AccessLevel::Private),
             ("withdraw", "approval_approve") => Some(AccessLevel::Private),
             ("withdraw", "approval_deny") => Some(AccessLevel::Private),
+            ("withdraw", "approval_getAllUserTransactions") => Some(AccessLevel::Private),
             ("withdraw", "attempt_tryNew") => Some(AccessLevel::Protected),
             _ => None,
         }

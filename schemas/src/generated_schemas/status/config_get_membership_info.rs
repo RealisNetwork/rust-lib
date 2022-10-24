@@ -31,22 +31,22 @@ impl Agent for StatusConfigGetMembershipInfoParams {
 pub struct StatusConfigGetMembershipInfoReturns {
     #[serde(rename = "priceInLis", deserialize_with = "deserialize_to_string")]
     pub price_in_lis: String,
+    #[serde(rename = "membership", deserialize_with = "deserialize_to_string")]
+    pub membership: String,
+    #[serde(rename = "multiplier", deserialize_with = "deserialize_to_string")]
+    pub multiplier: String,
+    #[serde(rename = "maxCount", deserialize_with = "deserialize_to_string")]
+    pub max_count: String,
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
     #[serde(rename = "id")]
     pub id: f64,
-    #[serde(rename = "membership", deserialize_with = "deserialize_to_string")]
-    pub membership: String,
-    #[serde(rename = "maxCount", deserialize_with = "deserialize_to_string")]
-    pub max_count: String,
     #[serde(rename = "price", deserialize_with = "deserialize_to_string")]
     pub price: String,
-    #[serde(rename = "multiplier", deserialize_with = "deserialize_to_string")]
-    pub multiplier: String,
 }
 impl Schema for StatusConfigGetMembershipInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"priceInLis\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"membership\":{\"type\":\"string\"},\"maxCount\":{\"type\":\"string\"},\"price\":{\"type\":\"string\"},\"multiplier\":{\"type\":\"string\"}},\"required\":[\"id\",\"membership\",\"price\",\"multiplier\",\"priceInLis\",\"maxCount\",\"isAvailable\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"priceInLis\":{\"type\":\"string\"},\"membership\":{\"type\":\"string\"},\"multiplier\":{\"type\":\"string\"},\"maxCount\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"price\":{\"type\":\"string\"}},\"required\":[\"id\",\"membership\",\"price\",\"multiplier\",\"priceInLis\",\"maxCount\",\"isAvailable\"]}")
     }
 }
 impl Agent for StatusConfigGetMembershipInfoReturns {

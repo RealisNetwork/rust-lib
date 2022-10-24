@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyUnlinkAccountParams {
-    #[serde(rename = "password", deserialize_with = "deserialize_to_string")]
-    pub password: String,
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
     #[serde(rename = "email", deserialize_with = "deserialize_to_string")]
     pub email: String,
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
+    #[serde(rename = "password", deserialize_with = "deserialize_to_string")]
+    pub password: String,
 }
 impl Schema for CatsLobbyUnlinkAccountParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"password\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"}},\"required\":[\"userId\",\"email\",\"password\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"password\":{\"type\":\"string\"}},\"required\":[\"userId\",\"email\",\"password\"]}") . unwrap ()
     }
 }
 impl Agent for CatsLobbyUnlinkAccountParams {

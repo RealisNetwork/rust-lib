@@ -7,14 +7,14 @@ use crate::generated_schemas::prelude::*;
 pub struct AdminConfirmationGetAllActionsParams {
     #[serde(rename = "tab", deserialize_with = "deserialize_to_string")]
     pub tab: String,
-    #[serde(rename = "perPage")]
-    pub per_page: f64,
     #[serde(rename = "page")]
     pub page: f64,
+    #[serde(rename = "perPage")]
+    pub per_page: f64,
 }
 impl Schema for AdminConfirmationGetAllActionsParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"tab\":{\"type\":\"string\"},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"page\",\"perPage\",\"tab\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"tab\":{\"type\":\"string\"},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"page\",\"perPage\",\"tab\"]}") . unwrap ()
     }
 }
 impl Agent for AdminConfirmationGetAllActionsParams {
@@ -35,42 +35,42 @@ impl Agent for AdminConfirmationGetAllActionsParams {
 pub struct AdminConfirmationGetAllActionsReturnsDataParamsParamsInfoMethodParamsParamsParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminConfirmationGetAllActionsReturnsDataParamsParamsInfoMethodParams {
-    #[serde(rename = "params")]
-    pub params: AdminConfirmationGetAllActionsReturnsDataParamsParamsInfoMethodParamsParamsParams,
     #[serde(rename = "agent", deserialize_with = "deserialize_to_string")]
     pub agent: String,
     #[serde(rename = "method", deserialize_with = "deserialize_to_string")]
     pub method: String,
+    #[serde(rename = "params")]
+    pub params: AdminConfirmationGetAllActionsReturnsDataParamsParamsInfoMethodParamsParamsParams,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminConfirmationGetAllActionsReturnsDataParamsParams {
-    #[serde(rename = "infoMethod")]
-    pub info_method: AdminConfirmationGetAllActionsReturnsDataParamsParamsInfoMethodParams,
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
-    #[serde(rename = "updatedAt", deserialize_with = "deserialize_to_string")]
-    pub updated_at: String,
     #[serde(rename = "id")]
     pub id: f64,
     #[serde(rename = "isSuccess")]
     pub is_success: bool,
-    #[serde(rename = "nickname", deserialize_with = "deserialize_to_string")]
-    pub nickname: String,
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
     #[serde(rename = "createdAt", deserialize_with = "deserialize_to_string")]
     pub created_at: String,
+    #[serde(rename = "nickname", deserialize_with = "deserialize_to_string")]
+    pub nickname: String,
+    #[serde(rename = "infoMethod")]
+    pub info_method: AdminConfirmationGetAllActionsReturnsDataParamsParamsInfoMethodParams,
     #[serde(rename = "tab", deserialize_with = "deserialize_to_string")]
     pub tab: String,
+    #[serde(rename = "updatedAt", deserialize_with = "deserialize_to_string")]
+    pub updated_at: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminConfirmationGetAllActionsReturns {
-    #[serde(rename = "data")]
-    pub data: Vec<AdminConfirmationGetAllActionsReturnsDataParamsParams>,
     #[serde(rename = "totalCount")]
     pub total_count: f64,
+    #[serde(rename = "data")]
+    pub data: Vec<AdminConfirmationGetAllActionsReturnsDataParamsParams>,
 }
 impl Schema for AdminConfirmationGetAllActionsReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"infoMethod\":{\"type\":\"object\",\"properties\":{\"params\":{\"type\":\"object\",\"properties\":{}},\"agent\":{\"type\":\"string\"},\"method\":{\"type\":\"string\"}},\"required\":[\"agent\",\"method\",\"params\"]},\"userId\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isSuccess\":{\"type\":\"boolean\"},\"nickname\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"tab\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"isSuccess\",\"infoMethod\",\"tab\",\"nickname\",\"createdAt\",\"updatedAt\"]}},\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"data\",\"totalCount\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isSuccess\":{\"type\":\"boolean\"},\"userId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"infoMethod\":{\"type\":\"object\",\"properties\":{\"agent\":{\"type\":\"string\"},\"method\":{\"type\":\"string\"},\"params\":{\"type\":\"object\",\"properties\":{}}},\"required\":[\"agent\",\"method\",\"params\"]},\"tab\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"isSuccess\",\"infoMethod\",\"tab\",\"nickname\",\"createdAt\",\"updatedAt\"]}}},\"required\":[\"data\",\"totalCount\"]}")
     }
 }
 impl Agent for AdminConfirmationGetAllActionsReturns {

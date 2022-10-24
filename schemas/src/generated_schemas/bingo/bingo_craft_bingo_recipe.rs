@@ -31,24 +31,24 @@ impl Agent for BingoBingoCraftBingoRecipeParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BingoBingoCraftBingoRecipeReturns {
-    #[serde(
-        rename = "HardRewardAmount",
-        deserialize_with = "deserialize_to_string"
-    )]
-    pub hard_reward_amount: String,
+    #[serde(rename = "BingoReceiptId")]
+    pub bingo_receipt_id: i32,
+    #[serde(rename = "status")]
+    pub status: i32,
     #[serde(
         rename = "JackpotRewardAmount",
         deserialize_with = "deserialize_to_string"
     )]
     pub jackpot_reward_amount: String,
-    #[serde(rename = "status")]
-    pub status: i32,
-    #[serde(rename = "BingoReceiptId")]
-    pub bingo_receipt_id: i32,
+    #[serde(
+        rename = "HardRewardAmount",
+        deserialize_with = "deserialize_to_string"
+    )]
+    pub hard_reward_amount: String,
 }
 impl Schema for BingoBingoCraftBingoRecipeReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"HardRewardAmount\":{\"type\":\"string\"},\"JackpotRewardAmount\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"BingoReceiptId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"status\",\"BingoReceiptId\",\"HardRewardAmount\",\"JackpotRewardAmount\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"BingoReceiptId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"JackpotRewardAmount\":{\"type\":\"string\"},\"HardRewardAmount\":{\"type\":\"string\"}},\"required\":[\"status\",\"BingoReceiptId\",\"HardRewardAmount\",\"JackpotRewardAmount\"]}")
     }
 }
 impl Agent for BingoBingoCraftBingoRecipeReturns {

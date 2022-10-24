@@ -35,16 +35,16 @@ impl Agent for AuthInstantMigrationStopMigrationParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthInstantMigrationStopMigrationReturns {
+    #[serde(rename = "startIndex")]
+    pub start_index: f64,
     #[serde(rename = "count")]
     pub count: f64,
     #[serde(rename = "interval")]
     pub interval: f64,
-    #[serde(rename = "startIndex")]
-    pub start_index: f64,
 }
 impl Schema for AuthInstantMigrationStopMigrationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"count\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"interval\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"startIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"startIndex\",\"count\",\"interval\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"startIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"count\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"interval\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"startIndex\",\"count\",\"interval\"]}")
     }
 }
 impl Agent for AuthInstantMigrationStopMigrationReturns {

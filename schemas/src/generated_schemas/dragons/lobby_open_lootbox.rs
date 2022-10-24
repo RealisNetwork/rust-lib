@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbyOpenLootboxParams {
-    #[serde(rename = "lootboxId")]
-    pub lootbox_id: f64,
     #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
     pub user_id: String,
+    #[serde(rename = "lootboxId")]
+    pub lootbox_id: f64,
 }
 impl Schema for DragonsLobbyOpenLootboxParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"lootboxId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"lootboxId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"lootboxId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"lootboxId\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbyOpenLootboxParams {

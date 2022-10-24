@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthConfirmEmailByCodeParams {
-    #[serde(rename = "code", deserialize_with = "deserialize_to_string")]
-    pub code: String,
     #[serde(rename = "emailHash", deserialize_with = "deserialize_to_string")]
     pub email_hash: String,
+    #[serde(rename = "code", deserialize_with = "deserialize_to_string")]
+    pub code: String,
 }
 impl Schema for AuthAuthConfirmEmailByCodeParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"string\"},\"emailHash\":{\"type\":\"string\"}},\"required\":[\"code\",\"emailHash\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"emailHash\":{\"type\":\"string\"},\"code\":{\"type\":\"string\"}},\"required\":[\"code\",\"emailHash\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthConfirmEmailByCodeParams {

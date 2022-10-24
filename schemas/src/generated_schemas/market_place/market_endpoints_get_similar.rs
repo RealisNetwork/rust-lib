@@ -24,35 +24,39 @@ impl Agent for MarketPlaceMarketEndpointsGetSimilarParams {
         "market-place"
     }
     fn access_level() -> AccessLevel {
-        AccessLevel::Internal
+        AccessLevel::Public
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetSimilarReturnsParamsAdditionalParamsParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetSimilarReturnsParams {
-    #[serde(rename = "type", deserialize_with = "deserialize_to_string")]
-    pub r#type: String,
-    #[serde(rename = "price")]
-    pub price: i32,
-    #[serde(rename = "additionalParams")]
-    pub additional_params: MarketPlaceMarketEndpointsGetSimilarReturnsParamsAdditionalParamsParams,
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
-    #[serde(rename = "subType", deserialize_with = "deserialize_to_string")]
-    pub sub_type: String,
     #[serde(rename = "productId")]
     pub product_id: i32,
+    #[serde(rename = "personalType", deserialize_with = "deserialize_to_string")]
+    pub personal_type: String,
+    #[serde(rename = "image", deserialize_with = "deserialize_to_string")]
+    pub image: String,
     #[serde(rename = "id")]
     pub id: i32,
     #[serde(rename = "isLocked")]
     pub is_locked: bool,
-    #[serde(rename = "createdAt")]
-    pub created_at: i32,
+    #[serde(rename = "price")]
+    pub price: i32,
+    #[serde(rename = "description", deserialize_with = "deserialize_to_string")]
+    pub description: String,
+    #[serde(rename = "type", deserialize_with = "deserialize_to_string")]
+    pub r#type: String,
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
     #[serde(rename = "category")]
     pub category: i32,
-    #[serde(rename = "personalType", deserialize_with = "deserialize_to_string")]
-    pub personal_type: String,
+    #[serde(rename = "collection", deserialize_with = "deserialize_to_string")]
+    pub collection: String,
+    #[serde(rename = "additionalParams")]
+    pub additional_params: MarketPlaceMarketEndpointsGetSimilarReturnsParamsAdditionalParamsParams,
+    #[serde(rename = "createdAt")]
+    pub created_at: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetSimilarReturns(
@@ -60,7 +64,7 @@ pub struct MarketPlaceMarketEndpointsGetSimilarReturns(
 );
 impl Schema for MarketPlaceMarketEndpointsGetSimilarReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"userId\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"isLocked\":{\"type\":\"boolean\"},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"personalType\":{\"type\":\"string\"}},\"required\":[\"id\",\"productId\",\"userId\",\"personalType\",\"type\",\"subType\",\"price\",\"additionalParams\",\"isLocked\",\"category\",\"createdAt\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"personalType\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"isLocked\":{\"type\":\"boolean\"},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"description\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"collection\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"productId\",\"userId\",\"personalType\",\"type\",\"collection\",\"price\",\"description\",\"image\",\"additionalParams\",\"isLocked\",\"category\",\"createdAt\"]}}")
     }
 }
 impl Agent for MarketPlaceMarketEndpointsGetSimilarReturns {
@@ -74,6 +78,6 @@ impl Agent for MarketPlaceMarketEndpointsGetSimilarReturns {
         "market-place"
     }
     fn access_level() -> AccessLevel {
-        AccessLevel::Internal
+        AccessLevel::Public
     }
 }

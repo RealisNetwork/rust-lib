@@ -14,14 +14,14 @@ pub struct BlogPollAddParamsAnswersParamsParams {
 pub struct BlogPollAddParams {
     #[serde(rename = "question", deserialize_with = "deserialize_to_string")]
     pub question: String,
-    #[serde(rename = "answers")]
-    pub answers: Vec<BlogPollAddParamsAnswersParamsParams>,
     #[serde(rename = "endDate", deserialize_with = "deserialize_to_string")]
     pub end_date: String,
+    #[serde(rename = "answers")]
+    pub answers: Vec<BlogPollAddParamsAnswersParamsParams>,
 }
 impl Schema for BlogPollAddParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"question\":{\"type\":\"string\"},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"answer\":{\"type\":\"string\"},\"isImage\":{\"type\":\"boolean\"}},\"required\":[\"isImage\",\"answer\"]}},\"endDate\":{\"type\":\"string\"}},\"required\":[\"question\",\"answers\",\"endDate\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"question\":{\"type\":\"string\"},\"endDate\":{\"type\":\"string\"},\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"answer\":{\"type\":\"string\"},\"isImage\":{\"type\":\"boolean\"}},\"required\":[\"isImage\",\"answer\"]}}},\"required\":[\"question\",\"answers\",\"endDate\"]}") . unwrap ()
     }
 }
 impl Agent for BlogPollAddParams {

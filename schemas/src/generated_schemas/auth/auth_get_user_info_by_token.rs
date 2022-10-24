@@ -29,24 +29,24 @@ impl Agent for AuthAuthGetUserInfoByTokenParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthGetUserInfoByTokenReturns {
-    #[serde(rename = "id", deserialize_with = "deserialize_to_string")]
-    pub id: String,
-    #[serde(rename = "role")]
-    pub role: Option<String>,
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
-    #[serde(rename = "isBanned")]
-    pub is_banned: bool,
-    #[serde(rename = "email", deserialize_with = "deserialize_to_string")]
-    pub email: String,
-    #[serde(rename = "emailVerified")]
-    pub email_verified: bool,
     #[serde(rename = "username", deserialize_with = "deserialize_to_string")]
     pub username: String,
+    #[serde(rename = "emailVerified")]
+    pub email_verified: bool,
+    #[serde(rename = "email", deserialize_with = "deserialize_to_string")]
+    pub email: String,
+    #[serde(rename = "role")]
+    pub role: Option<String>,
+    #[serde(rename = "isBanned")]
+    pub is_banned: bool,
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
+    #[serde(rename = "id", deserialize_with = "deserialize_to_string")]
+    pub id: String,
 }
 impl Schema for AuthAuthGetUserInfoByTokenReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"string\"},\"role\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"isBanned\":{\"type\":\"boolean\"},\"email\":{\"type\":\"string\"},\"emailVerified\":{\"type\":\"boolean\"},\"username\":{\"type\":\"string\"}},\"required\":[\"id\",\"username\",\"emailVerified\",\"email\",\"isBanned\",\"userId\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"username\":{\"type\":\"string\"},\"emailVerified\":{\"type\":\"boolean\"},\"email\":{\"type\":\"string\"},\"role\":{\"type\":\"string\"},\"isBanned\":{\"type\":\"boolean\"},\"userId\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"}},\"required\":[\"id\",\"username\",\"emailVerified\",\"email\",\"isBanned\",\"userId\"]}")
     }
 }
 impl Agent for AuthAuthGetUserInfoByTokenReturns {

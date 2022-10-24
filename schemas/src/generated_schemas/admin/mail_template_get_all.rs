@@ -35,18 +35,18 @@ impl Agent for AdminMailTemplateGetAllParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminMailTemplateGetAllReturnsParams {
-    #[serde(rename = "mailTemplate", deserialize_with = "deserialize_to_string")]
-    pub mail_template: String,
     #[serde(rename = "key", deserialize_with = "deserialize_to_string")]
     pub key: String,
     #[serde(rename = "name", deserialize_with = "deserialize_to_string")]
     pub name: String,
+    #[serde(rename = "mailTemplate", deserialize_with = "deserialize_to_string")]
+    pub mail_template: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminMailTemplateGetAllReturns(pub Vec<AdminMailTemplateGetAllReturnsParams>);
 impl Schema for AdminMailTemplateGetAllReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"mailTemplate\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"}},\"required\":[\"key\",\"name\",\"mailTemplate\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"mailTemplate\":{\"type\":\"string\"}},\"required\":[\"key\",\"name\",\"mailTemplate\"]}}")
     }
 }
 impl Agent for AdminMailTemplateGetAllReturns {

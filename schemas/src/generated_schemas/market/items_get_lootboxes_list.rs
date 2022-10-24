@@ -39,12 +39,12 @@ pub struct MarketItemsGetLootboxesListReturnsProductParamsParams {
     pub currency_type: String,
     #[serde(rename = "type")]
     pub r#type: i32,
-    #[serde(rename = "productType", deserialize_with = "deserialize_to_string")]
-    pub product_type: String,
-    #[serde(rename = "price", deserialize_with = "deserialize_to_string")]
-    pub price: String,
     #[serde(rename = "id")]
     pub id: i32,
+    #[serde(rename = "price", deserialize_with = "deserialize_to_string")]
+    pub price: String,
+    #[serde(rename = "productType", deserialize_with = "deserialize_to_string")]
+    pub product_type: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketItemsGetLootboxesListReturns {
@@ -53,7 +53,7 @@ pub struct MarketItemsGetLootboxesListReturns {
 }
 impl Schema for MarketItemsGetLootboxesListReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"product\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"currencyType\":{\"type\":\"string\"},\"type\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"productType\":{\"type\":\"string\"},\"price\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"type\",\"productType\",\"currencyType\",\"price\"]}}},\"required\":[\"product\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"product\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"currencyType\":{\"type\":\"string\"},\"type\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"price\":{\"type\":\"string\"},\"productType\":{\"type\":\"string\"}},\"required\":[\"id\",\"type\",\"productType\",\"currencyType\",\"price\"]}}},\"required\":[\"product\"]}")
     }
 }
 impl Agent for MarketItemsGetLootboxesListReturns {

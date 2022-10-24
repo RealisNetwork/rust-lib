@@ -5,10 +5,10 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemsByFilterParamsPriceParams {
-    #[serde(rename = "min")]
-    pub min: i32,
     #[serde(rename = "max")]
     pub max: i32,
+    #[serde(rename = "min")]
+    pub min: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemsByFilterParamsOrderParams {
@@ -19,26 +19,26 @@ pub struct MarketPlaceMarketPlaceGetItemsByFilterParamsOrderParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemsByFilterParams {
-    #[serde(rename = "perPage")]
-    pub per_page: i32,
-    #[serde(rename = "price")]
-    pub price: Option<MarketPlaceMarketPlaceGetItemsByFilterParamsPriceParams>,
-    #[serde(rename = "additionalValue")]
-    pub additional_value: Option<String>,
     #[serde(rename = "personalType")]
     pub personal_type: Option<String>,
-    #[serde(rename = "additionalParam")]
-    pub additional_param: Option<String>,
-    #[serde(rename = "page")]
-    pub page: i32,
+    #[serde(rename = "additionalValue")]
+    pub additional_value: Option<String>,
+    #[serde(rename = "price")]
+    pub price: Option<MarketPlaceMarketPlaceGetItemsByFilterParamsPriceParams>,
+    #[serde(rename = "perPage")]
+    pub per_page: i32,
     #[serde(rename = "category")]
     pub category: Option<i32>,
     #[serde(rename = "order")]
     pub order: Option<MarketPlaceMarketPlaceGetItemsByFilterParamsOrderParams>,
+    #[serde(rename = "page")]
+    pub page: i32,
+    #[serde(rename = "additionalParam")]
+    pub additional_param: Option<String>,
 }
 impl Schema for MarketPlaceMarketPlaceGetItemsByFilterParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"perPage\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"price\":{\"type\":\"object\",\"properties\":{\"min\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"max\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"min\",\"max\"]},\"additionalValue\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"additionalParam\":{\"type\":\"string\"},\"page\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"order\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"desc\":{\"type\":\"boolean\"}},\"required\":[\"name\",\"desc\"]}},\"required\":[\"perPage\",\"page\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"additionalValue\":{\"type\":\"string\"},\"price\":{\"type\":\"object\",\"properties\":{\"max\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"min\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"min\",\"max\"]},\"perPage\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"order\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"desc\":{\"type\":\"boolean\"}},\"required\":[\"name\",\"desc\"]},\"page\":{\"type\":\"integer\",\"minimum\":1,\"maximum\":100,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"additionalParam\":{\"type\":\"string\"}},\"required\":[\"perPage\",\"page\"]}") . unwrap ()
     }
 }
 impl Agent for MarketPlaceMarketPlaceGetItemsByFilterParams {
@@ -61,29 +61,29 @@ pub struct MarketPlaceMarketPlaceGetItemsByFilterReturnsParamsAdditionalParamsPa
 pub struct MarketPlaceMarketPlaceGetItemsByFilterReturnsParams {
     #[serde(rename = "category")]
     pub category: i32,
-    #[serde(rename = "personalType", deserialize_with = "deserialize_to_string")]
-    pub personal_type: String,
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
-    #[serde(rename = "type", deserialize_with = "deserialize_to_string")]
-    pub r#type: String,
-    #[serde(rename = "price")]
-    pub price: i32,
-    #[serde(rename = "createdAt")]
-    pub created_at: i32,
-    #[serde(rename = "isLocked")]
-    pub is_locked: bool,
-    #[serde(rename = "subType", deserialize_with = "deserialize_to_string")]
-    pub sub_type: String,
+    #[serde(rename = "collection", deserialize_with = "deserialize_to_string")]
+    pub collection: String,
     #[serde(rename = "additionalParams")]
     pub additional_params:
         MarketPlaceMarketPlaceGetItemsByFilterReturnsParamsAdditionalParamsParams,
+    #[serde(rename = "createdAt")]
+    pub created_at: i32,
+    #[serde(rename = "price")]
+    pub price: i32,
     #[serde(rename = "updatedAt")]
     pub updated_at: i32,
-    #[serde(rename = "id")]
-    pub id: i32,
     #[serde(rename = "productId")]
     pub product_id: i32,
+    #[serde(rename = "isLocked")]
+    pub is_locked: bool,
+    #[serde(rename = "personalType", deserialize_with = "deserialize_to_string")]
+    pub personal_type: String,
+    #[serde(rename = "type", deserialize_with = "deserialize_to_string")]
+    pub r#type: String,
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
+    #[serde(rename = "id")]
+    pub id: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemsByFilterReturns(
@@ -91,7 +91,7 @@ pub struct MarketPlaceMarketPlaceGetItemsByFilterReturns(
 );
 impl Schema for MarketPlaceMarketPlaceGetItemsByFilterReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"personalType\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"isLocked\":{\"type\":\"boolean\"},\"subType\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"productId\",\"userId\",\"personalType\",\"type\",\"subType\",\"price\",\"additionalParams\",\"isLocked\",\"category\",\"createdAt\",\"updatedAt\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"collection\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"updatedAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"isLocked\":{\"type\":\"boolean\"},\"personalType\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"id\",\"productId\",\"userId\",\"personalType\",\"collection\",\"type\",\"price\",\"additionalParams\",\"isLocked\",\"category\",\"createdAt\",\"updatedAt\"]}}")
     }
 }
 impl Agent for MarketPlaceMarketPlaceGetItemsByFilterReturns {

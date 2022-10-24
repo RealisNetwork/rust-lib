@@ -7,6 +7,8 @@ use crate::generated_schemas::prelude::*;
 pub struct PurchaseBalanceIncreaseUserBalanceParams {
     #[serde(rename = "amount", deserialize_with = "deserialize_to_string")]
     pub amount: String,
+    #[serde(rename = "currency", deserialize_with = "deserialize_to_string")]
+    pub currency: String,
     #[serde(rename = "creator", deserialize_with = "deserialize_to_string")]
     pub creator: String,
     #[serde(
@@ -18,12 +20,10 @@ pub struct PurchaseBalanceIncreaseUserBalanceParams {
     pub user_id: String,
     #[serde(rename = "txId", deserialize_with = "deserialize_to_string")]
     pub tx_id: String,
-    #[serde(rename = "currency", deserialize_with = "deserialize_to_string")]
-    pub currency: String,
 }
 impl Schema for PurchaseBalanceIncreaseUserBalanceParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"creator\":{\"type\":\"string\"},\"topicToSuccessResponse\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\",\"topicToSuccessResponse\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"creator\":{\"type\":\"string\"},\"topicToSuccessResponse\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"txId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\",\"amount\",\"creator\",\"txId\",\"topicToSuccessResponse\"]}") . unwrap ()
     }
 }
 impl Agent for PurchaseBalanceIncreaseUserBalanceParams {

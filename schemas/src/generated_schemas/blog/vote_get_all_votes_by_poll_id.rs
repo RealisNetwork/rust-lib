@@ -29,16 +29,16 @@ impl Agent for BlogVoteGetAllVotesByPollIdParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogVoteGetAllVotesByPollIdReturnsParams {
-    #[serde(rename = "answer")]
-    pub answer: f64,
     #[serde(rename = "count")]
     pub count: f64,
+    #[serde(rename = "answer")]
+    pub answer: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogVoteGetAllVotesByPollIdReturns(pub Vec<BlogVoteGetAllVotesByPollIdReturnsParams>);
 impl Schema for BlogVoteGetAllVotesByPollIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"answer\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"count\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"answer\",\"count\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"count\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"answer\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"answer\",\"count\"]}}")
     }
 }
 impl Agent for BlogVoteGetAllVotesByPollIdReturns {

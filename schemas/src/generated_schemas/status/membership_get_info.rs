@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipGetInfoParams {
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
     #[serde(rename = "appId")]
     pub app_id: f64,
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
 }
 impl Schema for StatusMembershipGetInfoParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"appId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"appId\"]}") . unwrap ()
     }
 }
 impl Agent for StatusMembershipGetInfoParams {
@@ -31,18 +31,18 @@ impl Agent for StatusMembershipGetInfoParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipGetInfoReturns {
-    #[serde(rename = "multiplier")]
-    pub multiplier: f64,
-    #[serde(rename = "priceInLis")]
-    pub price_in_lis: f64,
     #[serde(rename = "membership", deserialize_with = "deserialize_to_string")]
     pub membership: String,
     #[serde(rename = "price")]
     pub price: f64,
+    #[serde(rename = "multiplier")]
+    pub multiplier: f64,
+    #[serde(rename = "priceInLis")]
+    pub price_in_lis: f64,
 }
 impl Schema for StatusMembershipGetInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"multiplier\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"priceInLis\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"membership\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"membership\",\"multiplier\",\"price\",\"priceInLis\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"membership\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"multiplier\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"priceInLis\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"membership\",\"multiplier\",\"price\",\"priceInLis\"]}")
     }
 }
 impl Agent for StatusMembershipGetInfoReturns {

@@ -29,52 +29,52 @@ impl Agent for BlogBlogGetParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetReturnsCategoryParams {
-    #[serde(rename = "id")]
-    pub id: f64,
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
     #[serde(rename = "name", deserialize_with = "deserialize_to_string")]
     pub name: String,
+    #[serde(rename = "id")]
+    pub id: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetReturns {
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
-    #[serde(rename = "image", deserialize_with = "deserialize_to_string")]
-    pub image: String,
-    #[serde(rename = "title", deserialize_with = "deserialize_to_string")]
-    pub title: String,
-    #[serde(rename = "lang", deserialize_with = "deserialize_to_string")]
-    pub lang: String,
-    #[serde(rename = "content", deserialize_with = "deserialize_to_string")]
-    pub content: String,
-    #[serde(rename = "updatedAt", deserialize_with = "deserialize_to_string")]
-    pub updated_at: String,
-    #[serde(rename = "isPinned")]
-    pub is_pinned: bool,
-    #[serde(rename = "createdAt", deserialize_with = "deserialize_to_string")]
-    pub created_at: String,
-    #[serde(rename = "url", deserialize_with = "deserialize_to_string")]
-    pub url: String,
-    #[serde(rename = "views")]
-    pub views: f64,
-    #[serde(rename = "category")]
-    pub category: BlogBlogGetReturnsCategoryParams,
     #[serde(
         rename = "shortDescription",
         deserialize_with = "deserialize_to_string"
     )]
     pub short_description: String,
-    #[serde(rename = "metaDescription", deserialize_with = "deserialize_to_string")]
-    pub meta_description: String,
-    #[serde(rename = "metaTitle", deserialize_with = "deserialize_to_string")]
-    pub meta_title: String,
+    #[serde(rename = "content", deserialize_with = "deserialize_to_string")]
+    pub content: String,
+    #[serde(rename = "isPinned")]
+    pub is_pinned: bool,
+    #[serde(rename = "title", deserialize_with = "deserialize_to_string")]
+    pub title: String,
+    #[serde(rename = "category")]
+    pub category: BlogBlogGetReturnsCategoryParams,
     #[serde(rename = "id")]
     pub id: f64,
+    #[serde(rename = "metaDescription", deserialize_with = "deserialize_to_string")]
+    pub meta_description: String,
+    #[serde(rename = "lang", deserialize_with = "deserialize_to_string")]
+    pub lang: String,
+    #[serde(rename = "metaTitle", deserialize_with = "deserialize_to_string")]
+    pub meta_title: String,
+    #[serde(rename = "url", deserialize_with = "deserialize_to_string")]
+    pub url: String,
+    #[serde(rename = "createdAt", deserialize_with = "deserialize_to_string")]
+    pub created_at: String,
+    #[serde(rename = "views")]
+    pub views: f64,
+    #[serde(rename = "image", deserialize_with = "deserialize_to_string")]
+    pub image: String,
+    #[serde(rename = "updatedAt", deserialize_with = "deserialize_to_string")]
+    pub updated_at: String,
 }
 impl Schema for BlogBlogGetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isAvailable\":{\"type\":\"boolean\"},\"image\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"isPinned\":{\"type\":\"boolean\"},\"createdAt\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"views\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"category\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isAvailable\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"}},\"required\":[\"id\",\"name\",\"isAvailable\"]},\"shortDescription\":{\"type\":\"string\"},\"metaDescription\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\",\"isPinned\",\"views\",\"isAvailable\",\"lang\",\"createdAt\",\"updatedAt\",\"category\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isAvailable\":{\"type\":\"boolean\"},\"shortDescription\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"isPinned\":{\"type\":\"boolean\"},\"title\":{\"type\":\"string\"},\"category\":{\"type\":\"object\",\"properties\":{\"isAvailable\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"name\",\"isAvailable\"]},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"metaDescription\":{\"type\":\"string\"},\"lang\":{\"type\":\"string\"},\"metaTitle\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"views\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"image\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"title\",\"metaTitle\",\"url\",\"image\",\"shortDescription\",\"metaDescription\",\"content\",\"isPinned\",\"views\",\"isAvailable\",\"lang\",\"createdAt\",\"updatedAt\",\"category\"]}")
     }
 }
 impl Agent for BlogBlogGetReturns {

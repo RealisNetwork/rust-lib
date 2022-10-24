@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalGetAllMyTransactionsParams {
-    #[serde(rename = "page")]
-    pub page: f64,
     #[serde(rename = "perPage")]
     pub per_page: f64,
+    #[serde(rename = "page")]
+    pub page: f64,
 }
 impl Schema for WithdrawApprovalGetAllMyTransactionsParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"page\",\"perPage\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"page\",\"perPage\"]}") . unwrap ()
     }
 }
 impl Agent for WithdrawApprovalGetAllMyTransactionsParams {
@@ -38,29 +38,29 @@ pub struct WithdrawApprovalGetAllMyTransactionsReturnsDataParamsParamsApproveDat
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalGetAllMyTransactionsReturnsDataParamsParams {
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
-    #[serde(rename = "updatedAt", deserialize_with = "deserialize_to_string")]
-    pub updated_at: String,
-    #[serde(rename = "amount", deserialize_with = "deserialize_to_string")]
-    pub amount: String,
-    #[serde(rename = "createdAt", deserialize_with = "deserialize_to_string")]
-    pub created_at: String,
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "status", deserialize_with = "deserialize_to_string")]
-    pub status: String,
-    #[serde(rename = "approveData")]
-    pub approve_data: WithdrawApprovalGetAllMyTransactionsReturnsDataParamsParamsApproveDataParams,
     #[serde(rename = "fee", deserialize_with = "deserialize_to_string")]
     pub fee: String,
-    #[serde(rename = "currency", deserialize_with = "deserialize_to_string")]
-    pub currency: String,
+    #[serde(rename = "status", deserialize_with = "deserialize_to_string")]
+    pub status: String,
+    #[serde(rename = "createdAt", deserialize_with = "deserialize_to_string")]
+    pub created_at: String,
+    #[serde(rename = "amount", deserialize_with = "deserialize_to_string")]
+    pub amount: String,
+    #[serde(rename = "id")]
+    pub id: f64,
     #[serde(
         rename = "recipientAddress",
         deserialize_with = "deserialize_to_string"
     )]
     pub recipient_address: String,
+    #[serde(rename = "approveData")]
+    pub approve_data: WithdrawApprovalGetAllMyTransactionsReturnsDataParamsParamsApproveDataParams,
+    #[serde(rename = "updatedAt", deserialize_with = "deserialize_to_string")]
+    pub updated_at: String,
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
+    #[serde(rename = "currency", deserialize_with = "deserialize_to_string")]
+    pub currency: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalGetAllMyTransactionsReturns {
@@ -71,7 +71,7 @@ pub struct WithdrawApprovalGetAllMyTransactionsReturns {
 }
 impl Schema for WithdrawApprovalGetAllMyTransactionsReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"status\":{\"type\":\"string\",\"pattern\":\"^(raw)|(success)$\"},\"approveData\":{\"type\":\"object\",\"properties\":{\"whoConsidered\":{\"type\":\"string\"},\"approveReason\":{\"type\":\"string\"}}},\"fee\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"recipientAddress\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"currency\",\"amount\",\"fee\",\"recipientAddress\",\"status\",\"approveData\",\"createdAt\",\"updatedAt\"]}}},\"required\":[\"totalCount\",\"data\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"fee\":{\"type\":\"string\"},\"status\":{\"type\":\"string\",\"pattern\":\"^(raw)|(success)$\"},\"createdAt\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"recipientAddress\":{\"type\":\"string\"},\"approveData\":{\"type\":\"object\",\"properties\":{\"whoConsidered\":{\"type\":\"string\"},\"approveReason\":{\"type\":\"string\"}}},\"updatedAt\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"}},\"required\":[\"id\",\"userId\",\"currency\",\"amount\",\"fee\",\"recipientAddress\",\"status\",\"approveData\",\"createdAt\",\"updatedAt\"]}}},\"required\":[\"totalCount\",\"data\"]}")
     }
 }
 impl Agent for WithdrawApprovalGetAllMyTransactionsReturns {

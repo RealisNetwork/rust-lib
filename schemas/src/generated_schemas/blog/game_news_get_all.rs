@@ -31,20 +31,20 @@ impl Agent for BlogGameNewsGetAllParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogGameNewsGetAllReturnsParamsDataParamsParams {
-    #[serde(rename = "id")]
-    pub id: f64,
+    #[serde(rename = "updatedAt", deserialize_with = "deserialize_to_string")]
+    pub updated_at: String,
     #[serde(rename = "content", deserialize_with = "deserialize_to_string")]
     pub content: String,
+    #[serde(rename = "title", deserialize_with = "deserialize_to_string")]
+    pub title: String,
+    #[serde(rename = "id")]
+    pub id: f64,
     #[serde(rename = "image", deserialize_with = "deserialize_to_string")]
     pub image: String,
     #[serde(rename = "appId")]
     pub app_id: f64,
-    #[serde(rename = "title", deserialize_with = "deserialize_to_string")]
-    pub title: String,
     #[serde(rename = "createdAt", deserialize_with = "deserialize_to_string")]
     pub created_at: String,
-    #[serde(rename = "updatedAt", deserialize_with = "deserialize_to_string")]
-    pub updated_at: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogGameNewsGetAllReturnsParams {
@@ -57,7 +57,7 @@ pub struct BlogGameNewsGetAllReturnsParams {
 pub struct BlogGameNewsGetAllReturns(pub Vec<BlogGameNewsGetAllReturnsParams>);
 impl Schema for BlogGameNewsGetAllReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"content\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"title\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"title\",\"content\",\"image\",\"appId\",\"createdAt\",\"updatedAt\"]}}},\"required\":[\"data\",\"totalCount\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"updatedAt\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"image\":{\"type\":\"string\"},\"appId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"createdAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"title\",\"content\",\"image\",\"appId\",\"createdAt\",\"updatedAt\"]}}},\"required\":[\"data\",\"totalCount\"]}}")
     }
 }
 impl Agent for BlogGameNewsGetAllReturns {

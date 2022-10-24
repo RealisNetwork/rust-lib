@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceUpdateTransactionHashAndBlockIdParams {
-    #[serde(rename = "oldTxId", deserialize_with = "deserialize_to_string")]
-    pub old_tx_id: String,
-    #[serde(rename = "newBlockId", deserialize_with = "deserialize_to_string")]
-    pub new_block_id: String,
     #[serde(rename = "newTxId", deserialize_with = "deserialize_to_string")]
     pub new_tx_id: String,
+    #[serde(rename = "newBlockId", deserialize_with = "deserialize_to_string")]
+    pub new_block_id: String,
+    #[serde(rename = "oldTxId", deserialize_with = "deserialize_to_string")]
+    pub old_tx_id: String,
 }
 impl Schema for TransactionsBalanceUpdateTransactionHashAndBlockIdParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"oldTxId\":{\"type\":\"string\"},\"newBlockId\":{\"type\":\"string\"},\"newTxId\":{\"type\":\"string\"}},\"required\":[\"oldTxId\",\"newTxId\",\"newBlockId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"newTxId\":{\"type\":\"string\"},\"newBlockId\":{\"type\":\"string\"},\"oldTxId\":{\"type\":\"string\"}},\"required\":[\"oldTxId\",\"newTxId\",\"newBlockId\"]}") . unwrap ()
     }
 }
 impl Agent for TransactionsBalanceUpdateTransactionHashAndBlockIdParams {

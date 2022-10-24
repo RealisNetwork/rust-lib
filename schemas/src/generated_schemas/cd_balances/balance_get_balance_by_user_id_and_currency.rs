@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CdBalancesBalanceGetBalanceByUserIdAndCurrencyParams {
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
     #[serde(rename = "currency", deserialize_with = "deserialize_to_string")]
     pub currency: String,
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
 }
 impl Schema for CdBalancesBalanceGetBalanceByUserIdAndCurrencyParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"currency\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"currency\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"currency\"]}") . unwrap ()
     }
 }
 impl Agent for CdBalancesBalanceGetBalanceByUserIdAndCurrencyParams {
@@ -31,14 +31,14 @@ impl Agent for CdBalancesBalanceGetBalanceByUserIdAndCurrencyParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CdBalancesBalanceGetBalanceByUserIdAndCurrencyReturns {
-    #[serde(rename = "amount", deserialize_with = "deserialize_to_string")]
-    pub amount: String,
     #[serde(rename = "totalEarned", deserialize_with = "deserialize_to_string")]
     pub total_earned: String,
+    #[serde(rename = "amount", deserialize_with = "deserialize_to_string")]
+    pub amount: String,
 }
 impl Schema for CdBalancesBalanceGetBalanceByUserIdAndCurrencyReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"totalEarned\":{\"type\":\"string\"}},\"required\":[\"amount\",\"totalEarned\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalEarned\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"amount\",\"totalEarned\"]}")
     }
 }
 impl Agent for CdBalancesBalanceGetBalanceByUserIdAndCurrencyReturns {
