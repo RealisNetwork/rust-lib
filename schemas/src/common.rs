@@ -81,8 +81,8 @@ pub enum Auth {
 pub struct MobileAuth {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub token: Option<String>,
-    #[serde(rename = "deviceId")]
-    pub device_id: String,
+    #[serde(rename = "deviceId", skip_serializing_if = "Option::is_none")]
+    pub device_id: Option<String>,
     #[serde(rename = "appId")]
     pub app_id: u64,
 }

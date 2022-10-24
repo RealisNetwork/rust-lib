@@ -77,10 +77,6 @@ pub struct LobbyStatsEndpointsGetLevelUpOptionsByPersonalTypeReturnsAttributesPe
 pub struct LobbyStatsEndpointsGetLevelUpOptionsByPersonalTypeReturns {
     #[serde(rename = "agility", deserialize_with = "deserialize_to_string")]
     pub agility: String,
-    #[serde(rename = "experienceCoefficients")]
-    pub experience_coefficients: Vec<
-        LobbyStatsEndpointsGetLevelUpOptionsByPersonalTypeReturnsExperienceCoefficientsParamsParams,
-    >,
     #[serde(rename = "baseExperience")]
     pub base_experience: i32,
     #[serde(rename = "scrollsByLevels")]

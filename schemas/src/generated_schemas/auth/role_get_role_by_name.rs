@@ -37,6 +37,10 @@ pub struct AuthRoleGetRoleByNameReturns {
     pub pages: Vec<String>,
     #[serde(rename = "id")]
     pub id: f64,
+    #[serde(rename = "name")]
+    pub name: String,
+    #[serde(rename = "pages")]
+    pub pages: Vec<String>,
 }
 impl Schema for AuthRoleGetRoleByNameReturns {
     fn schema() -> Value {

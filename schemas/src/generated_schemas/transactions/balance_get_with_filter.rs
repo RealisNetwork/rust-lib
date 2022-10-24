@@ -47,7 +47,7 @@ impl Agent for TransactionsBalanceGetWithFilterParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceGetWithFilterReturnsDataParamsParamsExtraDetailParams {}
+pub struct TransactionsBalanceGetWithFilterReturnsDataParamsParamsExtraDetailParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetWithFilterReturnsDataParamsParams {
     #[serde(rename = "createdAt", deserialize_with = "deserialize_to_string")]
@@ -76,10 +76,10 @@ pub struct TransactionsBalanceGetWithFilterReturnsDataParamsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetWithFilterReturns {
-    #[serde(rename = "data")]
-    pub data: Vec<TransactionsBalanceGetWithFilterReturnsDataParamsParams>,
     #[serde(rename = "totalCount")]
     pub total_count: i32,
+    #[serde(rename = "data")]
+    pub data: Vec<TransactionsBalanceGetWithFilterReturnsDataParamsParams>,
 }
 impl Schema for TransactionsBalanceGetWithFilterReturns {
     fn schema() -> Value {

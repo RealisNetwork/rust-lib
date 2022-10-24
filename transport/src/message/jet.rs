@@ -11,7 +11,7 @@ use serde::de::DeserializeOwned;
 use crate::common::TransportResult;
 use crate::ReceivedMessage;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct JetMessage {
     pub message: Message,
 }
@@ -28,7 +28,7 @@ impl ReceivedMessage for JetMessage {
                 msg,
                 error_type: Common::InternalServerError.into(),
                 data: serde_json::from_slice(&self.message.data).ok(),
-                trace: format!("{:?}", trace),
+                trace: Some(format!("{:?}", trace)),
                 status: error_type.into(),
             }
         });
@@ -47,7 +47,7 @@ impl ReceivedMessage for JetMessage {
                     msg,
                     error_type: CustomNats::Ok.into(),
                     data: serde_json::to_value(self.message.data).ok(),
-                    trace: format!("{:?}", trace),
+                    trace: Some(format!("{:?}", trace)),
                     status: error_type.into(),
                 }
             })

@@ -9,10 +9,12 @@ pub struct AdminRoleAddParams {
     pub role_name: String,
     #[serde(rename = "permissions")]
     pub permissions: Option<Vec<String>>,
+    #[serde(rename = "roleName")]
+    pub role_name: String,
 }
 impl Schema for AdminRoleAddParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"roleName\":{\"type\":\"string\"},\"permissions\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"roleName\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"permissions\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"roleName\":{\"type\":\"string\"}},\"required\":[\"roleName\"]}") . unwrap ()
     }
 }
 impl Agent for AdminRoleAddParams {

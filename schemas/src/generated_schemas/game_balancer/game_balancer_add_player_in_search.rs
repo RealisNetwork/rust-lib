@@ -65,6 +65,30 @@ pub struct GameBalancerGameBalancerAddPlayerInSearchParamsStatsParams {
     pub skill_power: i16,
     #[serde(rename = "ultChargeSpeed")]
     pub ult_charge_speed: i16,
+    #[serde(rename = "healthRegenPercent")]
+    pub health_regen_percent: i16,
+    #[serde(rename = "attackCritChance")]
+    pub attack_crit_chance: i16,
+    #[serde(rename = "attackArmor")]
+    pub attack_armor: i16,
+    #[serde(rename = "attackCritMultiple")]
+    pub attack_crit_multiple: i16,
+    #[serde(rename = "damageReturnPower")]
+    pub damage_return_power: i16,
+    #[serde(rename = "ultRange")]
+    pub ult_range: i16,
+    #[serde(rename = "skillPower")]
+    pub skill_power: i16,
+    #[serde(rename = "dashSpeed")]
+    pub dash_speed: i16,
+    #[serde(rename = "attackDamage")]
+    pub attack_damage: i16,
+    #[serde(rename = "skillEffectPower")]
+    pub skill_effect_power: i16,
+    #[serde(rename = "damage")]
+    pub damage: i16,
+    #[serde(rename = "skillReloadSpeed")]
+    pub skill_reload_speed: i16,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GameBalancerGameBalancerAddPlayerInSearchParams {

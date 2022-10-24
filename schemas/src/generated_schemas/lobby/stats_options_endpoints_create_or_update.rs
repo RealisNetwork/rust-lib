@@ -125,6 +125,8 @@ pub struct LobbyStatsOptionsEndpointsCreateOrUpdateParams {
     #[serde(rename = "attributesRanges")]
     pub attributes_ranges:
         Option<LobbyStatsOptionsEndpointsCreateOrUpdateParamsAttributesRangesParams>,
+    #[serde(rename = "personalType")]
+    pub personal_type: String,
     #[serde(rename = "multipliersRanges")]
     pub multipliers_ranges:
         Option<LobbyStatsOptionsEndpointsCreateOrUpdateParamsMultipliersRangesParams>,

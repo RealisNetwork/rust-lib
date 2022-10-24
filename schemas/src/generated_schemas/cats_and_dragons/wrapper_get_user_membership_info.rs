@@ -41,6 +41,12 @@ pub struct CatsAndDragonsWrapperGetUserMembershipInfoReturns {
     pub status_purchase_app_id: f64,
     #[serde(rename = "isAuthorized")]
     pub is_authorized: bool,
+    #[serde(rename = "statusPurchaseAppId")]
+    pub status_purchase_app_id: f64,
+    #[serde(rename = "balance")]
+    pub balance: String,
+    #[serde(rename = "membershipId")]
+    pub membership_id: f64,
 }
 impl Schema for CatsAndDragonsWrapperGetUserMembershipInfoReturns {
     fn schema() -> Value {

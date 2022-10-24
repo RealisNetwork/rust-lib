@@ -68,10 +68,10 @@ pub struct LobbyHeroesEndpointsGetHeroesListReturnsParamsStatsRangesParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyHeroesEndpointsGetHeroesListReturnsParams {
-    #[serde(rename = "heroId")]
-    pub hero_id: i8,
     #[serde(rename = "statsRanges")]
     pub stats_ranges: LobbyHeroesEndpointsGetHeroesListReturnsParamsStatsRangesParams,
+    #[serde(rename = "heroId")]
+    pub hero_id: i8,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyHeroesEndpointsGetHeroesListReturns(

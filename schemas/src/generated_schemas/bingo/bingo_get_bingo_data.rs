@@ -38,6 +38,8 @@ pub struct BingoBingoGetBingoDataReturnsBingoItemsParamsParams {
 pub struct BingoBingoGetBingoDataReturnsBingoSeasonInfoParams {
     #[serde(rename = "SeasonState")]
     pub season_state: i32,
+    #[serde(rename = "SeasonId")]
+    pub season_id: i32,
     #[serde(rename = "LastUpdateTimeMs")]
     pub last_update_time_ms: f64,
     #[serde(rename = "SeasonStartDelayMs")]
@@ -49,12 +51,12 @@ pub struct BingoBingoGetBingoDataReturnsBingoSeasonInfoParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BingoBingoGetBingoDataReturns {
-    #[serde(rename = "status")]
-    pub status: i32,
     #[serde(rename = "BingoItems")]
     pub bingo_items: Vec<BingoBingoGetBingoDataReturnsBingoItemsParamsParams>,
     #[serde(rename = "BingoSeasonInfo")]
     pub bingo_season_info: BingoBingoGetBingoDataReturnsBingoSeasonInfoParams,
+    #[serde(rename = "status")]
+    pub status: i32,
 }
 impl Schema for BingoBingoGetBingoDataReturns {
     fn schema() -> Value {

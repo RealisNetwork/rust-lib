@@ -4,7 +4,7 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthAdminGetMyRoleParams {}
+pub struct AuthAdminGetMyRoleParams(Value);
 impl Schema for AuthAdminGetMyRoleParams {
     fn schema() -> Value {
         serde_json::from_str("{\"type\":\"object\",\"properties\":{}}").unwrap()
@@ -26,6 +26,7 @@ impl Agent for AuthAdminGetMyRoleParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAdminGetMyRoleReturns {
+<<<<<<< HEAD
     #[serde(rename = "methods")]
     pub methods: Vec<String>,
     #[serde(rename = "pages")]
@@ -38,6 +39,20 @@ pub struct AuthAdminGetMyRoleReturns {
 impl Schema for AuthAdminGetMyRoleReturns {
     fn schema() -> Value {
         serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"methods\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"pages\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"name\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"name\",\"methods\",\"pages\"]}")
+=======
+    #[serde(rename = "name")]
+    pub name: String,
+    #[serde(rename = "pages")]
+    pub pages: Vec<String>,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "methods")]
+    pub methods: Vec<String>,
+}
+impl Schema for AuthAdminGetMyRoleReturns {
+    fn schema() -> Value {
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"pages\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"methods\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"id\",\"name\",\"methods\",\"pages\"]}")
+>>>>>>> main
     }
 }
 impl Agent for AuthAdminGetMyRoleReturns {

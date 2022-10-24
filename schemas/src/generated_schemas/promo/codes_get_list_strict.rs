@@ -34,7 +34,7 @@ impl Agent for PromoCodesGetListStrictParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct PromoCodesGetListStrictReturnsParams {}
+pub struct PromoCodesGetListStrictReturnsParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesGetListStrictReturns(pub Vec<PromoCodesGetListStrictReturnsParams>);
 impl Schema for PromoCodesGetListStrictReturns {

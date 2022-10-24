@@ -9,10 +9,12 @@ pub struct UserProfileChangeEmailParams {
     pub new_email: String,
     #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
     pub user_id: String,
+    #[serde(rename = "newEmail")]
+    pub new_email: String,
 }
 impl Schema for UserProfileChangeEmailParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"newEmail\":{\"type\":\"string\",\"format\":\"email\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"newEmail\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"newEmail\":{\"type\":\"string\",\"format\":\"email\"}},\"required\":[\"userId\",\"newEmail\"]}") . unwrap ()
     }
 }
 impl Agent for UserProfileChangeEmailParams {

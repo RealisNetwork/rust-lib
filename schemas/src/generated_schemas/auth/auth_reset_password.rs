@@ -9,10 +9,12 @@ pub struct AuthAuthResetPasswordParams {
     pub hash: String,
     #[serde(rename = "newPassword", deserialize_with = "deserialize_to_string")]
     pub new_password: String,
+    #[serde(rename = "hash")]
+    pub hash: String,
 }
 impl Schema for AuthAuthResetPasswordParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"hash\":{\"type\":\"string\"},\"newPassword\":{\"type\":\"string\"}},\"required\":[\"hash\",\"newPassword\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"newPassword\":{\"type\":\"string\"},\"hash\":{\"type\":\"string\"}},\"required\":[\"hash\",\"newPassword\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthResetPasswordParams {

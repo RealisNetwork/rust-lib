@@ -45,6 +45,10 @@ pub struct AuthAuthSocialNetworkAuthReturns {
     pub access_token: String,
     #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
     pub user_id: String,
+    #[serde(rename = "refresh_token")]
+    pub refresh_token: Option<String>,
+    #[serde(rename = "expires_in")]
+    pub expires_in: i32,
 }
 impl Schema for AuthAuthSocialNetworkAuthReturns {
     fn schema() -> Value {

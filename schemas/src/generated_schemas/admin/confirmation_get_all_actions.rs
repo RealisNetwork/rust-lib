@@ -32,7 +32,7 @@ impl Agent for AdminConfirmationGetAllActionsParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AdminConfirmationGetAllActionsReturnsDataParamsParamsInfoMethodParamsParamsParams {}
+pub struct AdminConfirmationGetAllActionsReturnsDataParamsParamsInfoMethodParamsParamsParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminConfirmationGetAllActionsReturnsDataParamsParamsInfoMethodParams {
     #[serde(rename = "agent", deserialize_with = "deserialize_to_string")]

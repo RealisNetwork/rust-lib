@@ -35,10 +35,10 @@ impl Agent for ListeriaStorageHeroesEndpointsHeroAddedNotificationParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ListeriaStorageHeroesEndpointsHeroAddedNotificationReturnsSlotsParamsParams {
-    #[serde(rename = "equipment")]
-    pub equipment: i8,
     #[serde(rename = "itemUid")]
     pub item_uid: Option<i32>,
+    #[serde(rename = "equipment")]
+    pub equipment: i8,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ListeriaStorageHeroesEndpointsHeroAddedNotificationReturnsEquipmentAttributesParams {

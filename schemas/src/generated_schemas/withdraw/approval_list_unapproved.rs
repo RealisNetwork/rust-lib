@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalListUnapprovedParams {
-    #[serde(rename = "perPage")]
-    pub per_page: Option<f64>,
     #[serde(rename = "page")]
     pub page: Option<f64>,
+    #[serde(rename = "perPage")]
+    pub per_page: Option<f64>,
 }
 impl Schema for WithdrawApprovalListUnapprovedParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}}}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}}}") . unwrap ()
     }
 }
 impl Agent for WithdrawApprovalListUnapprovedParams {
@@ -31,10 +31,10 @@ impl Agent for WithdrawApprovalListUnapprovedParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalListUnapprovedReturnsParamsApproveDataParams {
-    #[serde(rename = "whoConsidered")]
-    pub who_considered: Option<String>,
     #[serde(rename = "approveReason")]
     pub approve_reason: Option<String>,
+    #[serde(rename = "whoConsidered")]
+    pub who_considered: Option<String>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalListUnapprovedReturnsParams {

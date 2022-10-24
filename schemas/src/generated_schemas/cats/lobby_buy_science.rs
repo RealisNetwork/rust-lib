@@ -12,10 +12,12 @@ pub struct CatsLobbyBuyScienceParams {
         deserialize_with = "deserialize_to_string"
     )]
     pub science_purchase_key: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for CatsLobbyBuyScienceParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"sciencePurchaseKey\":{\"type\":\"string\"}},\"required\":[\"userId\",\"sciencePurchaseKey\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"sciencePurchaseKey\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"sciencePurchaseKey\"]}") . unwrap ()
     }
 }
 impl Agent for CatsLobbyBuyScienceParams {

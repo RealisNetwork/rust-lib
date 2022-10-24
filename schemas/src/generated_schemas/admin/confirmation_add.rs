@@ -18,8 +18,13 @@ pub struct AdminConfirmationAddParamsInfoMethodParams {
     pub agent: String,
     #[serde(rename = "method", deserialize_with = "deserialize_to_string")]
     pub method: String,
-    #[serde(rename = "params")]
-    pub params: AdminConfirmationAddParamsInfoMethodParamsParamsParams,
+}
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AdminConfirmationAddParamsHistoryParamsParams {
+    #[serde(rename = "userId")]
+    pub user_id: String,
+    #[serde(rename = "isConfirmed")]
+    pub is_confirmed: bool,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminConfirmationAddParams {

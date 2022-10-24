@@ -11,6 +11,8 @@ pub struct OrchestratorBattlePassPurchasePremiumParams {
     pub tx_id: String,
     #[serde(rename = "creator", deserialize_with = "deserialize_to_string")]
     pub creator: String,
+    #[serde(rename = "txId")]
+    pub tx_id: String,
 }
 impl Schema for OrchestratorBattlePassPurchasePremiumParams {
     fn schema() -> Value {

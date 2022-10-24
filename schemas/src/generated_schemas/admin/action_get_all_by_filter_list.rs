@@ -44,7 +44,7 @@ impl Agent for AdminActionGetAllByFilterListParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AdminActionGetAllByFilterListReturnsDataParamsParamsParamsParams {}
+pub struct AdminActionGetAllByFilterListReturnsDataParamsParamsParamsParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminActionGetAllByFilterListReturnsDataParamsParams {
     #[serde(rename = "actionId", deserialize_with = "deserialize_to_string")]

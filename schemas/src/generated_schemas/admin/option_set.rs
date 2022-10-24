@@ -5,10 +5,10 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionSetParamsExtraDetailsParams {
-    #[serde(rename = "type")]
-    pub r#type: Option<String>,
     #[serde(rename = "tab")]
     pub tab: Option<String>,
+    #[serde(rename = "type")]
+    pub r#type: Option<String>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionSetParams {
@@ -46,10 +46,12 @@ pub struct AdminOptionSetReturns {
     pub value: String,
     #[serde(rename = "key", deserialize_with = "deserialize_to_string")]
     pub key: String,
+    #[serde(rename = "value")]
+    pub value: String,
 }
 impl Schema for AdminOptionSetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"value\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"}},\"required\":[\"key\",\"value\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"key\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"required\":[\"key\",\"value\"]}")
     }
 }
 impl Agent for AdminOptionSetReturns {

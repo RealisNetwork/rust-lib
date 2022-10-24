@@ -43,13 +43,13 @@ pub enum GeneratedError {
     GooglePlay(GooglePlay),
     Status(Status),
 }
-impl From<Http> for GeneratedError {
-    fn from(error: Http) -> Self {
-        GeneratedError::Http(error)
+impl From<Functions> for GeneratedError {
+    fn from(error: Functions) -> Self {
+        GeneratedError::Functions(error)
     }
 }
-impl From<Http> for ErrorType {
-    fn from(error: Http) -> Self {
+impl From<Functions> for ErrorType {
+    fn from(error: Functions) -> Self {
         ErrorType::Generated(error.into())
     }
 }
@@ -63,13 +63,13 @@ impl From<Validation> for ErrorType {
         ErrorType::Generated(error.into())
     }
 }
-impl From<Nats> for GeneratedError {
-    fn from(error: Nats) -> Self {
-        GeneratedError::Nats(error)
+impl From<Cron> for GeneratedError {
+    fn from(error: Cron) -> Self {
+        GeneratedError::Cron(error)
     }
 }
-impl From<Nats> for ErrorType {
-    fn from(error: Nats) -> Self {
+impl From<Cron> for ErrorType {
+    fn from(error: Cron) -> Self {
         ErrorType::Generated(error.into())
     }
 }
@@ -123,13 +123,13 @@ impl From<Auth> for ErrorType {
         ErrorType::Generated(error.into())
     }
 }
-impl From<Promo> for GeneratedError {
-    fn from(error: Promo) -> Self {
-        GeneratedError::Promo(error)
+impl From<Db> for GeneratedError {
+    fn from(error: Db) -> Self {
+        GeneratedError::Db(error)
     }
 }
-impl From<Promo> for ErrorType {
-    fn from(error: Promo) -> Self {
+impl From<Db> for ErrorType {
+    fn from(error: Db) -> Self {
         ErrorType::Generated(error.into())
     }
 }
@@ -143,13 +143,13 @@ impl From<CatsAndDragons> for ErrorType {
         ErrorType::Generated(error.into())
     }
 }
-impl From<Transactions> for GeneratedError {
-    fn from(error: Transactions) -> Self {
-        GeneratedError::Transactions(error)
+impl From<TwoFactorAuth> for GeneratedError {
+    fn from(error: TwoFactorAuth) -> Self {
+        GeneratedError::TwoFactorAuth(error)
     }
 }
-impl From<Transactions> for ErrorType {
-    fn from(error: Transactions) -> Self {
+impl From<TwoFactorAuth> for ErrorType {
+    fn from(error: TwoFactorAuth) -> Self {
         ErrorType::Generated(error.into())
     }
 }
@@ -163,13 +163,13 @@ impl From<ProductRegistry> for ErrorType {
         ErrorType::Generated(error.into())
     }
 }
-impl From<Withdraw> for GeneratedError {
-    fn from(error: Withdraw) -> Self {
-        GeneratedError::Withdraw(error)
+impl From<Promo> for GeneratedError {
+    fn from(error: Promo) -> Self {
+        GeneratedError::Promo(error)
     }
 }
-impl From<Withdraw> for ErrorType {
-    fn from(error: Withdraw) -> Self {
+impl From<Promo> for ErrorType {
+    fn from(error: Promo) -> Self {
         ErrorType::Generated(error.into())
     }
 }
@@ -273,13 +273,13 @@ impl From<Permissions> for ErrorType {
         ErrorType::Generated(error.into())
     }
 }
-impl From<Confirmation> for GeneratedError {
-    fn from(error: Confirmation) -> Self {
-        GeneratedError::Confirmation(error)
+impl From<Http> for GeneratedError {
+    fn from(error: Http) -> Self {
+        GeneratedError::Http(error)
     }
 }
-impl From<Confirmation> for ErrorType {
-    fn from(error: Confirmation) -> Self {
+impl From<Http> for ErrorType {
+    fn from(error: Http) -> Self {
         ErrorType::Generated(error.into())
     }
 }
@@ -313,13 +313,13 @@ impl From<TwoFactorAuth> for ErrorType {
         ErrorType::Generated(error.into())
     }
 }
-impl From<Cron> for GeneratedError {
-    fn from(error: Cron) -> Self {
-        GeneratedError::Cron(error)
+impl From<Analytics> for GeneratedError {
+    fn from(error: Analytics) -> Self {
+        GeneratedError::Analytics(error)
     }
 }
-impl From<Cron> for ErrorType {
-    fn from(error: Cron) -> Self {
+impl From<Analytics> for ErrorType {
+    fn from(error: Analytics) -> Self {
         ErrorType::Generated(error.into())
     }
 }

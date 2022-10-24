@@ -5,10 +5,10 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionUpdateParamsExtraDetailsParams {
-    #[serde(rename = "tab")]
-    pub tab: Option<String>,
     #[serde(rename = "type")]
     pub r#type: Option<String>,
+    #[serde(rename = "tab")]
+    pub tab: Option<String>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminOptionUpdateParams {

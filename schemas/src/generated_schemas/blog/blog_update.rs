@@ -28,10 +28,10 @@ pub struct BlogBlogUpdateParamsPropsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogUpdateParams {
-    #[serde(rename = "categoryId")]
-    pub category_id: Option<f64>,
     #[serde(rename = "props")]
     pub props: BlogBlogUpdateParamsPropsParams,
+    #[serde(rename = "categoryId")]
+    pub category_id: Option<f64>,
 }
 impl Schema for BlogBlogUpdateParams {
     fn schema() -> Value {

@@ -33,6 +33,8 @@ impl Agent for CatsAndDragonsWrapperGetUserInfoParams {
 pub struct CatsAndDragonsWrapperGetUserInfoReturns {
     #[serde(rename = "email", deserialize_with = "deserialize_to_string")]
     pub email: String,
+    #[serde(rename = "provider")]
+    pub provider: Option<String>,
     #[serde(rename = "isAuthorized")]
     pub is_authorized: bool,
     #[serde(rename = "refCode", deserialize_with = "deserialize_to_string")]

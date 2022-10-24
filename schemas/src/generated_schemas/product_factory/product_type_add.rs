@@ -4,7 +4,7 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ProductFactoryProductTypeAddParamsParamsParams {}
+pub struct ProductFactoryProductTypeAddParamsParamsParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeAddParams {
     #[serde(rename = "name", deserialize_with = "deserialize_to_string")]

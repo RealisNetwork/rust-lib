@@ -41,6 +41,8 @@ pub struct RefundBalancesGetAllReturnsParams {
     pub created_at: String,
     #[serde(rename = "currency")]
     pub currency: (),
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RefundBalancesGetAllReturns(pub Vec<RefundBalancesGetAllReturnsParams>);

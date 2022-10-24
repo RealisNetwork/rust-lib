@@ -4,7 +4,7 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct MarketPlaceMarketPlaceAddToMarketPlaceParamsAdditionalParamsParams {}
+pub struct MarketPlaceMarketPlaceAddToMarketPlaceParamsAdditionalParamsParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceAddToMarketPlaceParams {
     #[serde(rename = "image", deserialize_with = "deserialize_to_string")]

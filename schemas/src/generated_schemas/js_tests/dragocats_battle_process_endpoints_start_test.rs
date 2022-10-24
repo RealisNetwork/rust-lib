@@ -11,6 +11,8 @@ pub struct JsTestsDragocatsBattleProcessEndpointsStartTestParams {
     pub interval_ms: f64,
     #[serde(rename = "durationMinutes")]
     pub duration_minutes: f64,
+    #[serde(rename = "startGames")]
+    pub start_games: f64,
 }
 impl Schema for JsTestsDragocatsBattleProcessEndpointsStartTestParams {
     fn schema() -> Value {

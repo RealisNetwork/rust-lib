@@ -41,6 +41,8 @@ pub struct AdminMailTemplateGetAllReturnsParams {
     pub name: String,
     #[serde(rename = "mailTemplate", deserialize_with = "deserialize_to_string")]
     pub mail_template: String,
+    #[serde(rename = "name")]
+    pub name: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminMailTemplateGetAllReturns(pub Vec<AdminMailTemplateGetAllReturnsParams>);

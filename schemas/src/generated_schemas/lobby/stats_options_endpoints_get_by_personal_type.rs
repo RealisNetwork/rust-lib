@@ -112,6 +112,10 @@ pub struct LobbyStatsOptionsEndpointsGetByPersonalTypeReturnsAttributesRangesPar
 pub struct LobbyStatsOptionsEndpointsGetByPersonalTypeReturnsMultipliersRangesParams {
     #[serde(rename = "armor")]
     pub armor: Vec<f64>,
+    #[serde(rename = "skillEffectPower")]
+    pub skill_effect_power: Vec<f64>,
+    #[serde(rename = "vampirismPower")]
+    pub vampirism_power: Vec<f64>,
     #[serde(rename = "healthRegenPercent")]
     pub health_regen_percent: Vec<f64>,
     #[serde(rename = "skillPower")]
@@ -140,6 +144,8 @@ pub struct LobbyStatsOptionsEndpointsGetByPersonalTypeReturnsMultipliersRangesPa
     pub ult_effect_power: Vec<f64>,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct LobbyStatsOptionsEndpointsGetByPersonalTypeReturnsLevelUpOptionsParams { # [serde (rename = "scrollsByLevels")] pub scrolls_by_levels : Vec < LobbyStatsOptionsEndpointsGetByPersonalTypeReturnsLevelUpOptionsParamsScrollsByLevelsParamsParams > , # [serde (rename = "experienceCoefficients")] pub experience_coefficients : Vec < LobbyStatsOptionsEndpointsGetByPersonalTypeReturnsLevelUpOptionsParamsExperienceCoefficientsParamsParams > , # [serde (rename = "maxLevel")] pub max_level : f64 , # [serde (rename = "intelligence")] pub intelligence : f64 , # [serde (rename = "agility")] pub agility : f64 , # [serde (rename = "strength")] pub strength : f64 , # [serde (rename = "attributesPerLevel")] pub attributes_per_level : LobbyStatsOptionsEndpointsGetByPersonalTypeReturnsLevelUpOptionsParamsAttributesPerLevelParams , # [serde (rename = "baseScrollsCount")] pub base_scrolls_count : f64 , # [serde (rename = "experience")] pub experience : f64 , # [serde (rename = "baseExperience")] pub base_experience : f64 }
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyStatsOptionsEndpointsGetByPersonalTypeReturns {
     #[serde(rename = "levelUpOptions")]
     pub level_up_options: LobbyStatsOptionsEndpointsGetByPersonalTypeReturnsLevelUpOptionsParams,
@@ -152,6 +158,8 @@ pub struct LobbyStatsOptionsEndpointsGetByPersonalTypeReturns {
     pub main_characteristic: String,
     #[serde(rename = "attributesRanges")]
     pub attributes_ranges: LobbyStatsOptionsEndpointsGetByPersonalTypeReturnsAttributesRangesParams,
+    #[serde(rename = "mainCharacteristic")]
+    pub main_characteristic: String,
     #[serde(rename = "multipliersRanges")]
     pub multipliers_ranges:
         Option<LobbyStatsOptionsEndpointsGetByPersonalTypeReturnsMultipliersRangesParams>,

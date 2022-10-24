@@ -39,10 +39,12 @@ pub struct CdUserSpinEndpointsGetSpinInfoReturns {
     pub last_spin_date: String,
     #[serde(rename = "AdSpinsAmount")]
     pub ad_spins_amount: i32,
+    #[serde(rename = "LastSpinDate")]
+    pub last_spin_date: String,
 }
 impl Schema for CdUserSpinEndpointsGetSpinInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"LastSpinDate\":{\"type\":\"string\"},\"AdSpinsAmount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"LastSpinDate\",\"AdSpinsAmount\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"AdSpinsAmount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"LastSpinDate\":{\"type\":\"string\"}},\"required\":[\"LastSpinDate\",\"AdSpinsAmount\"]}")
     }
 }
 impl Agent for CdUserSpinEndpointsGetSpinInfoReturns {

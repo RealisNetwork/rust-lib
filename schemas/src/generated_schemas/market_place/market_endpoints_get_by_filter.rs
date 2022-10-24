@@ -50,7 +50,9 @@ impl Agent for MarketPlaceMarketEndpointsGetByFilterParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct MarketPlaceMarketEndpointsGetByFilterReturnsItemsParamsParamsAdditionalParamsParams {}
+pub struct MarketPlaceMarketEndpointsGetByFilterReturnsItemsParamsParamsAdditionalParamsParams(
+    Value,
+);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetByFilterReturnsItemsParamsParams {
     #[serde(rename = "additionalParams")]
@@ -83,10 +85,10 @@ pub struct MarketPlaceMarketEndpointsGetByFilterReturnsItemsParamsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetByFilterReturns {
-    #[serde(rename = "totalCount")]
-    pub total_count: i32,
     #[serde(rename = "items")]
     pub items: Vec<MarketPlaceMarketEndpointsGetByFilterReturnsItemsParamsParams>,
+    #[serde(rename = "totalCount")]
+    pub total_count: i32,
 }
 impl Schema for MarketPlaceMarketEndpointsGetByFilterReturns {
     fn schema() -> Value {

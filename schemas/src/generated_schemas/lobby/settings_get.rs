@@ -35,8 +35,6 @@ impl Agent for LobbySettingsGetParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbySettingsGetReturns {
-    #[serde(rename = "language")]
-    pub language: i8,
     #[serde(rename = "music")]
     pub music: bool,
     #[serde(rename = "quality")]

@@ -105,6 +105,14 @@ pub struct LobbyHeroesEndpointsGetEquippedItemsReturnsParams {
     pub attributes: LobbyHeroesEndpointsGetEquippedItemsReturnsParamsAttributesParams,
     #[serde(rename = "multipliers")]
     pub multipliers: LobbyHeroesEndpointsGetEquippedItemsReturnsParamsMultipliersParams,
+    #[serde(rename = "attributes")]
+    pub attributes: LobbyHeroesEndpointsGetEquippedItemsReturnsParamsAttributesParams,
+    #[serde(rename = "level")]
+    pub level: i32,
+    #[serde(rename = "slotId")]
+    pub slot_id: i32,
+    #[serde(rename = "itemId")]
+    pub item_id: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyHeroesEndpointsGetEquippedItemsReturns(

@@ -11,10 +11,12 @@ pub struct TransactionsBalanceConvertParams {
     pub to_currency: String,
     #[serde(rename = "amount", deserialize_with = "deserialize_to_string")]
     pub amount: String,
+    #[serde(rename = "fromCurrency")]
+    pub from_currency: String,
 }
 impl Schema for TransactionsBalanceConvertParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"fromCurrency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"toCurrency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"fromCurrency\",\"toCurrency\",\"amount\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"toCurrency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"amount\":{\"type\":\"string\"},\"fromCurrency\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"}},\"required\":[\"fromCurrency\",\"toCurrency\",\"amount\"]}") . unwrap ()
     }
 }
 impl Agent for TransactionsBalanceConvertParams {

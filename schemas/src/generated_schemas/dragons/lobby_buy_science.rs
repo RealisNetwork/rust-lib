@@ -12,10 +12,12 @@ pub struct DragonsLobbyBuyScienceParams {
     pub science_purchase_key: String,
     #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
     pub user_id: String,
+    #[serde(rename = "sciencePurchaseKey")]
+    pub science_purchase_key: String,
 }
 impl Schema for DragonsLobbyBuyScienceParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"sciencePurchaseKey\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"sciencePurchaseKey\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"sciencePurchaseKey\":{\"type\":\"string\"}},\"required\":[\"userId\",\"sciencePurchaseKey\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbyBuyScienceParams {

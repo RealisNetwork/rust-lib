@@ -34,8 +34,6 @@ pub struct DragocatsStorageUnitEndpointsGetByUnitIdReturnsPartsParamsParamsAttri
     pub stamina: (),
     #[serde(rename = "power")]
     pub power: (),
-    #[serde(rename = "defence")]
-    pub defence: (),
     #[serde(rename = "speed")]
     pub speed: (),
 }

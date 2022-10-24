@@ -28,7 +28,7 @@ impl Agent for StatusMembershipGetAllActiveParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct StatusMembershipGetAllActiveReturnsParamsMembershipParams {}
+pub struct StatusMembershipGetAllActiveReturnsParamsMembershipParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusMembershipGetAllActiveReturnsParams {
     #[serde(rename = "userId")]

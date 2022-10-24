@@ -29,6 +29,8 @@ impl Agent for BlogBlogGetParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogBlogGetReturnsCategoryParams {
+    #[serde(rename = "name")]
+    pub name: String,
     #[serde(rename = "isAvailable")]
     pub is_available: bool,
     #[serde(rename = "name", deserialize_with = "deserialize_to_string")]

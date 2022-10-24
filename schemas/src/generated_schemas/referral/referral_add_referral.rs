@@ -9,10 +9,12 @@ pub struct ReferralReferralAddReferralParams {
     pub referral_id: String,
     #[serde(rename = "referrerId", deserialize_with = "deserialize_to_string")]
     pub referrer_id: String,
+    #[serde(rename = "referralId")]
+    pub referral_id: String,
 }
 impl Schema for ReferralReferralAddReferralParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"referralId\":{\"type\":\"string\"},\"referrerId\":{\"type\":\"string\"}},\"required\":[\"referralId\",\"referrerId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"referrerId\":{\"type\":\"string\"},\"referralId\":{\"type\":\"string\"}},\"required\":[\"referralId\",\"referrerId\"]}") . unwrap ()
     }
 }
 impl Agent for ReferralReferralAddReferralParams {

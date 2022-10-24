@@ -9,6 +9,8 @@ pub struct WithdrawAttemptTryNewParams {
     pub amount: String,
     #[serde(rename = "receiverAddress", deserialize_with = "deserialize_to_string")]
     pub receiver_address: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
 }
 impl Schema for WithdrawAttemptTryNewParams {
     fn schema() -> Value {

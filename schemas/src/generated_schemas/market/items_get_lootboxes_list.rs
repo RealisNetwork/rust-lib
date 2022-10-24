@@ -37,6 +37,8 @@ impl Agent for MarketItemsGetLootboxesListParams {
 pub struct MarketItemsGetLootboxesListReturnsProductParamsParams {
     #[serde(rename = "currencyType", deserialize_with = "deserialize_to_string")]
     pub currency_type: String,
+    #[serde(rename = "price")]
+    pub price: String,
     #[serde(rename = "type")]
     pub r#type: i32,
     #[serde(rename = "id")]

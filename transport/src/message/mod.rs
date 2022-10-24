@@ -19,7 +19,7 @@ pub trait ReceivedMessage {
 }
 
 #[enum_dispatch(ReceivedMessage)]
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum VReceivedMessage {
     Stan(StanMessage),
     Jet(JetMessage),

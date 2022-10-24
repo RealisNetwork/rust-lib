@@ -14,10 +14,12 @@ pub struct NearAdapterContractCallWithdrawParams {
     pub recipient_address: String,
     #[serde(rename = "signature", deserialize_with = "deserialize_to_string")]
     pub signature: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
 }
 impl Schema for NearAdapterContractCallWithdrawParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"recipientAddress\":{\"type\":\"string\"},\"signature\":{\"type\":\"string\"}},\"required\":[\"recipientAddress\",\"amount\",\"signature\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"recipientAddress\":{\"type\":\"string\"},\"signature\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"recipientAddress\",\"amount\",\"signature\"]}") . unwrap ()
     }
 }
 impl Agent for NearAdapterContractCallWithdrawParams {

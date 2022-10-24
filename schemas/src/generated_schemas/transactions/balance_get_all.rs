@@ -32,7 +32,7 @@ impl Agent for TransactionsBalanceGetAllParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceGetAllReturnsDataParamsParamsExtraDetailParams {}
+pub struct TransactionsBalanceGetAllReturnsDataParamsParamsExtraDetailParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetAllReturnsDataParamsParams {
     #[serde(rename = "creator", deserialize_with = "deserialize_to_string")]

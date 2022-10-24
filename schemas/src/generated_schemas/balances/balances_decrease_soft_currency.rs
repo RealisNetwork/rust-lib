@@ -9,10 +9,12 @@ pub struct BalancesBalancesDecreaseSoftCurrencyParams {
     pub amount: i32,
     #[serde(rename = "txId", deserialize_with = "deserialize_to_string")]
     pub tx_id: String,
+    #[serde(rename = "amount")]
+    pub amount: i32,
 }
 impl Schema for BalancesBalancesDecreaseSoftCurrencyParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"txId\":{\"type\":\"string\"}},\"required\":[\"amount\",\"txId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"txId\":{\"type\":\"string\"},\"amount\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"amount\",\"txId\"]}") . unwrap ()
     }
 }
 impl Agent for BalancesBalancesDecreaseSoftCurrencyParams {

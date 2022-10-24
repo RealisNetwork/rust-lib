@@ -56,7 +56,7 @@ impl Agent for MarketPlaceMarketPlaceGetItemsByFilterParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct MarketPlaceMarketPlaceGetItemsByFilterReturnsParamsAdditionalParamsParams {}
+pub struct MarketPlaceMarketPlaceGetItemsByFilterReturnsParamsAdditionalParamsParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemsByFilterReturnsParams {
     #[serde(rename = "category")]
@@ -66,6 +66,8 @@ pub struct MarketPlaceMarketPlaceGetItemsByFilterReturnsParams {
     #[serde(rename = "additionalParams")]
     pub additional_params:
         MarketPlaceMarketPlaceGetItemsByFilterReturnsParamsAdditionalParamsParams,
+    #[serde(rename = "type")]
+    pub r#type: String,
     #[serde(rename = "createdAt")]
     pub created_at: i32,
     #[serde(rename = "price")]

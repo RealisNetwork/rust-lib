@@ -28,7 +28,7 @@ impl Agent for MarketPlaceMarketPlaceGetItemByIdParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct MarketPlaceMarketPlaceGetItemByIdReturnsAdditionalParamsParams {}
+pub struct MarketPlaceMarketPlaceGetItemByIdReturnsAdditionalParamsParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceGetItemByIdReturns {
     #[serde(rename = "collection", deserialize_with = "deserialize_to_string")]

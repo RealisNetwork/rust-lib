@@ -38,10 +38,10 @@ pub struct LobbyUserGetLeaderBoardReturnsLeaderboardParamsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyUserGetLeaderBoardReturns {
-    #[serde(rename = "page")]
-    pub page: i16,
     #[serde(rename = "pages")]
     pub pages: i16,
+    #[serde(rename = "page")]
+    pub page: i16,
     #[serde(rename = "leaderboard")]
     pub leaderboard: Vec<LobbyUserGetLeaderBoardReturnsLeaderboardParamsParams>,
 }

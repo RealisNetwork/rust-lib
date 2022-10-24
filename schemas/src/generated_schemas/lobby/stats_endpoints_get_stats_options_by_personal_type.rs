@@ -91,7 +91,7 @@ pub struct LobbyStatsEndpointsGetStatsOptionsByPersonalTypeReturnsLevelUpOptions
     pub skill_power: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct LobbyStatsEndpointsGetStatsOptionsByPersonalTypeReturnsLevelUpOptionsParamsExperienceCoefficientsParamsParams
+pub struct LobbyStatsEndpointsGetStatsOptionsByPersonalTypeReturnsLevelUpOptionsParamsScrollsByLevelsParamsParams
 {
     #[serde(rename = "coefficient", deserialize_with = "deserialize_to_string")]
     pub coefficient: String,
@@ -99,7 +99,7 @@ pub struct LobbyStatsEndpointsGetStatsOptionsByPersonalTypeReturnsLevelUpOptions
     pub level: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct LobbyStatsEndpointsGetStatsOptionsByPersonalTypeReturnsLevelUpOptionsParamsScrollsByLevelsParamsParams
+pub struct LobbyStatsEndpointsGetStatsOptionsByPersonalTypeReturnsLevelUpOptionsParamsExperienceCoefficientsParamsParams
 {
     #[serde(rename = "level")]
     pub level: i32,
@@ -117,6 +117,8 @@ pub struct LobbyStatsEndpointsGetStatsOptionsByPersonalTypeReturns {
     pub main_characteristic: String,
     #[serde(rename = "statsRanges")]
     pub stats_ranges: LobbyStatsEndpointsGetStatsOptionsByPersonalTypeReturnsStatsRangesParams,
+    #[serde(rename = "mainCharacteristic")]
+    pub main_characteristic: String,
     #[serde(rename = "levelUpOptions")]
     pub level_up_options:
         LobbyStatsEndpointsGetStatsOptionsByPersonalTypeReturnsLevelUpOptionsParams,

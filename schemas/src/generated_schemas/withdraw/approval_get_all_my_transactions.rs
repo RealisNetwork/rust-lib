@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalGetAllMyTransactionsParams {
-    #[serde(rename = "perPage")]
-    pub per_page: f64,
     #[serde(rename = "page")]
     pub page: f64,
+    #[serde(rename = "perPage")]
+    pub per_page: f64,
 }
 impl Schema for WithdrawApprovalGetAllMyTransactionsParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"page\",\"perPage\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"page\",\"perPage\"]}") . unwrap ()
     }
 }
 impl Agent for WithdrawApprovalGetAllMyTransactionsParams {
@@ -64,10 +64,10 @@ pub struct WithdrawApprovalGetAllMyTransactionsReturnsDataParamsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WithdrawApprovalGetAllMyTransactionsReturns {
-    #[serde(rename = "totalCount")]
-    pub total_count: f64,
     #[serde(rename = "data")]
     pub data: Vec<WithdrawApprovalGetAllMyTransactionsReturnsDataParamsParams>,
+    #[serde(rename = "totalCount")]
+    pub total_count: f64,
 }
 impl Schema for WithdrawApprovalGetAllMyTransactionsReturns {
     fn schema() -> Value {

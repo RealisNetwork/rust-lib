@@ -89,6 +89,15 @@ impl Object {
     pub fn get_declaration(&self, name: &str) -> (TokenStream, TokenStream) {
         let (prefix, fields): (Vec<_>, Vec<_>) = self.get_fields(name).into_iter().unzip();
         let ident = Ident::new(name, Span::call_site());
+        if self.properties.is_empty() {
+            return (
+                quote! {},
+                quote! {
+                    #[derive(Debug, Clone, Serialize, Deserialize)]
+                    pub struct #ident(Value);
+                },
+            );
+        }
         (
             quote! {#(#prefix)*},
             quote! {

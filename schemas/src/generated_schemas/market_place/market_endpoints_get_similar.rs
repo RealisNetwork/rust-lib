@@ -28,7 +28,7 @@ impl Agent for MarketPlaceMarketEndpointsGetSimilarParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct MarketPlaceMarketEndpointsGetSimilarReturnsParamsAdditionalParamsParams {}
+pub struct MarketPlaceMarketEndpointsGetSimilarReturnsParamsAdditionalParamsParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetSimilarReturnsParams {
     #[serde(rename = "productId")]

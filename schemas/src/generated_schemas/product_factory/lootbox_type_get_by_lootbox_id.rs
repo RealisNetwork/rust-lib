@@ -37,6 +37,10 @@ pub struct ProductFactoryLootboxTypeGetByLootboxIdReturns {
     pub id: i32,
     #[serde(rename = "name", deserialize_with = "deserialize_to_string")]
     pub name: String,
+    #[serde(rename = "lootboxId")]
+    pub lootbox_id: String,
+    #[serde(rename = "dropChanceMultiplier")]
+    pub drop_chance_multiplier: i32,
 }
 impl Schema for ProductFactoryLootboxTypeGetByLootboxIdReturns {
     fn schema() -> Value {

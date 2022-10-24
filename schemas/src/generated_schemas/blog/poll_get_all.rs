@@ -35,6 +35,8 @@ pub struct BlogPollGetAllReturnsDataParamsParamsAnswersParamsParams {
     pub is_image: bool,
     #[serde(rename = "answer", deserialize_with = "deserialize_to_string")]
     pub answer: String,
+    #[serde(rename = "isImage")]
+    pub is_image: bool,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BlogPollGetAllReturnsDataParamsParams {

@@ -4,7 +4,7 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceAdminIncreaseBalanceParamsExtraDetailParams {}
+pub struct TransactionsBalanceAdminIncreaseBalanceParamsExtraDetailParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceAdminIncreaseBalanceParams {
     #[serde(rename = "reason", deserialize_with = "deserialize_to_string")]
@@ -21,6 +21,10 @@ pub struct TransactionsBalanceAdminIncreaseBalanceParams {
     pub amount: String,
     #[serde(rename = "creator", deserialize_with = "deserialize_to_string")]
     pub creator: String,
+    #[serde(rename = "amount")]
+    pub amount: String,
+    #[serde(rename = "extraDetail")]
+    pub extra_detail: Option<TransactionsBalanceAdminIncreaseBalanceParamsExtraDetailParams>,
 }
 impl Schema for TransactionsBalanceAdminIncreaseBalanceParams {
     fn schema() -> Value {
@@ -42,7 +46,7 @@ impl Agent for TransactionsBalanceAdminIncreaseBalanceParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct TransactionsBalanceAdminIncreaseBalanceReturns {}
+pub struct TransactionsBalanceAdminIncreaseBalanceReturns(Value);
 impl Schema for TransactionsBalanceAdminIncreaseBalanceReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"object\",\"properties\":{}}")

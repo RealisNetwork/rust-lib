@@ -4,14 +4,14 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct PromoCodesCreateCodeParamsGivesItemsParams(Value);
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesCreateCodeParamsGivesCurrenciesParams {
-    #[serde(rename = "LIS")]
-    pub lis: f64,
     #[serde(rename = "ETH")]
     pub eth: f64,
+    #[serde(rename = "LIS")]
+    pub lis: f64,
 }
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct PromoCodesCreateCodeParamsGivesItemsParams {}
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesCreateCodeParams {
     #[serde(rename = "expiresIn", deserialize_with = "deserialize_to_string")]

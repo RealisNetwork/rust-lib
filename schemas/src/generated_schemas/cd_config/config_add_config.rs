@@ -4,7 +4,7 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct CdConfigConfigAddConfigParamsDataParams {}
+pub struct CdConfigConfigAddConfigParamsDataParams(Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CdConfigConfigAddConfigParams {
     #[serde(rename = "key", deserialize_with = "deserialize_to_string")]

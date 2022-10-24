@@ -39,6 +39,8 @@ pub struct LobbyRegionsGetReturnsListParamsParams {
     pub name: String,
     #[serde(rename = "host", deserialize_with = "deserialize_to_string")]
     pub host: String,
+    #[serde(rename = "name")]
+    pub name: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LobbyRegionsGetReturns {

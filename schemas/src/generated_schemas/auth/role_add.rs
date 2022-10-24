@@ -7,6 +7,8 @@ use crate::generated_schemas::prelude::*;
 pub struct AuthRoleAddParams {
     #[serde(rename = "roleName", deserialize_with = "deserialize_to_string")]
     pub role_name: String,
+    #[serde(rename = "pages")]
+    pub pages: Vec<String>,
     #[serde(rename = "methods")]
     pub methods: Vec<String>,
     #[serde(rename = "pages")]

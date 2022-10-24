@@ -11,8 +11,8 @@ pub struct ProductFactoryLootboxTypeAddParams {
     pub r#type: String,
     #[serde(rename = "dropChanceMultiplier")]
     pub drop_chance_multiplier: i32,
-    #[serde(rename = "lootboxId")]
-    pub lootbox_id: i32,
+    #[serde(rename = "type")]
+    pub r#type: String,
 }
 impl Schema for ProductFactoryLootboxTypeAddParams {
     fn schema() -> Value {

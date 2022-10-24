@@ -28,7 +28,7 @@ pub struct BaseError<D: Debug> {
     pub msg: String,
     #[serde(rename = "type")]
     pub error_type: ErrorType,
-    pub trace: String,
+    pub trace: Option<String>,
     pub data: Option<D>,
     /// Numeric id of `error_type`
     pub status: u32,
@@ -60,7 +60,7 @@ where
             BaseError {
                 msg: err.to_string(),
                 error_type: error_type.clone(),
-                trace: format!("{:?}", trace),
+                trace: Some(format!("{:?}", trace)),
                 data: None,
                 status: error_type.into(),
             }
@@ -96,7 +96,7 @@ impl BaseError<()> {
         BaseError {
             msg: msg.to_string(),
             error_type: error_type.clone(),
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             data: None,
             status: error_type.into(),
         }
@@ -116,7 +116,7 @@ impl<D: Debug> Debug for BaseError<D> {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
         write!(
             f,
-            "{{ Error message: {}\nError type: {:?}\nTrace:\n{}\nData: {:?}\nStatus: {:?} }}",
+            "{{ Error message: {}\nError type: {:?}\nTrace:\n{:?}\nData: {:?}\nStatus: {:?} }}",
             self.msg, self.error_type, self.trace, self.data, self.status
         )
     }
@@ -139,7 +139,7 @@ impl<D: Debug> From<tokio::sync::oneshot::error::RecvError> for BaseError<D> {
         let error_type = ErrorType::from(error);
         BaseError {
             msg,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             status: error_type.clone().into(),
             error_type,
             data: None,
@@ -154,7 +154,7 @@ impl<D: Debug> From<tokio::time::error::Elapsed> for BaseError<D> {
         let error_type = ErrorType::from(error);
         BaseError {
             msg,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             status: error_type.clone().into(),
             error_type,
             data: None,
@@ -169,7 +169,7 @@ impl<D: Debug> From<ratsio::RatsioError> for BaseError<D> {
         let error_type = ErrorType::from(error);
         BaseError {
             msg,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             status: error_type.clone().into(),
             error_type,
             data: None,
@@ -184,7 +184,7 @@ impl<D: Debug> From<tokio::task::JoinError> for BaseError<D> {
         let error_type = ErrorType::from(error);
         BaseError {
             msg,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             status: error_type.clone().into(),
             error_type,
             data: None,
@@ -199,7 +199,7 @@ impl<D: Debug> From<tokio_postgres::Error> for BaseError<D> {
         let error_type = ErrorType::from(error);
         BaseError {
             msg,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             status: error_type.clone().into(),
             error_type,
             data: None,
@@ -214,7 +214,7 @@ impl<D: Debug> From<deadpool::managed::PoolError<tokio_postgres::Error>> for Bas
         let error_type = ErrorType::from(error);
         BaseError {
             msg,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             status: error_type.clone().into(),
             error_type,
             data: None,
@@ -229,7 +229,7 @@ impl<D: Debug> From<std::net::AddrParseError> for BaseError<D> {
         let error_type = ErrorType::from(error);
         BaseError {
             msg,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             status: error_type.clone().into(),
             error_type,
             data: None,
@@ -244,7 +244,7 @@ impl<D: Debug> From<std::num::ParseIntError> for BaseError<D> {
         let error_type = ErrorType::from(error);
         BaseError {
             msg,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             status: error_type.clone().into(),
             error_type,
             data: None,
@@ -259,7 +259,7 @@ impl<D: Debug> From<std::num::ParseFloatError> for BaseError<D> {
         let error_type = ErrorType::from(error);
         BaseError {
             msg,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             status: error_type.clone().into(),
             error_type,
             data: None,
@@ -274,7 +274,7 @@ impl<D: Debug> From<hex::FromHexError> for BaseError<D> {
         let error_type = ErrorType::from(error);
         BaseError {
             msg,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             status: error_type.clone().into(),
             error_type,
             data: None,
@@ -289,7 +289,7 @@ impl<D: Debug> From<openssl::error::ErrorStack> for BaseError<D> {
         let error_type = ErrorType::from(error);
         BaseError {
             msg,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             status: error_type.clone().into(),
             error_type,
             data: None,
@@ -304,7 +304,7 @@ impl<D: Debug> From<dotenv::Error> for BaseError<D> {
         let error_type = ErrorType::from(error);
         BaseError {
             msg,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             status: error_type.clone().into(),
             error_type,
             data: None,
@@ -319,7 +319,7 @@ impl<D: Debug> From<sqlx::error::Error> for BaseError<D> {
         let error_type = ErrorType::from(error);
         BaseError {
             msg,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             status: error_type.clone().into(),
             error_type,
             data: None,
@@ -334,7 +334,7 @@ impl<D: Debug> From<deadpool_postgres::CreatePoolError> for BaseError<D> {
         let error_type = ErrorType::from(error);
         BaseError {
             msg,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             status: error_type.clone().into(),
             error_type,
             data: None,
@@ -371,7 +371,7 @@ impl<D: Debug> StdDefault for BaseError<D> {
             msg: String::from("Default error."),
             status: error_type.clone().into(),
             error_type,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             data: None,
         }
     }
@@ -386,7 +386,7 @@ impl<D: Debug> From<GeneratedError> for BaseError<D> {
             msg: format!("{:?}", error_type),
             status: error_type.clone().into(),
             error_type,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             data: None,
         }
     }
@@ -414,7 +414,7 @@ impl<D: Debug> From<CustomErrorType> for BaseError<D> {
             msg: format!("{:?}", error_type),
             status: error_type.clone().into(),
             error_type,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             data: None,
         }
     }
@@ -428,7 +428,7 @@ impl<D: Debug> From<RedisError> for BaseError<D> {
         let error_type = ErrorType::from(error);
         Self {
             msg,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             data: None,
             status: error_type.clone().into(),
             error_type,
@@ -443,7 +443,7 @@ impl<D: Debug> From<serde_json::Error> for BaseError<D> {
         let error_type = ErrorType::from(serde_error);
         Self {
             msg,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             data: None,
             status: error_type.clone().into(),
             error_type,
@@ -460,7 +460,7 @@ impl<D: Debug> From<&'static str> for BaseError<D> {
             msg,
             status: error_type.clone().into(),
             error_type,
-            trace: format!("{:?}", trace),
+            trace: Some(format!("{:?}", trace)),
             data: None,
         }
     }

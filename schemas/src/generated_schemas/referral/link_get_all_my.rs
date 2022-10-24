@@ -39,6 +39,8 @@ pub struct ReferralLinkGetAllMyReturnsReferralLinksParamsParams {
     pub app_id: f64,
     #[serde(rename = "link", deserialize_with = "deserialize_to_string")]
     pub link: String,
+    #[serde(rename = "appId")]
+    pub app_id: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralLinkGetAllMyReturns {

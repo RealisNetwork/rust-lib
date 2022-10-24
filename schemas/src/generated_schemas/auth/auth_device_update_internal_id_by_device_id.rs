@@ -9,10 +9,12 @@ pub struct AuthAuthDeviceUpdateInternalIdByDeviceIdParams {
     pub token: String,
     #[serde(rename = "deviceId", deserialize_with = "deserialize_to_string")]
     pub device_id: String,
+    #[serde(rename = "token")]
+    pub token: String,
 }
 impl Schema for AuthAuthDeviceUpdateInternalIdByDeviceIdParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"token\":{\"type\":\"string\"},\"deviceId\":{\"type\":\"string\"}},\"required\":[\"token\",\"deviceId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"deviceId\":{\"type\":\"string\"},\"token\":{\"type\":\"string\"}},\"required\":[\"token\",\"deviceId\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthDeviceUpdateInternalIdByDeviceIdParams {

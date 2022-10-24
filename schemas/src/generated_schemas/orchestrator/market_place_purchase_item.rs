@@ -13,6 +13,8 @@ pub struct OrchestratorMarketPlacePurchaseItemParams {
     pub tx_id: String,
     #[serde(rename = "creator", deserialize_with = "deserialize_to_string")]
     pub creator: String,
+    #[serde(rename = "productId")]
+    pub product_id: i32,
 }
 impl Schema for OrchestratorMarketPlacePurchaseItemParams {
     fn schema() -> Value {

@@ -9,10 +9,12 @@ pub struct GameBalancerGameBalancerDisconnectPlayerParams {
     pub user_id: String,
     #[serde(rename = "roomId", deserialize_with = "deserialize_to_string")]
     pub room_id: String,
+    #[serde(rename = "userId")]
+    pub user_id: String,
 }
 impl Schema for GameBalancerGameBalancerDisconnectPlayerParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"roomId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"roomId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"roomId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"roomId\"]}") . unwrap ()
     }
 }
 impl Agent for GameBalancerGameBalancerDisconnectPlayerParams {

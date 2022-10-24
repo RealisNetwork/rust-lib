@@ -9,10 +9,12 @@ pub struct DragonsLobbySaveUsersProgressParams {
     pub data_object: String,
     #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
     pub user_id: String,
+    #[serde(rename = "dataObject")]
+    pub data_object: String,
 }
 impl Schema for DragonsLobbySaveUsersProgressParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"dataObject\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"dataObject\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"dataObject\":{\"type\":\"string\"}},\"required\":[\"userId\",\"dataObject\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbySaveUsersProgressParams {

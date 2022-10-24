@@ -35,10 +35,12 @@ pub struct CdBalancesBalanceGetBalanceByUserIdAndCurrencyReturns {
     pub total_earned: String,
     #[serde(rename = "amount", deserialize_with = "deserialize_to_string")]
     pub amount: String,
+    #[serde(rename = "totalEarned")]
+    pub total_earned: String,
 }
 impl Schema for CdBalancesBalanceGetBalanceByUserIdAndCurrencyReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalEarned\":{\"type\":\"string\"},\"amount\":{\"type\":\"string\"}},\"required\":[\"amount\",\"totalEarned\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"amount\":{\"type\":\"string\"},\"totalEarned\":{\"type\":\"string\"}},\"required\":[\"amount\",\"totalEarned\"]}")
     }
 }
 impl Agent for CdBalancesBalanceGetBalanceByUserIdAndCurrencyReturns {

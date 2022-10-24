@@ -4,7 +4,7 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct BattlePassBattlePassEndpointsGetBattlePassDataParams {}
+pub struct BattlePassBattlePassEndpointsGetBattlePassDataParams(Value);
 impl Schema for BattlePassBattlePassEndpointsGetBattlePassDataParams {
     fn schema() -> Value {
         serde_json::from_str("{\"type\":\"object\",\"properties\":{}}").unwrap()
@@ -33,11 +33,13 @@ pub struct BattlePassBattlePassEndpointsGetBattlePassDataReturnsBattlePassProgre
     pub reward_type: i32,
     #[serde(rename = "amount")]
     pub amount: i32,
+    #[serde(rename = "itemId")]
+    pub item_id: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassDataReturnsBattlePassProgressionParamsBattlePassLevelsParamsParamsBattlePassRewardParamsParams { # [serde (rename = "item")] pub item : BattlePassBattlePassEndpointsGetBattlePassDataReturnsBattlePassProgressionParamsBattlePassLevelsParamsParamsBattlePassRewardParamsParamsItemParams , # [serde (rename = "rewardId")] pub reward_id : i32 , # [serde (rename = "battlePassType")] pub battle_pass_type : i32 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct BattlePassBattlePassEndpointsGetBattlePassDataReturnsBattlePassProgressionParamsBattlePassLevelsParamsParams { # [serde (rename = "experience")] pub experience : i32 , # [serde (rename = "level")] pub level : i32 , # [serde (rename = "battlePassReward")] pub battle_pass_reward : Vec < BattlePassBattlePassEndpointsGetBattlePassDataReturnsBattlePassProgressionParamsBattlePassLevelsParamsParamsBattlePassRewardParamsParams > }
+pub struct BattlePassBattlePassEndpointsGetBattlePassDataReturnsBattlePassProgressionParamsBattlePassLevelsParamsParams { # [serde (rename = "experience")] pub experience : i32 , # [serde (rename = "battlePassReward")] pub battle_pass_reward : Vec < BattlePassBattlePassEndpointsGetBattlePassDataReturnsBattlePassProgressionParamsBattlePassLevelsParamsParamsBattlePassRewardParamsParams > , # [serde (rename = "level")] pub level : i32 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassDataReturnsBattlePassProgressionParamsFinalRewardsParamsParamsItemParams
 {
@@ -47,6 +49,8 @@ pub struct BattlePassBattlePassEndpointsGetBattlePassDataReturnsBattlePassProgre
     pub reward_type: i32,
     #[serde(rename = "itemId")]
     pub item_id: i32,
+    #[serde(rename = "amount")]
+    pub amount: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassDataReturnsBattlePassProgressionParamsFinalRewardsParamsParams { # [serde (rename = "rewardId")] pub reward_id : i32 , # [serde (rename = "battlePassType")] pub battle_pass_type : i32 , # [serde (rename = "item")] pub item : BattlePassBattlePassEndpointsGetBattlePassDataReturnsBattlePassProgressionParamsFinalRewardsParamsParamsItemParams }
@@ -54,12 +58,12 @@ pub struct BattlePassBattlePassEndpointsGetBattlePassDataReturnsBattlePassProgre
 pub struct BattlePassBattlePassEndpointsGetBattlePassDataReturnsBattlePassProgressionParams { # [serde (rename = "finalRewardsExperienceInterval")] pub final_rewards_experience_interval : i32 , # [serde (rename = "battlePassLevels")] pub battle_pass_levels : Vec < BattlePassBattlePassEndpointsGetBattlePassDataReturnsBattlePassProgressionParamsBattlePassLevelsParamsParams > , # [serde (rename = "finalRewards")] pub final_rewards : Vec < BattlePassBattlePassEndpointsGetBattlePassDataReturnsBattlePassProgressionParamsFinalRewardsParamsParams > }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassDataReturnsRewardsParamsParams {
-    #[serde(rename = "rewardState")]
-    pub reward_state: i32,
     #[serde(rename = "rewardId")]
     pub reward_id: i32,
     #[serde(rename = "rewardBindingId")]
     pub reward_binding_id: i32,
+    #[serde(rename = "rewardState")]
+    pub reward_state: i32,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassDataReturns {
