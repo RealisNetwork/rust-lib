@@ -29,25 +29,25 @@ impl Agent for TransactionsBalanceGetListWithPaginationParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetListWithPaginationReturnsListParamsParams {
-    #[serde(rename = "blockId", deserialize_with = "deserialize_to_string")]
-    pub block_id: String,
-    #[serde(rename = "dateTime", deserialize_with = "deserialize_to_string")]
-    pub date_time: String,
     #[serde(rename = "balanceChange", deserialize_with = "deserialize_to_string")]
     pub balance_change: String,
+    #[serde(rename = "dateTime", deserialize_with = "deserialize_to_string")]
+    pub date_time: String,
+    #[serde(rename = "blockId", deserialize_with = "deserialize_to_string")]
+    pub block_id: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsBalanceGetListWithPaginationReturns {
-    #[serde(rename = "page")]
-    pub page: i32,
     #[serde(rename = "list")]
     pub list: Vec<TransactionsBalanceGetListWithPaginationReturnsListParamsParams>,
+    #[serde(rename = "page")]
+    pub page: i32,
     #[serde(rename = "pages")]
     pub pages: i32,
 }
 impl Schema for TransactionsBalanceGetListWithPaginationReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"blockId\":{\"type\":\"string\"},\"dateTime\":{\"type\":\"string\"},\"balanceChange\":{\"type\":\"string\"}},\"required\":[\"blockId\",\"dateTime\",\"balanceChange\"]}},\"pages\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"page\",\"pages\",\"list\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"list\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"balanceChange\":{\"type\":\"string\"},\"dateTime\":{\"type\":\"string\"},\"blockId\":{\"type\":\"string\"}},\"required\":[\"blockId\",\"dateTime\",\"balanceChange\"]}},\"page\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"pages\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"page\",\"pages\",\"list\"]}")
     }
 }
 impl Agent for TransactionsBalanceGetListWithPaginationReturns {

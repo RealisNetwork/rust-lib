@@ -4,7 +4,7 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct BattlePassBattlePassEndpointsGetBattlePassSeasonInfoParams(Value);
+pub struct BattlePassBattlePassEndpointsGetBattlePassSeasonInfoParams(pub Value);
 impl Schema for BattlePassBattlePassEndpointsGetBattlePassSeasonInfoParams {
     fn schema() -> Value {
         serde_json::from_str("{\"type\":\"object\",\"properties\":{}}").unwrap()
@@ -26,18 +26,18 @@ impl Agent for BattlePassBattlePassEndpointsGetBattlePassSeasonInfoParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BattlePassBattlePassEndpointsGetBattlePassSeasonInfoReturns {
-    #[serde(rename = "stateUpdateDate", deserialize_with = "deserialize_to_string")]
-    pub state_update_date: String,
-    #[serde(rename = "seasonState")]
-    pub season_state: i32,
     #[serde(rename = "seasonId")]
     pub season_id: i32,
     #[serde(rename = "hasNotReceivedOldRewards")]
     pub has_not_received_old_rewards: bool,
+    #[serde(rename = "stateUpdateDate", deserialize_with = "deserialize_to_string")]
+    pub state_update_date: String,
+    #[serde(rename = "seasonState")]
+    pub season_state: i32,
 }
 impl Schema for BattlePassBattlePassEndpointsGetBattlePassSeasonInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"stateUpdateDate\":{\"type\":\"string\"},\"seasonState\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"seasonId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"hasNotReceivedOldRewards\":{\"type\":\"boolean\"}},\"required\":[\"seasonId\",\"seasonState\",\"hasNotReceivedOldRewards\",\"stateUpdateDate\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"seasonId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"hasNotReceivedOldRewards\":{\"type\":\"boolean\"},\"stateUpdateDate\":{\"type\":\"string\"},\"seasonState\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"seasonId\",\"seasonState\",\"hasNotReceivedOldRewards\",\"stateUpdateDate\"]}")
     }
 }
 impl Agent for BattlePassBattlePassEndpointsGetBattlePassSeasonInfoReturns {

@@ -31,26 +31,26 @@ impl Agent for CatsAndDragonsWrapperGetUserInfoParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsAndDragonsWrapperGetUserInfoReturns {
-    #[serde(rename = "hasReferrer")]
-    pub has_referrer: bool,
-    #[serde(rename = "email", deserialize_with = "deserialize_to_string")]
-    pub email: String,
     #[serde(rename = "isNewProfile")]
     pub is_new_profile: bool,
-    #[serde(rename = "refCode", deserialize_with = "deserialize_to_string")]
-    pub ref_code: String,
-    #[serde(rename = "nickname", deserialize_with = "deserialize_to_string")]
-    pub nickname: String,
-    #[serde(rename = "provider")]
-    pub provider: Option<String>,
-    #[serde(rename = "refLink", deserialize_with = "deserialize_to_string")]
-    pub ref_link: String,
     #[serde(rename = "isAuthorized")]
     pub is_authorized: bool,
+    #[serde(rename = "nickname", deserialize_with = "deserialize_to_string")]
+    pub nickname: String,
+    #[serde(rename = "refLink", deserialize_with = "deserialize_to_string")]
+    pub ref_link: String,
+    #[serde(rename = "hasReferrer")]
+    pub has_referrer: bool,
+    #[serde(rename = "refCode", deserialize_with = "deserialize_to_string")]
+    pub ref_code: String,
+    #[serde(rename = "provider")]
+    pub provider: Option<String>,
+    #[serde(rename = "email", deserialize_with = "deserialize_to_string")]
+    pub email: String,
 }
 impl Schema for CatsAndDragonsWrapperGetUserInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"hasReferrer\":{\"type\":\"boolean\"},\"email\":{\"type\":\"string\"},\"isNewProfile\":{\"type\":\"boolean\"},\"refCode\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"provider\":{\"type\":\"string\"},\"refLink\":{\"type\":\"string\"},\"isAuthorized\":{\"type\":\"boolean\"}},\"required\":[\"email\",\"isAuthorized\",\"refLink\",\"refCode\",\"hasReferrer\",\"nickname\",\"isNewProfile\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isNewProfile\":{\"type\":\"boolean\"},\"isAuthorized\":{\"type\":\"boolean\"},\"nickname\":{\"type\":\"string\"},\"refLink\":{\"type\":\"string\"},\"hasReferrer\":{\"type\":\"boolean\"},\"refCode\":{\"type\":\"string\"},\"provider\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"}},\"required\":[\"email\",\"isAuthorized\",\"refLink\",\"refCode\",\"hasReferrer\",\"nickname\",\"isNewProfile\"]}")
     }
 }
 impl Agent for CatsAndDragonsWrapperGetUserInfoReturns {

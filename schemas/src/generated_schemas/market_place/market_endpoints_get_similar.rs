@@ -28,33 +28,33 @@ impl Agent for MarketPlaceMarketEndpointsGetSimilarParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct MarketPlaceMarketEndpointsGetSimilarReturnsParamsAdditionalParamsParams(Value);
+pub struct MarketPlaceMarketEndpointsGetSimilarReturnsParamsAdditionalParamsParams(pub Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketEndpointsGetSimilarReturnsParams {
-    #[serde(rename = "category")]
-    pub category: i32,
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: i32,
-    #[serde(rename = "description", deserialize_with = "deserialize_to_string")]
-    pub description: String,
-    #[serde(rename = "isLocked")]
-    pub is_locked: bool,
-    #[serde(rename = "id")]
-    pub id: i32,
-    #[serde(rename = "type", deserialize_with = "deserialize_to_string")]
-    pub r#type: String,
-    #[serde(rename = "price")]
-    pub price: i32,
-    #[serde(rename = "collection", deserialize_with = "deserialize_to_string")]
-    pub collection: String,
-    #[serde(rename = "image", deserialize_with = "deserialize_to_string")]
-    pub image: String,
     #[serde(rename = "personalType", deserialize_with = "deserialize_to_string")]
     pub personal_type: String,
+    #[serde(rename = "collection", deserialize_with = "deserialize_to_string")]
+    pub collection: String,
     #[serde(rename = "productId")]
     pub product_id: i32,
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
+    #[serde(rename = "id")]
+    pub id: i32,
+    #[serde(rename = "image", deserialize_with = "deserialize_to_string")]
+    pub image: String,
+    #[serde(rename = "type", deserialize_with = "deserialize_to_string")]
+    pub r#type: String,
+    #[serde(rename = "isLocked")]
+    pub is_locked: bool,
+    #[serde(rename = "category")]
+    pub category: i32,
+    #[serde(rename = "createdAt")]
+    pub created_at: i32,
+    #[serde(rename = "price")]
+    pub price: i32,
+    #[serde(rename = "description", deserialize_with = "deserialize_to_string")]
+    pub description: String,
     #[serde(rename = "additionalParams")]
     pub additional_params: MarketPlaceMarketEndpointsGetSimilarReturnsParamsAdditionalParamsParams,
 }
@@ -64,7 +64,7 @@ pub struct MarketPlaceMarketEndpointsGetSimilarReturns(
 );
 impl Schema for MarketPlaceMarketEndpointsGetSimilarReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"description\":{\"type\":\"string\"},\"isLocked\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"type\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"collection\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"additionalParams\":{\"type\":\"object\",\"properties\":{}}},\"required\":[\"id\",\"productId\",\"userId\",\"personalType\",\"type\",\"collection\",\"price\",\"description\",\"image\",\"additionalParams\",\"isLocked\",\"category\",\"createdAt\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"collection\":{\"type\":\"string\"},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"userId\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"image\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"isLocked\":{\"type\":\"boolean\"},\"category\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"createdAt\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"description\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}}},\"required\":[\"id\",\"productId\",\"userId\",\"personalType\",\"type\",\"collection\",\"price\",\"description\",\"image\",\"additionalParams\",\"isLocked\",\"category\",\"createdAt\"]}}")
     }
 }
 impl Agent for MarketPlaceMarketEndpointsGetSimilarReturns {

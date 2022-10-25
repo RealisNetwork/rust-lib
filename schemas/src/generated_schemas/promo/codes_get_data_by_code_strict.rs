@@ -28,7 +28,7 @@ impl Agent for PromoCodesGetDataByCodeStrictParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct PromoCodesGetDataByCodeStrictReturns(Value);
+pub struct PromoCodesGetDataByCodeStrictReturns(pub Value);
 impl Schema for PromoCodesGetDataByCodeStrictReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"object\",\"properties\":{}}")

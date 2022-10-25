@@ -4,7 +4,7 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct BattlePassBattlePassEndpointsPurchaseBattlePassExperienceToLevelupParams(Value);
+pub struct BattlePassBattlePassEndpointsPurchaseBattlePassExperienceToLevelupParams(pub Value);
 impl Schema for BattlePassBattlePassEndpointsPurchaseBattlePassExperienceToLevelupParams {
     fn schema() -> Value {
         serde_json::from_str("{\"type\":\"object\",\"properties\":{}}").unwrap()
@@ -25,7 +25,7 @@ impl Agent for BattlePassBattlePassEndpointsPurchaseBattlePassExperienceToLevelu
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct BattlePassBattlePassEndpointsPurchaseBattlePassExperienceToLevelupReturns(Value);
+pub struct BattlePassBattlePassEndpointsPurchaseBattlePassExperienceToLevelupReturns(pub Value);
 impl Schema for BattlePassBattlePassEndpointsPurchaseBattlePassExperienceToLevelupReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"object\",\"properties\":{}}")

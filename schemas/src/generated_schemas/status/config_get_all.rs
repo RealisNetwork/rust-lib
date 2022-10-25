@@ -35,30 +35,30 @@ impl Agent for StatusConfigGetAllParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigGetAllReturnsParams {
-    #[serde(rename = "isAvailable")]
-    pub is_available: bool,
-    #[serde(rename = "multiplier", deserialize_with = "deserialize_to_string")]
-    pub multiplier: String,
-    #[serde(rename = "priorityIndex")]
-    pub priority_index: f64,
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "membershipId")]
-    pub membership_id: f64,
-    #[serde(rename = "maxCount", deserialize_with = "deserialize_to_string")]
-    pub max_count: String,
-    #[serde(rename = "price", deserialize_with = "deserialize_to_string")]
-    pub price: String,
     #[serde(rename = "priceInLis", deserialize_with = "deserialize_to_string")]
     pub price_in_lis: String,
     #[serde(rename = "membership", deserialize_with = "deserialize_to_string")]
     pub membership: String,
+    #[serde(rename = "multiplier", deserialize_with = "deserialize_to_string")]
+    pub multiplier: String,
+    #[serde(rename = "membershipId")]
+    pub membership_id: f64,
+    #[serde(rename = "price", deserialize_with = "deserialize_to_string")]
+    pub price: String,
+    #[serde(rename = "isAvailable")]
+    pub is_available: bool,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "maxCount", deserialize_with = "deserialize_to_string")]
+    pub max_count: String,
+    #[serde(rename = "priorityIndex")]
+    pub priority_index: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigGetAllReturns(pub Vec<StatusConfigGetAllReturnsParams>);
 impl Schema for StatusConfigGetAllReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"isAvailable\":{\"type\":\"boolean\"},\"multiplier\":{\"type\":\"string\"},\"priorityIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"membershipId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"maxCount\":{\"type\":\"string\"},\"price\":{\"type\":\"string\"},\"priceInLis\":{\"type\":\"string\"},\"membership\":{\"type\":\"string\"}},\"required\":[\"id\",\"membershipId\",\"priorityIndex\",\"membership\",\"price\",\"multiplier\",\"priceInLis\",\"maxCount\",\"isAvailable\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"priceInLis\":{\"type\":\"string\"},\"membership\":{\"type\":\"string\"},\"multiplier\":{\"type\":\"string\"},\"membershipId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"price\":{\"type\":\"string\"},\"isAvailable\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"maxCount\":{\"type\":\"string\"},\"priorityIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"membershipId\",\"priorityIndex\",\"membership\",\"price\",\"multiplier\",\"priceInLis\",\"maxCount\",\"isAvailable\"]}}")
     }
 }
 impl Agent for StatusConfigGetAllReturns {

@@ -4,7 +4,7 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct DragocatsBalancerBalancerLeaveQueueParams(Value);
+pub struct DragocatsBalancerBalancerLeaveQueueParams(pub Value);
 impl Schema for DragocatsBalancerBalancerLeaveQueueParams {
     fn schema() -> Value {
         serde_json::from_str("{\"type\":\"object\",\"properties\":{}}").unwrap()

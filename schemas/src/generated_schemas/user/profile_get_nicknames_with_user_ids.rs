@@ -29,10 +29,10 @@ impl Agent for UserProfileGetNicknamesWithUserIdsParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetNicknamesWithUserIdsReturnsParams {
-    #[serde(rename = "nickname", deserialize_with = "deserialize_to_string")]
-    pub nickname: String,
     #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
     pub user_id: String,
+    #[serde(rename = "nickname", deserialize_with = "deserialize_to_string")]
+    pub nickname: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetNicknamesWithUserIdsReturns(
@@ -40,7 +40,7 @@ pub struct UserProfileGetNicknamesWithUserIdsReturns(
 );
 impl Schema for UserProfileGetNicknamesWithUserIdsReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"nickname\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"nickname\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"}},\"required\":[\"userId\",\"nickname\"]}}")
     }
 }
 impl Agent for UserProfileGetNicknamesWithUserIdsReturns {

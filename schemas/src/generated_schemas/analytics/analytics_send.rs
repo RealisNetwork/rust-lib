@@ -7,16 +7,16 @@ use crate::generated_schemas::prelude::*;
 pub struct AnalyticsAnalyticsSendParams {
     #[serde(rename = "value")]
     pub value: Option<()>,
-    #[serde(rename = "param")]
-    pub param: Option<String>,
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
     #[serde(rename = "key", deserialize_with = "deserialize_to_string")]
     pub key: String,
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
+    #[serde(rename = "param")]
+    pub param: Option<String>,
 }
 impl Schema for AnalyticsAnalyticsSendParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"value\":{},\"param\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"}},\"required\":[\"key\",\"userId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"value\":{},\"key\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"param\":{\"type\":\"string\"}},\"required\":[\"key\",\"userId\"]}") . unwrap ()
     }
 }
 impl Agent for AnalyticsAnalyticsSendParams {

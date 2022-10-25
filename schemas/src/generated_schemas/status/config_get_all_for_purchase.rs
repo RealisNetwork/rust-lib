@@ -35,18 +35,18 @@ impl Agent for StatusConfigGetAllForPurchaseParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigGetAllForPurchaseReturnsParams {
-    #[serde(rename = "membership", deserialize_with = "deserialize_to_string")]
-    pub membership: String,
-    #[serde(rename = "priorityIndex")]
-    pub priority_index: f64,
-    #[serde(rename = "priceInLis", deserialize_with = "deserialize_to_string")]
-    pub price_in_lis: String,
-    #[serde(rename = "membershipId")]
-    pub membership_id: f64,
     #[serde(rename = "maxCount", deserialize_with = "deserialize_to_string")]
     pub max_count: String,
+    #[serde(rename = "membershipId")]
+    pub membership_id: f64,
+    #[serde(rename = "membership", deserialize_with = "deserialize_to_string")]
+    pub membership: String,
+    #[serde(rename = "priceInLis", deserialize_with = "deserialize_to_string")]
+    pub price_in_lis: String,
     #[serde(rename = "price", deserialize_with = "deserialize_to_string")]
     pub price: String,
+    #[serde(rename = "priorityIndex")]
+    pub priority_index: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StatusConfigGetAllForPurchaseReturns(
@@ -54,7 +54,7 @@ pub struct StatusConfigGetAllForPurchaseReturns(
 );
 impl Schema for StatusConfigGetAllForPurchaseReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"membership\":{\"type\":\"string\"},\"priorityIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"priceInLis\":{\"type\":\"string\"},\"membershipId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"maxCount\":{\"type\":\"string\"},\"price\":{\"type\":\"string\"}},\"required\":[\"membershipId\",\"priorityIndex\",\"membership\",\"maxCount\",\"priceInLis\",\"price\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"maxCount\":{\"type\":\"string\"},\"membershipId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"membership\":{\"type\":\"string\"},\"priceInLis\":{\"type\":\"string\"},\"price\":{\"type\":\"string\"},\"priorityIndex\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"membershipId\",\"priorityIndex\",\"membership\",\"maxCount\",\"priceInLis\",\"price\"]}}")
     }
 }
 impl Agent for StatusConfigGetAllForPurchaseReturns {

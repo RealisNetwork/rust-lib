@@ -34,7 +34,7 @@ impl Agent for DragocatsStorageInventoryEndpointsOpenLootboxNotificationParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct DragocatsStorageInventoryEndpointsOpenLootboxNotificationReturns(Value);
+pub struct DragocatsStorageInventoryEndpointsOpenLootboxNotificationReturns(pub Value);
 impl Schema for DragocatsStorageInventoryEndpointsOpenLootboxNotificationReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"object\",\"properties\":{}}")

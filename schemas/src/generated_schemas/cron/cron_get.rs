@@ -29,22 +29,22 @@ impl Agent for CronCronGetParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CronCronGetReturns {
-    #[serde(rename = "startsAt", deserialize_with = "deserialize_to_string")]
-    pub starts_at: String,
-    #[serde(rename = "updatedAt", deserialize_with = "deserialize_to_string")]
-    pub updated_at: String,
     #[serde(rename = "id")]
     pub id: f64,
+    #[serde(rename = "startsAt", deserialize_with = "deserialize_to_string")]
+    pub starts_at: String,
     #[serde(rename = "createdAt", deserialize_with = "deserialize_to_string")]
     pub created_at: String,
-    #[serde(rename = "key", deserialize_with = "deserialize_to_string")]
-    pub key: String,
     #[serde(rename = "howOften")]
     pub how_often: f64,
+    #[serde(rename = "key", deserialize_with = "deserialize_to_string")]
+    pub key: String,
+    #[serde(rename = "updatedAt", deserialize_with = "deserialize_to_string")]
+    pub updated_at: String,
 }
 impl Schema for CronCronGetReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"startsAt\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"createdAt\":{\"type\":\"string\"},\"key\":{\"type\":\"string\"},\"howOften\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"id\",\"key\",\"howOften\",\"startsAt\",\"createdAt\",\"updatedAt\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"startsAt\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"howOften\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"key\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"key\",\"howOften\",\"startsAt\",\"createdAt\",\"updatedAt\"]}")
     }
 }
 impl Agent for CronCronGetReturns {

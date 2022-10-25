@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AdminPermissionUpdatePermissionsParams {
-    #[serde(rename = "roleName", deserialize_with = "deserialize_to_string")]
-    pub role_name: String,
     #[serde(rename = "permissions")]
     pub permissions: Vec<String>,
+    #[serde(rename = "roleName", deserialize_with = "deserialize_to_string")]
+    pub role_name: String,
 }
 impl Schema for AdminPermissionUpdatePermissionsParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"roleName\":{\"type\":\"string\"},\"permissions\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}},\"required\":[\"roleName\",\"permissions\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"permissions\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"roleName\":{\"type\":\"string\"}},\"required\":[\"roleName\",\"permissions\"]}") . unwrap ()
     }
 }
 impl Agent for AdminPermissionUpdatePermissionsParams {

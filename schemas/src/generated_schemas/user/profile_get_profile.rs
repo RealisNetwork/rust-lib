@@ -29,64 +29,64 @@ impl Agent for UserProfileGetProfileParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetProfileReturnsBanParams {
-    #[serde(rename = "id")]
-    pub id: f64,
-    #[serde(rename = "createdAt", deserialize_with = "deserialize_to_string")]
-    pub created_at: String,
-    #[serde(rename = "reason", deserialize_with = "deserialize_to_string")]
-    pub reason: String,
-    #[serde(rename = "whoBanned", deserialize_with = "deserialize_to_string")]
-    pub who_banned: String,
-    #[serde(rename = "updatedAt", deserialize_with = "deserialize_to_string")]
-    pub updated_at: String,
     #[serde(rename = "bannedUntil", deserialize_with = "deserialize_to_string")]
     pub banned_until: String,
+    #[serde(rename = "whoBanned", deserialize_with = "deserialize_to_string")]
+    pub who_banned: String,
+    #[serde(rename = "createdAt", deserialize_with = "deserialize_to_string")]
+    pub created_at: String,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "reason", deserialize_with = "deserialize_to_string")]
+    pub reason: String,
+    #[serde(rename = "updatedAt", deserialize_with = "deserialize_to_string")]
+    pub updated_at: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UserProfileGetProfileReturns {
-    #[serde(rename = "notice", deserialize_with = "deserialize_to_string")]
-    pub notice: String,
-    #[serde(rename = "suspicious")]
-    pub suspicious: bool,
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
-    #[serde(rename = "hasPassword")]
-    pub has_password: bool,
     #[serde(rename = "isConfirmed")]
     pub is_confirmed: bool,
+    #[serde(rename = "id")]
+    pub id: f64,
+    #[serde(rename = "email", deserialize_with = "deserialize_to_string")]
+    pub email: String,
+    #[serde(rename = "isSubscribedToMailing")]
+    pub is_subscribed_to_mailing: bool,
+    #[serde(rename = "suspicious")]
+    pub suspicious: bool,
+    #[serde(rename = "hasPassword")]
+    pub has_password: bool,
+    #[serde(rename = "lifeTimeInterest")]
+    pub life_time_interest: bool,
+    #[serde(rename = "notice", deserialize_with = "deserialize_to_string")]
+    pub notice: String,
+    #[serde(rename = "registeredAt", deserialize_with = "deserialize_to_string")]
+    pub registered_at: String,
+    #[serde(rename = "nickname", deserialize_with = "deserialize_to_string")]
+    pub nickname: String,
+    #[serde(rename = "isDeleted")]
+    pub is_deleted: bool,
+    #[serde(rename = "isBanned")]
+    pub is_banned: bool,
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
     #[serde(
         rename = "lifeTimeInterestPercent",
         deserialize_with = "deserialize_to_string"
     )]
     pub life_time_interest_percent: String,
-    #[serde(rename = "isDeleted")]
-    pub is_deleted: bool,
-    #[serde(rename = "ban")]
-    pub ban: UserProfileGetProfileReturnsBanParams,
-    #[serde(rename = "id")]
-    pub id: f64,
     #[serde(rename = "isNicknameChanged")]
     pub is_nickname_changed: bool,
-    #[serde(rename = "email", deserialize_with = "deserialize_to_string")]
-    pub email: String,
-    #[serde(rename = "nickname", deserialize_with = "deserialize_to_string")]
-    pub nickname: String,
-    #[serde(rename = "verified")]
-    pub verified: bool,
-    #[serde(rename = "lifeTimeInterest")]
-    pub life_time_interest: bool,
-    #[serde(rename = "isBanned")]
-    pub is_banned: bool,
-    #[serde(rename = "isSubscribedToMailing")]
-    pub is_subscribed_to_mailing: bool,
-    #[serde(rename = "registeredAt", deserialize_with = "deserialize_to_string")]
-    pub registered_at: String,
     #[serde(rename = "lastActivity", deserialize_with = "deserialize_to_string")]
     pub last_activity: String,
+    #[serde(rename = "ban")]
+    pub ban: UserProfileGetProfileReturnsBanParams,
+    #[serde(rename = "verified")]
+    pub verified: bool,
 }
 impl Schema for UserProfileGetProfileReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"notice\":{\"type\":\"string\"},\"suspicious\":{\"type\":\"boolean\"},\"userId\":{\"type\":\"string\"},\"hasPassword\":{\"type\":\"boolean\"},\"isConfirmed\":{\"type\":\"boolean\"},\"lifeTimeInterestPercent\":{\"type\":\"string\"},\"isDeleted\":{\"type\":\"boolean\"},\"ban\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"createdAt\":{\"type\":\"string\"},\"reason\":{\"type\":\"string\"},\"whoBanned\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"},\"bannedUntil\":{\"type\":\"string\"}},\"required\":[\"id\",\"reason\",\"whoBanned\",\"createdAt\",\"updatedAt\",\"bannedUntil\"]},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isNicknameChanged\":{\"type\":\"boolean\"},\"email\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"verified\":{\"type\":\"boolean\"},\"lifeTimeInterest\":{\"type\":\"boolean\"},\"isBanned\":{\"type\":\"boolean\"},\"isSubscribedToMailing\":{\"type\":\"boolean\"},\"registeredAt\":{\"type\":\"string\"},\"lastActivity\":{\"type\":\"string\"}},\"required\":[\"id\",\"userId\",\"nickname\",\"email\",\"verified\",\"isNicknameChanged\",\"isSubscribedToMailing\",\"suspicious\",\"isConfirmed\",\"notice\",\"isBanned\",\"isDeleted\",\"hasPassword\",\"ban\",\"registeredAt\",\"lastActivity\",\"lifeTimeInterest\",\"lifeTimeInterestPercent\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isConfirmed\":{\"type\":\"boolean\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"email\":{\"type\":\"string\"},\"isSubscribedToMailing\":{\"type\":\"boolean\"},\"suspicious\":{\"type\":\"boolean\"},\"hasPassword\":{\"type\":\"boolean\"},\"lifeTimeInterest\":{\"type\":\"boolean\"},\"notice\":{\"type\":\"string\"},\"registeredAt\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"},\"isDeleted\":{\"type\":\"boolean\"},\"isBanned\":{\"type\":\"boolean\"},\"userId\":{\"type\":\"string\"},\"lifeTimeInterestPercent\":{\"type\":\"string\"},\"isNicknameChanged\":{\"type\":\"boolean\"},\"lastActivity\":{\"type\":\"string\"},\"ban\":{\"type\":\"object\",\"properties\":{\"bannedUntil\":{\"type\":\"string\"},\"whoBanned\":{\"type\":\"string\"},\"createdAt\":{\"type\":\"string\"},\"id\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"reason\":{\"type\":\"string\"},\"updatedAt\":{\"type\":\"string\"}},\"required\":[\"id\",\"reason\",\"whoBanned\",\"createdAt\",\"updatedAt\",\"bannedUntil\"]},\"verified\":{\"type\":\"boolean\"}},\"required\":[\"id\",\"userId\",\"nickname\",\"email\",\"verified\",\"isNicknameChanged\",\"isSubscribedToMailing\",\"suspicious\",\"isConfirmed\",\"notice\",\"isBanned\",\"isDeleted\",\"hasPassword\",\"ban\",\"registeredAt\",\"lastActivity\",\"lifeTimeInterest\",\"lifeTimeInterestPercent\"]}")
     }
 }
 impl Agent for UserProfileGetProfileReturns {

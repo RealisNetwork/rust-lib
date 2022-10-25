@@ -28,7 +28,7 @@ impl Agent for CdConfigConfigGetConfigByKeyParams {
     }
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct CdConfigConfigGetConfigByKeyReturns(Value);
+pub struct CdConfigConfigGetConfigByKeyReturns(pub Value);
 impl Schema for CdConfigConfigGetConfigByKeyReturns {
     fn schema() -> Value {
         serde_json::json!("{\"type\":\"object\",\"properties\":{}}")

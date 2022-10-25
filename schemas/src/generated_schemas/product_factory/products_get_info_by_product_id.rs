@@ -29,20 +29,20 @@ impl Agent for ProductFactoryProductsGetInfoByProductIdParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductsGetInfoByProductIdReturns {
+    #[serde(rename = "isNft")]
+    pub is_nft: bool,
+    #[serde(rename = "name", deserialize_with = "deserialize_to_string")]
+    pub name: String,
     #[serde(rename = "personalType", deserialize_with = "deserialize_to_string")]
     pub personal_type: String,
     #[serde(rename = "subType", deserialize_with = "deserialize_to_string")]
     pub sub_type: String,
     #[serde(rename = "productType", deserialize_with = "deserialize_to_string")]
     pub product_type: String,
-    #[serde(rename = "name", deserialize_with = "deserialize_to_string")]
-    pub name: String,
-    #[serde(rename = "isNft")]
-    pub is_nft: bool,
 }
 impl Schema for ProductFactoryProductsGetInfoByProductIdReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"},\"productType\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"isNft\":{\"type\":\"boolean\"}},\"required\":[\"personalType\",\"productType\",\"subType\",\"name\",\"isNft\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isNft\":{\"type\":\"boolean\"},\"name\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"subType\":{\"type\":\"string\"},\"productType\":{\"type\":\"string\"}},\"required\":[\"personalType\",\"productType\",\"subType\",\"name\",\"isNft\"]}")
     }
 }
 impl Agent for ProductFactoryProductsGetInfoByProductIdReturns {

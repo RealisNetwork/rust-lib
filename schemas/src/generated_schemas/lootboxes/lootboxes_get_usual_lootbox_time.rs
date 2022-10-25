@@ -4,7 +4,7 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct LootboxesLootboxesGetUsualLootboxTimeParams(Value);
+pub struct LootboxesLootboxesGetUsualLootboxTimeParams(pub Value);
 impl Schema for LootboxesLootboxesGetUsualLootboxTimeParams {
     fn schema() -> Value {
         serde_json::from_str("{\"type\":\"object\",\"properties\":{}}").unwrap()

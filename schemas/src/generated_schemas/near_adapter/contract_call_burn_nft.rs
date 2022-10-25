@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NearAdapterContractCallBurnNftParams {
-    #[serde(rename = "approvalId")]
-    pub approval_id: Option<String>,
-    #[serde(rename = "tokenId", deserialize_with = "deserialize_to_string")]
-    pub token_id: String,
     #[serde(rename = "userId")]
     pub user_id: Option<String>,
+    #[serde(rename = "tokenId", deserialize_with = "deserialize_to_string")]
+    pub token_id: String,
+    #[serde(rename = "approvalId")]
+    pub approval_id: Option<String>,
 }
 impl Schema for NearAdapterContractCallBurnNftParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"approvalId\":{\"type\":\"string\"},\"tokenId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"tokenId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"tokenId\":{\"type\":\"string\"},\"approvalId\":{\"type\":\"string\"}},\"required\":[\"tokenId\"]}") . unwrap ()
     }
 }
 impl Agent for NearAdapterContractCallBurnNftParams {

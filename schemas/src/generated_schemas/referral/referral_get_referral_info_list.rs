@@ -5,16 +5,16 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralGetReferralInfoListParams {
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
     #[serde(rename = "page")]
     pub page: f64,
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
     #[serde(rename = "perPage")]
     pub per_page: f64,
 }
 impl Schema for ReferralReferralGetReferralInfoListParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"page\",\"perPage\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"page\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"perPage\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"page\",\"perPage\"]}") . unwrap ()
     }
 }
 impl Agent for ReferralReferralGetReferralInfoListParams {
@@ -33,14 +33,14 @@ impl Agent for ReferralReferralGetReferralInfoListParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralGetReferralInfoListReturnsDataParamsParams {
-    #[serde(rename = "isBanned")]
-    pub is_banned: bool,
-    #[serde(rename = "nickname", deserialize_with = "deserialize_to_string")]
-    pub nickname: String,
-    #[serde(rename = "registryDate", deserialize_with = "deserialize_to_string")]
-    pub registry_date: String,
     #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
     pub user_id: String,
+    #[serde(rename = "isBanned")]
+    pub is_banned: bool,
+    #[serde(rename = "registryDate", deserialize_with = "deserialize_to_string")]
+    pub registry_date: String,
+    #[serde(rename = "nickname", deserialize_with = "deserialize_to_string")]
+    pub nickname: String,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReferralReferralGetReferralInfoListReturns {
@@ -51,7 +51,7 @@ pub struct ReferralReferralGetReferralInfoListReturns {
 }
 impl Schema for ReferralReferralGetReferralInfoListReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"isBanned\":{\"type\":\"boolean\"},\"nickname\":{\"type\":\"string\"},\"registryDate\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"nickname\",\"isBanned\",\"registryDate\"]}}},\"required\":[\"totalCount\",\"data\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"totalCount\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"isBanned\":{\"type\":\"boolean\"},\"registryDate\":{\"type\":\"string\"},\"nickname\":{\"type\":\"string\"}},\"required\":[\"userId\",\"nickname\",\"isBanned\",\"registryDate\"]}}},\"required\":[\"totalCount\",\"data\"]}")
     }
 }
 impl Agent for ReferralReferralGetReferralInfoListReturns {

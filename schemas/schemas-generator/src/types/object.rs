@@ -94,7 +94,7 @@ impl Object {
                 quote! {},
                 quote! {
                     #[derive(Debug, Clone, Serialize, Deserialize)]
-                    pub struct #ident(Value);
+                    pub struct #ident(pub Value);
                 },
             );
         }

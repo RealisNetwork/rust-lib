@@ -4,8 +4,6 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct PromoCodesCreateCodeParamsGivesItemsParams(Value);
-#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesCreateCodeParamsGivesCurrenciesParams {
     #[serde(rename = "LIS")]
     pub lis: f64,
@@ -13,21 +11,23 @@ pub struct PromoCodesCreateCodeParamsGivesCurrenciesParams {
     pub eth: f64,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct PromoCodesCreateCodeParamsGivesItemsParams(pub Value);
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesCreateCodeParams {
+    #[serde(rename = "givesCurrencies")]
+    pub gives_currencies: PromoCodesCreateCodeParamsGivesCurrenciesParams,
     #[serde(rename = "givesItems")]
     pub gives_items: PromoCodesCreateCodeParamsGivesItemsParams,
-    #[serde(rename = "code", deserialize_with = "deserialize_to_string")]
-    pub code: String,
     #[serde(rename = "numberOfAttempts")]
     pub number_of_attempts: f64,
     #[serde(rename = "expiresIn", deserialize_with = "deserialize_to_string")]
     pub expires_in: String,
-    #[serde(rename = "givesCurrencies")]
-    pub gives_currencies: PromoCodesCreateCodeParamsGivesCurrenciesParams,
+    #[serde(rename = "code", deserialize_with = "deserialize_to_string")]
+    pub code: String,
 }
 impl Schema for PromoCodesCreateCodeParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"givesItems\":{\"type\":\"object\",\"properties\":{}},\"code\":{\"type\":\"string\"},\"numberOfAttempts\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"expiresIn\":{\"type\":\"string\"},\"givesCurrencies\":{\"type\":\"object\",\"properties\":{\"LIS\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"ETH\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"ETH\",\"LIS\"]}},\"required\":[\"code\",\"numberOfAttempts\",\"expiresIn\",\"givesCurrencies\",\"givesItems\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"givesCurrencies\":{\"type\":\"object\",\"properties\":{\"LIS\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"ETH\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"ETH\",\"LIS\"]},\"givesItems\":{\"type\":\"object\",\"properties\":{}},\"numberOfAttempts\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"expiresIn\":{\"type\":\"string\"},\"code\":{\"type\":\"string\"}},\"required\":[\"code\",\"numberOfAttempts\",\"expiresIn\",\"givesCurrencies\",\"givesItems\"]}") . unwrap ()
     }
 }
 impl Agent for PromoCodesCreateCodeParams {

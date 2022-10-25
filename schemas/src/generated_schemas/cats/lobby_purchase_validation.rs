@@ -5,18 +5,18 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CatsLobbyPurchaseValidationParams {
+    #[serde(rename = "productId", deserialize_with = "deserialize_to_string")]
+    pub product_id: String,
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
     #[serde(rename = "purchaseToken", deserialize_with = "deserialize_to_string")]
     pub purchase_token: String,
     #[serde(rename = "storeId")]
     pub store_id: f64,
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
-    #[serde(rename = "productId", deserialize_with = "deserialize_to_string")]
-    pub product_id: String,
 }
 impl Schema for CatsLobbyPurchaseValidationParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"purchaseToken\":{\"type\":\"string\"},\"storeId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"userId\":{\"type\":\"string\"},\"productId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"storeId\",\"productId\",\"purchaseToken\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"productId\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"purchaseToken\":{\"type\":\"string\"},\"storeId\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}}},\"required\":[\"userId\",\"storeId\",\"productId\",\"purchaseToken\"]}") . unwrap ()
     }
 }
 impl Agent for CatsLobbyPurchaseValidationParams {

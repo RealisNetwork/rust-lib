@@ -29,20 +29,20 @@ impl Agent for PromoCodesUseCodeParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesUseCodeReturnsParams {
-    #[serde(rename = "heroId")]
-    pub hero_id: i8,
     #[serde(rename = "currencyAmount", deserialize_with = "deserialize_to_string")]
     pub currency_amount: String,
     #[serde(rename = "rewardType", deserialize_with = "deserialize_to_string")]
     pub reward_type: String,
     #[serde(rename = "currencyKey", deserialize_with = "deserialize_to_string")]
     pub currency_key: String,
+    #[serde(rename = "heroId")]
+    pub hero_id: i8,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PromoCodesUseCodeReturns(pub Vec<PromoCodesUseCodeReturnsParams>);
 impl Schema for PromoCodesUseCodeReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"heroId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}},\"currencyAmount\":{\"type\":\"string\"},\"rewardType\":{\"type\":\"string\"},\"currencyKey\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"}},\"required\":[\"rewardType\",\"currencyKey\",\"currencyAmount\",\"heroId\"]}}")
+        serde_json :: json ! ("{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"currencyAmount\":{\"type\":\"string\"},\"rewardType\":{\"type\":\"string\"},\"currencyKey\":{\"type\":\"string\",\"pattern\":\"^(ETH)|(LIS)|(WLIS)|(TLIS)$\"},\"heroId\":{\"type\":\"integer\",\"minimum\":-128,\"maximum\":127,\"additionalAttributes\":{\"numberType\":\"Byte\"}}},\"required\":[\"rewardType\",\"currencyKey\",\"currencyAmount\",\"heroId\"]}}")
     }
 }
 impl Agent for PromoCodesUseCodeReturns {

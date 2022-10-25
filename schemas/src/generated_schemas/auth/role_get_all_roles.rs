@@ -4,7 +4,7 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct AuthRoleGetAllRolesParams(Value);
+pub struct AuthRoleGetAllRolesParams(pub Value);
 impl Schema for AuthRoleGetAllRolesParams {
     fn schema() -> Value {
         serde_json::from_str("{\"type\":\"object\",\"properties\":{}}").unwrap()

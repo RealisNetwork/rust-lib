@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AchievementsAchievementAchievementCompleteParams {
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
     #[serde(rename = "achievementKey", deserialize_with = "deserialize_to_string")]
     pub achievement_key: String,
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
 }
 impl Schema for AchievementsAchievementAchievementCompleteParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"achievementKey\":{\"type\":\"string\"}},\"required\":[\"achievementKey\",\"userId\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"achievementKey\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"achievementKey\",\"userId\"]}") . unwrap ()
     }
 }
 impl Agent for AchievementsAchievementAchievementCompleteParams {
@@ -31,14 +31,14 @@ impl Agent for AchievementsAchievementAchievementCompleteParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AchievementsAchievementAchievementCompleteReturns {
-    #[serde(rename = "status")]
-    pub status: i32,
     #[serde(rename = "Key", deserialize_with = "deserialize_to_string")]
     pub key: String,
+    #[serde(rename = "status")]
+    pub status: i32,
 }
 impl Schema for AchievementsAchievementAchievementCompleteReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"Key\":{\"type\":\"string\"}},\"required\":[\"status\",\"Key\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"Key\":{\"type\":\"string\"},\"status\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"status\",\"Key\"]}")
     }
 }
 impl Agent for AchievementsAchievementAchievementCompleteReturns {

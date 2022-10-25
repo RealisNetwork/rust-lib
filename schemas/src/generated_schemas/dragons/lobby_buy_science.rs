@@ -5,17 +5,17 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbyBuyScienceParams {
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
     #[serde(
         rename = "sciencePurchaseKey",
         deserialize_with = "deserialize_to_string"
     )]
     pub science_purchase_key: String,
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
 }
 impl Schema for DragonsLobbyBuyScienceParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"sciencePurchaseKey\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"sciencePurchaseKey\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"sciencePurchaseKey\":{\"type\":\"string\"}},\"required\":[\"userId\",\"sciencePurchaseKey\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbyBuyScienceParams {

@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DragonsLobbyUpdateConfigParams {
-    #[serde(rename = "configJson", deserialize_with = "deserialize_to_string")]
-    pub config_json: String,
     #[serde(rename = "configKey", deserialize_with = "deserialize_to_string")]
     pub config_key: String,
+    #[serde(rename = "configJson", deserialize_with = "deserialize_to_string")]
+    pub config_json: String,
 }
 impl Schema for DragonsLobbyUpdateConfigParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"configJson\":{\"type\":\"string\"},\"configKey\":{\"type\":\"string\"}},\"required\":[\"configKey\",\"configJson\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"configKey\":{\"type\":\"string\"},\"configJson\":{\"type\":\"string\"}},\"required\":[\"configKey\",\"configJson\"]}") . unwrap ()
     }
 }
 impl Agent for DragonsLobbyUpdateConfigParams {

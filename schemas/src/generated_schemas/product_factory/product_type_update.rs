@@ -4,29 +4,29 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ProductFactoryProductTypeUpdateParamsParamsParams(Value);
+pub struct ProductFactoryProductTypeUpdateParamsParamsParams(pub Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProductFactoryProductTypeUpdateParams {
-    #[serde(rename = "personalType", deserialize_with = "deserialize_to_string")]
-    pub personal_type: String,
     #[serde(rename = "type")]
     pub r#type: Option<String>,
-    #[serde(rename = "dropChance")]
-    pub drop_chance: Option<f64>,
-    #[serde(rename = "underType")]
-    pub under_type: Option<String>,
-    #[serde(rename = "name")]
-    pub name: Option<String>,
     #[serde(rename = "params")]
     pub params: Option<ProductFactoryProductTypeUpdateParamsParamsParams>,
-    #[serde(rename = "rarity")]
-    pub rarity: Option<f64>,
+    #[serde(rename = "name")]
+    pub name: Option<String>,
+    #[serde(rename = "personalType", deserialize_with = "deserialize_to_string")]
+    pub personal_type: String,
+    #[serde(rename = "dropChance")]
+    pub drop_chance: Option<f64>,
     #[serde(rename = "isNFT")]
     pub is_nft: Option<bool>,
+    #[serde(rename = "rarity")]
+    pub rarity: Option<f64>,
+    #[serde(rename = "underType")]
+    pub under_type: Option<String>,
 }
 impl Schema for ProductFactoryProductTypeUpdateParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"dropChance\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"underType\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"params\":{\"type\":\"object\",\"properties\":{}},\"rarity\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isNFT\":{\"type\":\"boolean\"}},\"required\":[\"personalType\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"params\":{\"type\":\"object\",\"properties\":{}},\"name\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"dropChance\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"isNFT\":{\"type\":\"boolean\"},\"rarity\":{\"type\":\"integer\",\"minimum\":-9223372036854775808,\"maximum\":9223372036854775807,\"additionalAttributes\":{\"numberType\":\"Number\"}},\"underType\":{\"type\":\"string\"}},\"required\":[\"personalType\"]}") . unwrap ()
     }
 }
 impl Agent for ProductFactoryProductTypeUpdateParams {

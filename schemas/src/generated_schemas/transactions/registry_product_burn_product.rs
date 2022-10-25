@@ -29,14 +29,14 @@ impl Agent for TransactionsRegistryProductBurnProductParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionsRegistryProductBurnProductReturns {
-    #[serde(rename = "personalType", deserialize_with = "deserialize_to_string")]
-    pub personal_type: String,
     #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
     pub user_id: String,
+    #[serde(rename = "personalType", deserialize_with = "deserialize_to_string")]
+    pub personal_type: String,
 }
 impl Schema for TransactionsRegistryProductBurnProductReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"personalType\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"}},\"required\":[\"userId\",\"personalType\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"userId\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"}},\"required\":[\"userId\",\"personalType\"]}")
     }
 }
 impl Agent for TransactionsRegistryProductBurnProductReturns {

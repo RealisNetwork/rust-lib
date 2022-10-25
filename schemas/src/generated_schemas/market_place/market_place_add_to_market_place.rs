@@ -4,31 +4,31 @@
 #![allow(clippy::all)]
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct MarketPlaceMarketPlaceAddToMarketPlaceParamsAdditionalParamsParams(Value);
+pub struct MarketPlaceMarketPlaceAddToMarketPlaceParamsAdditionalParamsParams(pub Value);
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MarketPlaceMarketPlaceAddToMarketPlaceParams {
-    #[serde(rename = "description", deserialize_with = "deserialize_to_string")]
-    pub description: String,
-    #[serde(rename = "image", deserialize_with = "deserialize_to_string")]
-    pub image: String,
-    #[serde(rename = "category", deserialize_with = "deserialize_to_string")]
-    pub category: String,
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
-    #[serde(rename = "personalType", deserialize_with = "deserialize_to_string")]
-    pub personal_type: String,
-    #[serde(rename = "additionalParams")]
-    pub additional_params: MarketPlaceMarketPlaceAddToMarketPlaceParamsAdditionalParamsParams,
-    #[serde(rename = "price")]
-    pub price: i32,
-    #[serde(rename = "productId")]
-    pub product_id: i32,
     #[serde(rename = "collection", deserialize_with = "deserialize_to_string")]
     pub collection: String,
+    #[serde(rename = "description", deserialize_with = "deserialize_to_string")]
+    pub description: String,
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
+    #[serde(rename = "category", deserialize_with = "deserialize_to_string")]
+    pub category: String,
+    #[serde(rename = "price")]
+    pub price: i32,
+    #[serde(rename = "personalType", deserialize_with = "deserialize_to_string")]
+    pub personal_type: String,
+    #[serde(rename = "image", deserialize_with = "deserialize_to_string")]
+    pub image: String,
+    #[serde(rename = "additionalParams")]
+    pub additional_params: MarketPlaceMarketPlaceAddToMarketPlaceParamsAdditionalParamsParams,
+    #[serde(rename = "productId")]
+    pub product_id: i32,
 }
 impl Schema for MarketPlaceMarketPlaceAddToMarketPlaceParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"description\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"category\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"personalType\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"collection\":{\"type\":\"string\"}},\"required\":[\"collection\",\"userId\",\"price\",\"description\",\"image\",\"category\",\"personalType\",\"productId\",\"additionalParams\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"collection\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"category\":{\"type\":\"string\"},\"price\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}},\"personalType\":{\"type\":\"string\"},\"image\":{\"type\":\"string\"},\"additionalParams\":{\"type\":\"object\",\"properties\":{}},\"productId\":{\"type\":\"integer\",\"minimum\":-2147483648,\"maximum\":2147483647,\"additionalAttributes\":{\"numberType\":\"Int\"}}},\"required\":[\"collection\",\"userId\",\"price\",\"description\",\"image\",\"category\",\"personalType\",\"productId\",\"additionalParams\"]}") . unwrap ()
     }
 }
 impl Agent for MarketPlaceMarketPlaceAddToMarketPlaceParams {

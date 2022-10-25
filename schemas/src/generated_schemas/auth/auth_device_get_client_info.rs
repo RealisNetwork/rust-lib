@@ -5,14 +5,14 @@
 use crate::generated_schemas::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceGetClientInfoParams {
-    #[serde(rename = "providerId", deserialize_with = "deserialize_to_string")]
-    pub provider_id: String,
     #[serde(rename = "provider", deserialize_with = "deserialize_to_string")]
     pub provider: String,
+    #[serde(rename = "providerId", deserialize_with = "deserialize_to_string")]
+    pub provider_id: String,
 }
 impl Schema for AuthAuthDeviceGetClientInfoParams {
     fn schema() -> Value {
-        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"providerId\":{\"type\":\"string\"},\"provider\":{\"type\":\"string\",\"pattern\":\"^(Keycloak)|(DeviceId)$\"}},\"required\":[\"providerId\",\"provider\"]}") . unwrap ()
+        serde_json :: from_str ("{\"type\":\"object\",\"properties\":{\"provider\":{\"type\":\"string\",\"pattern\":\"^(Keycloak)|(DeviceId)$\"},\"providerId\":{\"type\":\"string\"}},\"required\":[\"providerId\",\"provider\"]}") . unwrap ()
     }
 }
 impl Agent for AuthAuthDeviceGetClientInfoParams {
@@ -31,16 +31,16 @@ impl Agent for AuthAuthDeviceGetClientInfoParams {
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct AuthAuthDeviceGetClientInfoReturns {
-    #[serde(rename = "email", deserialize_with = "deserialize_to_string")]
-    pub email: String,
-    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
-    pub user_id: String,
     #[serde(rename = "isAuth")]
     pub is_auth: bool,
+    #[serde(rename = "userId", deserialize_with = "deserialize_to_string")]
+    pub user_id: String,
+    #[serde(rename = "email", deserialize_with = "deserialize_to_string")]
+    pub email: String,
 }
 impl Schema for AuthAuthDeviceGetClientInfoReturns {
     fn schema() -> Value {
-        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"email\":{\"type\":\"string\"},\"userId\":{\"type\":\"string\"},\"isAuth\":{\"type\":\"boolean\"}},\"required\":[\"userId\",\"email\",\"isAuth\"]}")
+        serde_json :: json ! ("{\"type\":\"object\",\"properties\":{\"isAuth\":{\"type\":\"boolean\"},\"userId\":{\"type\":\"string\"},\"email\":{\"type\":\"string\"}},\"required\":[\"userId\",\"email\",\"isAuth\"]}")
     }
 }
 impl Agent for AuthAuthDeviceGetClientInfoReturns {
