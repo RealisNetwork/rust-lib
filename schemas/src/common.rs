@@ -14,8 +14,8 @@ pub struct Request<P> {
 
     pub params: P,
 
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub auth: Option<Auth>,
+    // #[serde(skip_serializing_if = "Option::is_none")]
+    // pub auth: Option<Auth>,
     #[serde(rename = "authInfo")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub auth_info: Option<AuthInfo>,
