@@ -7,15 +7,9 @@ pub struct Request<P> {
     pub id: String,
     #[serde(rename = "topicResponse")]
     pub topic_res: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub agent: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub method: Option<String>,
 
     pub params: P,
 
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub auth: Option<Auth>,
     #[serde(rename = "authInfo")]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub auth_info: Option<AuthInfo>,
@@ -79,10 +73,8 @@ pub enum Auth {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MobileAuth {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub token: Option<String>,
-    #[serde(rename = "deviceId", skip_serializing_if = "Option::is_none")]
-    pub device_id: Option<String>,
+    #[serde(rename = "deviceId")]
+    pub device_id: String,
     #[serde(rename = "appId")]
     pub app_id: u64,
 }
@@ -92,9 +84,11 @@ pub struct SocketRequest<T> {
     pub id: String,
     pub method: String,
     pub agent: String,
-    pub params: T,
-    pub auth: Auth,
     pub lang: String,
+    pub auth: Auth,
+    #[serde(rename = "authInfo")]
+    pub auth_info: AuthInfo,
+    pub params: T,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -102,15 +96,15 @@ pub struct SocketProcessedRequest<T> {
     pub id: String,
     pub method: String,
     pub agent: String,
-    pub params: T,
     pub lang: String,
-    #[serde(rename = "clientId")]
-    pub client_id: String,
+    pub auth: Auth,
     #[serde(rename = "authInfo")]
     pub auth_info: AuthInfo,
+    pub params: T,
+    #[serde(rename = "clientId")]
+    pub client_id: String,
     #[serde(rename = "topicResponse")]
     pub topic_response: String,
-    pub auth: Auth,
 }
 
 impl<T> From<SocketRequest<T>> for SocketProcessedRequest<T> {
@@ -122,11 +116,7 @@ impl<T> From<SocketRequest<T>> for SocketProcessedRequest<T> {
             params: socket_request.params,
             auth: socket_request.auth,
             lang: socket_request.lang,
-            auth_info: AuthInfo {
-                user_id: None,
-                address: None,
-                continent: None,
-            },
+            auth_info: socket_request.auth_info,
             client_id: "".to_string(),
             topic_response: "".to_string(),
         }
