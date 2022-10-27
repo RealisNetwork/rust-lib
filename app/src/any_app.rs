@@ -11,7 +11,7 @@ use transport::{ReceivedMessage, Subscription, Transport, VSubscription};
 
 #[async_trait]
 pub trait AnyService<
-    Params: DeserializeOwned + Sync + Send + Debug,
+    Params: DeserializeOwned + Serialize + Sync + Send + Debug,
     Returns: Serialize + Sync + Send + Debug,
 >: Send + Sync
 {
@@ -21,7 +21,7 @@ pub trait AnyService<
 }
 
 pub struct AnyApp<
-    Params: DeserializeOwned + Sync + Send + Debug,
+    Params: DeserializeOwned + Serialize + Sync + Send + Debug,
     Returns: Serialize + Sync + Send + Debug,
     S: AnyService<Params, Returns>,
     N: Transport + Sync + Send,
@@ -34,7 +34,7 @@ pub struct AnyApp<
 
 #[async_trait]
 impl<
-        Params: DeserializeOwned + Sync + Send + Debug,
+       Params: DeserializeOwned + Serialize + Sync + Send + Debug,
         Returns: Serialize + Sync + Send + Debug,
         S: AnyService<Params, Returns>,
         N: Transport + Sync + Send,
@@ -50,7 +50,7 @@ impl<
 }
 
 impl<
-        Params: DeserializeOwned + Sync + Send + Debug,
+       Params: DeserializeOwned + Serialize + Sync + Send + Debug,
         Returns: Serialize + Sync + Send + Debug,
         S: AnyService<Params, Returns>,
         N: Transport + Sync + Send,
@@ -76,14 +76,24 @@ impl<
         loop {
             let message = self.subscription.next().await?;
             let result = match message.deserialize() {
-                Ok(request) => match self.service.process(request).await {
-                    Ok(response_schema) => {
-                        log::debug!("got response schema{:#?}", response_schema);
-                        Ok(())
-                    }
-                    Err(error) => {
-                        log::debug!("Got response left: {:#?}", error);
-                        Err(error)
+                Ok(request) => {
+                    log::info!(
+                        "Got {}",
+                        json!({
+                            "topic": self.service.topic_to_subscribe(),
+                            "request": request
+                        })
+                        .to_string()
+                    );
+                    match self.service.process(request).await {
+                        Ok(response_schema) => {
+                            log::debug!("got response schema{:#?}", response_schema);
+                            Ok(())
+                        }
+                        Err(error) => {
+                            log::debug!("Got response left: {:#?}", error);
+                            Err(error)
+                        }
                     }
                 },
                 Err(error) => {
