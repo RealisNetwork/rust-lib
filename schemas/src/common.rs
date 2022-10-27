@@ -86,8 +86,8 @@ pub struct SocketRequest<T> {
     pub agent: String,
     pub lang: String,
     pub auth: Auth,
-    #[serde(rename = "authInfo")]
-    pub auth_info: AuthInfo,
+    #[serde(rename = "authInfo", skip_serializing_if = "Option::is_none")]
+    pub auth_info: Option<AuthInfo>,
     pub params: T,
 }
 
@@ -116,7 +116,11 @@ impl<T> From<SocketRequest<T>> for SocketProcessedRequest<T> {
             params: socket_request.params,
             auth: socket_request.auth,
             lang: socket_request.lang,
-            auth_info: socket_request.auth_info,
+            auth_info: AuthInfo {
+                user_id: socket_request.auth_info.clone().and_then(|v| v.user_id),
+                address: socket_request.auth_info.clone().and_then(|v| v.address),
+                continent: socket_request.auth_info.and_then(|v| v.continent),
+            },
             client_id: "".to_string(),
             topic_response: "".to_string(),
         }
